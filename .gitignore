@@ -137,3 +137,5 @@ dist
 data/config.json
 data/news.json
 data/manifest-config.json
+public/game/*
+!public/game/.noempty
