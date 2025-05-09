@@ -1,0 +1,6 @@
+{
+    "siteName": "CityVault",
+    "session_secret": "ChangeThisPLEASE",
+    "ipAddr": "127.0.0.1",
+    "domain": "YourWebsite.com"
+}

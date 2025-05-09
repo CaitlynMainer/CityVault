@@ -1,0 +1,93 @@
+<main>
+  <h2 class="text-xl font-bold mb-4">Configure Manifest</h2>
+
+  <% if (typeof messages !== 'undefined' && (messages.success.length || messages.error.length)) { %>
+    <div>
+      <% messages.success.forEach(msg => { %>
+        <p class="text-green-500"><%= msg %></p>
+      <% }) %>
+      <% messages.error.forEach(msg => { %>
+        <p class="text-red-500"><%= msg %></p>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <form method="POST" action="/admin/manifest/config">
+    <label class="block">Label:
+      <input class="w-full" type="text" name="label" value="<%= config.label || '' %>">
+    </label>
+
+    <label class="block">Forum Name:
+      <input class="w-full" type="text" name="forumName" value="<%= config.forumName || '' %>">
+    </label>
+
+    <label class="block">Forum URL:
+      <input class="w-full" type="text" name="forumUrl" value="<%= config.forumUrl || '' %>">
+    </label>
+
+    <label class="block">Webpage:
+      <input class="w-full" type="text" name="webpage" value="<%= config.webpage || '' %>">
+    </label>
+
+    <label class="block">Poster Image URL:
+      <input class="w-full" type="text" name="posterImage" value="<%= config.posterImage || '' %>">
+    </label>
+
+    <h3 class="font-bold mt-6 mb-2">Profiles</h3>
+    <div id="profilesContainer">
+      <% 
+        const profiles = (config.profiles || []).sort((a, b) => (a.order || 0) - (b.order || 0));
+        profiles.forEach((profile, index) => { 
+      %>
+        <div class="mb-4 border p-4 bg-gray-800" data-index="<%= index %>">
+          <label>Name: <input class="w-full" type="text" name="profiles[<%= index %>][name]" value="<%= profile.name %>"></label>
+          <label>Exec: <input class="w-full" type="text" name="profiles[<%= index %>][exec]" value="<%= profile.exec %>"></label>
+          <label>Order: <input class="w-full profile-order" type="number" name="profiles[<%= index %>][order]" value="<%= profile.order %>"></label>
+          <label>Params: <input class="w-full" type="text" name="profiles[<%= index %>][params]" value="<%= profile.params %>"></label>
+          <button type="button" onclick="removeProfile(this)" class="text-red-400 mt-2">Remove</button>
+        </div>
+      <% }) %>
+    </div>
+
+    <button type="button" onclick="addProfile()" class="bg-gray-600 px-4 py-1 mt-4">Add Profile</button>
+    <br>
+    <button class="bg-blue-600 px-4 py-2 mt-6 text-white">Save</button>
+  </form>
+
+  <form method="GET" action="/admin/manifest/generate" class="mt-6">
+    <button class="bg-green-600 px-4 py-2 text-white">Generate Manifest</button>
+  </form>
+
+  <script>
+    let profileIndex = <%= profiles.length %>;
+
+    function getNextOrder() {
+      const orders = Array.from(document.querySelectorAll('.profile-order'))
+        .map(el => parseInt(el.value, 10))
+        .filter(n => !isNaN(n));
+      return orders.length ? Math.max(...orders) + 1 : 0;
+    }
+
+    function addProfile() {
+      const order = getNextOrder();
+      const container = document.getElementById('profilesContainer');
+      const div = document.createElement('div');
+      div.className = 'mb-4 border p-4 bg-gray-800';
+      div.setAttribute('data-index', profileIndex);
+      div.innerHTML = `
+        <label>Name: <input class="w-full" type="text" name="profiles[${profileIndex}][name]"></label>
+        <label>Exec: <input class="w-full" type="text" name="profiles[${profileIndex}][exec]"></label>
+        <label>Order: <input class="w-full profile-order" type="number" name="profiles[${profileIndex}][order]" value="${order}"></label>
+        <label>Params: <input class="w-full" type="text" name="profiles[${profileIndex}][params]"></label>
+        <button type="button" onclick="removeProfile(this)" class="text-red-400 mt-2">Remove</button>
+      `;
+      container.appendChild(div);
+      profileIndex++;
+    }
+
+    function removeProfile(button) {
+      const div = button.closest('[data-index]');
+      if (div) div.remove();
+    }
+  </script>
+</main>

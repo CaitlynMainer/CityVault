@@ -1,0 +1,97 @@
+<main>
+  <h2 class="text-xl font-bold mb-4">News Editor</h2>
+
+  <% if (typeof messages !== 'undefined' && (messages.success.length || messages.error.length)) { %>
+    <div>
+      <% messages.success.forEach(msg => { %>
+        <p class="text-green-500"><%= msg %></p>
+      <% }) %>
+      <% messages.error.forEach(msg => { %>
+        <p class="text-red-500"><%= msg %></p>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <form id="news-form" method="POST" action="/admin/news/save">
+    <input type="hidden" name="id" id="news-id" value="<%= post?.id || '' %>">
+    
+    <label class="block mb-1">Title:</label>
+    <input type="text" class="w-full mb-2 text-black" name="title" id="news-title" value="<%= post?.title || '' %>">
+
+    <label class="block mb-1">Pinned:</label>
+    <input type="checkbox" name="pinned" id="news-pinned" <%= post?.pinned ? 'checked' : '' %>> Pinned
+
+    <label class="block mb-1 mt-3">Content:</label>
+    <div id="editor" class="bg-white text-black mb-2 p-2 rounded" style="min-height: 150px;"></div>
+    <input type="hidden" name="content" id="news-content" value="<%- post?.content || '' %>">
+
+    <button type="submit" class="bg-blue-600 px-4 py-2 text-white">Save</button>
+  </form>
+
+  <h3 class="text-lg font-semibold mt-6">All News Posts</h3>
+  <ul id="news-list" class="mt-2 space-y-2">
+    <% news.forEach(item => { %>
+      <li class="bg-gray-700 p-3 rounded flex justify-between items-center" data-id="<%= item.id %>">
+        <span>
+          <strong><%= item.title %></strong> —
+          <em class="post-date" data-utc="<%= item.date %>"></em>
+          <% if (item.pinned) { %>
+            <span class="text-yellow-400 ml-2">(Pinned)</span>
+          <% } %>
+        </span>
+        <span>
+          <button data-edit='<%- JSON.stringify(item) %>' class="edit-btn text-sm text-blue-300 hover:underline">Edit</button>
+          <form action="/admin/news/delete" method="POST" class="inline ml-2">
+            <input type="hidden" name="id" value="<%= item.id %>">
+            <button class="text-sm text-red-400 hover:underline">Delete</button>
+          </form>
+        </span>
+      </li>
+    <% }) %>
+  </ul>
+
+  <form id="reorder-form" method="POST" action="/admin/news/reorder">
+    <input type="hidden" name="order" id="news-order">
+  </form>
+</main>
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<script>
+  const editor = new Quill('#editor', { theme: 'snow' });
+  const contentInput = document.getElementById('news-content');
+
+  // Load content if editing
+  if (contentInput.value) {
+    try {
+      editor.root.innerHTML = contentInput.value;
+    } catch (e) {}
+  }
+
+  document.getElementById('news-form').addEventListener('submit', () => {
+    contentInput.value = editor.root.innerHTML;
+  });
+
+  // Edit support
+  document.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const post = JSON.parse(btn.getAttribute('data-edit'));
+      document.getElementById('news-id').value = post.id;
+      document.getElementById('news-title').value = post.title;
+      editor.root.innerHTML = post.content || '';
+      document.getElementById('news-pinned').checked = !!post.pinned;
+    });
+  });
+
+  document.querySelectorAll('.post-date').forEach(el => {
+    const utc = el.getAttribute('data-utc');
+    if (utc) {
+      const local = new Date(utc).toLocaleString(undefined, {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      });
+      el.textContent = local;
+    }
+  });
+</script>

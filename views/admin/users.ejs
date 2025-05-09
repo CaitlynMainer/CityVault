@@ -1,0 +1,46 @@
+<h2>User Management</h2>
+<form method="GET" action="/admin/users">
+    <input type="text" name="search" placeholder="Search username or email" value="<%= search %>">
+  
+    <label>Show:
+      <select name="limit" onchange="this.form.submit()">
+        <option value="10" <%= limit == 10 ? 'selected' : '' %>>10</option>
+        <option value="25" <%= limit == 25 ? 'selected' : '' %>>25</option>
+        <option value="50" <%= limit == 50 ? 'selected' : '' %>>50</option>
+        <option value="100" <%= limit == 100 ? 'selected' : '' %>>100</option>
+      </select> per page
+    </label>
+  
+    <button type="submit">Search</button>
+  </form>
+<table border="1" cellpadding="5">
+  <tr><th>Username</th><th>Email</th><th>Role</th><th>Action</th></tr>
+  <% users.forEach(user => { %>
+    <tr>
+      <td><%= user.account %></td>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <td>
+        <form method="POST" action="/admin/users/<%= user.uid %>/role" style="display:inline">
+            <input type="hidden" name="newRole" value="<%= user.role === 'admin' ? 'user' : 'admin' %>">
+            <input type="hidden" name="page" value="<%= page %>">
+            <input type="hidden" name="search" value="<%= search %>">
+            <input type="hidden" name="limit" value="<%= limit %>">
+            <button type="submit"><%= user.role === 'admin' ? 'Demote' : 'Promote' %></button>
+          </form>
+          <form method="POST" action="/admin/users/<%= user.uid %>/ban" style="display:inline">
+            <input type="hidden" name="action" value="<%= user.block_flag ? 'unban' : 'ban' %>">
+            <input type="hidden" name="page" value="<%= page %>">
+            <input type="hidden" name="search" value="<%= search %>">
+            <input type="hidden" name="limit" value="<%= limit %>">
+            <button type="submit"><%= user.block_flag ? 'Unban' : 'Ban' %></button>
+          </form>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<p>Page <%= page %> of <%= totalPages %></p>
+<% for (let i = 1; i <= totalPages; i++) { %>
+  <a href="?page=<%= i %>&search=<%= encodeURIComponent(search) %>"><%= i %></a>
+<% } %>

@@ -1,0 +1,33 @@
+<% const messages = typeof getMessages === 'function' ? getMessages() : { success: [], error: [] }; %>
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-900 text-white">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= typeof title !== 'undefined' ? title : config.siteName %></title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/custom.css">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="flex h-screen">
+        <%- include('partials/sidebar') %>
+
+  <div class="flex-1 flex flex-col">
+    <%- include('partials/header') %>
+    <main class="flex-1 overflow-y-auto p-6">
+      <% if (messages.error.length || messages.success.length) { %>
+        <div class="flash-container">
+          <% messages.error.forEach(msg => { %>
+            <p class="text-red-500"><%= msg %></p>
+          <% }) %>
+          <% messages.success.forEach(msg => { %>
+            <p class="text-green-500"><%= msg %></p>
+          <% }) %>
+        </div>
+      <% } %>
+      <%- body %>
+    </main>
+    <%- include('partials/footer') %>
+  </div>
+</body>
+</html>

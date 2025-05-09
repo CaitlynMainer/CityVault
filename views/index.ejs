@@ -1,0 +1,28 @@
+    <h2 class="text-2xl font-bold mb-4"><%= config.siteName %> News</h2>
+  
+    <% if (news.length === 0) { %>
+      <p>No news posts available.</p>
+    <% } %>
+  
+    <% news.forEach(post => { %>
+      <article class="mb-6 p-4 border border-gray-700 rounded">
+        <h3 class="text-xl font-semibold"><%= post.title %></h3>
+        <p class="text-sm text-gray-400 mb-2"><span class="utc-date" data-utc="<%= post.date %>">Loading...</span></p>
+        <div class="prose prose-invert max-w-none">
+          <%- post.content %>
+        </div>
+      </article>
+    <% }) %>
+  </main>
+  <script>
+    document.querySelectorAll('.utc-date').forEach(el => {
+      const utc = el.dataset.utc;
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const local = new Date(utc).toLocaleString(undefined, {
+        timeZone: tz,
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      });
+      el.textContent = local;
+    });
+  </script>
