@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const requireAdmin = require('../../middleware/requireAdmin');
-const { listUsers, updateUserRole, toggleUserBan } = require('../../controllers/adminController');
+const { listUsers, updateUserRole, toggleUserBan } = require('../../controllers/admin/userController');
 
-router.get('/admin/users', requireAdmin, listUsers);
-router.post('/admin/users/:uid/role', requireAdmin, updateUserRole);
-router.post('/admin/users/:uid/ban', requireAdmin, toggleUserBan);
+router.get('/', requireAdmin, listUsers);
+router.post('/:uid/role', requireAdmin, updateUserRole);
+router.post('/:uid/ban', requireAdmin, toggleUserBan);
 
 module.exports = router;

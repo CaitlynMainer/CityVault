@@ -16,7 +16,7 @@
     <input type="hidden" name="id" id="news-id" value="<%= post?.id || '' %>">
     
     <label class="block mb-1">Title:</label>
-    <input type="text" class="w-full mb-2 text-black" name="title" id="news-title" value="<%= post?.title || '' %>">
+    <input type="text" class="w-full mb-2" name="title" id="news-title" value="<%= post?.title || '' %>">
 
     <label class="block mb-1">Pinned:</label>
     <input type="checkbox" name="pinned" id="news-pinned" <%= post?.pinned ? 'checked' : '' %>> Pinned

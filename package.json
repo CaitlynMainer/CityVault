@@ -1,9 +1,9 @@
 {
   "name": "cityvault",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "server.mjs",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.mjs"
   },
   "keywords": [],
   "author": "",

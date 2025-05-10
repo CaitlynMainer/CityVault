@@ -145,25 +145,8 @@ app.use((req, res, next) => {
 
 
 // Routes
-const indexRoute = require('./routes/index');
-const loginRoute = require('./routes/login');
-const registerRoute = require('./routes/register');
-const logoutRoute = require('./routes/logout');
-const accountRoutes = require('./routes/account');
-const adminIndexRoutes = require('./routes/admin/index');
-const adminManifestRoutes = require('./routes/admin/manifest');
-const adminUserRoutes = require('./routes/admin/users');
-const adminNewsRoutes = require('./routes/admin/news');
-app.use('/', adminIndexRoutes);          // Handles /admin
-app.use('/', adminManifestRoutes);       // Handles /admin/manifest/...
-app.use('/', adminUserRoutes);           // Handles /admin/users/...
-app.use('/', adminNewsRoutes);
-
-app.use('/', indexRoute);
-app.use('/', loginRoute);
-app.use('/', registerRoute);
-app.use('/', logoutRoute);
-app.use('/', accountRoutes);
+const routes = require('./routes');
+app.use(routes);
 
 // 404 handler
 app.use((req, res, next) => {

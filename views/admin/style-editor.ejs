@@ -1,0 +1,13 @@
+<h1>🎨 Style Editor</h1>
+
+<form method="POST" action="/admin/style">
+  <textarea name="css" rows="30" style="width:100%; font-family:monospace;"><%= css %></textarea>
+  <br>
+  <button type="submit">💾 Save</button>
+</form>
+
+<form method="POST" action="/admin/style/reset" onsubmit="return confirm('Really reset to default?');">
+  <button type="submit" style="margin-top:1em; color:red;">🗑 Reset to Default</button>
+</form>
+
+<p><a href="/admin">← Back to Dashboard</a></p>

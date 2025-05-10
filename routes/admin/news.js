@@ -3,9 +3,10 @@ const router = express.Router();
 const requireAdmin = require('../../middleware/requireAdmin');
 const newsController = require('../../controllers/admin/newsController');
 
-router.get('/admin/news', requireAdmin, newsController.showNewsEditor);
-router.post('/admin/news/save', requireAdmin, newsController.saveNews);
-router.post('/admin/news/delete', requireAdmin, newsController.deleteNews);
-router.post('/admin/news/reorder', requireAdmin, newsController.reorderNews);
+// These will be served under /admin/news/*
+router.get('/', requireAdmin, newsController.showNewsEditor);
+router.post('/save', requireAdmin, newsController.saveNews);
+router.post('/delete', requireAdmin, newsController.deleteNews);
+router.post('/reorder', requireAdmin, newsController.reorderNews);
 
 module.exports = router;

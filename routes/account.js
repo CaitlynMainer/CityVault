@@ -3,7 +3,7 @@ const router = express.Router();
 const { showAccountPage, updateAccount } = require('../controllers/accountController');
 const requireLogin = require('../middleware/requireLogin');
 
-router.get('/account', requireLogin, showAccountPage);
-router.post('/account', requireLogin, updateAccount);
+router.get('/', requireLogin, showAccountPage);
+router.post('/', requireLogin, updateAccount);
 
 module.exports = router;

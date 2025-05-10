@@ -7,8 +7,9 @@ const {
   generateManifest,
 } = require('../../controllers/admin/manifestController');
 
-router.get('/admin/manifest/config', requireAdmin, showConfigPage);
-router.post('/admin/manifest/config', requireAdmin, saveConfig);
-router.get('/admin/manifest/generate', requireAdmin, generateManifest);
+// These are now relative to /admin/manifest
+router.get('/config', requireAdmin, showConfigPage);
+router.post('/config', requireAdmin, saveConfig);
+router.get('/generate', requireAdmin, generateManifest);
 
 module.exports = router;

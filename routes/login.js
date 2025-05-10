@@ -2,7 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { handleLoginPage, handleLogin } = require('../controllers/loginController');
 
-router.get('/login', handleLoginPage);
-router.post('/login', handleLogin);
+// Serve /login page
+router.get('/', handleLoginPage);
+
+// Handle POST to /login
+router.post('/', handleLogin);
 
 module.exports = router;
