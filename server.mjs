@@ -30,8 +30,12 @@ AutoEncrypt.createServer({
 
   const http = await HttpServer.getSharedInstance();
   http.addResponder((req, res) => {
+    if (req.url.startsWith('/.well-known/acme-challenge/')) {
+      return false; // Let Auto Encrypt handle it
+    }
+
+    // Otherwise, let Express handle the request
     expressApp(req, res);
     return true;
   });
 });
-
