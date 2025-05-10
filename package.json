@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.mjs",
   "scripts": {
-    "start": "node server.mjs"
+    "start": "node server.mjs",
+    "postinstall": "node patch-autoencrypt.js"
   },
   "keywords": [],
   "author": "",
