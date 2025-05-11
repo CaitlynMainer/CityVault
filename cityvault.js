@@ -12,6 +12,7 @@ const flash = require('connect-flash');
 const config = require('./utils/config');
 const saveReturnTo = require('./middleware/saveReturnTo');
 const { stringClean } = require('./utils/textSanitizer');
+const compression = require('compression');
 
 const authConfig = {
   user: config.auth.dbUser,
@@ -139,7 +140,7 @@ app.use(session({
 }));
 
 app.use(flash());
-
+app.use(compression());
 app.use(saveReturnTo);  // Place this before auth checks
 
 app.use((req, res, next) => {

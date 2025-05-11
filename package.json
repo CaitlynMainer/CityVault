@@ -13,6 +13,7 @@
   "dependencies": {
     "@small-tech/auto-encrypt": "^4.3.0",
     "body-parser": "^2.2.0",
+    "compression": "^1.8.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
