@@ -2,9 +2,24 @@ const sql = require('mssql');
 const path = require('path');
 const fs = require('fs');
 
-// Load config from JSON
+// Load config from JSON safely
 const configPath = path.join(__dirname, '../data/config.json');
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const configDefaultPath = path.join(__dirname, '../data/config.json-default');
+
+let config;
+
+try {
+  config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+} catch (e) {
+  console.error(`[ERROR] Failed to load config.json: ${e.message}`);
+
+  if (fs.existsSync(configDefaultPath)) {
+    console.warn('[WARN] config.json-default exists — did you forget to copy and configure it?');
+  }
+
+  process.exit(1);
+  
+}
 
 const authConfig = {
   user: config.auth.dbUser,

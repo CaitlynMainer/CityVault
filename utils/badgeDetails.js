@@ -18,15 +18,24 @@ try {
 
 function loadBadgeStrings() {
   const msPath = path.join(global.BASE_DIR, 'data', 'badges', 'Badges.ms');
-  const raw = fs.readFileSync(msPath, 'utf8');
   const map = {};
 
-  for (const line of raw.split('\n')) {
-    const match = line.trim().match(/^"?P(\d+)"?\s+"(.*?)"$/);
-    if (match) {
-      const [, id, text] = match;
-      map[`P${id}`] = text;
+  if (!fs.existsSync(msPath)) {
+    console.warn(`[badgeDetails] Badges.ms not found at ${msPath}, continuing with empty badge strings.`);
+    return map;
+  }
+
+  try {
+    const raw = fs.readFileSync(msPath, 'utf8');
+    for (const line of raw.split('\n')) {
+      const match = line.trim().match(/^"?P(\d+)"?\s+"(.*?)"$/);
+      if (match) {
+        const [, id, text] = match;
+        map[`P${id}`] = text;
+      }
     }
+  } catch (err) {
+    console.warn(`[badgeDetails] Failed to read Badges.ms: ${err.message}`);
   }
 
   return map;

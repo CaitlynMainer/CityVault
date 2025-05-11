@@ -9,7 +9,12 @@ const BITFIELD_SIZE = Math.max(Math.ceil(BADGE_ENT_MAX_BADGES / BITS_PER_ITEM), 
 
 // Load Badges.ms (string table)
 const msPath = path.join(global.BASE_DIR, 'data', 'badges', 'Badges.ms');
-const msRaw = fs.readFileSync(msPath, 'utf8');
+let msRaw = '';
+try {
+  msRaw = fs.readFileSync(msPath, 'utf8');
+} catch (e) {
+  console.warn('[badgeParser] Warning: Badges.ms not found or unreadable:', e.message);
+}
 
 const badgeMsMap = {};
 let current = null;

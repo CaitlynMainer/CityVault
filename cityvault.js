@@ -9,7 +9,6 @@ const sql = require('mssql');
 const adminRoutes = require('./routes/admin');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
-require('dotenv').config();
 const config = require('./utils/config');
 const saveReturnTo = require('./middleware/saveReturnTo');
 const { stringClean } = require('./utils/textSanitizer');
