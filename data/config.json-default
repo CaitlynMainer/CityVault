@@ -2,5 +2,23 @@
     "siteName": "CityVault",
     "session_secret": "ChangeThisPLEASE",
     "ipAddr": "127.0.0.1",
-    "domain": "YourWebsite.com"
+    "domain": "YourWebsite.com",
+
+    "auth": {
+        "dbHost": "localhost",
+        "dbPort": 1433,
+        "dbUser": "dbUser",
+        "dbPass": "password",
+        "dbName": "cohauth"
+    },
+    "servers": {
+        "yourserver": {
+        "label": "YourServer",
+        "dbHost": "localhost",
+        "dbPort": 1433,
+        "dbUser": "dbUser",
+        "dbPass": "password",
+        "dbName": "cohdb"
+        }
+    }
 }

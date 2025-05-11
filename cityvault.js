@@ -12,30 +12,25 @@ const flash = require('connect-flash');
 require('dotenv').config();
 const config = require('./utils/config');
 const saveReturnTo = require('./middleware/saveReturnTo');
+const { stringClean } = require('./utils/textSanitizer');
 
-const dbConfig = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER,
-  database: 'cohauth',
+const authConfig = {
+  user: config.auth.dbUser,
+  password: config.auth.dbPass,
+  server: config.auth.dbHost,
+  database: config.auth.dbName,
+  port: config.auth.dbPort,
   options: {
     encrypt: true,
     trustServerCertificate: true
   }
 };
 
+const readline = require('readline');
+
 async function ensureSchema() {
   try {
-    const pool = await sql.connect({
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      server: process.env.DB_SERVER,
-      database: 'cohauth',
-      options: {
-        encrypt: process.env.DB_ENCRYPT === 'true',
-        trustServerCertificate: true
-      }
-    });
+    const pool = await sql.connect(authConfig);
 
     // Check for 'email' column
     const emailCheck = await pool.request().query(`
@@ -76,10 +71,49 @@ async function ensureSchema() {
       console.log("[INFO] 'tracker' column added.");
     }
 
+    // Check if any admin user exists
+    const adminCheck = await pool.request().query(`
+      SELECT COUNT(*) AS count FROM cohauth.dbo.user_account WHERE role = 'admin'
+    `);
+
+    if (adminCheck.recordset[0].count === 0) {
+      console.log("[WARN] No admin user found.");
+
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      });
+
+      rl.question("Enter the AuthName of the user to promote to admin: ", async (authName) => {
+        rl.close();
+
+        const userCheck = await pool.request()
+          .input('authName', sql.VarChar, authName)
+          .query(`
+            SELECT uid FROM cohauth.dbo.user_account WHERE account = @authName
+          `);
+
+        if (userCheck.recordset.length === 0) {
+          console.log(`[ERROR] No user found with AuthName "${authName}".`);
+        } else {
+          const uid = userCheck.recordset[0].uid;
+
+          await pool.request()
+            .input('uid', sql.Int, uid)
+            .query(`
+              UPDATE cohauth.dbo.user_account SET role = 'admin' WHERE uid = @uid
+            `);
+
+          console.log(`[SUCCESS] User "${authName}" has been promoted to admin.`);
+        }
+      });
+    }
+
   } catch (err) {
     console.error("[ERROR] Failed to ensure schema:", err);
   }
 }
+
 
 ensureSchema();
 
@@ -121,7 +155,10 @@ app.use((req, res, next) => {
   res.locals.config = config;
   next();
 });
-
+app.locals.stringClean = stringClean;
+app.use('/images', express.static(path.join(BASE_DIR, 'public/images'), {
+  maxAge: '7d', // cache for 7 days
+}));
 // EJS + Layout setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

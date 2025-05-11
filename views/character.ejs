@@ -1,0 +1,142 @@
+<div class="character-profile-container" style="display: flex; gap: 24px; align-items: flex-start;">
+  <!-- Left Column: Character Summary -->
+  <div class="left-panel" style="flex: 0 0 360px;">
+    <img src="/images/portrait/<%= character.ContainerId %>.jpg" alt="Character Portrait" style="width: 100%; border-radius: 8px; margin-bottom: 8px;" />
+
+    <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 12px;">
+      <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" alt="Alignment" title="<%= character.alignment %>" height="32" />
+      <img src="/images/icons/<%= character.OriginName.toLowerCase() %>.png" alt="Origin" title="<%= character.OriginName %>" height="32" />
+      <img src="/images/icons/<%= character.ClassName.toLowerCase() %>.png" alt="Archetype" title="<%= character.ClassName %>" height="32" />
+    </div>
+
+    <ul style="font-size: 14px; color: #ccc; line-height: 1.6;">
+      <li><strong>Supergroup:</strong> <%= character.Supergroup || '(None)' %></li>
+      <li><strong>Primary:</strong> [coming soon]</li>
+      <li><strong>Secondary:</strong> [coming soon]</li>
+      <li><strong>Pools:</strong> [coming soon]</li>
+      <li><strong>Ancillary Pools:</strong> [coming soon]</li>
+      <li><strong>XP Level:</strong> <%= character.Level %></li>
+      <li><strong>Experience:</strong> [coming soon]</li>
+      <li><strong>Influence:</strong> [coming soon]</li>
+      <li><strong>Last Seen:</strong> [coming soon]</li>
+      <li><strong>Created:</strong> [coming soon]</li>
+      <li><strong>Login Count:</strong> [coming soon]</li>
+      <li><strong>Total Time Played:</strong> [coming soon]</li>
+      <li><strong>Global:</strong> <a href="/player/<%= character.AuthId %>">[coming soon]</a></li>
+    </ul>
+  </div>
+
+  <!-- Right Column: Character Name, Bio, and Badges -->
+  <div class="right-panel" style="flex: 1; max-width: 720px;">
+    <h1 style="margin-top: 0;"><%= character.Name %></h1>
+    <p><strong>Player:</strong> @<%= character.globalHandle %></p>
+
+    <div style="margin: 12px 0;">
+      <strong>Description:</strong><br />
+      <p style="white-space: pre-wrap;"><%- stringClean(character.Description) %></p>
+    </div>
+
+    <h2>Badge Tracking</h2>
+    <div style="margin: 24px 0;">
+      <div style="background: #ccc; border-radius: 4px; height: 12px; overflow: hidden;">
+        <div style="background: linear-gradient(to right, orange, gold); width: <%= Math.floor((ownedBadges / totalBadges) * 100) %>%; height: 100%;"></div>
+      </div>
+      <div style="margin-top: 4px; text-align: center; font-size: 14px; color: #ddd;">
+        <strong><%= character.Name %></strong> has collected <strong><%= ownedBadges %></strong> of <strong><%= totalBadges %></strong> badges.
+      </div>
+    </div>
+    <% badgeCategoryList.forEach(category => { %>
+      <h3><%= category.name %></h3>
+      <div style="margin-bottom: 8px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+          <div style="flex: 1; background: #ccc; height: 16px; border-radius: 4px; margin-right: 8px;">
+            <div style="background: linear-gradient(to right, orange, gold); width: <%= Math.floor((category.owned / category.total) * 100) %>%; height: 100%; border-radius: 4px;"></div>
+          </div>
+          <div style="white-space: nowrap; font-size: 14px; color: #eee;">
+            <%= category.owned %> of <%= category.total %> badges earned
+          </div>
+        </div>
+        <a href="#" onclick="toggleBadges('<%= category.name %>'); return false;">Toggle Details</a>
+      </div>
+      <ul id="details-<%= category.name %>" class="badge-list" style="display: none;" data-badges="<%= encodeURIComponent(JSON.stringify(category.badges)) %>">
+        <li class="loading-spinner">Loading...</li>
+      </ul>
+    <% }) %>
+<h2>Unearned but Eligible Badges</h2>
+
+<% unearnedBadgeCategories.forEach(category => { %>
+  <h3><%= category.name %></h3>
+  <div style="margin-bottom: 8px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+      <div style="flex: 1; background: #ccc; height: 16px; border-radius: 4px; margin-right: 8px;">
+        <div style="background: linear-gradient(to right, #666, #999); width: 0%; height: 100%; border-radius: 4px;"></div>
+      </div>
+      <div style="white-space: nowrap; font-size: 14px; color: #eee;">
+        0 of <%= category.count %> badges earned
+      </div>
+    </div>
+    <a href="#" onclick="toggleBadges('unearned-<%= category.name %>'); return false;">Toggle Details</a>
+  </div>
+  <ul id="details-unearned-<%= category.name %>" class="badge-list" style="display: none;" data-badges="<%= encodeURIComponent(JSON.stringify(category.badges)) %>">
+    <li class="loading-spinner">Loading...</li>
+  </ul>
+<% }) %>
+    <script>
+      function toggleBadges(cat) {
+        const el = document.getElementById('details-' + cat);
+        if (!el) return;
+
+        if (el.style.display === 'none') {
+          el.style.display = 'block';
+
+          if (!el.dataset.loaded) {
+            try {
+              const decoded = decodeURIComponent(el.dataset.badges);
+              const badges = JSON.parse(decoded);
+
+              const spinner = el.querySelector('.loading-spinner');
+              if (spinner) spinner.remove();
+                for (const b of badges) {
+                  const li = document.createElement('li');
+                  li.style.display = 'grid';
+                  li.style.gridTemplateColumns = '1.5em 80px 1fr';
+                  li.style.alignItems = 'center';
+                  li.style.columnGap = '8px';
+                  li.style.marginBottom = '6px';
+
+                  const status = document.createElement('span');
+                  status.textContent = b.owned ? '✅' : '❌';
+
+                  const iconWrapper = document.createElement('div');
+                  iconWrapper.style.width = '80px';
+                  iconWrapper.style.display = 'flex';
+                  iconWrapper.style.alignItems = 'center';
+
+                  const icon = document.createElement('img');
+                  icon.src = `/images/badges/${b.image}.png`;
+                  icon.alt = b.DisplayTitle;
+                  icon.style.height = '32px';
+                  icon.style.maxWidth = '100%';
+                  iconWrapper.appendChild(icon);
+
+                  const label = document.createElement('span');
+                  label.textContent = b.DisplayTitle;
+
+                  li.appendChild(status);
+                  li.appendChild(iconWrapper);
+                  li.appendChild(label);
+
+                  el.appendChild(li);
+                }
+              el.dataset.loaded = 'true';
+            } catch (e) {
+              console.error('Failed to parse badges:', e);
+            }
+          }
+        } else {
+          el.style.display = 'none';
+        }
+      }
+    </script>
+  </div>
+</div>

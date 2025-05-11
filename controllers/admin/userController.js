@@ -1,11 +1,10 @@
 const sql = require('mssql');
-const dbConfig = require('../../dbConfig');
+const { getAuthPool } = require(global.BASE_DIR + '/db');
 
 async function listUsers(req, res) {
   const search = req.query.search || '';
-  const limit = parseInt(req.query.limit)
-    || parseInt(req.cookies.userListLimit)
-    || 10;
+  const searchLike = `%${search}%`;
+  const limit = parseInt(req.query.limit) || parseInt(req.cookies.userListLimit) || 10;
 
   res.cookie('userListLimit', limit, { maxAge: 7 * 86400000 }); // 7 days
 
@@ -13,9 +12,7 @@ async function listUsers(req, res) {
   const offset = (page - 1) * limit;
 
   try {
-    const pool = await sql.connect(dbConfig);
-
-    const searchLike = `%${search}%`;
+    const pool = await getAuthPool();
 
     const request = pool.request()
       .input('search', sql.VarChar, searchLike)
@@ -69,11 +66,16 @@ async function updateUserRole(req, res) {
   }
 
   try {
-    const pool = await sql.connect(dbConfig);
+    const pool = await getAuthPool();
+
     await pool.request()
       .input('uid', sql.Int, uid)
       .input('newRole', sql.VarChar, newRole)
-      .query(`UPDATE cohauth.dbo.user_account SET role = @newRole WHERE uid = @uid`);
+      .query(`
+        UPDATE cohauth.dbo.user_account
+        SET role = @newRole
+        WHERE uid = @uid
+      `);
 
     const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
     res.redirect('/admin/users' + qs);
@@ -84,25 +86,30 @@ async function updateUserRole(req, res) {
 }
 
 async function toggleUserBan(req, res) {
-    const { uid } = req.params;
-    const { action, page, search, limit } = req.body;
-  
-    const blockFlag = action === 'ban' ? 1 : 0;
-  
-    try {
-      const pool = await sql.connect(dbConfig);
-      await pool.request()
-        .input('uid', sql.Int, uid)
-        .input('block_flag', sql.Int, blockFlag)
-        .query(`UPDATE cohauth.dbo.user_account SET block_flag = @block_flag WHERE uid = @uid`);
-  
-      const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
-      res.redirect('/admin/users' + qs);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error updating block flag');
-    }
+  const { uid } = req.params;
+  const { action, page, search, limit } = req.body;
+
+  const blockFlag = action === 'ban' ? 1 : 0;
+
+  try {
+    const pool = await getAuthPool();
+
+    await pool.request()
+      .input('uid', sql.Int, uid)
+      .input('block_flag', sql.Int, blockFlag)
+      .query(`
+        UPDATE cohauth.dbo.user_account
+        SET block_flag = @block_flag
+        WHERE uid = @uid
+      `);
+
+    const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
+    res.redirect('/admin/users' + qs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error updating block flag');
   }
+}
 
 module.exports = {
   listUsers,

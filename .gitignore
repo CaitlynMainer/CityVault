@@ -139,5 +139,10 @@ data/news.json
 data/manifest-config.json
 public/game/*
 !public/game/.noempty
-sessions
+sessions/*
 !sessions/.noempty
+badges.attribute
+data/badges/*
+!data/badges/
+!data/badges/blacklist.json
+data/vars.attribute
