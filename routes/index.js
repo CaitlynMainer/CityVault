@@ -16,6 +16,8 @@ router.use('/register', require('./register'));
 // Character viewer (e.g. /character/victory:12345)
 router.use('/character', require('./character'));
 
+router.use('/oauth', require('./oauth'));
+
 
 // Admin routes (under /admin/)
 router.use('/admin', require('./admin'));
