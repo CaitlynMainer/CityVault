@@ -1,22 +1,47 @@
-<aside class="w-64 bg-gray-800 text-white h-full p-4 space-y-4">
+<aside class="w-64 bg-gray-800 text-white h-full p-4 space-y-4" x-data="{ openSections: JSON.parse(localStorage.getItem('sidebarOpenSections') || '{}') }" x-init="$watch('openSections', val => localStorage.setItem('sidebarOpenSections', JSON.stringify(val)))">
   <h2 class="text-xl font-semibold mb-4">Navigation</h2>
 
-  <!-- Always visible -->
-  <nav class="space-y-2">
-    <a href="/" class="block hover:bg-gray-700 px-3 py-2 rounded">Home</a>
-    <a href="/account" class="block hover:bg-gray-700 px-3 py-2 rounded">Account</a>
-  </nav>
+  <!-- Main Section -->
+  <div>
+    <button @click="openSections.main = !openSections.main" class="w-full text-left font-bold">Main</button>
+    <nav x-show="openSections.main" class="ml-2 mt-2 space-y-1">
+      <a href="/"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/' ? 'bg-gray-700' : '' %>">
+         Home
+      </a>
+      <a href="/account"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/account' ? 'bg-gray-700' : '' %>">
+         Account
+      </a>
+      <a href="/account/characters"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/account/characters' ? 'bg-gray-700' : '' %>">
+         Characters
+      </a>
+    </nav>
+  </div>
 
+  <!-- Admin Section -->
   <% if (role === 'admin') { %>
-    <div class="mt-6 border-t border-gray-700 pt-4">
-      <h3 class="text-lg font-semibold mb-2">Admin</h3>
-      <nav class="space-y-2">
-        <a href="/admin" class="block hover:bg-gray-700 px-3 py-2 rounded">Dashboard</a>
-        <a href="/admin/news" class="block hover:bg-gray-700 px-3 py-2 rounded">Edit News</a>
-        <a href="/admin/users" class="block hover:bg-gray-700 px-3 py-2 rounded">User Management</a>
-        <a href="/admin/manifest/config" class="block hover:bg-gray-700 px-3 py-2 rounded">Launcher Manifest</a>
-        <!-- Add other admin-only links here -->
-      </nav>
-    </div>
+  <div class="mt-6 border-t border-gray-700 pt-4">
+    <button @click="openSections.admin = !openSections.admin" class="w-full text-left font-bold">Admin</button>
+    <nav x-show="openSections.admin" class="ml-2 mt-2 space-y-1">
+      <a href="/admin"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin' ? 'bg-gray-700' : '' %>">
+         Dashboard
+      </a>
+      <a href="/admin/news"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/news' ? 'bg-gray-700' : '' %>">
+         Edit News
+      </a>
+      <a href="/admin/users"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/users' ? 'bg-gray-700' : '' %>">
+         User Management
+      </a>
+      <a href="/admin/manifest/config"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/manifest/config' ? 'bg-gray-700' : '' %>">
+         Launcher Manifest
+      </a>
+    </nav>
+  </div>
   <% } %>
 </aside>

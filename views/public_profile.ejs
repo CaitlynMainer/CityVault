@@ -1,0 +1,29 @@
+<!-- views/public_profile.ejs -->
+<h1><%= title %></h1>
+
+<% if (message) { %>
+  <p><%= message %></p>
+<% } else if (characters.length === 0) { %>
+  <p>This user has no visible characters on any server.</p>
+<% } else { %>
+  <ul>
+    <% characters.forEach(char => { %>
+      <li>
+        <strong><%= char.Name %></strong> (Level <%= char.Level %>)
+        on <%= servers[char.serverKey].label %>
+        [<a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>">View</a>]
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<% if (errors && errors.length > 0) { %>
+  <div class="errors">
+    <h3>Errors fetching from some servers:</h3>
+    <ul>
+      <% errors.forEach(err => { %>
+        <li><%= err.server %>: <%= err.message %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>

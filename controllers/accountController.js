@@ -3,21 +3,21 @@ const { getAuthPool } = require(global.BASE_DIR + '/db');
 const { gameHashPassword } = require('../utils/hashUtils');
 
 async function showAccountPage(req, res) {
-  //if (!req.session.username) return res.redirect('/login');
-
   try {
     const pool = await getAuthPool();
     const result = await pool.request()
       .input('account', sql.VarChar, req.session.username)
-      .query('SELECT email FROM dbo.user_account WHERE account = @account');
+      .query('SELECT email, tracker FROM dbo.user_account WHERE account = @account');
 
     const email = result.recordset[0]?.email || '';
+    const tracker = result.recordset[0]?.tracker === '1';
 
     res.render('account', {
       title: 'Account Settings',
       username: req.session.username,
       role: req.session.role,
-      email
+      email,
+      tracker
     });
   } catch (err) {
     console.error(err);
@@ -28,7 +28,7 @@ async function showAccountPage(req, res) {
 async function updateAccount(req, res) {
   if (!req.session.username) return res.redirect('/login');
 
-  const { email, oldPassword, newPassword } = req.body;
+  const { email, oldPassword, newPassword, tracker } = req.body;
   const account = req.session.username;
 
   try {
@@ -42,7 +42,9 @@ async function updateAccount(req, res) {
     const inputHash = gameHashPassword(account, oldPassword).toString('hex').toLowerCase();
 
     if (!storedHash.startsWith(inputHash)) {
-      return res.send(`<p style="color:red">❌ Incorrect current password.</p>`);
+      req.flash('error', 'Error updating account.');
+      req.session._flash_init = true;
+      return req.session.save(() => res.redirect('/account'));
     }
 
     if (email) {
@@ -66,10 +68,18 @@ async function updateAccount(req, res) {
         `);
     }
 
-    res.send('✅ Account updated successfully!');
+    const trackerValue = tracker === 'on' ? 1 : 0;
+    await pool.request()
+      .input('account', sql.VarChar, account)
+      .input('tracker', sql.Int, trackerValue)
+      .query('UPDATE dbo.user_account SET tracker = @tracker WHERE account = @account');
+    req.flash('success', '✅ Account updated successfully!');
+    req.session._flash_init = true;
+    return req.session.save(() => res.redirect('/account'));
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error updating account.');
+    req.flash('error', 'Error updating account.');
+    res.redirect('/account');
   }
 }
 

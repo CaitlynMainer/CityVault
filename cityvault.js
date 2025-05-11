@@ -142,7 +142,10 @@ app.use(session({
 app.use(flash());
 app.use(compression());
 app.use(saveReturnTo);  // Place this before auth checks
-
+app.use((req, res, next) => {
+  res.locals.currentPath = req.path;
+  next();
+});
 app.use((req, res, next) => {
   res.locals.username = req.session.username || null;
   res.locals.role = req.session.role || null;
@@ -155,6 +158,7 @@ app.use((req, res, next) => {
   res.locals.config = config;
   next();
 });
+
 app.locals.stringClean = stringClean;
 app.use('/images', express.static(path.join(BASE_DIR, 'public/images'), {
   maxAge: '7d', // cache for 7 days

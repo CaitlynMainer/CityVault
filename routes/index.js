@@ -3,6 +3,9 @@ const router = express.Router();
 const sql = require('mssql');
 const { getGamePool } = require(global.BASE_DIR + '/db');
 const { debugBadgeDiscrepancies } = require('../utils/debugBadges');
+const { listCharacters } = require('../controllers/characterListController');
+const { showPublicProfile } = require('../controllers/publicProfileController');
+
 
 // Homepage
 const { showHomePage } = require('../controllers/indexController');
@@ -17,7 +20,8 @@ router.use('/register', require('./register'));
 router.use('/character', require('./character'));
 
 router.use('/oauth', require('./oauth'));
-
+router.get('/account/characters', listCharacters);
+router.get('/profile/:authId', showPublicProfile);
 
 // Admin routes (under /admin/)
 router.use('/admin', require('./admin'));

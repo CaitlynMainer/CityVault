@@ -1,0 +1,25 @@
+<h1><%= title %></h1>
+
+<% if (errors.length) { %>
+  <div class="errors">
+    <h3>Errors:</h3>
+    <ul>
+      <% errors.forEach(err => { %>
+        <li><%= err.server %>: <%= err.message %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<% if (characters.length === 0) { %>
+  <p>No characters found on any server.</p>
+<% } else { %>
+  <ul>
+    <% characters.forEach(char => { %>
+      <li>
+        <strong><%= char.Name %></strong> (Level <%= char.Level %>) — Server: <%= servers[char.serverKey].label %>
+        [<a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>">View</a>]
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
