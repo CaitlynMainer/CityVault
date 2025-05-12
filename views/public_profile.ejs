@@ -1,5 +1,9 @@
 <% if (message) { %>
-  <div class="alert"><%= message %></div>
+  <div class="alert" style="background: #333; color: #ffc; padding: 10px; margin-bottom: 20px;"><%= message %></div>
+<% } %>
+
+<% if (Object.keys(charactersByServer).length === 0) { %>
+  <p style="color: #888;">No characters found.</p>
 <% } else { %>
   <% Object.entries(charactersByServer).forEach(([serverKey, characters]) => { %>
     <h2 style="margin-top: 24px; font-size: 20px; color: #eee;"><%= serverKey.toUpperCase() %></h2>

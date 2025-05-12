@@ -1,7 +1,7 @@
-// Full updated characterController.js using modular characterInfo helpers
+// Full updated characterController.js using modular characterInfo helpers with privacy check
 
 const sql = require('mssql');
-const { getGamePool } = require(global.BASE_DIR + '/db');
+const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
 const attributeMap = require(global.BASE_DIR + '/utils/attributeMap');
 const { getOwnedBadgesFromBitfield } = require(global.BASE_DIR + '/utils/badgeParser');
 const { getBadgeDetails, getAllBadges, badgeEquivalents } = require(global.BASE_DIR + '/utils/badgeDetails');
@@ -136,6 +136,46 @@ async function showCharacter(req, res) {
     }
 
     let character = charResult.recordset[0];
+
+    // 🔒 Privacy check
+    const authPool = await getAuthPool();
+    const authResult = await authPool.request()
+      .input('uid', sql.Int, character.AuthId)
+      .query(`SELECT tracker, account FROM dbo.user_account WHERE uid = @uid`);
+
+    const owner = authResult.recordset[0];
+    if (!owner) return res.status(404).send('Character owner not found');
+
+    const viewerUsername = req.session?.username;
+    let isAdmin = false;
+    let isOwner = false;
+
+    if (viewerUsername) {
+      const viewerCheck = await authPool.request()
+        .input('viewer', sql.VarChar, viewerUsername)
+        .query(`SELECT role FROM dbo.user_account WHERE account = @viewer`);
+      isAdmin = viewerCheck.recordset[0]?.role === 'admin';
+      isOwner = viewerUsername === owner.account;
+    }
+
+    let forcedAccess = false;
+    if (owner.tracker !== '1') {
+      if (isAdmin) {
+        forcedAccess = true;
+      } else if (!isOwner) {
+        return res.render('character', {
+          title: 'Private Character',
+          message: 'This character is part of a private profile and cannot be viewed.',
+          character: null,
+          serverKey,
+          badgeCategoryList: [],
+          totalBadges: 0,
+          ownedBadges: 0,
+          unearnedBadgeCategories: []
+        });
+      }
+    }
+
     character.ClassName = attributeMap[character.Class]?.replace(/^Class_/, '') || `Class ${character.Class}`;
     character.OriginName = attributeMap[character.Origin] || `Origin ${character.Origin}`;
     character.alignment = getAlignment(character.PlayerType, character.PlayerSubType, character.PraetorianProgress);
@@ -188,7 +228,8 @@ async function showCharacter(req, res) {
       badgeCategoryList,
       totalBadges,
       ownedBadges,
-      unearnedBadgeCategories
+      unearnedBadgeCategories,
+      message: forcedAccess ? "This is a private character. Displaying because you are an admin." : null
     });
 
   } catch (err) {
