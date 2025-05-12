@@ -1,17 +1,14 @@
-// controllers/characterListController.js
+// characterListController.js
 const sql = require('mssql');
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
+const { enrichCharacterSummary } = require(global.BASE_DIR + '/utils/characterInfo/enrichCharacterSummary');
 const config = require(global.BASE_DIR + '/data/config.json');
 
-async function listCharacters(req, res) {
+async function showCharacterList(req, res) {
   if (!req.session.username) {
     return res.redirect('/login');
   }
-
-  const characters = [];
-  const errors = [];
-  const serverKeys = Object.keys(config.servers);
-
+  
   let authId;
   try {
     const authPool = await getAuthPool();
@@ -24,36 +21,34 @@ async function listCharacters(req, res) {
     console.error('[CharacterList] AuthId lookup failed:', err);
     return res.status(500).send('Unable to look up account ID.');
   }
+  const charactersByServer = {};
 
-  for (const serverKey of serverKeys) {
-    try {
+  try {
+    for (const serverKey of Object.keys(config.servers)) {
       const pool = await getGamePool(serverKey);
+
       const result = await pool.request()
         .input('authId', sql.Int, authId)
         .query(`
-          SELECT ContainerId, Name, Level, Class, Origin, DateCreated
-          FROM dbo.Ents
-          WHERE AuthId = @authId
+          SELECT e.ContainerId, e.Name, e.Level, e.Class, e.Origin, e.DateCreated, e.LastActive,
+                 e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress, en2.originalPrimary, en2.originalSecondary,
+                 e.TitleCommon, e.TitleOrigin, e.TitleSpecial, en2.TitleTheText
+          FROM dbo.Ents e
+          JOIN dbo.Ents2 en2 ON e.ContainerId = en2.ContainerId
+          WHERE e.AuthId = @authId
         `);
 
-      for (const row of result.recordset) {
-        characters.push({
-          ...row,
-          Level: row.Level + 1,
-          serverKey
-        });
+      const enriched = result.recordset.map(enrichCharacterSummary);
+      if (enriched.length) {
+        charactersByServer[serverKey] = enriched;
       }
-    } catch (err) {
-      errors.push({ server: serverKey, message: err.message });
     }
-  }
 
-  res.render('character_list', {
-    title: 'My Characters',
-    characters,
-    servers: config.servers,
-    errors
-  });
+    res.render('character_list', { charactersByServer });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error loading character list');
+  }
 }
 
-module.exports = { listCharacters };
+module.exports = { showCharacterList };

@@ -18,25 +18,22 @@ try {
   }
 
   process.exit(1);
-  
 }
-
-const authConfig = {
-  user: config.auth.dbUser,
-  password: config.auth.dbPass,
-  server: config.auth.dbHost,
-  database: config.auth.dbName,
-  port: config.auth.dbPort,
-  options: {
-    trustServerCertificate: true
-  }
-};
 
 // Auth DB pool
 let authPool = null;
 async function getAuthPool() {
   if (!authPool) {
-    const pool = new sql.ConnectionPool(authConfig);
+    const pool = new sql.ConnectionPool({
+      user: config.auth.dbUser,
+      password: config.auth.dbPass,
+      server: config.auth.dbHost,
+      database: config.auth.dbName,
+      port: config.auth.dbPort,
+      options: {
+        trustServerCertificate: true
+      }
+    });
     authPool = await pool.connect();
   }
   return authPool;
@@ -69,7 +66,28 @@ async function getGamePool(serverKey) {
   return gamePools[serverKey];
 }
 
+// Global chat DB pool
+let chatPool = null;
+async function getChatPool() {
+  if (!chatPool) {
+    const pool = new sql.ConnectionPool({
+      user: config.chat.dbUser || config.auth.dbUser,
+      password: config.chat.dbPass || config.auth.dbPass,
+      server: config.chat.dbHost || config.auth.dbHost,
+      database: config.chat.dbName || 'cohchat',
+      port: config.chat.dbPort || config.auth.dbPort || 1433,
+      options: {
+        trustServerCertificate: true
+      }
+    });
+
+    chatPool = await pool.connect();
+  }
+  return chatPool;
+}
+
 module.exports = {
   getAuthPool,
-  getGamePool
+  getGamePool,
+  getChatPool
 };

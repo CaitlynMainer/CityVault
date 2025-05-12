@@ -20,5 +20,12 @@
         "dbPass": "password",
         "dbName": "cohdb"
         }
+    },
+    "chat": {
+        "dbHost": "localhost",
+        "dbPort": 1433,
+        "dbUser": "dbUser",
+        "dbPass": "password",
+        "dbName": "cohchat"
     }
 }

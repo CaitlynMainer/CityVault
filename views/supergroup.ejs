@@ -1,0 +1,112 @@
+<h1 style="color: #fff;"><%= supergroup.Name %></h1>
+<p style="color: #aaa;"><strong>Motto:</strong> <%= supergroup.Motto || '(None)' %></p>
+<p style="color: #aaa;"><strong>Description:</strong> <%= supergroup.Description || '(None)' %></p>
+<p style="color: #aaa;"><strong>Created:</strong> <%= supergroup.DateCreated %></p>
+<p style="color: #aaa;"><strong>Prestige:</strong> <%= supergroup.Prestige != null ? supergroup.Prestige.toLocaleString() : '0' %></p>
+<p style="color: #aaa;"><strong>Rent Due:</strong> <%= supergroup.UpkeepRentDue ? new Date(supergroup.UpkeepRentDue * 1000).toISOString().split('T')[0] : '(Unknown)' %></p>
+
+<h2 style="margin-top: 32px; color: #fff;">Supergroup Roster: <%= members.length %> Characters</h2>
+<p><a href="#" id="resetSort" style="color: #9cf; text-decoration: underline; font-size: 0.9em;">Reset sorting</a></p>
+
+<table id="sg-roster" style="width: 100%; border-collapse: collapse; margin-top: 12px;">
+  <thead>
+    <tr style="background: #333; color: #ddd;">
+      <th data-sort="text">Name</th>
+      <th data-sort="number">Level</th>
+      <th data-sort="rank">Rank</th>
+      <th>Alignment</th>
+      <th>Origin</th>
+      <th>Archetype</th>
+      <th data-sort="lastseen">Last Seen ▼</th>
+      <th data-sort="text">Player</th>
+    </tr>
+  </thead>
+  <% function daysAgo(date) {
+    const now = new Date();
+    const diff = now - date;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    return days;
+  } %>
+  <tbody>
+    <% members.forEach(m => { %>
+      <tr style="border-top: 1px solid #444; color: #ccc;">
+        <td><a href="/character/<%= serverKey %>:<%= m.ContainerId %>" style="color: #fff;"><%= m.Name %></a></td>
+        <td align="center"><%= m.Level %></td>
+        <td align="center" data-rank="<%= m.Rank ?? -1 %>"><%= m.RankName || 'Member' %></td>
+        <td align="center"><img src="/images/icons/<%= m.alignment.toLowerCase() %>.png" title="<%= m.alignment %>" height="20"></td>
+        <td align="center"><img src="/images/icons/<%= m.OriginName.toLowerCase() %>.png" title="<%= m.OriginName %>" height="20"></td>
+        <td align="center"><img src="/images/icons/<%= m.ClassName.toLowerCase() %>.png" title="<%= m.ClassName %>" height="20"></td>
+        <td align="center" data-lastseen="<%= m.LastActive ? daysAgo(new Date(m.LastActive)) : 9999 %>"><%= m.LastActive ? daysAgo(new Date(m.LastActive)) + ' days ago' : 'Unknown' %></td>
+        <td align="center"><a href="/profile/<%= m.AuthId %>" style="color: #9cf;">@<%= m.globalHandle || 'Unknown' %></a></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const table = document.getElementById('sg-roster');
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+
+  const defaultSortedRows = [...rows].sort((a, b) => {
+    const rankA = parseInt(a.children[2].dataset.rank) ?? -1;
+    const rankB = parseInt(b.children[2].dataset.rank) ?? -1;
+    if (rankA !== rankB) return rankB - rankA;
+
+    const seenA = parseInt(a.children[6].dataset.lastseen) || 9999;
+    const seenB = parseInt(b.children[6].dataset.lastseen) || 9999;
+    return seenA - seenB;
+  });
+  defaultSortedRows.forEach(row => tbody.appendChild(row));
+
+  document.querySelector('#resetSort').addEventListener('click', (e) => {
+    e.preventDefault();
+    tbody.innerHTML = '';
+    defaultSortedRows.forEach(row => tbody.appendChild(row));
+    table.querySelectorAll('th[data-sort]').forEach(th => th.innerHTML = th.textContent);
+  });
+});
+
+document.querySelectorAll('#sg-roster th[data-sort]').forEach(header => {
+  header.style.cursor = 'pointer';
+  header.addEventListener('click', () => {
+    const table = header.closest('table');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const index = Array.from(header.parentNode.children).indexOf(header);
+    const type = header.dataset.sort;
+    const ascending = header.dataset.asc === 'true';
+
+    rows.sort((a, b) => {
+      let aVal, bVal;
+      if (type === 'number') {
+        aVal = parseFloat(a.children[index].textContent.trim()) || 0;
+        bVal = parseFloat(b.children[index].textContent.trim()) || 0;
+      } else if (type === 'rank') {
+        aVal = parseInt(a.children[index].dataset.rank) || -1;
+        bVal = parseInt(b.children[index].dataset.rank) || -1;
+      } else if (type === 'lastseen') {
+        aVal = parseInt(a.children[index].dataset.lastseen) || 9999;
+        bVal = parseInt(b.children[index].dataset.lastseen) || 9999;
+      } else {
+        aVal = a.children[index].textContent.trim().toLowerCase();
+        bVal = b.children[index].textContent.trim().toLowerCase();
+      }
+
+      if (aVal < bVal) return ascending ? -1 : 1;
+      if (aVal > bVal) return ascending ? 1 : -1;
+      return 0;
+    });
+
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.innerHTML = th.innerHTML.replace(/\s*[\u25B2\u25BC]/g, '');
+    });
+    header.innerHTML += ascending ? ' ▲' : ' ▼';
+    header.dataset.asc = (!ascending).toString();
+
+    tbody.innerHTML = '';
+    rows.forEach(row => tbody.appendChild(row));
+  });
+});
+</script>

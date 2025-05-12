@@ -3,9 +3,9 @@ const router = express.Router();
 const sql = require('mssql');
 const { getGamePool } = require(global.BASE_DIR + '/db');
 const { debugBadgeDiscrepancies } = require('../utils/debugBadges');
-const { listCharacters } = require('../controllers/characterListController');
+const { showCharacterList } = require('../controllers/characterListController');
 const { showPublicProfile } = require('../controllers/publicProfileController');
-
+const { showSupergroup } = require('../controllers/supergroupController'); // ✅ NEW
 
 // Homepage
 const { showHomePage } = require('../controllers/indexController');
@@ -16,16 +16,21 @@ router.use('/account', require('./account'));
 router.use('/login', require('./login'));
 router.use('/logout', require('./logout'));
 router.use('/register', require('./register'));
+
 // Character viewer (e.g. /character/victory:12345)
 router.use('/character', require('./character'));
 
-router.use('/oauth', require('./oauth'));
-router.get('/account/characters', listCharacters);
+// Supergroup viewer (e.g. /supergroup/victory:34)
+router.get('/supergroup/:id', showSupergroup); // ✅ NEW
+
+// Public character/profile views
+router.get('/account/characters', showCharacterList);
 router.get('/profile/:authId', showPublicProfile);
 
 // Admin routes (under /admin/)
 router.use('/admin', require('./admin'));
 
+// Debug routes
 router.get('/debug/missing-badges/:serverKey/:dbid', async (req, res) => {
   const { serverKey, dbid } = req.params;
 

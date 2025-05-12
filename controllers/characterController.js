@@ -1,3 +1,5 @@
+// Full updated characterController.js using modular characterInfo helpers
+
 const sql = require('mssql');
 const { getGamePool } = require(global.BASE_DIR + '/db');
 const attributeMap = require(global.BASE_DIR + '/utils/attributeMap');
@@ -5,6 +7,10 @@ const { getOwnedBadgesFromBitfield } = require(global.BASE_DIR + '/utils/badgePa
 const { getBadgeDetails, getAllBadges, badgeEquivalents } = require(global.BASE_DIR + '/utils/badgeDetails');
 const { getAlignment } = require(global.BASE_DIR + '/utils/alignment');
 const { stringClean } = require('../utils/textSanitizer');
+const { getGlobalHandle } = require(global.BASE_DIR + '/utils/characterInfo/getGlobalHandle');
+const { resolveSupergroupLink } = require(global.BASE_DIR + '/utils/characterInfo/resolveSupergroupLink');
+const { enrichCharacter } = require(global.BASE_DIR + '/utils/characterInfo/formatCharacterDetails');
+const { getPoolsAndAncillaries } = require(global.BASE_DIR + '/utils/characterInfo/powersetLoader');
 const fs = require('fs');
 
 const CATEGORY_LABELS = {
@@ -26,36 +32,6 @@ const CATEGORY_LABELS = {
   Uncategorized: 'Other'
 };
 
-function resolveGenderString(raw, gender) {
-  if (!raw || !raw.includes('{Hero.gender=')) return raw;
-  return raw.replace(/\{Hero\.gender=male\s+([^|{}]+)\|([^}]+)\}/g, (_, maleForm, femaleForm) => {
-    if (gender === 1 || gender === 2) return maleForm;
-    if (gender === 3) return femaleForm;
-    return maleForm;
-  });
-}
-
-function getBadgeAlignmentContext(rpn) {
-  if (!rpn) return [];
-  const normalized = rpn.toLowerCase();
-  const a = [];
-
-  if (normalized.includes('praetorianprogress char> praetoria eq') ||
-      normalized.includes('praetorianprogress char> earth eq')) {
-    a.push('Resistance', 'Loyalist');
-  }
-
-  if (normalized.includes('praetorianprogress char> normal eq')) {
-    a.push('Hero', 'Villain', 'Vigilante', 'Rogue');
-  }
-
-  if (normalized.includes('praetorianprogress char> pvp eq')) {
-    a.push('PvP');
-  }
-
-  return a;
-}
-
 function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender) {
   const ownedNames = new Set(ownedBadges.map(b => b.internalName));
   const visibleBadges = [];
@@ -70,21 +46,10 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender) {
     const altName = badgeEquivalents[name];
     const altOwned = altName && ownedNames.has(altName);
 
-    const resolvedDisplayTitle = resolveGenderString(meta.DisplayTitle, gender);
-    const resolvedVillainTitle = resolveGenderString(meta.DisplayTitleVillain || meta.DisplayTitle, gender);
+    const resolvedDisplayTitle = meta.DisplayTitle;
+    const resolvedVillainTitle = meta.DisplayTitleVillain || meta.DisplayTitle;
 
     if (altOwned && !isOwned) continue;
-
-    if (meta.Requires) {
-      const allowedAlignments = getBadgeAlignmentContext(meta.Requires);
-      if (
-        allowedAlignments.length > 0 &&
-        !allowedAlignments.includes(alignment)
-      ) {
-        //console.warn(`Skipping ${name} due to alignment mismatch: ${alignment} not in [${allowedAlignments.join(', ')}]`);
-        continue;
-      }
-    }
 
     const image = isVillainAligned && meta.VillainIcon ? meta.VillainIcon : meta.Icon;
 
@@ -103,6 +68,23 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender) {
   return visibleBadges;
 }
 
+function groupBadgesByCategory(badges) {
+  const groups = {};
+  for (const badge of badges) {
+    const cat = badge.Category || 'Uncategorized';
+    if (!groups[cat]) {
+      groups[cat] = {
+        name: badge.CategoryLabel,
+        count: 0,
+        badges: []
+      };
+    }
+    groups[cat].count++;
+    groups[cat].badges.push(badge);
+  }
+  return Object.values(groups).sort((a, b) => a.name.localeCompare(b.name));
+}
+
 async function showCharacter(req, res) {
   const [serverKey, dbidStr] = (req.params.id || '').split(':');
   const dbid = parseInt(dbidStr);
@@ -119,6 +101,7 @@ async function showCharacter(req, res) {
       .query(`
         SELECT 
           e.ContainerId,
+          e.SupergroupsId,
           e.Name,
           e.Level,
           e.Class,
@@ -130,10 +113,19 @@ async function showCharacter(req, res) {
           e.Gender,
           e.BodyType,
           e.PlayerType,
+          e.ExperiencePoints,
+          e.InfluencePoints,
+          e.TotalTime,
+          e.LoginCount,
+          e.LastActive,
+          e.TitleCommon,
+          e.TitleOrigin,
+          e.TitleSpecial,
           en2.originalPrimary,
           en2.originalSecondary,
           en2.PlayerSubType,
-          en2.PraetorianProgress
+          en2.PraetorianProgress,
+          en2.TitleTheText
         FROM dbo.Ents e
         JOIN dbo.Ents2 en2 ON e.ContainerId = en2.ContainerId
         WHERE e.ContainerId = @dbid
@@ -143,11 +135,16 @@ async function showCharacter(req, res) {
       return res.status(404).send('Character not found.');
     }
 
-    const character = charResult.recordset[0];
-    character.Level += 1;
+    let character = charResult.recordset[0];
     character.ClassName = attributeMap[character.Class]?.replace(/^Class_/, '') || `Class ${character.Class}`;
     character.OriginName = attributeMap[character.Origin] || `Origin ${character.Origin}`;
     character.alignment = getAlignment(character.PlayerType, character.PlayerSubType, character.PraetorianProgress);
+
+    character = enrichCharacter(character);
+
+    const { pools, ancillaries } = await getPoolsAndAncillaries(pool, dbid, null);
+    character.Pools = pools;
+    character.AncillaryPools = ancillaries;
 
     const badgeResult = await pool.request()
       .input('dbid', sql.Int, dbid)
@@ -161,13 +158,11 @@ async function showCharacter(req, res) {
     const totalBadges = visibleBadges.length;
     const ownedBadges = visibleBadges.filter(b => b.owned).length;
     const unearnedBadges = visibleBadges.filter(b => !b.owned);
-    
     const unearnedBadgeCategories = groupBadgesByCategory(unearnedBadges);
-    const badgeCategories = {};
 
+    const badgeCategories = {};
     for (const badge of visibleBadges) {
       const label = badge.CategoryLabel || badge.Category || 'Uncategorized';
-
       if (!badgeCategories[label]) {
         badgeCategories[label] = {
           name: label,
@@ -176,11 +171,13 @@ async function showCharacter(req, res) {
           badges: []
         };
       }
-
       badgeCategories[label].total++;
       if (badge.owned) badgeCategories[label].owned++;
       badgeCategories[label].badges.push(badge);
     }
+
+    character.SupergroupLink = await resolveSupergroupLink(pool, character.SupergroupsId);
+    character.globalHandle = await getGlobalHandle(character.AuthId);
 
     const badgeCategoryList = Object.values(badgeCategories).sort((a, b) => a.name.localeCompare(b.name));
 
@@ -199,25 +196,6 @@ async function showCharacter(req, res) {
     res.status(500).send('Server error loading character.');
   }
 }
-
-function groupBadgesByCategory(badges) {
-  const groups = {};
-  for (const badge of badges) {
-    const cat = badge.Category || 'Uncategorized';
-    if (!groups[cat]) {
-      groups[cat] = {
-        name: badge.CategoryLabel,
-        count: 0,
-        badges: []
-      };
-    }
-    groups[cat].count++;
-    groups[cat].badges.push(badge);
-  }
-
-  return Object.values(groups).sort((a, b) => a.name.localeCompare(b.name));
-}
-
 
 module.exports = {
   showCharacter

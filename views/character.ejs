@@ -10,20 +10,35 @@
     </div>
 
     <ul style="font-size: 14px; color: #ccc; line-height: 1.6;">
-      <li><strong>Supergroup:</strong> <%= character.Supergroup || '(None)' %></li>
-      <li><strong>Primary:</strong> [coming soon]</li>
-      <li><strong>Secondary:</strong> [coming soon]</li>
-      <li><strong>Pools:</strong> [coming soon]</li>
-      <li><strong>Ancillary Pools:</strong> [coming soon]</li>
+      <li><strong>Title:</strong> <%= character.DisplayTitle || '(None)' %></li>
+      <li><strong>Supergroup:</strong>
+        <% if (character.SupergroupLink) { %>
+          <a href="/supergroup/<%= serverKey %>:<%= character.SupergroupLink.id %>"><%= character.SupergroupLink.name %></a>
+        <% } else { %>
+          (None)
+        <% } %>
+      </li>
+      <li><strong>Archetype:</strong> <%= character.ClassName %></li>
+      <li><strong>Primary:</strong> <%= character.PrimaryPowerset %></li>
+      <li><strong>Secondary:</strong> <%= character.SecondaryPowerset %></li>
+      <li><strong>Pools:</strong> <%= character.Pools.join(', ') %></li>
+      <li><strong>Ancillary Pools:</strong> <%= character.AncillaryPools.join(', ') %></li>
       <li><strong>XP Level:</strong> <%= character.Level %></li>
-      <li><strong>Experience:</strong> [coming soon]</li>
-      <li><strong>Influence:</strong> [coming soon]</li>
-      <li><strong>Last Seen:</strong> [coming soon]</li>
-      <li><strong>Created:</strong> [coming soon]</li>
-      <li><strong>Login Count:</strong> [coming soon]</li>
-      <li><strong>Total Time Played:</strong> [coming soon]</li>
-      <li><strong>Global:</strong> <a href="/player/<%= character.AuthId %>">[coming soon]</a></li>
+      <li><strong>Experience:</strong> <%= character.Experience %></li>
+      <li><strong>Influence:</strong> <%= character.Influence %></li>
+      <li><strong>Last Seen:</strong> <%= character.LastSeen %></li>
+      <li><strong>Created:</strong> <%= character.Created %></li>
+      <li><strong>Login Count:</strong> <%= character.LoginCount %></li>
+      <li><strong>Total Time Played:</strong> <%= character.TotalTimePlayed %></li>
+      <li><strong>Global:</strong>
+        <% if (character.globalHandle) { %>
+          <a href="/profile/<%= character.AuthId %>">@<%= character.globalHandle %></a>
+        <% } else { %>
+          (Unknown)
+        <% } %>
+      </li>
     </ul>
+
   </div>
 
   <!-- Right Column: Character Name, Bio, and Badges -->
