@@ -56,7 +56,7 @@ if (httpServer.includes('await HttpServer.instance.init()')) {
 if (httpServer.includes('async init () {')) {
   httpServer = httpServer.replace(
     'async init () {',
-    'async init (options) {\n    this.options = options;\n    console.log("[DEBUG] Assigned this.options =", this.options);\n    console.log("[DEBUG] this.options.httpHost =", this.options?.httpHost);'
+    'async init (options) {\n    this.options = options;\n'
   );
   modified = true;
 }

@@ -30,14 +30,14 @@
   <tbody>
     <% members.forEach(m => { %>
       <tr style="border-top: 1px solid #444; color: #ccc;">
-        <td><a href="/character/<%= serverKey %>:<%= m.ContainerId %>" style="color: #fff;"><%= m.Name %></a></td>
+        <td><a href="/character/<%= serverKey %>:<%= m.ContainerId %>" style="color: #fff;"><%= stringClean(m.Name) %></a></td>
         <td align="center"><%= m.Level %></td>
         <td align="center" data-rank="<%= m.Rank ?? -1 %>"><%= m.RankName || 'Member' %></td>
         <td align="center"><img src="/images/icons/<%= m.alignment.toLowerCase() %>.png" title="<%= m.alignment %>" height="20"></td>
         <td align="center"><img src="/images/icons/<%= m.OriginName.toLowerCase() %>.png" title="<%= m.OriginName %>" height="20"></td>
         <td align="center"><img src="/images/icons/<%= m.ClassName.toLowerCase() %>.png" title="<%= m.ClassName %>" height="20"></td>
         <td align="center" data-lastseen="<%= m.LastActive ? daysAgo(new Date(m.LastActive)) : 9999 %>"><%= m.LastActive ? daysAgo(new Date(m.LastActive)) + ' days ago' : 'Unknown' %></td>
-        <td align="center"><a href="/profile/<%= m.AuthId %>" style="color: #9cf;">@<%= m.globalHandle || 'Unknown' %></a></td>
+        <td align="center"><a href="/profile/<%= m.AuthId %>" style="color: #9cf;">@<%= stringClean(m.globalHandle) || 'Unknown' %></a></td>
       </tr>
     <% }); %>
   </tbody>

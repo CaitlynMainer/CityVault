@@ -80,7 +80,7 @@ function loadBadgeDefs(badgeStrings) {
             current.Name = resolved;
 
             if (BADGE_BLACKLIST.has(current.Name)) {
-              console.warn(`[BLACKLISTED] Skipping badge ${current.Name} from ${file}`);
+              //console.warn(`[BLACKLISTED] Skipping badge ${current.Name} from ${file}`);
               current = null;
               continue;
             }

@@ -1,6 +1,7 @@
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
 const { enrichCharacterSummary } = require(global.BASE_DIR + '/utils/characterInfo/enrichCharacterSummary');
 const config = require(global.BASE_DIR + '/data/config.json');
+const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 const sql = require('mssql');
 
 async function showPublicProfile(req, res) {
@@ -76,7 +77,8 @@ async function showPublicProfile(req, res) {
       charactersByServer,
       username,
       servers: config.servers,
-      message: forcedAccess ? "This is a private profile. Displaying because you are an admin." : null
+      message: forcedAccess ? "This is a private profile. Displaying because you are an admin." : null,
+      stringClean
     });
   } catch (err) {
     console.error('[PublicProfile] Character query failed:', err);

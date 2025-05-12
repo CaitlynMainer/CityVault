@@ -6,11 +6,11 @@ const attributeMap = require(global.BASE_DIR + '/utils/attributeMap');
 const { getOwnedBadgesFromBitfield } = require(global.BASE_DIR + '/utils/badgeParser');
 const { getBadgeDetails, getAllBadges, badgeEquivalents } = require(global.BASE_DIR + '/utils/badgeDetails');
 const { getAlignment } = require(global.BASE_DIR + '/utils/alignment');
-const { stringClean } = require('../utils/textSanitizer');
 const { getGlobalHandle } = require(global.BASE_DIR + '/utils/characterInfo/getGlobalHandle');
 const { resolveSupergroupLink } = require(global.BASE_DIR + '/utils/characterInfo/resolveSupergroupLink');
 const { enrichCharacter } = require(global.BASE_DIR + '/utils/characterInfo/formatCharacterDetails');
 const { getPoolsAndAncillaries } = require(global.BASE_DIR + '/utils/characterInfo/powersetLoader');
+const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 const fs = require('fs');
 
 const CATEGORY_LABELS = {
@@ -229,7 +229,8 @@ async function showCharacter(req, res) {
       totalBadges,
       ownedBadges,
       unearnedBadgeCategories,
-      message: forcedAccess ? "This is a private character. Displaying because you are an admin." : null
+      message: forcedAccess ? "This is a private character. Displaying because you are an admin." : null,
+      stringClean
     });
 
   } catch (err) {

@@ -2,6 +2,7 @@
 const sql = require('mssql');
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
 const { enrichCharacterSummary } = require(global.BASE_DIR + '/utils/characterInfo/enrichCharacterSummary');
+const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 const config = require(global.BASE_DIR + '/data/config.json');
 
 async function showCharacterList(req, res) {
@@ -44,7 +45,7 @@ async function showCharacterList(req, res) {
       }
     }
 
-    res.render('character_list', { charactersByServer });
+    res.render('character_list', { charactersByServer, stringClean});
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error loading character list');

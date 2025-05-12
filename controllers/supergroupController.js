@@ -3,6 +3,7 @@ const { getGamePool, getChatPool, getAuthPool } = require(global.BASE_DIR + '/db
 const { extractGlobalName } = require(global.BASE_DIR + '/utils/characterInfo/extractGlobalName');
 const config = require(global.BASE_DIR + '/data/config.json');
 const { enrichCharacterSummary } = require(global.BASE_DIR + '/utils/characterInfo/enrichCharacterSummary');
+const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 
 async function showSupergroup(req, res) {
   const [serverKey, sgidStr] = (req.params.id || '').split(':');
@@ -126,7 +127,8 @@ async function showSupergroup(req, res) {
         ...sg,
         DateCreated: sg.DateCreated?.toISOString().split('T')[0] || 'Unknown'
       },
-      members
+      members,
+      stringClean
     });
   } catch (err) {
     console.error('[Supergroup] Error:', err);

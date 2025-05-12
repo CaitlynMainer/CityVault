@@ -1,6 +1,5 @@
 <% const isForced = typeof forcedAccess !== 'undefined' && forcedAccess; %>
 <% const isAllowed = typeof character !== 'undefined' && character !== null; %>
-
 <% if (isAllowed || isForced) { %>
   <% if (message) { %>
     <div class="alert" style="background: #333; color: #ffc; padding: 10px; margin-bottom: 20px;"><%= message %></div>
@@ -24,7 +23,7 @@
         <li><strong>Title:</strong> <%= character.DisplayTitle || '(None)' %></li>
         <li><strong>Supergroup:</strong>
           <% if (character.SupergroupLink) { %>
-            <a href="/supergroup/<%= serverKey %>:<%= character.SupergroupLink.id %>"><%= character.SupergroupLink.name %></a>
+            <a href="/supergroup/<%= serverKey %>:<%= character.SupergroupLink.id %>"><%= stringClean(character.SupergroupLink.name) %></a>
           <% } else { %>
             (None)
           <% } %>
@@ -43,7 +42,7 @@
         <li><strong>Total Time Played:</strong> <%= character.TotalTimePlayed %></li>
         <li><strong>Global:</strong>
           <% if (character.globalHandle) { %>
-            <a href="/profile/<%= character.AuthId %>">@<%= character.globalHandle %></a>
+            <a href="/profile/<%= character.AuthId %>">@<%= stringClean(character.globalHandle) %></a>
           <% } else { %>
             (Unknown)
           <% } %>
@@ -53,8 +52,8 @@
 
     <!-- Right Column: Character Name, Bio, and Badges -->
     <div class="right-panel" style="flex: 1; max-width: 720px;">
-      <h1 style="margin-top: 0;"><%= character.Name %></h1>
-      <p><strong>Player:</strong> @<%= character.globalHandle %></p>
+      <h1 style="margin-top: 0;"><%= stringClean(character.Name) %></h1>
+      <p><strong>Player:</strong> @<%= stringClean(character.globalHandle) %></p>
 
       <div style="margin: 12px 0;">
         <strong>Description:</strong><br />
