@@ -40,7 +40,10 @@
       <ul class="text-sm space-y-1">
         <li><strong>Characters Today:</strong> <%= stats.onlineToday %></li>
         <li><strong>This Month:</strong> <%= stats.onlineMonth %></li>
-        <li><strong>Average Level:</strong> <%= stats.avgLevel %></li>
+        <li><strong>Total Tracked Characters:</strong> <%= stats.totalChars %></li>
+        <li><strong>Total Hero 50s:</strong> <%= stats.hero50s %></li>
+        <li><strong>Total Villain 50s:</strong> <%= stats.villain50s %></li>
+        <li><strong>Average Level:</strong> <%= stats.avgLevel.toFixed(1) %></li>
         <li><strong>Average Influence:</strong> <%= stats.avgInfluence.toLocaleString() %></li>
         <li><strong>Top Archetypes:</strong>
           <%= Object.entries(stats.archetypeCounts).sort((a, b) => b[1] - a[1]).slice(0, 3).map(e => e[0] + ' (' + e[1] + ')').join(', ') %>
@@ -65,6 +68,13 @@
           </li>
         <% }) %>
       </ul>
+      <% if (moreBirthdays > 0) { %>
+        <p>
+          <a href="#" onclick="showBirthdayModal(); return false;">
+            ...and <%= moreBirthdays %> other<%= moreBirthdays > 1 ? 's' : '' %>
+          </a>
+        </p>
+      <% } %>
     </section>
 
     <!-- Badge Spotlight -->
@@ -85,4 +95,34 @@
     </section>
 
   </section>
+
+<div id="birthdayModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+  <div class="bg-gray-800 text-white rounded-lg p-6 w-full max-w-3xl max-h-[80vh] overflow-y-auto">
+    <h2 class="text-xl font-bold mb-4">All Birthday Characters</h2>
+    <ul class="space-y-2">
+      <% allBirthdays.forEach(char => { %>
+        <li>
+          <a 
+            href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" 
+            class="block text-white hover:text-blue-400 hover:underline transition">
+            <strong><%= char.Name %></strong>
+            (@<%= char.GlobalName %>) – Level <%= char.Level %> <%= char.Archetype %>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+    <button onclick="hideBirthdayModal()" class="mt-4 btn btn-blue">Close</button>
+  </div>
+</div>
+
+<script>
+  function showBirthdayModal() {
+    document.getElementById('birthdayModal').classList.remove('hidden');
+  }
+
+  function hideBirthdayModal() {
+    document.getElementById('birthdayModal').classList.add('hidden');
+  }
+</script>
+
 </main>
