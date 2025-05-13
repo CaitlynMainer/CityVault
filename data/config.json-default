@@ -1,7 +1,7 @@
 {
     "siteName": "CityVault",
     "session_secret": "ChangeThisPLEASE",
-    "ipAddr": "127.0.0.1",
+    "ipAddr": "0.0.0.0",
     "domain": "YourWebsite.com",
 
     "auth": {
