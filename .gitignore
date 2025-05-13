@@ -141,6 +141,11 @@ data/news.json
 data/manifest-config.json
 public/game/*
 !public/game/.noempty
+# Ignore everything under portrait/
+public/images/portrait/**
+# Allow the folder and the .noempty marker
+!public/images/portrait/
+!public/images/portrait/.noempty
 sessions/*
 !sessions/.noempty
 badges.attribute
