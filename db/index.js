@@ -1,24 +1,5 @@
 const sql = require('mssql');
-const path = require('path');
-const fs = require('fs');
-
-// Load config from JSON safely
-const configPath = path.join(__dirname, '../data/config.json');
-const configDefaultPath = path.join(__dirname, '../data/config.json-default');
-
-let config;
-
-try {
-  config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-} catch (e) {
-  console.error(`[ERROR] Failed to load config.json: ${e.message}`);
-
-  if (fs.existsSync(configDefaultPath)) {
-    console.warn('[WARN] config.json-default exists — did you forget to copy and configure it?');
-  }
-
-  process.exit(1);
-}
+const config = require(global.BASE_DIR + '/utils/config');
 
 // Auth DB pool
 let authPool = null;
@@ -43,18 +24,18 @@ async function getAuthPool() {
 const gamePools = {};
 
 async function getGamePool(serverKey) {
-  if (!config.servers[serverKey]) {
+  const serverConfig = config.servers[serverKey];
+  if (!serverConfig) {
     throw new Error(`Unknown server key: ${serverKey}`);
   }
 
   if (!gamePools[serverKey]) {
-    const s = config.servers[serverKey];
     const pool = new sql.ConnectionPool({
-      user: s.dbUser,
-      password: s.dbPass,
-      server: s.dbHost,
-      database: s.dbName,
-      port: s.dbPort,
+      user: serverConfig.dbUser,
+      password: serverConfig.dbPass,
+      server: serverConfig.dbHost,
+      database: serverConfig.dbName,
+      port: serverConfig.dbPort,
       options: {
         trustServerCertificate: true
       }
@@ -70,12 +51,14 @@ async function getGamePool(serverKey) {
 let chatPool = null;
 async function getChatPool() {
   if (!chatPool) {
+    const chatConfig = config.chat;
+    const fallback = config.auth;
     const pool = new sql.ConnectionPool({
-      user: config.chat.dbUser || config.auth.dbUser,
-      password: config.chat.dbPass || config.auth.dbPass,
-      server: config.chat.dbHost || config.auth.dbHost,
-      database: config.chat.dbName || 'cohchat',
-      port: config.chat.dbPort || config.auth.dbPort || 1433,
+      user: chatConfig.dbUser || fallback.dbUser,
+      password: chatConfig.dbPass || fallback.dbPass,
+      server: chatConfig.dbHost || fallback.dbHost,
+      database: chatConfig.dbName || 'cohchat',
+      port: chatConfig.dbPort || fallback.dbPort || 1433,
       options: {
         trustServerCertificate: true
       }

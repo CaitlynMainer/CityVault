@@ -8,5 +8,6 @@ router.use('/users', require('./users'));
 router.use('/news', require('./news'));
 router.use('/style', require('./style')); 
 router.use('/edit_blacklist', require('./blacklist')); 
+router.use('/config', require('./config'));
 
 module.exports = router;

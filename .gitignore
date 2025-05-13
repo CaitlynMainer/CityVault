@@ -135,6 +135,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 data/config.json
+data/config.json.bak
 data/news.json
 data/manifest-config.json
 public/game/*
@@ -146,3 +147,4 @@ data/badges/*
 !data/badges/
 !data/badges/blacklist.json
 data/vars.attribute
+logs/*

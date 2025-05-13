@@ -27,5 +27,16 @@
         "dbUser": "dbUser",
         "dbPass": "password",
         "dbName": "cohchat"
+    },
+    "schedule": {
+        "tasks": {
+        "badgeSpotlight": {
+            "intervalMinutes": 15,
+            "handler": "homeWidgets.regenerateBadgeSpotlight"
+        }
+        }
+    },"logs": {
+        "accessRetentionDays": 30,
+        "compress": true
     }
 }

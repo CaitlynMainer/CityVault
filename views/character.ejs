@@ -111,3 +111,60 @@
 <% } else { %>
   <div class="alert"><%= message %></div>
 <% } %>
+    <script>
+      function toggleBadges(cat) {
+        const el = document.getElementById('details-' + cat);
+        if (!el) return;
+
+        if (el.style.display === 'none') {
+          el.style.display = 'block';
+
+          if (!el.dataset.loaded) {
+            try {
+              const decoded = decodeURIComponent(el.dataset.badges);
+              const badges = JSON.parse(decoded);
+
+              const spinner = el.querySelector('.loading-spinner');
+              if (spinner) spinner.remove();
+                for (const b of badges) {
+                  const li = document.createElement('li');
+                  li.style.display = 'grid';
+                  li.style.gridTemplateColumns = '1.5em 80px 1fr';
+                  li.style.alignItems = 'center';
+                  li.style.columnGap = '8px';
+                  li.style.marginBottom = '6px';
+
+                  const status = document.createElement('span');
+                  status.textContent = b.owned ? '✅' : '❌';
+
+                  const iconWrapper = document.createElement('div');
+                  iconWrapper.style.width = '80px';
+                  iconWrapper.style.display = 'flex';
+                  iconWrapper.style.alignItems = 'center';
+
+                  const icon = document.createElement('img');
+                  icon.src = `/images/badges/${b.image}.png`;
+                  icon.alt = b.DisplayTitle;
+                  icon.style.height = '32px';
+                  icon.style.maxWidth = '100%';
+                  iconWrapper.appendChild(icon);
+
+                  const label = document.createElement('span');
+                  label.textContent = b.DisplayTitle;
+
+                  li.appendChild(status);
+                  li.appendChild(iconWrapper);
+                  li.appendChild(label);
+
+                  el.appendChild(li);
+                }
+              el.dataset.loaded = 'true';
+            } catch (e) {
+              console.error('Failed to parse badges:', e);
+            }
+          }
+        } else {
+          el.style.display = 'none';
+        }
+      }
+    </script>

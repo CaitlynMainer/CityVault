@@ -1,28 +1,88 @@
+<main class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+  <!-- News Column (2/5 width on large screens) -->
+  <section class="lg:col-span-2">
     <h2 class="text-2xl font-bold mb-4"><%= config.siteName %> News</h2>
-  
     <% if (news.length === 0) { %>
       <p>No news posts available.</p>
     <% } %>
-  
     <% news.forEach(post => { %>
       <article class="mb-6 p-4 border border-gray-700 rounded">
         <h3 class="text-xl font-semibold"><%= post.title %></h3>
-        <p class="text-sm text-gray-400 mb-2"><span class="utc-date" data-utc="<%= post.date %>">Loading...</span></p>
         <div class="prose prose-invert max-w-none">
           <%- post.content %>
         </div>
       </article>
     <% }) %>
-  </main>
-  <script>
-    document.querySelectorAll('.utc-date').forEach(el => {
-      const utc = el.dataset.utc;
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const local = new Date(utc).toLocaleString(undefined, {
-        timeZone: tz,
-        dateStyle: 'medium',
-        timeStyle: 'short'
-      });
-      el.textContent = local;
-    });
-  </script>
+  </section>
+
+  <!-- Widget Grid (3/5 width on large screens) -->
+  <section class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+    <!-- Recently Online -->
+    <section>
+      <h2 class="text-xl font-bold mb-2">Recently Online</h2>
+      <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
+        <% recent.forEach(char => { %>
+          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition">
+            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white">
+              <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
+              Level <%= char.Level %> <%= char.Archetype %><br>
+              <span class="text-gray-400 text-xs">Last seen: <%= new Date(char.LastActive).toLocaleDateString() %></span>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <!-- Quick Stats -->
+    <section>
+      <h2 class="text-xl font-bold mb-2">Quick Stats</h2>
+      <ul class="text-sm space-y-1">
+        <li><strong>Characters Today:</strong> <%= stats.onlineToday %></li>
+        <li><strong>This Month:</strong> <%= stats.onlineMonth %></li>
+        <li><strong>Average Level:</strong> <%= stats.avgLevel %></li>
+        <li><strong>Average Influence:</strong> <%= stats.avgInfluence.toLocaleString() %></li>
+        <li><strong>Top Archetypes:</strong>
+          <%= Object.entries(stats.archetypeCounts).sort((a, b) => b[1] - a[1]).slice(0, 3).map(e => e[0] + ' (' + e[1] + ')').join(', ') %>
+        </li>
+        <li><strong>Top Origins:</strong>
+          <%= Object.entries(stats.originCounts).sort((a, b) => b[1] - a[1]).slice(0, 3).map(e => e[0] + ' (' + e[1] + ')').join(', ') %>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Character Birthdays -->
+    <section class="mt-6 md:mt-0">
+      <h2 class="text-xl font-bold mb-2">Character Birthdays</h2>
+      <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
+        <% birthdays.forEach(char => { %>
+          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition">
+            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white">
+              <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
+              Level <%= char.Level %> <%= char.Archetype %><br>
+              Created on <%= new Date(char.DateCreated).toLocaleDateString() %>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <!-- Badge Spotlight -->
+    <section class="mt-6 md:mt-0">
+      <h2 class="text-xl font-bold mb-2">Badge Spotlight</h2>
+      <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
+        <% badgeSpotlight.forEach(char => { %>
+          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition">
+            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white">
+              <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
+              Level <%= char.Level %> <%= char.Archetype %><br>
+              Total Badges: <%= char.badgeCount %><br>
+              <span class="text-gray-400 text-xs">Last Active: <%= new Date(char.LastActive).toLocaleDateString() %></span>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+
+  </section>
+</main>

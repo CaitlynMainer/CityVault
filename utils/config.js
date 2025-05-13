@@ -3,6 +3,7 @@ const path = require('path');
 
 const configPath = path.join(global.BASE_DIR, 'data', 'config.json');
 const defaultPath = path.join(global.BASE_DIR, 'data', 'config.json-default');
+const reloadFlagPath = path.join(global.BASE_DIR, 'data', '.config-reload');
 
 if (!fs.existsSync(configPath)) {
   if (fs.existsSync(defaultPath)) {
@@ -11,5 +12,32 @@ if (!fs.existsSync(configPath)) {
   process.exit(1);
 }
 
-const data = fs.readFileSync(configPath, 'utf8');
-module.exports = JSON.parse(data);
+let cachedConfig = null;
+
+function loadConfig() {
+  const shouldReload = fs.existsSync(reloadFlagPath);
+
+  if (!cachedConfig || shouldReload) {
+    console.log(`[config] Reloading config from ${configPath}`);
+    const data = fs.readFileSync(configPath, 'utf8');
+    cachedConfig = JSON.parse(data);
+
+    if (shouldReload) {
+      try {
+        fs.unlinkSync(reloadFlagPath);
+        console.log('[config] Cleared .config-reload flag');
+      } catch (err) {
+        console.warn('[config] Failed to remove .config-reload flag:', err.message);
+      }
+    }
+  }
+
+  return cachedConfig;
+}
+
+module.exports = new Proxy({}, {
+  get(_, prop) {
+    const config = loadConfig();
+    return config[prop];
+  }
+});

@@ -1,5 +1,6 @@
 
 global.BASE_DIR = __dirname;
+const fs = require('fs');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -13,6 +14,9 @@ const config = require('./utils/config');
 const saveReturnTo = require('./middleware/saveReturnTo');
 const { stringClean } = require('./utils/textSanitizer');
 const compression = require('compression');
+const { startScheduledTasks } = require('./services/scheduler');
+const morgan = require('morgan');
+const rfs = require('rotating-file-stream');
 
 const authConfig = {
   user: config.auth.dbUser,
@@ -114,6 +118,7 @@ async function ensureSchema() {
   }
 }
 
+startScheduledTasks();
 
 ensureSchema();
 
@@ -135,9 +140,34 @@ app.use(session({
   saveUninitialized: false,  rolling: true, // Reset the cookie Max-Age on every response
   cookie: {
     maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year in milliseconds
-    secure: true // Set to true if using HTTPS
+    secure: true, // Set to true if using HTTPS
+    signed: true
   }
 }));
+
+// Ensure logs/ directory exists
+const logDir = path.join(__dirname, 'logs');
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir, { recursive: true });
+}
+
+// Access log rotation: daily, keep 30 days
+const accessLogStream = rfs.createStream('access.log', {
+  interval: '1d',             // Rotate daily
+  path: logDir,
+  maxFiles: config.logs.accessRetentionDays || 30,
+  compress: config.logs.compress ? 'gzip' : false
+});
+
+const errorLogStream = rfs.createStream('error.log', {
+  interval: '1d',             // Rotate daily
+  path: logDir,
+  maxFiles: config.logs.accessRetentionDays || 30,
+  compress: config.logs.compress ? 'gzip' : false
+});
+
+// Register morgan
+app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use(flash());
 app.use(compression());
@@ -190,11 +220,30 @@ const routes = require('./routes');
 app.use(routes);
 
 // 404 handler
-app.use((req, res, next) => {
-  res.status(404);
-  res.render('404', { url: req.originalUrl });
+app.use((req, res) => {
+  res.status(404).render('error', {
+    title: 'Page Not Found',
+    message: 'The page you requested does not exist.'
+  });
 });
 
+app.use((err, req, res, next) => {
+  const logLine = [
+    `[${new Date().toISOString()}]`,
+    `URL: ${req.method} ${req.originalUrl}`,
+    `Status: ${res.statusCode}`,
+    `Message: ${err.message}`,
+    `Stack:\n${err.stack || 'No stack'}\n\n`
+  ].join('\n');
+
+  errorLogStream.write(logLine);
+  console.error(logLine);
+
+  res.status(500).render('error', {
+    title: 'Internal Server Error',
+    message: 'An unexpected error occurred.'
+  });
+});
 
 const domain = config.domain;
 const ipAddress = config.ipAddr;

@@ -3,7 +3,7 @@ const sql = require('mssql');
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
 const { enrichCharacterSummary } = require(global.BASE_DIR + '/utils/characterInfo/enrichCharacterSummary');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
-const config = require(global.BASE_DIR + '/data/config.json');
+const config = require(global.BASE_DIR + '/utils/config');
 
 async function showCharacterList(req, res) {
   if (!req.session.username) {

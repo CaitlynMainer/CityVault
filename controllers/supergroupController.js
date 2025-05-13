@@ -1,7 +1,7 @@
 const sql = require('mssql');
 const { getGamePool, getChatPool, getAuthPool } = require(global.BASE_DIR + '/db');
 const { extractGlobalName } = require(global.BASE_DIR + '/utils/characterInfo/extractGlobalName');
-const config = require(global.BASE_DIR + '/data/config.json');
+const config = require(global.BASE_DIR + '/utils/config');
 const { enrichCharacterSummary } = require(global.BASE_DIR + '/utils/characterInfo/enrichCharacterSummary');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 

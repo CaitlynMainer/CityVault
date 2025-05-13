@@ -94,7 +94,18 @@ async function showCharacter(req, res) {
   }
 
   try {
-    const pool = await getGamePool(serverKey);
+    let pool;
+    try {
+      pool = await getGamePool(serverKey);
+    } catch (err) {
+      if (/Unknown server key/i.test(err.message)) {
+        return res.status(404).render('error', {
+          title: 'Unknown Server',
+          message: `The server "${stringClean(serverKey)}" is not recognized.`
+        });
+      }
+      throw err;
+    }
 
     const charResult = await pool.request()
       .input('dbid', sql.Int, dbid)

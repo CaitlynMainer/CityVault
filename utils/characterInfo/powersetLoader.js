@@ -1,5 +1,11 @@
 const sql = require('mssql');
 
+function formatDisplayName(name) {
+  return name
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
 async function getPoolsAndAncillaries(pool, containerId, buildNum = null) {
   const poolsQuery = `
     SELECT DISTINCT p.PowerSetName, a.Name
@@ -28,8 +34,8 @@ async function getPoolsAndAncillaries(pool, containerId, buildNum = null) {
     request.query(ancillaryQuery)
   ]);
 
-  const pools = (poolsResult.recordset || []).map(row => row.Name);
-  const ancillaries = (ancillaryResult.recordset || []).map(row => row.Name);
+  const pools = (poolsResult.recordset || []).map(row => formatDisplayName(row.Name));
+  const ancillaries = (ancillaryResult.recordset || []).map(row => formatDisplayName(row.Name));
 
   return {
     pools,

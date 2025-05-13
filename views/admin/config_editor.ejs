@@ -1,0 +1,161 @@
+<div class="container mx-auto px-4 py-6">
+  <h1 class="text-2xl font-bold mb-4">Configuration Editor</h1>
+
+  <% if (messages && messages.success) { %>
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+      <%= messages.success %>
+    </div>
+  <% } %>
+  <% if (messages && messages.error) { %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+      <%= messages.error %>
+    </div>
+  <% } %>
+
+  <form method="POST" action="/admin/config" id="configForm">
+    <h2 class="text-xl font-semibold mb-2">Site Settings</h2>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium">Site Name</label>
+        <input type="text" name="config[siteName]" value="<%= config.siteName %>" class="input" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Domain</label>
+        <input type="text" name="config[domain]" value="<%= config.domain %>" class="input" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">IP Address</label>
+        <input type="text" name="config[ipAddr]" value="<%= config.ipAddr %>" class="input" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Session Secret</label>
+        <input type="text" name="config[session_secret]" value="<%= config.session_secret %>" class="input" />
+      </div>
+    </div>
+
+    <h2 class="text-xl font-semibold mb-2">Auth DB</h2>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <% Object.keys(config.auth).forEach(function(key) { %>
+        <div>
+          <label class="block text-sm font-medium"><%= key %></label>
+          <input type="text" name="config[auth][<%= key %>]" value="<%= config.auth[key] %>" class="input" />
+        </div>
+      <% }); %>
+    </div>
+
+    <h2 class="text-xl font-semibold mb-2">Chat DB</h2>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <% Object.keys(config.chat).forEach(function(key) { %>
+        <div>
+          <label class="block text-sm font-medium"><%= key %></label>
+          <input type="text" name="config[chat][<%= key %>]" value="<%= config.chat[key] %>" class="input" />
+        </div>
+      <% }); %>
+    </div>
+
+    <h2 class="text-xl font-semibold mb-2">Game Servers</h2>
+    <div id="serversContainer" class="mb-4">
+      <% Object.keys(config.servers).forEach(function(key) { %>
+        <fieldset class="border p-4 mb-2">
+          <legend class="font-semibold">Server: <%= key %></legend>
+          <input type="hidden" name="config[servers][<%= key %>][_key]" value="<%= key %>" />
+          <% Object.keys(config.servers[key]).forEach(function(field) { %>
+            <div>
+              <label class="block text-sm font-medium"><%= field %></label>
+              <input type="text" name="config[servers][<%= key %>][<%= field %>]" value="<%= config.servers[key][field] %>" class="input" />
+            </div>
+          <% }); %>
+          <button type="button" onclick="removeServer(this)" class="text-red-600">Remove Server</button>
+        </fieldset>
+      <% }); %>
+    </div>
+    <button type="button" onclick="addServer()" class="btn btn-blue mb-4">Add Server</button>
+
+    <h2 class="text-xl font-semibold mb-2">Scheduled Tasks</h2>
+    <div id="tasksContainer" class="mb-4">
+      <% Object.keys(config.schedule.tasks).forEach(function(key) { %>
+        <fieldset class="border p-4 mb-2">
+          <legend class="font-semibold">Task: <%= key %></legend>
+          <input type="hidden" name="config[schedule][tasks][<%= key %>][_key]" value="<%= key %>" />
+          <% Object.keys(config.schedule.tasks[key]).forEach(function(field) { %>
+            <div>
+              <label class="block text-sm font-medium"><%= field %></label>
+              <input type="text" name="config[schedule][tasks][<%= key %>][<%= field %>]" value="<%= config.schedule.tasks[key][field] %>" class="input" />
+            </div>
+          <% }); %>
+          <button type="button" onclick="removeTask(this)" class="text-red-600">Remove Task</button>
+        </fieldset>
+      <% }); %>
+    </div>
+    <button type="button" onclick="addTask()" class="btn btn-blue mb-4">Add Task</button>
+
+    <h2 class="text-xl font-semibold mb-2">Log Settings</h2>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <% Object.keys(config.logs).forEach(function(key) { %>
+        <div>
+          <label class="block text-sm font-medium"><%= key %></label>
+          <input type="text" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" />
+        </div>
+      <% }); %>
+    </div>
+
+    <button type="submit" class="btn btn-green">Save Config</button>
+  </form>
+</div>
+
+<script>
+  let serverCounter = 1000;
+  let taskCounter = 1000;
+
+  function addServer() {
+    const key = prompt("Enter a unique server key (e.g. 'freedom'):");
+    if (!key) return;
+
+    const container = document.getElementById('serversContainer');
+    const html = `
+      <fieldset class="border p-4 mb-2">
+        <legend class="font-semibold">Server: ${key}</legend>
+        <input type="hidden" name="config[servers][${key}][_key]" value="${key}" />
+        <div><label class="block text-sm font-medium">label</label><input type="text" name="config[servers][${key}][label]" class="input" /></div>
+        <div><label class="block text-sm font-medium">dbHost</label><input type="text" name="config[servers][${key}][dbHost]" class="input" /></div>
+        <div><label class="block text-sm font-medium">dbPort</label><input type="text" name="config[servers][${key}][dbPort]" class="input" /></div>
+        <div><label class="block text-sm font-medium">dbUser</label><input type="text" name="config[servers][${key}][dbUser]" class="input" /></div>
+        <div><label class="block text-sm font-medium">dbPass</label><input type="text" name="config[servers][${key}][dbPass]" class="input" /></div>
+        <div><label class="block text-sm font-medium">dbName</label><input type="text" name="config[servers][${key}][dbName]" class="input" /></div>
+        <button type="button" onclick="removeServer(this)" class="text-red-600">Remove Server</button>
+      </fieldset>
+    `;
+    container.insertAdjacentHTML('beforeend', html);
+  }
+
+  function removeServer(button) {
+    button.closest('fieldset').remove();
+  }
+
+  function addTask() {
+    const container = document.getElementById('tasksContainer');
+    const key = `newTask${taskCounter++}`;
+    const html = `
+      <fieldset class="border p-4 mb-2">
+        <legend class="font-semibold">New Task</legend>
+        <div><label class="block text-sm font-medium">intervalMinutes</label><input type="text" name="config[schedule][tasks][${key}][intervalMinutes]" class="input" /></div>
+        <div><label class="block text-sm font-medium">handler</label><input type="text" name="config[schedule][tasks][${key}][handler]" class="input" /></div>
+        <button type="button" onclick="removeTask(this)" class="text-red-600">Remove Task</button>
+      </fieldset>
+    `;
+    container.insertAdjacentHTML('beforeend', html);
+  }
+
+  function removeTask(button) {
+    button.closest('fieldset').remove();
+  }
+</script>
+
+<style>
+  .input { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 0.5rem; }
+  .btn { padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; }
+  .btn-blue { background: #3b82f6; color: white; }
+  .btn-green { background: #10b981; color: white; }
+  label { margin-bottom: 0.25rem; display: block; }
+  fieldset > div { margin-bottom: 0.5rem; }
+</style>
