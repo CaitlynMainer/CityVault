@@ -36,7 +36,7 @@ function startScheduledTasks() {
 
     console.log(`  • ${taskName} → ${taskCfg.handler} every ${taskCfg.intervalMinutes} minute(s)`);
 
-    scheduledTasks[taskName] = setInterval(async () => {
+    const runTask = async () => {
       const start = Date.now();
       console.log(`[Scheduler] Running task '${taskName}'...`);
       try {
@@ -46,9 +46,16 @@ function startScheduledTasks() {
       } catch (err) {
         console.error(`[Scheduler] Task '${taskName}' failed:`, err);
       }
-    }, interval);
+    };
+
+    // ⏱ Run immediately
+    runTask();
+
+    // 🔁 Then set up interval
+    scheduledTasks[taskName] = setInterval(runTask, interval);
   }
 }
+
 
 module.exports = {
   startScheduledTasks

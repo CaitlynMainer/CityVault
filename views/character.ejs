@@ -7,11 +7,22 @@
   <% if (isForced) { %>
     <div class="alert">This character is part of a private profile. Displaying because you are an admin.</div>
   <% } %>
-
   <div class="character-profile-container" style="display: flex; gap: 24px; align-items: flex-start;">
     <!-- Left Column: Character Summary -->
     <div class="left-panel" style="flex: 0 0 360px;">
-      <img src="/images/portrait/<%= character.ContainerId %>.jpg" alt="Character Portrait" style="width: 100%; border-radius: 8px; margin-bottom: 8px;" />
+      <div style="display: flex; justify-content: center;">
+        <img src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %>.jpg"
+            alt="Character Portrait"
+            style="max-width: 200px; max-height: 400px; width: auto; height: auto; border-radius: 8px; margin-bottom: 8px;" />
+      </div>
+
+      <% if (viewerIsOwner) { %>
+        <form action="/character/uploadPortrait" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="characterId" value="<%= serverKey %>:<%= character.ContainerId %>">
+          <input type="file" name="portrait" accept="image/*" required>
+          <button type="submit" class="btn btn-blue mt-2">Upload Portrait</button>
+        </form>
+      <% } %>
 
       <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 12px;">
         <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" alt="Alignment" title="<%= character.alignment %>" height="32" />

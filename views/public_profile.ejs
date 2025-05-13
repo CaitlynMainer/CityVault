@@ -12,7 +12,7 @@
         <div style="position: relative;">
           <a href="/character/<%= serverKey %>:<%= character.ContainerId %>" style="text-decoration: none; position: absolute; inset: 0; z-index: 2;"></a>
           <div class="character-card" style="background: #222; padding: 12px; border-radius: 8px; text-align: center; color: #ccc; transition: background 0.2s; position: relative; z-index: 1;">
-            <img src="/images/portrait/<%= character.ContainerId %>.jpg" alt="<%= character.Name %>" style="width: 100%; border-radius: 4px; margin-bottom: 8px; object-fit: cover; aspect-ratio: 4/5;">
+            <img src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %>.jpg" alt="<%= character.Name %>" style="width: 100%; border-radius: 4px; margin-bottom: 8px; object-fit: cover; object-position: top; aspect-ratio: 4/5;">
             <h3 style="margin: 0 0 4px 0; font-size: 18px; color: #fff;"><%= stringClean(character.Name) %></h3>
             <p style="margin: 0 0 8px; font-size: 14px; color: #aaa;">
               Level <%= character.Level %>

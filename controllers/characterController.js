@@ -1,6 +1,8 @@
 // Full updated characterController.js using modular characterInfo helpers with privacy check
 
 const sql = require('mssql');
+const path = require('path');
+const fs = require('fs');
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
 const attributeMap = require(global.BASE_DIR + '/utils/attributeMap');
 const { getOwnedBadgesFromBitfield } = require(global.BASE_DIR + '/utils/badgeParser');
@@ -11,7 +13,8 @@ const { resolveSupergroupLink } = require(global.BASE_DIR + '/utils/characterInf
 const { enrichCharacter } = require(global.BASE_DIR + '/utils/characterInfo/formatCharacterDetails');
 const { getPoolsAndAncillaries } = require(global.BASE_DIR + '/utils/characterInfo/powersetLoader');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
-const fs = require('fs');
+const multer = require('multer');
+const sharp = require('sharp');
 
 const CATEGORY_LABELS = {
   kAccomplishment: 'Accomplishments',
@@ -31,6 +34,64 @@ const CATEGORY_LABELS = {
   kVeteran: 'Veteran',
   Uncategorized: 'Other'
 };
+
+
+// Set up multer for portrait uploads
+const upload = multer({
+  storage: multer.memoryStorage(),
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.mimetype)) {
+      return cb(new Error('Only JPG, PNG, and WebP images are allowed.'));
+    }
+    cb(null, true);
+  },
+  limits: { fileSize: 5 * 1024 * 1024 } // max 5MB
+}).single('portrait');
+
+async function uploadPortrait(req, res) {
+  if (!req.session?.username) return res.status(403).send('Login required');
+
+  upload(req, res, async (err) => {
+    if (err) return res.status(400).send(`Upload error: ${err.message}`);
+
+    const [serverKey, dbidStr] = (req.body.characterId || '').split(':');
+    const dbid = parseInt(dbidStr);
+    if (!serverKey || isNaN(dbid)) return res.status(400).send('Invalid character ID.');
+
+    try {
+      const pool = await getGamePool(serverKey);
+      const charResult = await pool.request()
+        .input('dbid', sql.Int, dbid)
+        .query(`SELECT AuthId FROM dbo.Ents WHERE ContainerId = @dbid`);
+
+      const character = charResult.recordset[0];
+      if (!character) return res.status(404).send('Character not found.');
+
+      const authPool = await getAuthPool();
+      const authResult = await authPool.request()
+        .input('uid', sql.Int, character.AuthId)
+        .query(`SELECT account FROM dbo.user_account WHERE uid = @uid`);
+
+      const owner = authResult.recordset[0];
+      if (!owner || owner.account !== req.session.username) {
+        return res.status(403).send('You do not own this character.');
+      }
+
+      const destPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.jpg`);
+      await sharp(req.file.buffer)
+        .resize(400, 800, { fit: 'inside' }) // Sane limits
+        .jpeg({ quality: 85 })
+        .toFile(destPath);
+
+      return res.redirect(`/character/${serverKey}:${dbid}`);
+    } catch (error) {
+      console.error('[Portrait Upload Error]', error);
+      res.status(500).send('Upload failed.');
+    }
+  });
+}
+
 
 function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender) {
   const ownedNames = new Set(ownedBadges.map(b => b.internalName));
@@ -241,6 +302,7 @@ async function showCharacter(req, res) {
       ownedBadges,
       unearnedBadgeCategories,
       message: forcedAccess ? "This is a private character. Displaying because you are an admin." : null,
+      viewerIsOwner: isOwner,
       stringClean
     });
 
@@ -251,5 +313,6 @@ async function showCharacter(req, res) {
 }
 
 module.exports = {
-  showCharacter
+  showCharacter,
+  uploadPortrait
 };

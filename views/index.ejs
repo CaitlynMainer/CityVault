@@ -101,14 +101,14 @@
     <h2 class="text-xl font-bold mb-4">All Birthday Characters</h2>
     <ul class="space-y-2">
       <% allBirthdays.forEach(char => { %>
-        <li>
-          <a 
-            href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" 
-            class="block text-white hover:text-blue-400 hover:underline transition">
-            <strong><%= char.Name %></strong>
-            (@<%= char.GlobalName %>) – Level <%= char.Level %> <%= char.Archetype %>
-          </a>
-        </li>
+      <li>
+        <a 
+          href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" 
+          class="block text-white hover:text-blue-400 hover:underline hover:bg-gray-700 rounded px-2 py-1 transition">
+          <strong><%= char.Name %></strong>
+          (@<%= char.GlobalName %>) – Level <%= char.Level %> <%= char.Archetype %>
+        </a>
+      </li>
       <% }); %>
     </ul>
     <button onclick="hideBirthdayModal()" class="mt-4 btn btn-blue">Close</button>
