@@ -1,35 +1,54 @@
-name: Release CityVault Build
+name: Release CityVault
 
 on:
   push:
     tags:
-      - 'v*'  # triggers only when you push a version tag like v0.1.3
+      - 'v*'  # e.g. v0.1.3
 
 jobs:
-  build-and-release:
+  build-release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Checkout main branch
+        uses: actions/checkout@v4
         with:
-          node-version: '20'
+          fetch-depth: 0  # required for pushing
 
-      - name: Install dependencies
-        run: npm install
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
-      - name: Create ZIP
+      - name: Update version.json in main
         run: |
-          zip -r cityvault-${{ github.ref_name }}.zip . -x "*.git*" "node_modules/*"
+          echo "{ \"version\": \"${VERSION}\" }" > data/version.json
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add data/version.json
+          git commit -m "Update version.json to ${VERSION}" || echo "No changes"
+          git push
 
-      - name: Create GitHub Release
+      - name: Create ZIP artifact
+        run: |
+          mkdir dist
+          zip -r "dist/cityvault-${VERSION}.zip" . -x "*.git*" "node_modules/*"
+
+      - name: Upload Release ZIP
         uses: softprops/action-gh-release@v1
         with:
-          name: "CityVault ${{ github.ref_name }}"
-          tag_name: ${{ github.ref_name }}
-          files: cityvault-${{ github.ref_name }}.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          files: dist/cityvault-${VERSION}.zip
+
+      - name: Update update.json in gh-pages
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+
+          echo '{
+            "latest": "'${VERSION}'",
+            "url": "https://github.com/${{ github.repository }}/releases/download/v${VERSION}/cityvault-${VERSION}.zip",
+            "notes": "See https://github.com/${{ github.repository }}/releases/tag/v${VERSION}"
+          }' > update.json
+
+          git add update.json
+          git commit -m "Update update.json for v${VERSION}" || echo "No changes"
+          git push origin gh-pages
