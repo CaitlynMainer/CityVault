@@ -3,6 +3,8 @@ const { enrichCharacterSummary } = require(global.BASE_DIR + '/utils/characterIn
 const config = require(global.BASE_DIR + '/data/config.json');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 const sql = require('mssql');
+const path = require('path');
+const fs = require('fs');
 
 async function showPublicProfile(req, res) {
   const authId = parseInt(req.params.authId);
@@ -66,7 +68,22 @@ async function showPublicProfile(req, res) {
           WHERE e.AuthId = @authId
         `);
 
-      const enriched = result.recordset.map(enrichCharacterSummary);
+      const enriched = result.recordset.map(row => {
+        const enrichedChar = enrichCharacterSummary(row);
+        const filename = `${serverKey}_${row.ContainerId}.png`;
+        const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', filename);
+        let portraitVersion = 0;
+        try {
+          const stat = fs.statSync(portraitPath);
+          portraitVersion = stat.mtimeMs;
+        } catch (_) {}
+        return {
+          ...enrichedChar,
+          serverKey,
+          portraitVersion
+        };
+      });
+
       if (enriched.length) {
         charactersByServer[serverKey] = enriched;
       }

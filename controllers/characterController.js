@@ -36,7 +36,6 @@ const CATEGORY_LABELS = {
 };
 
 
-// Set up multer for portrait uploads
 const upload = multer({
   storage: multer.memoryStorage(),
   fileFilter: (req, file, cb) => {
@@ -78,10 +77,10 @@ async function uploadPortrait(req, res) {
         return res.status(403).send('You do not own this character.');
       }
 
-      const destPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.jpg`);
+      const destPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.png`);
       await sharp(req.file.buffer)
-        .resize(400, 800, { fit: 'inside' }) // Sane limits
-        .jpeg({ quality: 85 })
+        .resize(400, 800, { fit: 'inside', withoutEnlargement: true })
+        .png({ quality: 90 })
         .toFile(destPath);
 
       return res.redirect(`/character/${serverKey}:${dbid}`);
@@ -147,11 +146,20 @@ function groupBadgesByCategory(badges) {
 }
 
 async function showCharacter(req, res) {
+
   const [serverKey, dbidStr] = (req.params.id || '').split(':');
   const dbid = parseInt(dbidStr);
 
   if (!serverKey || isNaN(dbid)) {
     return res.status(400).send('Invalid character ID format.');
+  }
+  const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.png`);
+  let portraitVersion = 0;
+  try {
+  const stat = fs.statSync(portraitPath);
+  portraitVersion = stat.mtimeMs;
+  } catch (e) {
+    // File doesn't exist, fallback stays 0
   }
 
   try {
@@ -303,7 +311,8 @@ async function showCharacter(req, res) {
       unearnedBadgeCategories,
       message: forcedAccess ? "This is a private character. Displaying because you are an admin." : null,
       viewerIsOwner: isOwner,
-      stringClean
+      stringClean,
+      portraitVersion
     });
 
   } catch (err) {

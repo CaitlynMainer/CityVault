@@ -1,5 +1,7 @@
 // characterListController.js
 const sql = require('mssql');
+const fs = require('fs');
+const path = require('path');
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
 const { enrichCharacterSummary } = require(global.BASE_DIR + '/utils/characterInfo/enrichCharacterSummary');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
@@ -9,7 +11,7 @@ async function showCharacterList(req, res) {
   if (!req.session.username) {
     return res.redirect('/login');
   }
-  
+
   let authId;
   try {
     const authPool = await getAuthPool();
@@ -22,6 +24,7 @@ async function showCharacterList(req, res) {
     console.error('[CharacterList] AuthId lookup failed:', err);
     return res.status(500).send('Unable to look up account ID.');
   }
+
   const charactersByServer = {};
 
   try {
@@ -39,13 +42,28 @@ async function showCharacterList(req, res) {
           WHERE e.AuthId = @authId
         `);
 
-      const enriched = result.recordset.map(enrichCharacterSummary);
+      const enriched = result.recordset.map(row => {
+        const enrichedChar = enrichCharacterSummary(row);
+        const filename = `${serverKey}_${row.ContainerId}.png`;
+        const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', filename);
+        let portraitVersion = 0;
+        try {
+          const stat = fs.statSync(portraitPath);
+          portraitVersion = stat.mtimeMs;
+        } catch (_) {}
+        return {
+          ...enrichedChar,
+          serverKey,
+          portraitVersion
+        };
+      });
+
       if (enriched.length) {
         charactersByServer[serverKey] = enriched;
       }
     }
 
-    res.render('character_list', { charactersByServer, stringClean});
+    res.render('character_list', { charactersByServer, stringClean });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error loading character list');
