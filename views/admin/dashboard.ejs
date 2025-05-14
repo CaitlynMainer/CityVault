@@ -2,15 +2,14 @@
   <div class="bg-yellow-100 text-yellow-800 p-4 mb-4 rounded border border-yellow-300">
     <strong>Update Available:</strong> Version <%= updateInfo.latestVersion %> is available.
     You are running <%= updateInfo.currentVersion %>.<br>
+
     <form action="/admin/update/download-update" method="POST" onsubmit="return confirm('Download and extract the update now?');">
       <input type="hidden" name="zipUrl" value="<%= updateInfo.url %>">
       <button type="submit" class="btn btn-blue">Download Update</button>
     </form>
-    <% if (updateInfo.notes) { 
-         const match = updateInfo.notes.match(/(https?:\/\/[^\s]+)/);
-         const preText = updateInfo.notes.replace(match?.[0], '').trim();
-    %><br>
-      <%= preText %> <a href="<%= match[0] %>" target="_blank" class="underline"><%= match[0] %></a>
+
+    <% if (updateInfo.notes) { %>
+      <br><%- updateInfo.notes %>
     <% } %>
   </div>
 <% } %>
