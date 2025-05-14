@@ -30,10 +30,14 @@
     },
     "schedule": {
         "tasks": {
-        "badgeSpotlight": {
-            "intervalMinutes": 15,
-            "handler": "homeWidgets.regenerateBadgeSpotlight"
-        }
+            "regenerateBadgeSpotlight": {
+                "intervalMinutes": 15,
+                "handler": "homeWidgets.regenerateBadgeSpotlight"
+            },
+            "newTask1000": {
+                "intervalMinutes": 60,
+                "handler": "updateChecker.checkForUpdates"
+            }
         }
     },"logs": {
         "accessRetentionDays": 30,

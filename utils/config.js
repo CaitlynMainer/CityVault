@@ -4,6 +4,7 @@ const path = require('path');
 const configPath = path.join(global.BASE_DIR, 'data', 'config.json');
 const defaultPath = path.join(global.BASE_DIR, 'data', 'config.json-default');
 const reloadFlagPath = path.join(global.BASE_DIR, 'data', '.config-reload');
+const { reloadScheduledTasks } = require(global.BASE_DIR + '/services/scheduler');
 
 if (!fs.existsSync(configPath)) {
   if (fs.existsSync(defaultPath)) {
@@ -26,6 +27,7 @@ function loadConfig() {
       try {
         fs.unlinkSync(reloadFlagPath);
         console.log('[config] Cleared .config-reload flag');
+        reloadScheduledTasks();
       } catch (err) {
         console.warn('[config] Failed to remove .config-reload flag:', err.message);
       }

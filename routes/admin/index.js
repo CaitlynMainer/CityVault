@@ -9,5 +9,6 @@ router.use('/news', require('./news'));
 router.use('/style', require('./style')); 
 router.use('/edit_blacklist', require('./blacklist')); 
 router.use('/config', require('./config'));
+router.use('/download-update', require('./update'));
 
 module.exports = router;

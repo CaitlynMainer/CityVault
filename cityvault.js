@@ -245,7 +245,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-const domain = config.domain;
-const ipAddress = config.ipAddr;
-
 module.exports = app;

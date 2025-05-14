@@ -1,12 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const requireAdmin = require('../../middleware/requireAdmin');
+const { showDashboard } = require(global.BASE_DIR + '/controllers/admin/adminController');
+const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
 
-router.get('/', requireAdmin, (req, res) => {
-  res.render('admin/index', {
-    title: 'Admin Dashboard',
-    user: req.session.user
-  });
-});
+router.get('/', requireAdmin, showDashboard);
 
 module.exports = router;

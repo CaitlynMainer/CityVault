@@ -134,16 +134,46 @@
 
   function addTask() {
     const container = document.getElementById('tasksContainer');
-    const key = `newTask${taskCounter++}`;
+    const tempKey = `task${taskCounter++}`;
+
     const html = `
-      <fieldset class="border p-4 mb-2">
+      <fieldset class="border p-4 mb-2" data-task-key="${tempKey}">
         <legend class="font-semibold">New Task</legend>
-        <div><label class="block text-sm font-medium">intervalMinutes</label><input type="text" name="config[schedule][tasks][${key}][intervalMinutes]" class="input" /></div>
-        <div><label class="block text-sm font-medium">handler</label><input type="text" name="config[schedule][tasks][${key}][handler]" class="input" /></div>
+        <div>
+          <label class="block text-sm font-medium">intervalMinutes</label>
+          <input type="text" name="config[schedule][tasks][${tempKey}][intervalMinutes]" class="input" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">handler</label>
+          <input type="text" name="config[schedule][tasks][${tempKey}][handler]" class="input handler-input" placeholder="e.g. updateChecker.checkForUpdates" />
+        </div>
         <button type="button" onclick="removeTask(this)" class="text-red-600">Remove Task</button>
       </fieldset>
     `;
+
     container.insertAdjacentHTML('beforeend', html);
+
+    const fieldset = container.querySelector(`fieldset[data-task-key="${tempKey}"]`);
+    const handlerInput = fieldset.querySelector('.handler-input');
+
+    handlerInput.addEventListener('change', () => {
+      const handler = handlerInput.value.trim();
+      if (!handler.includes('.')) return;
+
+      const newKey = handler.split('.').pop();
+      const inputs = fieldset.querySelectorAll('input');
+
+      inputs.forEach(input => {
+        const oldName = input.getAttribute('name');
+        if (oldName) {
+          const updatedName = oldName.replace(`[${tempKey}]`, `[${newKey}]`);
+          input.setAttribute('name', updatedName);
+        }
+      });
+
+      // Update data attribute for future safety
+      fieldset.setAttribute('data-task-key', newKey);
+    });
   }
 
   function removeTask(button) {
