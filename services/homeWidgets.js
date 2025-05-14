@@ -121,8 +121,10 @@ async function getQuickStats() {
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
     const result = await pool.request().query(`
-      SELECT e.Origin, e.Class, e.Level, e.InfluencePoints, e.LastActive,
-            e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress
+      SELECT 
+        e.Origin, e.Class, e.Level, e.InfluencePoints, e.LastActive,
+        e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress,
+        e.Active
       FROM dbo.Ents e
       JOIN dbo.Ents2 en2 ON e.ContainerId = en2.ContainerId
       WHERE (e.AccessLevel IS NULL OR e.AccessLevel = 0)
@@ -138,6 +140,7 @@ async function getQuickStats() {
     originCounts: {},
     onlineToday: 0,
     onlineMonth: 0,
+    onlineNow: 0,
     hero50s: 0,
     villain50s: 0
   };
@@ -151,6 +154,12 @@ async function getQuickStats() {
     if (!isNaN(level)) {
       levelSum += level;
       validLevelCount++;
+
+      if (level >= 49) {
+        const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
+        if (['Hero', 'Resistance', 'Vigilante'].includes(alignment)) stats.hero50s++;
+        if (['Villain', 'Loyalist', 'Rogue'].includes(alignment)) stats.villain50s++;
+      }
     }
 
     const inf = Number(row.InfluencePoints);
@@ -161,35 +170,25 @@ async function getQuickStats() {
 
     const className = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
     const originName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
-
     stats.archetypeCounts[className] = (stats.archetypeCounts[className] || 0) + 1;
     stats.originCounts[originName] = (stats.originCounts[originName] || 0) + 1;
-
-    if (!isNaN(level)) {
-      levelSum += level;
-      validLevelCount++;
-
-      if (level >= 49) {
-        const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
-        if (['Hero', 'Resistance', 'Vigilante'].includes(alignment)) stats.hero50s++;
-        if (['Villain', 'Loyalist', 'Rogue'].includes(alignment)) stats.villain50s++;
-      }
-    }
 
     const lastActive = new Date(row.LastActive);
     if (!isNaN(lastActive)) {
       if (lastActive.toDateString() === now.toDateString()) stats.onlineToday++;
-      if (
-        lastActive.getMonth() === now.getMonth() &&
-        lastActive.getFullYear() === now.getFullYear()
-      ) {
+      if (lastActive.getMonth() === now.getMonth() && lastActive.getFullYear() === now.getFullYear()) {
         stats.onlineMonth++;
       }
+    }
+
+    if (row.Active !== null && row.Active !== 0) {
+      stats.onlineNow++;
     }
   });
 
   stats.avgLevel = validLevelCount ? (levelSum / validLevelCount) : 0;
   stats.avgInfluence = validInfCount ? (infSum / validInfCount) : 0;
+
   return stats;
 }
 
