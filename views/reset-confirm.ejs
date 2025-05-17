@@ -1,0 +1,48 @@
+<div class="container mx-auto px-4 py-6 max-w-md">
+  <h1 class="text-2xl font-bold mb-4">Reset Your Password</h1>
+
+    <% const flash = getMessages(); %>
+    <% if (flash.error && flash.error.length) { %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+        <%= flash.error.join('<br>') %>
+    </div>
+    <% } %>
+    <% if (flash.success && flash.success.length) { %>
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+        <%= flash.success.join('<br>') %>
+    </div>
+    <% } %>
+
+  <form method="POST" action="/login/reset/confirm">
+    <input type="hidden" name="token" value="<%= token %>">
+
+    <div class="mb-4 relative">
+      <label for="password" class="block text-sm font-medium">New Password</label>
+      <input type="password" name="password" id="password" class="input w-full pr-10 toggle-password" required />
+      <button type="button" class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400" tabindex="-1">👁 Show</button>
+    </div>
+
+    <div class="mb-6 relative">
+      <label for="confirm" class="block text-sm font-medium">Confirm Password</label>
+      <input type="password" name="confirm" id="confirm" class="input w-full pr-10 toggle-password" required />
+      <button type="button" class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400" tabindex="-1">👁 Show</button>
+    </div>
+
+    <button type="submit" class="btn btn-green w-full">Update Password</button>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll('.toggle-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const input = button.previousElementSibling;
+      if (input.type === 'password') {
+        input.type = 'text';
+        button.textContent = '👁 Hide';
+      } else {
+        input.type = 'password';
+        button.textContent = '👁 Show';
+      }
+    });
+  });
+</script>

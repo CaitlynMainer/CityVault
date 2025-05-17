@@ -15,9 +15,15 @@ function cleanKeys(obj) {
     // Convert specific numeric strings to numbers
     if (['dbPort', 'intervalMinutes', 'accessRetentionDays'].includes(key) && typeof value === 'string' && /^\d+$/.test(value)) {
       cleaned[key] = parseInt(value, 10);
-    } else if (key === 'compress') {
-      // Handle checkbox-like true/false
-      cleaned[key] = (value === 'true' || value === true);
+    } else if (typeof value === 'string' || Array.isArray(value)) {
+      // Handle checkboxes: single or multiple values
+      if (value === 'true' || (Array.isArray(value) && value.includes('true'))) {
+        cleaned[key] = true;
+      } else if (value === 'false' || (Array.isArray(value) && value.includes('false'))) {
+        cleaned[key] = false;
+      } else {
+        cleaned[key] = value;
+      }
     } else {
       cleaned[key] = value;
     }

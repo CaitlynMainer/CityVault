@@ -1,46 +1,143 @@
-<h2>User Management</h2>
-<form method="GET" action="/admin/users">
-    <input type="text" name="search" placeholder="Search username or email" value="<%= search %>">
-  
-    <label>Show:
-      <select name="limit" onchange="this.form.submit()">
-        <option value="10" <%= limit == 10 ? 'selected' : '' %>>10</option>
-        <option value="25" <%= limit == 25 ? 'selected' : '' %>>25</option>
-        <option value="50" <%= limit == 50 ? 'selected' : '' %>>50</option>
-        <option value="100" <%= limit == 100 ? 'selected' : '' %>>100</option>
-      </select> per page
-    </label>
-  
-    <button type="submit">Search</button>
-  </form>
-<table border="1" cellpadding="5">
-  <tr><th>Username</th><th>Email</th><th>Role</th><th>Action</th></tr>
-  <% users.forEach(user => { %>
-    <tr>
-      <td><%= user.account %></td>
-      <td><%= user.email %></td>
-      <td><%= user.role %></td>
-      <td>
-        <form method="POST" action="/admin/users/<%= user.uid %>/role" style="display:inline">
-            <input type="hidden" name="newRole" value="<%= user.role === 'admin' ? 'user' : 'admin' %>">
-            <input type="hidden" name="page" value="<%= page %>">
-            <input type="hidden" name="search" value="<%= search %>">
-            <input type="hidden" name="limit" value="<%= limit %>">
-            <button type="submit"><%= user.role === 'admin' ? 'Demote' : 'Promote' %></button>
-          </form>
-          <form method="POST" action="/admin/users/<%= user.uid %>/ban" style="display:inline">
-            <input type="hidden" name="action" value="<%= user.block_flag ? 'unban' : 'ban' %>">
-            <input type="hidden" name="page" value="<%= page %>">
-            <input type="hidden" name="search" value="<%= search %>">
-            <input type="hidden" name="limit" value="<%= limit %>">
-            <button type="submit"><%= user.block_flag ? 'Unban' : 'Ban' %></button>
-          </form>
-      </td>
-    </tr>
-  <% }) %>
-</table>
+<h2 class="text-2xl font-bold text-gray-100 mb-4">User Management</h2>
 
-<p>Page <%= page %> of <%= totalPages %></p>
-<% for (let i = 1; i <= totalPages; i++) { %>
-  <a href="?page=<%= i %>&search=<%= encodeURIComponent(search) %>"><%= i %></a>
-<% } %>
+<form method="GET" action="/admin/users" class="flex flex-wrap items-center gap-4 mb-6">
+  <input type="text" name="search" placeholder="Search username or email"
+         value="<%= search %>" class="input w-64 bg-gray-800 border border-gray-600 text-white" />
+
+  <label class="text-sm text-gray-300">
+    Show:
+    <select name="limit" onchange="this.form.submit()" class="input ml-1 bg-gray-800 border border-gray-600 text-white">
+      <option value="10" <%= limit == 10 ? 'selected' : '' %>>10</option>
+      <option value="25" <%= limit == 25 ? 'selected' : '' %>>25</option>
+      <option value="50" <%= limit == 50 ? 'selected' : '' %>>50</option>
+      <option value="100" <%= limit == 100 ? 'selected' : '' %>>100</option>
+    </select>
+    per page
+  </label>
+
+  <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
+</form>
+
+<div class="overflow-x-auto shadow rounded-lg bg-gray-900 border border-gray-700">
+  <table class="min-w-full text-sm text-left text-gray-300">
+    <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
+      <tr>
+        <th class="px-4 py-3 border-b border-gray-700">Username</th>
+        <th class="px-4 py-3 border-b border-gray-700">Email</th>
+        <th class="px-4 py-3 border-b border-gray-700">Role</th>
+        <th class="px-4 py-3 border-b border-gray-700">Status</th>
+        <th class="px-4 py-3 border-b border-gray-700">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(user => { %>
+        <tr class="hover:bg-gray-800">
+          <td class="px-4 py-2 border-b border-gray-700"><%= user.account %></td>
+          <td class="px-4 py-2 border-b border-gray-700"><%= user.email %></td>
+          <td class="px-4 py-2 border-b border-gray-700">
+            <span class="px-2 py-1 rounded-full text-xs font-medium
+              <%= user.role === 'admin'
+                ? 'bg-purple-700 text-white'
+                : 'bg-blue-700 text-white' %>">
+              <%= user.role %>
+            </span>
+          </td>
+          <td class="px-4 py-2 border-b border-gray-700">
+            <span class="px-2 py-1 rounded-full text-xs font-medium
+              <%= user.status === 'Banned'
+                  ? 'bg-red-700 text-white'
+                  : user.status === 'Unconfirmed'
+                      ? 'bg-yellow-600 text-black'
+                      : 'bg-green-700 text-white' %>">
+              <%= user.status %>
+            </span>
+          </td>
+          <td class="px-4 py-2 border-b border-gray-700 space-x-2">
+            <button type="button"
+                    data-form-action="/admin/users/<%= user.uid %>/role"
+                    data-form-method="POST"
+                    data-form-fields='{"newRole":"<%= user.role === "admin" ? "user" : "admin" %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>"}'
+                    data-confirm-message="Are you sure you want to <%= user.role === 'admin' ? 'demote' : 'promote' %> this user?"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-3 py-1 rounded"
+                    onclick="openConfirmModal(this)">
+              <%= user.role === 'admin' ? 'Demote' : 'Promote' %>
+            </button>
+
+            <button type="button"
+                    data-form-action="/admin/users/<%= user.uid %>/ban"
+                    data-form-method="POST"
+                    data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>"}'
+                    data-confirm-message="Are you sure you want to <%= user.actionLabel.toLowerCase() %> this user?"
+                    class="bg-yellow-600 hover:bg-yellow-700 text-black text-xs px-3 py-1 rounded"
+                    onclick="openConfirmModal(this)">
+              <%= user.actionLabel %>
+            </button>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<div class="mt-6 flex justify-center space-x-2">
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a href="?page=<%= i %>&search=<%= encodeURIComponent(search) %>&limit=<%= limit %>"
+       class="px-3 py-1 rounded border text-sm
+              <%= page === i
+                ? 'bg-blue-600 text-white border-blue-700'
+                : 'bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700' %>">
+      <%= i %>
+    </a>
+  <% } %>
+</div>
+
+<!-- Confirmation Modal -->
+<div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center">
+  <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg max-w-md w-full">
+    <h3 class="text-xl font-semibold mb-4">Confirm Action</h3>
+    <p class="mb-6" id="modalMessage">Are you sure?</p>
+    <div class="flex justify-end space-x-3">
+      <button id="cancelBtn" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded">Cancel</button>
+      <button id="confirmBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Yes</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let pendingFormData = null;
+
+  function openConfirmModal(button) {
+    const message = button.getAttribute('data-confirm-message');
+    const formAction = button.getAttribute('data-form-action');
+    const formMethod = button.getAttribute('data-form-method');
+    const fields = JSON.parse(button.getAttribute('data-form-fields') || '{}');
+
+    pendingFormData = { action: formAction, method: formMethod, fields };
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('confirmModal').classList.remove('hidden');
+  }
+
+  document.getElementById('cancelBtn').addEventListener('click', () => {
+    document.getElementById('confirmModal').classList.add('hidden');
+    pendingFormData = null;
+  });
+
+  document.getElementById('confirmBtn').addEventListener('click', () => {
+    if (!pendingFormData) return;
+
+    const form = document.createElement('form');
+    form.method = pendingFormData.method;
+    form.action = pendingFormData.action;
+
+    for (const [key, val] of Object.entries(pendingFormData.fields)) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = val;
+      form.appendChild(input);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+  });
+</script>

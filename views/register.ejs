@@ -1,15 +1,112 @@
+<style>
+  .form-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: sans-serif;
+  }
+
+  .form-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+    width: 100%;
+  }
+
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .password-wrapper input {
+    flex: 1;
+    padding-right: 3rem;
+  }
+
+  .toggle-button {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+  }
+
+  .forgot-link {
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+
+  .forgot-link a {
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .forgot-link a:hover {
+    text-decoration: underline;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+</style>
 <main>
-  <h2>Register</h2>
-  <form action="/register" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required maxlength="14">
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <br>
+  <form method="POST" action="/register" class="form-container">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required maxlength="14">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password" required>
+        <button type="button" class="toggle-button" id="togglePassword">👁 Show</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
     <button type="submit">Register</button>
   </form>
 </main>
+
+<script>
+  document.getElementById('togglePassword').addEventListener('click', function () {
+    const pwd = document.getElementById('password');
+    const isHidden = pwd.type === 'password';
+    pwd.type = isHidden ? 'text' : 'password';
+    this.textContent = isHidden ? '👁 Hide' : '👁 Show';
+  });
+</script>

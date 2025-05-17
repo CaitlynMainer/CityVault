@@ -152,31 +152,6 @@ async function runSetupWizard() {
       console.log('Please check your credentials and try again.\n');
     }
   }
-
-  const emailAnswers = await inq.prompt([
-    {
-      type: 'confirm',
-      name: 'enableEmail',
-      message: 'Enable email confirmations / resets?',
-      default: false
-    },
-    {
-      type: 'input',
-      name: 'mailerApiKey',
-      message: 'Enter Mailersend API key:',
-      when: a => a.enableEmail,
-      validate: input => input ? true : 'API key cannot be empty'
-    },
-    {
-      type: 'input',
-      name: 'fromEmail',
-      message: 'Default from email (e.g. noreply@yourdomain.com):',
-      when: a => a.enableEmail,
-      validate: input => input.includes('@') || 'Must be a valid email'
-    }
-  ]);
-  if (!emailAnswers.mailerApiKey) emailAnswers.mailerApiKey = '';
-  if (!emailAnswers.fromEmail) emailAnswers.fromEmail = '';
   const sessionSecret = crypto.randomBytes(32).toString('hex');
 
   const finalConfig = {
@@ -184,9 +159,21 @@ async function runSetupWizard() {
     domain: answers.domain,
     ipAddr: answers.ipAddr,
     session_secret: sessionSecret,
-    mailersend: {
-      apiKey: emailAnswers?.mailerApiKey || '',
-      fromEmail: emailAnswers?.fromEmail || ''
+    email: {
+      provider: '',
+      fromEmail: '',
+      mailersend: {
+        apiKey: ''
+      },
+      smtp: {
+        host: '',
+        port: 587,
+        secure: false,
+        auth: {
+          user: '',
+          pass: ''
+        }
+      }
     },
     auth: authAnswers,
     chat: chatAnswers,

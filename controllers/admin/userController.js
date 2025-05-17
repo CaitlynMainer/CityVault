@@ -1,6 +1,18 @@
 const sql = require('mssql');
 const { getAuthPool } = require(global.BASE_DIR + '/db');
 
+function getAccountStatus(flag) {
+  if (flag & 1) return 'Banned';
+  if (flag & 2) return 'Unconfirmed';
+  return 'Active';
+}
+
+function getActionLabel(flag) {
+  if (flag & 1) return 'Unban';
+  if (flag & 2) return 'Confirm';
+  return 'Ban';
+}
+
 async function listUsers(req, res) {
   const search = req.query.search || '';
   const searchLike = `%${search}%`;
@@ -27,6 +39,13 @@ async function listUsers(req, res) {
       OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY
     `);
 
+    // Add computed status and action
+    const users = result.recordset.map(u => ({
+      ...u,
+      status: getAccountStatus(u.block_flag),
+      actionLabel: getActionLabel(u.block_flag)
+    }));
+
     const countResult = await pool.request()
       .input('search', sql.VarChar, searchLike)
       .query(`
@@ -44,7 +63,7 @@ async function listUsers(req, res) {
       scripts: '<script src="/js/admin.js"></script>',
       importmap: '',
       role: req.session.role,
-      users: result.recordset,
+      users,
       username: req.session.username,
       page,
       totalPages,
@@ -89,19 +108,21 @@ async function toggleUserBan(req, res) {
   const { uid } = req.params;
   const { action, page, search, limit } = req.body;
 
-  const blockFlag = action === 'ban' ? 1 : 0;
-
   try {
     const pool = await getAuthPool();
 
-    await pool.request()
-      .input('uid', sql.Int, uid)
-      .input('block_flag', sql.Int, blockFlag)
-      .query(`
-        UPDATE cohauth.dbo.user_account
-        SET block_flag = @block_flag
-        WHERE uid = @uid
-      `);
+    let query;
+    if (action === 'ban') {
+      query = `UPDATE cohauth.dbo.user_account SET block_flag = 1 WHERE uid = @uid`;
+    } else if (action === 'unban') {
+      query = `UPDATE cohauth.dbo.user_account SET block_flag = 0 WHERE uid = @uid`;
+    } else if (action === 'confirm') {
+      query = `UPDATE cohauth.dbo.user_account SET block_flag = block_flag & ~2 WHERE uid = @uid`; // Clear bit 2
+    } else {
+      return res.status(400).send('Invalid action');
+    }
+
+    await pool.request().input('uid', sql.Int, uid).query(query);
 
     const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
     res.redirect('/admin/users' + qs);
@@ -110,6 +131,7 @@ async function toggleUserBan(req, res) {
     res.status(500).send('Error updating block flag');
   }
 }
+
 
 module.exports = {
   listUsers,

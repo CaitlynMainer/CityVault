@@ -108,20 +108,57 @@
       <% }); %>
     </div>
 
-    <h2 class="text-xl font-semibold mb-2">Email Settings</h2>
+    <h2 class="text-xl font-semibold mb-2">Email Configuration</h2>
     <div class="grid grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium">Enable Email</label>
-        <input type="checkbox" name="config[mailersend][enabled]" value="true"
-          <%= config.mailersend?.enabled ? 'checked' : '' %> />
-      </div>
-      <div>
-        <label class="block text-sm font-medium">API Key</label>
-        <input type="text" name="config[mailersend][apiKey]" value="<%= config.mailersend?.apiKey || '' %>" class="input" />
+        <label class="block text-sm font-medium">Provider</label>
+        <select name="config[email][provider]" class="input" id="email-provider">
+          <option value="" <%= config.email.provider === '' ? 'selected' : '' %>>Disabled</option>
+          <option value="smtp" <%= config.email.provider === 'smtp' ? 'selected' : '' %>>SMTP</option>
+          <option value="mailersend" <%= config.email.provider === 'mailersend' ? 'selected' : '' %>>MailerSend</option>
+        </select>
       </div>
       <div>
         <label class="block text-sm font-medium">From Email</label>
-        <input type="email" name="config[mailersend][fromEmail]" value="<%= config.mailersend?.fromEmail || '' %>" class="input" />
+        <input type="email" name="config[email][fromEmail]" value="<%= config.email.fromEmail %>" class="input" />
+      </div>
+    </div>
+
+    <!-- MailerSend Fields -->
+    <div id="mailersend-fields" class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">MailerSend</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium">API Key</label>
+          <input type="text" name="config[email][mailersend][apiKey]" value="<%= config.email.mailersend?.apiKey || '' %>" class="input" />
+        </div>
+      </div>
+    </div>
+
+    <!-- SMTP Fields -->
+    <div id="smtp-fields" class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">SMTP</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium">Host</label>
+          <input type="text" name="config[email][smtp][host]" value="<%= config.email.smtp?.host || '' %>" class="input" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Port</label>
+          <input type="number" name="config[email][smtp][port]" value="<%= config.email.smtp?.port || 587 %>" class="input" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Use TLS/SSL</label>
+          <input type="checkbox" name="config[email][smtp][secure]" value="true" <%= config.email.smtp?.secure ? 'checked' : '' %> />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Username</label>
+          <input type="text" name="config[email][smtp][auth][user]" value="<%= config.email.smtp?.auth?.user || '' %>" class="input" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Password</label>
+          <input type="password" name="config[email][smtp][auth][pass]" value="<%= config.email.smtp?.auth?.pass || '' %>" class="input" />
+        </div>
       </div>
     </div>
 
@@ -202,8 +239,7 @@
         <div>
           <label class="block text-sm font-medium"><%= key %></label>
           <% if (key === 'compress') { %>
-            <input type="hidden" name="config[logs][<%= key %>]" value="false" />
-            <input type="checkbox" name="config[logs][<%= key %>]" value="true" <%= config.logs[key] ? 'checked' : '' %> />
+            <input type="checkbox" name="config[logs][compress]" value="true" <%= config.logs.compress ? 'checked' : '' %> />
           <% } else if (key === 'accessRetentionDays') { %>
             <input type="number" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" min="1" />
           <% } else { %>
@@ -328,6 +364,24 @@
     });
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const providerSelect = document.getElementById('email-provider');
+    const smtpFields = document.getElementById('smtp-fields');
+    const mailerSendFields = document.getElementById('mailersend-fields');
+
+    function updateVisibility() {
+      const provider = providerSelect.value;
+      smtpFields.style.display = provider === 'smtp' ? '' : 'none';
+      mailerSendFields.style.display = provider === 'mailersend' ? '' : 'none';
+    }
+
+    providerSelect.addEventListener('change', updateVisibility);
+    updateVisibility(); // Run once on load
+  });
+</script>
+
 
 <style>
   .input { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 0.5rem; }

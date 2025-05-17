@@ -8,7 +8,10 @@ module.exports = async function ensureSchema(authConfig) {
     const checks = [
       { column: 'email', query: "ALTER TABLE cohauth.dbo.user_account ADD email VARCHAR(254) NULL;" },
       { column: 'role', query: "ALTER TABLE cohauth.dbo.user_account ADD role VARCHAR(16) NOT NULL DEFAULT 'user';" },
-      { column: 'tracker', query: "ALTER TABLE cohauth.dbo.user_account ADD tracker VARCHAR(1) NOT NULL DEFAULT '1';" }
+      { column: 'tracker', query: "ALTER TABLE cohauth.dbo.user_account ADD tracker VARCHAR(1) NOT NULL DEFAULT '1';" },
+      { column: 'reset_token', query: "ALTER TABLE cohauth.dbo.user_account ADD reset_token VARCHAR(128) NULL;" },
+      { column: 'reset_expires', query: "ALTER TABLE cohauth.dbo.user_account ADD reset_expires BIGINT NULL;" },
+      { column: 'register_token', query: "ALTER TABLE cohauth.dbo.user_account ADD register_token VARCHAR(128) NULL;" }
     ];
 
     for (const check of checks) {
