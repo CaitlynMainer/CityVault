@@ -47,25 +47,15 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }
 }).single('portrait');
 
-function getBadgeAlignmentContext(rpn) {
-  if (!rpn) return [];
-  const normalized = rpn.toLowerCase();
-  const a = [];
+function resolveGenderString(text, gender) {
+  if (!text || typeof text !== 'string') return text;
 
-  if (normalized.includes('praetorianprogress char> praetoria eq') ||
-      normalized.includes('praetorianprogress char> earth eq')) {
-    a.push('Resistance', 'Loyalist');
-  }
-
-  if (normalized.includes('praetorianprogress char> normal eq')) {
-    a.push('Hero', 'Villain', 'Vigilante', 'Rogue');
-  }
-
-  if (normalized.includes('praetorianprogress char> pvp eq')) {
-    a.push('PvP');
-  }
-
-  return a;
+  // Replace {Hero.gender=male MaleText|FemaleText}
+  return text.replace(/\{Hero\.gender=male\s+([^|{}]+)\|([^{}]+)\}/g, (_, male, female) => {
+    if (gender === 3) return female;
+    if (gender === 1 || gender === 2) return male;
+    return male; // fallback
+  });
 }
 
 
@@ -148,8 +138,8 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender, badge
     const altOwned = altName && ownedNames.has(altName);
     if (altOwned && !isOwned) continue;
 
-    const resolvedDisplayTitle = meta.DisplayTitle;
-    const resolvedVillainTitle = meta.DisplayTitleVillain || meta.DisplayTitle;
+    const resolvedDisplayTitle = resolveGenderString(meta.DisplayTitle, gender);
+    const resolvedVillainTitle = resolveGenderString(meta.DisplayTitleVillain || meta.DisplayTitle, gender);
     const image = isVillainAligned && meta.VillainIcon ? meta.VillainIcon : meta.Icon;
 
 
