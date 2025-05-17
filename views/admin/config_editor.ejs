@@ -108,6 +108,22 @@
       <% }); %>
     </div>
 
+    <h2 class="text-xl font-semibold mb-2">Email Settings</h2>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium">Enable Email</label>
+        <input type="checkbox" name="config[mailersend][enabled]" value="true"
+          <%= config.mailersend?.enabled ? 'checked' : '' %> />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">API Key</label>
+        <input type="text" name="config[mailersend][apiKey]" value="<%= config.mailersend?.apiKey || '' %>" class="input" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">From Email</label>
+        <input type="email" name="config[mailersend][fromEmail]" value="<%= config.mailersend?.fromEmail || '' %>" class="input" />
+      </div>
+    </div>
 
     <h2 class="text-xl font-semibold mb-2">Game Servers</h2>
     <div id="serversContainer" class="mb-4">
@@ -185,7 +201,14 @@
       <% Object.keys(config.logs).forEach(function(key) { %>
         <div>
           <label class="block text-sm font-medium"><%= key %></label>
-          <input type="text" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" />
+          <% if (key === 'compress') { %>
+            <input type="hidden" name="config[logs][<%= key %>]" value="false" />
+            <input type="checkbox" name="config[logs][<%= key %>]" value="true" <%= config.logs[key] ? 'checked' : '' %> />
+          <% } else if (key === 'accessRetentionDays') { %>
+            <input type="number" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" min="1" />
+          <% } else { %>
+            <input type="text" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" />
+          <% } %>
         </div>
       <% }); %>
     </div>
