@@ -11,5 +11,6 @@ router.use('/edit_blacklist', require('./blacklist'));
 router.use('/config', require('./config'));
 router.use('/download-update', require('./update'));
 router.use('/templates', require('./templates'));
+router.use('/servers', require('./servers'));
 
 module.exports = router;
