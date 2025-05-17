@@ -1,30 +1,37 @@
 <% if (updateInfo?.updateAvailable) { %>
-  <div class="bg-yellow-100 text-yellow-800 p-4 mb-4 rounded border border-yellow-300">
-    <strong>Update Available:</strong> Version <%= updateInfo.latestVersion %> is available.
-    You are running <%= updateInfo.currentVersion %>.<br>
-
+  <div class="bg-yellow-900 text-yellow-100 border border-yellow-700 rounded p-4 mb-6 shadow">
+    <div class="font-bold text-lg mb-1">⚠️ Update Available</div>
+    <p class="mb-2">
+      Version <strong><%= updateInfo.latestVersion %></strong> is available.
+      You are running <strong><%= updateInfo.currentVersion %></strong>.
+    </p>
     <form action="/admin/update/download-update" method="POST" onsubmit="return confirm('Download and extract the update now?');">
       <input type="hidden" name="zipUrl" value="<%= updateInfo.url %>">
-      <button type="submit" class="btn btn-blue">Download Update</button>
+      <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded">⬇️ Download Update</button>
     </form>
-
     <% if (updateInfo.notes) { %>
-      <br><%- updateInfo.notes %>
+      <div class="mt-3 text-sm text-yellow-200 whitespace-pre-line"><%- updateInfo.notes %></div>
     <% } %>
   </div>
 <% } %>
 
-<h1>Admin Dashboard</h1>
+<h1 class="text-3xl font-bold text-white mb-4">Admin Dashboard</h1>
 
-<p>Welcome<% if (user) { %>, <strong><%= user.username %></strong><% } %>.</p>
+<p class="mb-6 text-gray-300">Welcome<% if (user) { %>, <strong class="text-white"><%= user.username %></strong><% } %>.</p>
 
-<ul>
-  <li><a href="/admin/users">👥 Manage Users</a></li>
-  <li><a href="/admin/manifest/config">📦 Manifest Config</a></li>
-  <li><a href="/admin/news">📰 Edit News</a></li>
-  <li><a href="/admin/style">🎨 Edit Site Style</a></li>
-  <li><a href="/admin/edit_blacklist">⛔ Edit Badge Blacklist</a></li>
-  <li><a href="/admin/config">🛠️ Edit Config</a></li>
-</ul>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
 
-<p><a href="/">← Back to Site</a></p>
+  <% if (links && links.length) { %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+    <% links.forEach(link => { %>
+      <a href="<%= link.path %>" class="bg-gray-800 hover:bg-gray-700 p-4 rounded shadow flex items-center space-x-2 text-white">
+        <span><%= link.icon %></span>
+        <span><%= link.label %></span>
+      </a>
+    <% }) %>
+  </div>
+<% } %>
+
+</div>
+
+<a href="/" class="text-blue-400 hover:underline">← Back to Site</a>

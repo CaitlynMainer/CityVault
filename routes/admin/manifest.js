@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const requireAdmin = require('../../middleware/requireAdmin');
+const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
 const {
   showConfigPage,
   saveConfig,
   generateManifest,
-} = require('../../controllers/admin/manifestController');
+} = require(global.BASE_DIR + '/controllers/admin/manifestController');
 
 // These are now relative to /admin/manifest
 router.get('/config', requireAdmin, showConfigPage);
@@ -13,3 +13,9 @@ router.post('/config', requireAdmin, saveConfig);
 router.get('/generate', requireAdmin, generateManifest);
 
 module.exports = router;
+
+// Add this for route metadata
+module.exports.meta = {
+  label: 'Manifest Config',
+  icon: '📦'
+};

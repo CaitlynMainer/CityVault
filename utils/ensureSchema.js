@@ -11,7 +11,8 @@ module.exports = async function ensureSchema(authConfig) {
       { column: 'tracker', query: "ALTER TABLE cohauth.dbo.user_account ADD tracker VARCHAR(1) NOT NULL DEFAULT '1';" },
       { column: 'reset_token', query: "ALTER TABLE cohauth.dbo.user_account ADD reset_token VARCHAR(128) NULL;" },
       { column: 'reset_expires', query: "ALTER TABLE cohauth.dbo.user_account ADD reset_expires BIGINT NULL;" },
-      { column: 'register_token', query: "ALTER TABLE cohauth.dbo.user_account ADD register_token VARCHAR(128) NULL;" }
+      { column: 'register_token', query: "ALTER TABLE cohauth.dbo.user_account ADD register_token VARCHAR(128) NULL;" },
+      { column: 'block_flag', query: "ALTER TABLE cohauth.dbo.user_account ADD block_flag INT NOT NULL DEFAULT 0;" }
     ];
 
     for (const check of checks) {
@@ -24,6 +25,25 @@ module.exports = async function ensureSchema(authConfig) {
         await pool.request().query(check.query);
         console.log(`[INFO] '${check.column}' column added.`);
       }
+    }
+
+    const tableExists = await pool.request().query(`
+      SELECT * FROM INFORMATION_SCHEMA.TABLES
+      WHERE TABLE_NAME = 'user_notes' AND TABLE_SCHEMA = 'dbo'
+    `);
+
+    if (tableExists.recordset.length === 0) {
+      console.log('[INFO] Creating user_notes table...');
+      await pool.request().query(`
+        CREATE TABLE cohauth.dbo.user_notes (
+          id INT IDENTITY(1,1) PRIMARY KEY,
+          uid INT NOT NULL,
+          created_at DATETIME DEFAULT GETUTCDATE(),
+          author VARCHAR(50) NOT NULL,
+          note TEXT NOT NULL
+        );
+      `);
+      console.log('[INFO] user_notes table created.');
     }
 
     const adminCheck = await pool.request().query(

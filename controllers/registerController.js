@@ -80,15 +80,20 @@ async function handleRegister(req, res) {
     await transaction.commit();
 
     if (blockFlag === 2) {
+      const { renderTemplate } = require(global.BASE_DIR + '/services/mail/template');
+
+      const confirmUrl = `${config.domain.startsWith('http') ? config.domain : 'https://' + config.domain}/register/confirm/${token}`;
+
+      const html = await renderTemplate('register_confirm', {
+        username,
+        url: confirmUrl,
+        siteName: config.siteName || 'CityVault'
+      });
+
       await sendMail({
         to: email,
-        subject: 'Confirm your account',
-        html: `
-          <p>Hi ${username},</p>
-          <p>Please confirm your account by clicking the link below:</p>
-          <p><a href="${config.domain.startsWith('http') ? config.domain : 'https://' + config.domain}/register/confirm/${token}">
-            Confirm Account
-          </a></p>`
+        subject: 'Account Registration Confirmation',
+        html
       });
 
       req.flash('success', 'Account created. Please check your email to confirm.');

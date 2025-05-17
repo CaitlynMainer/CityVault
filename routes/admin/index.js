@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const requireAdmin = require('../../middleware/requireAdmin');
+const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
 
 router.use('/', require('./dashboard'));
 router.use('/manifest', require('./manifest'));
@@ -10,5 +10,6 @@ router.use('/style', require('./style'));
 router.use('/edit_blacklist', require('./blacklist')); 
 router.use('/config', require('./config'));
 router.use('/download-update', require('./update'));
+router.use('/templates', require('./templates'));
 
 module.exports = router;

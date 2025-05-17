@@ -124,7 +124,7 @@ async function handleResetRequest(req, res) {
 
     const token = crypto.randomBytes(32).toString('hex');
     const expires = Date.now() + 1000 * 60 * 15; // 15 minutes
-
+    const username = user.recordset[0].account;
     await pool.request()
       .input('email', sql.VarChar, email)
       .input('token', sql.VarChar, token)
@@ -135,12 +135,20 @@ async function handleResetRequest(req, res) {
         WHERE email = @email
       `);
 
-    const url = `${config.domain.startsWith('http') ? '' : 'https://'}${config.domain}/login/reset/confirm?token=${token}`;
+    const resetUrl = `${config.domain.startsWith('http') ? '' : 'https://'}${config.domain}/login/reset/confirm?token=${token}`;
+
+    const { renderTemplate } = require(global.BASE_DIR + '/services/mail/template');
+
+    const html = await renderTemplate('reset_password', {
+      username,
+      url: resetUrl,
+      siteName: config.siteName || 'CityVault'
+    });
 
     await sendMail({
       to: email,
       subject: 'Password Reset Request',
-      html: `<p>You requested a password reset. Click below:</p><p><a href="${url}">${url}</a></p>`
+      html
     });
 
     req.flash('success', 'Password reset link sent.');

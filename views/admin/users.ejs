@@ -27,6 +27,7 @@
         <th class="px-4 py-3 border-b border-gray-700">Role</th>
         <th class="px-4 py-3 border-b border-gray-700">Status</th>
         <th class="px-4 py-3 border-b border-gray-700">Actions</th>
+        <th class="px-4 py-3 border-b border-gray-700">Notes</th>
       </tr>
     </thead>
     <tbody>
@@ -66,11 +67,18 @@
             <button type="button"
                     data-form-action="/admin/users/<%= user.uid %>/ban"
                     data-form-method="POST"
-                    data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>"}'
+                    data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>","reason":""}'
                     data-confirm-message="Are you sure you want to <%= user.actionLabel.toLowerCase() %> this user?"
                     class="bg-yellow-600 hover:bg-yellow-700 text-black text-xs px-3 py-1 rounded"
-                    onclick="openConfirmModal(this)">
+                    onclick="openConfirmModal(this, <%= ['ban', 'unban'].includes(user.actionLabel.toLowerCase()) ? 'true' : 'false' %>)">
               <%= user.actionLabel %>
+            </button>
+          </td>
+          <td class="px-4 py-2 border-b border-gray-700 space-x-2">
+            <button type="button"
+                    class="bg-gray-700 hover:bg-gray-600 text-white text-xs px-3 py-1 rounded"
+                    onclick="openNotesModal(<%= user.uid %>, '<%= user.account %>')">
+              Notes (<%= user.noteCount || 0 %>)
             </button>
           </td>
         </tr>
@@ -95,7 +103,11 @@
 <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center">
   <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg max-w-md w-full">
     <h3 class="text-xl font-semibold mb-4">Confirm Action</h3>
-    <p class="mb-6" id="modalMessage">Are you sure?</p>
+    <p class="mb-4" id="modalMessage">Are you sure?</p>
+    <div id="reasonInputContainer" class="mb-4 hidden">
+      <label for="banReason" class="block text-sm mb-1">Reason for ban:</label>
+      <input type="text" id="banReason" class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600" />
+    </div>
     <div class="flex justify-end space-x-3">
       <button id="cancelBtn" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded">Cancel</button>
       <button id="confirmBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Yes</button>
@@ -105,25 +117,36 @@
 
 <script>
   let pendingFormData = null;
+  let isBanAction = false;
 
-  function openConfirmModal(button) {
+  function openConfirmModal(button, showReason) {
     const message = button.getAttribute('data-confirm-message');
     const formAction = button.getAttribute('data-form-action');
     const formMethod = button.getAttribute('data-form-method');
     const fields = JSON.parse(button.getAttribute('data-form-fields') || '{}');
 
     pendingFormData = { action: formAction, method: formMethod, fields };
+    isBanAction = showReason;
+
     document.getElementById('modalMessage').textContent = message;
     document.getElementById('confirmModal').classList.remove('hidden');
+    document.getElementById('reasonInputContainer').classList.toggle('hidden', !showReason);
+    document.getElementById('banReason').value = '';
   }
 
   document.getElementById('cancelBtn').addEventListener('click', () => {
     document.getElementById('confirmModal').classList.add('hidden');
     pendingFormData = null;
+    isBanAction = false;
   });
 
   document.getElementById('confirmBtn').addEventListener('click', () => {
     if (!pendingFormData) return;
+
+    if (isBanAction) {
+      const reason = document.getElementById('banReason').value.trim();
+      pendingFormData.fields.reason = reason;
+    }
 
     const form = document.createElement('form');
     form.method = pendingFormData.method;
@@ -140,4 +163,66 @@
     document.body.appendChild(form);
     form.submit();
   });
+</script>
+<div id="notesModal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center">
+  <div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+    <h3 class="text-xl font-semibold mb-4">Account Notes for <span id="notesUsername"></span></h3>
+    <div id="notesList" class="space-y-2 max-h-60 overflow-y-auto mb-4 border border-gray-700 p-2 rounded bg-gray-800"></div>
+    <textarea id="newNoteText" class="w-full bg-gray-700 text-white p-2 rounded mb-4" rows="3" placeholder="Add a note..."></textarea>
+    <div class="flex justify-end space-x-3">
+      <button onclick="closeNotesModal()" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded">Close</button>
+      <button onclick="submitNote()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Add Note</button>
+    </div>
+  </div>
+</div>
+<script>
+let currentNotesUid = null;
+
+function openNotesModal(uid, username) {
+  currentNotesUid = uid;
+  document.getElementById('notesUsername').textContent = username;
+  document.getElementById('notesList').innerHTML = 'Loading...';
+  document.getElementById('notesModal').classList.remove('hidden');
+
+  fetch(`/admin/users/${uid}/notes`)
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('notesList');
+      if (!data.success) return container.innerHTML = 'Failed to load notes.';
+      if (data.notes.length === 0) return container.innerHTML = '<p class="text-gray-400">No notes yet.</p>';
+
+      container.innerHTML = data.notes.map(note => `
+        <div class="border border-gray-700 rounded p-2 bg-gray-700">
+          <div class="text-sm text-gray-300 mb-1">${note.author} @ ${new Date(note.created_at).toLocaleString()}</div>
+          <div class="text-sm">${note.note}</div>
+        </div>
+      `).join('');
+    });
+}
+
+function closeNotesModal() {
+  document.getElementById('notesModal').classList.add('hidden');
+  currentNotesUid = null;
+  document.getElementById('newNoteText').value = '';
+}
+
+function submitNote() {
+  const text = document.getElementById('newNoteText').value.trim();
+  if (!text || !currentNotesUid) return;
+
+  fetch(`/admin/users/${currentNotesUid}/notes`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ note: text })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        openNotesModal(currentNotesUid, document.getElementById('notesUsername').textContent); // reload notes
+        document.getElementById('newNoteText').value = '';
+      } else {
+        alert(data.message || 'Failed to add note.');
+      }
+    });
+}
 </script>

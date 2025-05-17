@@ -1,5 +1,7 @@
 const sql = require('mssql');
 const { getAuthPool } = require(global.BASE_DIR + '/db');
+const { sendMail } = require(global.BASE_DIR + '/services/mail');
+const { renderTemplate } = require(global.BASE_DIR + '/services/mail/template');
 
 function getAccountStatus(flag) {
   if (flag & 1) return 'Banned';
@@ -32,10 +34,11 @@ async function listUsers(req, res) {
       .input('offset', sql.Int, offset);
 
     const result = await request.query(`
-      SELECT uid, account, email, role, block_flag
-      FROM cohauth.dbo.user_account
-      WHERE account LIKE @search OR email LIKE @search
-      ORDER BY account
+      SELECT ua.uid, ua.account, ua.email, ua.role, ua.block_flag,
+        (SELECT COUNT(*) FROM cohauth.dbo.user_notes un WHERE un.uid = ua.uid) AS noteCount
+      FROM cohauth.dbo.user_account ua
+      WHERE ua.account LIKE @search OR ua.email LIKE @search
+      ORDER BY ua.account
       OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY
     `);
 
@@ -106,7 +109,7 @@ async function updateUserRole(req, res) {
 
 async function toggleUserBan(req, res) {
   const { uid } = req.params;
-  const { action, page, search, limit } = req.body;
+  const { action, page, search, limit, reason = '' } = req.body;
 
   try {
     const pool = await getAuthPool();
@@ -117,12 +120,43 @@ async function toggleUserBan(req, res) {
     } else if (action === 'unban') {
       query = `UPDATE cohauth.dbo.user_account SET block_flag = 0 WHERE uid = @uid`;
     } else if (action === 'confirm') {
-      query = `UPDATE cohauth.dbo.user_account SET block_flag = block_flag & ~2 WHERE uid = @uid`; // Clear bit 2
+      query = `UPDATE cohauth.dbo.user_account SET block_flag = block_flag & ~2 WHERE uid = @uid`;
     } else {
       return res.status(400).send('Invalid action');
     }
 
     await pool.request().input('uid', sql.Int, uid).query(query);
+
+    // Fetch account + email for email notice
+    const userResult = await pool.request()
+      .input('uid', sql.Int, uid)
+      .query(`SELECT account, email FROM cohauth.dbo.user_account WHERE uid = @uid`);
+
+    const user = userResult.recordset[0];
+
+    if (action === 'ban' && user?.email) {
+      const html = await renderTemplate('user_banned', {
+        username: user.account,
+        reason
+      });
+
+      await sendMail({
+        to: user.email,
+        subject: 'Your account has been banned',
+        html
+      });
+    } else if (action === 'unban' && user?.email) {
+      const html = await renderTemplate('user_unbanned', {
+        username: user.account,
+        reason
+      });
+
+      await sendMail({
+        to: user.email,
+        subject: 'Your account has been unbanned',
+        html
+      });
+    }
 
     const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
     res.redirect('/admin/users' + qs);
@@ -132,9 +166,65 @@ async function toggleUserBan(req, res) {
   }
 }
 
+// Fetch notes for a user
+async function getUserNotes(req, res) {
+  const uid = parseInt(req.params.uid, 10);
+  if (isNaN(uid)) {
+    return res.status(400).json({ success: false, error: 'Invalid user ID.' });
+  }
+
+  try {
+    const pool = await getAuthPool();
+    const result = await pool.request()
+      .input('uid', sql.Int, uid)
+      .query(`
+        SELECT id, created_at, author, note
+        FROM cohauth.dbo.user_notes
+        WHERE uid = @uid
+        ORDER BY created_at DESC
+      `);
+    res.json({ success: true, notes: result.recordset });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Failed to fetch notes.' });
+  }
+}
+
+
+// Add a new note
+async function addUserNote(req, res) {
+  const uid = parseInt(req.params.uid, 10);
+  const note = req.body.note?.trim();
+  const author = req.session.username;
+
+  if (isNaN(uid)) {
+    return res.status(400).json({ success: false, error: 'Invalid user ID.' });
+  }
+
+  if (!note) {
+    return res.status(400).json({ success: false, error: 'Note is required.' });
+  }
+
+  try {
+    const pool = await getAuthPool();
+    await pool.request()
+      .input('uid', sql.Int, uid)
+      .input('note', sql.Text, note)
+      .input('author', sql.VarChar, author)
+      .query(`
+        INSERT INTO cohauth.dbo.user_notes (uid, note, author)
+        VALUES (@uid, @note, @author)
+      `);
+    res.json({ success: true });
+  } catch (err) {
+    console.error('[Add Note Error]', err);
+    res.status(500).json({ success: false, error: 'Failed to add note.' });
+  }
+}
 
 module.exports = {
   listUsers,
   updateUserRole,
-  toggleUserBan
+  toggleUserBan,
+  getUserNotes,
+  addUserNote
 };

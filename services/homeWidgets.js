@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const config = require(global.BASE_DIR + '/utils/config');
 const { getGamePool, getChatPool } = require(global.BASE_DIR + '/db');
-const { getGlobalHandle } = require('../utils/characterInfo/getGlobalHandle');
-const { getOwnedBadgesFromBitfield } = require('../utils/badgeParser');
+const { getGlobalHandle } = require(global.BASE_DIR + '/utils/characterInfo/getGlobalHandle');
+const { getOwnedBadgesFromBitfield } = require(global.BASE_DIR + '/utils/badgeParser');
 const { getAlignment } = require(global.BASE_DIR + '/utils/alignment');
 const { getAttributeMap } = require(global.BASE_DIR + '/utils/attributeMap');
 
