@@ -11,6 +11,21 @@
         "dbPass": "password",
         "dbName": "cohauth"
     },
+    "email": {
+        "provider": "",
+        "fromEmail": "",
+        "mailersend": {
+            "apiKey": ""
+        },
+        "smtp": {
+            "host": "",
+            "port": "587",
+            "auth": {
+                "user": "",
+                "pass": "-"
+            }
+        }
+    },
     "servers": {
         "yourserver": {
         "label": "YourServer",
