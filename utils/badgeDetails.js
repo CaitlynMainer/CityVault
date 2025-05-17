@@ -122,10 +122,7 @@ function loadBadgeDefs(baseDir, badgeStrings, mapTarget) {
   }
 }
 
-function buildBadgeEquivalents(set) {
-  const map = set.badgeDetailsMap;
-  const equiv = set.badgeEquivalents;
-
+function buildBadgeEquivalents(map, target) {
   for (const [name, meta] of Object.entries(map)) {
     if (!meta.Requires) continue;
 
@@ -133,8 +130,8 @@ function buildBadgeEquivalents(set) {
         meta.Requires.includes('praetorianprogress char> earth eq')) {
       const counterpart = name.replace(/^P_/, '');
       if (counterpart !== name && map[counterpart]) {
-        equiv[name] = counterpart;
-        equiv[counterpart] = name;
+        target[name] = counterpart;
+        target[counterpart] = name;
       }
     }
 
@@ -142,18 +139,21 @@ function buildBadgeEquivalents(set) {
         meta.Requires.includes('praetorianprogress char> pvp eq')) {
       const counterpart = 'P_' + name;
       if (counterpart !== name && map[counterpart]) {
-        equiv[name] = counterpart;
-        equiv[counterpart] = name;
+        target[name] = counterpart;
+        target[counterpart] = name;
       }
     }
   }
 }
 
+
+
 function loadBadgeSet(version) {
   const baseDir = path.join(global.BASE_DIR, 'data', version, 'badges');
   const badgeStrings = loadBadgeStrings(baseDir);
   loadBadgeDefs(baseDir, badgeStrings, badgeData[version].badgeDetailsMap);
-  buildBadgeEquivalents(badgeData[version]);
+  buildBadgeEquivalents(badgeData[version].badgeDetailsMap, badgeData[version].badgeEquivalents);
+  console.log(`[Equivalents] Built ${Object.keys(badgeData[version].badgeEquivalents).length} equivalents for ${version}`);
 }
 
 function init() {

@@ -47,6 +47,28 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }
 }).single('portrait');
 
+function getBadgeAlignmentContext(rpn) {
+  if (!rpn) return [];
+  const normalized = rpn.toLowerCase();
+  const a = [];
+
+  if (normalized.includes('praetorianprogress char> praetoria eq') ||
+      normalized.includes('praetorianprogress char> earth eq')) {
+    a.push('Resistance', 'Loyalist');
+  }
+
+  if (normalized.includes('praetorianprogress char> normal eq')) {
+    a.push('Hero', 'Villain', 'Vigilante', 'Rogue');
+  }
+
+  if (normalized.includes('praetorianprogress char> pvp eq')) {
+    a.push('PvP');
+  }
+
+  return a;
+}
+
+
 async function uploadPortrait(req, res) {
   if (!req.session?.username) return res.status(403).send('Login required');
 
@@ -130,6 +152,20 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender, badge
     const resolvedVillainTitle = meta.DisplayTitleVillain || meta.DisplayTitle;
     const image = isVillainAligned && meta.VillainIcon ? meta.VillainIcon : meta.Icon;
 
+
+
+        // Alignment-specific filtering (rudimentary but effective)
+    if (meta.Requires) {
+      const r = meta.Requires;
+
+      const isPrimalOnly = r.includes('praetorianprogress char> normal eq') && !r.includes('!');
+      const isPraetorianOnly = r.includes('praetorianprogress char> normal eq !');
+
+      if (isPrimalOnly && ['Resistance', 'Loyalist'].includes(alignment)) continue;
+      if (isPraetorianOnly && ['Hero', 'Villain', 'Vigilante', 'Rogue'].includes(alignment)) continue;
+    }
+
+
     visibleBadges.push({
       ...meta,
       badgeId: meta.badgeId,
@@ -144,9 +180,6 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender, badge
 
   return visibleBadges;
 }
-
-
-
 
 function groupBadgesByCategory(badges) {
   const groups = {};
