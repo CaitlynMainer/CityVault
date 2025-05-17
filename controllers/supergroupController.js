@@ -99,7 +99,7 @@ async function showSupergroup(req, res) {
         return dateA - dateB;
     })
     .map(row => {
-        const enriched = enrichCharacterSummary(row);
+        const enriched = enrichCharacterSummary(row, serverKey);
         enriched.RankName = row.CustomRankName || 'Member';
         return enriched;
     });

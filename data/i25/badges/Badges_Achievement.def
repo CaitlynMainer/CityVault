@@ -1,0 +1,3866 @@
+Badge
+{
+	Name Level10
+	Category kAchievement
+	DisplayTitle "P1770602036"
+	DisplayText "P2710907559"
+	DisplayTitleVillain "P2146571422"
+	DisplayHintVillain "P2285537839"
+	DisplayTextVillain "P1010291289"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_level_10"
+	VillainIcon "v_badge_Level10Badge"
+	Visible 0
+	Hinted 0
+	Requires level char> 10 >= praetorianprogress char> normal eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Level_10
+	Category kAchievement
+	DisplayTitle "P1075789347"
+	DisplayText "P614875408"
+	Reward CounterRespec, is.CostumeChange
+	Icon "P_Level_10"
+	Visible 0
+	Hinted 0
+	Requires level char> 10 >= praetorianprogress char> normal eq ! &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Level20
+	Category kAchievement
+	DisplayTitle "P1158492229"
+	DisplayText "P2748552446"
+	DisplayTitleVillain "P1862422374"
+	DisplayHintVillain "P2285537839"
+	DisplayTextVillain "P1448959795"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_level_20"
+	VillainIcon "v_badge_Level20Badge"
+	Visible 0
+	Hinted 0
+	Requires level char> 20 >= praetorianprogress char> normal eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Level_20
+	Category kAchievement
+	DisplayTitle "P1754894752"
+	DisplayText "P3603794575"
+	Reward CounterRespec, is.CostumeChange
+	Icon "P_Level_20"
+	Visible 0
+	Hinted 0
+	Requires level char> 20 >= praetorianprogress char> normal eq ! &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Level30
+	Category kAchievement
+	DisplayTitle "P4062760806"
+	DisplayText "P2719088329"
+	DisplayTitleVillain "P3472871444"
+	DisplayHintVillain "P2285537839"
+	DisplayTextVillain "P180036036"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_level_30"
+	VillainIcon "v_badge_Level30Badge"
+	Visible 0
+	Hinted 0
+	Requires level char> 30 >= praetorianprogress char> normal eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Level_30
+	Category kAchievement
+	DisplayTitle "P3799918130"
+	DisplayText "P909098036"
+	Reward CounterRespec, is.CostumeChange
+	Icon "P_Level_30"
+	Visible 0
+	Hinted 0
+	Requires level char> 30 >= praetorianprogress char> normal eq ! &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Level40
+	Category kAchievement
+	DisplayTitle "P4143958159"
+	DisplayText "P2808014924"
+	DisplayTitleVillain "P1636337351"
+	DisplayHintVillain "P2285537839"
+	DisplayTextVillain "P1519716123"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_level_40"
+	VillainIcon "v_badge_Level40Badge"
+	Visible 0
+	Hinted 0
+	Requires level char> 40 >= praetorianprogress char> normal eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Level_40
+	Category kAchievement
+	DisplayTitle "P3581350915"
+	DisplayText "P554193352"
+	Reward CounterRespec, is.CostumeChange
+	Icon "P_Level_40"
+	Visible 0
+	Hinted 0
+	Requires level char> 40 >= praetorianprogress char> normal eq ! &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Level50
+	Category kAchievement
+	DisplayTitle "P3262034058"
+	DisplayText "P2795274875"
+	DisplayTitleVillain "P1030145439"
+	DisplayHintVillain "P2285537839"
+	DisplayTextVillain "P1930665789"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_level_50"
+	VillainIcon "v_badge_Level50Badge"
+	Visible 0
+	Hinted 0
+	Requires level char> 50 >= praetorianprogress char> normal eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Level_50
+	Category kAchievement
+	DisplayTitle "P1601135675"
+	DisplayText "P2474653146"
+	Reward CounterRespec, is.CostumeChange
+	Icon "P_Level_50"
+	Visible 0
+	Hinted 0
+	Requires level char> 50 >= praetorianprogress char> normal eq ! &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_HeroAlignment
+	Category kAchievement
+	DisplayTitle "P391760026"
+	DisplayText "P2761060754"
+	Icon "Badge_HeroAlignment"
+	Visible 0
+	Hinted 0
+	Requires HeroSwitchMoralityMissionsCompleted TokenOwned? HeroReinforceMoralityMissionsCompleted TokenOwned? ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_VigilanteAlignment
+	Category kAchievement
+	DisplayTitle "P3130534262"
+	DisplayText "P4076824653"
+	Icon "Badge_VigilanteAlignment"
+	Visible 0
+	Hinted 0
+	Requires VigilanteSwitchMoralityMissionsCompleted TokenOwned? VigilanteReinforceMoralityMissionsCompleted TokenOwned? ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_RogueAlignment
+	Category kAchievement
+	DisplayTitle "P1277086188"
+	DisplayText "P968000674"
+	Icon "Badge_RogueAlignment"
+	Visible 0
+	Hinted 0
+	Requires RogueSwitchMoralityMissionsCompleted TokenOwned? RogueReinforceMoralityMissionsCompleted TokenOwned? ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_VillainAlignment
+	Category kAchievement
+	DisplayTitle "P4264483780"
+	DisplayText "P3553495931"
+	Icon "Badge_VillainAlignment"
+	Visible 0
+	Hinted 0
+	Requires VillainSwitchMoralityMissionsCompleted TokenOwned? VillainReinforceMoralityMissionsCompleted TokenOwned? ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_HeroAlignmentPower
+	Category kAchievement
+	DisplayTitle "P3145754536"
+	DisplayHint "P2449819431"
+	DisplayText "P3331296399"
+	Icon "Badge_HeroAlignmentPower"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_VigilanteAlignmentPower
+	Category kAchievement
+	DisplayTitle "P3295550275"
+	DisplayHint "P1138627874"
+	DisplayText "P2415119216"
+	Icon "Badge_VigilanteAlignmentPower"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_RogueAlignmentPower
+	Category kAchievement
+	DisplayTitle "P3583893675"
+	DisplayHint "P1319395941"
+	DisplayText "P2502611210"
+	Icon "Badge_RogueAlignmentPower"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_VillainAlignmentPower
+	Category kAchievement
+	DisplayTitle "P2664237104"
+	DisplayHint "P191625576"
+	DisplayText "P552908490"
+	Icon "Badge_VillainAlignmentPower"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Ascended
+	Category kAchievement
+	DisplayTitle "P1146456842"
+	DisplayHint "P438478360"
+	DisplayText "P3701450090"
+	Icon "Badge_Ascended"
+	Visible 0
+	Hinted 0
+	Requires TimesChangedAlignmentFromRedToBlue 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Descended
+	Category kAchievement
+	DisplayTitle "P960265834"
+	DisplayHint "P9511659"
+	DisplayText "P139913536"
+	Icon "Badge_Descended"
+	Visible 0
+	Hinted 0
+	Requires TimesChangedAlignmentFromBlueToRed 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_ComeFullCircle
+	Category kAchievement
+	DisplayTitle "P1939562656"
+	DisplayHint "P1245561620"
+	DisplayText "P2930473837"
+	DisplayTitleVillain "P1939562656"
+	DisplayHintVillain "P3943318161"
+	DisplayTextVillain "P2406563508"
+	Icon "Badge_ComeFullCircleHero"
+	VillainIcon "Badge_ComeFullCircleVillain"
+	Visible 0
+	Hinted 0
+	Requires P_Ascended owned? P_Descended owned? &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_TravelBetweenCities
+	Category kAchievement
+	DisplayTitle "P1058104599"
+	DisplayText "P3238540767"
+	DisplayTitleVillain "P2115063012"
+	DisplayTextVillain "P1209898439"
+	Icon "Badge_TravelBetweenCities"
+	Visible 0
+	Hinted 0
+	Requires alignment char> vigilante eq allyID char> villain eq && alignment char> rogue eq allyID char> hero eq && ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Tough
+	Category kAchievement
+	DisplayTitle "P1394329586"
+	DisplayHint "P3766485953"
+	DisplayText "P3751533169"
+	DisplayTitleVillain "P2126715356"
+	DisplayHintVillain "P3766485953"
+	DisplayTextVillain "P2029445057"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible damage.taken 1000 >= praetorianprogress char> normal eq &&
+	Hinted 1
+	Requires damage.taken 100000 >= praetorianprogress char> normal eq &&
+	Meter damage.taken 100000 %
+	Revoke 0
+	BadgeValues 100000
+}
+
+Badge
+{
+	Name P_Damage_100K
+	Category kAchievement
+	DisplayTitle "P2079802839"
+	DisplayHint "P3766485953"
+	DisplayText "P3250629312"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible damage.taken 1000 >= praetorianprogress char> normal eq ! &&
+	Hinted 1
+	Requires damage.taken 100000 >= praetorianprogress char> normal eq ! &&
+	Meter damage.taken 100000 %
+	Revoke 0
+	BadgeValues 100000
+}
+
+Badge
+{
+	Name Indestructable
+	Category kAchievement
+	DisplayTitle "P1532830454"
+	DisplayHint "P1210114633"
+	DisplayText "P4239758690"
+	DisplayTitleVillain "P1328504824"
+	DisplayHintVillain "P1210114633"
+	DisplayTextVillain "P2580482040"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible Tough owned?
+	Hinted 1
+	Requires damage.taken 500000 >= praetorianprogress char> normal eq &&
+	Meter damage.taken 500000 %
+	Revoke 0
+	BadgeValues 500000
+}
+
+Badge
+{
+	Name P_Damage_500K
+	Category kAchievement
+	DisplayTitle "P2885896016"
+	DisplayHint "P1210114633"
+	DisplayText "P1941502036"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible P_Damage_100K owned?
+	Hinted 1
+	Requires damage.taken 500000 >= praetorianprogress char> normal eq ! &&
+	Meter damage.taken 500000 %
+	Revoke 0
+	BadgeValues 500000
+}
+
+Badge
+{
+	Name Adamant
+	Category kAchievement
+	DisplayTitle "P1684590535"
+	DisplayHint "P2479240542"
+	DisplayText "P947377174"
+	DisplayTitleVillain "P853415840"
+	DisplayHintVillain "P2479240542"
+	DisplayTextVillain "P3628311604"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible Indestructable owned?
+	Hinted 1
+	Requires damage.taken 1000000 >= praetorianprogress char> normal eq &&
+	Meter damage.taken 1000000 %
+	Revoke 0
+	BadgeValues 1000000
+}
+
+Badge
+{
+	Name P_Damage_1M
+	Category kAchievement
+	DisplayTitle "P1107842636"
+	DisplayHint "P2479240542"
+	DisplayText "P2151412398"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible P_Damage_500K owned?
+	Hinted 1
+	Requires damage.taken 1000000 >= praetorianprogress char> normal eq ! &&
+	Meter damage.taken 1000000 %
+	Revoke 0
+	BadgeValues 1000000
+}
+
+Badge
+{
+	Name Unbreakable
+	Category kAchievement
+	DisplayTitle "P4181527603"
+	DisplayHint "P1864237765"
+	DisplayText "P3577562732"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible Adamant owned?
+	Hinted 1
+	Requires damage.taken 10000000 >= praetorianprogress char> normal eq &&
+	Meter damage.taken 10000000 %
+	Revoke 0
+	BadgeValues 10000000
+}
+
+Badge
+{
+	Name P_Damage_10M
+	Category kAchievement
+	DisplayTitle "P1526295404"
+	DisplayHint "P1864237765"
+	DisplayText "P535813257"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible P_Damage_1M owned?
+	Hinted 1
+	Requires damage.taken 10000000 >= praetorianprogress char> normal eq ! &&
+	Meter damage.taken 10000000 %
+	Revoke 0
+	BadgeValues 10000000
+}
+
+Badge
+{
+	Name NighIndestructable
+	Category kAchievement
+	DisplayTitle "P129220430"
+	DisplayHint "P601765342"
+	DisplayText "P365815151"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible Unbreakable owned?
+	Hinted 1
+	Requires damage.taken 25000000 >= praetorianprogress char> normal eq &&
+	Meter damage.taken 25000000 %
+	Revoke 0
+	BadgeValues 25000000
+}
+
+Badge
+{
+	Name P_Damage_25M
+	Category kAchievement
+	DisplayTitle "P292446032"
+	DisplayHint "P601765342"
+	DisplayText "P2144818864"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible P_Damage_10M owned?
+	Hinted 1
+	Requires damage.taken 25000000 >= praetorianprogress char> normal eq ! &&
+	Meter damage.taken 25000000 %
+	Revoke 0
+	BadgeValues 25000000
+}
+
+Badge
+{
+	Name Invulnerable
+	Category kAchievement
+	DisplayTitle "P778114091"
+	DisplayHint "P1965799334"
+	DisplayText "P3047013132"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible NighIndestructable owned?
+	Hinted 1
+	Requires damage.taken 50000000 >= praetorianprogress char> normal eq &&
+	Meter damage.taken 50000000 %
+	Revoke 0
+	BadgeValues 50000000
+}
+
+Badge
+{
+	Name P_Damage_50M
+	Category kAchievement
+	DisplayTitle "P1358867495"
+	DisplayHint "P1965799334"
+	DisplayText "P3186721058"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible P_Damage_25M owned?
+	Hinted 1
+	Requires damage.taken 50000000 >= praetorianprogress char> normal eq ! &&
+	Meter damage.taken 50000000 %
+	Revoke 0
+	BadgeValues 50000000
+}
+
+Badge
+{
+	Name Immortal
+	Category kAchievement
+	DisplayTitle "P3165980828"
+	DisplayHint "P160685808"
+	DisplayText "P623763001"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible Invulnerable owned?
+	Hinted 1
+	Requires damage.taken 100000000 >= praetorianprogress char> normal eq &&
+	Meter damage.taken 100000000 %
+	Revoke 0
+	BadgeValues 100000000
+}
+
+Badge
+{
+	Name P_Marauder
+	Category kAchievement
+	DisplayTitle "P2910650771"
+	DisplayHint "P2179732954"
+	DisplayText "P2822308071"
+	Icon "badge_villain_01"
+	VillainIcon "v_badge_DealDamage"
+	Visible damage.given 1000 >=
+	Hinted 1
+	Requires damage.given 100000 >=
+	Meter damage.given 100000 %
+	Revoke 0
+	BadgeValues 100000
+}
+
+Badge
+{
+	Name P_Eliminator
+	Category kAchievement
+	DisplayTitle "P2172575931"
+	DisplayHint "P333795586"
+	DisplayText "P730607"
+	Icon "badge_villain_01"
+	VillainIcon "v_badge_DealDamage"
+	Visible P_Marauder owned?
+	Hinted 1
+	Requires damage.given 500000 >=
+	Meter damage.given 500000 %
+	Revoke 0
+	BadgeValues 500000
+}
+
+Badge
+{
+	Name P_Relentless
+	Category kAchievement
+	DisplayTitle "P3658174392"
+	DisplayHint "P2848815749"
+	DisplayText "P3014576590"
+	Icon "badge_villain_01"
+	VillainIcon "v_badge_DealDamage"
+	Visible P_Eliminator owned?
+	Hinted 1
+	Requires damage.given 1000000 >=
+	Meter damage.given 1000000 %
+	Revoke 0
+	BadgeValues 1000000
+}
+
+Badge
+{
+	Name P_Decimator
+	Category kAchievement
+	DisplayTitle "P2239194366"
+	DisplayHint "P2646992387"
+	DisplayText "P628019464"
+	Icon "badge_villain_01"
+	VillainIcon "v_badge_DealDamage"
+	Visible P_Relentless owned?
+	Hinted 1
+	Requires damage.given 10000000 >=
+	Meter damage.given 10000000 %
+	Revoke 0
+	BadgeValues 10000000
+}
+
+Badge
+{
+	Name P_Executioner
+	Category kAchievement
+	DisplayTitle "P1557825908"
+	DisplayHint "P1787057505"
+	DisplayText "P4026342417"
+	Icon "badge_villain_01"
+	VillainIcon "v_badge_DealDamage"
+	Visible P_Decimator owned?
+	Hinted 1
+	Requires damage.given 25000000 >=
+	Meter damage.given 25000000 %
+	Revoke 0
+	BadgeValues 25000000
+}
+
+Badge
+{
+	Name P_Eradicator
+	Category kAchievement
+	DisplayTitle "P1536287631"
+	DisplayHint "P4086739132"
+	DisplayText "P117104237"
+	Icon "badge_villain_01"
+	VillainIcon "v_badge_DealDamage"
+	Visible P_Executioner owned?
+	Hinted 1
+	Requires damage.given 50000000 >=
+	Meter damage.given 50000000 %
+	Revoke 0
+	BadgeValues 50000000
+}
+
+Badge
+{
+	Name P_Cataclysmic
+	Category kAchievement
+	DisplayTitle "P3282911066"
+	DisplayHint "P2569717898"
+	DisplayText "P1954708443"
+	Icon "badge_villain_01"
+	VillainIcon "v_badge_DealDamage"
+	Visible P_Eradicator owned?
+	Hinted 1
+	Requires damage.given 100000000 >=
+	Meter damage.given 100000000 %
+	Revoke 0
+	BadgeValues 100000000
+}
+
+Badge
+{
+	Name P_Damage_100M
+	Category kAchievement
+	DisplayTitle "P3235191528"
+	DisplayHint "P160685808"
+	DisplayText "P461864009"
+	Icon "badge_damage_recvd_01"
+	VillainIcon "v_badge_TakenDamageBadge"
+	Visible P_Damage_50M owned?
+	Hinted 1
+	Requires damage.taken 100000000 >= praetorianprogress char> normal eq ! &&
+	Meter damage.taken 100000000 %
+	Revoke 0
+	BadgeValues 100000000
+}
+
+Badge
+{
+	Name UnwaveringFocus
+	Category kAchievement
+	DisplayTitle "P4017640660"
+	DisplayHint "P2261904280"
+	DisplayText "P101308827"
+	DisplayTitleVillain "P1762138642"
+	DisplayHintVillain "P2261904280"
+	DisplayTextVillain "P3855832084"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible xpdebt.removed 1000 >= praetorianprogress char> normal eq &&
+	Hinted 1
+	Requires xpdebt.removed 50000 >= praetorianprogress char> normal eq &&
+	Meter xpdebt.removed 50000 %
+	Revoke 0
+	BadgeValues 50000
+}
+
+Badge
+{
+	Name P_Debt_50K
+	Category kAchievement
+	DisplayTitle "P1204889016"
+	DisplayHint "P2261904280"
+	DisplayText "P2167079058"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible xpdebt.removed 1000 >= praetorianprogress char> normal eq ! &&
+	Hinted 1
+	Requires xpdebt.removed 50000 >= praetorianprogress char> normal eq ! &&
+	Meter xpdebt.removed 50000 %
+	Revoke 0
+	BadgeValues 50000
+}
+
+Badge
+{
+	Name UnyieldingWill
+	Category kAchievement
+	DisplayTitle "P876417670"
+	DisplayHint "P1898665951"
+	DisplayText "P65658696"
+	DisplayTitleVillain "P4026800292"
+	DisplayHintVillain "P1898665951"
+	DisplayTextVillain "P884742427"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible UnwaveringFocus owned?
+	Hinted 1
+	Requires xpdebt.removed 100000 >= praetorianprogress char> normal eq &&
+	Meter xpdebt.removed 100000 %
+	Revoke 0
+	BadgeValues 100000
+}
+
+Badge
+{
+	Name P_Debt_100K
+	Category kAchievement
+	DisplayTitle "P1438921218"
+	DisplayHint "P1898665951"
+	DisplayText "P1920751870"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible P_Debt_50K owned?
+	Hinted 1
+	Requires xpdebt.removed 100000 >= praetorianprogress char> normal eq ! &&
+	Meter xpdebt.removed 100000 %
+	Revoke 0
+	BadgeValues 100000
+}
+
+Badge
+{
+	Name UnbrokenSpirit
+	Category kAchievement
+	DisplayTitle "P646278159"
+	DisplayHint "P1225841836"
+	DisplayText "P1703362974"
+	DisplayTitleVillain "P646278159"
+	DisplayHintVillain "P1225841836"
+	DisplayTextVillain "P2098954746"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible UnyieldingWill owned?
+	Hinted 1
+	Requires xpdebt.removed 200000 >= praetorianprogress char> normal eq &&
+	Meter xpdebt.removed 200000 %
+	Revoke 0
+	BadgeValues 200000
+}
+
+Badge
+{
+	Name P_Debt_200K
+	Category kAchievement
+	DisplayTitle "P1285161911"
+	DisplayHint "P1225841836"
+	DisplayText "P3177517336"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible P_Debt_100K owned?
+	Hinted 1
+	Requires xpdebt.removed 200000 >= praetorianprogress char> normal eq ! &&
+	Meter xpdebt.removed 200000 %
+	Revoke 0
+	BadgeValues 200000
+}
+
+Badge
+{
+	Name Deathless
+	Category kAchievement
+	DisplayTitle "P465475507"
+	DisplayHint "P2687765621"
+	DisplayText "P4276997226"
+	DisplayTitleVillain "P465475507"
+	DisplayHintVillain "P2687765621"
+	DisplayTextVillain "P3056326845"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible UnbrokenSpirit owned?
+	Hinted 1
+	Requires xpdebt.removed 400000 >= praetorianprogress char> normal eq &&
+	Meter xpdebt.removed 400000 %
+	Revoke 0
+	BadgeValues 400000
+}
+
+Badge
+{
+	Name P_Debt_400K
+	Category kAchievement
+	DisplayTitle "P1319270135"
+	DisplayHint "P2687765621"
+	DisplayText "P4089099856"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible P_Debt_200K owned?
+	Hinted 1
+	Requires xpdebt.removed 400000 >= praetorianprogress char> normal eq ! &&
+	Meter xpdebt.removed 400000 %
+	Revoke 0
+	BadgeValues 400000
+}
+
+Badge
+{
+	Name Undying
+	Category kAchievement
+	DisplayTitle "P3411282850"
+	DisplayHint "P959841256"
+	DisplayText "P1123727082"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible Deathless owned?
+	Hinted 1
+	Requires xpdebt.removed 600000 >= praetorianprogress char> normal eq &&
+	Meter xpdebt.removed 600000 %
+	Revoke 0
+	BadgeValues 600000
+}
+
+Badge
+{
+	Name P_Debt_600K
+	Category kAchievement
+	DisplayTitle "P2159705699"
+	DisplayHint "P959841256"
+	DisplayText "P1189495623"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible P_Debt_400K owned?
+	Hinted 1
+	Requires xpdebt.removed 600000 >= praetorianprogress char> normal eq ! &&
+	Meter xpdebt.removed 600000 %
+	Revoke 0
+	BadgeValues 600000
+}
+
+Badge
+{
+	Name Exalted
+	Category kAchievement
+	DisplayTitle "P3089229413"
+	DisplayHint "P2838621368"
+	DisplayText "P2477518607"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible Undying owned?
+	Hinted 1
+	Requires xpdebt.removed 1000000 >= praetorianprogress char> normal eq &&
+	Meter xpdebt.removed 1000000 %
+	Revoke 0
+	BadgeValues 1000000
+}
+
+Badge
+{
+	Name P_Debt_1M
+	Category kAchievement
+	DisplayTitle "P3048643240"
+	DisplayHint "P2838621368"
+	DisplayText "P249496960"
+	Icon "badge_debt_01"
+	VillainIcon "v_badge_DebtBadge"
+	Visible P_Debt_600K owned?
+	Hinted 1
+	Requires xpdebt.removed 1000000 >= praetorianprogress char> normal eq ! &&
+	Meter xpdebt.removed 1000000 %
+	Revoke 0
+	BadgeValues 1000000
+}
+
+Badge
+{
+	Name Medic
+	Category kAchievement
+	DisplayTitle "P1172565796"
+	DisplayHint "P3079950058"
+	DisplayText "P512429142"
+	DisplayTitleVillain "P2883343463"
+	DisplayHintVillain "P536802067"
+	DisplayTextVillain "P3540325809"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible healing.given 0 > praetorianprogress char> normal eq &&
+	Hinted 1
+	Requires healing.given 250000 >= praetorianprogress char> normal eq &&
+	Meter healing.given 250000 %
+	Revoke 0
+	BadgeValues 250000
+}
+
+Badge
+{
+	Name P_Heal_250K
+	Category kAchievement
+	DisplayTitle "P1106476541"
+	DisplayHint "P3079950058"
+	DisplayText "P1651056064"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible healing.given 0 > praetorianprogress char> normal eq ! &&
+	Hinted 1
+	Requires healing.given 250000 >= praetorianprogress char> normal eq ! &&
+	Meter healing.given 250000 %
+	Revoke 0
+	BadgeValues 250000
+}
+
+Badge
+{
+	Name Surgeon
+	Category kAchievement
+	DisplayTitle "P4147052239"
+	DisplayHint "P3066938750"
+	DisplayText "P1816436515"
+	DisplayTitleVillain "P3188505476"
+	DisplayHintVillain "P536802067"
+	DisplayTextVillain "P4025218570"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible Medic owned?
+	Hinted 1
+	Requires healing.given 1000000 >= praetorianprogress char> normal eq &&
+	Meter healing.given 1000000 %
+	Revoke 0
+	BadgeValues 1000000
+}
+
+Badge
+{
+	Name P_Heal_1M
+	Category kAchievement
+	DisplayTitle "P4174572947"
+	DisplayHint "P3066938750"
+	DisplayText "P1467607436"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible P_Heal_250K owned?
+	Hinted 1
+	Requires healing.given 1000000 >= praetorianprogress char> normal eq ! &&
+	Meter healing.given 1000000 %
+	Revoke 0
+	BadgeValues 1000000
+}
+
+Badge
+{
+	Name Doctor
+	Category kAchievement
+	DisplayTitle "P409794140"
+	DisplayHint "P89778365"
+	DisplayText "P3720373246"
+	DisplayTitleVillain "P1828564278"
+	DisplayHintVillain "P536802067"
+	DisplayTextVillain "P764950240"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible Surgeon owned?
+	Hinted 1
+	Requires healing.given 2000000 >= praetorianprogress char> normal eq &&
+	Meter healing.given 2000000 %
+	Revoke 0
+	BadgeValues 2000000
+}
+
+Badge
+{
+	Name P_Heal_2M
+	Category kAchievement
+	DisplayTitle "P1718354433"
+	DisplayHint "P89778365"
+	DisplayText "P3215800534"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible P_Heal_1M owned?
+	Hinted 1
+	Requires healing.given 2000000 >= praetorianprogress char> normal eq ! &&
+	Meter healing.given 2000000 %
+	Revoke 0
+	BadgeValues 2000000
+}
+
+Badge
+{
+	Name MedicalSpecialist
+	Category kAchievement
+	DisplayTitle "P2527559405"
+	DisplayHint "P1575537170"
+	DisplayText "P3459211194"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible Doctor owned?
+	Hinted 1
+	Requires healing.given 3000000 >= praetorianprogress char> normal eq &&
+	Meter healing.given 3000000 %
+	Revoke 0
+	BadgeValues 3000000
+}
+
+Badge
+{
+	Name P_Heal_3M
+	Category kAchievement
+	DisplayTitle "P430818680"
+	DisplayHint "P1575537170"
+	DisplayText "P2110984689"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible P_Heal_2M owned?
+	Hinted 1
+	Requires healing.given 3000000 >= praetorianprogress char> normal eq ! &&
+	Meter healing.given 3000000 %
+	Revoke 0
+	BadgeValues 3000000
+}
+
+Badge
+{
+	Name MedicineMan
+	Category kAchievement
+	DisplayTitle "P655350576"
+	DisplayHint "P2251068729"
+	DisplayText "P4089913885"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible MedicalSpecialist owned?
+	Hinted 1
+	Requires healing.given 5000000 >= praetorianprogress char> normal eq &&
+	Meter healing.given 5000000 %
+	Revoke 0
+	BadgeValues 5000000
+}
+
+Badge
+{
+	Name P_Heal_5M
+	Category kAchievement
+	DisplayTitle "P3400986000"
+	DisplayHint "P2251068729"
+	DisplayText "P3360848638"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible P_Heal_3M owned?
+	Hinted 1
+	Requires healing.given 5000000 >= praetorianprogress char> normal eq ! &&
+	Meter healing.given 5000000 %
+	Revoke 0
+	BadgeValues 5000000
+}
+
+Badge
+{
+	Name Empath
+	Category kAchievement
+	DisplayTitle "P2783305107"
+	DisplayHint "P3259512651"
+	DisplayText "P3317523361"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible MedicineMan owned?
+	Hinted 1
+	Requires healing.given 10000000 >= praetorianprogress char> normal eq &&
+	Meter healing.given 10000000 %
+	Revoke 0
+	BadgeValues 10000000
+}
+
+Badge
+{
+	Name P_Heal_10M
+	Category kAchievement
+	DisplayTitle "P89071551"
+	DisplayHint "P3259512651"
+	DisplayText "P2224140947"
+	Icon "badge_healing_01"
+	VillainIcon "v_badge_HealingBadge"
+	Visible P_Heal_5M owned?
+	Hinted 1
+	Requires healing.given 10000000 >= praetorianprogress char> normal eq ! &&
+	Meter healing.given 10000000 %
+	Revoke 0
+	BadgeValues 10000000
+}
+
+Badge
+{
+	Name Restrained
+	Category kAchievement
+	DisplayTitle "P3337424532"
+	DisplayHint "P416394865"
+	DisplayText "P127848019"
+	DisplayTitleVillain "P2678410838"
+	DisplayHintVillain "P394803459"
+	DisplayTextVillain "P1119198943"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible time.held time.sleep + time.stunned + 30 >= praetorianprogress char> normal eq &&
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 600 >= praetorianprogress char> normal eq &&
+	Meter time.held time.sleep + time.stunned + 600 %
+	Revoke 0
+	BadgeValues 600
+}
+
+Badge
+{
+	Name P_Held_10Min
+	Category kAchievement
+	DisplayTitle "P2808591410"
+	DisplayHint "P416394865"
+	DisplayText "P447563024"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible time.held time.sleep + time.stunned + 30 >= praetorianprogress char> normal eq ! &&
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 600 >= praetorianprogress char> normal eq ! &&
+	Meter time.held time.sleep + time.stunned + 600 %
+	Revoke 0
+	BadgeValues 600
+}
+
+Badge
+{
+	Name Entangled
+	Category kAchievement
+	DisplayTitle "P4287219417"
+	DisplayHint "P1443345710"
+	DisplayText "P3722832020"
+	DisplayTitleVillain "P588840738"
+	DisplayHintVillain "P3298495648"
+	DisplayTextVillain "P4057756399"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible Restrained owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 1800 >= praetorianprogress char> normal eq &&
+	Meter time.held time.sleep + time.stunned + 1800 %
+	Revoke 0
+	BadgeValues 1800
+}
+
+Badge
+{
+	Name P_Held_30Min
+	Category kAchievement
+	DisplayTitle "P3646712923"
+	DisplayHint "P1443345710"
+	DisplayText "P3913323991"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible P_Held_10Min owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 1800 >= praetorianprogress char> normal eq ! &&
+	Meter time.held time.sleep + time.stunned + 1800 %
+	Revoke 0
+	BadgeValues 1800
+}
+
+Badge
+{
+	Name Imprisoned
+	Category kAchievement
+	DisplayTitle "P427724076"
+	DisplayHint "P24644895"
+	DisplayText "P3621813052"
+	DisplayTitleVillain "P332750797"
+	DisplayHintVillain "P24644895"
+	DisplayTextVillain "P3418548950"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible Entangled owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 3600 >= praetorianprogress char> normal eq &&
+	Meter time.held time.sleep + time.stunned + 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name P_Held_60Min
+	Category kAchievement
+	DisplayTitle "P3319075458"
+	DisplayHint "P24644895"
+	DisplayText "P1834537445"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible P_Held_30Min owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 3600 >= praetorianprogress char> normal eq ! &&
+	Meter time.held time.sleep + time.stunned + 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name Confined
+	Category kAchievement
+	DisplayTitle "P3446714028"
+	DisplayHint "P1093093230"
+	DisplayText "P3039122260"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible Imprisoned owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 10800 >= praetorianprogress char> normal eq &&
+	Meter time.held time.sleep + time.stunned + 10800 %
+	Revoke 0
+	BadgeValues 10800
+}
+
+Badge
+{
+	Name P_Held_3Hour
+	Category kAchievement
+	DisplayTitle "P2605080514"
+	DisplayHint "P1093093230"
+	DisplayText "P3175623778"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible P_Held_60Min owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 10800 >= praetorianprogress char> normal eq ! &&
+	Meter time.held time.sleep + time.stunned + 10800 %
+	Revoke 0
+	BadgeValues 10800
+}
+
+Badge
+{
+	Name Caged
+	Category kAchievement
+	DisplayTitle "P1160159972"
+	DisplayHint "P1175734272"
+	DisplayText "P338733033"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible Confined owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 21600 >= praetorianprogress char> normal eq &&
+	Meter time.held time.sleep + time.stunned + 21600 %
+	Revoke 0
+	BadgeValues 21600
+}
+
+Badge
+{
+	Name P_Held_6Hour
+	Category kAchievement
+	DisplayTitle "P3873235159"
+	DisplayHint "P1175734272"
+	DisplayText "P4013572501"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible P_Held_3Hour owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 21600 >= praetorianprogress char> normal eq ! &&
+	Meter time.held time.sleep + time.stunned + 21600 %
+	Revoke 0
+	BadgeValues 21600
+}
+
+Badge
+{
+	Name Jailed
+	Category kAchievement
+	DisplayTitle "P4008011322"
+	DisplayHint "P2169537102"
+	DisplayText "P900083561"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible Caged owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 43200 >= praetorianprogress char> normal eq &&
+	Meter time.held time.sleep + time.stunned + 43200 %
+	Revoke 0
+	BadgeValues 43200
+}
+
+Badge
+{
+	Name P_Held_12Hour
+	Category kAchievement
+	DisplayTitle "P3560316405"
+	DisplayHint "P2169537102"
+	DisplayText "P1428601643"
+	Icon "badge_hold_01"
+	VillainIcon "v_badge_YouveBeenHeldBadge"
+	Visible P_Held_6Hour owned?
+	Hinted 1
+	Requires time.held time.sleep + time.stunned + 43200 >= praetorianprogress char> normal eq ! &&
+	Meter time.held time.sleep + time.stunned + 43200 %
+	Revoke 0
+	BadgeValues 43200
+}
+
+Badge
+{
+	Name Celebrity
+	Category kAchievement
+	DisplayTitle "P2323313716"
+	DisplayHint "P3912949031"
+	DisplayText "P3274472756"
+	DisplayTitleVillain "P4199544562"
+	DisplayHintVillain "P3053506409"
+	DisplayTextVillain "P2784049876"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible influence 0 > praetorianprogress char> normal eq &&
+	Hinted 1
+	Requires influence 500000 >= praetorianprogress char> normal eq &&
+	Meter influence 500000 %
+	Revoke 0
+	BadgeValues 500000
+}
+
+Badge
+{
+	Name P_Money_500K
+	Category kAchievement
+	DisplayTitle "P2482576111"
+	DisplayHint "P4192847943"
+	DisplayText "P76810168"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible influence 0 > praetorianprogress char> normal eq ! &&
+	Hinted 1
+	Requires influence 500000 >= praetorianprogress char> normal eq ! &&
+	Meter influence 500000 %
+	Revoke 0
+	BadgeValues 500000
+}
+
+Badge
+{
+	Name Sensation
+	Category kAchievement
+	DisplayTitle "P746859963"
+	DisplayHint "P2992714926"
+	DisplayText "P1806553783"
+	DisplayTitleVillain "P986640112"
+	DisplayHintVillain "P2577686324"
+	DisplayTextVillain "P3544495593"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible Celebrity owned?
+	Hinted 1
+	Requires influence 2500000 >= praetorianprogress char> normal eq &&
+	Meter influence 2500000 %
+	Revoke 0
+	BadgeValues 2500000
+}
+
+Badge
+{
+	Name P_Money_2500K
+	Category kAchievement
+	DisplayTitle "P1154136399"
+	DisplayHint "P3316748037"
+	DisplayText "P3586364853"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible P_Money_500K owned?
+	Hinted 1
+	Requires influence 2500000 >= praetorianprogress char> normal eq ! &&
+	Meter influence 2500000 %
+	Revoke 0
+	BadgeValues 2500000
+}
+
+Badge
+{
+	Name Superstar
+	Category kAchievement
+	DisplayTitle "P2528808588"
+	DisplayHint "P4035367831"
+	DisplayText "P4016891099"
+	DisplayTitleVillain "P1830715480"
+	DisplayHintVillain "P4261451065"
+	DisplayTextVillain "P3490171380"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible Sensation owned?
+	Hinted 1
+	Requires influence 10000000 >= praetorianprogress char> normal eq &&
+	Meter influence 10000000 %
+	Revoke 0
+	BadgeValues 10000000
+}
+
+Badge
+{
+	Name P_Money_10M
+	Category kAchievement
+	DisplayTitle "P58601555"
+	DisplayHint "P1570029959"
+	DisplayText "P59771556"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible P_Money_2500K owned?
+	Hinted 1
+	Requires influence 10000000 >= praetorianprogress char> normal eq ! &&
+	Meter influence 10000000 %
+	Revoke 0
+	BadgeValues 10000000
+}
+
+Badge
+{
+	Name Multimillionaire
+	Category kAchievement
+	DisplayTitle "P812690332"
+	DisplayHint "P3800028972"
+	DisplayText "P3855261209"
+	DisplayTitleVillain "P812690332"
+	DisplayHintVillain "P4121444927"
+	DisplayTextVillain "P3855261209"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible Superstar owned?
+	Hinted 1
+	Requires influence 50000000 >= praetorianprogress char> normal eq &&
+	Meter influence 50000000 %
+	Revoke 0
+	BadgeValues 50000000
+}
+
+Badge
+{
+	Name P_Money_50M
+	Category kAchievement
+	DisplayTitle "P1690796682"
+	DisplayHint "P3166824802"
+	DisplayText "P3141891951"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible P_Money_10M owned?
+	Hinted 1
+	Requires influence 50000000 >= praetorianprogress char> normal eq ! &&
+	Meter influence 50000000 %
+	Revoke 0
+	BadgeValues 50000000
+}
+
+Badge
+{
+	Name Billionaire
+	Category kAchievement
+	DisplayTitle "P1627931541"
+	DisplayHint "P1578015044"
+	DisplayText "P4016891099"
+	DisplayTitleVillain "P1627931541"
+	DisplayHintVillain "P1470474868"
+	DisplayTextVillain "P189698077"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible Multimillionaire owned?
+	Hinted 1
+	Requires influence 250000000 >= praetorianprogress char> normal eq &&
+	Meter influence 250000000 %
+	Revoke 0
+	BadgeValues 250000000
+}
+
+Badge
+{
+	Name P_Money_250M
+	Category kAchievement
+	DisplayTitle "P1475039866"
+	DisplayHint "P3873622106"
+	DisplayText "P369497213"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible P_Money_50M owned?
+	Hinted 1
+	Requires influence 250000000 >= praetorianprogress char> normal eq ! &&
+	Meter influence 250000000 %
+	Revoke 0
+	BadgeValues 250000000
+}
+
+Badge
+{
+	Name Trillionaire
+	Category kAchievement
+	DisplayTitle "P4065325025"
+	DisplayHint "P3069452321"
+	DisplayText "P1092629955"
+	DisplayTitleVillain "P4065325025"
+	DisplayHintVillain "P4183900376"
+	DisplayTextVillain "P670394158"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible Billionaire owned?
+	Hinted 1
+	Requires influence 500000000 >= praetorianprogress char> normal eq &&
+	Meter influence 500000000 %
+	Revoke 0
+	BadgeValues 500000000
+}
+
+Badge
+{
+	Name P_Money_500M
+	Category kAchievement
+	DisplayTitle "P2828379899"
+	DisplayHint "P3003324481"
+	DisplayText "P3123433183"
+	Icon "badge_influence_01"
+	VillainIcon "v_badge_InfamyBadge"
+	Visible P_Money_250M owned?
+	Hinted 1
+	Requires influence 500000000 >= praetorianprogress char> normal eq ! &&
+	Meter influence 500000000 %
+	Revoke 0
+	BadgeValues 500000000
+}
+
+Badge
+{
+	Name Advisor
+	Category kAchievement
+	DisplayTitle "P3591434344"
+	DisplayHint "P3187300395"
+	DisplayText "P520634578"
+	DisplayTitleVillain "P3303361693"
+	DisplayHintVillain "P1230507745"
+	DisplayTextVillain "P226953724"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible time.mentor 600 >= praetorianprogress char> normal eq &&
+	Hinted 1
+	Requires time.mentor 14400 >= praetorianprogress char> normal eq &&
+	Meter time.mentor 14400 %
+	Revoke 0
+	BadgeValues 14400
+}
+
+Badge
+{
+	Name P_Mentor_4Hour
+	Category kAchievement
+	DisplayTitle "P2623309852"
+	DisplayHint "P3187300395"
+	DisplayText "P4113736362"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible time.mentor 600 >= praetorianprogress char> normal eq ! &&
+	Hinted 1
+	Requires time.mentor 14400 >= praetorianprogress char> normal eq ! &&
+	Meter time.mentor 14400 %
+	Revoke 0
+	BadgeValues 14400
+}
+
+Badge
+{
+	Name Guide
+	Category kAchievement
+	DisplayTitle "P190834737"
+	DisplayHint "P386439691"
+	DisplayText "P4191848495"
+	DisplayTitleVillain "P939724796"
+	DisplayHintVillain "P3936072494"
+	DisplayTextVillain "P2334666163"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible Advisor owned?
+	Hinted 1
+	Requires time.mentor 28800 >= praetorianprogress char> normal eq &&
+	Meter time.mentor 28800 %
+	Revoke 0
+	BadgeValues 28800
+}
+
+Badge
+{
+	Name P_Mentor_8Hour
+	Category kAchievement
+	DisplayTitle "P224250558"
+	DisplayHint "P386439691"
+	DisplayText "P3951383292"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible P_Mentor_4Hour owned?
+	Hinted 1
+	Requires time.mentor 28800 >= praetorianprogress char> normal eq ! &&
+	Meter time.mentor 28800 %
+	Revoke 0
+	BadgeValues 28800
+}
+
+Badge
+{
+	Name Paragon
+	Category kAchievement
+	DisplayTitle "P2020487021"
+	DisplayHint "P487459707"
+	DisplayText "P1995174028"
+	DisplayTitleVillain "P1573522018"
+	DisplayHintVillain "P2547803307"
+	DisplayTextVillain "P66602809"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible Guide owned?
+	Hinted 1
+	Requires time.mentor 43200 >= praetorianprogress char> normal eq &&
+	Meter time.mentor 43200 %
+	Revoke 0
+	BadgeValues 43200
+}
+
+Badge
+{
+	Name P_Mentor_12Hour
+	Category kAchievement
+	DisplayTitle "P2135662409"
+	DisplayHint "P487459707"
+	DisplayText "P992368419"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible P_Mentor_8Hour owned?
+	Hinted 1
+	Requires time.mentor 43200 >= praetorianprogress char> normal eq ! &&
+	Meter time.mentor 43200 %
+	Revoke 0
+	BadgeValues 43200
+}
+
+Badge
+{
+	Name RoleModel
+	Category kAchievement
+	DisplayTitle "P1419839798"
+	DisplayHint "P3448719524"
+	DisplayText "P3298254515"
+	DisplayTitleVillain "P1419839798"
+	DisplayHintVillain "P1137982778"
+	DisplayTextVillain "P4104196820"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible Paragon owned?
+	Hinted 1
+	Requires time.mentor 57600 >= praetorianprogress char> normal eq &&
+	Meter time.mentor 57600 %
+	Revoke 0
+	BadgeValues 57600
+}
+
+Badge
+{
+	Name P_Mentor_16Hour
+	Category kAchievement
+	DisplayTitle "P1188652390"
+	DisplayHint "P3448719524"
+	DisplayText "P950411643"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible P_Mentor_12Hour owned?
+	Hinted 1
+	Requires time.mentor 57600 >= praetorianprogress char> normal eq ! &&
+	Meter time.mentor 57600 %
+	Revoke 0
+	BadgeValues 57600
+}
+
+Badge
+{
+	Name Epitome
+	Category kAchievement
+	DisplayTitle "P1577232054"
+	DisplayHint "P2076155414"
+	DisplayText "P1423198838"
+	DisplayTitleVillain "P1577232054"
+	DisplayHintVillain "P1137982778"
+	DisplayTextVillain "P2248884072"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible RoleModel owned?
+	Hinted 1
+	Requires time.mentor 72000 >= praetorianprogress char> normal eq &&
+	Meter time.mentor 72000 %
+	Revoke 0
+	BadgeValues 72000
+}
+
+Badge
+{
+	Name P_Mentor_20Hour
+	Category kAchievement
+	DisplayTitle "P3336420430"
+	DisplayHint "P2076155414"
+	DisplayText "P3225316436"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible P_Mentor_16Hour owned?
+	Hinted 1
+	Requires time.mentor 72000 >= praetorianprogress char> normal eq ! &&
+	Meter time.mentor 72000 %
+	Revoke 0
+	BadgeValues 72000
+}
+
+Badge
+{
+	Name Paradigm
+	Category kAchievement
+	DisplayTitle "P360769975"
+	DisplayHint "P2873023945"
+	DisplayText "P2716240354"
+	DisplayTitleVillain "P360769975"
+	DisplayHintVillain "P1137982778"
+	DisplayTextVillain "P1627165919"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible Epitome owned?
+	Hinted 1
+	Requires time.mentor 86400 >= praetorianprogress char> normal eq &&
+	Meter time.mentor 86400 %
+	Revoke 0
+	BadgeValues 86400
+}
+
+Badge
+{
+	Name P_Mentor_24Hour
+	Category kAchievement
+	DisplayTitle "P3382580625"
+	DisplayHint "P2873023945"
+	DisplayText "P165228658"
+	Icon "badge_mentoring_01"
+	VillainIcon "v_badge_MentoringBadge"
+	Visible P_Mentor_20Hour owned?
+	Hinted 1
+	Requires time.mentor 86400 >= praetorianprogress char> normal eq ! &&
+	Meter time.mentor 86400 %
+	Revoke 0
+	BadgeValues 86400
+}
+
+Badge
+{
+	Name RejectInspirations50
+	Category kAchievement
+	DisplayTitle "P3615420743"
+	DisplayHint "P3221039784"
+	DisplayText "P2989820327"
+	Icon "badge_i25_inspirations"
+	Visible RejectInspiration 1 >=
+	Hinted 1
+	Requires RejectInspiration 50 >=
+	Meter RejectInspiration 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name RejectInspirations100
+	Category kAchievement
+	DisplayTitle "P343211472"
+	DisplayHint "P1299406817"
+	DisplayText "P3065834268"
+	Icon "badge_i25_inspirations"
+	Visible RejectInspirations50 owned?
+	Hinted 1
+	Requires RejectInspiration 100 >=
+	Meter RejectInspiration 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name RejectInspirations500
+	Category kAchievement
+	DisplayTitle "P2818867649"
+	DisplayHint "P1965229942"
+	DisplayText "P1943230265"
+	Icon "badge_i25_inspirations"
+	Visible RejectInspirations100 owned?
+	Hinted 1
+	Requires RejectInspiration 500 >=
+	Meter RejectInspiration 500 %
+	Revoke 0
+	BadgeValues 500
+}
+
+Badge
+{
+	Name RejectInspirations1000
+	Category kAchievement
+	DisplayTitle "P1736001891"
+	DisplayHint "P2060546103"
+	DisplayText "P2838254825"
+	Icon "badge_i25_inspirations"
+	Visible RejectInspirations500 owned?
+	Hinted 1
+	Requires RejectInspiration 1000 >=
+	Meter RejectInspiration 1000 %
+	Revoke 0
+	BadgeValues 1000
+}
+
+Badge
+{
+	Name RejectRecipes50
+	Category kAchievement
+	DisplayTitle "P1309202961"
+	DisplayHint "P2129520134"
+	DisplayText "P1659854682"
+	Icon "badge_i25_recipes"
+	Visible RejectRecipe 1 >=
+	Hinted 1
+	Requires RejectRecipe 50 >=
+	Meter RejectRecipe 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name RejectRecipes100
+	Category kAchievement
+	DisplayTitle "P316454769"
+	DisplayHint "P3455241214"
+	DisplayText "P536589300"
+	Icon "badge_i25_recipes"
+	Visible RejectRecipes50 owned?
+	Hinted 1
+	Requires RejectRecipe 100 >=
+	Meter RejectRecipe 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name RejectRecipes500
+	Category kAchievement
+	DisplayTitle "P647070395"
+	DisplayHint "P4134365370"
+	DisplayText "P2697950625"
+	Icon "badge_i25_recipes"
+	Visible RejectRecipes100 owned?
+	Hinted 1
+	Requires RejectRecipe 500 >=
+	Meter RejectRecipe 500 %
+	Revoke 0
+	BadgeValues 500
+}
+
+Badge
+{
+	Name RejectRecipes1000
+	Category kAchievement
+	DisplayTitle "P2276621561"
+	DisplayHint "P1169690041"
+	DisplayText "P1589826835"
+	Icon "badge_i25_recipes"
+	Visible RejectRecipes500 owned?
+	Hinted 1
+	Requires RejectRecipe 1000 >=
+	Meter RejectRecipe 1000 %
+	Revoke 0
+	BadgeValues 1000
+}
+
+Badge
+{
+	Name MayhemFirebug
+	Category kAchievement
+	DisplayTitle "P1583801113"
+	DisplayHint "P1340097497"
+	DisplayText "P3831705862"
+	DisplayTitleVillain "P3496678199"
+	DisplayHintVillain "P1340097497"
+	DisplayTextVillain "P679215901"
+	Icon "v_badge_MayhemFireBug"
+	Visible objectives.FireBug 1 >= alignment char> hero eq ! &&
+	Hinted 1
+	Requires objectives.FireBug 10 >=
+	Meter objectives.FireBug 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name MayhemImpounder
+	Category kAchievement
+	DisplayTitle "P276648119"
+	DisplayHint "P2424000187"
+	DisplayText "P175741374"
+	DisplayTitleVillain "P3381164733"
+	DisplayHintVillain "P2424000187"
+	DisplayTextVillain "P367550613"
+	Icon "v_badge_MayhemImpounder"
+	Visible kills.Objects_MM_Truck_Hero kills.Objects_MM_Car_Hero + 1 >= alignment char> hero eq ! &&
+	Hinted 1
+	Requires kills.Objects_MM_Truck_Hero kills.Objects_MM_Car_Hero + 100 >=
+	Meter kills.Objects_MM_Truck_Hero kills.Objects_MM_Car_Hero + 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name SafeguardFireMarshal
+	Category kAchievement
+	DisplayTitle "P4041610828"
+	DisplayHint "P75894941"
+	DisplayText "P607244167"
+	DisplayTitleVillain "P1386177760"
+	DisplayHintVillain "P75894941"
+	DisplayTextVillain "P3249688029"
+	Icon "badge_SafeG_FireMarshal"
+	Visible objectives.FireMarshal 1 >=
+	Hinted 1
+	Requires objectives.FireMarshal 5 >=
+	Meter objectives.FireMarshal 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name SafeguardBombSquad
+	Category kAchievement
+	DisplayTitle "P1648835568"
+	DisplayHint "P68754643"
+	DisplayText "P1118766776"
+	DisplayTitleVillain "P2274135469"
+	DisplayHintVillain "P68754643"
+	DisplayTextVillain "P3825281060"
+	Icon "badge_SafeG_BombSquad"
+	Visible objectives.BombSquad 1 >=
+	Hinted 1
+	Requires objectives.BombSquad 5 >=
+	Meter objectives.BombSquad 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name SafeguardPPDDeputy
+	Category kAchievement
+	DisplayTitle "P3560084937"
+	DisplayHint "P519026079"
+	DisplayText "P4040796115"
+	DisplayTitleVillain "P3081870560"
+	DisplayHintVillain "P519026079"
+	DisplayTextVillain "P2466965291"
+	Icon "badge_SafeG_PPDDeputy"
+	Visible objectives.PPDDeputy 1 >=
+	Hinted 1
+	Requires objectives.PPDDeputy 20 >=
+	Meter objectives.PPDDeputy 20 %
+	Revoke 0
+	BadgeValues 20
+}
+
+Badge
+{
+	Name SafeguardSecurityExpert
+	Category kAchievement
+	DisplayTitle "P3971874365"
+	DisplayHint "P505613477"
+	DisplayText "P148388145"
+	DisplayTitleVillain "P2996236002"
+	DisplayHintVillain "P505613477"
+	DisplayTextVillain "P1651849976"
+	Icon "badge_SafeG_SecurityExpert"
+	Visible objectives.SecurityExpert 1 >=
+	Hinted 1
+	Requires objectives.SecurityExpert 5 >=
+	Meter objectives.SecurityExpert 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name SafeguardInterceptor
+	Category kAchievement
+	DisplayTitle "P4228177376"
+	DisplayHint "P1575894446"
+	DisplayText "P2500848176"
+	DisplayTitleVillain "P4228177376"
+	DisplayHintVillain "P1575894446"
+	DisplayTextVillain "P471453776"
+	Icon "badge_SafeG_Interceptor"
+	Visible objectives.Interceptor 1 >=
+	Hinted 1
+	Requires objectives.Interceptor 10 >=
+	Meter objectives.Interceptor 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name MarketCrashValet
+	Category kAchievement
+	DisplayTitle "P4240721299"
+	DisplayText "P3707027083"
+	Icon "badge_i25_valet"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL1_SewerTrial_LostWorshippersKilled
+	Category kAchievement
+	DisplayTitle "P656435126"
+	DisplayHint "P196392330"
+	DisplayText "P3166259564"
+	DisplayTitleVillain "P656435126"
+	DisplayHintVillain "P196392330"
+	Icon "badge_sewer_trial_achievement"
+	Visible SL1_SewerTrial_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL1_SewerTrial_VahzCadaversSpared
+	Category kAchievement
+	DisplayTitle "P4122165256"
+	DisplayHint "P684153952"
+	DisplayText "P619966171"
+	DisplayTitleVillain "P4122165256"
+	DisplayHintVillain "P684153952"
+	Icon "badge_sewer_trial_achievement"
+	Visible SL1_SewerTrial_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTrial_SimultaneousDefeat
+	Category kAchievement
+	DisplayTitle "P4064686717"
+	DisplayHint "P225033561"
+	DisplayText "P816293236"
+	Icon "BloodyBayTrial_SimultaneousDefeat"
+	Visible BloodyBayTrial_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTrial_Meteors
+	Category kAchievement
+	DisplayTitle "P2080639629"
+	DisplayHint "P5373398"
+	DisplayText "P1967302922"
+	Icon "BloodyBayTrial_Meteors"
+	Visible BloodyBayTrial_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I19HeroStoryArcOptional
+	Category kAchievement
+	DisplayTitle "P2349786955"
+	DisplayText "P4006424417"
+	Icon "badge_i19_hero_storyarcOptional"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I19VillainStoryArcOptional
+	Category kAchievement
+	DisplayTitle "P2554763798"
+	DisplayText "P2452977882"
+	Icon "badge_i19_villain_storyarcOptional"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_LowLevel_CaD_GiftedSpeaker
+	Category kAchievement
+	DisplayTitle "P324951184"
+	DisplayText "P3873040153"
+	Icon "badge_i22_mission_cad_giftedspeaker"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_LowLevel_CaD_FalseProphet
+	Category kAchievement
+	DisplayTitle "P362611048"
+	DisplayText "P866378585"
+	Icon "badge_i22_mission_cad_falseprophet"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_LowLevel_SC_SteelSavior
+	Category kAchievement
+	DisplayTitle "P1820107878"
+	DisplayText "P1687261055"
+	Icon "badge_i22_mission_sc_steelsavior"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_LowLevel_SC_WarHero
+	Category kAchievement
+	DisplayTitle "P1083441037"
+	DisplayText "P771661727"
+	Icon "badge_i22_mission_sc_warhero"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_LowLevel_SC_Guardian
+	Category kAchievement
+	DisplayTitle "P1945576864"
+	DisplayText "P911501458"
+	Icon "badge_i25_mission_sc_guardian"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_LowLevel_SC_DeadlyCombatant
+	Category kAchievement
+	DisplayTitle "P3141185396"
+	DisplayText "P3517570805"
+	Reward is.I22BadgeRewardSunXiongKilled
+	Icon "badge_i22_mission_sc_deadlycombatant"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_LowLevel_SC_DignifiedCombatant
+	Category kAchievement
+	DisplayTitle "P419767850"
+	DisplayText "P1467631179"
+	Reward is.I22BadgeRewardSunXiongSpared
+	Icon "badge_i22_mission_sc_dignifiedcombatant"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_IP_i25_Vigilante
+	Category kAchievement
+	DisplayTitle "P3277415733"
+	DisplayText "P1175996458"
+	Icon "Badge_VigilanteAlignment"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_IP_i25_Hero
+	Category kAchievement
+	DisplayTitle "P2522498552"
+	DisplayText "P3347834201"
+	Icon "Badge_HeroAlignment"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Zone_Achievement_01
+	Category kAchievement
+	DisplayTitle "P1017976008"
+	DisplayHint "P2038574421"
+	DisplayText "P629122315"
+	Icon "Mission_DA_Zone_Achievement"
+	Visible Mission_DA_Arc_Complete_01 owned? Mission_DA_Arc_Complete_02 owned? && Mission_DA_Arc_Complete_03 owned? && Mission_DA_Arc_Complete_04 owned? && Mission_DA_Arc_Complete_05 owned? && Mission_DA_Arc_Complete_06 owned? &&
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Zone_Achievement_02
+	Category kAchievement
+	DisplayTitle "P1835757238"
+	DisplayHint "P3257182645"
+	DisplayText "P2285137841"
+	Icon "Mission_DA_Zone_Achievement"
+	Visible Mission_DA_Arc_Complete_01 owned? Mission_DA_Arc_Complete_02 owned? && Mission_DA_Arc_Complete_03 owned? && Mission_DA_Arc_Complete_04 owned? && Mission_DA_Arc_Complete_05 owned? && Mission_DA_Arc_Complete_06 owned? &&
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Zone_Achievement_03
+	Category kAchievement
+	DisplayTitle "P3990719295"
+	DisplayHint "P2688613061"
+	DisplayText "P3086941152"
+	Icon "Mission_DA_Zone_Achievement"
+	Visible Mission_DA_Arc_Complete_01 owned? Mission_DA_Arc_Complete_02 owned? && Mission_DA_Arc_Complete_03 owned? && Mission_DA_Arc_Complete_04 owned? && Mission_DA_Arc_Complete_05 owned? && Mission_DA_Arc_Complete_06 owned? &&
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Zone_Achievement_04
+	Category kAchievement
+	DisplayTitle "P2316148012"
+	DisplayHint "P1856345507"
+	DisplayText "P3866028333"
+	Icon "Mission_DA_Zone_Achievement"
+	Visible Mission_DA_Arc_Complete_01 owned? Mission_DA_Arc_Complete_02 owned? && Mission_DA_Arc_Complete_03 owned? && Mission_DA_Arc_Complete_04 owned? && Mission_DA_Arc_Complete_05 owned? && Mission_DA_Arc_Complete_06 owned? &&
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Zone_Achievement_05
+	Category kAchievement
+	DisplayTitle "P2498877430"
+	DisplayHint "P2022265202"
+	DisplayText "P3724808515"
+	Icon "Mission_DA_Zone_Achievement"
+	Visible Mission_DA_Arc_Complete_01 owned? Mission_DA_Arc_Complete_02 owned? && Mission_DA_Arc_Complete_03 owned? && Mission_DA_Arc_Complete_04 owned? && Mission_DA_Arc_Complete_05 owned? && Mission_DA_Arc_Complete_06 owned? &&
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Zone_Achievement_06
+	Category kAchievement
+	DisplayTitle "P2535704606"
+	DisplayHint "P967716608"
+	DisplayText "P2067116293"
+	DisplayTitleVillain "P2463885192"
+	DisplayHintVillain "P967716608"
+	DisplayTextVillain "P2067116293"
+	Icon "Mission_DA_Zone_Achievement"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_DronesAlive
+	Category kAchievement
+	DisplayTitle "P483803298"
+	DisplayHint "P1650875299"
+	DisplayText "P4135807930"
+	DisplayTitleVillain "P483803298"
+	DisplayHintVillain "P1650875299"
+	DisplayTextVillain "P3452608871"
+	Icon "badge_tf_tinmage_achievement"
+	Visible AlphaTF_Complete_Apex owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_DronesUnused
+	Category kAchievement
+	DisplayTitle "P1829397680"
+	DisplayHint "P3373467761"
+	DisplayText "P2644910895"
+	DisplayTitleVillain "P4003799968"
+	DisplayHintVillain "P3373467761"
+	DisplayTextVillain "P2776878974"
+	Icon "badge_tf_tinmage_achievement"
+	Visible AlphaTF_DronesAlive owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_BattleMaidenQuick
+	Category kAchievement
+	DisplayTitle "P2358389401"
+	DisplayHint "P2774907633"
+	DisplayText "P3219107927"
+	Icon "badge_tf_tinmage_achievement"
+	Visible AlphaTF_Complete_Apex owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_ComputersQuick
+	Category kAchievement
+	DisplayTitle "P1024164993"
+	DisplayHint "P1518384102"
+	DisplayText "P381690272"
+	Icon "badge_tf_alpha_achievement"
+	Visible AlphaTF_Complete_TinMage owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_NoProximityBombs
+	Category kAchievement
+	DisplayTitle "P1184360038"
+	DisplayHint "P2416771663"
+	DisplayText "P886270360"
+	Icon "badge_tf_alpha_achievement"
+	Visible AlphaTF_Complete_TinMage owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_BobcatMaxed
+	Category kAchievement
+	DisplayTitle "P3789085431"
+	DisplayHint "P3388632573"
+	DisplayText "P1853407037"
+	Icon "badge_tf_alpha_achievement"
+	Visible AlphaTF_Complete_TinMage owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_NeuronClones
+	Category kAchievement
+	DisplayTitle "P1383128437"
+	DisplayHint "P188187020"
+	DisplayText "P3015166524"
+	Icon "badge_tf_alpha_achievement"
+	Visible AlphaTF_Complete_TinMage owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_BAF_NoEscapes
+	Category kAchievement
+	DisplayTitle "P3677165662"
+	DisplayHint "P1854763525"
+	DisplayText "P515778345"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_baf_achievement"
+	Visible IT_BAF_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_BAF_NoTowers
+	Category kAchievement
+	DisplayTitle "P3186763671"
+	DisplayHint "P4257221800"
+	DisplayText "P1532580952"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_baf_achievement"
+	Visible IT_BAF_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_BAF_NoMovingAVs
+	Category kAchievement
+	DisplayTitle "P598637347"
+	DisplayHint "P3587578483"
+	DisplayText "P2484817325"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_baf_achievement"
+	Visible IT_BAF_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_BAF_NoAdds
+	Category kAchievement
+	DisplayTitle "P3393253394"
+	DisplayHint "P3095664349"
+	DisplayText "P3424488781"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_baf_achievement"
+	Visible IT_BAF_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Lambda_Simultaneity
+	Category kAchievement
+	DisplayTitle "P4124822084"
+	DisplayHint "P613864908"
+	DisplayText "P512875543"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_lambda_achievement"
+	Visible IT_Lambda_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Lambda_NoGrenades
+	Category kAchievement
+	DisplayTitle "P2816652465"
+	DisplayHint "P4170694008"
+	DisplayText "P2054343451"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_lambda_achievement"
+	Visible IT_Lambda_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Lambda_NoAcids
+	Category kAchievement
+	DisplayTitle "P1985419558"
+	DisplayHint "P483909556"
+	DisplayText "P2339517061"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_lambda_achievement"
+	Visible IT_Lambda_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Lambda_NoPowers
+	Category kAchievement
+	DisplayTitle "P4065430134"
+	DisplayHint "P2681521673"
+	DisplayText "P996449128"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_lambda_achievement"
+	Visible IT_Lambda_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Keyes_StrongPulse
+	Category kAchievement
+	DisplayTitle "P755170133"
+	DisplayHint "P1801267116"
+	DisplayText "P558236128"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_keyes_achievement"
+	Visible IT_Keyes_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Keyes_BunkerBuster
+	Category kAchievement
+	DisplayTitle "P2374252913"
+	DisplayHint "P268820190"
+	DisplayText "P2832010666"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_keyes_achievement"
+	Visible IT_Keyes_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Keyes_Challenge
+	Category kAchievement
+	DisplayTitle "P3896207225"
+	DisplayHint "P385666290"
+	DisplayText "P2696085791"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_keyes_achievement"
+	Visible IT_Keyes_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Keyes_NoHolds
+	Category kAchievement
+	DisplayTitle "P3093775060"
+	DisplayHint "P1793415526"
+	DisplayText "P2055045755"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_keyes_achievement"
+	Visible IT_Keyes_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Underground_FastKill
+	Category kAchievement
+	DisplayTitle "P872218290"
+	DisplayHint "P3216053393"
+	DisplayText "P2113355511"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_underground_achievement"
+	Visible IT_Underground_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Underground_DesHealth
+	Category kAchievement
+	DisplayTitle "P2235122909"
+	DisplayHint "P3704879372"
+	DisplayText "P3537182985"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_underground_achievement"
+	Visible IT_Underground_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Underground_AllBombs
+	Category kAchievement
+	DisplayTitle "P1580936317"
+	DisplayHint "P318766216"
+	DisplayText "P810724628"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_underground_achievement"
+	Visible IT_Underground_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Underground_AvatarBomb
+	Category kAchievement
+	DisplayTitle "P2199589042"
+	DisplayHint "P2387914028"
+	DisplayText "P1578969037"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_underground_achievement"
+	Visible IT_Underground_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_TPN_PropagandaChallenge
+	Category kAchievement
+	DisplayTitle "P2711178141"
+	DisplayHint "P665600895"
+	DisplayText "P3823707395"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_tpn_achievement"
+	Visible IT_TPN_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_TPN_TelepathistChallenge
+	Category kAchievement
+	DisplayTitle "P1998172158"
+	DisplayHint "P2488298955"
+	DisplayText "P639806862"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_tpn_achievement"
+	Visible IT_TPN_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_TPN_TelevisionChallenge
+	Category kAchievement
+	DisplayTitle "P2463058239"
+	DisplayHint "P999619434"
+	DisplayText "P1736904048"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_tpn_achievement"
+	Visible IT_TPN_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_TPN_MaelstromChallenge
+	Category kAchievement
+	DisplayTitle "P3550687398"
+	DisplayHint "P2405249906"
+	DisplayText "P1968449432"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_tpn_achievement"
+	Visible IT_TPN_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MoM_MalaiseChallenge
+	Category kAchievement
+	DisplayTitle "P1056458691"
+	DisplayHint "P2199890884"
+	DisplayText "P810393356"
+	DisplayTitleVillain "P2144589927"
+	DisplayHintVillain "P2199890884"
+	DisplayTextVillain "P810393356"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_mom_achievement"
+	Visible IT_MoM_Complete owned?
+	Hinted 1
+	Requires kills.Malaise_Nightmare_Eochai 1 >= kills.Malaise_Nightmare_JackInIrons 1 >= && kills.Malaise_Nightmare_Adamastor 1 >= && kills.Malaise_Nightmare_Babbage 1 >= && kills.Malaise_Nightmare_Paladin 1 >= && kills.Malaise_Nightmare_KronosTitan 1 >= && kills.Malaise_Nightmare_Jurassik 1 >= && kills.Malaise_Nightmare_CrystalTitan 1 >= && kills.Malaise_Nightmare_Caleb 1 >= && kills.Malaise_Nightmare_Ruladak 1 >= && kills.Malaise_Nightmare_Lanaru 1 >= && kills.Malaise_Nightmare_Deathsurge 1 >= && kills.Malaise_Nightmare_LordWinter 1 >= && kills.Malaise_Nightmare_Avatar 1 >= && kills.Malaise_Nightmare_LIWW 1 >= && kills.Malaise_Nightmare_BatZul 1 >= &&
+	Meter kills.Malaise_Nightmare_Eochai 1 >= kills.Malaise_Nightmare_JackInIrons 1 >= + kills.Malaise_Nightmare_Adamastor 1 >= + kills.Malaise_Nightmare_Babbage 1 >= + kills.Malaise_Nightmare_Paladin 1 >= + kills.Malaise_Nightmare_KronosTitan 1 >= + kills.Malaise_Nightmare_Jurassik 1 >= + kills.Malaise_Nightmare_CrystalTitan 1 >= + kills.Malaise_Nightmare_Caleb 1 >= + kills.Malaise_Nightmare_Ruladak 1 >= + kills.Malaise_Nightmare_Lanaru 1 >= + kills.Malaise_Nightmare_Deathsurge 1 >= + kills.Malaise_Nightmare_LordWinter 1 >= + kills.Malaise_Nightmare_Avatar 1 >= + kills.Malaise_Nightmare_LIWW 1 >= + kills.Malaise_Nightmare_BatZul 1 >= + 16 %
+	Revoke 0
+	BadgeValues 16
+}
+
+Badge
+{
+	Name IT_MoM_PenelopeChallenge
+	Category kAchievement
+	DisplayTitle "P185594407"
+	DisplayHint "P3336352228"
+	DisplayText "P2433945462"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_mom_achievement"
+	Visible IT_MoM_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MoM_AuroraChallenge
+	Category kAchievement
+	DisplayTitle "P3125250774"
+	DisplayHint "P1722338451"
+	DisplayText "P4242846153"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_mom_achievement"
+	Visible IT_MoM_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MoM_ShaliceChallenge
+	Category kAchievement
+	DisplayTitle "P1780778578"
+	DisplayHint "P3931100314"
+	DisplayText "P119672427"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_mom_achievement"
+	Visible IT_MoM_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_DD_TimeChallenge
+	Category kAchievement
+	DisplayTitle "P2244146525"
+	DisplayHint "P2555891121"
+	DisplayText "P1859686691"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_dea_achievement"
+	Visible IT_DD_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_DD_SentinelChallenge
+	Category kAchievement
+	DisplayTitle "P434413358"
+	DisplayHint "P564598685"
+	DisplayText "P2339234730"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_dea_achievement"
+	Visible IT_DD_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_DD_NoRescueChallenge
+	Category kAchievement
+	DisplayTitle "P785849636"
+	DisplayHint "P2494335209"
+	DisplayText "P319961258"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_dea_achievement"
+	Visible IT_DD_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_DD_HealingChallenge
+	Category kAchievement
+	DisplayTitle "P2359851126"
+	DisplayHint "P996613074"
+	DisplayText "P3145465909"
+	Reward RandomPool1Uncommon
+	Icon "badge_it_dea_achievement"
+	Visible IT_DD_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MAG_Challenge1
+	Category kAchievement
+	DisplayTitle "P2768123050"
+	DisplayHint "P189045823"
+	DisplayText "P2923526993"
+	Reward RandomPool1Uncommon
+	Icon "Badge_Achievement_Magisterium_IT_Challenge1"
+	Visible IT_MAG_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MAG_Challenge2
+	Category kAchievement
+	DisplayTitle "P2792608503"
+	DisplayHint "P2129452948"
+	DisplayText "P2623443866"
+	Reward RandomPool1Uncommon
+	Icon "Badge_Achievement_Magisterium_IT_Challenge2"
+	Visible IT_MAG_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MAG_Challenge3
+	Category kAchievement
+	DisplayTitle "P2913534490"
+	DisplayHint "P143218978"
+	DisplayText "P2260068074"
+	Reward RandomPool1Uncommon
+	Icon "Badge_Achievement_Magisterium_IT_Challenge3"
+	Visible IT_MAG_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MAG_Challenge4
+	Category kAchievement
+	DisplayTitle "P2057272013"
+	DisplayHint "P4274282363"
+	DisplayText "P3102655326"
+	Reward RandomPool1Uncommon
+	Icon "Badge_Achievement_Magisterium_IT_Challenge3"
+	Visible IT_MAG_Complete owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MAG_EpicChallenge
+	Category kAchievement
+	DisplayTitle "P1860496524"
+	DisplayHint "P486262107"
+	DisplayText "P1713117679"
+	Reward RandomPool1Rare
+	Icon "Badge_Achievement_Magisterium_IT_Challenge3"
+	Visible IT_MAG_Master owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RWZBomber
+	Category kAchievement
+	DisplayTitle "P4023734012"
+	DisplayHint "P2314926109"
+	DisplayText "P3000394788"
+	Icon "badge_vanguard_002"
+	Visible scripts.RWZBombPlace 1 >=
+	Hinted 1
+	Requires scripts.RWZBombPlace 10 >=
+	Meter scripts.RWZBombPlace 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name MasterofImperiousTaskForce
+	Category kAchievement
+	DisplayTitle "P4094707821"
+	DisplayText "P1264072484"
+	Icon "Badge_MasterofImperiousTF"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MasterofLadyGreysTaskforce
+	Category kAchievement
+	DisplayTitle "P4247037530"
+	DisplayText "P2078957546"
+	Icon "Badge_MasterofLadyGreysTF"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MasterofStatesmansTaskForce
+	Category kAchievement
+	DisplayTitle "P3179361958"
+	DisplayText "P1202175330"
+	Icon "badge_task_force_master_statesman"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MasterofLordReclusesStrikeForce
+	Category kAchievement
+	DisplayTitle "P3508863984"
+	DisplayText "P2692000553"
+	Icon "badge_task_force_master_recluse"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MasterofReichsmansTaskForce
+	Category kAchievement
+	DisplayTitle "P2767885741"
+	DisplayText "P2866259810"
+	Icon "Badge_MasterofReichsmanTF"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MasterofReichsmansStrikeForce
+	Category kAchievement
+	DisplayTitle "P2963418479"
+	DisplayText "P3232080594"
+	Icon "Badge_MasterofReichsmanSF"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_Master_Apex
+	Category kAchievement
+	DisplayTitle "P919328316"
+	DisplayHint "P3633372085"
+	DisplayText "P3346196612"
+	Icon "badge_tf_tinmage_master"
+	Visible AlphaTF_DronesAlive owned? AlphaTF_DronesUnused owned? || AlphaTF_BattleMaidenQuick owned? ||
+	Hinted 1
+	Requires AlphaTF_DronesAlive owned? AlphaTF_DronesUnused owned? && AlphaTF_BattleMaidenQuick owned? &&
+	Meter AlphaTF_DronesAlive owned? AlphaTF_DronesUnused owned? + AlphaTF_BattleMaidenQuick owned? + 3 %
+	Revoke 0
+	BadgeValues 3
+}
+
+Badge
+{
+	Name AlphaTF_Master_TinMage
+	Category kAchievement
+	DisplayTitle "P631635510"
+	DisplayHint "P870936108"
+	DisplayText "P4128758852"
+	Icon "badge_tf_alpha_accolade"
+	Visible AlphaTF_ComputersQuick owned? AlphaTF_NoProximityBombs owned? || AlphaTF_BobcatMaxed owned? || AlphaTF_NeuronClones owned? ||
+	Hinted 1
+	Requires AlphaTF_ComputersQuick owned? AlphaTF_NoProximityBombs owned? && AlphaTF_BobcatMaxed owned? && AlphaTF_NeuronClones owned? &&
+	Meter AlphaTF_ComputersQuick owned? AlphaTF_NoProximityBombs owned? + AlphaTF_BobcatMaxed owned? + AlphaTF_NeuronClones owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name IT_BAF_Master
+	Category kAchievement
+	DisplayTitle "P1423349509"
+	DisplayHint "P3846823322"
+	DisplayText "P3786633728"
+	Reward RandomPool1Rare
+	Icon "badge_it_baf_master"
+	Visible IT_BAF_NoEscapes owned? IT_BAF_NoTowers owned? || IT_BAF_NoMovingAVs owned? || IT_BAF_NoAdds owned? ||
+	Hinted 1
+	Requires IT_BAF_NoEscapes owned? IT_BAF_NoTowers owned? && IT_BAF_NoMovingAVs owned? && IT_BAF_NoAdds owned? &&
+	Meter IT_BAF_NoEscapes owned? IT_BAF_NoTowers owned? + IT_BAF_NoMovingAVs owned? + IT_BAF_NoAdds owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name IT_Lambda_Master
+	Category kAchievement
+	DisplayTitle "P868696700"
+	DisplayHint "P561644068"
+	DisplayText "P2092041111"
+	Reward RandomPool1Rare
+	Icon "badge_it_lambda_master"
+	Visible IT_Lambda_Simultaneity owned? IT_Lambda_NoGrenades owned? || IT_Lambda_NoAcids owned? || IT_Lambda_NoPowers owned? ||
+	Hinted 1
+	Requires IT_Lambda_Simultaneity owned? IT_Lambda_NoGrenades owned? && IT_Lambda_NoAcids owned? && IT_Lambda_NoPowers owned? &&
+	Meter IT_Lambda_Simultaneity owned? IT_Lambda_NoGrenades owned? + IT_Lambda_NoAcids owned? + IT_Lambda_NoPowers owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name IT_Keyes_Master
+	Category kAchievement
+	DisplayTitle "P3074069376"
+	DisplayHint "P3319724684"
+	DisplayText "P3531299099"
+	Reward RandomPool1Rare
+	Icon "badge_it_keyes_master"
+	Visible IT_Keyes_StrongPulse owned? IT_Keyes_BunkerBuster owned? || IT_Keyes_Challenge owned? || IT_Keyes_NoHolds owned? ||
+	Hinted 1
+	Requires IT_Keyes_StrongPulse owned? IT_Keyes_BunkerBuster owned? && IT_Keyes_Challenge owned? && IT_Keyes_NoHolds owned? &&
+	Meter IT_Keyes_StrongPulse owned? IT_Keyes_BunkerBuster owned? + IT_Keyes_Challenge owned? + IT_Keyes_NoHolds owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name IT_Underground_Master
+	Category kAchievement
+	DisplayTitle "P2883025105"
+	DisplayHint "P4122091049"
+	DisplayText "P2545112660"
+	Reward RandomPool1Rare
+	Icon "badge_it_underground_master"
+	Visible IT_Underground_FastKill owned? IT_Underground_DesHealth owned? || IT_Underground_AllBombs owned? || IT_Underground_AvatarBomb owned? ||
+	Hinted 1
+	Requires IT_Underground_FastKill owned? IT_Underground_DesHealth owned? && IT_Underground_AllBombs owned? && IT_Underground_AvatarBomb owned? &&
+	Meter IT_Underground_FastKill owned? IT_Underground_DesHealth owned? + IT_Underground_AllBombs owned? + IT_Underground_AvatarBomb owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name IT_TPN_Master
+	Category kAchievement
+	DisplayTitle "P1459015527"
+	DisplayHint "P754166914"
+	DisplayText "P4094806799"
+	Reward RandomPool1Rare
+	Icon "badge_it_tpn_master"
+	Visible IT_TPN_PropagandaChallenge owned? IT_TPN_TelepathistChallenge owned? || IT_TPN_TelevisionChallenge owned? || IT_TPN_MaelstromChallenge owned? ||
+	Hinted 1
+	Requires IT_TPN_PropagandaChallenge owned? IT_TPN_TelepathistChallenge owned? && IT_TPN_TelevisionChallenge owned? && IT_TPN_MaelstromChallenge owned? &&
+	Meter IT_TPN_PropagandaChallenge owned? IT_TPN_TelepathistChallenge owned? + IT_TPN_TelevisionChallenge owned? + IT_TPN_MaelstromChallenge owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name IT_MoM_Master
+	Category kAchievement
+	DisplayTitle "P1958255903"
+	DisplayHint "P1517970815"
+	DisplayText "P761227468"
+	DisplayTitleVillain "P1958255903"
+	DisplayHintVillain "P3736900561"
+	DisplayTextVillain "P761227468"
+	Reward RandomPool1Rare
+	Icon "badge_it_mom_master"
+	Visible IT_MoM_MalaiseChallenge owned? IT_MoM_PenelopeChallenge owned? || IT_MoM_AuroraChallenge owned? || IT_MoM_ShaliceChallenge owned? ||
+	Hinted 1
+	Requires IT_MoM_MalaiseChallenge owned? IT_MoM_PenelopeChallenge owned? && IT_MoM_AuroraChallenge owned? && IT_MoM_ShaliceChallenge owned? &&
+	Meter IT_MoM_MalaiseChallenge owned? IT_MoM_PenelopeChallenge owned? + IT_MoM_AuroraChallenge owned? + IT_MoM_ShaliceChallenge owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name IT_DD_Master
+	Category kAchievement
+	DisplayTitle "P1752099875"
+	DisplayHint "P2235567672"
+	DisplayText "P1094372523"
+	Reward RandomPool1Rare
+	Icon "badge_it_dea_master"
+	Visible IT_DD_TimeChallenge owned? IT_DD_SentinelChallenge owned? || IT_DD_NoRescueChallenge owned? || IT_DD_HealingChallenge owned? ||
+	Hinted 1
+	Requires IT_DD_TimeChallenge owned? IT_DD_SentinelChallenge owned? && IT_DD_NoRescueChallenge owned? && IT_DD_HealingChallenge owned? &&
+	Meter IT_DD_TimeChallenge owned? IT_DD_SentinelChallenge owned? + IT_DD_NoRescueChallenge owned? + IT_DD_HealingChallenge owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name IT_MAG_Master
+	Category kAchievement
+	DisplayTitle "P1525433992"
+	DisplayHint "P183288021"
+	DisplayText "P3290270117"
+	Reward RandomPool1Rare
+	Icon "Badge_Accolade_Magisterium_IT_Master"
+	Visible IT_MAG_Challenge1 owned? IT_MAG_Challenge2 owned? || IT_MAG_Challenge3 owned? || IT_MAG_Challenge4 owned? ||
+	Hinted 1
+	Requires IT_MAG_Challenge1 owned? IT_MAG_Challenge2 owned? && IT_MAG_Challenge3 owned? && IT_MAG_Challenge4 owned? &&
+	Meter IT_MAG_Challenge1 owned? IT_MAG_Challenge2 owned? + IT_MAG_Challenge3 owned? + IT_MAG_Challenge4 owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name PraetorianInvasion
+	Category kAchievement
+	DisplayTitle "P1856931951"
+	DisplayText "P2401937433"
+	Icon "badge_superpatriot_set_01"
+	Visible 0
+	Hinted 0
+	Requires AlphaTF_Master_Apex owned? AlphaTF_Master_TinMage owned? &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GoldClub
+	Category kAchievement
+	DisplayTitle "P410117270"
+	DisplayHint "P3957106527"
+	DisplayText "P3175692192"
+	Reward is.GoldClubPower
+	Icon "badge_Pocket_D_VIP"
+	Visible time.maps/City_Zones/City_02_04/City_02_04.txt 1 >=
+	Hinted 1
+	Requires time.maps/City_Zones/City_02_04/City_02_04.txt 3600 >=
+	Meter time.maps/City_Zones/City_02_04/City_02_04.txt 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name TrollTaskForce
+	Category kAchievement
+	DisplayTitle "P1706027460"
+	DisplayHint "P1573659072"
+	DisplayText "P3707969033"
+	Icon "badge_time"
+	VillainIcon "v_badge_TimeSpentBadge"
+	Visible time.maps/City_Zones/Hazard_01_02/Hazard_01_02.txt 1 >=
+	Hinted 1
+	Requires time.maps/City_Zones/Hazard_01_02/Hazard_01_02.txt 3600 >=
+	Meter time.maps/City_Zones/Hazard_01_02/Hazard_01_02.txt 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name BloodyBay
+	Category kAchievement
+	DisplayTitle "P431246538"
+	DisplayHint "P971967129"
+	DisplayText "P1481902402"
+	Icon "badge_time"
+	VillainIcon "v_badge_TimeSpentBadge"
+	Visible time.maps/City_Zones/V_PvP_02_01/V_PvP_02_01.txt 1 >=
+	Hinted 1
+	Requires time.maps/City_Zones/V_PvP_02_01/V_PvP_02_01.txt 3600 >=
+	Meter time.maps/City_Zones/V_PvP_02_01/V_PvP_02_01.txt 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name Siren'sCall
+	Category kAchievement
+	DisplayTitle "P3463842835"
+	DisplayHint "P517348922"
+	DisplayText "P670218"
+	DisplayTitleVillain "P4222026277"
+	DisplayHintVillain "P517348922"
+	DisplayTextVillain "P670218"
+	Icon "badge_time"
+	VillainIcon "v_badge_TimeSpentBadge"
+	Visible time.maps/City_Zones/V_PvP_03_01/V_PvP_03_01.txt 1 >=
+	Hinted 1
+	Requires time.maps/City_Zones/V_PvP_03_01/V_PvP_03_01.txt 3600 >=
+	Meter time.maps/City_Zones/V_PvP_03_01/V_PvP_03_01.txt 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name Warburg
+	Category kAchievement
+	DisplayTitle "P1755490485"
+	DisplayHint "P106153651"
+	DisplayText "P3235483558"
+	DisplayTitleVillain "P1755490485"
+	DisplayHintVillain "P3015302592"
+	DisplayTextVillain "P216905982"
+	Icon "badge_time"
+	VillainIcon "v_badge_TimeSpentBadge"
+	Visible time.maps/City_Zones/V_PvP_04_01/V_PvP_04_01.txt 1 >=
+	Hinted 1
+	Requires time.maps/City_Zones/V_PvP_04_01/V_PvP_04_01.txt 3600 >=
+	Meter time.maps/City_Zones/V_PvP_04_01/V_PvP_04_01.txt 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name RecluseVictory
+	Category kAchievement
+	DisplayTitle "P2849412221"
+	DisplayHint "P1351682962"
+	DisplayText "P417202554"
+	DisplayTitleVillain "P2849412221"
+	DisplayHintVillain "P3264412855"
+	DisplayTextVillain "P417202554"
+	Icon "badge_time"
+	VillainIcon "v_badge_TimeSpentBadge"
+	Visible time.maps/City_Zones/V_PvP_05_01/V_PvP_05_01.txt 1 >=
+	Hinted 1
+	Requires time.maps/City_Zones/V_PvP_05_01/V_PvP_05_01.txt 3600 >=
+	Meter time.maps/City_Zones/V_PvP_05_01/V_PvP_05_01.txt 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name FirebaseZuluSecurity
+	Category kAchievement
+	DisplayTitle "P1855420617"
+	DisplayHint "P1408670279"
+	DisplayText "P3044034901"
+	DisplayTitleVillain "P514051020"
+	DisplayHintVillain "P1408670279"
+	DisplayTextVillain "P1728127790"
+	Icon "badge_time"
+	VillainIcon "v_badge_TimeSpentBadge"
+	Visible time.maps/City_Zones/Hazard_06_01/Hazard_06_01.txt time.maps/City_Zones/Hazard_06_02/Hazard_06_02.txt + time.maps/City_Zones/Hazard_06_03/Hazard_06_03.txt + 1 >=
+	Hinted 1
+	Requires time.maps/City_Zones/Hazard_06_01/Hazard_06_01.txt time.maps/City_Zones/Hazard_06_02/Hazard_06_02.txt + time.maps/City_Zones/Hazard_06_03/Hazard_06_03.txt + 3600 >=
+	Meter time.maps/City_Zones/Hazard_06_01/Hazard_06_01.txt time.maps/City_Zones/Hazard_06_02/Hazard_06_02.txt + time.maps/City_Zones/Hazard_06_03/Hazard_06_03.txt + 3600 %
+	Revoke 0
+	BadgeValues 3600
+}
+
+Badge
+{
+	Name SouvenirCount10
+	Category kAchievement
+	DisplayTitle "P2484218294"
+	DisplayText "P3120989475"
+	Icon "souvenir_count_10"
+	Visible 0
+	Hinted 0
+	Requires SouvenirCount 10 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SouvenirCount25
+	Category kAchievement
+	DisplayTitle "P1329126704"
+	DisplayHint "P3002928531"
+	DisplayText "P166896029"
+	Icon "souvenir_count_25"
+	Visible SouvenirCount10 owned?
+	Hinted 1
+	Requires SouvenirCount 25 >=
+	Meter SouvenirCount 25 %
+	Revoke 0
+	BadgeValues 25
+}
+
+Badge
+{
+	Name SouvenirCount50
+	Category kAchievement
+	DisplayTitle "P3606652427"
+	DisplayHint "P1058034835"
+	DisplayText "P1079193051"
+	Icon "souvenir_count_50"
+	Visible SouvenirCount25 owned?
+	Hinted 1
+	Requires SouvenirCount 50 >=
+	Meter SouvenirCount 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name SouvenirCount100
+	Category kAchievement
+	DisplayTitle "P861914196"
+	DisplayHint "P930133046"
+	DisplayText "P979026845"
+	Icon "souvenir_count_100"
+	Visible SouvenirCount50 owned?
+	Hinted 1
+	Requires SouvenirCount 100 >=
+	Meter SouvenirCount 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name SouvenirCount200
+	Category kAchievement
+	DisplayTitle "P3162417365"
+	DisplayHint "P1818690851"
+	DisplayText "P2622262566"
+	Icon "souvenir_count_200"
+	Visible SouvenirCount100 owned?
+	Hinted 1
+	Requires SouvenirCount 200 >=
+	Meter SouvenirCount 200 %
+	Revoke 0
+	BadgeValues 200
+}
+
+Badge
+{
+	Name Tourist
+	Category kAchievement
+	DisplayTitle "P1462552386"
+	DisplayText "P250677160"
+	DisplayTitleVillain "P89708547"
+	DisplayTextVillain "P2221981887"
+	Icon "badge_count_10"
+	VillainIcon "v_badge_10BadgeBadge"
+	Visible 0
+	Hinted 0
+	Requires badgecount 10 >= praetorianprogress char> normal eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Badges_10
+	Category kAchievement
+	DisplayTitle "P2279098805"
+	DisplayText "P105350519"
+	Icon "badge_count_10"
+	VillainIcon "v_badge_10BadgeBadge"
+	Visible 0
+	Hinted 0
+	Requires badgecount 10 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Collector
+	Category kAchievement
+	DisplayTitle "P1277851631"
+	DisplayHint "P3812347710"
+	DisplayText "P900165613"
+	DisplayTitleVillain "P3341031553"
+	DisplayHintVillain "P3812347710"
+	DisplayTextVillain "P4242549991"
+	Icon "badge_count_25"
+	VillainIcon "v_badge_25BadgeBadge"
+	Visible Tourist owned?
+	Hinted 1
+	Requires badgecount 25 >= praetorianprogress char> normal eq &&
+	Meter badgecount 25 %
+	Revoke 0
+	BadgeValues 25
+}
+
+Badge
+{
+	Name P_Badges_25
+	Category kAchievement
+	DisplayTitle "P759661243"
+	DisplayHint "P3812347710"
+	DisplayText "P617876823"
+	Icon "badge_count_25"
+	VillainIcon "v_badge_25BadgeBadge"
+	Visible P_Badges_10 owned?
+	Hinted 1
+	Requires badgecount 25 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter badgecount 25 %
+	Revoke 0
+	BadgeValues 25
+}
+
+Badge
+{
+	Name Explorer
+	Category kAchievement
+	DisplayTitle "P512347832"
+	DisplayHint "P1265668360"
+	DisplayText "P604374312"
+	DisplayTitleVillain "P683292270"
+	DisplayHintVillain "P1265668360"
+	DisplayTextVillain "P3721407528"
+	Icon "badge_count_50"
+	VillainIcon "v_badge_50BadgeBadge"
+	Visible Collector owned?
+	Hinted 1
+	Requires badgecount 50 >= praetorianprogress char> normal eq &&
+	Meter badgecount 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name P_Badges_50
+	Category kAchievement
+	DisplayTitle "P4086359395"
+	DisplayHint "P1265668360"
+	DisplayText "P1158073162"
+	Icon "badge_count_50"
+	VillainIcon "v_badge_50BadgeBadge"
+	Visible P_Badges_25 owned?
+	Hinted 1
+	Requires badgecount 50 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter badgecount 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name Pathfinder
+	Category kAchievement
+	DisplayTitle "P4193022836"
+	DisplayHint "P4226820722"
+	DisplayText "P451285382"
+	Icon "badge_count_100"
+	VillainIcon "v_badge_100BadgesBadgeVillain"
+	Visible Explorer owned?
+	Hinted 1
+	Requires badgecount 100 >= praetorianprogress char> normal eq &&
+	Meter badgecount 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name P_Badges_100
+	Category kAchievement
+	DisplayTitle "P2293986639"
+	DisplayHint "P4226820722"
+	DisplayText "P502387149"
+	Icon "badge_count_100"
+	VillainIcon "v_badge_100BadgesBadgeVillain"
+	Visible P_Badges_50 owned?
+	Hinted 1
+	Requires badgecount 100 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter badgecount 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name Trailblazer
+	Category kAchievement
+	DisplayTitle "P4235559942"
+	DisplayHint "P62986597"
+	DisplayText "P2387530797"
+	DisplayTitleVillain "P4235559942"
+	DisplayTextVillain "P567679469"
+	Icon "badge_count_200"
+	VillainIcon "v_badge_200BadgesBadgeVillain"
+	Visible Pathfinder owned?
+	Hinted 1
+	Requires badgecount 200 >= praetorianprogress char> normal eq &&
+	Meter badgecount 200 %
+	Revoke 0
+	BadgeValues 200
+}
+
+Badge
+{
+	Name P_Badges_200
+	Category kAchievement
+	DisplayTitle "P2079884993"
+	DisplayHint "P62986597"
+	DisplayText "P1965405952"
+	Icon "badge_count_200"
+	VillainIcon "v_badge_200BadgesBadgeVillain"
+	Visible P_Badges_100 owned?
+	Hinted 1
+	Requires badgecount 200 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter badgecount 200 %
+	Revoke 0
+	BadgeValues 200
+}
+
+Badge
+{
+	Name 500Badges
+	Category kAchievement
+	DisplayTitle "P2230423493"
+	DisplayHint "P3068375133"
+	DisplayText "P3804495655"
+	DisplayTitleVillain "P2230423493"
+	DisplayHintVillain "P3068375133"
+	DisplayTextVillain "P80731074"
+	Icon "badge_count_500"
+	VillainIcon "v_badge_count_500"
+	Visible Trailblazer owned?
+	Hinted 1
+	Requires badgecount 500 >= praetorianprogress char> normal eq &&
+	Meter badgecount 500 %
+	Revoke 0
+	BadgeValues 500
+}
+
+Badge
+{
+	Name P_Badges_500
+	Category kAchievement
+	DisplayTitle "P3937509454"
+	DisplayHint "P3068375133"
+	DisplayText "P2820549071"
+	Icon "badge_count_500"
+	VillainIcon "v_badge_count_500"
+	Visible P_Badges_200 owned?
+	Hinted 1
+	Requires badgecount 500 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter badgecount 500 %
+	Revoke 0
+	BadgeValues 500
+}
+
+Badge
+{
+	Name 750Badges
+	Category kAchievement
+	DisplayTitle "P3010815058"
+	DisplayHint "P4199271864"
+	DisplayText "P2564823420"
+	DisplayTitleVillain "P3010815058"
+	DisplayHintVillain "P4199271864"
+	DisplayTextVillain "P2893739429"
+	Icon "badge_count_750"
+	VillainIcon "v_badge_count_750"
+	Visible 500Badges owned?
+	Hinted 1
+	Requires badgecount 750 >= praetorianprogress char> normal eq &&
+	Meter badgecount 750 %
+	Revoke 0
+	BadgeValues 750
+}
+
+Badge
+{
+	Name P_Badges_750
+	Category kAchievement
+	DisplayTitle "P3493335961"
+	DisplayHint "P4199271864"
+	DisplayText "P2683210868"
+	Icon "badge_count_750"
+	VillainIcon "v_badge_count_750"
+	Visible P_Badges_500 owned?
+	Hinted 1
+	Requires badgecount 750 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter badgecount 750 %
+	Revoke 0
+	BadgeValues 750
+}
+
+Badge
+{
+	Name 1000Badges
+	Category kAchievement
+	DisplayTitle "P793158397"
+	DisplayHint "P100778967"
+	DisplayText "P3847024798"
+	DisplayTitleVillain "P793158397"
+	DisplayHintVillain "P100778967"
+	DisplayTextVillain "P1597081115"
+	Icon "badge_count_1000"
+	VillainIcon "v_badge_count_1000"
+	Visible 750Badges owned?
+	Hinted 1
+	Requires badgecount 1000 >= praetorianprogress char> normal eq &&
+	Meter badgecount 1000 %
+	Revoke 0
+	BadgeValues 1000
+}
+
+Badge
+{
+	Name P_Badges_1000
+	Category kAchievement
+	DisplayTitle "P1822590320"
+	DisplayHint "P100778967"
+	DisplayText "P3573668977"
+	Icon "badge_count_1000"
+	VillainIcon "v_badge_count_1000"
+	Visible P_Badges_750 owned?
+	Hinted 1
+	Requires badgecount 1000 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter badgecount 1000 %
+	Revoke 0
+	BadgeValues 1000
+}
+
+Badge
+{
+	Name 1250Badges
+	Category kAchievement
+	DisplayTitle "P3096116979"
+	DisplayHint "P1252638258"
+	DisplayText "P1003713981"
+	Icon "badge_count_1250"
+	VillainIcon "v_badge_count_1250"
+	Visible 1000Badges owned?
+	Hinted 1
+	Requires badgecount 1250 >= praetorianprogress char> normal eq &&
+	Meter badgecount 1250 %
+	Revoke 0
+	BadgeValues 1250
+}
+
+Badge
+{
+	Name P_Badges_1250
+	Category kAchievement
+	DisplayTitle "P2713316151"
+	DisplayHint "P1252638258"
+	DisplayText "P343680454"
+	Icon "badge_count_1250"
+	VillainIcon "v_badge_count_1250"
+	Visible P_Badges_1000 owned?
+	Hinted 1
+	Requires badgecount 1250 >= praetorianprogress char> normal eq ! && praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter badgecount 1250 %
+	Revoke 0
+	BadgeValues 1250
+}
+
+Badge
+{
+	Name 1500Badges
+	Category kAchievement
+	DisplayTitle "P3518978876"
+	DisplayHint "P3420630271"
+	DisplayText "P3263052388"
+	Icon "badge_count_1500"
+	VillainIcon "v_badge_count_1500"
+	Visible 1250Badges owned? P_Badges_1250 owned? ||
+	Hinted 1
+	Requires badgecount 1500 >=
+	Meter badgecount 1500 %
+	Revoke 0
+	BadgeValues 1500
+}
+

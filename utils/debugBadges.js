@@ -1,11 +1,11 @@
-const { loadAllBadgeData } = require('./badgeDataCache');
+const { getAttributeMap } = require('./attributeMap');
+const { getAllBadges } = require('./badgeDetails');
 const { getOwnedBadgesFromBitfield } = require('./badgeParser');
-const fs = require('fs');
-const path = require('path');
 
-function debugBadgeDiscrepancies(hexBitfield) {
-  const { attributeMap, detailsMap } = loadAllBadgeData();
-  const ownedBadges = getOwnedBadgesFromBitfield(hexBitfield);
+function debugBadgeDiscrepancies(hexBitfield, serverKey) {
+  const attributeMap = getAttributeMap(serverKey);
+  const detailsMap = getAllBadges(serverKey);
+  const ownedBadges = getOwnedBadgesFromBitfield(hexBitfield, serverKey);
   const ownedSet = new Set(ownedBadges.map(b => b.internalName));
 
   const all = Object.entries(detailsMap);

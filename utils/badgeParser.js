@@ -1,52 +1,84 @@
 const fs = require('fs');
 const path = require('path');
-const { loadAllBadgeData } = require('./badgeDataCache');
-const { attributeMap: badgeAttributeMap, detailsMap: badgeDetailsMap } = loadAllBadgeData();
+const config = require(global.BASE_DIR + '/utils/config');
 
 const BADGE_ENT_MAX_BADGES = 4096;
 const BITS_PER_ITEM = 32;
 const BITFIELD_SIZE = Math.max(Math.ceil(BADGE_ENT_MAX_BADGES / BITS_PER_ITEM), 263);
 
-// Load Badges.ms (string table)
-const msPath = path.join(global.BASE_DIR, 'data', 'badges', 'Badges.ms');
-let msRaw = '';
-try {
-  msRaw = fs.readFileSync(msPath, 'utf8');
-} catch (e) {
-  console.warn('[badgeParser] Warning: Badges.ms not found or unreadable:', e.message);
+const badgeData = {
+  i24: null,
+  i25: null
+};
+
+function getVersionForServer(serverKey) {
+  return config.servers?.[serverKey]?.badgeVersion === 'i24' ? 'i24' : 'i25';
 }
 
-const badgeMsMap = {};
-let current = null;
+function loadBadgeData(version) {
+  if (badgeData[version]) return badgeData[version];
 
-for (const line of msRaw.split('\n')) {
-  const trimmed = line.trim();
-  if (trimmed.startsWith('Badge')) {
-    const [, badgeName] = trimmed.match(/^Badge\s+(\w+)/) || [];
-    if (badgeName) {
-      current = badgeName;
-      badgeMsMap[current] = {};
+  const baseDir = path.join(global.BASE_DIR, 'data', version, 'badges');
+  const attrPath = path.join(baseDir, 'badges.attribute');
+  const badgeAttributeMap = {};
+  const badgeDetailsMap = {};
+
+  // Load attribute map
+  try {
+    const raw = fs.readFileSync(attrPath, 'utf8');
+    for (const line of raw.split('\n')) {
+      const match = line.trim().match(/^(\d+)\s+\"(.+)\"$/);
+      if (match) {
+        badgeAttributeMap[parseInt(match[1], 10)] = match[2];
+      }
     }
-  } else if (current && trimmed.includes(' ')) {
-    const [key, ...rest] = trimmed.split(/\s+/);
-    badgeMsMap[current][key] = rest.join(' ').replace(/^"|"$/g, '');
+  } catch (err) {
+    console.warn(`[badgeParser] Missing or unreadable: ${attrPath}`);
   }
+
+  // Load badge details from .def
+  const defFiles = fs.readdirSync(baseDir).filter(f => f.toLowerCase().endsWith('.def'));
+  const kvPattern = /^(\w+)\s+"?([^\"]+)"?$/;
+
+  for (const file of defFiles) {
+    const fullPath = path.join(baseDir, file);
+    const lines = fs.readFileSync(fullPath, 'utf8').split('\n');
+    let current = null;
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+
+      if (trimmed === 'Badge') {
+        current = { _sourceFile: file };
+        continue;
+      }
+
+      if (trimmed === '}' && current) {
+        if (current.Name) badgeDetailsMap[current.Name] = current;
+        current = null;
+        continue;
+      }
+
+      if (current) {
+        const match = kvPattern.exec(trimmed);
+        if (match) {
+          const [, key, value] = match;
+          current[key] = value;
+        }
+      }
+    }
+  }
+
+  badgeData[version] = { badgeAttributeMap, badgeDetailsMap };
+  return badgeData[version];
 }
 
-function getOwnedBadgesFromBitfield(hexString) {
+function getOwnedBadgesFromBitfield(hexString, serverKey) {
+  const version = getVersionForServer(serverKey);
+  const { badgeAttributeMap, badgeDetailsMap } = loadBadgeData(version);
   hexString = hexString.padEnd(BITFIELD_SIZE * 8, '0');
   const buffer = Buffer.from(hexString, 'hex');
   const results = [];
-  const rawBadgeIds = [];
-
-  let totalSet = 0;
-  let skippedNoMeta = 0;
-  let skippedDot = 0;
-  let skippedEmpty = 0;
-  let skippedInternal = 0;
-  let skippedFiltered = 0;
-  const categoryCounts = {};
-  const debugSkipped = [];
 
   for (let i = 0; i < BADGE_ENT_MAX_BADGES; i++) {
     const wordIndex = Math.floor(i / BITS_PER_ITEM);
@@ -56,78 +88,33 @@ function getOwnedBadgesFromBitfield(hexString) {
 
     const word = buffer.readUInt32LE(offset);
     const bitSet = (word >> bitIndex) & 1;
+    if (!bitSet) continue;
 
-    if (bitSet) {
-      totalSet++;
-      rawBadgeIds.push(i);
+    const internalName = badgeAttributeMap[i];
+    const meta = internalName ? badgeDetailsMap[internalName] : null;
+    if (!internalName || !meta) continue;
 
-      const internalName = badgeAttributeMap[i];
-      
-      const meta = internalName ? badgeDetailsMap[internalName] : null;
-      const src = meta?._sourceFile || 'unknown';
-      const category = meta?.Category || 'Uncategorized';
+    if (parseInt(meta.DoNotCount) === 1) continue;
+    if (meta.Category === 'kInternal' || meta.Category === 'kNone') continue;
 
-      if (!internalName || !meta) {
-        skippedNoMeta++;
-        //console.warn(`Skipped: missing meta for badge ID ${i} (${internalName || 'unknown'})`);
-        continue;
-      }
+    const title = meta.DisplayTitle || '';
+    if (!title.trim() || title === '.') continue;
 
-      if (parseInt(meta?.DoNotCount) === 1) {
-        skippedFiltered++;
-        continue;
-      }
+    const stripExtension = s => s.trim().replace(/\.(tga|psd)$/i, '');
 
-      if (category === 'kInternal' || category === 'kNone') {
-        skippedInternal++;
-        //console.warn(`Skipped: kInternal badge ID ${i} (${internalName}) [${category}] from ${src}`);
-        continue;
-      }
-
-      const title = meta.DisplayTitle || '';
-
-      if (title === '.') {
-        skippedDot++;
-        //console.warn(`Skipped: "." title badge ID ${i} (${internalName}) [${category}] from ${src}`);
-        debugSkipped.push({ badgeId: i, internalName, reason: 'dot', category, source: src });
-        continue;
-      }
-
-      if (!title.trim()) {
-        if (category === 'kTourism') {
-          console.warn(`[Tourism] Skipped (empty title) badge ID ${i} (${internalName}) from ${src}`);
-        }
-        skippedEmpty++;
-        //console.warn(`Skipped: empty title badge ID ${i} (${internalName}) [${category}] from ${src}`);
-        debugSkipped.push({ badgeId: i, internalName, reason: 'empty', category, source: src });
-        continue;
-      }
-
-      categoryCounts[category] = (categoryCounts[category] || 0) + 1;
-      results.push({
-        badgeId: i,
-        internalName,
-        DisplayTitle: title,
-        DisplayTitleVillain: meta.DisplayTitleVillain || title,
-        Icon: meta.Icon || '',
-        VillainIcon: meta.VillainIcon || '',
-        Category: category
-      });
-    }
+    results.push({
+      badgeId: i,
+      internalName,
+      DisplayTitle: title,
+      DisplayTitleVillain: meta.DisplayTitleVillain || title,
+      Icon: stripExtension(meta.Icon || ''),
+      VillainIcon: stripExtension(meta.VillainIcon || ''),
+      Category: meta.Category || 'Uncategorized'
+    });
   }
-  const tourismCount = results.filter(b => b.Category === 'kTourism').length;
-
-  // Count total badges defined per category from badgeDetailsMap
-  const totalByCategory = {};
-  for (const meta of Object.values(badgeDetailsMap)) {
-    const cat = meta?.Category || 'Uncategorized';
-    totalByCategory[cat] = (totalByCategory[cat] || 0) + 1;
-  }
-
 
   return results;
 }
-
 
 module.exports = {
   getOwnedBadgesFromBitfield

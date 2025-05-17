@@ -18,7 +18,8 @@
         "dbPort": 1433,
         "dbUser": "dbUser",
         "dbPass": "password",
-        "dbName": "cohdb"
+        "dbName": "cohdb",
+        "badgeVersion": "i24"
         }
     },
     "chat": {
@@ -34,7 +35,7 @@
                 "intervalMinutes": 15,
                 "handler": "homeWidgets.regenerateBadgeSpotlight"
             },
-            "newTask1000": {
+            "checkForUpdates": {
                 "intervalMinutes": 60,
                 "handler": "updateChecker.checkForUpdates"
             }

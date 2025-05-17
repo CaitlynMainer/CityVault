@@ -1,0 +1,438 @@
+Badge
+{
+	Name ArchitectPlay25
+	Category kArchitect
+	DisplayTitle "P1239757987"
+	DisplayHint "P2877307237"
+	DisplayText "P3301022016"
+	Icon "badge_ArchitectPlay"
+	Visible Architect.Play 0 >
+	Hinted 0
+	Requires Architect.Play 1 >=
+	Meter Architect.Play 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectTickets100
+	Category kArchitect
+	DisplayTitle "P2690490916"
+	DisplayHint "P453646199"
+	DisplayText "P4125869257"
+	Icon "badge_ArchitectTickets"
+	Visible Architect.Tickets Architect.AuthorTickets + 0 >
+	Hinted 0
+	Requires Architect.Tickets Architect.AuthorTickets + 1 >=
+	Meter Architect.Tickets Architect.AuthorTickets + 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectAuthor50
+	Category kArchitect
+	DisplayTitle "P3120815614"
+	DisplayHint "P802103268"
+	DisplayText "P1723244037"
+	Icon "badge_ArchitectAuthor"
+	Visible Architect.Author 0 >
+	Hinted 0
+	Requires Architect.Author 1 >=
+	Meter Architect.Author 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectTotalStars100
+	Category kArchitect
+	DisplayTitle "P367786206"
+	DisplayHint "P2112432732"
+	DisplayText "P1649826994"
+	Icon "badge_ArchitectRatedUp50"
+	Visible Architect.TotalStars 0 >
+	Hinted 0
+	Requires Architect.TotalStars 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectFirstPlay
+	Category kArchitect
+	DisplayTitle "P3192073256"
+	DisplayHint "P653848827"
+	DisplayText "P452350629"
+	Icon "badge_ArchitectFirstPlay"
+	Visible 0
+	Hinted 0
+	Requires Architect.FirstXPlayers 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ArchitectPlayDevChoice1
+	Category kArchitect
+	DisplayTitle "P1899779646"
+	DisplayHint "P161481170"
+	DisplayText "P1962531687"
+	Icon "badge_ArchitectPlayDevChoice01"
+	Visible Architect.PlayDevChoice 0 >
+	Hinted 1
+	Requires Architect.PlayDevChoice 1 >=
+	Meter Architect.PlayDevChoice 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectTestKill10
+	Category kArchitect
+	DisplayTitle "P2062500316"
+	DisplayHint "P1093947690"
+	DisplayText "P2230273197"
+	Icon "badge_ArchitectTestKill100"
+	Visible 0
+	Hinted 0
+	Requires Architect.TestKill 1 >=
+	Meter Architect.TestKill 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectClick10
+	Category kArchitect
+	DisplayTitle "P3530595021"
+	DisplayHint "P3693899141"
+	DisplayText "P4100708182"
+	Icon "badge_ArchitectClick"
+	Visible 0
+	Hinted 0
+	Requires Architect.Click 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectTestClick1
+	Category kArchitect
+	DisplayTitle "P1107829090"
+	DisplayHint "P53833157"
+	DisplayText "P4138240761"
+	Icon "badge_ArchitectTestClick"
+	Visible Architect.ClickTest 0 >
+	Hinted 0
+	Requires Architect.ClickTest 1 >=
+	Meter Architect.ClickTest 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectHallofFame5
+	Category kArchitect
+	DisplayTitle "P3461280455"
+	DisplayHint "P3858778497"
+	DisplayText "P83471747"
+	Icon "badge_ArchitectHallofFame01"
+	Visible 0
+	Hinted 0
+	Requires Architect.PlayHallofFame 1 >=
+	Meter Architect.PlayHallofFame 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectCustomBoss
+	Category kArchitect
+	DisplayTitle "P922936458"
+	DisplayText "P3576885484"
+	Icon "badge_ArchitectCustomBoss"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ArchitectTestOwnMission
+	Category kArchitect
+	DisplayTitle "P3600708860"
+	DisplayText "P3727923199"
+	Icon "badge_ArchitectTestOwnMission"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ArchitectInspirations10
+	Category kArchitect
+	DisplayTitle "P1309076246"
+	DisplayHint "P998464545"
+	DisplayText "P1464075264"
+	Icon "badge_ArchitectInspirations"
+	Visible 0
+	Hinted 0
+	Requires Architect.Inspirations 1 >=
+	Meter Architect.Inspirations 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectTest8
+	Category kArchitect
+	DisplayTitle "P1742417351"
+	DisplayText "P1897778429"
+	Icon "badge_ArchitectTest8"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ArchitectHeroMissions10
+	Category kArchitect
+	DisplayTitle "P3777156505"
+	DisplayHint "P3540796602"
+	DisplayText "P3849913083"
+	Icon "badge_ArchitectHeroMissions"
+	Visible Architect.HeroMissions 0 > hero type char> eq &&
+	Hinted 1
+	Requires Architect.HeroMissions 1 >= hero type char> eq &&
+	Meter Architect.HeroMissions 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectVillainMissions10
+	Category kArchitect
+	DisplayTitle "P950948408"
+	DisplayHint "P1660980090"
+	DisplayText "P2687117455"
+	Icon "badge_ArchitectVillainMissions"
+	Visible Architect.VillainMissions 0 > villain type char> eq &&
+	Hinted 1
+	Requires Architect.VillainMissions 1 >= villain type char> eq &&
+	Meter Architect.VillainMissions 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectNonRequiredObjective25
+	Category kArchitect
+	DisplayTitle "P1958404270"
+	DisplayHint "P2001151672"
+	DisplayText "P4077560583"
+	DisplayTitleVillain "P1958404270"
+	DisplayHintVillain "P2001151672"
+	DisplayTextVillain "P3051583896"
+	Icon "badge_ArchitectWorkaholic"
+	Visible 0
+	Hinted 0
+	Requires Architect.NonRequiredObjective 1 >=
+	Meter Architect.NonRequiredObjective 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectDefeatedinTest
+	Category kArchitect
+	DisplayTitle "P2713578415"
+	DisplayText "P1647839351"
+	Icon "badge_ArchitectTestDefeated"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ArchitectPurchaseBadge
+	Category kArchitect
+	DisplayTitle "P3688144110"
+	DisplayText "P2262738387"
+	Icon "badge_ArchitectPurchaseBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ArchitectBadges10
+	Category kArchitect
+	DisplayTitle "P3171811280"
+	DisplayHint "P885887883"
+	DisplayText "P3650985982"
+	Icon "badge_ArchitectBadges10"
+	Visible 1
+	Hinted 1
+	Requires ArchitectAuthor50 owned? ArchitectClick10 owned? ArchitectCustomBoss owned? ArchitectCustomKills50 owned? ArchitectDefeatedinTest owned? ArchitectDestroy1 owned? ArchitectFirstPlay owned? ArchitectHallofFame5 owned? ArchitectHeroMissions10 owned? ArchitectInspirations10 owned? ArchitectNonRequiredObjective25 owned? ArchitectPlay25 owned? ArchitectPlayDevChoice1 owned? ArchitectPurchaseBadge owned? ArchitectRescue1 owned? ArchitectRogueMission owned? ArchitectTest8 owned? ArchitectTestClick1 owned? ArchitectTestDestroy1 owned? ArchitectTestKill10 owned? ArchitectTestOwnMission owned? ArchitectTestRescue1 owned? ArchitectTickets100 owned? ArchitectTotalStars100 owned? ArchitectVigilanteMission owned? ArchitectVillainMissions10 owned? + + + + + + + + + + + + + + + + + + + + + + + + + 10 >=
+	Meter ArchitectAuthor50 owned? ArchitectClick10 owned? ArchitectCustomBoss owned? ArchitectCustomKills50 owned? ArchitectDefeatedinTest owned? ArchitectDestroy1 owned? ArchitectFirstPlay owned? ArchitectHallofFame5 owned? ArchitectHeroMissions10 owned? ArchitectInspirations10 owned? ArchitectNonRequiredObjective25 owned? ArchitectPlay25 owned? ArchitectPlayDevChoice1 owned? ArchitectPurchaseBadge owned? ArchitectRescue1 owned? ArchitectRogueMission owned? ArchitectTest8 owned? ArchitectTestClick1 owned? ArchitectTestDestroy1 owned? ArchitectTestKill10 owned? ArchitectTestOwnMission owned? ArchitectTestRescue1 owned? ArchitectTickets100 owned? ArchitectTotalStars100 owned? ArchitectVigilanteMission owned? ArchitectVillainMissions10 owned? + + + + + + + + + + + + + + + + + + + + + + + + + 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name ArchitectBadges25
+	Category kArchitect
+	DisplayTitle "P495560445"
+	DisplayHint "P3570957754"
+	DisplayText "P3566135517"
+	Icon "badge_ArchitectBadges25"
+	Visible ArchitectBadges10 owned?
+	Hinted 1
+	Requires ArchitectAuthor50 owned? ArchitectBadges10 owned? ArchitectClick10 owned? ArchitectCustomBoss owned? ArchitectCustomKills50 owned? ArchitectDefeatedinTest owned? ArchitectDestroy1 owned? ArchitectFirstPlay owned? ArchitectHallofFame5 owned? ArchitectHeroMissions10 owned? ArchitectInspirations10 owned? ArchitectNonRequiredObjective25 owned? ArchitectPlay25 owned? ArchitectPlayDevChoice1 owned? ArchitectPurchaseBadge owned? ArchitectRescue1 owned? ArchitectRogueMission owned? ArchitectTest8 owned? ArchitectTestClick1 owned? ArchitectTestDestroy1 owned? ArchitectTestKill10 owned? ArchitectTestOwnMission owned? ArchitectTestRescue1 owned? ArchitectTickets100 owned? ArchitectTotalStars100 owned? ArchitectVigilanteMission owned? ArchitectVillainMissions10 owned? + + + + + + + + + + + + + + + + + + + + + + + + + + 25 >=
+	Meter ArchitectAuthor50 owned? ArchitectBadges10 owned? ArchitectClick10 owned? ArchitectCustomBoss owned? ArchitectCustomKills50 owned? ArchitectDefeatedinTest owned? ArchitectDestroy1 owned? ArchitectFirstPlay owned? ArchitectHallofFame5 owned? ArchitectHeroMissions10 owned? ArchitectInspirations10 owned? ArchitectNonRequiredObjective25 owned? ArchitectPlay25 owned? ArchitectPlayDevChoice1 owned? ArchitectPurchaseBadge owned? ArchitectRescue1 owned? ArchitectRogueMission owned? ArchitectTest8 owned? ArchitectTestClick1 owned? ArchitectTestDestroy1 owned? ArchitectTestKill10 owned? ArchitectTestOwnMission owned? ArchitectTestRescue1 owned? ArchitectTickets100 owned? ArchitectTotalStars100 owned? ArchitectVigilanteMission owned? ArchitectVillainMissions10 owned? + + + + + + + + + + + + + + + + + + + + + + + + + + 25 %
+	Revoke 0
+	BadgeValues 25
+}
+
+Badge
+{
+	Name ArchitectRescue1
+	Category kArchitect
+	DisplayTitle "P3508740565"
+	DisplayHint "P1374982294"
+	DisplayText "P3320978512"
+	Icon "badge_ArchitectRescue"
+	Visible 0
+	Hinted 0
+	Requires Architect.Rescue 1 >=
+	Meter Architect.Rescue 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectTestRescue1
+	Category kArchitect
+	DisplayTitle "P2876945314"
+	DisplayHint "P4105718364"
+	DisplayText "P1848076603"
+	Icon "badge_ArchitectTestRescue"
+	Visible 0
+	Hinted 0
+	Requires Architect.TestRescue 1 >=
+	Meter Architect.TestRescue 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectDestroy1
+	Category kArchitect
+	DisplayTitle "P3263211745"
+	DisplayHint "P4136657790"
+	DisplayText "P986365364"
+	Icon "badge_ArchitectDestroy"
+	Visible 0
+	Hinted 0
+	Requires Architect.Destroy 1 >=
+	Meter Architect.Destroy 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectTestDestroy1
+	Category kArchitect
+	DisplayTitle "P2955788145"
+	DisplayHint "P2711824641"
+	DisplayText "P999887294"
+	Icon "badge_ArchitectTestDestroy"
+	Visible 0
+	Hinted 0
+	Requires Architect.TestDestroy 1 >=
+	Meter Architect.TestDestroy 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectCustomKills50
+	Category kArchitect
+	DisplayTitle "P1165603828"
+	DisplayHint "P1424604262"
+	DisplayText "P2111169084"
+	Icon "badge_ArchitectDefeatedPlayers25"
+	Visible 0
+	Hinted 0
+	Requires Architect.CustomKills 1 >=
+	Meter Architect.CustomKills 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectVigilanteMission
+	Category kArchitect
+	DisplayTitle "P3638787933"
+	DisplayText "P3033915509"
+	Icon "badge_ArchitectVigilanteMission"
+	Visible 0
+	Hinted 0
+	Requires Architect.VigilanteMissions 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name ArchitectRogueMission
+	Category kArchitect
+	DisplayTitle "P557131657"
+	DisplayText "P485133127"
+	Icon "badge_ArchitectRogueMission"
+	Visible 0
+	Hinted 0
+	Requires Architect.RogueMissions 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+

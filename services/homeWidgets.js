@@ -1,4 +1,4 @@
-// services/homeWidgets.js (optimized)
+// services/homeWidgets.js (refactored for per-server attributeMap)
 const sql = require('mssql');
 const fs = require('fs');
 const path = require('path');
@@ -6,8 +6,8 @@ const config = require(global.BASE_DIR + '/utils/config');
 const { getGamePool, getChatPool } = require(global.BASE_DIR + '/db');
 const { getGlobalHandle } = require('../utils/characterInfo/getGlobalHandle');
 const { getOwnedBadgesFromBitfield } = require('../utils/badgeParser');
-const attributeMap = require(global.BASE_DIR + '/utils/attributeMap');
 const { getAlignment } = require(global.BASE_DIR + '/utils/alignment');
+const { getAttributeMap } = require(global.BASE_DIR + '/utils/attributeMap');
 
 const globalHandleCache = new Map();
 
@@ -39,7 +39,6 @@ async function getRecentlyOnline() {
   const authIds = [...new Set(combined.map(row => row.AuthId))];
   await batchGetGlobalHandles(authIds);
 
-  // Deduplicate by AuthId, Name, and serverKey
   const seen = new Set();
   const unique = combined.filter(row => {
     const key = `${row.AuthId}:${row.Name}:${row.serverKey}`;
@@ -48,8 +47,8 @@ async function getRecentlyOnline() {
     return true;
   });
 
-
   const mapped = unique.map(row => {
+    const attributeMap = getAttributeMap(row.serverKey);
     const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
     const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
 
@@ -63,39 +62,48 @@ async function getRecentlyOnline() {
     };
   });
 
-
-  const sorted = mapped.sort((a, b) => new Date(b.LastActive) - new Date(a.LastActive));
-  const final = sorted.slice(0, 9);
-
-  return final;
+  return mapped.sort((a, b) => new Date(b.LastActive) - new Date(a.LastActive)).slice(0, 9);
 }
-
-
 
 async function getCharacterBirthdays() {
   const now = new Date();
   const month = now.getMonth() + 1;
   const day = now.getDate();
+
+  //console.log(`[getCharacterBirthdays] Today is ${month}/${day}`);
   const combined = [];
 
   for (const serverKey of Object.keys(config.servers)) {
-    const pool = await getGamePool(serverKey);
-    const result = await pool.request()
-      .input('month', sql.Int, month)
-      .input('day', sql.Int, day)
-      .query(`SELECT e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.DateCreated, e.LastActive
-        FROM dbo.Ents e
-        WHERE DATEPART(mm, e.DateCreated) = @month AND DATEPART(dd, e.DateCreated) = @day
-        AND (e.AccessLevel IS NULL OR e.AccessLevel = 0)
-        ORDER BY e.LastActive DESC
-      `);
-    combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
+    try {
+      const pool = await getGamePool(serverKey);
+      const result = await pool.request()
+        .input('month', sql.Int, month)
+        .input('day', sql.Int, day)
+        .query(`SELECT e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.DateCreated, e.LastActive
+          FROM dbo.Ents e
+          WHERE DATEPART(mm, e.DateCreated) = @month AND DATEPART(dd, e.DateCreated) = @day
+          AND (e.AccessLevel IS NULL OR e.AccessLevel = 0)
+          ORDER BY e.LastActive DESC`);
+
+      //console.log(`[getCharacterBirthdays] Server ${serverKey} returned ${result.recordset.length} character(s)`);
+
+      if (result.recordset.length > 0) {
+        result.recordset.forEach(row => {
+          //console.log(`  ↪ ${row.Name} (Created: ${row.DateCreated?.toISOString?.().split('T')[0] || 'unknown'})`);
+        });
+      }
+
+      combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
+    } catch (err) {
+      //console.warn(`[getCharacterBirthdays] Error querying ${serverKey}:`, err);
+    }
   }
 
   const authIds = [...new Set(combined.map(row => row.AuthId))];
   await batchGetGlobalHandles(authIds);
 
   const fullList = combined.map(row => {
+    const attributeMap = getAttributeMap(row.serverKey);
     const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
     const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
     return {
@@ -114,21 +122,17 @@ async function getCharacterBirthdays() {
 }
 
 
-
 async function getQuickStats() {
   const combined = [];
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
     const result = await pool.request().query(`
-      SELECT 
-        e.Origin, e.Class, e.Level, e.InfluencePoints, e.LastActive,
-        e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress,
-        e.Active
+      SELECT e.Origin, e.Class, e.Level, e.InfluencePoints, e.LastActive,
+             e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress, e.Active
       FROM dbo.Ents e
       JOIN dbo.Ents2 en2 ON e.ContainerId = en2.ContainerId
-      WHERE (e.AccessLevel IS NULL OR e.AccessLevel = 0)
-    `);
+      WHERE (e.AccessLevel IS NULL OR e.AccessLevel = 0)`);
     combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
   }
 
@@ -150,6 +154,7 @@ async function getQuickStats() {
   const now = new Date();
 
   combined.forEach(row => {
+    const attributeMap = getAttributeMap(row.serverKey);
     const level = Number(row.Level);
     if (!isNaN(level)) {
       levelSum += level;
@@ -192,7 +197,6 @@ async function getQuickStats() {
   return stats;
 }
 
-
 async function getBadgeSpotlight() {
   const cachePath = path.join(global.BASE_DIR, 'data', 'badgeSpotlight.json');
   try {
@@ -208,8 +212,6 @@ async function getBadgeSpotlight() {
     }
   }
 }
-
-
 
 async function regenerateBadgeSpotlight() {
   const cachePath = path.join(global.BASE_DIR, 'data', 'badgeSpotlight.json');
@@ -231,7 +233,7 @@ async function regenerateBadgeSpotlight() {
 
   for (const row of combined) {
     const owned = row.Owned?.toString('hex') || '';
-    const badges = getOwnedBadgesFromBitfield(owned);
+    const badges = getOwnedBadgesFromBitfield(owned, row.serverKey);
     if (badges.length >= 500) {
       authIds.push(row.AuthId);
       eligible.push({ ...row, badgeCount: badges.length });
@@ -241,6 +243,7 @@ async function regenerateBadgeSpotlight() {
   await batchGetGlobalHandles(authIds);
 
   const final = eligible.map(row => {
+    const attributeMap = getAttributeMap(row.serverKey);
     const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
     const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
     return {
@@ -255,7 +258,6 @@ async function regenerateBadgeSpotlight() {
 
   fs.writeFileSync(cachePath, JSON.stringify(final, null, 2));
 }
-
 
 module.exports = {
   getRecentlyOnline,

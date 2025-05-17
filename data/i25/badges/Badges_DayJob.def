@@ -1,0 +1,602 @@
+Badge
+{
+	Name DJ_On_Patrol
+	Category kDayJob
+	DisplayTitle "P1527363742"
+	DisplayHint "P1402987132"
+	DisplayText "P3650140988"
+	DisplayTitleVillain "P3407552317"
+	DisplayHintVillain "P1402987132"
+	DisplayTextVillain "P1917182702"
+	Icon "badge_DayJob_OnPatrol"
+	Visible level char> 50 == DayJob.On_Patrol 1 > && level char> 50 == ! DayJob.Patrol_Percent 1 > && || praetorianprogress char> normal eq &&
+	Hinted 1
+	Requires level char> 50 == DayJob.On_Patrol 360000 > && level char> 50 == ! DayJob.Patrol_Percent 300 > && || praetorianprogress char> normal eq &&
+	Meter level char> 50 ==  DayJob.On_Patrol 360000 %  * level char> 50 == ! DayJob.Patrol_Percent 300 % * +
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name P_DJ_On_Patrol
+	Category kDayJob
+	DisplayTitle "P1527363742"
+	DisplayHint "P1402987132"
+	DisplayText "P582356408"
+	Icon "badge_DayJob_OnPatrol"
+	Visible level char> 50 == DayJob.On_Patrol 1 > && level char> 50 == ! DayJob.Patrol_Percent 1 > && || praetorianprogress char> normal eq ! &&
+	Hinted 1
+	Requires level char> 50 == DayJob.On_Patrol 360000 > && level char> 50 == ! DayJob.Patrol_Percent 300 > && || praetorianprogress char> normal eq ! &&
+	Meter level char> 50 ==  DayJob.On_Patrol 360000 %  * level char> 50 == ! DayJob.Patrol_Percent 300 % * +
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Architect
+	Category kDayJob
+	DisplayTitle "P3099060277"
+	DisplayHint "P4088441156"
+	DisplayText "P1723120395"
+	Icon "badge_DayJob_Architect"
+	Visible DayJob.Architect 1 >=
+	Hinted 1
+	Requires DayJob.Architect 360000 >=
+	Meter DayJob.Architect 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_City_Official
+	Category kDayJob
+	DisplayTitle "P2025680844"
+	DisplayHint "P2732932964"
+	DisplayText "P3212260744"
+	DisplayTitleVillain "P2017681167"
+	DisplayHintVillain "P2732932964"
+	DisplayTextVillain "P711251006"
+	Icon "badge_DayJob_CityOfficial"
+	Visible DayJob.CityOfficial 1 >=
+	Hinted 1
+	Requires DayJob.CityOfficial 360000 >= hero type char> eq &&
+	Meter DayJob.CityOfficial 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Law_Enforcement
+	Category kDayJob
+	DisplayTitle "P463408338"
+	DisplayHint "P492911857"
+	DisplayText "P4215578660"
+	DisplayTitleVillain "P3587926957"
+	DisplayHintVillain "P492911857"
+	DisplayTextVillain "P3684253372"
+	Icon "badge_DayJob_LawEnforcement"
+	Visible DayJob.LawEnforcement 1 >=
+	Hinted 1
+	Requires DayJob.LawEnforcement 360000 >= hero type char> eq &&
+	Meter DayJob.LawEnforcement 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Commuter
+	Category kDayJob
+	DisplayTitle "P3281950403"
+	DisplayHint "P2061915461"
+	DisplayText "P1299509505"
+	DisplayTitleVillain "P1181876183"
+	DisplayHintVillain "P2061915461"
+	DisplayTextVillain "P3542946770"
+	Icon "badge_DayJob_Commuter"
+	Visible DayJob.Commuter 1 >=
+	Hinted 1
+	Requires DayJob.Commuter 360000 >= hero type char> eq &&
+	Meter DayJob.Commuter 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Shop_Keeper
+	Category kDayJob
+	DisplayTitle "P1645824565"
+	DisplayHint "P2624055642"
+	DisplayText "P1775938486"
+	DisplayTitleVillain "P1083026040"
+	DisplayHintVillain "P2624055642"
+	DisplayTextVillain "P109551821"
+	Icon "badge_DayJob_ShopKeeper"
+	Visible DayJob.ShopKeeper 1 >=
+	Hinted 1
+	Requires DayJob.ShopKeeper 360000 >= hero type char> eq &&
+	Meter DayJob.ShopKeeper 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Dimensional_Explorer
+	Category kDayJob
+	DisplayTitle "P896949891"
+	DisplayHint "P2101865047"
+	DisplayText "P2459405214"
+	DisplayTitleVillain "P3207561806"
+	DisplayHintVillain "P2101865047"
+	DisplayTextVillain "P1396499927"
+	Icon "badge_DayJob_DimensionalExplorer"
+	Visible DayJob.DimensionalExplorer 1 >=
+	Hinted 1
+	Requires DayJob.DimensionalExplorer 360000 >= hero type char> eq &&
+	Meter DayJob.DimensionalExplorer 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Intern
+	Category kDayJob
+	DisplayTitle "P2731891200"
+	DisplayHint "P2104863122"
+	DisplayText "P1325598557"
+	DisplayTitleVillain "P4106074214"
+	DisplayHintVillain "P2104863122"
+	DisplayTextVillain "P1971358149"
+	Icon "badge_DayJob_Intern"
+	Visible DayJob.Intern 1 >=
+	Hinted 1
+	Requires DayJob.Intern 360000 >= hero type char> eq &&
+	Meter DayJob.Intern 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Caregiver
+	Category kDayJob
+	DisplayTitle "P2774031462"
+	DisplayHint "P511965103"
+	DisplayText "P3507638057"
+	DisplayTitleVillain "P3908126895"
+	DisplayHintVillain "P511965103"
+	DisplayTextVillain "P2865312105"
+	Icon "badge_DayJob_CareGiver"
+	VillainIcon "badge_DayJob_PainSpecialist"
+	Visible DayJob.Caregiver 0 >=
+	Hinted 1
+	Requires DayJob.Caregiver 360000 >=
+	Meter DayJob.Caregiver 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Scholar
+	Category kDayJob
+	DisplayTitle "P4227618112"
+	DisplayHint "P2150286905"
+	DisplayText "P2062052888"
+	DisplayTitleVillain "P4227618112"
+	DisplayHintVillain "P2150286905"
+	DisplayTextVillain "P3129055078"
+	Icon "badge_DayJob_Scholar"
+	Visible DayJob.Scholar 0 >=
+	Hinted 1
+	Requires DayJob.Scholar 360000 >=
+	Meter DayJob.Scholar 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Banker
+	Category kDayJob
+	DisplayTitle "P1861910330"
+	DisplayHint "P606628865"
+	DisplayText "P2591629649"
+	DisplayTitleVillain "P243198682"
+	DisplayHintVillain "P606628865"
+	DisplayTextVillain "P104672702"
+	Icon "badge_DayJob_Banker"
+	Visible DayJob.Banker 1 >=
+	Hinted 1
+	Requires DayJob.Banker 360000 >=
+	Meter DayJob.Banker 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Clubber
+	Category kDayJob
+	DisplayTitle "P3665215280"
+	DisplayHint "P528252991"
+	DisplayText "P688882192"
+	Icon "badge_DayJob_Clubber"
+	Visible DayJob.Clubber 1 >=
+	Hinted 1
+	Requires DayJob.Clubber 360000 >=
+	Meter DayJob.Clubber 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Auctioneer
+	Category kDayJob
+	DisplayTitle "P1034513482"
+	DisplayHint "P2907039147"
+	DisplayText "P491250771"
+	DisplayTitleVillain "P2437097359"
+	DisplayHintVillain "P3413924026"
+	DisplayTextVillain "P3610800602"
+	Icon "badge_DayJob_Auctioneer"
+	Visible DayJob.Auctioneer 1 >=
+	Hinted 1
+	Requires DayJob.Auctioneer 360000 >=
+	Meter DayJob.Auctioneer 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Vanguard_Recruit
+	Category kDayJob
+	DisplayTitle "P3711755963"
+	DisplayHint "P339487443"
+	DisplayText "P1384591800"
+	Icon "badge_DayJob_VanguardRecruit"
+	Visible DayJob.VanguardRecruit 1 >=
+	Hinted 1
+	Requires DayJob.VanguardRecruit 360000 >= level char> 35 >= &&
+	Meter DayJob.VanguardRecruit 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Mender
+	Category kDayJob
+	DisplayTitle "P3374305023"
+	DisplayHint "P3594843822"
+	DisplayText "P1428656842"
+	Icon "badge_DayJob_Mender"
+	Visible DayJob.Mender 1 >=
+	Hinted 1
+	Requires DayJob.Mender 360000 >=
+	Meter DayJob.Mender 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Midnighter
+	Category kDayJob
+	DisplayTitle "P4163120957"
+	DisplayHint "P3651328697"
+	DisplayText "P2278346112"
+	Icon "badge_DayJob_Midnighter"
+	Visible DayJob.Midnighter 1 >=
+	Hinted 1
+	Requires DayJob.Midnighter 360000 >=
+	Meter DayJob.Midnighter 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Pilot
+	Category kDayJob
+	DisplayTitle "P862969536"
+	DisplayHint "P353845047"
+	DisplayText "P3951306658"
+	DisplayTitleVillain "P1289711702"
+	DisplayHintVillain "P353845047"
+	DisplayTextVillain "P3082854825"
+	Icon "badge_DayJob_Pilot"
+	Visible DayJob.Pilot 1 >=
+	Hinted 1
+	Requires DayJob.Pilot 360000 >= villain type char> eq &&
+	Meter DayJob.Pilot 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Duelist
+	Category kDayJob
+	DisplayTitle "P1117375839"
+	DisplayHint "P565234544"
+	DisplayText "P735686060"
+	Icon "badge_DayJob_Dualist"
+	Visible DayJob.Duelist 1 >=
+	Hinted 1
+	Requires DayJob.Duelist 360000 >=
+	Meter DayJob.Duelist 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Clotheshorse
+	Category kDayJob
+	DisplayTitle "P3163763854"
+	DisplayHint "P1259623472"
+	DisplayText "P2011130696"
+	Icon "badge_DayJob_ClothesHorse"
+	Visible DayJob.Clotheshorse 1 >=
+	Hinted 1
+	Requires DayJob.Clotheshorse 360000 >=
+	Meter DayJob.Clotheshorse 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Cimeroran
+	Category kDayJob
+	DisplayTitle "P488955213"
+	DisplayHint "P1970162730"
+	DisplayText "P3597201571"
+	DisplayTitleVillain "P488955213"
+	DisplayHintVillain "P1970162730"
+	DisplayTextVillain "P3403853330"
+	Icon "badge_DayJob_Cimeroran"
+	Visible DayJob.Cimeroran 1 >=
+	Hinted 1
+	Requires DayJob.Cimeroran 360000 >=
+	Meter DayJob.Cimeroran 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Griefer
+	Category kDayJob
+	DisplayTitle "P4084503899"
+	DisplayHint "P4111214781"
+	DisplayText "P1910496314"
+	DisplayTitleVillain "P4084503899"
+	DisplayHintVillain "P4111214781"
+	DisplayTextVillain "P4237226208"
+	Icon "badge_DayJob_Griefer"
+	Visible DayJob.Griefer 1 >=
+	Hinted 1
+	Requires DayJob.Griefer 360000 >=
+	Meter DayJob.Griefer 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Monitor_Duty
+	Category kDayJob
+	DisplayTitle "P3755090336"
+	DisplayHint "P1194176531"
+	DisplayText "P3385297871"
+	Icon "badge_DayJob_MonitorDuty"
+	Visible DayJob.MonitorDuty 1 >=
+	Hinted 1
+	Requires DayJob.MonitorDuty 360000 >=
+	Meter DayJob.MonitorDuty 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Gravedigger
+	Category kDayJob
+	DisplayTitle "P117467131"
+	DisplayHint "P2841461434"
+	DisplayText "P1122536224"
+	Icon "badge_DayJob_Gravedigger"
+	Visible DayJob.Gravedigger 1 >=
+	Hinted 1
+	Requires DayJob.Gravedigger 360000 >=
+	Meter DayJob.Gravedigger 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Crey_Employee
+	Category kDayJob
+	DisplayTitle "P3886934186"
+	DisplayHint "P1162804418"
+	DisplayText "P71908880"
+	DisplayTitleVillain "P2946988697"
+	DisplayHintVillain "P1162804418"
+	DisplayTextVillain "P1665959317"
+	Icon "badge_DayJob_CreyEmployee"
+	Visible DayJob.CreyEmployee 1 >=
+	Hinted 1
+	Requires DayJob.CreyEmployee 360000 >= villain type char> eq &&
+	Meter DayJob.CreyEmployee 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Arachnos_Official
+	Category kDayJob
+	DisplayTitle "P542038609"
+	DisplayHint "P550423867"
+	DisplayText "P2169132463"
+	DisplayTitleVillain "P2376276568"
+	DisplayHintVillain "P550423867"
+	DisplayTextVillain "P1490144232"
+	Icon "badge_DayJob_ArachnosOfficial"
+	Visible DayJob.ArachnosOfficial 1 >=
+	Hinted 1
+	Requires DayJob.ArachnosOfficial 360000 >= villain type char> eq &&
+	Meter DayJob.ArachnosOfficial 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Arachnos_Agent
+	Category kDayJob
+	DisplayTitle "P1731613354"
+	DisplayHint "P1677306589"
+	DisplayText "P4170868263"
+	DisplayTitleVillain "P159011184"
+	DisplayHintVillain "P860755819"
+	DisplayTextVillain "P4170868263"
+	Icon "badge_DayJob_ArachanosAgent"
+	Visible DayJob.ArachnosAgent 1 >=
+	Hinted 1
+	Requires DayJob.ArachnosAgent 360000 >= villain type char> eq &&
+	Meter DayJob.ArachnosAgent 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Smuggler
+	Category kDayJob
+	DisplayTitle "P724236465"
+	DisplayHint "P1507185904"
+	DisplayText "P1392943373"
+	DisplayTitleVillain "P1705657162"
+	DisplayHintVillain "P1507185904"
+	DisplayTextVillain "P1480605001"
+	Icon "badge_DayJob_Smuggler"
+	Visible DayJob.Smuggler 1 >=
+	Hinted 1
+	Requires DayJob.Smuggler 360000 >= villain type char> eq &&
+	Meter DayJob.Smuggler 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Demagogue
+	Category kDayJob
+	DisplayTitle "P839515898"
+	DisplayHint "P3379024215"
+	DisplayText "P1687762018"
+	DisplayTitleVillain "P3203043433"
+	DisplayHintVillain "P3379024215"
+	DisplayTextVillain "P3463611429"
+	Icon "badge_DayJob_Demagogue"
+	Visible DayJob.Demagogue 1 >=
+	Hinted 1
+	Requires DayJob.Demagogue 360000 >= villain type char> eq &&
+	Meter DayJob.Demagogue 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_DUST_Ranger
+	Category kDayJob
+	DisplayTitle "P499992711"
+	DisplayHint "P345381207"
+	DisplayText "P3668381991"
+	Icon "badge_dayjob_dustranger"
+	Visible DayJob.DUSTRanger 1 >=
+	Hinted 1
+	Requires DayJob.DUSTRanger 360000 >=
+	Meter DayJob.DUSTRanger 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Scavenger
+	Category kDayJob
+	DisplayTitle "P1647988114"
+	DisplayHint "P4161999063"
+	DisplayText "P4203513814"
+	Icon "badge_dayjob_scavenger"
+	Visible DayJob.Scavenger 1 >=
+	Hinted 1
+	Requires DayJob.Scavenger 360000 >=
+	Meter DayJob.Scavenger 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Psychologist
+	Category kDayJob
+	DisplayTitle "P3891639064"
+	DisplayHint "P3449582411"
+	DisplayText "P4074547821"
+	Icon "badge_dayjob_psychologist"
+	Visible DayJob.Psychologist 1 >=
+	Hinted 1
+	Requires DayJob.Psychologist 360000 >=
+	Meter DayJob.Psychologist 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_Survivalist
+	Category kDayJob
+	DisplayTitle "P744139074"
+	DisplayHint "P3743237191"
+	DisplayText "P2204027726"
+	Icon "badge_dayjob_survivalist"
+	Visible DayJob.Survivalist 1 >=
+	Hinted 1
+	Requires DayJob.Survivalist 360000 >=
+	Meter DayJob.Survivalist 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name DJ_DarkAstoria
+	Category kDayJob
+	DisplayTitle "P330381948"
+	DisplayHint "P235918949"
+	DisplayText "P693251980"
+	Icon "badge_dayjob_darkastoria"
+	Visible DayJob.DarkAstoria 1 >=
+	Hinted 1
+	Requires DayJob.DarkAstoria 360000 >=
+	Meter DayJob.DarkAstoria 360000 %
+	Revoke 0
+	BadgeValues 100
+}
+

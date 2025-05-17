@@ -1,7 +1,7 @@
 const { getPowersetName } = require('./resolvePowersetName');
 const { buildDisplayTitle } = require('./buildDisplayTitle');
 const { getAlignment } = require('../alignment');
-const attributeMap = require('../attributeMap');
+const { getAttributeMap } = require('../attributeMap');
 
 function formatSeconds(sec) {
   if (!sec || isNaN(sec)) return 'Unknown';
@@ -10,7 +10,9 @@ function formatSeconds(sec) {
   return `${h}h ${m}m`;
 }
 
-function enrichCharacterSummary(character) {
+function enrichCharacterSummary(character, serverKey) {
+  const attributeMap = getAttributeMap(serverKey);
+
   character.Level = (character.Level || 0) + 1;
   character.ClassName = attributeMap[character.Class]?.replace(/^Class_/, '') || `Class ${character.Class}`;
   character.OriginName = attributeMap[character.Origin] || `Origin ${character.Origin}`;

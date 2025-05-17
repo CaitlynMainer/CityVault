@@ -5,7 +5,7 @@ const { getGamePool } = require(global.BASE_DIR + '/db');
 const { debugBadgeDiscrepancies } = require('../utils/debugBadges');
 const { showCharacterList } = require('../controllers/characterListController');
 const { showPublicProfile } = require('../controllers/publicProfileController');
-const { showSupergroup } = require('../controllers/supergroupController'); // ✅ NEW
+const { showSupergroup } = require('../controllers/supergroupController');
 
 // Homepage
 const { showHomePage } = require('../controllers/indexController');
@@ -21,7 +21,7 @@ router.use('/register', require('./register'));
 router.use('/character', require('./character'));
 
 // Supergroup viewer (e.g. /supergroup/victory:34)
-router.get('/supergroup/:id', showSupergroup); // ✅ NEW
+router.get('/supergroup/:id', showSupergroup);
 
 // Public character/profile views
 router.get('/account/characters', showCharacterList);
@@ -41,7 +41,7 @@ router.get('/debug/missing-badges/:serverKey/:dbid', async (req, res) => {
       .query(`SELECT Owned FROM dbo.Badges WHERE ContainerId = @dbid`);
 
     const bitfield = result.recordset[0]?.Owned || '';
-    const { tourism, gladiator } = debugBadgeDiscrepancies(bitfield);
+    const { tourism, gladiator } = debugBadgeDiscrepancies(bitfield, serverKey);
 
     res.send({
       missingTourism: tourism,

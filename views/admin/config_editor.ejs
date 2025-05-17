@@ -28,8 +28,22 @@
         <input type="text" name="config[ipAddr]" value="<%= config.ipAddr %>" class="input" />
       </div>
       <div>
+        <div class="relative">
         <label class="block text-sm font-medium">Session Secret</label>
-        <input type="text" name="config[session_secret]" value="<%= config.session_secret %>" class="input" />
+            <input
+              type="password"
+               name="config[session_secret]"
+              value="<%= config.session_secret %>"
+              class="input pr-10 toggle-password"
+            />
+            <button
+              type="button"
+              class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400"
+              tabindex="-1"
+            >
+              👁 Show
+            </button>
+        </div>
       </div>
     </div>
 
@@ -38,20 +52,62 @@
       <% Object.keys(config.auth).forEach(function(key) { %>
         <div>
           <label class="block text-sm font-medium"><%= key %></label>
-          <input type="text" name="config[auth][<%= key %>]" value="<%= config.auth[key] %>" class="input" />
+          <% if (key === 'dbPass') { %>
+          <div class="relative">
+            <input
+              type="password"
+              name="config[auth][<%= key %>]"
+              value="<%= config.auth[key] %>"
+              class="input pr-12 toggle-password"
+            />
+            <button
+              type="button"
+              class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400"
+              tabindex="-1"
+            >
+              👁 Show
+            </button>
+          </div>
+          <% } else if (key === 'dbPort') { %>
+            <input type="number" name="config[auth][<%= key %>]" value="<%= config.auth[key] || 1433 %>" class="input" min="1" max="65535" />
+          <% } else { %>
+            <input type="text" name="config[auth][<%= key %>]" value="<%= config.auth[key] %>" class="input" />
+          <% } %>
         </div>
       <% }); %>
     </div>
+
 
     <h2 class="text-xl font-semibold mb-2">Chat DB</h2>
     <div class="grid grid-cols-2 gap-4 mb-4">
       <% Object.keys(config.chat).forEach(function(key) { %>
         <div>
           <label class="block text-sm font-medium"><%= key %></label>
-          <input type="text" name="config[chat][<%= key %>]" value="<%= config.chat[key] %>" class="input" />
+          <% if (key === 'dbPass') { %>
+            <div class="relative">
+              <input
+                type="password"
+                name="config[chat][<%= key %>]"
+                value="<%= config.chat[key] %>"
+                class="input pr-10 toggle-password"
+              />
+            <button
+              type="button"
+              class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400"
+              tabindex="-1"
+            >
+              👁 Show
+            </button>
+            </div>
+          <% } else if (key === 'dbPort') { %>
+            <input type="number" name="config[chat][<%= key %>]" value="<%= config.chat[key] || 1433 %>" class="input" min="1" max="65535" />
+          <% } else { %>
+            <input type="text" name="config[chat][<%= key %>]" value="<%= config.chat[key] %>" class="input" />
+          <% } %>
         </div>
       <% }); %>
     </div>
+
 
     <h2 class="text-xl font-semibold mb-2">Game Servers</h2>
     <div id="serversContainer" class="mb-4">
@@ -60,10 +116,45 @@
           <legend class="font-semibold">Server: <%= key %></legend>
           <input type="hidden" name="config[servers][<%= key %>][_key]" value="<%= key %>" />
           <% Object.keys(config.servers[key]).forEach(function(field) { %>
-            <div>
-              <label class="block text-sm font-medium"><%= field %></label>
-              <input type="text" name="config[servers][<%= key %>][<%= field %>]" value="<%= config.servers[key][field] %>" class="input" />
-            </div>
+            <% if (field === 'badgeVersion') { %>
+              <div>
+                <label class="block text-sm font-medium">Data Version</label>
+                <select name="config[servers][<%= key %>][badgeVersion]" class="input">
+                  <option value="i24" <%= config.servers[key][field] === 'i24' ? 'selected' : '' %>>i24 / v2 (OuroDev)</option>
+                  <option value="i25" <%= config.servers[key][field] === 'i25' ? 'selected' : '' %>>i25+ (Homecoming Based)</option>
+                </select>
+              </div>
+            <% } else if (field === 'dbPort') { %>
+              <div>
+                <label class="block text-sm font-medium">dbPort</label>
+                <input type="number" name="config[servers][<%= key %>][dbPort]" value="<%= config.servers[key][field] %>" class="input" min="1" max="65535" />
+              </div>
+            <% } else if (field === 'dbPass') { %>
+              <div>
+                <label class="block text-sm font-medium">dbPass</label>
+                <div class="relative">
+                  <input
+                    type="password"
+                    name="config[servers][<%= key %>][dbPass]"
+                    value="<%= config.servers[key][field] %>"
+                    class="input pr-12 toggle-password"
+                  />
+                  <button
+                    type="button"
+                    class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400"
+                    tabindex="-1"
+                  >
+                    👁 Show
+                  </button>
+                </div>
+                
+              </div>
+            <% } else { %>
+              <div>
+                <label class="block text-sm font-medium"><%= field %></label>
+                <input type="text" name="config[servers][<%= key %>][<%= field %>]" value="<%= config.servers[key][field] %>" class="input" />
+              </div>
+            <% } %>
           <% }); %>
           <button type="button" onclick="removeServer(this)" class="text-red-600">Remove Server</button>
         </fieldset>
@@ -108,25 +199,40 @@
   let taskCounter = 1000;
 
   function addServer() {
-    const key = prompt("Enter a unique server key (e.g. 'freedom'):");
+    let key = prompt("Enter a unique server key (e.g. 'freedom'):");
     if (!key) return;
 
+    if (document.querySelector(`input[name="config[servers][${key}][_key]"]`)) {
+      alert(`A server with the key "${key}" already exists.`);
+      return;
+    }
+
+    key = key.trim().toLowerCase();
+    const label = key.charAt(0).toUpperCase() + key.slice(1);
     const container = document.getElementById('serversContainer');
     const html = `
       <fieldset class="border p-4 mb-2">
         <legend class="font-semibold">Server: ${key}</legend>
         <input type="hidden" name="config[servers][${key}][_key]" value="${key}" />
-        <div><label class="block text-sm font-medium">label</label><input type="text" name="config[servers][${key}][label]" class="input" /></div>
+        <div><label class="block text-sm font-medium">label</label><input type="text" name="config[servers][${key}][label]" class="input" value="${label}" /></div>
         <div><label class="block text-sm font-medium">dbHost</label><input type="text" name="config[servers][${key}][dbHost]" class="input" /></div>
-        <div><label class="block text-sm font-medium">dbPort</label><input type="text" name="config[servers][${key}][dbPort]" class="input" /></div>
+        <div><label class="block text-sm font-medium">dbPort</label><input type="number" name="config[servers][${key}][dbPort]" class="input" min="1" max="65535" value="1433" /></div>
         <div><label class="block text-sm font-medium">dbUser</label><input type="text" name="config[servers][${key}][dbUser]" class="input" /></div>
-        <div><label class="block text-sm font-medium">dbPass</label><input type="text" name="config[servers][${key}][dbPass]" class="input" /></div>
+        <div><label class="block text-sm font-medium">dbPass</label><input type="password" name="config[servers][${key}][dbPass]" class="input" /></div>
         <div><label class="block text-sm font-medium">dbName</label><input type="text" name="config[servers][${key}][dbName]" class="input" /></div>
+        <div>
+          <label class="block text-sm font-medium">Data Version</label>
+          <select name="config[servers][${key}][badgeVersion]" class="input">
+            <option value="i24">i24 / v2 (OuroDev)</option>
+            <option value="i25">i25+ (Homecoming Based)</option>
+          </select>
+        </div>
         <button type="button" onclick="removeServer(this)" class="text-red-600">Remove Server</button>
       </fieldset>
     `;
     container.insertAdjacentHTML('beforeend', html);
   }
+
 
   function removeServer(button) {
     button.closest('fieldset').remove();
@@ -181,6 +287,25 @@
   }
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.toggle-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const input = button.previousElementSibling;
+        if (!input || input.type !== 'password' && input.type !== 'text') return;
+
+        if (input.type === 'password') {
+          input.type = 'text';
+          button.textContent = '👁 Hide';
+        } else {
+          input.type = 'password';
+          button.textContent = '👁 Show';
+        }
+      });
+    });
+  });
+</script>
+
 <style>
   .input { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 0.5rem; }
   .btn { padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; }
@@ -188,4 +313,7 @@
   .btn-green { background: #10b981; color: white; }
   label { margin-bottom: 0.25rem; display: block; }
   fieldset > div { margin-bottom: 0.5rem; }
+  .input.toggle-password {
+    padding-right: 3rem; /* Space for the toggle button */
+  }
 </style>

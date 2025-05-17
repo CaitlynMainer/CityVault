@@ -1,0 +1,730 @@
+Badge
+{
+	Name Manhunter
+	Category kPvP
+	DisplayTitle "P52120357"
+	DisplayHint "P2705042819"
+	DisplayText "P1596155840"
+	DisplayTitleVillain "P52120357"
+	DisplayHintVillain "P2998263119"
+	DisplayTextVillain "P2856025923"
+	Icon "v_badge_PvpBadge"
+	Visible kills.pvp 1 >=
+	Hinted 1
+	Requires kills.pvp 10 >=
+	Meter kills.pvp 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name Ace
+	Category kPvP
+	DisplayTitle "P2606078005"
+	DisplayHint "P3973295588"
+	DisplayText "P4235583849"
+	DisplayTitleVillain "P2606078005"
+	DisplayHintVillain "P3595937457"
+	DisplayTextVillain "P4188087495"
+	Icon "v_badge_PvpBadge"
+	Visible Manhunter owned?
+	Hinted 1
+	Requires kills.pvp 20 >=
+	Meter kills.pvp 20 %
+	Revoke 0
+	BadgeValues 20
+}
+
+Badge
+{
+	Name Headhunter
+	Category kPvP
+	DisplayTitle "P1680012190"
+	DisplayHint "P4203434184"
+	DisplayText "P3058395682"
+	DisplayTitleVillain "P1680012190"
+	DisplayHintVillain "P2330297816"
+	DisplayTextVillain "P3644020876"
+	Icon "v_badge_PvpBadge"
+	Visible Ace owned?
+	Hinted 1
+	Requires kills.pvp 50 >=
+	Meter kills.pvp 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name AgentProvocateur
+	Category kPvP
+	DisplayTitle "P4045218966"
+	DisplayText "P464117674"
+	DisplayTitleVillain "P4045218966"
+	DisplayTextVillain "P933015054"
+	Icon "v_badge_PvpMissionBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Gunner
+	Category kPvP
+	DisplayTitle "P2912689440"
+	DisplayText "P2406190195"
+	Icon "v_badge_FirebaseBadge"
+	Visible 0
+	Hinted 0
+	Requires scripts.BBOreConvert 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MasterThief
+	Category kPvP
+	DisplayTitle "P2708101559"
+	DisplayText "P2089750718"
+	DisplayTitleVillain "P3632194279"
+	DisplayTextVillain "P2557373881"
+	Icon "v_badge_ThiefBadge"
+	Visible 0
+	Hinted 0
+	Requires wins.raid.Item_of_Power_captured 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MostWanted
+	Category kPvP
+	DisplayTitle "P2925777144"
+	DisplayText "P2714198422"
+	DisplayTitleVillain "P397672370"
+	DisplayTextVillain "P1470570891"
+	Icon "v_badge_PvpMissionBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Rocketman
+	Category kPvP
+	DisplayTitle "P498558511"
+	DisplayHint "P3262621505"
+	DisplayText "P2427897311"
+	Icon "v_badge_WarburgRocketBadge"
+	Visible scripts.RocketsLaunched 1 >=
+	Hinted 1
+	Requires scripts.RocketsLaunched 10 >=
+	Meter scripts.RocketsLaunched 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name ShockTrooper
+	Category kPvP
+	DisplayTitle "P1357981292"
+	DisplayText "P1091972611"
+	Icon "v_badge_BaseBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Wanted
+	Category kPvP
+	DisplayTitle "P2727706142"
+	DisplayText "P4255616919"
+	DisplayTitleVillain "P3729767694"
+	DisplayTextVillain "P136006471"
+	Icon "v_badge_PvpMissionBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVPillbox10
+	Category kPvP
+	DisplayTitle "P2291915826"
+	DisplayHint "P1830902460"
+	DisplayText "P3284556111"
+	Icon "badge_pillbox_1"
+	Visible level char> 40 >=
+	Hinted 1
+	Requires scripts.RVPillbox 10 >=
+	Meter scripts.RVPillbox 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name RVPillbox100
+	Category kPvP
+	DisplayTitle "P118514577"
+	DisplayHint "P460658144"
+	DisplayText "P3700285851"
+	Icon "badge_pillbox_2"
+	Visible RVPillbox10 owned?
+	Hinted 1
+	Requires scripts.RVPillbox 50 >=
+	Meter scripts.RVPillbox 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name RVPillbox1000
+	Category kPvP
+	DisplayTitle "P1532513045"
+	DisplayHint "P1749345940"
+	DisplayText "P2270269523"
+	Icon "badge_pillbox_3"
+	Visible RVPillbox100 owned?
+	Hinted 1
+	Requires scripts.RVPillbox 100 >=
+	Meter scripts.RVPillbox 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name RVHeavy10
+	Category kPvP
+	DisplayTitle "P1010112689"
+	DisplayHint "P1779821905"
+	DisplayText "P2751058864"
+	Icon "badge_heavy_1"
+	Visible level char> 40 >=
+	Hinted 1
+	Requires scripts.RVHeavyPet 10 >=
+	Meter scripts.RVHeavyPet 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name RVHeavy50
+	Category kPvP
+	DisplayTitle "P2498325356"
+	DisplayHint "P373394259"
+	DisplayText "P1191682623"
+	Icon "badge_heavy_2"
+	Visible RVHeavy10 owned?
+	Hinted 1
+	Requires scripts.RVHeavyPet 25 >=
+	Meter scripts.RVHeavyPet 25 %
+	Revoke 0
+	BadgeValues 25
+}
+
+Badge
+{
+	Name RVHeavy250
+	Category kPvP
+	DisplayTitle "P1672157995"
+	DisplayHint "P4094439327"
+	DisplayText "P931823964"
+	Icon "badge_heavy_3"
+	Visible RVHeavy50 owned?
+	Hinted 1
+	Requires scripts.RVHeavyPet 50 >=
+	Meter scripts.RVHeavyPet 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name DestroyerofWorlds
+	Category kPvP
+	DisplayTitle "P2444265556"
+	DisplayText "P1581600449"
+	DisplayTitleVillain "P1230826623"
+	DisplayTextVillain "P2608462833"
+	Icon "v_badge_TrialBadge1"
+	Visible 0
+	Hinted 0
+	Requires RV_Hero_1000 owned? RV_Villain_1000 owned? ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVStatesman
+	Category kPvP
+	DisplayTitle "P3278992183"
+	DisplayText "P301008041"
+	Icon "badge_defeatstatesman"
+	Visible 0
+	Hinted 0
+	Requires kills.Vindicators_Ms_Liberty_RV 1 >= type char> villain eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVPositron
+	Category kPvP
+	DisplayTitle "P2914641356"
+	DisplayText "P2602711857"
+	Icon "badge_defeatpositron"
+	Visible 0
+	Hinted 0
+	Requires kills.FreedomPhalanx_Positron_Giant 1 >= type char> villain eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVManticore
+	Category kPvP
+	DisplayTitle "P1627411470"
+	DisplayText "P3961038375"
+	Icon "badge_defeatmanticore"
+	Visible 0
+	Hinted 0
+	Requires kills.FreedomPhalanx_Manticore_Giant 1 >= type char> villain eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVSisterPsyche
+	Category kPvP
+	DisplayTitle "P4141179286"
+	DisplayText "P2355398805"
+	Icon "badge_defeatpsyche"
+	Visible 0
+	Hinted 0
+	Requires kills.FreedomPhalanx_PenelopeYin_RV 1 >= type char> villain eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVSynapse
+	Category kPvP
+	DisplayTitle "P227105132"
+	DisplayText "P980347768"
+	Icon "badge_defeatsynapse"
+	Visible 0
+	Hinted 0
+	Requires kills.FreedomPhalanx_Synapse_Giant 1 >= type char> villain eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVBackAlleyBrawler
+	Category kPvP
+	DisplayTitle "P1090200292"
+	DisplayText "P3418590090"
+	Icon "badge_defeatbrawler"
+	Visible 0
+	Hinted 0
+	Requires kills.FreedomPhalanx_Back_Alley_Brawler_Giant 1 >= type char> villain eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVLordRecluse
+	Category kPvP
+	DisplayTitle "P3108135727"
+	DisplayText "P564912687"
+	Icon "badge_defeatrecluse"
+	Visible 0
+	Hinted 0
+	Requires kills.Arachnos_Lord_Recluse_Giant 1 >= type char> hero eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVBlackScorpion
+	Category kPvP
+	DisplayTitle "P3844178795"
+	DisplayText "P4015858539"
+	Icon "badge_defeatscorpion"
+	Visible 0
+	Hinted 0
+	Requires kills.Arachnos_Black_Scorpion_Giant 1 >= type char> hero eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVGhostWidow
+	Category kPvP
+	DisplayTitle "P225104564"
+	DisplayText "P745236779"
+	Icon "badge_defeatghostwidow"
+	Visible 0
+	Hinted 0
+	Requires kills.Arachnos_Ghost_Widow_Giant 1 >= type char> hero eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVScirocco
+	Category kPvP
+	DisplayTitle "P3415517373"
+	DisplayText "P3422572077"
+	Icon "badge_defeatscirocco"
+	Visible 0
+	Hinted 0
+	Requires kills.Arachnos_Scirocco_Giant 1 >= type char> hero eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVCaptainMako
+	Category kPvP
+	DisplayTitle "P2228359282"
+	DisplayText "P3339080333"
+	Icon "badge_defeatmako"
+	Visible 0
+	Hinted 0
+	Requires kills.Arachnos_Mako_Giant 1 >= type char> hero eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RVAllHeroes
+	Category kPvP
+	DisplayTitle "P3384568980"
+	DisplayHint "P752970549"
+	DisplayText "P652275333"
+	DisplayTitleVillain "P1854808142"
+	DisplayHintVillain "P752970549"
+	DisplayTextVillain "P1275723989"
+	Icon "badge_defeatstatesman"
+	Visible RVStatesman owned? RVManticore owned? && RVPositron owned? && RVSynapse owned? && RVBackAlleyBrawler owned? && RVSisterPsyche owned? &&
+	Hinted 1
+	Requires RVStatesman owned? RVManticore owned? && RVPositron owned? && RVSynapse owned? && RVBackAlleyBrawler owned? && RVSisterPsyche owned? &&
+	Meter RVStatesman owned? RVManticore owned? + RVPositron owned? + RVSynapse owned? + RVBackAlleyBrawler owned? + RVSisterPsyche owned? + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name RVAllVillains
+	Category kPvP
+	DisplayTitle "P1013739562"
+	DisplayHint "P3364313123"
+	DisplayText "P2581429225"
+	DisplayTitleVillain "P2140927635"
+	DisplayHintVillain "P3364313123"
+	DisplayTextVillain "P3327685162"
+	Icon "badge_defeatrecluse"
+	Visible RVLordRecluse owned? RVBlackScorpion owned? && RVGhostWidow owned? && RVScirocco owned? && RVCaptainMako owned? &&
+	Hinted 1
+	Requires RVLordRecluse owned? RVBlackScorpion owned? && RVGhostWidow owned? && RVScirocco owned? && RVCaptainMako owned? &&
+	Meter RVLordRecluse owned? RVBlackScorpion owned? + RVGhostWidow owned? + RVScirocco owned? + RVCaptainMako owned? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name 1ArenaWin
+	Category kPvP
+	DisplayTitle "P1849613238"
+	DisplayHint "P2569357423"
+	DisplayText "P185911321"
+	Icon "Badge_arena_ArenaWin_5"
+	Visible 0
+	Hinted 0
+	Requires arena.wins 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name 1WinDuel
+	Category kPvP
+	DisplayTitle "P606665454"
+	DisplayHint "P3339414192"
+	DisplayText "P3614890598"
+	Icon "Badge_arena_Duelist_5"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.event.Duel 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name 1WinSwissDraw
+	Category kPvP
+	DisplayTitle "P2300300292"
+	DisplayHint "P875127153"
+	DisplayText "P2827780460"
+	Icon "Badge_arena_Tournament_5"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.event.SwissDraw 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name 1WinFreeForAll
+	Category kPvP
+	DisplayTitle "P4055836732"
+	DisplayHint "P307008217"
+	DisplayText "P1276043312"
+	Icon "Badge_arena_Survivalist_5"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.event.FreeForAll 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name 1WinPentad
+	Category kPvP
+	DisplayTitle "P4093374914"
+	DisplayHint "P3708417372"
+	DisplayText "P3190874020"
+	Icon "Badge_arena_Star_Hero_5"
+	VillainIcon "Badge_arena_Star_Villain_5"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.event.TotalStar 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Strawweight
+	Category kPvP
+	DisplayTitle "P4032310078"
+	DisplayHint "P3388114637"
+	DisplayText "P708106897"
+	DisplayTitleVillain "P4032310078"
+	DisplayTextVillain "P708106897"
+	Icon "badge_arena_straw"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.StrawWeight 1 >=
+	Meter arena.wins.weight.StrawWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Flyweight
+	Category kPvP
+	DisplayTitle "P970388292"
+	DisplayHint "P4209848608"
+	DisplayText "P2154540836"
+	DisplayTitleVillain "P970388292"
+	DisplayTextVillain "P2154540836"
+	Icon "badge_arena_fly"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.FlyWeight 1 >=
+	Meter arena.wins.weight.FlyWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Bantamweight
+	Category kPvP
+	DisplayTitle "P3974605919"
+	DisplayHint "P2407068716"
+	DisplayText "P1410310384"
+	DisplayTitleVillain "P3974605919"
+	DisplayTextVillain "P1410310384"
+	Icon "badge_arena_bantam"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.BantamWeight 1 >=
+	Meter arena.wins.weight.BantamWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Featherweight
+	Category kPvP
+	DisplayTitle "P76708340"
+	DisplayHint "P384168927"
+	DisplayText "P1619965787"
+	DisplayTitleVillain "P76708340"
+	DisplayTextVillain "P1619965787"
+	Icon "badge_arena_feather"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.FeatherWeight 1 >=
+	Meter arena.wins.weight.FeatherWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Lightweight
+	Category kPvP
+	DisplayTitle "P3394197215"
+	DisplayHint "P516244318"
+	DisplayText "P3279740631"
+	DisplayTitleVillain "P3394197215"
+	DisplayTextVillain "P3279740631"
+	Icon "badge_arena_light"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.LightWeight 1 >=
+	Meter arena.wins.weight.LightWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Welterweight
+	Category kPvP
+	DisplayTitle "P196913749"
+	DisplayHint "P1867138612"
+	DisplayText "P964661277"
+	DisplayTitleVillain "P196913749"
+	DisplayTextVillain "P964661277"
+	Icon "badge_arena_welter"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.WelterWeight 1 >=
+	Meter arena.wins.weight.WelterWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Middleweight
+	Category kPvP
+	DisplayTitle "P254971634"
+	DisplayHint "P670891611"
+	DisplayText "P3673037352"
+	DisplayTitleVillain "P254971634"
+	DisplayTextVillain "P3673037352"
+	Icon "badge_arena_middle"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.MiddleWeight 1 >=
+	Meter arena.wins.weight.MiddleWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Cruiserweight
+	Category kPvP
+	DisplayTitle "P875486911"
+	DisplayHint "P4158379872"
+	DisplayText "P2041154007"
+	DisplayTitleVillain "P875486911"
+	DisplayTextVillain "P2041154007"
+	Icon "badge_arena_cruiser"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.CruiserWeight 1 >=
+	Meter arena.wins.weight.CruiserWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name Heavyweight
+	Category kPvP
+	DisplayTitle "P891826902"
+	DisplayHint "P1743166622"
+	DisplayText "P1902489442"
+	DisplayTitleVillain "P891826902"
+	DisplayTextVillain "P1902489442"
+	Icon "badge_arena_heavy"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.HeavyWeight 1 >=
+	Meter arena.wins.weight.HeavyWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name SuperHeavyweight
+	Category kPvP
+	DisplayTitle "P1832115316"
+	DisplayHint "P1495761463"
+	DisplayText "P4251870359"
+	DisplayTitleVillain "P1832115316"
+	DisplayTextVillain "P4251870359"
+	Icon "badge_arena_superheavy"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.weight.SuperHeavyWeight 1 >=
+	Meter arena.wins.weight.SuperHeavyWeight 1 %
+	Revoke 0
+	BadgeValues 1
+}
+

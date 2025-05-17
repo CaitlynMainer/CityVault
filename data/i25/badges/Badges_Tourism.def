@@ -1,0 +1,6849 @@
+Badge
+{
+	Name BloodyBayTour1
+	Category kTourism
+	DisplayTitle "P3261808146"
+	DisplayText "P19545940"
+	DisplayTitleVillain "P1144571390"
+	DisplayTextVillain "P19545940"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.BloodyBay1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTour2
+	Category kTourism
+	DisplayTitle "P3242903908"
+	DisplayText "P4207189267"
+	DisplayTitleVillain "P2023747348"
+	DisplayTextVillain "P4207189267"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.BloodyBay2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTour3
+	Category kTourism
+	DisplayTitle "P2348861735"
+	DisplayText "P2754044224"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.BloodyBay3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTour4
+	Category kTourism
+	DisplayTitle "P1195294564"
+	DisplayText "P1798519890"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.BloodyBay4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTour5
+	Category kTourism
+	DisplayTitle "P3739990237"
+	DisplayText "P1766165011"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.BloodyBay5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTour6
+	Category kTourism
+	DisplayTitle "P2838615111"
+	DisplayText "P2759566713"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.BloodyBay6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTour7
+	Category kTourism
+	DisplayTitle "P3413997946"
+	DisplayText "P2681217265"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.BloodyBay7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTour8
+	Category kTourism
+	DisplayTitle "P3636017715"
+	DisplayText "P16105840"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.BloodyBay8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CapauDiableTour1
+	Category kTourism
+	DisplayTitle "P3107286169"
+	DisplayText "P1814712622"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.CapauDiable1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CapauDiableTour2
+	Category kTourism
+	DisplayTitle "P115904247"
+	DisplayText "P369026323"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.CapauDiable2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CapauDiableTour3
+	Category kTourism
+	DisplayTitle "P856373407"
+	DisplayText "P1276807567"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.CapauDiable3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CapauDiableTour4
+	Category kTourism
+	DisplayTitle "P3757074696"
+	DisplayText "P2460334053"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.CapauDiable4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CapauDiableTour5
+	Category kTourism
+	DisplayTitle "P3931986121"
+	DisplayText "P2317597956"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.CapauDiable5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandvilleTour1
+	Category kTourism
+	DisplayTitle "P2762063340"
+	DisplayText "P3666139176"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Grandville1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandvilleTour2
+	Category kTourism
+	DisplayTitle "P2906416711"
+	DisplayText "P2118024926"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Grandville2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandvilleTour3
+	Category kTourism
+	DisplayTitle "P2932815814"
+	DisplayText "P1573359609"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Grandville3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandvilleTour4
+	Category kTourism
+	DisplayTitle "P1890835699"
+	DisplayText "P2456797826"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Grandville4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MercyIslandTour1
+	Category kTourism
+	DisplayTitle "P2796546767"
+	DisplayText "P2289948169"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Mercy1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MercyIslandTour2
+	Category kTourism
+	DisplayTitle "P1059500369"
+	DisplayText "P1410159968"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Mercy2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MercyIslandTour3
+	Category kTourism
+	DisplayTitle "P2406097409"
+	DisplayText "P2960753285"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Mercy3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MercyIslandTour4
+	Category kTourism
+	DisplayTitle "P909255950"
+	DisplayText "P3123702447"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Mercy4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MercyIslandTour5
+	Category kTourism
+	DisplayTitle "P913919981"
+	DisplayText "P119033426"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Mercy5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MercyIslandTour6
+	Category kTourism
+	DisplayTitle "P246188200"
+	DisplayText "P823290112"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Mercy6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NervaTour1
+	Category kTourism
+	DisplayTitle "P3148732585"
+	DisplayText "P1588139161"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Nerva1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NervaTour2
+	Category kTourism
+	DisplayTitle "P1423539457"
+	DisplayText "P3008095725"
+	DisplayTitleVillain "P1423539457"
+	DisplayTextVillain "P957105310"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Nerva2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NervaTour3
+	Category kTourism
+	DisplayTitle "P3621359521"
+	DisplayText "P1246392985"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Nerva3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NervaTour4
+	Category kTourism
+	DisplayTitle "P3300918836"
+	DisplayText "P1320139866"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Nerva4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NervaTour5
+	Category kTourism
+	DisplayTitle "P2412733204"
+	DisplayText "P490816710"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Nerva5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PortOakesTour1
+	Category kTourism
+	DisplayTitle "P2225853305"
+	DisplayText "P4191167117"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PortOakes1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PortOakesTour2
+	Category kTourism
+	DisplayTitle "P2672744721"
+	DisplayText "P3651497637"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PortOakes2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PortOakesTour3
+	Category kTourism
+	DisplayTitle "P1654456783"
+	DisplayText "P4192799985"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PortOakes3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PortOakesTour4
+	Category kTourism
+	DisplayTitle "P1767686895"
+	DisplayText "P2496637765"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PortOakes4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ReclusesVictoryTour1
+	Category kTourism
+	DisplayTitle "P4212720692"
+	DisplayText "P455249246"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.ReclusesVictory1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ReclusesVictoryTour2
+	Category kTourism
+	DisplayTitle "P2163833261"
+	DisplayText "P641587814"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.ReclusesVictory2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ReclusesVictoryTour3
+	Category kTourism
+	DisplayTitle "P2850878933"
+	DisplayText "P3622212011"
+	DisplayTitleVillain "P779930922"
+	DisplayTextVillain "P3622212011"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.ReclusesVictory3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ReclusesVictoryTour4
+	Category kTourism
+	DisplayTitle "P1914355053"
+	DisplayText "P1915212823"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.ReclusesVictory4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SharkheadTour1
+	Category kTourism
+	DisplayTitle "P193019671"
+	DisplayText "P3010786600"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Sharkhead1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SharkheadTour2
+	Category kTourism
+	DisplayTitle "P3237743400"
+	DisplayText "P3879058047"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Sharkhead2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SharkheadTour3
+	Category kTourism
+	DisplayTitle "P4110776545"
+	DisplayText "P1701835909"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Sharkhead3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SharkheadTour4
+	Category kTourism
+	DisplayTitle "P1199143430"
+	DisplayText "P1704766072"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Sharkhead4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SirensCallTour1
+	Category kTourism
+	DisplayTitle "P3488176615"
+	DisplayText "P600680917"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.SirensCall1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SirensCallTour2
+	Category kTourism
+	DisplayTitle "P4240898201"
+	DisplayText "P2664219466"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.SirensCall2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SirensCallTour3
+	Category kTourism
+	DisplayTitle "P2547308903"
+	DisplayText "P2038177241"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.SirensCall3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SirensCallTour4
+	Category kTourism
+	DisplayTitle "P3685683167"
+	DisplayText "P4135142425"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.SirensCall4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SirensCallTour5
+	Category kTourism
+	DisplayTitle "P1520624914"
+	DisplayText "P1449038267"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.SirensCall5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SirensCallTour6
+	Category kTourism
+	DisplayTitle "P4184479313"
+	DisplayText "P1676323427"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.SirensCall6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SirensCallTour7
+	Category kTourism
+	DisplayTitle "P2873983567"
+	DisplayText "P224490485"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.SirensCall7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SirensCallTour8
+	Category kTourism
+	DisplayTitle "P121306848"
+	DisplayText "P111918755"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.SirensCall8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StMartialTour1
+	Category kTourism
+	DisplayTitle "P3644473344"
+	DisplayText "P961199543"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.StMartial1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StMartialTour2
+	Category kTourism
+	DisplayTitle "P2396960299"
+	DisplayText "P1688251647"
+	DisplayTitleVillain "P1901603485"
+	DisplayTextVillain "P1077155360"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.StMartial2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StMartialTour3
+	Category kTourism
+	DisplayTitle "P656758690"
+	DisplayText "P2752884080"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.StMartial3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StMartialTour4
+	Category kTourism
+	DisplayTitle "P3748983572"
+	DisplayText "P109716762"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.StMartial4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TutorialTour3
+	Category kTourism
+	DisplayTitle "P819989037"
+	DisplayText "P1522129282"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Tutorial3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name WarburgTour1
+	Category kTourism
+	DisplayTitle "P43522278"
+	DisplayText "P1399623082"
+	DisplayTitleVillain "P949210497"
+	DisplayTextVillain "P1399623082"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Warburg1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name WarburgTour2
+	Category kTourism
+	DisplayTitle "P399962985"
+	DisplayText "P976818693"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Warburg2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name WarburgTour3
+	Category kTourism
+	DisplayTitle "P2868744375"
+	DisplayText "P4276396481"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Warburg3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap1
+	Category kTourism
+	DisplayTitle "P3985073847"
+	DisplayText "P439427708"
+	DisplayTitleVillain "P1844750262"
+	DisplayTextVillain "P1127790952"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMAtlasPark1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap2
+	Category kTourism
+	DisplayTitle "P943112615"
+	DisplayText "P815907025"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMKingsRow1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap3
+	Category kTourism
+	DisplayTitle "P1730238040"
+	DisplayText "P990871774"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMSkywayCity1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap4
+	Category kTourism
+	DisplayTitle "P1054143394"
+	DisplayText "P3309729890"
+	DisplayTitleVillain "P1054143394"
+	DisplayTextVillain "P1844737674"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMSteelCanyon1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap5
+	Category kTourism
+	DisplayTitle "P877481044"
+	DisplayText "P1716713736"
+	DisplayTitleVillain "P3965777685"
+	DisplayTextVillain "P3947956944"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMIndependencePort1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap6
+	Category kTourism
+	DisplayTitle "P1568577972"
+	DisplayText "P578775183"
+	DisplayTitleVillain "P1568577972"
+	DisplayTextVillain "P175382230"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMTalosIsland1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap7
+	Category kTourism
+	DisplayTitle "P296650825"
+	DisplayText "P364383761"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMBrickstown1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap8
+	Category kTourism
+	DisplayTitle "P1869827242"
+	DisplayText "P2127226061"
+	DisplayTitleVillain "P3050759990"
+	DisplayTextVillain "P2127226061"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMFoundersFalls1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MayhemMap9
+	Category kTourism
+	DisplayTitle "P374705012"
+	DisplayText "P1748390910"
+	DisplayTitleVillain "P2965427580"
+	DisplayTextVillain "P1892466063"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MMPeregrineIsland1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap1
+	Category kTourism
+	DisplayTitle "P2611701046"
+	DisplayText "P450450081"
+	DisplayTitleVillain "P2324691065"
+	DisplayTextVillain "P450450081"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGAtlasPark1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap2
+	Category kTourism
+	DisplayTitle "P2997652264"
+	DisplayText "P3347480925"
+	DisplayTitleVillain "P2657487881"
+	DisplayTextVillain "P3347480925"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGKingsRow1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap3
+	Category kTourism
+	DisplayTitle "P1038035251"
+	DisplayText "P2706854503"
+	DisplayTitleVillain "P2848802154"
+	DisplayTextVillain "P2706854503"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGSkywayCity1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap4
+	Category kTourism
+	DisplayTitle "P2724488487"
+	DisplayText "P1068339985"
+	DisplayTitleVillain "P461178111"
+	DisplayTextVillain "P1068339985"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGSteelCanyon1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap5
+	Category kTourism
+	DisplayTitle "P156011144"
+	DisplayText "P1316780450"
+	DisplayTitleVillain "P216127430"
+	DisplayTextVillain "P1316780450"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGIndependencePort1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap6
+	Category kTourism
+	DisplayTitle "P3808656742"
+	DisplayText "P3686788541"
+	DisplayTitleVillain "P354078030"
+	DisplayTextVillain "P3686788541"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGTalosIsland1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap7
+	Category kTourism
+	DisplayTitle "P1603532186"
+	DisplayText "P1625300554"
+	DisplayTitleVillain "P2360125341"
+	DisplayTextVillain "P1625300554"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGBrickstown1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap8
+	Category kTourism
+	DisplayTitle "P1035369040"
+	DisplayText "P2937082205"
+	DisplayTitleVillain "P3556553648"
+	DisplayTextVillain "P2937082205"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGFoundersFalls1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SafeguardMap9
+	Category kTourism
+	DisplayTitle "P3892968023"
+	DisplayText "P2161503573"
+	DisplayTitleVillain "P3355357222"
+	DisplayTextVillain "P2161503573"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SGPeregrineIsland1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CageFighter
+	Category kTourism
+	DisplayTitle "P1494382141"
+	DisplayText "P2681754678"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PDCageFighter
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BigTime
+	Category kTourism
+	DisplayTitle "P711387982"
+	DisplayText "P822953492"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PDBigTime
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TruckerTour
+	Category kTourism
+	DisplayTitle "P4139655793"
+	DisplayText "P1645707403"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.trucker
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbyssTour1
+	Category kTourism
+	DisplayTitle "P3304133852"
+	DisplayText "P1106976883"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Abyss1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbyssTour2
+	Category kTourism
+	DisplayTitle "P2894662710"
+	DisplayText "P577774021"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Abyss2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour1
+	Category kTourism
+	DisplayTitle "P1658164522"
+	DisplayText "P774727465"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour2
+	Category kTourism
+	DisplayTitle "P3999777995"
+	DisplayText "P907022342"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour3
+	Category kTourism
+	DisplayTitle "P2435820194"
+	DisplayText "P2732826518"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour4
+	Category kTourism
+	DisplayTitle "P1782655346"
+	DisplayText "P3787526493"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour5
+	Category kTourism
+	DisplayTitle "P4223289452"
+	DisplayText "P938812267"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour6
+	Category kTourism
+	DisplayTitle "P3788740630"
+	DisplayText "P4252380072"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour7
+	Category kTourism
+	DisplayTitle "P3886061339"
+	DisplayText "P4195642279"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour8
+	Category kTourism
+	DisplayTitle "P1753553940"
+	DisplayText "P4033776756"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour9
+	Category kTourism
+	DisplayTitle "P1836643817"
+	DisplayText "P2784406330"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone9
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour10
+	Category kTourism
+	DisplayTitle "P1635115479"
+	DisplayText "P2656247549"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone10
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour11
+	Category kTourism
+	DisplayTitle "P4046642525"
+	DisplayText "P1343714854"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone11
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour12
+	Category kTourism
+	DisplayTitle "P3122248362"
+	DisplayText "P3837282465"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone12
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiWarZoneTour13
+	Category kTourism
+	DisplayTitle "P227478195"
+	DisplayText "P1505521772"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiWarZone13
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name OuroborosTour1
+	Category kTourism
+	DisplayTitle "P1550305935"
+	DisplayText "P2303757348"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Ouroboros1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CimeroraTour1
+	Category kTourism
+	DisplayTitle "P2396718607"
+	DisplayText "P688845311"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Cimerora1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BattleHardened
+	Category kTourism
+	DisplayTitle "P4152982099"
+	DisplayText "P2685766344"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Cimerora2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MSClubTour1
+	Category kTourism
+	DisplayTitle "P841109113"
+	DisplayText "P27927290"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.MSClub1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MissionArchitectTourism
+	Category kTourism
+	DisplayTitle "P2755138981"
+	DisplayText "P810216293"
+	Reward Explore
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Architect1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MercyIslandTour7
+	Category kTourism
+	DisplayTitle "P633849864"
+	DisplayText "P1856046075"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Mercy7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MercyIslandTour8
+	Category kTourism
+	DisplayTitle "P1589152051"
+	DisplayText "P290318474"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Mercy8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PortOakesTour5
+	Category kTourism
+	DisplayTitle "P3560602499"
+	DisplayText "P1890695094"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PortOakes5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PortOakesTour6
+	Category kTourism
+	DisplayTitle "P1076876859"
+	DisplayText "P2272888665"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PortOakes6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PortOakesTour7
+	Category kTourism
+	DisplayTitle "P69827490"
+	DisplayText "P4062324192"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PortOakes7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PortOakesTour8
+	Category kTourism
+	DisplayTitle "P3919703027"
+	DisplayText "P1288882697"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.PortOakes8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CapAuDiableTour6
+	Category kTourism
+	DisplayTitle "P311419533"
+	DisplayText "P3089963641"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.CapauDiable6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CapAuDiableTour7
+	Category kTourism
+	DisplayTitle "P1808289016"
+	DisplayText "P831516599"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.CapauDiable7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CapAuDiableTour8
+	Category kTourism
+	DisplayTitle "P1328236253"
+	DisplayText "P515671577"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.CapauDiable8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SharkheadTour5
+	Category kTourism
+	DisplayTitle "P1075803312"
+	DisplayText "P3356836749"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Sharkhead5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SharkheadTour6
+	Category kTourism
+	DisplayTitle "P2275510008"
+	DisplayText "P2995347504"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Sharkhead6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SharkheadTour7
+	Category kTourism
+	DisplayTitle "P1844804677"
+	DisplayText "P4017833685"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Sharkhead7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SharkheadTour8
+	Category kTourism
+	DisplayTitle "P3605822448"
+	DisplayText "P1668321051"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Sharkhead8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NervaTour6
+	Category kTourism
+	DisplayTitle "P1939248549"
+	DisplayText "P2249604886"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Nerva6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NervaTour7
+	Category kTourism
+	DisplayTitle "P3289221943"
+	DisplayText "P3529387427"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Nerva7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NervaTour8
+	Category kTourism
+	DisplayTitle "P1770607590"
+	DisplayText "P3176113351"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Nerva8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StMartialTour5
+	Category kTourism
+	DisplayTitle "P1956640063"
+	DisplayText "P3505454468"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.StMartial5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StMartialTour6
+	Category kTourism
+	DisplayTitle "P789263295"
+	DisplayText "P2122763695"
+	DisplayTitleVillain "P2910673088"
+	DisplayTextVillain "P2122763695"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.StMartial6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StMartialTour7
+	Category kTourism
+	DisplayTitle "P2208262902"
+	DisplayText "P2404829414"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.StMartial7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StMartialTour8
+	Category kTourism
+	DisplayTitle "P2730146418"
+	DisplayText "P3210185823"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.StMartial8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandvilleTour5
+	Category kTourism
+	DisplayTitle "P3394282106"
+	DisplayText "P504257411"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Grandville5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandvilleTour6
+	Category kTourism
+	DisplayTitle "P3236349856"
+	DisplayText "P3833841546"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Grandville6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandvilleTour7
+	Category kTourism
+	DisplayTitle "P972428323"
+	DisplayText "P698062960"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Grandville7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandvilleTour8
+	Category kTourism
+	DisplayTitle "P3292219913"
+	DisplayText "P3461013361"
+	Reward Explore
+	Icon "v_badge_TourismBadge"
+	Visible 0
+	Hinted 0
+	Requires visits.Grandville8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTour6
+	Category kTourism
+	DisplayTitle "P3998320695"
+	DisplayText "P2542862689"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Hollows6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTour7
+	Category kTourism
+	DisplayTitle "P4270092970"
+	DisplayText "P2249415707"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Hollows7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTour8
+	Category kTourism
+	DisplayTitle "P1527752923"
+	DisplayText "P416306205"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Hollows8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GalaxyCityTour6
+	Category kTourism
+	DisplayTitle "P2606033003"
+	DisplayText "P3578709668"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.GalaxyCity6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GalaxyCityTour7
+	Category kTourism
+	DisplayTitle "P4224523446"
+	DisplayText "P2430853593"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.GalaxyCity7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GalaxyCityTour8
+	Category kTourism
+	DisplayTitle "P1399425296"
+	DisplayText "P1175720939"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.GalaxyCity8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name KingsRowTour6
+	Category kTourism
+	DisplayTitle "P1684201604"
+	DisplayText "P4240947569"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.KingsRow6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name KingsRowTour7
+	Category kTourism
+	DisplayTitle "P415595642"
+	DisplayText "P2085284008"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.KingsRow7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name KingsRowTour8
+	Category kTourism
+	DisplayTitle "P2098044016"
+	DisplayText "P3365483825"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.KingsRow8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SteelCanyonTour5
+	Category kTourism
+	DisplayTitle "P1419250378"
+	DisplayText "P3665952398"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SteelCanyon5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SteelCanyonTour6
+	Category kTourism
+	DisplayTitle "P764856601"
+	DisplayText "P1363522638"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SteelCanyon6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SteelCanyonTour7
+	Category kTourism
+	DisplayTitle "P229401983"
+	DisplayText "P3633118616"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SteelCanyon7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SteelCanyonTour8
+	Category kTourism
+	DisplayTitle "P3389162039"
+	DisplayText "P609484129"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SteelCanyon8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkywayCityTour5
+	Category kTourism
+	DisplayTitle "P1661976461"
+	DisplayText "P14947353"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SkywayCity5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkywayCityTour6
+	Category kTourism
+	DisplayTitle "P237738624"
+	DisplayText "P1489383542"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SkywayCity6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkywayCityTour7
+	Category kTourism
+	DisplayTitle "P1404187737"
+	DisplayText "P3567541813"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SkywayCity7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkywayCityTour8
+	Category kTourism
+	DisplayTitle "P1337349810"
+	DisplayText "P1859930297"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SkywayCity8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTour4
+	Category kTourism
+	DisplayTitle "P3057530129"
+	DisplayText "P1542088194"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Croatoa4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTour5
+	Category kTourism
+	DisplayTitle "P2572040258"
+	DisplayText "P2312179867"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Croatoa5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTour6
+	Category kTourism
+	DisplayTitle "P4152908672"
+	DisplayText "P3435725406"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Croatoa6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTour7
+	Category kTourism
+	DisplayTitle "P1035391335"
+	DisplayText "P889675467"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Croatoa7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTour8
+	Category kTourism
+	DisplayTitle "P592527046"
+	DisplayText "P2277996340"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Croatoa8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TalosIslandTour4
+	Category kTourism
+	DisplayTitle "P1718808892"
+	DisplayText "P2811332471"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.TalosIsland4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TalosIslandTour5
+	Category kTourism
+	DisplayTitle "P3048364645"
+	DisplayText "P2763242528"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.TalosIsland5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TalosIslandTour6
+	Category kTourism
+	DisplayTitle "P3862152888"
+	DisplayText "P4282441617"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.TalosIsland6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TalosIslandTour7
+	Category kTourism
+	DisplayTitle "P821023070"
+	DisplayText "P3050340713"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.TalosIsland7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TalosIslandTour8
+	Category kTourism
+	DisplayTitle "P2353563047"
+	DisplayText "P52912002"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.TalosIsland8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IndependencePortTour4
+	Category kTourism
+	DisplayTitle "P1148626156"
+	DisplayText "P3008766945"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.IndependencePort4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IndependencePortTour5
+	Category kTourism
+	DisplayTitle "P3651370547"
+	DisplayText "P287711419"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.IndependencePort5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IndependencePortTour6
+	Category kTourism
+	DisplayTitle "P785989207"
+	DisplayText "P2682973202"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.IndependencePort6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IndependencePortTour7
+	Category kTourism
+	DisplayTitle "P2524825549"
+	DisplayText "P4163090888"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.IndependencePort7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IndependencePortTour8
+	Category kTourism
+	DisplayTitle "P991802155"
+	DisplayText "P4029872355"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.IndependencePort8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FoundersFallsTour3
+	Category kTourism
+	DisplayTitle "P7978903"
+	DisplayText "P1269502852"
+	DisplayTitleVillain "P379164938"
+	DisplayTextVillain "P1269502852"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FoundersFalls3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FoundersFallsTour4
+	Category kTourism
+	DisplayTitle "P3555648863"
+	DisplayText "P276716605"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FoundersFalls4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FoundersFallsTour5
+	Category kTourism
+	DisplayTitle "P1805981779"
+	DisplayText "P3807240055"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FoundersFalls5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FoundersFallsTour6
+	Category kTourism
+	DisplayTitle "P3977586361"
+	DisplayText "P2182174850"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FoundersFalls6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FoundersFallsTour7
+	Category kTourism
+	DisplayTitle "P165001637"
+	DisplayText "P2867128252"
+	DisplayTitleVillain "P2251998762"
+	DisplayTextVillain "P2867128252"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FoundersFalls7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FoundersFallsTour8
+	Category kTourism
+	DisplayTitle "P3656668159"
+	DisplayText "P3083585955"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FoundersFalls8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BrickstownTour3
+	Category kTourism
+	DisplayTitle "P2270749885"
+	DisplayText "P2212527244"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Brickstown3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BrickstownTour4
+	Category kTourism
+	DisplayTitle "P1387613586"
+	DisplayText "P2082698272"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Brickstown4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BrickstownTour5
+	Category kTourism
+	DisplayTitle "P1780213260"
+	DisplayText "P82262140"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Brickstown5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BrickstownTour6
+	Category kTourism
+	DisplayTitle "P877663949"
+	DisplayText "P1190951012"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Brickstown6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BrickstownTour7
+	Category kTourism
+	DisplayTitle "P1465574106"
+	DisplayText "P1784336399"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Brickstown7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BrickstownTour8
+	Category kTourism
+	DisplayTitle "P699288539"
+	DisplayText "P1000608840"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Brickstown8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PeregrineIslandTour2
+	Category kTourism
+	DisplayTitle "P2828313707"
+	DisplayText "P2932792794"
+	DisplayTitleVillain "P770373201"
+	DisplayTextVillain "P2932792794"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.PeregrineIsland2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PeregrineIslandTour3
+	Category kTourism
+	DisplayTitle "P1027802142"
+	DisplayText "P3619856734"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.PeregrineIsland3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PeregrineIslandTour4
+	Category kTourism
+	DisplayTitle "P2903515253"
+	DisplayText "P14317562"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.PeregrineIsland4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PeregrineIslandTour5
+	Category kTourism
+	DisplayTitle "P452415204"
+	DisplayText "P983471386"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.PeregrineIsland5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PeregrineIslandTour6
+	Category kTourism
+	DisplayTitle "P1294997750"
+	DisplayText "P1375148023"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.PeregrineIsland6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PeregrineIslandTour7
+	Category kTourism
+	DisplayTitle "P3105184984"
+	DisplayText "P634890095"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.PeregrineIsland7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PeregrineIslandTour8
+	Category kTourism
+	DisplayTitle "P2429236410"
+	DisplayText "P3180733018"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.PeregrineIsland8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TriedAndTrue
+	Category kTourism
+	DisplayTitle "P316110782"
+	DisplayHint "P384097283"
+	DisplayText "P2033715767"
+	DisplayTitleVillain "P316110782"
+	DisplayHintVillain "P384097283"
+	DisplayTextVillain "P2535062321"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible type char> hero eq visits.Hero1CapsuleAtlas visits.Hero1CapsuleMission || visits.Hero1CapsuleTF || &&
+	Hinted 1
+	Requires visits.Hero1CapsuleAtlas visits.Hero1CapsuleMission && visits.Hero1CapsuleTF && type char> hero eq &&
+	Meter visits.Hero1CapsuleAtlas 1 >= visits.Hero1CapsuleMission 1 >= + visits.Hero1CapsuleTF 1 >= + 3 %
+	Revoke 0
+	BadgeValues 3
+}
+
+Badge
+{
+	Name P_Ambitious
+	Category kTourism
+	DisplayTitle "P3312413296"
+	DisplayText "P373032796"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.TyrantsTower1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_CitizenCole
+	Category kTourism
+	DisplayTitle "P826833993"
+	DisplayText "P514497526"
+	DisplayTitleVillain "P826833993"
+	DisplayTextVillain "P3021229756"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Magisterium1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_CivicMinded
+	Category kTourism
+	DisplayTitle "P1818854103"
+	DisplayText "P2751401189"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Magisterium2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_GuardiansOfJustice
+	Category kTourism
+	DisplayTitle "P4024034663"
+	DisplayText "P3320894676"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.PPDHQ
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_IntoTheWild
+	Category kTourism
+	DisplayTitle "P2199516323"
+	DisplayText "P4125994419"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Beach
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Technophile
+	Category kTourism
+	DisplayTitle "P1681072854"
+	DisplayText "P605643642"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.CMF1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_UnCivilSociety
+	Category kTourism
+	DisplayTitle "P421888050"
+	DisplayText "P1183109893"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Protest
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Waterfront
+	Category kTourism
+	DisplayTitle "P3439627859"
+	DisplayText "P3892745586"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Riverfront
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_GoldDigger
+	Category kTourism
+	DisplayTitle "P3629172667"
+	DisplayText "P3754510920"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImperialCity3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_MercyMissionary
+	Category kTourism
+	DisplayTitle "P3406781371"
+	DisplayText "P373791711"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.BAF1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_ParkRanger
+	Category kTourism
+	DisplayTitle "P1686194370"
+	DisplayText "P3734497485"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.PeoplesPark1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_PraetorianOfPrivilege
+	Category kTourism
+	DisplayTitle "P3731681350"
+	DisplayText "P742937962"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FourGables1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Seen
+	Category kTourism
+	DisplayTitle "P73442598"
+	DisplayText "P3893382642"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImperialCity1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Seer
+	Category kTourism
+	DisplayTitle "P274856297"
+	DisplayText "P3231540600"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImperialCity2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_TiberianOverseer
+	Category kTourism
+	DisplayTitle "P1893944583"
+	DisplayText "P3111955090"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.TiberianBluff1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_TunedIn
+	Category kTourism
+	DisplayTitle "P1854592361"
+	DisplayText "P1904234903"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.TPN1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_ClockworkMechanic
+	Category kTourism
+	DisplayTitle "P2340048902"
+	DisplayText "P1746368549"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NovaUnder5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Disappeared
+	Category kTourism
+	DisplayTitle "P3316226082"
+	DisplayText "P30504407"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NovaUnder6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_FerrymanOfTheDamned
+	Category kTourism
+	DisplayTitle "P2835150644"
+	DisplayText "P715296749"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NovaUnder3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Morbid
+	Category kTourism
+	DisplayTitle "P1843616379"
+	DisplayText "P886739138"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NovaUnder4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_SecretPrisoner
+	Category kTourism
+	DisplayTitle "P1594106092"
+	DisplayText "P2325199907"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NovaUnder2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Trainspotter
+	Category kTourism
+	DisplayTitle "P898038088"
+	DisplayText "P158833110"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NovaUnder7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_UrbanSpelunker
+	Category kTourism
+	DisplayTitle "P3096763350"
+	DisplayText "P1678504506"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NovaUnder1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_WarriorAtTheGate
+	Category kTourism
+	DisplayTitle "P3738726935"
+	DisplayText "P1792432841"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NovaUnder8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_BrokenMind
+	Category kTourism
+	DisplayTitle "P2888566708"
+	DisplayText "P3953071465"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImpUnder3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Condemning
+	Category kTourism
+	DisplayTitle "P579448711"
+	DisplayText "P3673942587"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImpUnder6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Engineer
+	Category kTourism
+	DisplayTitle "P1835075727"
+	DisplayText "P3878789372"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImpUnder4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_EyesOfTheDark
+	Category kTourism
+	DisplayTitle "P3512136250"
+	DisplayText "P363688199"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImpUnder5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Hoarder
+	Category kTourism
+	DisplayTitle "P2668725003"
+	DisplayText "P1372831258"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImpUnder7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Lowlife
+	Category kTourism
+	DisplayTitle "P2485035201"
+	DisplayText "P3451369349"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImpUnder8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_SilentWitness
+	Category kTourism
+	DisplayTitle "P157013092"
+	DisplayText "P1230900957"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImpUnder2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_UndergroundExplorer
+	Category kTourism
+	DisplayTitle "P1507766397"
+	DisplayText "P825189609"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImpUnder1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Airlift
+	Category kTourism
+	DisplayTitle "P2176880030"
+	DisplayText "P119135347"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Neutropolis_Badge_7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_DontDrinkIt
+	Category kTourism
+	DisplayTitle "P3470418277"
+	DisplayText "P2181640127"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Neutropolis_Badge_8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_EyesToTheFuture
+	Category kTourism
+	DisplayTitle "P839803460"
+	DisplayText "P2174501847"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Neutropolis_Badge_2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Longshoreman
+	Category kTourism
+	DisplayTitle "P1706609612"
+	DisplayText "P675511976"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Neutropolis_Badge_3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_MorePower
+	Category kTourism
+	DisplayTitle "P3345422267"
+	DisplayText "P84142685"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Neutropolis_Badge_6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Stockpiling
+	Category kTourism
+	DisplayTitle "P2687028258"
+	DisplayText "P1073122627"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Neutropolis_Badge_4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_StuffOfLife
+	Category kTourism
+	DisplayTitle "P3822192347"
+	DisplayText "P1191132297"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Neutropolis_Badge_1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_UrbanRenewal
+	Category kTourism
+	DisplayTitle "P658441334"
+	DisplayText "P235490248"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.Neutropolis_Badge_5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_BingeEater
+	Category kTourism
+	DisplayTitle "P3188499385"
+	DisplayText "P967317410"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.UnderNeutropolis7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Cluttered
+	Category kTourism
+	DisplayTitle "P2906384736"
+	DisplayText "P2314964137"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.UnderNeutropolis2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_DrinkEnriche
+	Category kTourism
+	DisplayTitle "P471945583"
+	DisplayText "P3176656478"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.UnderNeutropolis5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_GradeF
+	Category kTourism
+	DisplayTitle "P236703526"
+	DisplayText "P3657493337"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.UnderNeutropolis3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_KeepingTheLightsOn
+	Category kTourism
+	DisplayTitle "P2602937188"
+	DisplayText "P3740595507"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.UnderNeutropolis4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_ReadyForAnything
+	Category kTourism
+	DisplayTitle "P578094622"
+	DisplayText "P3958099792"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.UnderNeutropolis1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Nailbiter
+	Category kTourism
+	DisplayTitle "P3718609363"
+	DisplayText "P3435711005"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.UnderNeutropolis8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_TheNewBoss
+	Category kTourism
+	DisplayTitle "P2524391950"
+	DisplayText "P1649516580"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.UnderNeutropolis6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_RiverRat
+	Category kTourism
+	DisplayTitle "P3307123898"
+	DisplayHint "P1648810456"
+	DisplayText "P2122363134"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible visits.PraetoriaBridge1 visits.PraetoriaBridge2 || visits.PraetoriaBridge3 || visits.PraetoriaBridge4 || visits.PraetoriaBridge5 || visits.PraetoriaBridge6 || visits.PraetoriaBridge7 || visits.PraetoriaBridge8 || visits.PraetoriaBridge9 || visits.PraetoriaBridge10 || visits.PraetoriaBridge11 || visits.PraetoriaBridge12 || visits.PraetoriaBridge13 || visits.PraetoriaBridge14 || visits.PraetoriaBridge15 || visits.PraetoriaBridge16 || visits.PraetoriaBridge17 || visits.PraetoriaBridge18 || visits.PraetoriaBridge19 ||
+	Hinted 1
+	Requires visits.PraetoriaBridge1 visits.PraetoriaBridge2 && visits.PraetoriaBridge3 && visits.PraetoriaBridge4 && visits.PraetoriaBridge5 && visits.PraetoriaBridge6 && visits.PraetoriaBridge7 && visits.PraetoriaBridge8 && visits.PraetoriaBridge9 && visits.PraetoriaBridge10 && visits.PraetoriaBridge11 && visits.PraetoriaBridge12 && visits.PraetoriaBridge13 && visits.PraetoriaBridge14 && visits.PraetoriaBridge15 && visits.PraetoriaBridge16 && visits.PraetoriaBridge17 && visits.PraetoriaBridge18 && visits.PraetoriaBridge19 &&
+	Meter visits.PraetoriaBridge1 1 >= visits.PraetoriaBridge2 1 >= + visits.PraetoriaBridge3 1 >= + visits.PraetoriaBridge4 1 >=  + visits.PraetoriaBridge5 1 >= + visits.PraetoriaBridge6 1 >= + visits.PraetoriaBridge7 1 >= + visits.PraetoriaBridge8 1 >= + visits.PraetoriaBridge9 1 >= + visits.PraetoriaBridge10 1 >= + visits.PraetoriaBridge11 1 >= + visits.PraetoriaBridge12 1 >= + visits.PraetoriaBridge13 1 >= + visits.PraetoriaBridge14 1 >= + visits.PraetoriaBridge15 1 >= + visits.PraetoriaBridge16 1 >= + visits.PraetoriaBridge17 1 >= + visits.PraetoriaBridge18 1 >= + visits.PraetoriaBridge19 1 >= + 19 %
+	Revoke 0
+	BadgeValues 19
+}
+
+Badge
+{
+	Name P_RailRider
+	Category kTourism
+	DisplayTitle "P2094005247"
+	DisplayHint "P3577202181"
+	DisplayText "P975981152"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible visits.trainNovaPraetoria visits.trainImperialCity || visits.trainNeutropolis ||
+	Hinted 1
+	Requires visits.trainNovaPraetoria visits.trainImperialCity && visits.trainNeutropolis &&
+	Meter visits.trainNovaPraetoria 1 >= visits.trainImperialCity 1 >= + visits.trainNeutropolis 1 >= + 3 %
+	Revoke 0
+	BadgeValues 3
+}
+
+Badge
+{
+	Name P_GoingRouge
+	Category kTourism
+	DisplayTitle "P2899093924"
+	DisplayText "P3401067654"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.ImperialTailor
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PerezParkTour6
+	Category kTourism
+	DisplayTitle "P427402190"
+	DisplayText "P1770743346"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.PerezPark6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PerezParkTour7
+	Category kTourism
+	DisplayTitle "P48768838"
+	DisplayText "P1580965838"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.PerezPark7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PerezParkTour8
+	Category kTourism
+	DisplayTitle "P390421412"
+	DisplayText "P2260357731"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.PerezPark8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BoomtownTour5
+	Category kTourism
+	DisplayTitle "P524839340"
+	DisplayText "P1855351119"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Boomtown5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BoomtownTour6
+	Category kTourism
+	DisplayTitle "P1974866568"
+	DisplayText "P2577252961"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Boomtown6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BoomtownTour7
+	Category kTourism
+	DisplayTitle "P2070874931"
+	DisplayText "P1732668725"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Boomtown7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BoomtownTour8
+	Category kTourism
+	DisplayTitle "P2754814914"
+	DisplayText "P3093343737"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Boomtown8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaTour4
+	Category kTourism
+	DisplayTitle "P2291194523"
+	DisplayText "P875309022"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoria4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaTour5
+	Category kTourism
+	DisplayTitle "P3627605493"
+	DisplayText "P1668134420"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoria5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaTour6
+	Category kTourism
+	DisplayTitle "P314271634"
+	DisplayText "P2896772400"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoria6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaTour7
+	Category kTourism
+	DisplayTitle "P83422747"
+	DisplayText "P2330342099"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoria7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaTour8
+	Category kTourism
+	DisplayTitle "P3738906734"
+	DisplayText "P1256566060"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoria8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTour4
+	Category kTourism
+	DisplayTitle "P885270330"
+	DisplayText "P773807053"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Striga4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTour5
+	Category kTourism
+	DisplayTitle "P3526880741"
+	DisplayText "P1651543771"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Striga5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTour6
+	Category kTourism
+	DisplayTitle "P2055433939"
+	DisplayText "P4027163234"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Striga6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTour7
+	Category kTourism
+	DisplayTitle "P4103937943"
+	DisplayText "P3987684040"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Striga7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTour8
+	Category kTourism
+	DisplayTitle "P2580286104"
+	DisplayText "P3635253855"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Striga8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CreysFolleyTour3
+	Category kTourism
+	DisplayTitle "P1345517678"
+	DisplayText "P982612068"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CreysFolly3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CreysFolleyTour4
+	Category kTourism
+	DisplayTitle "P3967106136"
+	DisplayText "P3355453114"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CreysFolly4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CreysFolleyTour5
+	Category kTourism
+	DisplayTitle "P1064947595"
+	DisplayText "P2936516428"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CreysFolly5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CreysFolleyTour6
+	Category kTourism
+	DisplayTitle "P3024072754"
+	DisplayText "P1015222229"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CreysFolly6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CreysFolleyTour7
+	Category kTourism
+	DisplayTitle "P667446486"
+	DisplayText "P685757530"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CreysFolly7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CreysFolleyTour8
+	Category kTourism
+	DisplayTitle "P2140446648"
+	DisplayText "P235923023"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CreysFolly8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirebaseZuluTour1
+	Category kTourism
+	DisplayTitle "P2781909851"
+	DisplayText "P4074684786"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.FirebaseZulu1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirebaseZuluTour2
+	Category kTourism
+	DisplayTitle "P3616869866"
+	DisplayText "P3328683025"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.FirebaseZulu2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirebaseZuluTour3
+	Category kTourism
+	DisplayTitle "P3833550836"
+	DisplayText "P1054628938"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.FirebaseZulu3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirebaseZuluTour4
+	Category kTourism
+	DisplayTitle "P2636588020"
+	DisplayText "P4325984"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.FirebaseZulu4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirebaseZuluTour5
+	Category kTourism
+	DisplayTitle "P3275303794"
+	DisplayText "P1553680109"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.FirebaseZulu5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirebaseZuluTour6
+	Category kTourism
+	DisplayTitle "P3429985570"
+	DisplayText "P1486249109"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.FirebaseZulu6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirebaseZuluTour7
+	Category kTourism
+	DisplayTitle "P3780550130"
+	DisplayText "P3176711501"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.FirebaseZulu7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirebaseZuluTour8
+	Category kTourism
+	DisplayTitle "P4192825280"
+	DisplayText "P2068295172"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.FirebaseZulu8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CascadeArchTour1
+	Category kTourism
+	DisplayTitle "P3910015387"
+	DisplayText "P100760420"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CascadeArch1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CascadeArchTour2
+	Category kTourism
+	DisplayTitle "P1283089999"
+	DisplayText "P849957625"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CascadeArch2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CascadeArchTour3
+	Category kTourism
+	DisplayTitle "P1704722525"
+	DisplayText "P2476874350"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CascadeArch3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CascadeArchTour4
+	Category kTourism
+	DisplayTitle "P359837256"
+	DisplayText "P1069891935"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CascadeArch4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CascadeArchTour5
+	Category kTourism
+	DisplayTitle "P2242628390"
+	DisplayText "P1382293085"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CascadeArch5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CascadeArchTour6
+	Category kTourism
+	DisplayTitle "P1146661010"
+	DisplayText "P1561603261"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CascadeArch6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CascadeArchTour7
+	Category kTourism
+	DisplayTitle "P1016561590"
+	DisplayText "P3754835569"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CascadeArch7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CascadeArchTour8
+	Category kTourism
+	DisplayTitle "P479892438"
+	DisplayText "P3189553562"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CascadeArch8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ChantryTour1
+	Category kTourism
+	DisplayTitle "P3494449973"
+	DisplayText "P1079296935"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Chantry1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ChantryTour2
+	Category kTourism
+	DisplayTitle "P1915043142"
+	DisplayText "P2010673348"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Chantry2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ChantryTour3
+	Category kTourism
+	DisplayTitle "P1224866295"
+	DisplayText "P1136164274"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Chantry3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ChantryTour4
+	Category kTourism
+	DisplayTitle "P3530623662"
+	DisplayText "P717256394"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Chantry4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ChantryTour5
+	Category kTourism
+	DisplayTitle "P1100977003"
+	DisplayText "P3972358646"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Chantry5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ChantryTour6
+	Category kTourism
+	DisplayTitle "P4222812984"
+	DisplayText "P2054558012"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Chantry6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ChantryTour7
+	Category kTourism
+	DisplayTitle "P4164662619"
+	DisplayText "P3132129554"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Chantry7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ChantryTour8
+	Category kTourism
+	DisplayTitle "P767819171"
+	DisplayText "P195713125"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Chantry8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbSewerNetworkTour1
+	Category kTourism
+	DisplayTitle "P2471330333"
+	DisplayText "P317400344"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbSewerNetwork1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbSewerNetworkTour2
+	Category kTourism
+	DisplayTitle "P1726245082"
+	DisplayText "P3645283814"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbSewerNetwork2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbSewerNetworkTour3
+	Category kTourism
+	DisplayTitle "P1914384714"
+	DisplayText "P3665711070"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbSewerNetwork3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbSewerNetworkTour4
+	Category kTourism
+	DisplayTitle "P1250529139"
+	DisplayText "P2886526343"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbSewerNetwork4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbSewerNetworkTour5
+	Category kTourism
+	DisplayTitle "P3514792074"
+	DisplayText "P3840770294"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbSewerNetwork5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbSewerNetworkTour6
+	Category kTourism
+	DisplayTitle "P336331346"
+	DisplayText "P856757348"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbSewerNetwork6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbSewerNetworkTour7
+	Category kTourism
+	DisplayTitle "P1133116982"
+	DisplayText "P3227695407"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbSewerNetwork7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbSewerNetworkTour8
+	Category kTourism
+	DisplayTitle "P2535163641"
+	DisplayText "P3930356566"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbSewerNetwork8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerNetworkTour1
+	Category kTourism
+	DisplayTitle "P1336045498"
+	DisplayText "P1792096609"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.SewerNetwork1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerNetworkTour2
+	Category kTourism
+	DisplayTitle "P1821234893"
+	DisplayText "P3071690713"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.SewerNetwork2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerNetworkTour3
+	Category kTourism
+	DisplayTitle "P3903846786"
+	DisplayText "P1135874434"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.SewerNetwork3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerNetworkTour4
+	Category kTourism
+	DisplayTitle "P195993442"
+	DisplayText "P1842709703"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.SewerNetwork4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerNetworkTour5
+	Category kTourism
+	DisplayTitle "P2032010988"
+	DisplayText "P881125684"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.SewerNetwork5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerNetworkTour6
+	Category kTourism
+	DisplayTitle "P2568851079"
+	DisplayText "P995568430"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.SewerNetwork6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerNetworkTour7
+	Category kTourism
+	DisplayTitle "P3109446561"
+	DisplayText "P1972209281"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.SewerNetwork7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerNetworkTour8
+	Category kTourism
+	DisplayTitle "P3730934221"
+	DisplayText "P3054677052"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.SewerNetwork8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTour4
+	Category kTourism
+	DisplayTitle "P1773079578"
+	DisplayText "P715624523"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TerraVolta4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTour5
+	Category kTourism
+	DisplayTitle "P2113483332"
+	DisplayText "P2634906538"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TerraVolta5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTour6
+	Category kTourism
+	DisplayTitle "P770910090"
+	DisplayText "P3950691429"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TerraVolta6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTour7
+	Category kTourism
+	DisplayTitle "P2164362972"
+	DisplayText "P3530089659"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TerraVolta7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTour8
+	Category kTourism
+	DisplayTitle "P1662884445"
+	DisplayText "P335214793"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TerraVolta8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTour3
+	Category kTourism
+	DisplayTitle "P1519941239"
+	DisplayText "P1706649240"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Eden3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTour4
+	Category kTourism
+	DisplayTitle "P3879216789"
+	DisplayText "P3465169014"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Eden4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTour5
+	Category kTourism
+	DisplayTitle "P399180596"
+	DisplayText "P3933687671"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Eden5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTour6
+	Category kTourism
+	DisplayTitle "P1014659605"
+	DisplayText "P1605326815"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Eden6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTour7
+	Category kTourism
+	DisplayTitle "P3313420794"
+	DisplayText "P1736000798"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Eden7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTour8
+	Category kTourism
+	DisplayTitle "P785999475"
+	DisplayText "P2603001812"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Eden8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TheHiveTour3
+	Category kTourism
+	DisplayTitle "P1812141881"
+	DisplayText "P644630727"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TheHive3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TheHiveTour4
+	Category kTourism
+	DisplayTitle "P3305901807"
+	DisplayText "P3292536708"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TheHive4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TheHiveTour5
+	Category kTourism
+	DisplayTitle "P1408642022"
+	DisplayText "P1977940306"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TheHive5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TheHiveTour6
+	Category kTourism
+	DisplayTitle "P2899028093"
+	DisplayText "P3998365622"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TheHive6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TheHiveTour7
+	Category kTourism
+	DisplayTitle "P3720726538"
+	DisplayText "P97040322"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TheHive7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TheHiveTour8
+	Category kTourism
+	DisplayTitle "P1838400798"
+	DisplayText "P1747339884"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TheHive8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StormPalaceTour1
+	Category kTourism
+	DisplayTitle "P2574100873"
+	DisplayText "P2631930764"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.StormPalace1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StormPalaceTour2
+	Category kTourism
+	DisplayTitle "P2159796541"
+	DisplayText "P854515357"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.StormPalace2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StormPalaceTour3
+	Category kTourism
+	DisplayTitle "P1005850467"
+	DisplayText "P1295864397"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.StormPalace3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StormPalaceTour4
+	Category kTourism
+	DisplayTitle "P2221402471"
+	DisplayText "P997055760"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.StormPalace4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StormPalaceTour5
+	Category kTourism
+	DisplayTitle "P2333406368"
+	DisplayText "P322942681"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.StormPalace5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StormPalaceTour6
+	Category kTourism
+	DisplayTitle "P2085761583"
+	DisplayText "P839979437"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.StormPalace6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StormPalaceTour7
+	Category kTourism
+	DisplayTitle "P4169811335"
+	DisplayText "P4275982565"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.StormPalace7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StormPalaceTour8
+	Category kTourism
+	DisplayTitle "P1676939431"
+	DisplayText "P2821092379"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.StormPalace8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbyssTour3
+	Category kTourism
+	DisplayTitle "P3324247852"
+	DisplayText "P2227747766"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Abyss3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbyssTour4
+	Category kTourism
+	DisplayTitle "P4142971937"
+	DisplayText "P2134238648"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Abyss4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbyssTour5
+	Category kTourism
+	DisplayTitle "P2779337643"
+	DisplayText "P1490508546"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Abyss5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbyssTour6
+	Category kTourism
+	DisplayTitle "P1694612962"
+	DisplayText "P200635908"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Abyss6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbyssTour7
+	Category kTourism
+	DisplayTitle "P3848946529"
+	DisplayText "P573736814"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Abyss7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbyssTour8
+	Category kTourism
+	DisplayTitle "P233748340"
+	DisplayText "P744764317"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Abyss8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MonsterIslandTour1
+	Category kTourism
+	DisplayTitle "P3914533390"
+	DisplayText "P60052020"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.MonsterIsland1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MonsterIslandTour2
+	Category kTourism
+	DisplayTitle "P3579896511"
+	DisplayText "P3956003638"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.MonsterIsland2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MonsterIslandTour3
+	Category kTourism
+	DisplayTitle "P635150969"
+	DisplayText "P3525898547"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.MonsterIsland3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MonsterIslandTour4
+	Category kTourism
+	DisplayTitle "P1234669861"
+	DisplayText "P3204985181"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.MonsterIsland4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MonsterIslandTour5
+	Category kTourism
+	DisplayTitle "P624780946"
+	DisplayText "P102682491"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.MonsterIsland5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MonsterIslandTour6
+	Category kTourism
+	DisplayTitle "P546811837"
+	DisplayText "P2767417661"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.MonsterIsland6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MonsterIslandTour7
+	Category kTourism
+	DisplayTitle "P2014608869"
+	DisplayText "P4119260686"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.MonsterIsland7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MonsterIslandTour8
+	Category kTourism
+	DisplayTitle "P1801399288"
+	DisplayText "P2323258209"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.MonsterIsland8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AbandonedSewersTour1
+	Category kTourism
+	DisplayTitle "P656697379"
+	DisplayText "P1472036192"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.AbandonedSewers1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasParkTour1
+	Category kTourism
+	DisplayTitle "P2826030204"
+	DisplayText "P1907138040"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.AtlasPark1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasParkTour2
+	Category kTourism
+	DisplayTitle "P1436011639"
+	DisplayText "P3548752197"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.AtlasPark2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasParkTour3
+	Category kTourism
+	DisplayTitle "P103329687"
+	DisplayText "P1467669822"
+	DisplayTitleVillain "P4143429686"
+	DisplayTextVillain "P1467669822"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.AtlasPark3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasParkTour4
+	Category kTourism
+	DisplayTitle "P1115616972"
+	DisplayText "P4061212971"
+	DisplayTitleVillain "P1752650922"
+	DisplayTextVillain "P4061212971"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.AtlasPark4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasParkTour5
+	Category kTourism
+	DisplayTitle "P2895398443"
+	DisplayText "P457439503"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.AtlasPark5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasParkTour6
+	Category kTourism
+	DisplayTitle "P1070581130"
+	DisplayText "P2932561493"
+	DisplayTitleVillain "P3960719280"
+	DisplayTextVillain "P2932561493"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.AtlasPark6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasParkTour7
+	Category kTourism
+	DisplayTitle "P770586643"
+	DisplayText "P2030025178"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.AtlasPark7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasParkTour8
+	Category kTourism
+	DisplayTitle "P3624940821"
+	DisplayText "P2864665121"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.AtlasPark8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Rookie
+	Category kTourism
+	DisplayTitle "P1170632302"
+	DisplayText "P2507542839"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_Rookie 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Trustworthy
+	Category kTourism
+	DisplayTitle "P3404133239"
+	DisplayText "P4056561059"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_Trustworthy 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name N_Tutorial_Knowledgeable
+	Category kTourism
+	DisplayTitle "P1714775697"
+	DisplayText "P974527953"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_Knowledgeable 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CityTraveler
+	Category kTourism
+	DisplayTitle "P2290855895"
+	DisplayText "P848914828"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_CityTraveller 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name OutOfHarmsWay
+	Category kTourism
+	DisplayTitle "P610567503"
+	DisplayText "P1622544249"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_OutOfHarmsWay 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Condemned
+	Category kTourism
+	DisplayTitle "P3367233765"
+	DisplayText "P3312259832"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_Condemned 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Resilient
+	Category kTourism
+	DisplayTitle "P674996135"
+	DisplayText "P3103348813"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_Resilient 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ArchitectHeroMissions75
+	Category kTourism
+	DisplayTitle "P651409245"
+	DisplayText "P3821814366"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_Virtuous 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BlackShroudDimension1
+	Category kTourism
+	DisplayTitle "P439381097"
+	DisplayText "P1802177237"
+	DisplayTitleVillain "P643718086"
+	DisplayTextVillain "P82755628"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires time.Maps/Missions/Outdoor_Missions/Outdoor_City/Outdoor_City_01/Outdoor_City_01b.txt 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BoomtownTour1
+	Category kTourism
+	DisplayTitle "P1181355633"
+	DisplayText "P2934644491"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Boomtown1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BoomtownTour2
+	Category kTourism
+	DisplayTitle "P4252223159"
+	DisplayText "P1036224028"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Boomtown2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BoomtownTour3
+	Category kTourism
+	DisplayTitle "P332568351"
+	DisplayText "P3560954993"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Boomtown3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BoomtownTour4
+	Category kTourism
+	DisplayTitle "P3417585064"
+	DisplayText "P712699245"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Boomtown4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BrickstownTour1
+	Category kTourism
+	DisplayTitle "P3157267805"
+	DisplayText "P235673562"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Brickstown1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BrickstownTour2
+	Category kTourism
+	DisplayTitle "P1229296839"
+	DisplayText "P505261132"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Brickstown2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CreysFolleyTour1
+	Category kTourism
+	DisplayTitle "P3900739839"
+	DisplayText "P3870431432"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CreysFolley1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CreysFolleyTour2
+	Category kTourism
+	DisplayTitle "P39630241"
+	DisplayText "P2517261159"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.CreysFolley2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaTour1
+	Category kTourism
+	DisplayTitle "P2728947219"
+	DisplayText "P429672107"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoria1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaTour2
+	Category kTourism
+	DisplayTitle "P1762910304"
+	DisplayText "P3710976459"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoria2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaTour3
+	Category kTourism
+	DisplayTitle "P3384362944"
+	DisplayText "P240638622"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoria3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTour1
+	Category kTourism
+	DisplayTitle "P1694734815"
+	DisplayText "P2037131422"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Eden1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTour2
+	Category kTourism
+	DisplayTitle "P2212181403"
+	DisplayText "P3513458744"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Eden2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour1
+	Category kTourism
+	DisplayTitle "P1330400204"
+	DisplayText "P2635731933"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour5
+	Category kTourism
+	DisplayTitle "P456380109"
+	DisplayText "P3447640422"
+	DisplayTitleVillain "P456380109"
+	DisplayTextVillain "P3549297001"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour6
+	Category kTourism
+	DisplayTitle "P3512965671"
+	DisplayText "P44120778"
+	DisplayTitleVillain "P3512965671"
+	DisplayTextVillain "P4258125998"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline6
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour7
+	Category kTourism
+	DisplayTitle "P2014606902"
+	DisplayText "P1261775359"
+	DisplayTitleVillain "P2014606902"
+	DisplayTextVillain "P1745618151"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline7
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour13
+	Category kTourism
+	DisplayTitle "P1800749491"
+	DisplayText "P367061891"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline13
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour14
+	Category kTourism
+	DisplayTitle "P3559218592"
+	DisplayText "P3719930301"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline14
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour15
+	Category kTourism
+	DisplayTitle "P1935303893"
+	DisplayText "P217999730"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline15
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineEaster
+	Category kTourism
+	DisplayTitle "P1244786737"
+	DisplayText "P2007488949"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FaultlineEaster
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour2
+	Category kTourism
+	DisplayTitle "P3188676364"
+	DisplayText "P1662569203"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour3
+	Category kTourism
+	DisplayTitle "P4091961740"
+	DisplayText "P3615411558"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour4
+	Category kTourism
+	DisplayTitle "P273280760"
+	DisplayText "P3949688982"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour8
+	Category kTourism
+	DisplayTitle "P2049866176"
+	DisplayText "P1958458668"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline8
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour9
+	Category kTourism
+	DisplayTitle "P3213311418"
+	DisplayText "P2806381265"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline9
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour10
+	Category kTourism
+	DisplayTitle "P669092268"
+	DisplayText "P1598019162"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline10
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour11
+	Category kTourism
+	DisplayTitle "P1769903560"
+	DisplayText "P2108760021"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline11
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaultlineTour12
+	Category kTourism
+	DisplayTitle "P4028322367"
+	DisplayText "P2416853965"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Faultline12
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FoundersFallsTour1
+	Category kTourism
+	DisplayTitle "P1009341692"
+	DisplayText "P648235723"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FoundersFalls1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FoundersFallsTour2
+	Category kTourism
+	DisplayTitle "P2901118800"
+	DisplayText "P245621940"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.FoundersFalls2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GalaxyCityTour1
+	Category kTourism
+	DisplayTitle "P1712300200"
+	DisplayText "P3715914167"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.GalaxyCity1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GalaxyCityTour2
+	Category kTourism
+	DisplayTitle "P1795658392"
+	DisplayText "P955781973"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.GalaxyCity2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GalaxyCityTour3
+	Category kTourism
+	DisplayTitle "P3185863818"
+	DisplayText "P801808936"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.GalaxyCity3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GalaxyCityTour4
+	Category kTourism
+	DisplayTitle "P220207111"
+	DisplayText "P2291443190"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.GalaxyCity4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GalaxyCityTour5
+	Category kTourism
+	DisplayTitle "P3673289829"
+	DisplayText "P1357989790"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.GalaxyCity5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTour1
+	Category kTourism
+	DisplayTitle "P2203240326"
+	DisplayText "P1766586156"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Hollows1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTour2
+	Category kTourism
+	DisplayTitle "P726092727"
+	DisplayText "P663243833"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Hollows2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTour3
+	Category kTourism
+	DisplayTitle "P1876322059"
+	DisplayText "P3103499328"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Hollows3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTour4
+	Category kTourism
+	DisplayTitle "P1931710413"
+	DisplayText "P217393883"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Hollows4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTour5
+	Category kTourism
+	DisplayTitle "P3125455858"
+	DisplayText "P3967796756"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Hollows5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HydraDimension1
+	Category kTourism
+	DisplayTitle "P3034705011"
+	DisplayText "P3266387628"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires time.maps/Missions/Outdoor_Missions/Outdoor_Unique/Outdoor_Unique_Forest_01/Outdoor_Unique_Forest_01c.txt 1 >= type char> hero eq &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IndependancePortTour1
+	Category kTourism
+	DisplayTitle "P599707921"
+	DisplayText "P2639569035"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.IndependencePort1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IndependancePortTour2
+	Category kTourism
+	DisplayTitle "P2785477883"
+	DisplayText "P3007059665"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.IndependencePort2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IndependancePortTour3
+	Category kTourism
+	DisplayTitle "P4281317983"
+	DisplayText "P667913410"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.IndependencePort3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name KingsRowTour1
+	Category kTourism
+	DisplayTitle "P2789884004"
+	DisplayText "P1699751219"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.KingsRow1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name KingsRowTour2
+	Category kTourism
+	DisplayTitle "P2625550228"
+	DisplayText "P179347754"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.KingsRow2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name KingsRowTour3
+	Category kTourism
+	DisplayTitle "P1087424417"
+	DisplayText "P1408653772"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.KingsRow3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name KingsRowTour4
+	Category kTourism
+	DisplayTitle "P2824158105"
+	DisplayText "P2853113084"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.KingsRow4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name KingsRowTour5
+	Category kTourism
+	DisplayTitle "P1290730984"
+	DisplayText "P4241214637"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.KingsRow5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PeregrineIslandTour1
+	Category kTourism
+	DisplayTitle "P2594579638"
+	DisplayText "P2692689061"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.PeregrineIsland1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PerezParkTour1
+	Category kTourism
+	DisplayTitle "P2401494160"
+	DisplayText "P2203393611"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.PerezPark1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PerezParkTour2
+	Category kTourism
+	DisplayTitle "P299595545"
+	DisplayText "P1376663621"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.PerezPark2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PerezParkTour3
+	Category kTourism
+	DisplayTitle "P3751234955"
+	DisplayText "P3219550891"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.PerezPark3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PerezParkTour4
+	Category kTourism
+	DisplayTitle "P3579331620"
+	DisplayText "P662111875"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.PerezPark4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PerezParkTour5
+	Category kTourism
+	DisplayTitle "P2489809245"
+	DisplayText "P1236037661"
+	DisplayTitleVillain "P275446684"
+	DisplayTextVillain "P1236037661"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.PerezPark5
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name RiktiCrashSiteTour1
+	Category kTourism
+	DisplayTitle "P4245787478"
+	DisplayText "P904268523"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.RiktiCrashSite1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkywayCityTour1
+	Category kTourism
+	DisplayTitle "P2740370775"
+	DisplayText "P3550393473"
+	DisplayTitleVillain "P3254884143"
+	DisplayTextVillain "P3550393473"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SkywayCity1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkywayCityTour2
+	Category kTourism
+	DisplayTitle "P1800896377"
+	DisplayText "P1031632915"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SkywayCity2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkywayCityTour3
+	Category kTourism
+	DisplayTitle "P188250858"
+	DisplayText "P4125182077"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SkywayCity3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkywayCityTour4
+	Category kTourism
+	DisplayTitle "P744432716"
+	DisplayText "P10901949"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SkywayCity4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SteelCanyonTour1
+	Category kTourism
+	DisplayTitle "P2753142661"
+	DisplayText "P3406075937"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SteelCanyon1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SteelCanyonTour2
+	Category kTourism
+	DisplayTitle "P3070030594"
+	DisplayText "P627168447"
+	DisplayTitleVillain "P2387307548"
+	DisplayTextVillain "P627168447"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SteelCanyon2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SteelCanyonTour3
+	Category kTourism
+	DisplayTitle "P3216611054"
+	DisplayText "P3161681278"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SteelCanyon3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SteelCanyonTour4
+	Category kTourism
+	DisplayTitle "P2625081949"
+	DisplayText "P1490171523"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.SteelCanyon4
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTour1
+	Category kTourism
+	DisplayTitle "P3054208061"
+	DisplayText "P1926146986"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Striga1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTour2
+	Category kTourism
+	DisplayTitle "P2502485489"
+	DisplayText "P900881833"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Striga2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTour3
+	Category kTourism
+	DisplayTitle "P1605531548"
+	DisplayText "P1750837782"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Striga3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TalosIslandTour1
+	Category kTourism
+	DisplayTitle "P2701362346"
+	DisplayText "P374942624"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.TalosIsland1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TalosIslandTour2
+	Category kTourism
+	DisplayTitle "P1319596437"
+	DisplayText "P167536740"
+	DisplayTitleVillain "P2764766453"
+	DisplayTextVillain "P167536740"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.TalosIsland2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TalosIslandTour3
+	Category kTourism
+	DisplayTitle "P3418056251"
+	DisplayText "P1164297839"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.TalosIsland3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTour1
+	Category kTourism
+	DisplayTitle "P3093732126"
+	DisplayText "P3146112709"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TerraVolta1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTour2
+	Category kTourism
+	DisplayTitle "P1089187102"
+	DisplayText "P325712420"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TerraVolta2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTour3
+	Category kTourism
+	DisplayTitle "P2925059980"
+	DisplayText "P3264825175"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TerraVolta3
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TheHiveTour1
+	Category kTourism
+	DisplayTitle "P3845829341"
+	DisplayText "P3296013188"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TheHive1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TheHiveTour2
+	Category kTourism
+	DisplayTitle "P1378191641"
+	DisplayText "P3722741104"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.TheHive2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirstWardTour1
+	Category kTourism
+	DisplayTitle "P1307551314"
+	DisplayText "P3048650157"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FirstWard1 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirstWardTour2
+	Category kTourism
+	DisplayTitle "P3963051002"
+	DisplayText "P2435548348"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FirstWard2 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirstWardTour3
+	Category kTourism
+	DisplayTitle "P1429801901"
+	DisplayText "P2703585095"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FirstWard3 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirstWardTour4
+	Category kTourism
+	DisplayTitle "P4004450727"
+	DisplayText "P1769827981"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FirstWard4 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirstWardTour5
+	Category kTourism
+	DisplayTitle "P3272087849"
+	DisplayText "P4156871745"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FirstWard5 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirstWardTour6
+	Category kTourism
+	DisplayTitle "P283410531"
+	DisplayText "P3772262074"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FirstWard6 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirstWardTour7
+	Category kTourism
+	DisplayTitle "P3689051509"
+	DisplayText "P4172592060"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FirstWard7 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FirstWardTour8
+	Category kTourism
+	DisplayTitle "P3771918722"
+	DisplayText "P1748557857"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.FirstWard8 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateTour1
+	Category kTourism
+	DisplayTitle "P2228857590"
+	DisplayText "P794420243"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoriaIncarnateTour1 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateTour2
+	Category kTourism
+	DisplayTitle "P4129032789"
+	DisplayText "P744302676"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoriaIncarnateTour2 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateTour3
+	Category kTourism
+	DisplayTitle "P1632507315"
+	DisplayText "P968666753"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoriaIncarnateTour3 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateTour4
+	Category kTourism
+	DisplayTitle "P32308694"
+	DisplayText "P1927176305"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoriaIncarnateTour4 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateTour5
+	Category kTourism
+	DisplayTitle "P130069683"
+	DisplayText "P4006450992"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoriaIncarnateTour5 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateTour6
+	Category kTourism
+	DisplayTitle "P718782479"
+	DisplayText "P4181198075"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoriaIncarnateTour6 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateTour7
+	Category kTourism
+	DisplayTitle "P2416586145"
+	DisplayText "P2171364908"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoriaIncarnateTour7 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateTour8
+	Category kTourism
+	DisplayTitle "P450014034"
+	DisplayText "P3795462659"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.DarkAstoriaIncarnateTour8 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NightWardTour1
+	Category kTourism
+	DisplayTitle "P4110292010"
+	DisplayText "P352069466"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NightWardTour1 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NightWardTour2
+	Category kTourism
+	DisplayTitle "P2953467312"
+	DisplayText "P3712818095"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NightWardTour2 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NightWardTour3
+	Category kTourism
+	DisplayTitle "P4241976288"
+	DisplayText "P306690486"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NightWardTour3 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NightWardTour4
+	Category kTourism
+	DisplayTitle "P1259685985"
+	DisplayText "P2846411424"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NightWardTour4 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NightWardTour5
+	Category kTourism
+	DisplayTitle "P3281337630"
+	DisplayText "P1587067746"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NightWardTour5 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NightWardTour6
+	Category kTourism
+	DisplayTitle "P1805341440"
+	DisplayText "P213526605"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NightWardTour6 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NightWardTour7
+	Category kTourism
+	DisplayTitle "P2592256980"
+	DisplayText "P1793990558"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NightWardTour7 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NightWardTour8
+	Category kTourism
+	DisplayTitle "P3112715427"
+	DisplayText "P2366313188"
+	Reward Explore
+	Icon "badge_TourismPraetoria"
+	Visible 0
+	Hinted 0
+	Requires visits.NightWardTour8 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CommSpecialist
+	Category kTourism
+	DisplayTitle "P94250120"
+	DisplayText "P3222674406"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_CommSpecialist 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Shielded
+	Category kTourism
+	DisplayTitle "P343973509"
+	DisplayText "P4005718715"
+	Reward Explore
+	Icon "badge_tourism_hazard"
+	Visible 0
+	Hinted 0
+	Requires visits.Badge_Shielded 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTour1
+	Category kTourism
+	DisplayTitle "P1541954832"
+	DisplayText "P4267294236"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Croatoa1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTour2
+	Category kTourism
+	DisplayTitle "P1139122856"
+	DisplayText "P773246149"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Croatoa2
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTour3
+	Category kTourism
+	DisplayTitle "P92174610"
+	DisplayText "P2161770554"
+	Reward Explore
+	Icon "badge_tourist_01"
+	Visible 0
+	Hinted 0
+	Requires visits.Croatoa3
+	Meter 0
+	Revoke 0
+}
+

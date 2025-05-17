@@ -1,0 +1,637 @@
+Badge
+{
+	Name AnalyzerTurret
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name GasTrap
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name ImpEnergyBeam
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name ImpIgniter
+	// Collection kSupergroup
+	Category kDefeat
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name Repulsor
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name DampeningRay
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name EliteDampeningRay
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name ImpDampeningRay
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name Supercomputer
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name SyntheticIntel
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name EdgeHolodisplay
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name EdgeMonitor
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name EmergencyCapacitor
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name FusionGenerator
+	// Collection kSupergroup
+	Category kPvP
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name MedAdvisor
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name DoctorsDesk
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name CombatLog
+	// Collection kSupergroup
+	Category kAchievement
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconPerezPark
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconBoomTown
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconFaultline
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconTheHollows
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconDarkAstoria
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconStriga
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconCreysFolly
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconMercy
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconPortOakes
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconCap
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconSharkhead
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconStMartial
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconNerva
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name ScorpionTurret
+	// Collection kSupergroup
+	Category kDefeat
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name RiktiTurret
+	// Collection kSupergroup
+	Category kDefeat
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconGrandville
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconCroatoa
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconEden
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconTerraVolta
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconKingsRow
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconFoundersFalls
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconPeregrineIsland
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconGalaxyCity
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconBrickstown
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconRiktiCrashSite
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconIndependencePort
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconTalosIsland
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconSteelCanyon
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconSkywayCity
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconAtlasPark
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconPocketD
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+
+Badge
+{
+	Name BeaconDarkAstoriaIncarnate
+	// Collection kSupergroup
+	Category kTourism
+	DisplayTitle "."
+	DisplayTitleVillain "."
+	Visible 0
+	Hinted 0
+	Requires 0
+	Revoke 1
+}
+

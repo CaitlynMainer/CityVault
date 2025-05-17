@@ -1,0 +1,417 @@
+Badge
+{
+	Name CoTMu
+	Category kHistory
+	DisplayTitle "P507827125"
+	DisplayHint "P3668147246"
+	DisplayText "P2084535663"
+	Icon "v_badge_HistoryBadge"
+	Visible visits.CoTHistory1 visits.CoTHistory2 || visits.CoTHistory3 || visits.CoTHistory4 ||
+	Hinted 1
+	Requires visits.CoTHistory1 visits.CoTHistory2 && visits.CoTHistory3 && visits.CoTHistory4 &&
+	Meter visits.CoTHistory1 0 > visits.CoTHistory2 0 > + visits.CoTHistory3 0 > + visits.CoTHistory4 0 > + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name Experiments
+	Category kHistory
+	DisplayTitle "P4013645089"
+	DisplayHint "P105514371"
+	DisplayText "P1296812919"
+	Icon "v_badge_HistoryBadge"
+	Visible visits.AeonHistory1 visits.AeonHistory2 || visits.AeonHistory3 ||
+	Hinted 1
+	Requires visits.DrAeonHistory1 visits.DrAeonHistory2 && visits.DrAeonHistory3 &&
+	Meter visits.DrAeonHistory1 0 > visits.DrAeonHistory2 0 > + visits.DrAeonHistory3 0 > + 3 %
+	Revoke 0
+	BadgeValues 3
+}
+
+Badge
+{
+	Name PirateHistory
+	Category kHistory
+	DisplayTitle "P2165515044"
+	DisplayHint "P1825915439"
+	DisplayText "P2592180366"
+	Icon "v_badge_HistoryBadge"
+	Visible visits.PirateHistory1 visits.PirateHistory2 || visits.PirateHistory3 || visits.PirateHistory4 || type char> villain eq &&
+	Hinted 1
+	Requires visits.PirateHistory1 visits.PirateHistory2 && visits.PirateHistory3 && visits.PirateHistory4 &&
+	Meter visits.PirateHistory1 0 > visits.PirateHistory2 0 > + visits.PirateHistory3 0 > + visits.PirateHistory4 0 > + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name RecluseArrival
+	Category kHistory
+	DisplayTitle "P2881108562"
+	DisplayHint "P15441301"
+	DisplayText "P2725646540"
+	Icon "v_badge_HistoryBadge"
+	Visible visits.RecluseHistory1 visits.RecluseHistory2 || visits.RecluseHistory3 || visits.RecluseHistory4 || visits.RecluseHistory5 || type char> villain eq &&
+	Hinted 1
+	Requires visits.RecluseHistory1 visits.RecluseHistory2 && visits.RecluseHistory3 && visits.RecluseHistory4 && visits.RecluseHistory5 &&
+	Meter visits.RecluseHistory1 0 > visits.RecluseHistory2 0 > + visits.RecluseHistory3 0 > + visits.RecluseHistory4 0 > + visits.RecluseHistory5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name Midnight_Mystery
+	Category kHistory
+	DisplayTitle "P4048611435"
+	DisplayHint "P4155866904"
+	DisplayText "P3433282348"
+	Icon "badge_midnight_mistery"
+	Visible visits.Midnight_Clue_1 visits.Midnight_Clue_2 || visits.Midnight_Clue_3 || visits.Midnight_Clue_4 || visits.Midnight_Clue_5 || visits.Midnight_Clue_6 || visits.Midnight_Clue_7 || visits.Midnight_Clue_8 || visits.Midnight_Clue_9 || visits.Midnight_Clue_10 || visits.Midnight_Clue_11 || visits.Midnight_Clue_12 || visits.Midnight_Clue_13 || MSMember Owned? &&
+	Hinted 1
+	Requires visits.Midnight_Clue_1 visits.Midnight_Clue_2 && visits.Midnight_Clue_3 && visits.Midnight_Clue_4 && visits.Midnight_Clue_5 && visits.Midnight_Clue_6 && visits.Midnight_Clue_7 && visits.Midnight_Clue_8 && visits.Midnight_Clue_9 && visits.Midnight_Clue_10 && visits.Midnight_Clue_11 && visits.Midnight_Clue_12 && visits.Midnight_Clue_13 &&
+	Meter visits.Midnight_Clue_1 0 > visits.Midnight_Clue_2 0 > + visits.Midnight_Clue_3 0 > + visits.Midnight_Clue_4 0 > + visits.Midnight_Clue_5 0 > + visits.Midnight_Clue_6 0 > + visits.Midnight_Clue_7 0 > + visits.Midnight_Clue_8 0 > + visits.Midnight_Clue_9 0 > + visits.Midnight_Clue_10 0 > + visits.Midnight_Clue_11 0 > + visits.Midnight_Clue_12 0 > +  visits.Midnight_Clue_13 0 > + 13 %
+	Revoke 0
+	BadgeValues 13
+}
+
+Badge
+{
+	Name P_Starstruck
+	Category kHistory
+	DisplayTitle "P4245216699"
+	DisplayHint "P352418704"
+	DisplayText "P2787185717"
+	Icon "Badge_History"
+	Visible visits.Statue_Tyrant visits.Statue_Marauder || visits.Statue_Neuron || visits.Statue_Dominatrix || visits.Statue_Chimera || visits.Statue_MotherMayhem ||
+	Hinted 1
+	Requires visits.Statue_Tyrant visits.Statue_Marauder && visits.Statue_Neuron && visits.Statue_Dominatrix && visits.Statue_Chimera && visits.Statue_MotherMayhem &&
+	Meter visits.Statue_Tyrant 1 >= visits.Statue_Marauder 1 >= + visits.Statue_Neuron 1 >= + visits.Statue_Dominatrix 1 >= + visits.Statue_Chimera 1 >= + visits.Statue_MotherMayhem 1 >= + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name P_Propagandist
+	Category kHistory
+	DisplayTitle "P644686607"
+	DisplayHint "P3217036699"
+	DisplayText "P2223615581"
+	Icon "Badge_History"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_KnowledgeisPower
+	Category kHistory
+	DisplayTitle "P3709638602"
+	DisplayHint "P731987985"
+	DisplayText "P2789511425"
+	Icon "Badge_History"
+	Visible visits.Resistance1 visits.Resistance2 || visits.Resistance3 || visits.Resistance4 || visits.Resistance5 || visits.Resistance6 || visits.Resistance7 || visits.Resistance8 || visits.Resistance9 || visits.Resistance10 || visits.Resistance11 || visits.Resistance12 || visits.Resistance13 || visits.Resistance14 || visits.Resistance15 || visits.Resistance16 || visits.Resistance17 || visits.Resistance18 || visits.Resistance19 || visits.Resistance20 ||
+	Hinted 1
+	Requires visits.Resistance1 visits.Resistance2 && visits.Resistance3 && visits.Resistance4 && visits.Resistance5 && visits.Resistance6 && visits.Resistance7 && visits.Resistance8 && visits.Resistance9 && visits.Resistance10 && visits.Resistance11 && visits.Resistance12 && visits.Resistance13 && visits.Resistance14 && visits.Resistance15 && visits.Resistance16 && visits.Resistance17 && visits.Resistance18 && visits.Resistance19 && visits.Resistance20 &&
+	Meter visits.Resistance1 1 >= visits.Resistance2 1 >= + visits.Resistance3 1 >= + visits.Resistance4 1 >= + visits.Resistance5 1 >= + visits.Resistance6 1 >= + visits.Resistance7 1 >= + visits.Resistance8 1 >= + visits.Resistance9 1 >= + visits.Resistance10 1 >= + visits.Resistance11 1 >= + visits.Resistance12 1 >= + visits.Resistance13 1 >= + visits.Resistance14 1 >= + visits.Resistance15 1 >= + visits.Resistance16 1 >= + visits.Resistance17 1 >= + visits.Resistance18 1 >= + visits.Resistance19 1 >= + visits.Resistance20 1 >= + 20 %
+	Revoke 0
+	BadgeValues 20
+}
+
+Badge
+{
+	Name AtlasHistory
+	Category kHistory
+	DisplayTitle "P102432181"
+	DisplayHint "P1458650133"
+	DisplayText "P3338571755"
+	Icon "badge_history_01"
+	Visible visits.AxisAttack1 visits.AxisAttack2 || visits.AxisAttack3 || visits.AxisAttack4 || visits.AxisAttack5 ||
+	Hinted 1
+	Requires visits.AxisAttack1 visits.AxisAttack2 && visits.AxisAttack3 && visits.AxisAttack4 && visits.AxisAttack5 &&
+	Meter visits.AxisAttack1 0 > visits.AxisAttack2 0 > + visits.AxisAttack3 0 > + visits.AxisAttack4 0 > + visits.AxisAttack5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name CitizenCrimeAct
+	Category kHistory
+	DisplayTitle "P2023659183"
+	DisplayHint "P2036355346"
+	DisplayText "P3943270746"
+	Icon "badge_history_01"
+	Visible visits.CitizenCrimeAct1 visits.CitizenCrimeAct2 || visits.CitizenCrimeAct3 || visits.CitizenCrimeAct4 || visits.CitizenCrimeAct5 ||
+	Hinted 1
+	Requires visits.CitizenCrimeAct1 visits.CitizenCrimeAct2 && visits.CitizenCrimeAct3 && visits.CitizenCrimeAct4 && visits.CitizenCrimeAct5 &&
+	Meter visits.CitizenCrimeAct1 0 > visits.CitizenCrimeAct2 0 > + visits.CitizenCrimeAct3 0 > + visits.CitizenCrimeAct4 0 > + visits.CitizenCrimeAct5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name DimensionalBarrier
+	Category kHistory
+	DisplayTitle "P992334192"
+	DisplayHint "P4035536046"
+	DisplayText "P450015792"
+	Icon "badge_history_01"
+	Visible visits.DimensionalBarrier1 visits.DimensionalBarrier2 || visits.DimensionalBarrier3 ||
+	Hinted 1
+	Requires visits.DimensionalBarrier1 visits.DimensionalBarrier2 && visits.DimensionalBarrier3 &&
+	Meter visits.DimensionalBarrier1 0 > visits.DimensionalBarrier2 0 > + visits.DimensionalBarrier3 0 > + 3 %
+	Revoke 0
+	BadgeValues 3
+}
+
+Badge
+{
+	Name FreedomPhalanx
+	Category kHistory
+	DisplayTitle "P3356026975"
+	DisplayHint "P70124797"
+	DisplayText "P3886193095"
+	Icon "badge_history_01"
+	Visible visits.FreedomPhalanx1 visits.FreedomPhalanx2 || visits.FreedomPhalanx3 || visits.FreedomPhalanx4 || visits.FreedomPhalanx5 ||
+	Hinted 1
+	Requires visits.FreedomPhalanx1 visits.FreedomPhalanx2 && visits.FreedomPhalanx3 && visits.FreedomPhalanx4 && visits.FreedomPhalanx5 &&
+	Meter visits.FreedomPhalanx1 0 > visits.FreedomPhalanx2 0 > + visits.FreedomPhalanx3 0 > + visits.FreedomPhalanx4 0 > + visits.FreedomPhalanx5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name HeroCorps
+	Category kHistory
+	DisplayTitle "P1672481055"
+	DisplayHint "P3050452132"
+	DisplayText "P4139401424"
+	Icon "badge_history_01"
+	Visible visits.HeroCorps1 visits.HeroCorps2 || visits.HeroCorps3 || visits.HeroCorps4 || visits.HeroCorps5 || visits.HeroCorps6 ||
+	Hinted 1
+	Requires visits.HeroCorps1 visits.HeroCorps2 && visits.HeroCorps7 && visits.HeroCorps4 && visits.HeroCorps5 && visits.HeroCorps6 &&
+	Meter visits.HeroCorps1 0 > visits.HeroCorps2 0 > + visits.HeroCorps7 0 > + visits.HeroCorps4 0 > + visits.HeroCorps5 0 > + visits.HeroCorps6 0 > + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name MightForRightAct
+	Category kHistory
+	DisplayTitle "P1219991156"
+	DisplayHint "P3099927742"
+	DisplayText "P1955678023"
+	Icon "badge_history_01"
+	Visible visits.MightForRightAct1 visits.MightForRightAct2 || visits.MightForRightAct3 || visits.MightForRightAct4 ||
+	Hinted 1
+	Requires visits.MightForRightAct1 visits.MightForRightAct2 && visits.MightForRightAct3 && visits.MightForRightAct4 &&
+	Meter visits.MightForRightAct1 0 > visits.MightForRightAct2 0 > + visits.MightForRightAct3 0 > + visits.MightForRightAct4 0 > + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name NemesisSeizesControl
+	Category kHistory
+	DisplayTitle "P3106077022"
+	DisplayHint "P2834313669"
+	DisplayText "P3059898616"
+	Icon "badge_history_01"
+	Visible visits.NemesisSeizesControl1 visits.NemesisSeizesControl2 || visits.NemesisSeizesControl3 ||
+	Hinted 1
+	Requires visits.NemesisSeizesControl1 visits.NemesisSeizesControl2 && visits.NemesisSeizesControl3 &&
+	Meter visits.NemesisSeizesControl1 0 > visits.NemesisSeizesControl2 0 > + visits.NemesisSeizesControl3 0 > + 3 %
+	Revoke 0
+	BadgeValues 3
+}
+
+Badge
+{
+	Name PsychicFeedbackLoop
+	Category kHistory
+	DisplayTitle "P4271373773"
+	DisplayHint "P259067569"
+	DisplayText "P404417669"
+	Icon "badge_history_01"
+	Visible visits.PsychicFeedbackLoop1 visits.PsychicFeedbackLoop2 || visits.PsychicFeedbackLoop3 || visits.PsychicFeedbackLoop4 || visits.PsychicFeedbackLoop5 || visits.PsychicFeedbackLoop6 ||
+	Hinted 1
+	Requires visits.PsychicFeedbackLoop1 visits.PsychicFeedbackLoop2 && visits.PsychicFeedbackLoop3 && visits.PsychicFeedbackLoop4 && visits.PsychicFeedbackLoop5 && visits.PsychicFeedbackLoop6 &&
+	Meter visits.PsychicFeedbackLoop1 0 > visits.PsychicFeedbackLoop2 0 > + visits.PsychicFeedbackLoop3 0 > + visits.PsychicFeedbackLoop4 0 > + visits.PsychicFeedbackLoop5 0 > + visits.PsychicFeedbackLoop6 0 > + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name RiktiWar
+	Category kHistory
+	DisplayTitle "P886909020"
+	DisplayHint "P2457125364"
+	DisplayText "P3998741596"
+	Icon "badge_history_01"
+	Visible visits.RiktiWar1 visits.RiktiWar2 || visits.RiktiWar3 || visits.RiktiWar4 || visits.RiktiWar5 ||
+	Hinted 1
+	Requires visits.RiktiWar1 visits.RiktiWar2 && visits.RiktiWar3 && visits.RiktiWar4 && visits.RiktiWar5 &&
+	Meter visits.RiktiWar1 0 > visits.RiktiWar2 0 > + visits.RiktiWar3 0 > + visits.RiktiWar4 0 > + visits.RiktiWar5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name SpankyRabinowitz
+	Category kHistory
+	DisplayTitle "P983706894"
+	DisplayHint "P1183659855"
+	DisplayText "P4282007174"
+	Icon "badge_history_01"
+	Visible visits.SpankyRabinowitz1 visits.SpankyRabinowitz2 || visits.SpankyRabinowitz3 || visits.SpankyRabinowitz4 || visits.SpankyRabinowitz5 || visits.SpankyRabinowitz6 ||
+	Hinted 1
+	Requires visits.SpankyRabinowitz1 visits.SpankyRabinowitz2 && visits.SpankyRabinowitz3 && visits.SpankyRabinowitz4 && visits.SpankyRabinowitz5 && visits.SpankyRabinowitz6 &&
+	Meter visits.SpankyRabinowitz1 0 > visits.SpankyRabinowitz2 0 > + visits.SpankyRabinowitz3 0 > + visits.SpankyRabinowitz4 0 > + visits.SpankyRabinowitz5 0 > + visits.SpankyRabinowitz6 0 > + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name SpecialCouncil
+	Category kHistory
+	DisplayTitle "P1248519645"
+	DisplayHint "P3940904587"
+	DisplayText "P3677905054"
+	Icon "badge_history_01"
+	Visible visits.SpecialCouncil1 visits.SpecialCouncil2 || visits.SpecialCouncil3 || visits.SpecialCouncil4 || visits.SpecialCouncil5 ||
+	Hinted 1
+	Requires visits.SpecialCouncil1 visits.SpecialCouncil2 && visits.SpecialCouncil3 && visits.SpecialCouncil4 && visits.SpecialCouncil5 &&
+	Meter visits.SpecialCouncil1 0 > visits.SpecialCouncil2 0 > + visits.SpecialCouncil3 0 > + visits.SpecialCouncil4 0 > + visits.SpecialCouncil5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name Superadine
+	Category kHistory
+	DisplayTitle "P2538452352"
+	DisplayHint "P1034535039"
+	DisplayText "P2847131699"
+	Icon "badge_history_01"
+	Visible visits.Superadine1 visits.Superadine2 || visits.Superadine3 || visits.Superadine4 || visits.Superadine5 ||
+	Hinted 1
+	Requires visits.Superadine1 visits.Superadine2 && visits.Superadine3 && visits.Superadine4 && visits.Superadine5 &&
+	Meter visits.Superadine1 0 > visits.Superadine2 0 > + visits.Superadine3 0 > + visits.Superadine4 0 > + visits.Superadine5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name WarOnDrugs
+	Category kHistory
+	DisplayTitle "P1209463499"
+	DisplayHint "P1656197208"
+	DisplayText "P1007962553"
+	Icon "badge_history_01"
+	Visible visits.WarOnDrugs1 visits.WarOnDrugs2 || visits.WarOnDrugs3 || visits.WarOnDrugs4 || visits.WarOnDrugs5 ||
+	Hinted 1
+	Requires visits.WarOnDrugs1 visits.WarOnDrugs2 && visits.WarOnDrugs3 && visits.WarOnDrugs4 && visits.WarOnDrugs5 &&
+	Meter visits.WarOnDrugs1 0 > visits.WarOnDrugs2 0 > + visits.WarOnDrugs3 0 > + visits.WarOnDrugs4 0 > + visits.WarOnDrugs5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name Hollowing
+	Category kHistory
+	DisplayTitle "P4240531720"
+	DisplayHint "P731445493"
+	DisplayText "P2658875595"
+	Icon "badge_history_01"
+	Visible visits.Hollowing1 visits.Hollowing2 || visits.Hollowing3 || visits.Hollowing4 || visits.Hollowing5 ||
+	Hinted 1
+	Requires visits.Hollowing1 visits.Hollowing2 && visits.Hollowing3 && visits.Hollowing4 && visits.Hollowing5 &&
+	Meter visits.Hollowing1 0 > visits.Hollowing2 0 > + visits.Hollowing3 0 > + visits.Hollowing4 0 > + visits.Hollowing5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name Ghostship
+	Category kHistory
+	DisplayTitle "P669368710"
+	DisplayHint "P3926727768"
+	DisplayText "P1528809663"
+	Icon "badge_history_01"
+	Visible visits.Ghostship1 visits.Ghostship2 || visits.Ghostship3 || visits.Ghostship4 || visits.Ghostship5 ||
+	Hinted 1
+	Requires visits.Ghostship1 visits.Ghostship2 && visits.Ghostship3 && visits.Ghostship4 && visits.Ghostship5 &&
+	Meter visits.Ghostship1 0 > visits.Ghostship2 0 > + visits.Ghostship3 0 > + visits.Ghostship4 0 > + visits.Ghostship5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name FirstWardHistory
+	Category kHistory
+	DisplayTitle "P1817560921"
+	DisplayHint "P1053191399"
+	DisplayText "P334973354"
+	Icon "Badge_History"
+	Visible visits.FirstWardPlaque01 visits.FirstWardPlaque02 || visits.FirstWardPlaque03 || visits.FirstWardPlaque04 || visits.FirstWardPlaque05 || visits.FirstWardPosterWall01 || visits.FirstWardPosterWall02 || visits.FirstWardPosterWall03 || visits.FirstWardPosterWall04 || visits.FirstWardPosterWall05 ||
+	Hinted 1
+	Requires visits.FirstWardPlaque01 visits.FirstWardPlaque02 && visits.FirstWardPlaque03 && visits.FirstWardPlaque04 && visits.FirstWardPlaque05 && visits.FirstWardPosterWall01 && visits.FirstWardPosterWall02 && visits.FirstWardPosterWall03 && visits.FirstWardPosterWall04 && visits.FirstWardPosterWall05 &&
+	Meter visits.FirstWardPlaque01 1 >= visits.FirstWardPlaque02 1 >= + visits.FirstWardPlaque03 1 >= + visits.FirstWardPlaque04 1 >= + visits.FirstWardPlaque05 1 >= + visits.FirstWardPosterWall01 1 >= + visits.FirstWardPosterWall02 1 >= + visits.FirstWardPosterWall03 1 >= + visits.FirstWardPosterWall04 1 >= + visits.FirstWardPosterWall05 1 >= + 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name Brickstown_Parkstroller
+	Category kHistory
+	DisplayTitle "P2953543364"
+	DisplayHint "P3565932292"
+	DisplayText "P1083634179"
+	DisplayTitleVillain "P2953543364"
+	DisplayTextVillain "P1083634179"
+	Icon "Badge_History_BT_Parkstroller"
+	Visible visits.BrickstownPlaque01 visits.BrickstownPlaque02 || visits.BrickstownPlaque03 ||
+	Hinted 1
+	Requires visits.BrickstownPlaque01 visits.BrickstownPlaque02 && visits.BrickstownPlaque03 &&
+	Meter visits.BrickstownPlaque01 0 > visits.BrickstownPlaque02 0 > + visits.BrickstownPlaque03 0 > + 3 %
+	Revoke 0
+	BadgeValues 3
+}
+
+Badge
+{
+	Name CroatoaHistory
+	Category kHistory
+	DisplayTitle "P559244780"
+	DisplayHint "P2197448282"
+	DisplayText "P1399724978"
+	Icon "badge_history_01"
+	Visible visits.CroatoaMystery1 visits.CroatoaMystery2 || visits.CroatoaMystery3 || visits.CroatoaMystery4 || visits.CroatoaMystery5 ||
+	Hinted 1
+	Requires visits.CroatoaMystery1 visits.CroatoaMystery2 && visits.CroatoaMystery3 && visits.CroatoaMystery4 && visits.CroatoaMystery5 &&
+	Meter visits.CroatoaMystery1 0 > visits.CroatoaMystery2 0 > + visits.CroatoaMystery3 0 > + visits.CroatoaMystery4 0 > + visits.CroatoaMystery5 0 > + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+

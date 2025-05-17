@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const blacklistPath = path.join(global.BASE_DIR, 'data', 'badges', 'blacklist.json');
+const blacklistPath = path.join(global.BASE_DIR, 'data', 'badges', 'badges_blacklist.json');
 
 function loadBlacklist() {
   try {

@@ -1,0 +1,668 @@
+Badge
+{
+	Name 1YearVeteran
+	Category kVeteran
+	DisplayTitle "P1413776001"
+	DisplayText "P1249452369"
+	DisplayTitleVillain "P1413776001"
+	DisplayTextVillain "P266361459"
+	Icon "badge_Year_1_Veteran"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	AwardText "P2238697729"
+	DoNotCount 1
+}
+
+Badge
+{
+	Name 2YearVeteran
+	Category kVeteran
+	DisplayTitle "P673556314"
+	DisplayText "P238147803"
+	DisplayTitleVillain "P673556314"
+	DisplayTextVillain "P1194867414"
+	Icon "badge_Year_2_Veteran"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	AwardText "P2238697729"
+	DoNotCount 1
+}
+
+Badge
+{
+	Name 3YearVeteran
+	Category kVeteran
+	DisplayTitle "P3039446572"
+	DisplayText "P1615656415"
+	DisplayTitleVillain "P3039446572"
+	DisplayTextVillain "P2972387986"
+	Icon "badge_Year_3_Veteran"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	AwardText "P2238697729"
+	DoNotCount 1
+}
+
+Badge
+{
+	Name 4YearVeteran
+	Category kVeteran
+	DisplayTitle "P3504860396"
+	DisplayText "P983036115"
+	DisplayTitleVillain "P3504860396"
+	DisplayTextVillain "P3032550912"
+	Icon "badge_Year_4_Veteran"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	AwardText "P2238697729"
+	DoNotCount 1
+}
+
+Badge
+{
+	Name 5YearVeteran
+	Category kVeteran
+	DisplayTitle "P1307053466"
+	DisplayText "P2756771033"
+	Icon "badge_Year_5_Veteran"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	AwardText "P2238697729"
+	DoNotCount 1
+}
+
+Badge
+{
+	Name 6YearVeteran
+	Category kVeteran
+	DisplayTitle "P831072321"
+	DisplayText "P3485835441"
+	DisplayTitleVillain "P831072321"
+	DisplayTextVillain "P4165437032"
+	Icon "badge_Year_6_Veteran"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	AwardText "P2238697729"
+	DoNotCount 1
+}
+
+Badge
+{
+	Name 7YearVeteran
+	Category kVeteran
+	DisplayTitle "P2894514487"
+	DisplayText "P1914331248"
+	DisplayTitleVillain "P2894514487"
+	DisplayTextVillain "P3697189603"
+	Icon "badge_Year_7_Veteran"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	AwardText "P2238697729"
+	DoNotCount 1
+}
+
+Badge
+{
+	Name 8YearVeteran
+	Category kVeteran
+	DisplayTitle "P4195515841"
+	DisplayText "P2531305067"
+	DisplayTitleVillain "P4195515841"
+	DisplayTextVillain "P2835336079"
+	Icon "badge_Year_8_Veteran"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	AwardText "P2238697729"
+	DoNotCount 1
+}
+
+Badge
+{
+	Name Veteran3
+	Category kVeteran
+	DisplayTitle "P1346132445"
+	DisplayText "P68779554"
+	DisplayTitleVillain "P1346132445"
+	DisplayTextVillain "P544307182"
+	Icon "badge_vr_months_003"
+	Visible 0
+	Hinted 0
+	Requires overleveled 3 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran6
+	Category kVeteran
+	DisplayTitle "P540836721"
+	DisplayText "P839512422"
+	DisplayTitleVillain "P540836721"
+	DisplayTextVillain "P1871317531"
+	Icon "badge_vr_months_006"
+	Visible 0
+	Hinted 0
+	Requires overleveled 6 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran9
+	Category kVeteran
+	DisplayTitle "P1977907302"
+	DisplayText "P3745008500"
+	DisplayTitleVillain "P1977907302"
+	DisplayTextVillain "P119375949"
+	Icon "badge_vr_months_009"
+	Visible 0
+	Hinted 0
+	Requires overleveled 9 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran12
+	Category kVeteran
+	DisplayTitle "P1537638730"
+	DisplayText "P2800316393"
+	DisplayTitleVillain "P1537638730"
+	DisplayTextVillain "P1819460492"
+	Icon "badge_vr_months_012"
+	Visible 0
+	Hinted 0
+	Requires overleveled 12 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran15
+	Category kVeteran
+	DisplayTitle "P1335738368"
+	DisplayText "P379918239"
+	DisplayTitleVillain "P1335738368"
+	DisplayTextVillain "P3300586891"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_vr_months_015"
+	Visible 0
+	Hinted 0
+	Requires overleveled 15 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran18
+	Category kVeteran
+	DisplayTitle "P2829146868"
+	DisplayText "P325285247"
+	DisplayTitleVillain "P2829146868"
+	DisplayTextVillain "P806957078"
+	Icon "badge_vr_months_018"
+	Visible 0
+	Hinted 0
+	Requires overleveled 18 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran21
+	Category kVeteran
+	DisplayTitle "P4151971487"
+	DisplayText "P833178986"
+	DisplayTitleVillain "P4151971487"
+	DisplayTextVillain "P1258273641"
+	Icon "badge_vr_months_021"
+	Visible 0
+	Hinted 0
+	Requires overleveled 21 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran24
+	Category kVeteran
+	DisplayTitle "P1634408680"
+	DisplayText "P2646515005"
+	DisplayTitleVillain "P1634408680"
+	DisplayTextVillain "P2142640849"
+	Icon "badge_vr_months_024"
+	Visible 0
+	Hinted 0
+	Requires overleveled 24 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran27
+	Category kVeteran
+	DisplayTitle "P4057709002"
+	DisplayText "P1878802487"
+	DisplayTitleVillain "P4057709002"
+	DisplayTextVillain "P3869244856"
+	Icon "badge_vr_months_027"
+	Visible 0
+	Hinted 0
+	Requires overleveled 27 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran30
+	Category kVeteran
+	DisplayTitle "P654602242"
+	DisplayText "P2486125843"
+	DisplayTitleVillain "P654602242"
+	DisplayTextVillain "P1407716731"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_vr_months_030"
+	Visible 0
+	Hinted 0
+	Requires overleveled 30 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran33
+	Category kVeteran
+	DisplayTitle "P3654784993"
+	DisplayText "P1840735613"
+	DisplayTitleVillain "P3654784993"
+	DisplayTextVillain "P469635967"
+	Icon "badge_vr_months_033"
+	Visible 0
+	Hinted 0
+	Requires overleveled 33 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran36
+	Category kVeteran
+	DisplayTitle "P3499462494"
+	DisplayText "P1539794108"
+	DisplayTitleVillain "P3499462494"
+	DisplayTextVillain "P828352629"
+	Icon "badge_vr_months_036"
+	Visible 0
+	Hinted 0
+	Requires overleveled 36 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran39
+	Category kVeteran
+	DisplayTitle "P2694467926"
+	DisplayText "P2474796132"
+	DisplayTitleVillain "P2694467926"
+	DisplayTextVillain "P2623487320"
+	Icon "badge_vr_months_039"
+	Visible 0
+	Hinted 0
+	Requires overleveled 39 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran42
+	Category kVeteran
+	DisplayTitle "P3452090364"
+	DisplayText "P4206549896"
+	DisplayTitleVillain "P3452090364"
+	DisplayTextVillain "P3987011513"
+	Icon "badge_vr_months_042"
+	Visible 0
+	Hinted 0
+	Requires overleveled 42 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran45
+	Category kVeteran
+	DisplayTitle "P4054043618"
+	DisplayText "P926055705"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_vr_months_045"
+	Visible 0
+	Hinted 0
+	Requires overleveled 45 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran48
+	Category kVeteran
+	DisplayTitle "P57055077"
+	DisplayText "P1565218015"
+	DisplayTitleVillain "P57055077"
+	DisplayTextVillain "P4014425551"
+	Icon "badge_vr_months_048"
+	Visible 0
+	Hinted 0
+	Requires overleveled 48 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran51
+	Category kVeteran
+	DisplayTitle "P1753759053"
+	DisplayText "P2669882711"
+	Icon "badge_vr_months_051"
+	Visible 0
+	Hinted 0
+	Requires overleveled 51 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran54
+	Category kVeteran
+	DisplayTitle "P884232105"
+	DisplayText "P2972603745"
+	DisplayTitleVillain "P884232105"
+	DisplayTextVillain "P3231263961"
+	Icon "badge_vr_months_054"
+	Visible 0
+	Hinted 0
+	Requires overleveled 54 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran57
+	Category kVeteran
+	DisplayTitle "P1977891063"
+	DisplayText "P1278879535"
+	DisplayTitleVillain "P1977891063"
+	DisplayTextVillain "P1769790009"
+	Icon "badge_vr_months_057"
+	Visible 0
+	Hinted 0
+	Requires overleveled 57 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran60
+	Category kVeteran
+	DisplayTitle "P1944508243"
+	DisplayText "P233598999"
+	DisplayTitleVillain "P1944508243"
+	DisplayTextVillain "P3341298469"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_vr_months_060"
+	Visible 0
+	Hinted 0
+	Requires overleveled 60 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran63
+	Category kVeteran
+	DisplayTitle "P401080426"
+	DisplayText "P4009641754"
+	DisplayTitleVillain "P401080426"
+	DisplayTextVillain "P3308077618"
+	Icon "badge_vr_months_063"
+	Visible 0
+	Hinted 0
+	Requires overleveled 63 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran66
+	Category kVeteran
+	DisplayTitle "P3541642433"
+	DisplayText "P280004742"
+	DisplayTitleVillain "P3541642433"
+	DisplayTextVillain "P2178072078"
+	Icon "badge_vr_months_066"
+	Visible 0
+	Hinted 0
+	Requires overleveled 66 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran69
+	Category kVeteran
+	DisplayTitle "P3216683187"
+	DisplayText "P2596265960"
+	DisplayTitleVillain "P3216683187"
+	DisplayTextVillain "P3652217738"
+	Icon "badge_vr_months_069"
+	Visible 0
+	Hinted 0
+	Requires overleveled 69 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran72
+	Category kVeteran
+	DisplayTitle "P2260675372"
+	DisplayText "P363690015"
+	DisplayTitleVillain "P2260675372"
+	DisplayTextVillain "P157291139"
+	Icon "badge_vr_months_072"
+	Visible 0
+	Hinted 0
+	Requires overleveled 72 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran75
+	Category kVeteran
+	DisplayTitle "P1748638790"
+	DisplayText "P2335137331"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_vr_months_075"
+	Visible 0
+	Hinted 0
+	Requires overleveled 75 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran78
+	Category kVeteran
+	DisplayTitle "P4085848465"
+	DisplayText "P972022739"
+	DisplayTitleVillain "P4085848465"
+	DisplayTextVillain "P2132549681"
+	Icon "badge_vr_months_078"
+	Visible 0
+	Hinted 0
+	Requires overleveled 78 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran81
+	Category kVeteran
+	DisplayTitle "P1807447196"
+	DisplayText "P3442015880"
+	DisplayTitleVillain "P1807447196"
+	DisplayTextVillain "P59028469"
+	Icon "badge_vr_months_081"
+	Visible 0
+	Hinted 0
+	Requires overleveled 81 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran84
+	Category kVeteran
+	DisplayTitle "P621920256"
+	DisplayText "P3248400767"
+	DisplayTitleVillain "P621920256"
+	DisplayTextVillain "P538874267"
+	Icon "badge_vr_months_084"
+	Visible 0
+	Hinted 0
+	Requires overleveled 84 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran87
+	Category kVeteran
+	DisplayTitle "P166647152"
+	DisplayText "P3243117946"
+	Icon "badge_vr_months_087"
+	Visible 0
+	Hinted 0
+	Requires overleveled 87 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran90
+	Category kVeteran
+	DisplayTitle "P2743291722"
+	DisplayText "P264776851"
+	DisplayTitleVillain "P2743291722"
+	DisplayTextVillain "P1297669473"
+	Reward CounterRespec, is.CostumeChange
+	Icon "badge_vr_months_090"
+	Visible 0
+	Hinted 0
+	Requires overleveled 90 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran93
+	Category kVeteran
+	DisplayTitle "P2033513768"
+	DisplayText "P611041863"
+	DisplayTitleVillain "P2033513768"
+	DisplayTextVillain "P1266139597"
+	Icon "badge_vr_months_093"
+	Visible 0
+	Hinted 0
+	Requires overleveled 93 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran96
+	Category kVeteran
+	DisplayTitle "P3896606479"
+	DisplayText "P3231293469"
+	DisplayTitleVillain "P3896606479"
+	DisplayTextVillain "P3308420751"
+	Icon "badge_vr_months_096"
+	Visible 0
+	Hinted 0
+	Requires overleveled 96 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Veteran99
+	Category kVeteran
+	DisplayTitle "P2046897099"
+	DisplayText "P4152012085"
+	DisplayTitleVillain "P2046897099"
+	DisplayTextVillain "P4112438329"
+	Icon "badge_vr_months_099"
+	Visible 0
+	Hinted 0
+	Requires overleveled 99 >=
+	Meter 0
+	Revoke 0
+}
+

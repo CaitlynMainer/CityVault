@@ -1,0 +1,1165 @@
+Badge
+{
+	Name Lanista
+	Category kGladiator
+	DisplayTitle "P2584892956"
+	DisplayText "P3897009939"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires arena.wins.gladiators 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name GrandLanista
+	Category kGladiator
+	DisplayTitle "P2785577149"
+	DisplayHint "P871079766"
+	DisplayText "P99866229"
+	DisplayTitleVillain "P2785577149"
+	DisplayHintVillain "P871079766"
+	DisplayTextVillain "P2264177762"
+	Icon "v_badge_BattleDomeBadge"
+	Visible Lanista owned?
+	Hinted 1
+	Requires arena.wins.gladiators 10 >=
+	Meter arena.wins.gladiators 10 %
+	Revoke 0
+}
+
+Badge
+{
+	Name Abomination
+	Category kGladiator
+	DisplayTitle "P47291683"
+	DisplayText "P2699445997"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires SynapseTF owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Anathema
+	Category kGladiator
+	DisplayTitle "P3457032785"
+	DisplayText "P4112133755"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Finder owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Anchorite
+	Category kGladiator
+	DisplayTitle "P4065706285"
+	DisplayText "P322069776"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires PsychicFeedbackLoop owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Arachnobot
+	Category kGladiator
+	DisplayTitle "P3037095851"
+	DisplayText "P1429507465"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires VSL5MissionA owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Arachnoid
+	Category kGladiator
+	DisplayTitle "P2917460652"
+	DisplayText "P1627147277"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires GrandvilleTour2 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name ArchMage
+	Category kGladiator
+	DisplayTitle "P1411744613"
+	DisplayText "P2788083677"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires MagusSet owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Avalanche
+	Category kGladiator
+	DisplayTitle "P3224969526"
+	DisplayText "P2204507509"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Banisher owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Behemoth
+	Category kGladiator
+	DisplayTitle "P1524953269"
+	DisplayText "P82970141"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires DemonSlayer owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Bladegrass
+	Category kGladiator
+	DisplayTitle "P2520576911"
+	DisplayHint "P3134774322"
+	DisplayText "P916990781"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.DevouringEarth_Plant_Beast kills.DevouringEarth_Striga_Plant_Beast + 1 >=
+	Hinted 1
+	Requires kills.DevouringEarth_Plant_Beast kills.DevouringEarth_Striga_Plant_Beast + 300 >=
+	Meter kills.DevouringEarth_Plant_Beast kills.DevouringEarth_Striga_Plant_Beast + 300 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 300
+}
+
+Badge
+{
+	Name Boulder
+	Category kGladiator
+	DisplayTitle "P516410795"
+	DisplayText "P602234745"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires EdenTR owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name ButtonMan
+	Category kGladiator
+	DisplayTitle "P3270244571"
+	DisplayText "P819288379"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires level char> 20 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Caliban
+	Category kGladiator
+	DisplayTitle "P2893301591"
+	DisplayText "P1328958795"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Regenerator owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Capo
+	Category kGladiator
+	DisplayTitle "P748027267"
+	DisplayText "P3119022539"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires VSL2MissionA owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Cobra
+	Category kGladiator
+	DisplayTitle "P3604703013"
+	DisplayText "P529748821"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires MercyIslandTour2 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Cog
+	Category kGladiator
+	DisplayTitle "P3157158168"
+	DisplayText "P381341947"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Gearsmasher owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Coralax
+	Category kGladiator
+	DisplayTitle "P1804784274"
+	DisplayHint "P39650391"
+	DisplayText "P373711418"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.Coralax_Minion_Low kills.Coralax_Minion + kills.Coralax_Lieutenant_Low + kills.Coralax_Lieutenant + kills.Coralax_Boss_Low + kills.Coralax_Boss + kills.Coralax_Coral_Guardian_Lt + kills.Coralax_Coral_Guardian_Boss + kills.Coralax_Coral_Guardian_Lt_Pet + kills.Coralax_Coral_Guardian_Boss_Pet + kills.Coralax_Calystix_Low_Normal + kills.Coralax_Calystix_Low + kills.Coralax_Calystix_High + kills.Coralax_Minion_High + kills.Coralax_Lieutenant_High + kills.Coralax_Boss_High + kills.Coralax_Leviathan_Eye + 1 >=
+	Hinted 1
+	Requires kills.Coralax_Minion_Low kills.Coralax_Minion + kills.Coralax_Lieutenant_Low + kills.Coralax_Lieutenant + kills.Coralax_Boss_Low + kills.Coralax_Boss + kills.Coralax_Coral_Guardian_Lt + kills.Coralax_Coral_Guardian_Boss + kills.Coralax_Coral_Guardian_Lt_Pet + kills.Coralax_Coral_Guardian_Boss_Pet + kills.Coralax_Calystix_Low_Normal + kills.Coralax_Calystix_Low + kills.Coralax_Calystix_High + kills.Coralax_Minion_High + kills.Coralax_Lieutenant_High + kills.Coralax_Boss_High + kills.Coralax_Leviathan_Eye + 100 >=
+	Meter kills.Coralax_Minion_Low kills.Coralax_Minion + kills.Coralax_Lieutenant_Low + kills.Coralax_Lieutenant + kills.Coralax_Boss_Low + kills.Coralax_Boss + kills.Coralax_Coral_Guardian_Lt + kills.Coralax_Coral_Guardian_Boss + kills.Coralax_Coral_Guardian_Lt_Pet + kills.Coralax_Coral_Guardian_Boss_Pet + kills.Coralax_Calystix_Low_Normal + kills.Coralax_Calystix_Low + kills.Coralax_Calystix_High + kills.Coralax_Minion_High + kills.Coralax_Lieutenant_High + kills.Coralax_Boss_High + kills.Coralax_Leviathan_Eye + 100 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 100
+}
+
+Badge
+{
+	Name CrabSpider
+	Category kGladiator
+	DisplayTitle "P3257324003"
+	DisplayText "P3670977238"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires MiragePatron owned? BloodInTheWaterPatron owned? || SpidersKissPatron owned? || TheStingerPatron owned? ||
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Crane
+	Category kGladiator
+	DisplayTitle "P1622988698"
+	DisplayText "P587787413"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Tracer owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name EarthBoss
+	Category kGladiator
+	DisplayTitle "P2945747857"
+	DisplayText "P518366740"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires SilverMantisTF owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name FireCaster
+	Category kGladiator
+	DisplayTitle "P1109339666"
+	DisplayText "P3239136784"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires level char> 30 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Fortunata
+	Category kGladiator
+	DisplayTitle "P1948410248"
+	DisplayHint "P3627844757"
+	DisplayText "P373959223"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.Arachnos_Fortunata kills.Arachnos_Fortunata_High + kills.Arachnos_Fortunata_Seer + kills.Arachnos_Fortunata_Seer_High + kills.Arachnos_Fortunata_Mistress + kills.Arachnos_Fortunata_Mistress_High + 1 >=
+	Hinted 1
+	Requires kills.Arachnos_Fortunata kills.Arachnos_Fortunata_High + kills.Arachnos_Fortunata_Seer + kills.Arachnos_Fortunata_Seer_High + kills.Arachnos_Fortunata_Mistress + kills.Arachnos_Fortunata_Mistress_High + 100 >=
+	Meter kills.Arachnos_Fortunata kills.Arachnos_Fortunata_High + kills.Arachnos_Fortunata_Seer + kills.Arachnos_Fortunata_Seer_High + kills.Arachnos_Fortunata_Mistress + kills.Arachnos_Fortunata_Mistress_High + 100 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 100
+}
+
+Badge
+{
+	Name Fungoid
+	Category kGladiator
+	DisplayTitle "P3703635051"
+	DisplayText "P3784413848"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Protectorate owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Gremlin
+	Category kGladiator
+	DisplayTitle "P2639020373"
+	DisplayText "P1726608590"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Deathsurge owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Hellstrike
+	Category kGladiator
+	DisplayTitle "P4024240937"
+	DisplayText "P3978174064"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires ThornIsle1 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name InkMan
+	Category kGladiator
+	DisplayTitle "P2659147958"
+	DisplayHint "P943939607"
+	DisplayText "P485365537"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.Tsoo_CoV_Sai_Red_Men kills.Tsoo_CoV_Kama_Red_Men + kills.Tsoo_CoV_Claws_Red_Men + 1 >=
+	Hinted 1
+	Requires kills.Tsoo_CoV_Sai_Red_Men kills.Tsoo_CoV_Kama_Red_Men + kills.Tsoo_CoV_Claws_Red_Men + 100 >=
+	Meter kills.Tsoo_CoV_Sai_Red_Men kills.Tsoo_CoV_Kama_Red_Men + kills.Tsoo_CoV_Claws_Red_Men + 100 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 100
+}
+
+Badge
+{
+	Name JuicerSniper
+	Category kGladiator
+	DisplayTitle "P2215486740"
+	DisplayText "P675565208"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires NervaTour1 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Lasher
+	Category kGladiator
+	DisplayTitle "P1641223961"
+	DisplayHint "P1105819241"
+	DisplayText "P2872115266"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.CircleofThorns_CoV_Minion_Lasher kills.CircleofThorns_CoV_Lt_Hurler + kills.CircleofThorns_CoV_Lt_Berserker + 1 >=
+	Hinted 1
+	Requires kills.CircleofThorns_CoV_Minion_Lasher kills.CircleofThorns_CoV_Lt_Hurler + kills.CircleofThorns_CoV_Lt_Berserker + 100 >=
+	Meter kills.CircleofThorns_CoV_Minion_Lasher kills.CircleofThorns_CoV_Lt_Hurler + kills.CircleofThorns_CoV_Lt_Berserker + 100 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 100
+}
+
+Badge
+{
+	Name LegacyEarth
+	Category kGladiator
+	DisplayTitle "P1344049052"
+	DisplayText "P1332147801"
+	DisplayTitleVillain "P1344049052"
+	DisplayTextVillain "P3326422832"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Collector owned? P_Badges_25 owned? praetorianprogress char> earth eq && ||
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name LegacyFlame
+	Category kGladiator
+	DisplayTitle "P4167954606"
+	DisplayHint "P786496738"
+	DisplayText "P1332147801"
+	DisplayTitleVillain "P4167954606"
+	DisplayHintVillain "P786496738"
+	DisplayTextVillain "P3328469394"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.LegacyChain_Steel_Minion kills.LegacyChain_Light_Minion + kills.LegacyChain_Flame_Minion_Low + kills.LegacyChain_Flame_Minion + kills.LegacyChain_Earth_Minion + 1 >=
+	Hinted 1
+	Requires kills.LegacyChain_Steel_Minion kills.LegacyChain_Light_Minion + kills.LegacyChain_Flame_Minion_Low + kills.LegacyChain_Flame_Minion + kills.LegacyChain_Earth_Minion + 200 >=
+	Meter kills.LegacyChain_Steel_Minion kills.LegacyChain_Light_Minion + kills.LegacyChain_Flame_Minion_Low + kills.LegacyChain_Flame_Minion + kills.LegacyChain_Earth_Minion + 200 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 200
+}
+
+Badge
+{
+	Name LegacyLight
+	Category kGladiator
+	DisplayTitle "P2244043242"
+	DisplayHint "P246375048"
+	DisplayText "P1332147801"
+	DisplayTitleVillain "P2244043242"
+	DisplayHintVillain "P246375048"
+	DisplayTextVillain "P2227133169"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.LegacyChain_Steel_Lieutenant_Low kills.LegacyChain_Steel_Lieutenant + kills.LegacyChain_Light_Lieutenant + kills.LegacyChain_Flame_Lieutenant_Low + kills.LegacyChain_Flame_Lieutenant + kills.LegacyChain_Earth_Lieutenant + 1 >=
+	Hinted 1
+	Requires kills.LegacyChain_Steel_Lieutenant_Low kills.LegacyChain_Steel_Lieutenant + kills.LegacyChain_Light_Lieutenant + kills.LegacyChain_Flame_Lieutenant_Low + kills.LegacyChain_Flame_Lieutenant + kills.LegacyChain_Earth_Lieutenant + 200 >=
+	Meter kills.LegacyChain_Steel_Lieutenant_Low kills.LegacyChain_Steel_Lieutenant + kills.LegacyChain_Light_Lieutenant + kills.LegacyChain_Flame_Lieutenant_Low + kills.LegacyChain_Flame_Lieutenant + kills.LegacyChain_Earth_Lieutenant + 200 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 200
+}
+
+Badge
+{
+	Name LongbowDefender
+	Category kGladiator
+	DisplayTitle "P523679116"
+	DisplayText "P1368609947"
+	DisplayTitleVillain "P523679116"
+	DisplayTextVillain "P573987071"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Headhunter owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name LongbowRifleman
+	Category kGladiator
+	DisplayTitle "P3354370272"
+	DisplayText "P1368609947"
+	DisplayTitleVillain "P3354370272"
+	DisplayTextVillain "P3698581156"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires NervaTour2 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name LongbowTanker
+	Category kGladiator
+	DisplayTitle "P2645141780"
+	DisplayText "P1368609947"
+	DisplayTitleVillain "P2645141780"
+	DisplayTextVillain "P3863565019"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires SirensCallTour2 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Meson
+	Category kGladiator
+	DisplayTitle "P1952547306"
+	DisplayText "P949574256"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires DimensionalWarder owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name MobSpec
+	Category kGladiator
+	DisplayTitle "P578727188"
+	DisplayHint "P936338721"
+	DisplayText "P254252938"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.Prisoners_Prisoners_Lieutenant kills.Prisoners_Shotgun_Prisoners_Boss + kills.Prisoners_SubmachineGun_Prisoners_Boss + 1 >=
+	Hinted 1
+	Requires kills.Prisoners_Prisoners_Lieutenant kills.Prisoners_Shotgun_Prisoners_Boss + kills.Prisoners_SubmachineGun_Prisoners_Boss + 200 >=
+	Meter kills.Prisoners_Prisoners_Lieutenant kills.Prisoners_Shotgun_Prisoners_Boss + kills.Prisoners_SubmachineGun_Prisoners_Boss + 200 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 200
+}
+
+Badge
+{
+	Name Mook
+	Category kGladiator
+	DisplayTitle "P867441753"
+	DisplayText "P3076821181"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires PortOakesTour2 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name MuGuardian
+	Category kGladiator
+	DisplayTitle "P483849233"
+	DisplayHint "P1830986973"
+	DisplayText "P1842742825"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.Arachnos_Mu_Guardian_Low kills.Arachnos_Mu_Guardian + kills.Arachnos_Mu_Guardian_High + 1 >=
+	Hinted 0
+	Requires kills.Arachnos_Mu_Guardian_Low kills.Arachnos_Mu_Guardian + kills.Arachnos_Mu_Guardian_High + 100 >=
+	Meter kills.Arachnos_Mu_Guardian_Low kills.Arachnos_Mu_Guardian + kills.Arachnos_Mu_Guardian_High + 100 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 100
+}
+
+Badge
+{
+	Name NebulaBuckshot
+	Category kGladiator
+	DisplayTitle "P2304394792"
+	DisplayText "P522886436"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires level char> 10 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name NemesisSoldier
+	Category kGladiator
+	DisplayTitle "P2583653757"
+	DisplayText "P2251249200"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires SL6MissionA owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name NightWidow
+	Category kGladiator
+	DisplayTitle "P1225478539"
+	DisplayText "P534775767"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires level char> 30 >= type char> villain eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Nullifier
+	Category kGladiator
+	DisplayTitle "P4131576441"
+	DisplayText "P3912003283"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Lanista owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name OmegaWolf
+	Category kGladiator
+	DisplayTitle "P2376869415"
+	DisplayText "P140099256"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires SilverBullet owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name ParagonProtect
+	Category kGladiator
+	DisplayTitle "P1026343615"
+	DisplayText "P2451690341"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Infiltrator owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Penumbra
+	Category kGladiator
+	DisplayTitle "P647203646"
+	DisplayText "P877695297"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires StrigaTour1 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name PirateGhost
+	Category kGladiator
+	DisplayTitle "P4093235339"
+	DisplayText "P3785738315"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires GhostTrap50 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name PowerTank
+	Category kGladiator
+	DisplayTitle "P3312275415"
+	DisplayHint "P1470150059"
+	DisplayText "P1469680546"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.Crey_Crey_Electric_Tank kills.Crey_Crey_Ice_Tank + kills.Crey_Crey_Power_Tank + kills.Crey_Crey_electric_tank_high + kills.Crey_crey_ice_tank_high + kills.Crey_crey_power_tank_high + 1 >=
+	Hinted 1
+	Requires kills.Crey_Crey_Electric_Tank kills.Crey_Crey_Ice_Tank + kills.Crey_Crey_Power_Tank + kills.Crey_Crey_electric_tank_high + kills.Crey_crey_ice_tank_high + kills.Crey_crey_power_tank_high + 100 >=
+	Meter kills.Crey_Crey_Electric_Tank kills.Crey_Crey_Ice_Tank + kills.Crey_Crey_Power_Tank + kills.Crey_Crey_electric_tank_high + kills.Crey_crey_ice_tank_high + kills.Crey_crey_power_tank_high + 100 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 100
+}
+
+Badge
+{
+	Name Protean
+	Category kGladiator
+	DisplayTitle "P4080432599"
+	DisplayText "P2112487893"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires SewerTR owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name RaiderEngineer
+	Category kGladiator
+	DisplayTitle "P463570240"
+	DisplayHint "P86638858"
+	DisplayText "P2468990729"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.SkyRaiders_ForceGenerator 1 >=
+	Hinted 0
+	Requires kills.SkyRaiders_ForceGenerator 100 >=
+	Meter kills.SkyRaiders_ForceGenerator 100 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 100
+}
+
+Badge
+{
+	Name RedHand
+	Category kGladiator
+	DisplayTitle "P1595873397"
+	DisplayText "P488249708"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires GhostTrap100 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name ResearchAsst
+	Category kGladiator
+	DisplayTitle "P1629505710"
+	DisplayText "P961320098"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires IndependancePortTour1 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name RiktiDrone
+	Category kGladiator
+	DisplayTitle "P1617018845"
+	DisplayText "P1542875022"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires RiktiWar owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name ShivanDestroyer
+	Category kGladiator
+	DisplayTitle "P230621820"
+	DisplayText "P3938015220"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires BloodyBay owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name SlagPile
+	Category kGladiator
+	DisplayTitle "P2885207343"
+	DisplayText "P3112471598"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires VSL4MissionB owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Slugger
+	Category kGladiator
+	DisplayTitle "P3407972208"
+	DisplayText "P985819974"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Weatherman owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Sorcerer
+	Category kGladiator
+	DisplayTitle "P2785116906"
+	DisplayText "P4080322791"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires VSL8MissionB owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name SpecOps
+	Category kGladiator
+	DisplayTitle "P2825990537"
+	DisplayText "P614993208"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Villain owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Strongman
+	Category kGladiator
+	DisplayTitle "P4207547008"
+	DisplayText "P4281425083"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Illusionist owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name SwiftSteel
+	Category kGladiator
+	DisplayTitle "P4009607791"
+	DisplayHint "P905157225"
+	DisplayText "P2820362412"
+	Icon "v_badge_BattleDomeBadge"
+	Visible kills.Tsoo_Ancestor_Spirit kills.Tsoo_CoV_Ancestor_Spirit + 1 >=
+	Hinted 1
+	Requires kills.Tsoo_Ancestor_Spirit kills.Tsoo_CoV_Ancestor_Spirit + 300 >=
+	Meter kills.Tsoo_Ancestor_Spirit kills.Tsoo_CoV_Ancestor_Spirit + 300 %
+	Revoke 0
+	AwardText "P2860028998"
+	BadgeValues 300
+}
+
+Badge
+{
+	Name Swiper
+	Category kGladiator
+	DisplayTitle "P1102493262"
+	DisplayText "P1515295610"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires SL4MissionB owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name TacOps
+	Category kGladiator
+	DisplayTitle "P2294438713"
+	DisplayText "P1302734623"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires level char> 20 >= type char> villain eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name TankSmasher
+	Category kGladiator
+	DisplayTitle "P2790657091"
+	DisplayText "P2469188686"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Blitzkrieg owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Tarantula
+	Category kGladiator
+	DisplayTitle "P238131253"
+	DisplayText "P3524203370"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Venomous owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Titan
+	Category kGladiator
+	DisplayTitle "P1467567259"
+	DisplayText "P3870753576"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires GrandLanista owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Wailer
+	Category kGladiator
+	DisplayTitle "P2776220206"
+	DisplayText "P2396667164"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires StMartialTour3 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name WailerQueen
+	Category kGladiator
+	DisplayTitle "P1956079446"
+	DisplayText "P569117832"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Imprisoned owned? P_Held_60Min owned? || type char> villain eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Warcry
+	Category kGladiator
+	DisplayTitle "P981760599"
+	DisplayText "P3378528260"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires CouncilRobotBadge owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Warhulk
+	Category kGladiator
+	DisplayTitle "P2216988219"
+	DisplayText "P1746899164"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires SL8MissionB owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name WarriorSmasher
+	Category kGladiator
+	DisplayTitle "P1382549735"
+	DisplayText "P919037846"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Legionnaire owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name WolfSpider
+	Category kGladiator
+	DisplayTitle "P4278854203"
+	DisplayText "P2722751997"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires level char> 10 >= type char> villain eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name Wraith
+	Category kGladiator
+	DisplayTitle "P4026343186"
+	DisplayText "P3587812168"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Haunted owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name RedcapGladiator
+	Category kGladiator
+	DisplayTitle "P3818971129"
+	DisplayText "P857387265"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires HuntBadge owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name WinterMinion
+	Category kGladiator
+	DisplayTitle "P4127967226"
+	DisplayText "P3768220373"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires Holiday2005Badge3 owned?
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+
+Badge
+{
+	Name 5thGladiator
+	Category kGladiator
+	DisplayTitle "P3224288733"
+	DisplayText "P2227704513"
+	Icon "v_badge_BattleDomeBadge"
+	Visible 0
+	Hinted 0
+	Requires 5thColumnHeroBadge owned? 5thColumnVillainBadge owned? ||
+	Meter 0
+	Revoke 0
+	AwardText "P2860028998"
+}
+

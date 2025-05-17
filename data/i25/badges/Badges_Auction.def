@@ -1,0 +1,314 @@
+Badge
+{
+	Name AuctionRecipes
+	Category kAuction
+	DisplayTitle "P4043765005"
+	DisplayHint "P4140196183"
+	DisplayText "P2560642684"
+	DisplayTitleVillain "P4043765005"
+	DisplayHintVillain "P913561336"
+	DisplayTextVillain "P3535593931"
+	Icon "badge_auction_seller_hero"
+	VillainIcon "badge_auction_seller_villain"
+	Visible auction.sold.recipe 1 >=
+	Hinted 1
+	Requires auction.sold.recipe 50 >=
+	Meter auction.sold.recipe 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name AuctionInspirations
+	Category kAuction
+	DisplayTitle "P3175213914"
+	DisplayHint "P2191772618"
+	DisplayText "P1150094329"
+	DisplayTitleVillain "P3175213914"
+	DisplayHintVillain "P1783642924"
+	DisplayTextVillain "P1865281707"
+	Icon "badge_auction_seller_hero"
+	VillainIcon "badge_auction_seller_villain"
+	Visible auction.sold.inspiration 1 >=
+	Hinted 1
+	Requires auction.sold.inspiration 50 >=
+	Meter auction.sold.inspiration 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name AuctionSalvage
+	Category kAuction
+	DisplayTitle "P1882525456"
+	DisplayHint "P3346991777"
+	DisplayText "P2036452264"
+	DisplayTitleVillain "P1882525456"
+	DisplayHintVillain "P458752896"
+	DisplayTextVillain "P1295036490"
+	Reward SalvageBonusSlots2
+	Icon "badge_auction_seller_hero"
+	VillainIcon "badge_auction_seller_villain"
+	Visible auction.sold.salvage 1 >=
+	Hinted 1
+	Requires auction.sold.salvage 50 >=
+	Meter auction.sold.salvage 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name AuctionEnhancements
+	Category kAuction
+	DisplayTitle "P2831846697"
+	DisplayHint "P845089748"
+	DisplayText "P2496291468"
+	DisplayTitleVillain "P2831846697"
+	DisplayHintVillain "P3328082038"
+	DisplayTextVillain "P897723345"
+	Icon "badge_auction_seller_hero"
+	VillainIcon "badge_auction_seller_villain"
+	Visible auction.sold.boost 1 >=
+	Hinted 1
+	Requires auction.sold.boost 50 >=
+	Meter auction.sold.boost 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name AuctionSeller1
+	Category kAuction
+	DisplayTitle "P4069406400"
+	DisplayHint "P3407922490"
+	DisplayText "P809744280"
+	DisplayTitleVillain "P4069406400"
+	DisplayHintVillain "P2253585587"
+	DisplayTextVillain "P3041357306"
+	Icon "badge_auction_seller_01"
+	Visible auction.sold 1 >=
+	Hinted 1
+	Requires auction.sold 10 >=
+	Meter auction.sold 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name AuctionSeller2
+	Category kAuction
+	DisplayTitle "P952611798"
+	DisplayHint "P1477429691"
+	DisplayText "P2722820928"
+	DisplayTitleVillain "P952611798"
+	DisplayHintVillain "P3262466837"
+	DisplayTextVillain "P3794341675"
+	Icon "badge_auction_seller_02"
+	Visible AuctionSeller1 owned?
+	Hinted 1
+	Requires auction.sold 50 >=
+	Meter auction.sold 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name AuctionSeller3
+	Category kAuction
+	DisplayTitle "P193399256"
+	DisplayHint "P3585692665"
+	DisplayText "P4281089367"
+	DisplayTitleVillain "P193399256"
+	DisplayHintVillain "P2127591869"
+	DisplayTextVillain "P3213965394"
+	Icon "badge_auction_seller_03"
+	Visible AuctionSeller2 owned?
+	Hinted 1
+	Requires auction.sold 100 >=
+	Meter auction.sold 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name AuctionSeller4
+	Category kAuction
+	DisplayTitle "P2380089271"
+	DisplayHint "P3907090446"
+	DisplayText "P3262387872"
+	DisplayTitleVillain "P2380089271"
+	DisplayHintVillain "P236513104"
+	DisplayTextVillain "P3478759103"
+	Reward AuctionBonusSlots1
+	Icon "badge_auction_seller_04"
+	Visible AuctionSeller3 owned?
+	Hinted 1
+	Requires auction.sold 250 >=
+	Meter auction.sold 250 %
+	Revoke 0
+	BadgeValues 250
+}
+
+Badge
+{
+	Name AuctionSeller5
+	Category kAuction
+	DisplayTitle "P3644499023"
+	DisplayHint "P1562574939"
+	DisplayText "P2008444661"
+	DisplayTitleVillain "P3644499023"
+	DisplayHintVillain "P2404644253"
+	DisplayTextVillain "P1309848690"
+	Icon "badge_auction_seller_05"
+	Visible AuctionSeller4 owned?
+	Hinted 1
+	Requires auction.sold 500 >=
+	Meter auction.sold 500 %
+	Revoke 0
+	BadgeValues 500
+}
+
+Badge
+{
+	Name AuctionSeller6
+	Category kAuction
+	DisplayTitle "P1043094661"
+	DisplayHint "P3313276541"
+	DisplayText "P4097347068"
+	DisplayTitleVillain "P1043094661"
+	DisplayHintVillain "P1474460533"
+	DisplayTextVillain "P1737934301"
+	Reward AuctionBonusSlots1
+	Icon "badge_auction_seller_06"
+	Visible AuctionSeller5 owned?
+	Hinted 1
+	Requires auction.sold 1000 >=
+	Meter auction.sold 1000 %
+	Revoke 0
+	BadgeValues 1000
+}
+
+Badge
+{
+	Name AuctionSeller7
+	Category kAuction
+	DisplayTitle "P269433908"
+	DisplayHint "P2711416195"
+	DisplayText "P2430137858"
+	DisplayTitleVillain "P269433908"
+	DisplayHintVillain "P1154105862"
+	DisplayTextVillain "P1958673582"
+	Icon "badge_auction_seller_07"
+	Visible AuctionSeller6 owned?
+	Hinted 1
+	Requires auction.sold 2000 >=
+	Meter auction.sold 2000 %
+	Revoke 0
+	BadgeValues 2000
+}
+
+Badge
+{
+	Name AuctionSeller8
+	Category kAuction
+	DisplayTitle "P1769498901"
+	DisplayHint "P887896342"
+	DisplayText "P94904983"
+	DisplayTitleVillain "P1769498901"
+	DisplayHintVillain "P1244506839"
+	DisplayTextVillain "P2052658303"
+	Reward AuctionBonusSlots1
+	Icon "badge_auction_seller_08"
+	Visible AuctionSeller7 owned?
+	Hinted 1
+	Requires auction.sold 3000 >=
+	Meter auction.sold 3000 %
+	Revoke 0
+	BadgeValues 3000
+}
+
+Badge
+{
+	Name AuctionSeller9
+	Category kAuction
+	DisplayTitle "P1740074492"
+	DisplayHint "P1750866559"
+	DisplayText "P1494745598"
+	DisplayTitleVillain "P1740074492"
+	DisplayHintVillain "P1654272224"
+	DisplayTextVillain "P1391365704"
+	Icon "badge_auction_seller_09"
+	Visible AuctionSeller8 owned?
+	Hinted 1
+	Requires auction.sold 4000 >=
+	Meter auction.sold 4000 %
+	Revoke 0
+	BadgeValues 4000
+}
+
+Badge
+{
+	Name AuctionSeller10
+	Category kAuction
+	DisplayTitle "P2884824541"
+	DisplayHint "P4247572202"
+	DisplayText "P3429422443"
+	DisplayTitleVillain "P3570224033"
+	DisplayHintVillain "P1820186673"
+	DisplayTextVillain "P1544119961"
+	Reward AuctionBonusSlots1
+	Icon "badge_auction_seller_10"
+	Visible AuctionSeller9 owned?
+	Hinted 1
+	Requires auction.sold 5000 >=
+	Meter auction.sold 5000 %
+	Revoke 0
+	BadgeValues 5000
+}
+
+Badge
+{
+	Name AuctionSeller11
+	Category kAuction
+	DisplayTitle "P2128147338"
+	DisplayHint "P2580329748"
+	DisplayText "P2827529877"
+	DisplayTitleVillain "P2128147338"
+	DisplayHintVillain "P2136334658"
+	DisplayTextVillain "P1327587306"
+	Icon "badge_auction_seller_11"
+	Visible AuctionSeller10 owned?
+	Hinted 1
+	Requires auction.sold 6000 >=
+	Meter auction.sold 6000 %
+	Revoke 0
+	BadgeValues 6000
+}
+
+Badge
+{
+	Name AuctionSeller12
+	Category kAuction
+	DisplayTitle "P3932126351"
+	DisplayHint "P213672321"
+	DisplayText "P1039694336"
+	DisplayTitleVillain "P3932126351"
+	DisplayHintVillain "P1907493267"
+	DisplayTextVillain "P1103542075"
+	Reward AuctionBonusSlots1
+	Icon "badge_auction_seller_12"
+	Visible AuctionSeller11 owned?
+	Hinted 1
+	Requires auction.sold 7000 >=
+	Meter auction.sold 7000 %
+	Revoke 0
+	BadgeValues 7000
+}
+

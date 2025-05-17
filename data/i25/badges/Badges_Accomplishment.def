@@ -1,0 +1,2868 @@
+Badge
+{
+	Name LordRecluseTF
+	Category kAccomplishment
+	DisplayTitle "P2346897007"
+	DisplayHint "P2166739760"
+	DisplayText "P4121276788"
+	DisplayTitleVillain "P2022531985"
+	DisplayHintVillain "P2166739760"
+	DisplayTextVillain "P2991453929"
+	Icon "v_badge_LordRecluseBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SilverMantisTF
+	Category kAccomplishment
+	DisplayTitle "P1378790761"
+	DisplayHint "P1520117513"
+	DisplayText "P3212299115"
+	DisplayTitleVillain "P692416532"
+	DisplayHintVillain "P1520117513"
+	DisplayTextVillain "P373472483"
+	Icon "v_badge_TaskForceBadge5"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BatzulSF
+	Category kAccomplishment
+	DisplayTitle "P3205760079"
+	DisplayText "P1793416809"
+	Icon "v_badge_BatzulBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SkyRaiderSF
+	Category kAccomplishment
+	DisplayTitle "P758025852"
+	DisplayText "P2289713233"
+	DisplayTitleVillain "P637428104"
+	DisplayTextVillain "P2289713233"
+	Icon "v_badge_StrikeforceSkyRaiderBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name WaterTempleSF
+	Category kAccomplishment
+	DisplayTitle "P918557942"
+	DisplayText "P4197321638"
+	Icon "v_badge_StrikeforceSharkBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SerafinaCrystalSF
+	Category kAccomplishment
+	DisplayTitle "P3731764185"
+	DisplayText "P25672615"
+	Icon "v_badge_StrikeforceSerafinaBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL2.5MissionA
+	Category kAccomplishment
+	DisplayTitle "P1122733500"
+	DisplayText "P1485720779"
+	Icon "v_badge_StatureBadge1"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL2.5MissionB
+	Category kAccomplishment
+	DisplayTitle "P2934857078"
+	DisplayText "P3253086478"
+	Icon "v_badge_StatureBadge1"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL2MissionA
+	Category kAccomplishment
+	DisplayTitle "P518064514"
+	DisplayText "P2798454128"
+	Icon "v_badge_StatureBadge2"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL2MissionB
+	Category kAccomplishment
+	DisplayTitle "P1567727629"
+	DisplayText "P4222702437"
+	Icon "v_badge_StatureBadge2"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL3MissionA
+	Category kAccomplishment
+	DisplayTitle "P3193554134"
+	DisplayText "P2489607669"
+	DisplayTitleVillain "P2917758505"
+	DisplayTextVillain "P1311130541"
+	Icon "v_badge_StatureBadge3"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL3MissionB
+	Category kAccomplishment
+	DisplayTitle "P2577090317"
+	DisplayText "P2374702314"
+	Icon "v_badge_StatureBadge3"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL4MissionA
+	Category kAccomplishment
+	DisplayTitle "P997318902"
+	DisplayText "P1965146998"
+	Icon "v_badge_StatureBadge4"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL4MissionB
+	Category kAccomplishment
+	DisplayTitle "P2130038251"
+	DisplayText "P607289126"
+	Icon "v_badge_StatureBadge4"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL5MissionA
+	Category kAccomplishment
+	DisplayTitle "P46751382"
+	DisplayText "P3856669816"
+	Icon "v_badge_StatureBadge5"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL5MissionB
+	Category kAccomplishment
+	DisplayTitle "P829683013"
+	DisplayText "P3602379839"
+	Icon "v_badge_StatureBadge5"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL6MissionA
+	Category kAccomplishment
+	DisplayTitle "P1723331178"
+	DisplayText "P205071975"
+	Icon "v_badge_StatureBadge6"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL6MissionB
+	Category kAccomplishment
+	DisplayTitle "P4282601428"
+	DisplayText "P960545676"
+	Icon "v_badge_StatureBadge6"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL7MissionA
+	Category kAccomplishment
+	DisplayTitle "P1266088222"
+	DisplayText "P2296199246"
+	Icon "v_badge_StatureBadge7"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL7MissionB
+	Category kAccomplishment
+	DisplayTitle "P1729329782"
+	DisplayText "P2494872936"
+	Icon "v_badge_StatureBadge7"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL8MissionA
+	Category kAccomplishment
+	DisplayTitle "P1191645015"
+	DisplayText "P1891477496"
+	Icon "v_badge_StatureBadge8"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL8MissionB
+	Category kAccomplishment
+	DisplayTitle "P3681802644"
+	DisplayText "P2543864662"
+	Icon "v_badge_StatureBadge8"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL9MissionA
+	Category kAccomplishment
+	DisplayTitle "P1087286015"
+	DisplayText "P4069819855"
+	Icon "v_badge_StatureBadge9"
+	Visible 0
+	Hinted 0
+	Requires Efficiency1 owned? Efficiency2 owned? && Efficiency3 owned? && Efficiency4 owned? && Efficiency5 owned? &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VSL9MissionB
+	Category kAccomplishment
+	DisplayTitle "P1791168050"
+	DisplayText "P2511638850"
+	Icon "v_badge_StatureBadge9"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name YinBadge
+	Category kAccomplishment
+	DisplayTitle "P306536114"
+	DisplayText "P1627686479"
+	DisplayTitleVillain "P3384586117"
+	DisplayTextVillain "P1607173516"
+	Icon "Badge_FriendofYin"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name STFVictory
+	Category kAccomplishment
+	DisplayTitle "P295844641"
+	DisplayText "P2832854419"
+	DisplayTitleVillain "P4152140632"
+	DisplayTextVillain "P3937492887"
+	Icon "badge_defeatrecluse"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name STFVictory2
+	Category kAccomplishment
+	DisplayTitle "P3226675560"
+	DisplayText "P2378782248"
+	DisplayTitleVillain "P2798700354"
+	DisplayTextVillain "P179136284"
+	Icon "badge_defeatrecluse"
+	Visible 0
+	Hinted 0
+	Requires kills.Arachnos_Lord_Recluse_SSF 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VanguardEnabled
+	Category kAccomplishment
+	DisplayTitle "P3242237978"
+	DisplayText "P2934806416"
+	Icon "badge_vanguard_001"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name VanguardCoOpTF
+	Category kAccomplishment
+	DisplayTitle "P2847969700"
+	DisplayText "P2258973406"
+	Icon "badge_task_force_apocalyptic"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SlolamGold
+	Category kAccomplishment
+	DisplayTitle "P601035353"
+	DisplayText "P2762693744"
+	Icon "badge_holiday07_slalom_gold"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SlolamSilver
+	Category kAccomplishment
+	DisplayTitle "P2927540880"
+	DisplayText "P3754134713"
+	Icon "badge_holiday07_slalom_silver"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SlolamBronze
+	Category kAccomplishment
+	DisplayTitle "P2858099184"
+	DisplayText "P2327132411"
+	Icon "badge_holiday07_slalom_bronze"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MSThief
+	Category kAccomplishment
+	DisplayTitle "P3660598447"
+	DisplayText "P1787480246"
+	Icon "badge_thiefofmidnight"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MSMember
+	Category kAccomplishment
+	DisplayTitle "P1177447099"
+	DisplayText "P175847028"
+	Icon "badge_midnightsquadmember"
+	Visible 0
+	Hinted 0
+	Requires NightWardTour3 owned?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MSLost
+	Category kAccomplishment
+	DisplayTitle "P3267653868"
+	DisplayText "P977659518"
+	Icon "badge_lostsavior"
+	Visible 0
+	Hinted 0
+	Requires hero type char> eq SL2.5-3_SC_Midnight_Squad_StoryArc_Souvenir HasSouvenir? &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name MSOrigin
+	Category kAccomplishment
+	DisplayTitle "P3139670084"
+	DisplayText "P3982224667"
+	Icon "badge_origins_path"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TAComplete
+	Category kAccomplishment
+	DisplayTitle "P2326498282"
+	DisplayText "P3240254738"
+	Icon "badge_temporal_strife"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SlolamGold2
+	Category kAccomplishment
+	DisplayTitle "P805712535"
+	DisplayText "P1076304083"
+	Icon "badge_holiday07_slalom_gold"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SlolamSilver2
+	Category kAccomplishment
+	DisplayTitle "P3067480205"
+	DisplayText "P1242189580"
+	Icon "badge_holiday07_slalom_silver"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SlolamBronze2
+	Category kAccomplishment
+	DisplayTitle "P2604742569"
+	DisplayText "P3886526858"
+	Icon "badge_holiday07_slalom_bronze"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I11VillainStoryArc1Complete
+	Category kAccomplishment
+	DisplayTitle "P809048463"
+	DisplayText "P188750380"
+	Icon "Badge_I11VillainStoryArc1Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I11VillainStoryArc2Complete
+	Category kAccomplishment
+	DisplayTitle "P3771404105"
+	DisplayText "P352090003"
+	Icon "Badge_I11VillainStoryArc2Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I11HeroStoryArc1Complete
+	Category kAccomplishment
+	DisplayTitle "P575900223"
+	DisplayText "P3263391457"
+	DisplayTitleVillain "P1899434354"
+	DisplayTextVillain "P2288338473"
+	Icon "Badge_I11HeroStoryArc1Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I11HeroStoryArc2Complete
+	Category kAccomplishment
+	DisplayTitle "P3557536841"
+	DisplayText "P2045967056"
+	Icon "Badge_I11HeroStoryArc2Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PositronRevampPart1
+	Category kAccomplishment
+	DisplayTitle "P2459809062"
+	DisplayText "P329388800"
+	DisplayTitleVillain "P2459809062"
+	DisplayTextVillain "P1276464006"
+	Icon "Badge_PositronRevampPart1"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PositronRevampPart2
+	Category kAccomplishment
+	DisplayTitle "P1076328715"
+	DisplayText "P3096831220"
+	DisplayTitleVillain "P1921375524"
+	DisplayTextVillain "P3682490848"
+	Icon "Badge_PositronRevampPart2"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_AspectofYin
+	Category kAccomplishment
+	DisplayTitle "P1168425514"
+	DisplayHint "P694530415"
+	DisplayText "P2246708941"
+	Icon "Badge_AspectofYin"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_FriendofYin
+	Category kAccomplishment
+	DisplayTitle "P4215120943"
+	DisplayHint "P1272289059"
+	DisplayText "P3537756446"
+	Icon "Badge_FriendofYin"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Informant
+	Category kAccomplishment
+	DisplayTitle "P4022344001"
+	DisplayHint "P3022962833"
+	DisplayText "P3128401644"
+	Icon "Badge_Informant"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Antilaureate
+	Category kAccomplishment
+	DisplayTitle "P3712675652"
+	DisplayHint "P2469332557"
+	DisplayText "P1030499855"
+	Icon "Badge_Antilaureate"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Protestor
+	Category kAccomplishment
+	DisplayTitle "P1245841631"
+	DisplayHint "P804854170"
+	DisplayText "P1162645168"
+	Icon "Badge_Protestor"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_LoyalistRaidSurvivor
+	Category kAccomplishment
+	DisplayTitle "P3386547115"
+	DisplayHint "P2671792845"
+	DisplayText "P521609045"
+	Icon "Badge_RaidSurvivor_Resistance"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_ResistanceRaidSurvivor
+	Category kAccomplishment
+	DisplayTitle "P1730931984"
+	DisplayHint "P4056117767"
+	DisplayText "P1173909975"
+	Icon "Badge_RaidSurvivor_Loyalist"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_TakedownArtist
+	Category kAccomplishment
+	DisplayTitle "P1927757648"
+	DisplayHint "P590262230"
+	DisplayText "P1754769241"
+	Icon "Badge_TakedownArtist"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_DenialofService
+	Category kAccomplishment
+	DisplayTitle "P343005912"
+	DisplayText "P700047786"
+	Icon "Badge_DenialofService"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_5MoralChoice
+	Category kAccomplishment
+	DisplayTitle "P2794847947"
+	DisplayHint "P588232715"
+	DisplayText "P3494194800"
+	Icon "Badge_5MoralChoice"
+	Visible MoralChoiceCredit1 TokenOwned?
+	Hinted 1
+	Requires MoralChoiceCredit1 TokenOwned? MoralChoiceCredit2 TokenOwned? + MoralChoiceCredit3 TokenOwned? + MoralChoiceCredit4 TokenOwned? + MoralChoiceCredit5 TokenOwned? + 5 >=
+	Meter MoralChoiceCredit1 TokenOwned? MoralChoiceCredit2 TokenOwned? + MoralChoiceCredit3 TokenOwned? + MoralChoiceCredit4 TokenOwned? + MoralChoiceCredit5 TokenOwned? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name P_GotTip
+	Category kAccomplishment
+	DisplayTitle "P2609126123"
+	DisplayText "P4265506068"
+	Icon "Badge_GotTip"
+	Visible 0
+	Hinted 0
+	Requires GoingRogueTipsAwarded 1 >=
+	Meter 0
+	Revoke 0
+	DisplayPopup "P3834561974"
+}
+
+Badge
+{
+	Name P_AlignmentMission
+	Category kAccomplishment
+	DisplayTitle "P3905306515"
+	DisplayText "P177637502"
+	Icon "Badge_AlignmentMission"
+	Visible 0
+	Hinted 0
+	Requires ParagonAlignmentMissionsCompleted 1 >= HeroAlignmentMissionsCompleted 1 >= || VigilanteAlignmentMissionsCompleted 1 >= || RogueAlignmentMissionsCompleted 1 >= || VillainAlignmentMissionsCompleted 1 >= || TyrantAlignmentMissionsCompleted 1 >= ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_HeroAlignmentMission
+	Category kAccomplishment
+	DisplayTitle "P1000930266"
+	DisplayText "P2524398634"
+	Icon "Badge_HeroAlignmentMission"
+	Visible 0
+	Hinted 0
+	Requires HeroAlignmentMissionsCompleted 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_VigilanteAlignmentMission
+	Category kAccomplishment
+	DisplayTitle "P4149362117"
+	DisplayText "P2405523977"
+	Icon "Badge_VigilanteAlignmentMission"
+	Visible 0
+	Hinted 0
+	Requires VigilanteAlignmentMissionsCompleted 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_RogueAlignmentMission
+	Category kAccomplishment
+	DisplayTitle "P593553011"
+	DisplayText "P2599946607"
+	Icon "Badge_RogueAlignmentMission"
+	Visible 0
+	Hinted 0
+	Requires RogueAlignmentMissionsCompleted 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_VillainAlignmentMission
+	Category kAccomplishment
+	DisplayTitle "P320842584"
+	DisplayText "P3485304301"
+	Icon "Badge_VillainAlignmentMission"
+	Visible 0
+	Hinted 0
+	Requires VillainAlignmentMissionsCompleted 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_OtherAlignmentMission
+	Category kAccomplishment
+	DisplayTitle "P4265331264"
+	DisplayText "P2593229752"
+	DisplayTitleVillain "P4265331264"
+	DisplayTextVillain "P2081277116"
+	Icon "Badge_OtherAlignmentMission_Hero"
+	VillainIcon "Badge_OtherAlignmentMission_Villain"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_MoralityMission
+	Category kAccomplishment
+	DisplayTitle "P989510134"
+	DisplayText "P3275157362"
+	DisplayTitleVillain "P989510134"
+	DisplayTextVillain "P423288353"
+	Icon "Badge_MoralityMission_Hero"
+	VillainIcon "Badge_MoralityMission_Villain"
+	Visible 0
+	Hinted 0
+	Requires ParagonSwitchMoralityMissionsCompleted TokenOwned? HeroSwitchMoralityMissionsCompleted TokenOwned? || VigilanteSwitchMoralityMissionsCompleted TokenOwned? || RogueSwitchMoralityMissionsCompleted TokenOwned? || VillainSwitchMoralityMissionsCompleted TokenOwned? || ParagonReinforceMoralityMissionsCompleted TokenOwned? || HeroReinforceMoralityMissionsCompleted TokenOwned? || VigilanteReinforceMoralityMissionsCompleted TokenOwned? || RogueReinforceMoralityMissionsCompleted TokenOwned? || VillainReinforceMoralityMissionsCompleted TokenOwned? || TyrantReinforceMoralityMissionsCompleted TokenOwned? ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Tutorial_Reader
+	Category kAccomplishment
+	DisplayTitle "P2526744471"
+	DisplayText "P3735984109"
+	Icon "Badge_GotTip"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_LoyalistBadge
+	Category kAccomplishment
+	DisplayTitle "P2333937975"
+	DisplayText "P936416526"
+	Icon "Badge_Loyalist"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Magistrate
+	Category kAccomplishment
+	DisplayTitle "P2023360592"
+	DisplayHint "P381976738"
+	DisplayText "P3136274601"
+	Icon "Badge_Loyalist"
+	Visible JoiningThePackClue HasSouvenir? HitListSouvenirClue HasSouvenir? || OrganizedCrusadersClue HasSouvenir? || NoMansLadySouvenirClue HasSouvenir? || SacrificesMustBeMadeSouvenirClue HasSouvenir? || ClockFaceSouvenirClue HasSouvenir? || TrashCollectorsSouvenirClue HasSouvenir? || CorpWarsSouvenirClue HasSouvenir? || OneWeaknessSouvenir HasSouvenir? || IVyStoryArcSouvenir HasSouvenir? || MotherMayhemArcSouvenir HasSouvenir? || AntiMatterArc1Souvenir HasSouvenir? || AntiMatterMoralChoice HasSouvenir? ||
+	Hinted 1
+	Requires JoiningThePackClue HasSouvenir? HitListSouvenirClue HasSouvenir? && OrganizedCrusadersClue HasSouvenir? && NoMansLadySouvenirClue HasSouvenir? && SacrificesMustBeMadeSouvenirClue HasSouvenir? && ClockFaceSouvenirClue HasSouvenir? && TrashCollectorsSouvenirClue HasSouvenir? && CorpWarsSouvenirClue HasSouvenir? && OneWeaknessSouvenir HasSouvenir? && IVyStoryArcSouvenir HasSouvenir? && MotherMayhemArcSouvenir HasSouvenir? && AntiMatterArc1Souvenir HasSouvenir? && AntiMatterMoralChoice HasSouvenir? &&
+	Meter JoiningThePackClue HasSouvenir? HitListSouvenirClue HasSouvenir? + OrganizedCrusadersClue HasSouvenir? + NoMansLadySouvenirClue HasSouvenir? + SacrificesMustBeMadeSouvenirClue HasSouvenir? + ClockFaceSouvenirClue HasSouvenir? + TrashCollectorsSouvenirClue HasSouvenir? + CorpWarsSouvenirClue HasSouvenir? + OneWeaknessSouvenir HasSouvenir? + IVyStoryArcSouvenir HasSouvenir? + MotherMayhemArcSouvenir HasSouvenir? + AntiMatterArc1Souvenir HasSouvenir? + AntiMatterMoralChoice HasSouvenir? + 13 %
+	Revoke 0
+	BadgeValues 13
+}
+
+Badge
+{
+	Name P_Tyrant
+	Category kAccomplishment
+	DisplayTitle "P4129969136"
+	DisplayHint "P1976890497"
+	DisplayText "P3632418421"
+	Icon "Badge_Loyalist"
+	Visible ShrewdLessonsSouvenirClue HasSouvenir? GunsAndMoneySouvenirClue HasSouvenir? || RisetoPower HasSouvenir? || TheStrongSurviveSouvenirClue HasSouvenir? || PersonalMonsterSouvenir HasSouvenir? || PowertoDieForSouvenir HasSouvenir? || HowtoMakeHeadlinesSouvenir HasSouvenir? || TheFavoriteAssassinSouvenir HasSouvenir? || ProjectPhoenixSouvenir HasSouvenir? || ForTheTakingSouvenirClue HasSouvenir? || BestFriendsForeverSouvenirClue HasSouvenir? || AGodAmongstMenSouvenirClue HasSouvenir? || NeuronMoralChoice HasSouvenir? ||
+	Hinted 1
+	Requires ShrewdLessonsSouvenirClue HasSouvenir? GunsAndMoneySouvenirClue HasSouvenir? && RisetoPower HasSouvenir? && TheStrongSurviveSouvenirClue HasSouvenir? && PersonalMonsterSouvenir HasSouvenir? && PowertoDieForSouvenir HasSouvenir? && HowtoMakeHeadlinesSouvenir HasSouvenir? && TheFavoriteAssassinSouvenir HasSouvenir? && ProjectPhoenixSouvenir HasSouvenir? && ForTheTakingSouvenirClue HasSouvenir? && BestFriendsForeverSouvenirClue HasSouvenir? && AGodAmongstMenSouvenirClue HasSouvenir? && NeuronMoralChoice HasSouvenir? &&
+	Meter ShrewdLessonsSouvenirClue HasSouvenir? GunsAndMoneySouvenirClue HasSouvenir? + RisetoPower HasSouvenir? + TheStrongSurviveSouvenirClue HasSouvenir? + PersonalMonsterSouvenir HasSouvenir? + PowertoDieForSouvenir HasSouvenir? + HowtoMakeHeadlinesSouvenir HasSouvenir? + TheFavoriteAssassinSouvenir HasSouvenir? + ProjectPhoenixSouvenir HasSouvenir? + ForTheTakingSouvenirClue HasSouvenir? + BestFriendsForeverSouvenirClue HasSouvenir? + AGodAmongstMenSouvenirClue HasSouvenir? + NeuronMoralChoice HasSouvenir? + 13 %
+	Revoke 0
+	BadgeValues 13
+}
+
+Badge
+{
+	Name P_ResistanceBadge
+	Category kAccomplishment
+	DisplayTitle "P2879565547"
+	DisplayText "P1227411220"
+	Icon "Badge_Resistance"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_Obliterator
+	Category kAccomplishment
+	DisplayTitle "P3252072260"
+	DisplayHint "P222790799"
+	DisplayText "P2156937085"
+	Icon "Badge_Resistance"
+	Visible JustifyingtheMeans HasSouvenir? InsertParanoiaHere HasSouvenir? || IDestroyThereforeIAmSouvenirClue HasSouvenir? || DestroyOrNotDestroyThatIsTheQuestionClue HasSouvenir? || HatchetSouvenirClue HasSouvenir? || BeholderStorySouvenir HasSouvenir? || VagabondStoryArc HasSouvenir? || WardogStoryArc HasSouvenir? || BloodofTyrants HasSouvenir? || HonorTheFallenSouvenirClue HasSouvenir? || FreshFacesSouvenirClue HasSouvenir? || TheTurningPointSouvenirClue HasSouvenir? || CalvinScottMoralChoice HasSouvenir? ||
+	Hinted 1
+	Requires JustifyingtheMeans HasSouvenir? InsertParanoiaHere HasSouvenir? && IDestroyThereforeIAmSouvenirClue HasSouvenir? && DestroyOrNotDestroyThatIsTheQuestionClue HasSouvenir? && HatchetSouvenirClue HasSouvenir? && BeholderStorySouvenir HasSouvenir? && VagabondStoryArc HasSouvenir? && WardogStoryArc HasSouvenir? && BloodofTyrants HasSouvenir? && HonorTheFallenSouvenirClue HasSouvenir? && FreshFacesSouvenirClue HasSouvenir? && TheTurningPointSouvenirClue HasSouvenir? && CalvinScottMoralChoice HasSouvenir? &&
+	Meter JustifyingtheMeans HasSouvenir? InsertParanoiaHere HasSouvenir? + IDestroyThereforeIAmSouvenirClue HasSouvenir? + DestroyOrNotDestroyThatIsTheQuestionClue HasSouvenir? + HatchetSouvenirClue HasSouvenir? + BeholderStorySouvenir HasSouvenir? + VagabondStoryArc HasSouvenir? + WardogStoryArc HasSouvenir? + BloodofTyrants HasSouvenir? + HonorTheFallenSouvenirClue HasSouvenir? + FreshFacesSouvenirClue HasSouvenir? + TheTurningPointSouvenirClue HasSouvenir? + CalvinScottMoralChoice HasSouvenir? + 13 %
+	Revoke 0
+	BadgeValues 13
+}
+
+Badge
+{
+	Name P_Survivor
+	Category kAccomplishment
+	DisplayTitle "P2057283190"
+	DisplayHint "P1846264569"
+	DisplayText "P2743848667"
+	Icon "Badge_Resistance"
+	Visible Misinformation HasSouvenir? GettingOutAlive HasSouvenir? || FixingFixodyneClue HasSouvenir? || RageQuitSouvenirClue HasSouvenir? || TruthHurtsSouvenirClue HasSouvenir? || WhoNeedsEnemiesSouvenirClue HasSouvenir? || SelfRestraintSouvenirClue HasSouvenir? || YouCantGoHomeSouvenirClue HasSouvenir? || MindFreedomSouvenir HasSouvenir? || AaronWalkerStoryarc HasSouvenir? || PraetoriaYinStoryArc HasSouvenir? || PraetoriaDarkWatcherArc HasSouvenir? || DarkWatcherMoralChoice HasSouvenir? ||
+	Hinted 1
+	Requires Misinformation HasSouvenir? GettingOutAlive HasSouvenir? && FixingFixodyneClue HasSouvenir? && RageQuitSouvenirClue HasSouvenir? && TruthHurtsSouvenirClue HasSouvenir? && WhoNeedsEnemiesSouvenirClue HasSouvenir? && SelfRestraintSouvenirClue HasSouvenir? && YouCantGoHomeSouvenirClue HasSouvenir? && MindFreedomSouvenir HasSouvenir? && AaronWalkerStoryarc HasSouvenir? && PraetoriaYinStoryArc HasSouvenir? && PraetoriaDarkWatcherArc HasSouvenir? && DarkWatcherMoralChoice HasSouvenir? &&
+	Meter Misinformation HasSouvenir? GettingOutAlive HasSouvenir? + FixingFixodyneClue HasSouvenir? + RageQuitSouvenirClue HasSouvenir? + TruthHurtsSouvenirClue HasSouvenir? + WhoNeedsEnemiesSouvenirClue HasSouvenir? + SelfRestraintSouvenirClue HasSouvenir? + YouCantGoHomeSouvenirClue HasSouvenir? + MindFreedomSouvenir HasSouvenir? + AaronWalkerStoryarc HasSouvenir? + PraetoriaYinStoryArc HasSouvenir? + PraetoriaDarkWatcherArc HasSouvenir? + DarkWatcherMoralChoice HasSouvenir? + 13 %
+	Revoke 0
+	BadgeValues 13
+}
+
+Badge
+{
+	Name P_Escapist
+	Category kAccomplishment
+	DisplayTitle "P2360227196"
+	DisplayText "P1453781038"
+	Icon "Badge_AlignmentMission"
+	Visible 0
+	Hinted 0
+	Requires P_Obliterator Owned? P_Survivor Owned? || P_Magistrate Owned? || P_Tyrant Owned? || RiftEnclosureSouvenir HasSouvenir? RiftEnclosureResistanceSouvenir HasSouvenir? || &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CoPComplete
+	Category kAccomplishment
+	DisplayTitle "P2952898034"
+	DisplayText "P2359172942"
+	Icon "v_badge_RularuuBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name 5thColumnHeroBadge
+	Category kAccomplishment
+	DisplayTitle "P2335623148"
+	DisplayText "P2402912230"
+	Icon "badge_5thColumnHeroBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name 5thColumnVillainBadge
+	Category kAccomplishment
+	DisplayTitle "P1767890595"
+	DisplayText "P3680488577"
+	Icon "badge_5thColumnVillainBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_Complete_Apex
+	Category kAccomplishment
+	DisplayTitle "P451146521"
+	DisplayText "P692854662"
+	Icon "badge_tf_tinmage_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AlphaTF_Complete_TinMage
+	Category kAccomplishment
+	DisplayTitle "P3374807260"
+	DisplayText "P2867746410"
+	Icon "badge_tf_alpha_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I19HeroStoryArcComplete
+	Category kAccomplishment
+	DisplayTitle "P826848339"
+	DisplayText "P2190228124"
+	Icon "badge_i19_hero_storyarc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I19VillainStoryArcComplete
+	Category kAccomplishment
+	DisplayTitle "P1267137781"
+	DisplayText "P180003736"
+	Icon "badge_i19_villain_storyarc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_BuildCommonIA
+	Category kAccomplishment
+	DisplayTitle "P3529513265"
+	DisplayText "P2569737954"
+	Icon "P_BuildCommonIA"
+	Visible 0
+	Hinted 0
+	Requires CommonIncarnateAbilitiesCrafted 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_BuildUncommonIA
+	Category kAccomplishment
+	DisplayTitle "P1845639003"
+	DisplayText "P1093375253"
+	Icon "P_BuildUnCommonIA"
+	Visible 0
+	Hinted 0
+	Requires UncommonIncarnateAbilitiesCrafted 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_BuildRareIA
+	Category kAccomplishment
+	DisplayTitle "P3241768977"
+	DisplayText "P2518341692"
+	Icon "P_BuildRareIA"
+	Visible 0
+	Hinted 0
+	Requires RareIncarnateAbilitiesCrafted 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name P_BuildVeryRareIA
+	Category kAccomplishment
+	DisplayTitle "P1339695697"
+	DisplayText "P4136132123"
+	Icon "P_BuildVeryRareIA"
+	Visible 0
+	Hinted 0
+	Requires VeryRareIncarnateAbilitiesCrafted 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name WeeklyTFHelper01
+	Category kAccomplishment
+	DisplayTitle "P1080622706"
+	DisplayHint "P3899729252"
+	DisplayText "P688243004"
+	DisplayTitleVillain "P3703622449"
+	DisplayHintVillain "P3899729252"
+	DisplayTextVillain "P688243004"
+	Icon "WeeklyTFHelper01"
+	Visible WeeklyTFSync TokenOwned? WeeklyTFBadgeToken TokenOwned? ||
+	Hinted 1
+	Requires WeeklyTFBadgeToken TokenVal> 1 >=
+	Meter WeeklyTFBadgeToken TokenVal> 1 %
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name WeeklyTFHelper02
+	Category kAccomplishment
+	DisplayTitle "P945607834"
+	DisplayHint "P258848525"
+	DisplayText "P4216262666"
+	DisplayTitleVillain "P1668633827"
+	DisplayHintVillain "P258848525"
+	DisplayTextVillain "P4216262666"
+	Icon "WeeklyTFHelper02"
+	Visible WeeklyTFHelper01 owned?
+	Hinted 1
+	Requires WeeklyTFBadgeToken TokenVal> 10 >=
+	Meter WeeklyTFBadgeToken TokenVal> 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name WeeklyTFHelper03
+	Category kAccomplishment
+	DisplayTitle "P4271245194"
+	DisplayHint "P258848525"
+	DisplayText "P4142432783"
+	DisplayTitleVillain "P2117228350"
+	DisplayHintVillain "P258848525"
+	DisplayTextVillain "P4142432783"
+	Icon "WeeklyTFHelper03"
+	Visible WeeklyTFHelper02 owned?
+	Hinted 1
+	Requires WeeklyTFBadgeToken TokenVal> 50 >=
+	Meter WeeklyTFBadgeToken TokenVal> 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name CouncilRobotBadge
+	Category kAccomplishment
+	DisplayTitle "P69404903"
+	DisplayText "P2155828488"
+	Icon "badge_council_robot"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PositronTF
+	Category kAccomplishment
+	DisplayTitle "P262383015"
+	DisplayHint "P1694173160"
+	DisplayText "P3158425443"
+	DisplayTitleVillain "P3332844556"
+	DisplayHintVillain "P1694173160"
+	DisplayTextVillain "P108699480"
+	Icon "badge_task_force_01"
+	Visible level char> 10 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires PositronRevampPart1 owned? PositronRevampPart2 owned? &&
+	Meter 0
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name SynapseTF
+	Category kAccomplishment
+	DisplayTitle "P4081548347"
+	DisplayHint "P2852361497"
+	DisplayText "P88038086"
+	DisplayTitleVillain "P1284708676"
+	DisplayHintVillain "P2852361497"
+	DisplayTextVillain "P1592881709"
+	Icon "badge_task_force_02"
+	Visible level char> 15 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires SL3_TaskForce hasSouvenir?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SisterPsycheTF
+	Category kAccomplishment
+	DisplayTitle "P1784108949"
+	DisplayHint "P2437125404"
+	DisplayText "P450337345"
+	DisplayTitleVillain "P3036410785"
+	DisplayHintVillain "P4065594335"
+	DisplayTextVillain "P2829812396"
+	Icon "badge_task_force_03"
+	Visible level char> 20 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name PenelopeYinTF
+	Category kAccomplishment
+	DisplayTitle "P1196592868"
+	DisplayHint "P1162972755"
+	DisplayText "P2745496846"
+	DisplayTitleVillain "P3496776840"
+	DisplayHintVillain "P1162972755"
+	DisplayTextVillain "P3502866574"
+	Icon "badge_task_force_03"
+	Visible level char> 20 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BastionTF
+	Category kAccomplishment
+	DisplayTitle "P489409297"
+	DisplayHint "P3370906121"
+	DisplayText "P2624932562"
+	DisplayTitleVillain "P2443225202"
+	DisplayHintVillain "P3370906121"
+	DisplayTextVillain "P754707550"
+	Icon "badge_task_force_04"
+	Visible level char> 25 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ManticoreTF
+	Category kAccomplishment
+	DisplayTitle "P1255521942"
+	DisplayHint "P1626669044"
+	DisplayText "P3306608219"
+	DisplayTitleVillain "P832921969"
+	DisplayHintVillain "P1626669044"
+	DisplayTextVillain "P3412372164"
+	Icon "badge_task_force_05"
+	Visible level char> 30 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NuminaTF
+	Category kAccomplishment
+	DisplayTitle "P2739029022"
+	DisplayHint "P96585879"
+	DisplayText "P3909819506"
+	DisplayTitleVillain "P1148158802"
+	DisplayHintVillain "P96585879"
+	DisplayTextVillain "P2249903401"
+	Icon "badge_task_force_06"
+	Visible level char> 35 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name EdenTR
+	Category kAccomplishment
+	DisplayTitle "P1510283317"
+	DisplayHint "P2594185173"
+	DisplayText "P2838280277"
+	DisplayTitleVillain "P1267934480"
+	DisplayHintVillain "P2594185173"
+	DisplayTextVillain "P2838280277"
+	Icon "badge_trial_zone_01"
+	Visible level char> 38 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HollowsTR
+	Category kAccomplishment
+	DisplayTitle "P4170609675"
+	DisplayHint "P493238654"
+	DisplayText "P1639777976"
+	Icon "badge_trial_zone_01"
+	Visible level char> 10 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SewerTR
+	Category kAccomplishment
+	DisplayTitle "P2411912390"
+	DisplayHint "P1373758689"
+	DisplayText "P95342669"
+	Icon "badge_trial_zone_01"
+	Visible level char> 38 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name TerraVoltaTR
+	Category kAccomplishment
+	DisplayTitle "P2864655078"
+	DisplayHint "P4007947679"
+	DisplayText "P1282736718"
+	Icon "badge_trial_zone_01"
+	Visible level char> 25 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL2Mission
+	Category kAccomplishment
+	DisplayTitle "P1514169177"
+	DisplayText "P2524435983"
+	Icon "badge_stature_01"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL2Point5Mission
+	Category kAccomplishment
+	DisplayTitle "P2952138834"
+	DisplayText "P3408017691"
+	Icon "badge_stature_02"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL3Mission
+	Category kAccomplishment
+	DisplayTitle "P1470136605"
+	DisplayText "P418619296"
+	DisplayTitleVillain "P2462939567"
+	DisplayTextVillain "P418619296"
+	Icon "badge_stature_03"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL4MissionA
+	Category kAccomplishment
+	DisplayTitle "P651021874"
+	DisplayText "P2974204001"
+	Icon "badge_stature_04"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL4MissionB
+	Category kAccomplishment
+	DisplayTitle "P4032393312"
+	DisplayText "P3541956844"
+	Icon "badge_stature_05"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL4MissionC
+	Category kAccomplishment
+	DisplayTitle "P3185723853"
+	DisplayText "P3867487145"
+	Icon "badge_stature_05"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL5MissionA
+	Category kAccomplishment
+	DisplayTitle "P2205035857"
+	DisplayText "P3662381556"
+	DisplayTitleVillain "P637256559"
+	DisplayTextVillain "P3662381556"
+	Icon "badge_stature_06"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL5MissionB
+	Category kAccomplishment
+	DisplayTitle "P3971067424"
+	DisplayText "P3691164945"
+	DisplayTitleVillain "P4291641240"
+	DisplayTextVillain "P3691164945"
+	Icon "badge_stature_07"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL6MissionA
+	Category kAccomplishment
+	DisplayTitle "P2595517678"
+	DisplayText "P3218872051"
+	Icon "badge_stature_08"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL6MissionB
+	Category kAccomplishment
+	DisplayTitle "P1251465841"
+	DisplayText "P1928861148"
+	DisplayTitleVillain "P2333507955"
+	DisplayTextVillain "P1928861148"
+	Icon "badge_stature_09"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL7MissionA
+	Category kAccomplishment
+	DisplayTitle "P3190753746"
+	DisplayText "P3388204188"
+	Icon "badge_stature_10"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL7MissionB
+	Category kAccomplishment
+	DisplayTitle "P385255181"
+	DisplayText "P1762235538"
+	Icon "badge_stature_11"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL7MissionC
+	Category kAccomplishment
+	DisplayTitle "P463448180"
+	DisplayText "P2501274509"
+	Icon "badge_stature_11"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL8MissionA
+	Category kAccomplishment
+	DisplayTitle "P2256761688"
+	DisplayText "P584334381"
+	Icon "badge_stature_12"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL8MissionB
+	Category kAccomplishment
+	DisplayTitle "P4204341542"
+	DisplayText "P2859500443"
+	Icon "badge_stature_13"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL8MissionC
+	Category kAccomplishment
+	DisplayTitle "P400008750"
+	DisplayText "P158592664"
+	Icon "badge_stature_13"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL9MissionA
+	Category kAccomplishment
+	DisplayTitle "P625106198"
+	DisplayText "P621971350"
+	Icon "badge_stature_14"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL9MissionB
+	Category kAccomplishment
+	DisplayTitle "P3880432537"
+	DisplayText "P1361755700"
+	Icon "badge_stature_15"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I20_HeroTFComplete
+	Category kAccomplishment
+	DisplayTitle "P972284896"
+	DisplayText "P2881251468"
+	Icon "badge_I20HeroTaskForce"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name I20_VillainTFComplete
+	Category kAccomplishment
+	DisplayTitle "P1432912423"
+	DisplayText "P374677000"
+	Icon "badge_I20VillainStrikeForce"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_BAF_Complete
+	Category kAccomplishment
+	DisplayTitle "P218323478"
+	DisplayText "P2082035865"
+	Icon "badge_it_baf_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Lambda_Complete
+	Category kAccomplishment
+	DisplayTitle "P1142441620"
+	DisplayText "P3415234830"
+	Icon "badge_it_lambda_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Keyes_Complete
+	Category kAccomplishment
+	DisplayTitle "P899225103"
+	DisplayText "P1050299170"
+	Icon "badge_it_keyes_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_Underground_Complete
+	Category kAccomplishment
+	DisplayTitle "P3774180360"
+	DisplayText "P787844370"
+	Icon "badge_it_underground_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name 2100_Atlas_CompleteBadge
+	Category kAccomplishment
+	DisplayTitle "P3753565594"
+	DisplayText "P208851440"
+	Icon "2100_Atlas_CompleteBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name 2100_Mercy_CompleteBadge
+	Category kAccomplishment
+	DisplayTitle "P1603172666"
+	DisplayText "P3969149223"
+	Icon "2100_Mercy_CompleteBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Badge_OGTH1
+	Category kAccomplishment
+	DisplayTitle "P3955554970"
+	DisplayText "P3707304691"
+	Icon "Badge_OGTH1"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Badge_OGTH2
+	Category kAccomplishment
+	DisplayTitle "P2738344562"
+	DisplayText "P1725230630"
+	Icon "Badge_OGTH2"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Badge_OGTH3
+	Category kAccomplishment
+	DisplayTitle "P2777122839"
+	DisplayText "P2292907465"
+	Icon "Badge_OGTH3"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Badge_OGTV1
+	Category kAccomplishment
+	DisplayTitle "P950323824"
+	DisplayText "P1524064954"
+	Icon "Badge_OGTV1"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Badge_OGTV2
+	Category kAccomplishment
+	DisplayTitle "P1646525726"
+	DisplayText "P2487864738"
+	Icon "Badge_OGTV2"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Badge_OGTV3
+	Category kAccomplishment
+	DisplayTitle "P2392603254"
+	DisplayText "P2760310358"
+	Icon "Badge_OGTV3"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SL1_SewerTrial_Complete
+	Category kAccomplishment
+	DisplayTitle "P1393978514"
+	DisplayText "P3239996434"
+	Icon "badge_sewer_trial_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name DefeatSeed
+	Category kAccomplishment
+	DisplayTitle "P2206523932"
+	DisplayHint "P2336268738"
+	DisplayText "P517367689"
+	Icon "badge_defeat_seedofhamidon"
+	Visible visits.ZE-SeedOfHamidon 1 >=
+	Hinted 1
+	Requires kills.DevouringEarthSeed_Seed_Of_Hamidon 1 >=
+	Meter 0
+	Revoke 0
+	BadgeValues 1
+}
+
+Badge
+{
+	Name IT_TPN_Complete
+	Category kAccomplishment
+	DisplayTitle "P790651972"
+	DisplayText "P3558769785"
+	Icon "badge_it_tpn_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MoM_Complete
+	Category kAccomplishment
+	DisplayTitle "P3814610786"
+	DisplayText "P2948560653"
+	Icon "badge_it_mom_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_DD_Complete
+	Category kAccomplishment
+	DisplayTitle "P1029436900"
+	DisplayText "P2849099005"
+	Icon "badge_it_dea_complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name BloodyBayTrial_Complete
+	Category kAccomplishment
+	DisplayTitle "P388784817"
+	DisplayText "P18302866"
+	Icon "BloodyBayTrial_Complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name LoyalCustomer
+	Category kAccomplishment
+	DisplayTitle "P4018845574"
+	DisplayText "P915470501"
+	Reward InventionRecipesVeryRare50
+	Icon "v_badge_StrikeforceSkyRaiderBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Arc_Complete_01
+	Category kAccomplishment
+	DisplayTitle "P1786386082"
+	DisplayText "P400011597"
+	Icon "Mission_DA_Arc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Arc_Complete_02
+	Category kAccomplishment
+	DisplayTitle "P2350839359"
+	DisplayText "P4285146557"
+	Icon "Mission_DA_Arc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Arc_Complete_03
+	Category kAccomplishment
+	DisplayTitle "P3243138561"
+	DisplayText "P2412705783"
+	Icon "Mission_DA_Arc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Arc_Complete_04
+	Category kAccomplishment
+	DisplayTitle "P1473454764"
+	DisplayText "P997766237"
+	Icon "Mission_DA_Arc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Arc_Complete_05
+	Category kAccomplishment
+	DisplayTitle "P2125812134"
+	DisplayText "P834177441"
+	Icon "Mission_DA_Arc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Arc_Complete_06
+	Category kAccomplishment
+	DisplayTitle "P1017827895"
+	DisplayText "P3414001133"
+	Icon "Mission_DA_Arc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_PersonalArc_Complete_01
+	Category kAccomplishment
+	DisplayTitle "P158481310"
+	DisplayText "P2327091236"
+	Icon "Mission_DA_PersonalArc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_PersonalArc_Complete_02
+	Category kAccomplishment
+	DisplayTitle "P278820897"
+	DisplayText "P2634266067"
+	Icon "Mission_DA_PersonalArc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_PersonalArc_Complete_03
+	Category kAccomplishment
+	DisplayTitle "P123430766"
+	DisplayText "P2870535445"
+	Icon "Mission_DA_PersonalArc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_PersonalArc_Complete_04
+	Category kAccomplishment
+	DisplayTitle "P1880953815"
+	DisplayText "P4040610817"
+	Icon "Mission_DA_PersonalArc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_PersonalArc_Complete_05
+	Category kAccomplishment
+	DisplayTitle "P3143302488"
+	DisplayText "P780476485"
+	Icon "Mission_DA_PersonalArc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_PersonalArc_Complete_06
+	Category kAccomplishment
+	DisplayTitle "P3272299880"
+	DisplayText "P3919830132"
+	Icon "Mission_DA_PersonalArc_Complete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name i23Arc4Title
+	Category kAccomplishment
+	DisplayTitle "P2988031919"
+	DisplayText "P1566416023"
+	Icon "Badge_Achievement_BlackKnightDefeats"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name i23NightWardComplete
+	Category kAccomplishment
+	DisplayTitle "P3826395228"
+	DisplayText "P4205375234"
+	Icon "Badge_i23NightWardComplete"
+	Visible 0
+	Hinted 0
+	Requires MagicianSouvenirClue HasSouvenir?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name i23IncarnateArcComplete
+	Category kAccomplishment
+	DisplayTitle "P2680485531"
+	DisplayText "P1588033137"
+	Icon "Badge_i23IncarnateArcComplete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name i23PersonalArcComplete
+	Category kAccomplishment
+	DisplayTitle "P1075915949"
+	DisplayText "P3564245642"
+	Icon "Badge_i23PersonalArcComplete"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IT_MAG_Complete
+	Category kAccomplishment
+	DisplayTitle "P2016147535"
+	DisplayText "P2103136995"
+	Icon "Badge_Achievement_Magisterium_IT_Complete"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_BT_i24_Arc_Complete_01
+	Category kAccomplishment
+	DisplayTitle "P9420278"
+	DisplayText "P2368580948"
+	Icon "Badge_i24_Brickstown_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_BT_i24_Arc_Complete_02
+	Category kAccomplishment
+	DisplayTitle "P3734861572"
+	DisplayText "P679389254"
+	Icon "Badge_i24_Brickstown_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_BT_i24_Arc_Complete_03
+	Category kAccomplishment
+	DisplayTitle "P285762924"
+	DisplayText "P2990493081"
+	Icon "Badge_i24_Brickstown_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_SM_i24_Arc_Complete_01
+	Category kAccomplishment
+	DisplayTitle "P2081958726"
+	DisplayText "P2297314468"
+	Icon "Badge_i24_StMartial_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_SM_i24_Arc_Complete_02
+	Category kAccomplishment
+	DisplayTitle "P4116279335"
+	DisplayText "P745889347"
+	Icon "Badge_i24_StMartial_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_SM_i24_Arc_Complete_03
+	Category kAccomplishment
+	DisplayTitle "P2017226114"
+	DisplayText "P3875732390"
+	Icon "Badge_i24_StMartial_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_Incarnate_i24_Arc_Complete_01
+	Category kAccomplishment
+	DisplayTitle "P585957899"
+	DisplayText "P1649698258"
+	DisplayTitleVillain "P585957899"
+	DisplayTextVillain "P2370208031"
+	Icon "Badge_i24_Incarnate_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_BT_i24_Challenge_01
+	Category kAccomplishment
+	DisplayTitle "P507158977"
+	DisplayHint "P2350070808"
+	DisplayText "P892225466"
+	Icon "Badge_i24_Brickstown_Challenge"
+	Visible Mission_BT_i24_Arc_Complete_02 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_BT_i24_Challenge_02
+	Category kAccomplishment
+	DisplayTitle "P2187718049"
+	DisplayHint "P3367897746"
+	DisplayText "P676104932"
+	Icon "Badge_i24_Brickstown_Challenge"
+	Visible Mission_BT_i24_Arc_Complete_01 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_BT_i24_Challenge_03
+	Category kAccomplishment
+	DisplayTitle "P879038472"
+	DisplayHint "P1026349854"
+	DisplayText "P3100363477"
+	Icon "Badge_i24_Brickstown_Challenge"
+	Visible Mission_BT_i24_Arc_Complete_03 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_BT_i24_Challenge_04
+	Category kAccomplishment
+	DisplayTitle "P25187311"
+	DisplayHint "P1917052846"
+	DisplayText "P3820676093"
+	Icon "Badge_i24_Brickstown_Challenge"
+	Visible Mission_BT_i24_Arc_Complete_03 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_SM_i24_Challenge_01
+	Category kAccomplishment
+	DisplayTitle "P3203723509"
+	DisplayHint "P1503917064"
+	DisplayText "P3383003171"
+	Icon "Badge_i24_StMartial_Challenge"
+	Visible Mission_SM_i24_Arc_Complete_01 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_SM_i24_Challenge_02
+	Category kAccomplishment
+	DisplayTitle "P2473123241"
+	DisplayHint "P571878422"
+	DisplayText "P4286666889"
+	Icon "Badge_i24_StMartial_Challenge"
+	Visible Mission_SM_i24_Arc_Complete_02 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_SM_i24_Challenge_03
+	Category kAccomplishment
+	DisplayTitle "P1506863383"
+	DisplayHint "P1972997212"
+	DisplayText "P1166929991"
+	Icon "Badge_i24_StMartial_Challenge"
+	Visible Mission_SM_i24_Arc_Complete_02 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_SM_i24_Challenge_04
+	Category kAccomplishment
+	DisplayTitle "P2978965939"
+	DisplayHint "P1156870218"
+	DisplayText "P2557703377"
+	Icon "Badge_i24_StMartial_Challenge"
+	Visible Mission_SM_i24_Arc_Complete_03 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_Incarnate_i24_Challenge_01
+	Category kAccomplishment
+	DisplayTitle "P1759281167"
+	DisplayHint "P1473268523"
+	DisplayText "P2432136346"
+	Reward ChallengeIncarnateXP
+	Icon "Badge_i24_Incarnate_Challenge"
+	Visible Mission_Incarnate_i24_Arc_Complete_01 owned?
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_BT_i24_Personal_Story
+	Category kAccomplishment
+	DisplayTitle "P3673765415"
+	DisplayText "P3418126588"
+	Icon "Badge_i24_Brickstown_Personal_Story"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_SM_i24_Personal_Story
+	Category kAccomplishment
+	DisplayTitle "P3364435086"
+	DisplayText "P3979275345"
+	Icon "Badge_i24_StMartial_Personal_Story"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_Incarnate_i24_Personal_Story
+	Category kAccomplishment
+	DisplayTitle "P3992867764"
+	DisplayText "P1520611459"
+	Icon "Badge_i24_Incarnate_Personal_story"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_Incarnate_i24_Challenge_02
+	Category kAccomplishment
+	DisplayTitle "P1856152688"
+	DisplayHint "P1812479400"
+	DisplayText "P2929374664"
+	Reward ChallengeIncarnateXP
+	Icon "Badge_i24_Incarnate_Challenge"
+	Visible Mission_Incarnate_i24_Arc_Complete_01 owned?
+	Hinted 0
+	Requires visits.IncarnateArcNemesisPlaque visits.IncarnateArcArachnosPlaque && visits.IncarnateArcInfernalAxe && visits.IncarnateArcSkyRaiderPlaque && visits.IncarnateArcRiktiPlaque &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_KR_i24_Arc_Complete_02
+	Category kAccomplishment
+	DisplayTitle "P1582983999"
+	DisplayText "P3908342981"
+	Icon "Badge_i24_KingsRow_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_KR_i24_Personal_Story
+	Category kAccomplishment
+	DisplayTitle "P4064916700"
+	DisplayText "P1530406869"
+	Icon "Badge_i24_StMartial_Personal_Story"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ZE_SM_Complete
+	Category kAccomplishment
+	DisplayTitle "P1998013385"
+	DisplayText "P3695886496"
+	Icon "Badge_i24_StMartial_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ZE_BT_Complete
+	Category kAccomplishment
+	DisplayTitle "P1821879665"
+	DisplayText "P622502929"
+	Icon "Badge_i24_Brickstown_Arc"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Gullible
+	Category kAccomplishment
+	DisplayTitle "P573810887"
+	DisplayText "P3363145292"
+	Icon "Badge_Gullible"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StrigaTF
+	Category kAccomplishment
+	DisplayTitle "P1942807830"
+	DisplayHint "P1146444057"
+	DisplayText "P1821807554"
+	DisplayTitleVillain "P460215762"
+	DisplayHintVillain "P1146444057"
+	DisplayTextVillain "P1821807554"
+	Icon "badge_task_force_HonoraryPeacebringer"
+	Visible level char> 23 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires TheKheldianWar HasSouvenir?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ShardTF1
+	Category kAccomplishment
+	DisplayTitle "P3212269512"
+	DisplayHint "P1353062644"
+	DisplayText "P146873558"
+	Icon "badge_task_force_PSmasher"
+	Visible level char> 40 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires SL8_TaskForceQuaterfield_SouvenirClue HasSouvenir?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ShardTF2
+	Category kAccomplishment
+	DisplayTitle "P3504966182"
+	DisplayHint "P1333996584"
+	DisplayText "P47757684"
+	Icon "badge_task_force_DestroyerOfStrength"
+	Visible level char> 40 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires SL8_TaskForceMoore_SouvenirClue HasSouvenir?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ShardTF3
+	Category kAccomplishment
+	DisplayTitle "P3819344710"
+	DisplayHint "P3376723466"
+	DisplayText "P2548059854"
+	DisplayTitleVillain "P799717409"
+	DisplayHintVillain "P3376723466"
+	DisplayTextVillain "P2548059854"
+	Icon "badge_task_force_ProtectorOfKindness"
+	Visible level char> 44 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires SL9_TaskForceAugustine_SouvenirClue HasSouvenir?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ShardTF4
+	Category kAccomplishment
+	DisplayTitle "P2282912774"
+	DisplayHint "P502565485"
+	DisplayText "P3484339269"
+	Icon "badge_task_force_SlayerOfMadness"
+	Visible level char> 44 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires SL9_TaskForceFaathim_SouvenirClue HasSouvenir?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CroatoaTF
+	Category kAccomplishment
+	DisplayTitle "P1796442782"
+	DisplayHint "P578222235"
+	DisplayText "P1376542107"
+	Reward BadgePerkCroatoa
+	Icon "Badge_croatoa_cabalist"
+	Visible level char> 30 >= type char> hero eq && praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Hinted type char> hero eq praetorianprogress char> normal eq praetorianprogress char> earth eq || &&
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Victor1
+	Category kAccomplishment
+	DisplayTitle "P2901267235"
+	DisplayText "P1668274137"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 0 == kills.cabal_Mary_MacComber03 0 == kills.cabal_Mary_MacComber04 0 == kills.cabal_Mary_MacComber05 0 == kills.cabal_Mary_MacComber06 0 == kills.cabal_Mary_MacComber07 0 == kills.cabal_Mary_MacComber08 0 == kills.cabal_Mary_MacComber09 0 == kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber02 kills.cabal_Mary_MacComber03 kills.cabal_Mary_MacComber04 kills.cabal_Mary_MacComber05 kills.cabal_Mary_MacComber06 kills.cabal_Mary_MacComber07 kills.cabal_Mary_MacComber08 kills.cabal_Mary_MacComber09 kills.cabal_Mary_MacComber_NoPort + + + + + + + + 1 >=
+}
+
+Badge
+{
+	Name Victor2
+	Category kAccomplishment
+	DisplayTitle "P3977173220"
+	DisplayText "P1542393375"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 0 == kills.cabal_Mary_MacComber04 0 == kills.cabal_Mary_MacComber05 0 == kills.cabal_Mary_MacComber06 0 == kills.cabal_Mary_MacComber07 0 == kills.cabal_Mary_MacComber08 0 == kills.cabal_Mary_MacComber09 0 == kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber03 kills.cabal_Mary_MacComber04 kills.cabal_Mary_MacComber05 kills.cabal_Mary_MacComber06 kills.cabal_Mary_MacComber07 kills.cabal_Mary_MacComber08 kills.cabal_Mary_MacComber09 kills.cabal_Mary_MacComber_NoPort + + + + + + + 1 >=
+}
+
+Badge
+{
+	Name Victor3
+	Category kAccomplishment
+	DisplayTitle "P2499318250"
+	DisplayText "P3350301639"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 1 >= kills.cabal_Mary_MacComber04 0 == kills.cabal_Mary_MacComber05 0 == kills.cabal_Mary_MacComber06 0 == kills.cabal_Mary_MacComber07 0 == kills.cabal_Mary_MacComber08 0 == kills.cabal_Mary_MacComber09 0 == kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber04 kills.cabal_Mary_MacComber05 kills.cabal_Mary_MacComber06 kills.cabal_Mary_MacComber07 kills.cabal_Mary_MacComber08 kills.cabal_Mary_MacComber09 kills.cabal_Mary_MacComber_NoPort + + + + + + 1 >=
+}
+
+Badge
+{
+	Name Victor4
+	Category kAccomplishment
+	DisplayTitle "P1188094060"
+	DisplayText "P2832256135"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 1 >= kills.cabal_Mary_MacComber04 1 >= kills.cabal_Mary_MacComber05 0 == kills.cabal_Mary_MacComber06 0 == kills.cabal_Mary_MacComber07 0 == kills.cabal_Mary_MacComber08 0 == kills.cabal_Mary_MacComber09 0 == kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber05 kills.cabal_Mary_MacComber06 kills.cabal_Mary_MacComber07 kills.cabal_Mary_MacComber08 kills.cabal_Mary_MacComber09 kills.cabal_Mary_MacComber_NoPort + + + + + 1 >=
+}
+
+Badge
+{
+	Name Victor5
+	Category kAccomplishment
+	DisplayTitle "P2921901420"
+	DisplayText "P3208096926"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 1 >= kills.cabal_Mary_MacComber04 1 >= kills.cabal_Mary_MacComber05 1 >= kills.cabal_Mary_MacComber06 0 == kills.cabal_Mary_MacComber07 0 == kills.cabal_Mary_MacComber08 0 == kills.cabal_Mary_MacComber09 0 == kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber06 kills.cabal_Mary_MacComber07 kills.cabal_Mary_MacComber08 kills.cabal_Mary_MacComber09 kills.cabal_Mary_MacComber_NoPort + + + + 1 >=
+}
+
+Badge
+{
+	Name Victor6
+	Category kAccomplishment
+	DisplayTitle "P3269451386"
+	DisplayText "P3807569662"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 1 >= kills.cabal_Mary_MacComber04 1 >= kills.cabal_Mary_MacComber05 1 >= kills.cabal_Mary_MacComber06 1 >= kills.cabal_Mary_MacComber07 0 == kills.cabal_Mary_MacComber08 0 == kills.cabal_Mary_MacComber09 0 == kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber07 kills.cabal_Mary_MacComber08 kills.cabal_Mary_MacComber09 kills.cabal_Mary_MacComber_NoPort + + + 1 >=
+}
+
+Badge
+{
+	Name Victor7
+	Category kAccomplishment
+	DisplayTitle "P545828659"
+	DisplayText "P2588073611"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 1 >= kills.cabal_Mary_MacComber04 1 >= kills.cabal_Mary_MacComber05 1 >= kills.cabal_Mary_MacComber06 1 >= kills.cabal_Mary_MacComber07 1 >= kills.cabal_Mary_MacComber08 0 == kills.cabal_Mary_MacComber09 0 == kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber08 kills.cabal_Mary_MacComber09 kills.cabal_Mary_MacComber_NoPort + + 1 >=
+}
+
+Badge
+{
+	Name Victor8
+	Category kAccomplishment
+	DisplayTitle "P1109994484"
+	DisplayText "P2056368598"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 1 >= kills.cabal_Mary_MacComber04 1 >= kills.cabal_Mary_MacComber05 1 >= kills.cabal_Mary_MacComber06 1 >= kills.cabal_Mary_MacComber07 1 >= kills.cabal_Mary_MacComber08 1 >= kills.cabal_Mary_MacComber09 0 == kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber09 kills.cabal_Mary_MacComber_NoPort + 1 >=
+}
+
+Badge
+{
+	Name Victor9
+	Category kAccomplishment
+	DisplayTitle "P2436465301"
+	DisplayText "P4045376755"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 1 >= kills.cabal_Mary_MacComber04 1 >= kills.cabal_Mary_MacComber05 1 >= kills.cabal_Mary_MacComber06 1 >= kills.cabal_Mary_MacComber07 1 >= kills.cabal_Mary_MacComber08 1 >= kills.cabal_Mary_MacComber09 1 >= kills.cabal_Mary_MacComber_NoPort 0 == && && && && && && && && &&
+	Meter 0
+	Revoke kills.cabal_Mary_MacComber_NoPort 1 >=
+}
+
+Badge
+{
+	Name Victor10
+	Category kAccomplishment
+	DisplayTitle "P3817703443"
+	DisplayText "P595881496"
+	Icon "Badge_croatoa_X_times_the_victor"
+	Visible 0
+	Hinted 0
+	Requires kills.cabal_Mary_MacComber01 1 >= kills.cabal_Mary_MacComber02 1 >= kills.cabal_Mary_MacComber03 1 >= kills.cabal_Mary_MacComber04 1 >= kills.cabal_Mary_MacComber05 1 >= kills.cabal_Mary_MacComber06 1 >= kills.cabal_Mary_MacComber07 1 >= kills.cabal_Mary_MacComber08 1 >= kills.cabal_Mary_MacComber09 1 >= kills.cabal_Mary_MacComber_NoPort 1 >= && && && && && && && && &&
+	Meter 0
+	Revoke 0
+}
+

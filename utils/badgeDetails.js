@@ -1,53 +1,72 @@
 const fs = require('fs');
 const path = require('path');
+const config = require(global.BASE_DIR + '/utils/config');
 
-const badgeDetailsMap = {};
-const badgeEquivalents = {};
+const badgeData = {
+  i24: { badgeDetailsMap: {}, badgeEquivalents: {} },
+  i25: { badgeDetailsMap: {}, badgeEquivalents: {} }
+};
 
 let BADGE_BLACKLIST = new Set();
 try {
-  const blacklistPath = path.join(global.BASE_DIR, 'data', 'badges', 'blacklist.json');
+  const blacklistPath = path.join(global.BASE_DIR, 'data', 'badges_blacklist.json');
   const json = fs.readFileSync(blacklistPath, 'utf8');
   const parsed = JSON.parse(json);
   if (Array.isArray(parsed)) {
     BADGE_BLACKLIST = new Set(parsed);
   }
 } catch (e) {
-  console.warn('[badgeDetails] No blacklist.json found or invalid, continuing without badge blacklist.');
+  console.warn('[badgeDetails] No badges_blacklist.json found or invalid, continuing without badge blacklist.');
 }
 
-function loadBadgeStrings() {
-  const msPath = path.join(global.BASE_DIR, 'data', 'badges', 'Badges.ms');
+function stripExtension(str) {
+  return str?.trim().replace(/\.(tga|psd)$/i, '') || '';
+}
+
+function loadBadgeStrings(baseDir) {
   const map = {};
 
-  if (!fs.existsSync(msPath)) {
-    console.warn(`[badgeDetails] Badges.ms not found at ${msPath}, continuing with empty badge strings.`);
+  if (!fs.existsSync(baseDir)) {
+    console.warn(`[badgeDetails] Badge directory not found at ${baseDir}, continuing with empty badge strings.`);
     return map;
   }
 
   try {
-    const raw = fs.readFileSync(msPath, 'utf8');
-    for (const line of raw.split('\n')) {
-      const match = line.trim().match(/^"?P(\d+)"?\s+"(.*?)"$/);
-      if (match) {
-        const [, id, text] = match;
-        map[`P${id}`] = text;
+    const files = fs.readdirSync(baseDir).filter(file => file.toLowerCase().endsWith('.ms'));
+
+    for (const file of files) {
+      const fullPath = path.join(baseDir, file);
+
+      let raw = '';
+      try {
+        raw = fs.readFileSync(fullPath, 'utf8');
+      } catch (err) {
+        console.warn(`[badgeDetails] Failed to read ${file}: ${err.message}`);
+        continue;
+      }
+
+      for (const line of raw.split('\n')) {
+        const trimmed = line.trim();
+        const match = trimmed.match(/^"?P(\d+)"?\s+"(.*)"$/);
+        if (match) {
+          const [, id, text] = match;
+          map[`P${id}`] = text;
+        }
       }
     }
   } catch (err) {
-    console.warn(`[badgeDetails] Failed to read Badges.ms: ${err.message}`);
+    console.warn(`[badgeDetails] Error while reading badge strings: ${err.message}`);
   }
 
   return map;
 }
 
-function loadBadgeDefs(badgeStrings) {
-  const badgeDir = path.join(global.BASE_DIR, 'data', 'badges');
-  const files = fs.readdirSync(badgeDir).filter(f => f.toLowerCase().endsWith('.def'));
+function loadBadgeDefs(baseDir, badgeStrings, mapTarget) {
+  const files = fs.readdirSync(baseDir).filter(f => f.toLowerCase().endsWith('.def'));
   const kvPattern = /^(\w+)\s+"?([^"]+)"?$/;
 
   for (const file of files.sort()) {
-    const fullPath = path.join(badgeDir, file);
+    const fullPath = path.join(baseDir, file);
     const lines = fs.readFileSync(fullPath, 'utf8').split('\n');
 
     let current = null;
@@ -61,10 +80,8 @@ function loadBadgeDefs(badgeStrings) {
       }
 
       if (trimmed === '}' && current) {
-        if (!current.Name) {
-          // console.warn(`[WARN] Skipped badge in ${file} — missing Name`);
-        } else {
-          badgeDetailsMap[current.Name] = current;
+        if (current.Name && !BADGE_BLACKLIST.has(current.Name)) {
+          mapTarget[current.Name] = current;
         }
         current = null;
         continue;
@@ -74,28 +91,28 @@ function loadBadgeDefs(badgeStrings) {
         const match = kvPattern.exec(trimmed);
         if (match) {
           const [, key, value] = match;
-          const resolved = badgeStrings[value] || value;
+          let resolved = badgeStrings[value] || value;
 
           if (key === 'Name') {
             current.Name = resolved;
-
             if (BADGE_BLACKLIST.has(current.Name)) {
-              //console.warn(`[BLACKLISTED] Skipping badge ${current.Name} from ${file}`);
               current = null;
               continue;
             }
           }
 
           if (key === 'DoNotCount' && resolved === '1') {
-            // console.warn(`[WARN] Skipping badge ${current.Name} due to DoNotCount=1 in ${file}`);
             current = null;
             continue;
           }
 
           if (key === 'DisplayTitle' && (!resolved || resolved.trim() === '.' || resolved.trim() === '')) {
-            // console.warn(`[WARN] Badge ${current.Name} has invalid DisplayTitle (${resolved}) in ${file}`);
             current = null;
             continue;
+          }
+
+          if (key === 'Icon' || key === 'VillainIcon') {
+            resolved = stripExtension(resolved);
           }
 
           current[key] = resolved;
@@ -105,51 +122,69 @@ function loadBadgeDefs(badgeStrings) {
   }
 }
 
+function buildBadgeEquivalents(set) {
+  const map = set.badgeDetailsMap;
+  const equiv = set.badgeEquivalents;
 
-function buildBadgeEquivalents() {
-  for (const [name, meta] of Object.entries(badgeDetailsMap)) {
+  for (const [name, meta] of Object.entries(map)) {
     if (!meta.Requires) continue;
 
     if (meta.Requires.includes('praetorianprogress char> praetoria eq') ||
         meta.Requires.includes('praetorianprogress char> earth eq')) {
       const counterpart = name.replace(/^P_/, '');
-      if (counterpart !== name && badgeDetailsMap[counterpart]) {
-        badgeEquivalents[name] = counterpart;
-        badgeEquivalents[counterpart] = name;
+      if (counterpart !== name && map[counterpart]) {
+        equiv[name] = counterpart;
+        equiv[counterpart] = name;
       }
     }
 
     if (meta.Requires.includes('praetorianprogress char> normal eq') ||
         meta.Requires.includes('praetorianprogress char> pvp eq')) {
       const counterpart = 'P_' + name;
-      if (counterpart !== name && badgeDetailsMap[counterpart]) {
-        badgeEquivalents[name] = counterpart;
-        badgeEquivalents[counterpart] = name;
+      if (counterpart !== name && map[counterpart]) {
+        equiv[name] = counterpart;
+        equiv[counterpart] = name;
       }
     }
   }
 }
-buildBadgeEquivalents();
+
+function loadBadgeSet(version) {
+  const baseDir = path.join(global.BASE_DIR, 'data', version, 'badges');
+  const badgeStrings = loadBadgeStrings(baseDir);
+  loadBadgeDefs(baseDir, badgeStrings, badgeData[version].badgeDetailsMap);
+  buildBadgeEquivalents(badgeData[version]);
+}
 
 function init() {
-  if (Object.keys(badgeDetailsMap).length === 0) {
-    const badgeStrings = loadBadgeStrings();
-    loadBadgeDefs(badgeStrings);
-  }
+  if (Object.keys(badgeData.i24.badgeDetailsMap).length === 0) loadBadgeSet('i24');
+  if (Object.keys(badgeData.i25.badgeDetailsMap).length === 0) loadBadgeSet('i25');
 }
 
-function getBadgeDetails(internalName) {
-  init();
-  return badgeDetailsMap[internalName] || null;
+function getVersionForServer(serverKey) {
+  return config.servers?.[serverKey]?.badgeVersion === 'i24' ? 'i24' : 'i25';
 }
 
-function getAllBadges() {
+function getBadgeDetails(internalName, serverKey) {
   init();
-  return badgeDetailsMap;
+  const version = getVersionForServer(serverKey);
+  return badgeData[version].badgeDetailsMap[internalName] || null;
+}
+
+function getAllBadges(serverKey) {
+  init();
+  const version = getVersionForServer(serverKey);
+  return badgeData[version].badgeDetailsMap;
+}
+
+function getBadgeEquivalents(serverKey) {
+  init();
+  const version = getVersionForServer(serverKey);
+  return badgeData[version].badgeEquivalents;
 }
 
 module.exports = {
   getBadgeDetails,
   getAllBadges,
-  badgeEquivalents
+  getBadgeEquivalents
 };

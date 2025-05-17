@@ -1,0 +1,1231 @@
+Badge
+{
+	Name FourOne
+	Category kEvent
+	DisplayTitle "P3069263411"
+	DisplayText "P3716033301"
+	DisplayTitleVillain "P3069263411"
+	DisplayTextVillain "P1158794308"
+	Reward is.ToyBat
+	Icon "badge_event_jester"
+	Visible 0
+	Hinted 0
+	Requires month 4 == day 1 == &&
+	Meter 0
+	Revoke month 4 == ! day 1 == ! ||
+	DoNotCount 1
+	DisplayPopup "P399984192"
+}
+
+Badge
+{
+	Name Anniversary1
+	Category kEvent
+	DisplayTitle "P1257579498"
+	DisplayText "P3201789299"
+	Icon "badge_anniversary_1"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary2
+	Category kEvent
+	DisplayTitle "P3963164385"
+	DisplayText "P2518589844"
+	Icon "badge_anniversary_2"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary3
+	Category kEvent
+	DisplayTitle "P665756610"
+	DisplayText "P3698864389"
+	Icon "badge_anniversary_3"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary4
+	Category kEvent
+	DisplayTitle "P3674344957"
+	DisplayText "P122079955"
+	Icon "badge_anniversary_4"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary5
+	Category kEvent
+	DisplayTitle "P650272525"
+	DisplayText "P600087525"
+	Icon "badge_anniversary_5"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary6
+	Category kEvent
+	DisplayTitle "P3719032386"
+	DisplayText "P1312975039"
+	Icon "badge_anniversary_6"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary7
+	Category kEvent
+	DisplayTitle "P3800112246"
+	DisplayText "P1790982537"
+	Icon "badge_anniversary_7"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary8
+	Category kEvent
+	DisplayTitle "P1831694970"
+	DisplayText "P1781268986"
+	Icon "badge_anniversary_8"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary9
+	Category kEvent
+	DisplayTitle "P3722771448"
+	DisplayText "P1320046796"
+	Icon "badge_anniversary_9"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary10
+	Category kEvent
+	DisplayTitle "P4280515429"
+	DisplayText "P2941309813"
+	Icon "badge_anniversary_10"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary11
+	Category kEvent
+	DisplayTitle "P2842661235"
+	DisplayText "P2345828931"
+	Icon "badge_anniversary_11"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary12
+	Category kEvent
+	DisplayTitle "P4101622550"
+	DisplayText "P3864293657"
+	Icon "badge_anniversary_12"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary13
+	Category kEvent
+	DisplayTitle "P3173680153"
+	DisplayText "P3268812847"
+	Icon "badge_anniversary_13"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary14
+	Category kEvent
+	DisplayTitle "P1970386527"
+	DisplayText "P1029281709"
+	Icon "badge_anniversary_14"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Anniversary15
+	Category kEvent
+	DisplayTitle "P3255397317"
+	DisplayText "P433833627"
+	Icon "badge_anniversary_15"
+	Visible 0
+	Hinted 0
+	Requires year 2019 == month 5 <= &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name CoVAnniversary
+	Category kEvent
+	DisplayTitle "P3950326575"
+	DisplayText "P4066566491"
+	DisplayTitleVillain "P3211432260"
+	DisplayTextVillain "P4043482260"
+	Icon "badge_anniversary_cov"
+	Visible 0
+	Hinted 0
+	Requires month 11 ==
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HallowSpirit
+	Category kEvent
+	DisplayTitle "P2704199848"
+	DisplayText "P3215985663"
+	Icon "badge_event_hallowspirit"
+	Visible 0
+	Hinted 0
+	Requires kills.Event_Pumpkin_King_Low kills.Event_Pumpkin_King_High + 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name IronWarrior
+	Category kEvent
+	DisplayTitle "P1107066888"
+	DisplayText "P2874039390"
+	Icon "Badges_Iron_Warrior"
+	Visible 0
+	Hinted 0
+	Requires kills.Event_Jack_in_Irons 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Hunter
+	Category kEvent
+	DisplayTitle "P1299941715"
+	DisplayHint "P1047204075"
+	DisplayText "P2236832250"
+	Icon "badge_event_hunter"
+	Visible kills.Event_Vampire_Lt kills.Event_Vampire_Boss + 0 >
+	Hinted 1
+	Requires kills.Event_Vampire_Lt kills.Event_Vampire_Boss + 20 >=
+	Meter kills.Event_Vampire_Lt kills.Event_Vampire_Boss + 20 %
+	Revoke 0
+	BadgeValues 20
+}
+
+Badge
+{
+	Name Buster
+	Category kEvent
+	DisplayTitle "P1318266231"
+	DisplayHint "P2457443752"
+	DisplayText "P2813155005"
+	Icon "badge_event_buster"
+	Visible kills.Event_Spirits_Lieutenant 0 >
+	Hinted 1
+	Requires kills.Event_Spirits_Lieutenant 20 >=
+	Meter kills.Event_Spirits_Lieutenant 20 %
+	Revoke 0
+	BadgeValues 20
+}
+
+Badge
+{
+	Name Shifter
+	Category kEvent
+	DisplayTitle "P350245886"
+	DisplayHint "P1142057353"
+	DisplayText "P2273547080"
+	Icon "badge_event_shifter"
+	Visible kills.Event_Werewolf_Lt kills.Event_Werewolf_Boss + 0 >
+	Hinted 1
+	Requires kills.Event_Werewolf_Lt kills.Event_Werewolf_Boss + 15 >=
+	Meter kills.Event_Werewolf_Lt kills.Event_Werewolf_Boss + 15 %
+	Revoke 0
+	BadgeValues 15
+}
+
+Badge
+{
+	Name DeadHead
+	Category kEvent
+	DisplayTitle "P2761706461"
+	DisplayHint "P3007778799"
+	DisplayText "P1701752982"
+	Icon "badge_event_deadhead"
+	Visible kills.Event_Zombie_Rifle kills.Event_Zombie_Club + kills.Event_Zombie_Tomahawk + 0 >
+	Hinted 1
+	Requires kills.Event_Zombie_Rifle kills.Event_Zombie_Club + kills.Event_Zombie_Tomahawk + 50 >=
+	Meter kills.Event_Zombie_Rifle kills.Event_Zombie_Club + kills.Event_Zombie_Tomahawk + 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name Malleus
+	Category kEvent
+	DisplayTitle "P2205311281"
+	DisplayHint "P775361015"
+	DisplayText "P3582722882"
+	Icon "badge_event_malleus"
+	Visible kills.Event_Witch_Minion kills.Event_Witch_Lt + kills.Event_Witch_Boss + 0 >
+	Hinted 1
+	Requires kills.Event_Witch_Minion kills.Event_Witch_Lt + kills.Event_Witch_Boss + 75 >=
+	Meter kills.Event_Witch_Minion kills.Event_Witch_Lt + kills.Event_Witch_Boss + 75 %
+	Revoke 0
+	BadgeValues 75
+}
+
+Badge
+{
+	Name GhostTouched
+	Category kEvent
+	DisplayTitle "P1236762671"
+	DisplayHint "P415885859"
+	DisplayText "P3859137396"
+	DisplayTitleVillain "P1236762671"
+	DisplayTextVillain "P3859137396"
+	Icon "Badges_ghost_touched"
+	Visible kills.Event_Unseelie_Court_Minion kills.Event_Unseelie_Court_Lieutenant + kills.Event_Unseelie_Court_Boss + 0 >
+	Hinted 1
+	Requires kills.Event_Unseelie_Court_Minion kills.Event_Unseelie_Court_Lieutenant + kills.Event_Unseelie_Court_Boss + 20 >=
+	Meter kills.Event_Unseelie_Court_Minion kills.Event_Unseelie_Court_Lieutenant + kills.Event_Unseelie_Court_Boss + 20 %
+	Revoke 0
+	BadgeValues 20
+}
+
+Badge
+{
+	Name Halloween09DarkFiend
+	Category kEvent
+	DisplayTitle "P831204940"
+	DisplayText "P146159630"
+	Icon "Badge_Event_Halloween09DarkFiend"
+	Visible 0
+	Hinted 0
+	Requires kills.Event_DADarkFiendSigil 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween09WomenScorned
+	Category kEvent
+	DisplayTitle "P2443459927"
+	DisplayText "P3226443506"
+	Icon "Badge_Event_Halloween09WomenScorned"
+	Visible 0
+	Hinted 0
+	Requires kills.Event_DAWomenScornedSigil 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween09Terrors
+	Category kEvent
+	DisplayTitle "P3173163054"
+	DisplayText "P184170838"
+	Icon "Badge_Event_Halloween09Terror"
+	Visible 0
+	Hinted 0
+	Requires kills.Event_DATransparentTerrorsSigil 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween09Monster
+	Category kEvent
+	DisplayTitle "P3994905037"
+	DisplayText "P1350128203"
+	Icon "Badge_Event_Halloween09Monster"
+	Visible 0
+	Hinted 0
+	Requires kills.Event_DAMonsterMayhemSigil 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween09MonsterGM
+	Category kEvent
+	DisplayTitle "P2206926094"
+	DisplayText "P1982836513"
+	Icon "Badge_Event_Halloween09MonsterGM"
+	Visible 0
+	Hinted 0
+	Requires kills.Event_DAGiantMonster_Adamastor 1 >= kills.Event_DAGiantMonster_Jurassik 1 >= || kills.Event_DAGiantMonster_Kraken 1 >= || kills.Event_DAGiantMonster_Eochai 1 >= || kills.Event_DAGiantMonster_JackInIrons 1 >= || kills.Event_DAGiantMonster_Caleb 1 >= ||
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween2008Badge1
+	Category kEvent
+	DisplayTitle "P1616787555"
+	DisplayHint "P1000947284"
+	DisplayText "P1729755440"
+	DisplayTitleVillain "P1616787555"
+	DisplayTextVillain "P1729755440"
+	Icon "badge_event_halloween_2008_01"
+	Visible 0
+	Hinted kills.Event_ZA_Minion 1 >=
+	Requires kills.Event_ZA_Minion 100 >=
+	Meter kills.Event_ZA_Minion 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name Halloween2008Badge2
+	Category kEvent
+	DisplayTitle "P262742930"
+	DisplayHint "P1848255908"
+	DisplayText "P485199253"
+	DisplayTitleVillain "P262742930"
+	DisplayTextVillain "P485199253"
+	Icon "badge_event_halloween_2008_02"
+	Visible 0
+	Hinted kills.Event_ZA_Lt 1 >=
+	Requires kills.Event_ZA_Lt 33 >=
+	Meter kills.Event_ZA_Lt 33 %
+	Revoke 0
+	BadgeValues 33
+}
+
+Badge
+{
+	Name Halloween2008Badge3
+	Category kEvent
+	DisplayTitle "P692293256"
+	DisplayHint "P650295960"
+	DisplayText "P939768494"
+	DisplayTitleVillain "P692293256"
+	DisplayTextVillain "P939768494"
+	Icon "badge_event_halloween_2008_03"
+	Visible 0
+	Hinted kills.Event_ZA_Boss 1 >=
+	Requires kills.Event_ZA_Boss 25 >=
+	Meter kills.Event_ZA_Boss 25 %
+	Revoke 0
+	BadgeValues 25
+}
+
+Badge
+{
+	Name Halloween2008Badge4
+	Category kEvent
+	DisplayTitle "P2782927636"
+	DisplayHint "P3681507209"
+	DisplayText "P1008220914"
+	DisplayTitleVillain "P2782927636"
+	DisplayTextVillain "P1008220914"
+	Icon "badge_event_halloween_2008_04"
+	Visible 0
+	Hinted 0
+	Requires kills.Event_ZA_Elite 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Holiday2005Badge1
+	Category kEvent
+	DisplayTitle "P3292923446"
+	DisplayText "P1697914000"
+	DisplayTitleVillain "P813303315"
+	DisplayTextVillain "P1275027831"
+	Icon "badge_holiday05_jetpack"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Holiday2005Badge2
+	Category kEvent
+	DisplayTitle "P3798691711"
+	DisplayText "P3397095482"
+	DisplayTitleVillain "P3045712368"
+	DisplayTextVillain "P947687444"
+	Reward FreeCostumeChange
+	Icon "badge_holiday05_present"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Holiday2005Badge3
+	Category kEvent
+	DisplayTitle "P4237354235"
+	DisplayHint "P3319011931"
+	DisplayText "P2496445625"
+	DisplayTitleVillain "P4237354235"
+	DisplayTextVillain "P2496445625"
+	Icon "badge_holiday05_presentbig"
+	Visible scripts.PresentsCollected 1 >=
+	Hinted 1
+	Requires scripts.PresentsCollected 200 >=
+	Meter scripts.PresentsCollected 200 %
+	Revoke 0
+	BadgeValues 200
+}
+
+Badge
+{
+	Name Miraculous
+	Category kEvent
+	DisplayTitle "P2916579837"
+	DisplayText "P2423776935"
+	Icon "badge_holiday06_miraculous"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Joyful
+	Category kEvent
+	DisplayTitle "P1212321905"
+	DisplayText "P2749409171"
+	Icon "badge_holiday06_joyful"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Frosty
+	Category kEvent
+	DisplayTitle "P3165241163"
+	DisplayText "P515710710"
+	Icon "badge_holiday06_frosty"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Crystallized
+	Category kEvent
+	DisplayTitle "P841415653"
+	DisplayText "P772402787"
+	Icon "badge_holiday06_crystallized"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ColdFront
+	Category kEvent
+	DisplayTitle "P332724347"
+	DisplayText "P1172799006"
+	Icon "badge_holiday06_coldfront"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Winter2007Badge
+	Category kEvent
+	DisplayTitle "P677239995"
+	DisplayText "P862456598"
+	DisplayTitleVillain "P677239995"
+	DisplayTextVillain "P1065010622"
+	Reward Holiday2006_LogIn
+	Icon "badge_holiday05_present"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Winter2009Badge
+	Category kEvent
+	DisplayTitle "P3139049224"
+	DisplayText "P879482061"
+	Reward Holiday2006_LogIn
+	Icon "Badge_Holiday09Festive"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Winter2009DefeatLordWinter
+	Category kEvent
+	DisplayTitle "P1677369547"
+	DisplayText "P1858224579"
+	Reward Holiday2006_LogIn
+	Icon "Badge_Holiday09DefeatLordWinter"
+	Visible 0
+	Hinted 0
+	Requires kills.WinterHorde_Lord_Winter 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Winter2008Badge
+	Category kEvent
+	DisplayTitle "P3403646028"
+	DisplayText "P610663363"
+	Reward Holiday2006_LogIn
+	Icon "badge_holiday08_snowflake"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SnowmenDefeatBadge
+	Category kEvent
+	DisplayTitle "P2964377656"
+	DisplayHint "P3766767503"
+	DisplayText "P2146974190"
+	Icon "badge_winter_event_01"
+	Visible kills.WinterHorde_Snowman_Minion kills.WinterHorde_Snowman_Lt + kills.WinterHorde_Snowman_Boss + kills.WinterHorde_Summoned_Snowman_Minion + kills.WinterHorde_Summoned_Snowman_Lt + kills.WinterHorde_Summoned_Snowman_Boss + kills.WinterHorde_Snowman_Minion_Spawnable + kills.WinterHorde_Snowman_Lt_Spawnable + kills.WinterHorde_Snowman_Boss_Spawnable + 0 >
+	Hinted 1
+	Requires kills.WinterHorde_Snowman_Minion kills.WinterHorde_Snowman_Lt + kills.WinterHorde_Snowman_Boss + kills.WinterHorde_Summoned_Snowman_Minion + kills.WinterHorde_Summoned_Snowman_Lt + kills.WinterHorde_Summoned_Snowman_Boss + kills.WinterHorde_Snowman_Minion_Spawnable + kills.WinterHorde_Snowman_Lt_Spawnable + kills.WinterHorde_Snowman_Boss_Spawnable + 100 >=
+	Meter kills.WinterHorde_Snowman_Minion kills.WinterHorde_Snowman_Lt + kills.WinterHorde_Snowman_Boss + kills.WinterHorde_Summoned_Snowman_Minion + kills.WinterHorde_Summoned_Snowman_Lt + kills.WinterHorde_Summoned_Snowman_Boss + kills.WinterHorde_Snowman_Minion_Spawnable + kills.WinterHorde_Snowman_Lt_Spawnable + kills.WinterHorde_Snowman_Boss_Spawnable + 100 %
+	Revoke 0
+	BadgeValues 100
+}
+
+Badge
+{
+	Name SnowbeastDefeatBadge
+	Category kEvent
+	DisplayTitle "P3953699090"
+	DisplayText "P4014565101"
+	Icon "badge_winter_event_02"
+	Visible 0
+	Hinted 0
+	Requires kills.WinterHorde_Snowman_Monster_Lesser kills.WinterHorde_Snowman_Monster_Greater + 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Holiday2010
+	Category kEvent
+	DisplayTitle "P4095837872"
+	DisplayText "P3067686920"
+	Icon "Badge_Holiday10DefeatLadyWinter"
+	Visible 0
+	Hinted 0
+	Requires kills.WinterHorde_Lady_Winter 1 >=
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Holiday2011Get
+	Category kEvent
+	DisplayTitle "P594769598"
+	DisplayText "P2281073725"
+	Icon "badge_event_winter2011_get"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Holiday2011Give
+	Category kEvent
+	DisplayTitle "P1767419262"
+	DisplayText "P834897901"
+	Icon "badge_event_winter2011_give"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ValentineLogin
+	Category kEvent
+	DisplayTitle "P1385553737"
+	DisplayText "P2502413894"
+	DisplayTitleVillain "P1322834365"
+	DisplayTextVillain "P670522532"
+	Icon "badge_event_HeartOfLightDarkness"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name LovePotion
+	Category kEvent
+	DisplayTitle "P172445716"
+	DisplayText "P1698821579"
+	Reward ValentinePower
+	Icon "badge_event_HandsomeBeautiful"
+	Visible 0
+	Hinted 0
+	Requires HeroStory owned? VillainStory owned? &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name HuntBadge
+	Category kEvent
+	DisplayTitle "P1671528870"
+	DisplayHint "P2486608793"
+	DisplayText "P522571945"
+	Icon "badge_event_Snaptooth"
+	Visible 0
+	Hinted kills.RedCapsEvent_Snaptooth_boss 0 >
+	Requires kills.RedCapsEvent_Snaptooth_boss 5 >=
+	Meter kills.RedCapsEvent_Snaptooth_boss 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name Badge_PocketD_Jubilee
+	Category kEvent
+	DisplayTitle "P3563533763"
+	DisplayText "P3739268467"
+	Icon "badge_anniversary_pocketd"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name ValentineDelivery
+	Category kEvent
+	DisplayTitle "P3311017938"
+	DisplayHint "P4193687319"
+	DisplayText "P1775349288"
+	Icon "badge_event_spring_delivery"
+	Visible ValentineAttuned TokenOwned?
+	Hinted 1
+	Requires ValentineDeliveriesCorrect TokenVal> 7 >=
+	Meter ValentineDeliveriesCorrect TokenVal> 7 %
+	Revoke 0
+	BadgeValues 7
+}
+
+Badge
+{
+	Name ValentineMisdelivery
+	Category kEvent
+	DisplayTitle "P3627432804"
+	DisplayHint "P13702609"
+	DisplayText "P3384516198"
+	Icon "badge_event_spring_misdelivery"
+	Visible ValentineAttuned TokenOwned?
+	Hinted 1
+	Requires ValentineDeliveriesWrong TokenVal> 7 >=
+	Meter ValentineDeliveriesWrong TokenVal> 7 %
+	Revoke 0
+	BadgeValues 7
+}
+
+Badge
+{
+	Name ValentineWidow
+	Category kEvent
+	DisplayTitle "P4029511792"
+	DisplayText "P3713327183"
+	DisplayTitleVillain "P4029511792"
+	DisplayTextVillain "P3042973497"
+	Icon "ValentineAmberWidow"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween2007Badge1
+	Category kEvent
+	DisplayTitle "P3724568720"
+	DisplayHint "P3751203884"
+	DisplayText "P105504701"
+	Icon "badge_event_spectral"
+	VillainIcon "badge_event_corsair"
+	Visible HalloweenCostumeRewards TokenVal> 1 >=
+	Hinted 1
+	Requires HalloweenCostumeRewards TokenVal> 10 >=
+	Meter HalloweenCostumeRewards TokenVal> 10 %
+	Revoke 0
+	BadgeValues 10
+}
+
+Badge
+{
+	Name Halloween2007Badge2
+	Category kEvent
+	DisplayTitle "P1554516689"
+	DisplayHint "P1125822998"
+	DisplayText "P2540314573"
+	Icon "badge_event_spectral"
+	VillainIcon "badge_event_corsair"
+	Visible Halloween2007Badge1 owned?
+	Hinted 1
+	Requires HalloweenCostumeRewards TokenVal> 25 >=
+	Meter HalloweenCostumeRewards TokenVal> 25 %
+	Revoke 0
+	BadgeValues 25
+}
+
+Badge
+{
+	Name Halloween2007Badge3
+	Category kEvent
+	DisplayTitle "P1005158133"
+	DisplayHint "P3375012394"
+	DisplayText "P1218720996"
+	Icon "badge_event_spectral"
+	VillainIcon "badge_event_corsair"
+	Visible Halloween2007Badge2 owned?
+	Hinted 1
+	Requires HalloweenCostumeRewards TokenVal> 50 >=
+	Meter HalloweenCostumeRewards TokenVal> 50 %
+	Revoke 0
+	BadgeValues 50
+}
+
+Badge
+{
+	Name Halloween2010Secured
+	Category kEvent
+	DisplayTitle "P1346070803"
+	DisplayText "P3435136053"
+	Icon "badge_event_halloween2010_gold"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween2010PowerHungry
+	Category kEvent
+	DisplayTitle "P3617809185"
+	DisplayText "P2426687603"
+	Icon "badge_event_halloween2010_red"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween2010ArtifactDestroyer
+	Category kEvent
+	DisplayTitle "P267866133"
+	DisplayText "P2023342900"
+	Icon "badge_event_halloween2010_gray"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween2010Veiled
+	Category kEvent
+	DisplayTitle "P1869677082"
+	DisplayText "P1405028112"
+	Icon "badge_event_halloween2010_green"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween2010Arriviste
+	Category kEvent
+	DisplayTitle "P2233030749"
+	DisplayText "P385499580"
+	DisplayTitleVillain "P2233030749"
+	DisplayTextVillain "P4117215937"
+	Icon "badge_event_halloween2010_purple"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Halloween2010Trusting
+	Category kEvent
+	DisplayTitle "P2715259020"
+	DisplayText "P441706980"
+	DisplayTitleVillain "P2715259020"
+	DisplayTextVillain "P2898952710"
+	Icon "badge_event_halloween2010_blue"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name T_H2011_HouseofHorror
+	Category kEvent
+	DisplayTitle "P1565304828"
+	DisplayHint "P545750009"
+	DisplayText "P1865558387"
+	Icon "badge_event_halloween2011_mansion"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name T_H2011_Trick
+	Category kEvent
+	DisplayTitle "P2618740838"
+	DisplayHint "P957845196"
+	DisplayText "P2938236047"
+	Icon "badge_event_halloween2011_trick"
+	Visible T_H2011_HouseofHorror owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name T_H2011_Alive
+	Category kEvent
+	DisplayTitle "P3903165363"
+	DisplayHint "P1105257657"
+	DisplayText "P3752269345"
+	Icon "badge_event_halloween2011_abomination"
+	Visible T_H2011_HouseofHorror owned?
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_Complete
+	Category kEvent
+	DisplayTitle "P2099447452"
+	DisplayText "P3058341989"
+	Icon "Badge_Summer_Event_2012_A"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_Hellenic
+	Category kEvent
+	DisplayTitle "P1276292122"
+	DisplayText "P1258013190"
+	Icon "Badge_Summer_Event_2012_C"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_BestFriend
+	Category kEvent
+	DisplayTitle "P3089948090"
+	DisplayText "P585423464"
+	Icon "Badge_Summer_Event_2012_D"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_NinjaMonkey
+	Category kEvent
+	DisplayTitle "P1510844377"
+	DisplayText "P2880240838"
+	Icon "Badge_Summer_Event_2012_G"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_Invictus
+	Category kEvent
+	DisplayTitle "P537919395"
+	DisplayText "P3916623843"
+	Icon "Badge_Summer_Event_2012_F"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_Phitter
+	Category kEvent
+	DisplayTitle "P838373959"
+	DisplayText "P2854100466"
+	Icon "Badge_Summer_Event_2012_B"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_Phacker
+	Category kEvent
+	DisplayTitle "P3678163693"
+	DisplayText "P1431138996"
+	Icon "Badge_Summer_Event_2012_C"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_Pgrifter
+	Category kEvent
+	DisplayTitle "P1641992315"
+	DisplayText "P370209089"
+	Icon "Badge_Summer_Event_2012_D"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_Pthief
+	Category kEvent
+	DisplayTitle "P1525974933"
+	DisplayText "P2152489641"
+	Icon "Badge_Summer_Event_2012_A"
+	Visible 0
+	Hinted 1
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name SummerEvent_Roleplayer
+	Category kEvent
+	DisplayTitle "P2862644486"
+	DisplayHint "P1441401122"
+	DisplayText "P2109527558"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_Summer_Event_2012_E"
+	Visible SummerEvent_Phitter owned? SummerEvent_Phacker owned? || SummerEvent_Pgrifter owned? || SummerEvent_Pthief owned? ||
+	Hinted 1
+	Requires SummerEvent_Phitter owned? SummerEvent_Phacker owned? && SummerEvent_Pgrifter owned? && SummerEvent_Pthief owned? &&
+	Meter SummerEvent_Phitter owned? SummerEvent_Phacker owned? + SummerEvent_Pgrifter owned? + SummerEvent_Pthief owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name ServerTransfer
+	Category kEvent
+	DisplayTitle "P1288965214"
+	DisplayText "P4229621179"
+	Icon "badge_passport_01"
+	Visible 0
+	Hinted 0
+	Requires 1
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NemesisPlot
+	Category kEvent
+	DisplayTitle "P990118287"
+	DisplayText "P964558405"
+	Icon "badge_event_nemesisplot"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+

@@ -1,0 +1,2497 @@
+Badge
+{
+	Name BetaTester
+	Category kPerk
+	DisplayTitle "P719028671"
+	DisplayText "P3990381704"
+	Reward IS.Gift20Merits
+	Icon "badge_bughunter_01"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	DoNotCount 1
+}
+
+Badge
+{
+	Name BetaTester2
+	Category kPerk
+	DisplayTitle "P3873449798"
+	DisplayText "P4235598226"
+	Reward IS.Gift20Merits
+	Icon "badge_bughunter_01"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+	DoNotCount 1
+}
+
+Badge
+{
+	Name UnderTheKnifeUsed
+	Category kPerk
+	DisplayTitle "P2080573838"
+	DisplayText "P3101447133"
+	Icon "v_badge_RespecBadge1"
+	Visible 0
+	Hinted 0
+	Requires UnderTheKnife owned?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name NipTuckUsed
+	Category kPerk
+	DisplayTitle "P403090463"
+	DisplayText "P2954412920"
+	Icon "v_badge_RespecBadge2"
+	Visible 0
+	Hinted 0
+	Requires NipTuck owned?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FaceliftedUsed
+	Category kPerk
+	DisplayTitle "P1248942045"
+	DisplayText "P1646153579"
+	Icon "v_badge_RespecBadge3"
+	Visible 0
+	Hinted 0
+	Requires Facelifted owned?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mirage
+	Category kPerk
+	DisplayTitle "P4012594175"
+	DisplayText "P601641127"
+	DisplayTitleVillain "P157355162"
+	DisplayTextVillain "P2484612858"
+	Icon "v_badge_SciroccoBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke Mirage owned?
+}
+
+Badge
+{
+	Name BloodInTheWater
+	Category kPerk
+	DisplayTitle "P151622481"
+	DisplayText "P3796345058"
+	DisplayTitleVillain "P3830459905"
+	DisplayTextVillain "P2252521300"
+	Icon "v_badge_Capt.MakoBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke BloodInTheWater owned?
+}
+
+Badge
+{
+	Name SpidersKiss
+	Category kPerk
+	DisplayTitle "P2748411799"
+	DisplayText "P3725201454"
+	DisplayTitleVillain "P336244769"
+	DisplayTextVillain "P3229720178"
+	Icon "v_badge_GhostWidowBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke SpidersKiss owned?
+}
+
+Badge
+{
+	Name TheStinger
+	Category kPerk
+	DisplayTitle "P1149557786"
+	DisplayText "P2727612369"
+	DisplayTitleVillain "P2820572885"
+	DisplayTextVillain "P1320091506"
+	Icon "v_badge_BlackScorpionBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke TheStinger owned?
+}
+
+Badge
+{
+	Name MiragePatron
+	Category kPerk
+	DisplayTitle "P4012594175"
+	DisplayText "P601641127"
+	DisplayTitleVillain "P157355162"
+	DisplayTextVillain "P2484612858"
+	Icon "v_badge_SciroccoBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke PatronReset owned?
+}
+
+Badge
+{
+	Name BloodInTheWaterPatron
+	Category kPerk
+	DisplayTitle "P151622481"
+	DisplayText "P3796345058"
+	DisplayTitleVillain "P3830459905"
+	DisplayTextVillain "P2252521300"
+	Icon "v_badge_Capt.MakoBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke PatronReset owned?
+}
+
+Badge
+{
+	Name SpidersKissPatron
+	Category kPerk
+	DisplayTitle "P2748411799"
+	DisplayText "P3725201454"
+	DisplayTitleVillain "P336244769"
+	DisplayTextVillain "P3229720178"
+	Icon "v_badge_GhostWidowBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke PatronReset owned?
+}
+
+Badge
+{
+	Name TheStingerPatron
+	Category kPerk
+	DisplayTitle "P1149557786"
+	DisplayText "P2727612369"
+	DisplayTitleVillain "P2820572885"
+	DisplayTextVillain "P1320091506"
+	Icon "v_badge_BlackScorpionBadge"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke PatronReset owned?
+}
+
+Badge
+{
+	Name ReclusesRightHand
+	Category kPerk
+	DisplayTitle "P1349451953"
+	DisplayHint "P1409660307"
+	DisplayText "P852352924"
+	DisplayTitleVillain "P3615944173"
+	DisplayHintVillain "P1409660307"
+	DisplayTextVillain "P3324896125"
+	Reward IS.Gift20Merits
+	Icon "v_badge_LordRecluseBadge"
+	Visible SL8_GV_Black_Scorpion_Story_Arc_1_Souvenir HasSouvenir? SL8_GV_Black_Scorpion_Story_Arc_2_Souvenir HasSouvenir? || SL8_GhostWidow_Storyarc2 HasSouvenir? || SL8_GhostWidow_Storyarc3 HasSouvenir? || SL8_GV_Mako_Story_Arc_1_Souvenir HasSouvenir? || SL8_GV_Mako_Story_Arc_2_Souvenir HasSouvenir? || SL8_Scirocco_StoryArc1_Souvenir HasSouvenir? || SL8_Scirocco_StoryArc2_Souvenir HasSouvenir? || SL9_BlackScorpion_StoryArc1_Souvenir HasSouvenir? || SL9_GV_BlackScorpion_Storyarc2_SouvenirClue HasSouvenir? || SL9_GhostWidow_Storyarc1 HasSouvenir? || SL9_GhostWidow_Storyarc3 HasSouvenir? || SL9_GV_Mako_Story_Arc_1_Souvenir HasSouvenir? || SL9_GV_Mako_Story_Arc_2_Souvenir HasSouvenir? || SL9_Scirocco_StoryArc1_Souvenir HasSouvenir? || SL9_GV_Scirocco_StoryArc2_Souvenir HasSouvenir? || SL9_FutureOfFreedom_StrikeForce HasSouvenir? ||
+	Hinted 1
+	Requires SL8_GV_Black_Scorpion_Story_Arc_1_Souvenir HasSouvenir? SL8_GV_Black_Scorpion_Story_Arc_2_Souvenir HasSouvenir? && SL8_GhostWidow_Storyarc2 HasSouvenir? && SL8_GhostWidow_Storyarc3 HasSouvenir? && SL8_GV_Mako_Story_Arc_1_Souvenir HasSouvenir? && SL8_GV_Mako_Story_Arc_2_Souvenir HasSouvenir? && SL8_Scirocco_StoryArc1_Souvenir HasSouvenir? && SL8_Scirocco_StoryArc2_Souvenir HasSouvenir? && SL9_BlackScorpion_StoryArc1_Souvenir HasSouvenir? && SL9_GV_BlackScorpion_Storyarc2_SouvenirClue HasSouvenir? && SL9_GhostWidow_Storyarc1 HasSouvenir? && SL9_GhostWidow_Storyarc3 HasSouvenir? && SL9_GV_Mako_Story_Arc_1_Souvenir HasSouvenir? && SL9_GV_Mako_Story_Arc_2_Souvenir HasSouvenir? && SL9_Scirocco_StoryArc1_Souvenir HasSouvenir? && SL9_GV_Scirocco_StoryArc2_Souvenir HasSouvenir? && SL9_FutureOfFreedom_StrikeForce HasSouvenir? &&
+	Meter SL8_GV_Black_Scorpion_Story_Arc_1_Souvenir HasSouvenir? SL8_GV_Black_Scorpion_Story_Arc_2_Souvenir HasSouvenir? + SL8_GhostWidow_Storyarc2 HasSouvenir? + SL8_GhostWidow_Storyarc3 HasSouvenir? + SL8_GV_Mako_Story_Arc_1_Souvenir HasSouvenir? + SL8_GV_Mako_Story_Arc_2_Souvenir HasSouvenir? + SL8_Scirocco_StoryArc1_Souvenir HasSouvenir? + SL8_Scirocco_StoryArc2_Souvenir HasSouvenir? + SL9_BlackScorpion_StoryArc1_Souvenir HasSouvenir? + SL9_GV_BlackScorpion_Storyarc2_SouvenirClue HasSouvenir? + SL9_GhostWidow_Storyarc1 HasSouvenir? + SL9_GhostWidow_Storyarc3 HasSouvenir? + SL9_GV_Mako_Story_Arc_1_Souvenir HasSouvenir? + SL9_GV_Mako_Story_Arc_2_Souvenir HasSouvenir? + SL9_Scirocco_StoryArc1_Souvenir HasSouvenir? + SL9_GV_Scirocco_StoryArc2_Souvenir HasSouvenir? + SL9_FutureOfFreedom_StrikeForce HasSouvenir? + 17 %
+	Revoke 0
+	BadgeValues 17
+}
+
+Badge
+{
+	Name KoreanJetPack
+	Category kPerk
+	DisplayTitle "P680492691"
+	DisplayText "P1530940255"
+	DisplayTitleVillain "P2324306272"
+	DisplayTextVillain "P2605668100"
+	Icon "badge_event_rwbjetpack"
+	Visible 0
+	Hinted 0
+	Requires 0
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Marshal
+	Category kPerk
+	DisplayTitle "P3504024398"
+	DisplayHint "P3889309453"
+	DisplayText "P1452371665"
+	DisplayTitleVillain "P4289087208"
+	DisplayHintVillain "P3889309453"
+	DisplayTextVillain "P3900131994"
+	Reward VillainAccolade1
+	Icon "v_badge_Marshall"
+	Visible VSL3MissionA owned? RogueHero owned? || TheMongoose owned? || MercyIslandTour5 owned? || WarburgTour1 owned? || RecluseArrival owned? || villain type char> eq &&
+	Hinted 1
+	Requires VSL3MissionA owned? RogueHero owned? && TheMongoose owned? && MercyIslandTour5 owned? && WarburgTour1 owned? && RecluseArrival owned? && AtlasSet owned? || villain type char> eq &&
+	Meter VSL3MissionA owned? RogueHero owned? + TheMongoose owned? + MercyIslandTour5 owned? + WarburgTour1 owned? + RecluseArrival owned? + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name HeadlineStealer
+	Category kPerk
+	DisplayTitle "P2283733884"
+	DisplayHint "P1592106705"
+	DisplayText "P1046188531"
+	DisplayTitleVillain "P2383443269"
+	DisplayHintVillain "P1592106705"
+	DisplayTextVillain "P859252981"
+	Reward VillainAccolade2
+	Icon "v_badge_HeadlineStealer"
+	Visible VSL9MissionB owned? DeathSurge owned? || Surging owned? || StrikeBuster owned? || BloodyBayTour1 owned? || GrandvilleTour4 owned? || StMartialTour2 owned? || villain type char> eq &&
+	Hinted 1
+	Requires VSL9MissionB owned? DeathSurge owned? && Surging owned? && StrikeBuster owned? && BloodyBayTour1 owned? && GrandvilleTour4 owned? && StMartialTour2 owned? && CreySet owned? || villain type char> eq &&
+	Meter VSL9MissionB owned? DeathSurge owned? + Surging owned? + StrikeBuster owned? + BloodyBayTour1 owned? + GrandvilleTour4 owned? + StMartialTour2 owned? + 7 %
+	Revoke 0
+	BadgeValues 7
+}
+
+Badge
+{
+	Name BornInBattle
+	Category kPerk
+	DisplayTitle "P2190142270"
+	DisplayHint "P3319515703"
+	DisplayText "P2680940442"
+	DisplayTitleVillain "P2190142270"
+	DisplayHintVillain "P3319515703"
+	DisplayTextVillain "P2194455756"
+	Reward VillainAccolade3
+	Icon "v_badge_BornInBattle"
+	Visible Adamant owned? VSL6MissionB owned? || Scrapyard owned? || PirateHistory owned? || NervaTour4 owned? || GhostTrap50 owned? || WarburgTour3 owned? || villain type char> eq && P_Damage_1M owned? praetorianprogress char> earth eq && ||
+	Hinted 1
+	Requires Adamant owned? P_Damage_1M owned? || VSL6MissionB owned? && Scrapyard owned? && PirateHistory owned? && NervaTour4 owned? && GhostTrap50 owned? && WarburgTour3 owned? && DimensionalHopperSet owned? || villain type char> eq &&
+	Meter Adamant owned? P_Damage_1M owned? + VSL6MissionB owned? + Scrapyard owned? + PirateHistory owned? + NervaTour4 owned? + GhostTrap50 owned? + WarburgTour3 owned? + 8 %
+	Revoke 0
+	BadgeValues 7
+}
+
+Badge
+{
+	Name HighPainThreshold
+	Category kPerk
+	DisplayTitle "P3842021623"
+	DisplayHint "P2001889606"
+	DisplayText "P189738894"
+	DisplayTitleVillain "P2472637382"
+	DisplayHintVillain "P2001889606"
+	DisplayTextVillain "P3781711246"
+	Reward VillainAccolade4
+	Icon "v_badge_HighPainThreshold"
+	Visible UnbrokenSpirit owned? VSL6MissionA owned? || Gangbuster owned? || SpiderSmasher owned? || NervaTour2 owned? || SharkheadTour3 owned? || Experiments owned? || villain type char> eq && P_Debt_200K owned? praetorianprogress char> earth eq && ||
+	Hinted 1
+	Requires UnbrokenSpirit owned? P_Debt_200K owned? || VSL6MissionA owned? && Gangbuster owned? && SpiderSmasher owned? && NervaTour2 owned? && SharkheadTour3 owned? && Experiments owned? && FreedomPhalanxSet owned? || villain type char> eq &&
+	Meter UnbrokenSpirit owned? P_Debt_200K owned? + VSL6MissionA owned? + Gangbuster owned? + SpiderSmasher owned? + NervaTour2 owned? + SharkheadTour3 owned? + Experiments owned? + 7 %
+	Revoke 0
+	BadgeValues 7
+}
+
+Badge
+{
+	Name Demonic
+	Category kPerk
+	DisplayTitle "P2868056507"
+	DisplayHint "P2711050848"
+	DisplayText "P3956480410"
+	DisplayTitleVillain "P1429946994"
+	DisplayHintVillain "P2711050848"
+	DisplayTextVillain "P60370447"
+	Reward VillainAccolade5
+	Icon "v_badge_Demonic"
+	Visible VSL5MissionB owned? ThornIsle1 owned? || CoTMu owned? || SharkheadTour2 owned? || GrandvilleTour1 owned? || villain type char> eq &&
+	Hinted 1
+	Requires VSL5MissionB owned? ThornIsle1 owned? && CoTMu owned? && SharkheadTour2 owned? && GrandvilleTour1 owned? && MagusSet owned? || villain type char> eq &&
+	Meter VSL5MissionB owned? ThornIsle1 owned? + CoTMu owned? + SharkheadTour2 owned? + GrandvilleTour1 owned? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name Megalomaniac
+	Category kPerk
+	DisplayTitle "P14204348"
+	DisplayHint "P1069024482"
+	DisplayText "P93634167"
+	DisplayTitleVillain "P1385763327"
+	DisplayHintVillain "P1069024482"
+	DisplayTextVillain "P2229295735"
+	Reward VillainAccolade6
+	Icon "v_badge_Megalomaniac"
+	Visible SerafinaCrystalSF owned? VSL4MissionA owned? || ManinBlack owned? || ReclusesVictoryTour4 owned? || WarburgTour3 owned? || villain type char> eq &&
+	Hinted 1
+	Requires SerafinaCrystalSF owned? VSL4MissionA owned? && ManinBlack owned? && ReclusesVictoryTour4 owned? && WarburgTour3 owned? && RiktiWarSet owned? || villain type char> eq &&
+	Meter SerafinaCrystalSF owned? VSL4MissionA owned? + ManinBlack owned? + ReclusesVictoryTour4 owned? + WarburgTour3 owned? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name MayhemForceOfNature
+	Category kPerk
+	DisplayTitle "P2714085888"
+	DisplayHint "P229618940"
+	DisplayText "P4215929706"
+	DisplayTitleVillain "P1400119757"
+	DisplayHintVillain "P229618940"
+	DisplayTextVillain "P1314690319"
+	Reward VillainAccolade8
+	Icon "v_badge_MayhemForceOfNature"
+	Visible MayhemFirebug owned? MayhemHeroSlayer owned? || MayhemImpounder owned? || MayhemOutlaw owned? || MayhemSafeCracker owned? || MayhemVandal owned? || Villain owned? || alignment char> hero eq ! &&
+	Hinted 1
+	Requires MayhemFirebug owned? MayhemHeroSlayer owned? && MayhemImpounder owned? && MayhemOutlaw owned? && MayhemSafeCracker owned? && MayhemVandal owned? && Villain owned? && GeasoftheKindOnes owned? || type char> villain eq &&
+	Meter MayhemFirebug owned? MayhemHeroSlayer owned? + MayhemImpounder owned? + MayhemOutlaw owned? + MayhemSafeCracker owned? + MayhemVandal owned? + Villain owned? + 7 %
+	Revoke 0
+	BadgeValues 7
+}
+
+Badge
+{
+	Name MayhemInvader
+	Category kPerk
+	DisplayTitle "P2875470136"
+	DisplayHint "P27303045"
+	DisplayText "P2430182110"
+	DisplayTitleVillain "P1649862905"
+	DisplayHintVillain "P27303045"
+	DisplayTextVillain "P1916277632"
+	Reward VillainAccolade7
+	Icon "v_badge_MayhemInvader"
+	Visible MayhemMap1 owned? MayhemMap2 owned? || MayhemMap3 owned? || MayhemMap4 owned? || MayhemMap5 owned? || MayhemMap6 owned? || MayhemMap7 owned? || MayhemMap8 owned? || MayhemMap9 owned? || alignment char> hero eq ! &&
+	Hinted 1
+	Requires MayhemMap1 owned? MayhemMap2 owned? && MayhemMap3 owned? && MayhemMap4 owned? && MayhemMap5 owned? && MayhemMap6 owned? && MayhemMap7 owned? && MayhemMap8 owned? && MayhemMap9 owned? && TaskForceCommander owned? || type char> villain eq &&
+	Meter MayhemMap1 owned? MayhemMap2 owned? + MayhemMap3 owned? + MayhemMap4 owned? + MayhemMap5 owned? + MayhemMap6 owned? + MayhemMap7 owned? + MayhemMap8 owned? + MayhemMap9 owned? + 9 %
+	Revoke 0
+	BadgeValues 9
+}
+
+Badge
+{
+	Name TaskForceCommander
+	Category kPerk
+	DisplayTitle "P621757626"
+	DisplayHint "P610565291"
+	DisplayText "P2054672009"
+	DisplayTitleVillain "P2885881076"
+	DisplayHintVillain "P610565291"
+	DisplayTextVillain "P3823895079"
+	Reward BadgePerk3
+	Icon "badge_task_force_set_01"
+	Visible PositronTF owned? SynapseTF owned? || SisterPsycheTF owned? || PenelopeYinTF owned? || BastionTF owned? || ManticoreTF owned? || NuminaTF owned? || type char> hero eq ||
+	Hinted 1
+	Requires PositronTF owned? SynapseTF owned? && SisterPsycheTF owned? PenelopeYinTF owned? || && BastionTF owned? && ManticoreTF owned? && NuminaTF owned? && MayhemInvader owned? || type char> hero eq &&
+	Meter PositronTF owned? SynapseTF owned? + SisterPsycheTF owned? PenelopeYinTF owned? || + BastionTF owned? + ManticoreTF owned? + NuminaTF owned? + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name SafeguardForceOfJustice
+	Category kPerk
+	DisplayTitle "P719422602"
+	DisplayHint "P4075714329"
+	DisplayText "P1471369494"
+	DisplayTitleVillain "P3601506356"
+	DisplayHintVillain "P4075714329"
+	DisplayTextVillain "P3097147445"
+	Icon "badge_SafeG_ForceOfJustice"
+	Visible SafeguardFireMarshal owned? SafeguardBombSquad owned? || SafeguardPPDDeputy owned? || SafeguardSecurityExpert owned? || SafeguardInterceptor owned? || SafeguardVillainDisruptor owned? ||
+	Hinted 1
+	Requires SafeguardFireMarshal owned? SafeguardBombSquad owned? && SafeguardPPDDeputy owned? && SafeguardSecurityExpert owned? && SafeguardInterceptor owned? && SafeguardVillainDisruptor owned? &&
+	Meter SafeguardFireMarshal owned? SafeguardBombSquad owned? + SafeguardPPDDeputy owned? + SafeguardSecurityExpert owned? + SafeguardInterceptor owned? + SafeguardVillainDisruptor owned? + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name SafeguardStouthearted
+	Category kPerk
+	DisplayTitle "P1218476353"
+	DisplayHint "P2688436705"
+	DisplayText "P2800354531"
+	DisplayTitleVillain "P3592721496"
+	DisplayHintVillain "P2688436705"
+	DisplayTextVillain "P4202808848"
+	Icon "badge_SafeG_StoutHearted"
+	Visible SafeguardMap1 owned? SafeguardMap2 owned? || SafeguardMap3 owned? || SafeguardMap4 owned? || SafeguardMap5 owned? || SafeguardMap6 owned? || SafeguardMap7 owned? || SafeguardMap8 owned? || SafeguardMap9 owned? ||
+	Hinted 1
+	Requires SafeguardMap1 owned? SafeguardMap2 owned? && SafeguardMap3 owned? && SafeguardMap4 owned? && SafeguardMap5 owned? && SafeguardMap6 owned? && SafeguardMap7 owned? && SafeguardMap8 owned? && SafeguardMap9 owned? &&
+	Meter SafeguardMap1 owned? SafeguardMap2 owned? + SafeguardMap3 owned? + SafeguardMap4 owned? + SafeguardMap5 owned? + SafeguardMap6 owned? + SafeguardMap7 owned? + SafeguardMap8 owned? + SafeguardMap9 owned? + 9 %
+	Revoke 0
+	BadgeValues 9
+}
+
+Badge
+{
+	Name InventorAccolade
+	Category kPerk
+	DisplayTitle "P3374925925"
+	DisplayHint "P3325882012"
+	DisplayText "P2368189002"
+	Reward is.FCS
+	Icon "badge_field_crafting"
+	Visible InventTutorial owned?
+	Hinted 1
+	Requires InventionDeBuff1 owned? InventionHeal1 owned? && InventionMitigation1 owned? && InventionMez1 owned? && InventionEndurance1 owned? && InventionRateOfFire1 owned? && InventionAccuracy1 owned? && InventionDamage1 owned? && InventionTravel1 owned? && InventionDeBuff2 owned? && InventionHeal2 owned? && InventionMitigation2 owned? && InventionMez2 owned? && InventionEndurance2 owned? && InventionRateOfFire2 owned? && InventionAccuracy2 owned? && InventionDamage2 owned? && InventionTravel2 owned? && InventionDeBuff3 owned? && InventionHeal3 owned? && InventionMitigation3 owned? && InventionMez3 owned? && InventionEndurance3 owned? && InventionRateOfFire3 owned? && InventionAccuracy3 owned? && InventionDamage3 owned? && InventionTravel3 owned? && InventionDeBuff4 owned? && InventionHeal4 owned? && InventionMitigation4 owned? && InventionMez4 owned? && InventionEndurance4 owned? && InventionRateOfFire4 owned? && InventionAccuracy4 owned? && InventionDamage4 owned? && InventionTravel4 owned? && InventTutorial owned? && InventionLevel4 owned? &&
+	Meter Invented.Invention_Defense_DeBuff_10 Invented.Invention_ToHit_DeBuff_10 + Invented.Invention_Taunt_10 + Invented.Invention_Confuse_10 + 2 % Invented.Invention_Defense_DeBuff_20 Invented.Invention_ToHit_DeBuff_20 + Invented.Invention_Taunt_20 + Invented.Invention_Confuse_20 + 0 1 minmax Invented.Invention_Defense_DeBuff_15 Invented.Invention_ToHit_DeBuff_15 + Invented.Invention_Taunt_15 + Invented.Invention_Confuse_15 + 0 1 minmax + 3 % + Invented.Invention_Defense_DeBuff_30 Invented.Invention_ToHit_DeBuff_30 + Invented.Invention_Taunt_30 + Invented.Invention_Confuse_30 + 0 2 minmax Invented.Invention_Defense_DeBuff_25 Invented.Invention_ToHit_DeBuff_25 + Invented.Invention_Taunt_25 + Invented.Invention_Confuse_25 + 0 2 minmax + 4 % + Invented.Invention_Defense_DeBuff_40 Invented.Invention_ToHit_DeBuff_40 + Invented.Invention_Taunt_40 + Invented.Invention_Confuse_40 + 0 2 minmax Invented.Invention_Defense_DeBuff_35 Invented.Invention_ToHit_DeBuff_35 + Invented.Invention_Taunt_35 + Invented.Invention_Confuse_35 + 0 2 minmax + 5 % + Invented.Invention_Heal_10 7 % + Invented.Invention_Heal_15 0 4 minmax Invented.Invention_Heal_20 0 4 minmax + 9 % + Invented.Invention_Heal_25 0 6 minmax Invented.Invention_Heal_30 0 6 minmax + 12 % + Invented.Invention_Heal_35 0 7 minmax Invented.Invention_Heal_40 0 7 minmax + 15 % + Invented.Invention_Defense_Buff_10 Invented.Invention_Res_Damage_10 + Invented.Invention_Intangible_10 + 7 % + Invented.Invention_Defense_Buff_15 Invented.Invention_Res_Damage_15 + Invented.Invention_Intangible_15 + 0 4 minmax Invented.Invention_Defense_Buff_20 Invented.Invention_Res_Damage_20 + Invented.Invention_Intangible_20 + 0 4 minmax + 9 % + Invented.Invention_Defense_Buff_25 Invented.Invention_Res_Damage_25 + Invented.Invention_Intangible_25 + 0 6 minmax Invented.Invention_Defense_Buff_30 Invented.Invention_Res_Damage_30 + Invented.Invention_Intangible_30 + 0 6 minmax + 12 % + Invented.Invention_Defense_Buff_35 Invented.Invention_Res_Damage_35 + Invented.Invention_Intangible_35 + 0 7 minmax Invented.Invention_Defense_Buff_40 Invented.Invention_Res_Damage_40 + Invented.Invention_Intangible_40 + 0 7 minmax + 15 % + Invented.Invention_Sleep_10 Invented.Invention_Snare_10 + Invented.Invention_Hold_10 + Invented.Invention_Stun_10 + Invented.Invention_Immobilize_10 + Invented.Invention_Fear_10 + 8 % + Invented.Invention_Sleep_15 Invented.Invention_Snare_15 + Invented.Invention_Hold_15 + Invented.Invention_Stun_15 + Invented.Invention_Immobilize_15 + Invented.Invention_Fear_15 + 0 5 minmax Invented.Invention_Sleep_20 Invented.Invention_Snare_20 + Invented.Invention_Hold_20 + Invented.Invention_Stun_20 + Invented.Invention_Immobilize_20 + Invented.Invention_Fear_20 + 0 5 minmax + 10 % + Invented.Invention_Sleep_25 Invented.Invention_Snare_25 + Invented.Invention_Hold_25 + Invented.Invention_Stun_25 + Invented.Invention_Immobilize_25 + Invented.Invention_Fear_25 + 0 6 minmax Invented.Invention_Sleep_30 Invented.Invention_Snare_30 + Invented.Invention_Hold_30 + Invented.Invention_Stun_30 + Invented.Invention_Immobilize_30 + Invented.Invention_Fear_30 + 0 6 minmax + 13 % + Invented.Invention_Sleep_35 Invented.Invention_Snare_35 + Invented.Invention_Hold_35 + Invented.Invention_Stun_35 + Invented.Invention_Immobilize_35 + Invented.Invention_Fear_35 + 0 8 minmax Invented.Invention_Sleep_40 Invented.Invention_Snare_40 + Invented.Invention_Hold_40 + Invented.Invention_Stun_40 + Invented.Invention_Immobilize_40 + Invented.Invention_Fear_40 + 0 8 minmax + 17 % + Invented.Invention_Endurance_Discount_10 Invented.Invention_Recovery_10 + 9 % + Invented.Invention_Endurance_Discount_15 Invented.Invention_Recovery_15 + 0 6 minmax Invented.Invention_Endurance_Discount_20 Invented.Invention_Recovery_20 + 0 6 minmax + 12 % + Invented.Invention_Endurance_Discount_25 Invented.Invention_Recovery_25 + 0 7 minmax Invented.Invention_Endurance_Discount_30 Invented.Invention_Recovery_30 + 0 7 minmax + 15 % + Invented.Invention_Endurance_Discount_35 Invented.Invention_Recovery_35 + 0 9 minmax Invented.Invention_Endurance_Discount_40 Invented.Invention_Recovery_40 + 0 9 minmax + 19 % + Invented.Invention_Recharge_10 Invented.Invention_Interrupt_10 + 10 % + Invented.Invention_Recharge_15 Invented.Invention_Interrupt_15 + 0 6 minmax Invented.Invention_Recharge_20 Invented.Invention_Interrupt_20 + 0 6 minmax + 13 % + Invented.Invention_Recharge_25 Invented.Invention_Interrupt_25 + 0 8 minmax Invented.Invention_Recharge_30 Invented.Invention_Interrupt_30 + 0 8 minmax + 17 % + Invented.Invention_Recharge_35 Invented.Invention_Interrupt_35 + 0 11 minmax Invented.Invention_Recharge_40 Invented.Invention_Interrupt_40 + 0 11 minmax + 22 % + Invented.Invention_Accuracy_10 Invented.Invention_ToHit_Buff_10 + 10 % + Invented.Invention_Accuracy_15 Invented.Invention_ToHit_Buff_15 + 0 6 minmax Invented.Invention_Accuracy_20 Invented.Invention_ToHit_Buff_20 + 0 6 minmax + 13 % + Invented.Invention_Accuracy_25 Invented.Invention_ToHit_Buff_25 + 0 8 minmax Invented.Invention_Accuracy_30 Invented.Invention_ToHit_Buff_30 + 0 8 minmax + 17 % + Invented.Invention_Accuracy_35 Invented.Invention_ToHit_Buff_35 + 0 11 minmax Invented.Invention_Accuracy_40 Invented.Invention_ToHit_Buff_40 + 0 11 minmax + 22 % + Invented.Invention_Damage_10 Invented.Invention_Knockback_10 + 10 % + Invented.Invention_Damage_15 Invented.Invention_Knockback_15 + 0 6 minmax Invented.Invention_Damage_20 Invented.Invention_Knockback_20 + 0 6 minmax + 13 % + Invented.Invention_Damage_25 Invented.Invention_Knockback_25 + 0 8 minmax Invented.Invention_Damage_30 Invented.Invention_Knockback_30 + 0 8 minmax + 17 % + Invented.Invention_Damage_35 Invented.Invention_Knockback_35 + 0 11 minmax Invented.Invention_Damage_40 Invented.Invention_Knockback_40 + 0 11 minmax + 22 % + Invented.Invention_Run_10 Invented.Invention_Fly_10 + Invented.Invention_Jump_10 + Invented.Invention_Range_10 + 10 % + Invented.Invention_Run_15 Invented.Invention_Fly_15 + Invented.Invention_Jump_15 + Invented.Invention_Range_15 + 0 6 minmax Invented.Invention_Run_20 Invented.Invention_Fly_20 + Invented.Invention_Jump_20 + Invented.Invention_Range_20 + 0 6 minmax + 13 % + Invented.Invention_Run_25 Invented.Invention_Fly_25 + Invented.Invention_Jump_25 + Invented.Invention_Range_25 + 0 8 minmax Invented.Invention_Run_30 Invented.Invention_Fly_30 + Invented.Invention_Jump_30 + Invented.Invention_Range_30 + 0 8 minmax + 17 % + Invented.Invention_Run_35 Invented.Invention_Fly_35 + Invented.Invention_Jump_35 + Invented.Invention_Range_35 + 0 11 minmax Invented.Invention_Run_40 Invented.Invention_Fly_40 + Invented.Invention_Jump_40 + Invented.Invention_Range_40 + 0 11 minmax + 22 % + 35 /
+	Revoke 0
+}
+
+Badge
+{
+	Name RIWEAccolade
+	Category kPerk
+	DisplayTitle "P2115129977"
+	DisplayHint "P2179454593"
+	DisplayText "P4178655898"
+	DisplayTitleVillain "P2115129977"
+	DisplayHintVillain "P2179454593"
+	DisplayTextVillain "P824224722"
+	Reward RIWEAccoladePower
+	Icon "badge_event_rikti_invasion"
+	Visible RIWEDefeatInvaders owned? RIWEDefeatUXB owned? || RIWEDefeatHeavies owned? ||
+	Hinted 1
+	Requires RIWEDefeatInvaders owned? RIWEDefeatUXB owned? && RIWEDefeatHeavies owned? &&
+	Meter RIWEDefeatInvaders owned? RIWEDefeatUXB owned? + RIWEDefeatHeavies owned? + 3 %
+	Revoke 0
+	BadgeValues 3
+}
+
+Badge
+{
+	Name Halloween09Accolade
+	Category kPerk
+	DisplayTitle "P842742078"
+	DisplayHint "P86808367"
+	DisplayText "P3559833005"
+	Icon "Badge_Event_Accolade_Halloween09"
+	Visible Halloween09DarkFiend owned? Halloween09WomenScorned owned? || Halloween09Terrors owned? || Halloween09Monster owned? || Halloween09MonsterGM owned? ||
+	Hinted 1
+	Requires Halloween09DarkFiend owned? Halloween09WomenScorned owned? && Halloween09Terrors owned? && Halloween09Monster owned? && Halloween09MonsterGM owned? &&
+	Meter Halloween09DarkFiend owned? Halloween09WomenScorned owned? + Halloween09Terrors owned? + Halloween09Monster owned? + Halloween09MonsterGM owned? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name DJ_Warden
+	Category kPerk
+	DisplayTitle "P625195749"
+	DisplayHint "P4108795452"
+	DisplayText "P594547770"
+	DisplayTitleVillain "P2745459681"
+	DisplayHintVillain "P4108795452"
+	DisplayTextVillain "P1803665997"
+	Icon "badge_DayJobAcc_Warden"
+	Visible DJ_City_Official owned? DJ_Law_Enforcement owned? || hero type char> eq &&
+	Hinted 1
+	Requires DJ_City_Official owned? DJ_Law_Enforcement owned? &&  hero type char> eq &&
+	Meter DJ_City_Official owned? DJ_Law_Enforcement owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Security_Chief
+	Category kPerk
+	DisplayTitle "P118654254"
+	DisplayHint "P2266081480"
+	DisplayText "P2627322030"
+	DisplayTitleVillain "P2619254282"
+	DisplayHintVillain "P2266081480"
+	DisplayTextVillain "P2532772782"
+	Icon "badge_DayJobAcc_SecurityChief"
+	Visible DJ_Banker owned? DJ_Law_Enforcement owned? || hero type char> eq &&
+	Hinted 1
+	Requires DJ_Banker owned? DJ_Law_Enforcement owned? && hero type char> eq &&
+	Meter DJ_Banker owned? DJ_Law_Enforcement owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Traveler
+	Category kPerk
+	DisplayTitle "P2436337728"
+	DisplayHint "P373241713"
+	DisplayText "P792054417"
+	DisplayTitleVillain "P3249114155"
+	DisplayHintVillain "P373241713"
+	DisplayTextVillain "P2471565445"
+	Icon "badge_DayJobAcc_Traveler"
+	Visible DJ_Commuter owned? DJ_Dimensional_Explorer owned? || hero type char> eq &&
+	Hinted 1
+	Requires DJ_Commuter owned? DJ_Dimensional_Explorer owned? && hero type char> eq &&
+	Meter DJ_Commuter owned? DJ_Dimensional_Explorer owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Entrepreneur
+	Category kPerk
+	DisplayTitle "P3938274139"
+	DisplayHint "P1401009957"
+	DisplayText "P242037618"
+	DisplayTitleVillain "P3269883147"
+	DisplayHintVillain "P1401009957"
+	DisplayTextVillain "P1576555038"
+	Icon "badge_DayJobAcc_Entreprenaur"
+	Visible DJ_Shop_Keeper owned? DJ_Auctioneer owned? || hero type char> eq &&
+	Hinted 1
+	Requires DJ_Shop_Keeper owned? DJ_Auctioneer owned? && hero type char> eq &&
+	Meter DJ_Shop_Keeper owned? DJ_Auctioneer owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Scientist
+	Category kPerk
+	DisplayTitle "P1669777602"
+	DisplayHint "P3191109260"
+	DisplayText "P2997518499"
+	DisplayTitleVillain "P2837893144"
+	DisplayHintVillain "P3191109260"
+	DisplayTextVillain "P1343299371"
+	Icon "badge_DayJobAcc_Scientist"
+	Visible DJ_Intern owned? DJ_Scholar owned? || hero type char> eq &&
+	Hinted 1
+	Requires DJ_Intern owned? DJ_Scholar owned? &&
+	Meter DJ_Intern owned? DJ_Scholar owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Doctor
+	Category kPerk
+	DisplayTitle "P1330163590"
+	DisplayHint "P2315509909"
+	DisplayText "P135155988"
+	DisplayTitleVillain "P1330163590"
+	DisplayHintVillain "P4277996530"
+	DisplayTextVillain "P1293269428"
+	Icon "badge_DayJobAcc_Doctor"
+	Visible DJ_Caregiver owned? DJ_Scholar owned? ||
+	Hinted 1
+	Requires DJ_Caregiver owned? DJ_Scholar owned? &&
+	Meter DJ_Caregiver owned? DJ_Scholar owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Alchemist
+	Category kPerk
+	DisplayTitle "P2059392269"
+	DisplayHint "P3165799653"
+	DisplayText "P2254045532"
+	DisplayTitleVillain "P2059392269"
+	DisplayHintVillain "P241674680"
+	DisplayTextVillain "P1401536702"
+	Icon "badge_DayJobAcc_Alchemist"
+	Visible DJ_Caregiver owned? DJ_Midnighter owned? ||
+	Hinted 1
+	Requires DJ_Caregiver owned? DJ_Midnighter owned? &&
+	Meter DJ_Caregiver owned? DJ_Midnighter owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Black_Ops
+	Category kPerk
+	DisplayTitle "P3087113055"
+	DisplayHint "P4139872503"
+	DisplayText "P2743059684"
+	DisplayTitleVillain "P3786263185"
+	DisplayHintVillain "P4139872503"
+	DisplayTextVillain "P4187123396"
+	Icon "badge_DayJobAcc_BlackOps"
+	Visible DJ_Arachnos_Agent owned? DJ_Banker owned? || villain type char> eq &&
+	Hinted 1
+	Requires DJ_Arachnos_Agent owned? DJ_Banker owned? && villain type char> eq &&
+	Meter DJ_Arachnos_Agent owned? DJ_Banker owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Trend_Setter
+	Category kPerk
+	DisplayTitle "P3583450156"
+	DisplayHint "P4005066924"
+	DisplayText "P2453352669"
+	Icon "badge_DayJobAcc_TrendSetter"
+	Visible DJ_Clubber owned? DJ_Clotheshorse owned? ||
+	Hinted 1
+	Requires DJ_Clubber owned? DJ_Clotheshorse owned? &&
+	Meter DJ_Clubber owned? DJ_Clotheshorse owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Soldier
+	Category kPerk
+	DisplayTitle "P1403447585"
+	DisplayHint "P2434717597"
+	DisplayText "P2495508423"
+	DisplayTitleVillain "P1403447585"
+	DisplayHintVillain "P2064972606"
+	DisplayTextVillain "P2733367858"
+	Icon "badge_DayJobAcc_Soldier"
+	Visible DJ_On_Patrol owned? P_DJ_On_Patrol owned? || DJ_Vanguard_Recruit owned? ||
+	Hinted 1
+	Requires DJ_On_Patrol owned? P_DJ_On_Patrol owned? || DJ_Vanguard_Recruit owned? &&
+	Meter DJ_On_Patrol owned? P_DJ_On_Patrol owned? + DJ_Vanguard_Recruit owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Time_Traveler
+	Category kPerk
+	DisplayTitle "P2954229281"
+	DisplayHint "P2924613034"
+	DisplayText "P1552460978"
+	Icon "badge_DayJobAcc_TimeTraveler"
+	Visible DJ_Cimeroran owned? DJ_Mender owned? ||
+	Hinted 1
+	Requires DJ_Cimeroran owned? DJ_Mender owned? &&
+	Meter DJ_Cimeroran owned? DJ_Mender owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Archaeologist
+	Category kPerk
+	DisplayTitle "P3559665142"
+	DisplayHint "P2263509380"
+	DisplayText "P2543871063"
+	DisplayTitleVillain "P3559665142"
+	DisplayHintVillain "P2263509380"
+	DisplayTextVillain "P280832371"
+	Icon "badge_DayJobAcc_Archaelogist"
+	Visible DJ_Midnighter owned? DJ_Gravedigger owned? ||
+	Hinted 1
+	Requires DJ_Midnighter owned? DJ_Gravedigger owned? &&
+	Meter DJ_Midnighter owned? DJ_Gravedigger owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Brood_Leader
+	Category kPerk
+	DisplayTitle "P1707522875"
+	DisplayHint "P1146227529"
+	DisplayText "P1588576704"
+	DisplayTitleVillain "P2053426213"
+	DisplayHintVillain "P1146227529"
+	DisplayTextVillain "P1196002103"
+	Icon "badge_DayJobAcc_BroodLeader"
+	Visible DJ_Arachnos_Official owned? DJ_Pilot owned? ||
+	Hinted 1
+	Requires DJ_Arachnos_Official owned? DJ_Pilot owned? &&
+	Meter DJ_Arachnos_Official owned? DJ_Pilot owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Gladiator
+	Category kPerk
+	DisplayTitle "P2100619047"
+	DisplayHint "P4016177568"
+	DisplayText "P2876413766"
+	DisplayTitleVillain "P2100619047"
+	DisplayHintVillain "P4050880190"
+	DisplayTextVillain "P2876413766"
+	Icon "badge_DayJobAcc_Gladiator"
+	Visible DJ_Griefer owned? DJ_Duelist owned? ||
+	Hinted 1
+	Requires DJ_Griefer owned? DJ_Duelist owned? &&
+	Meter DJ_Griefer owned? DJ_Duelist owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Rapid_Response_Member
+	Category kPerk
+	DisplayTitle "P2037870429"
+	DisplayHint "P3953127264"
+	DisplayText "P3247489631"
+	DisplayTitleVillain "P930346275"
+	DisplayHintVillain "P3036445627"
+	DisplayTextVillain "P244371990"
+	Icon "badge_DayJobAcc_RapidResponse"
+	Visible DJ_On_Patrol owned? P_DJ_On_Patrol owned? || DJ_Monitor_Duty owned? ||
+	Hinted 1
+	Requires DJ_On_Patrol owned? P_DJ_On_Patrol owned? || DJ_Monitor_Duty owned? &&
+	Meter DJ_On_Patrol owned? P_DJ_On_Patrol owned? + DJ_Monitor_Duty owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Crey_Scientist
+	Category kPerk
+	DisplayTitle "P490052987"
+	DisplayHint "P3780091706"
+	DisplayText "P1797027418"
+	DisplayTitleVillain "P3381119728"
+	DisplayHintVillain "P3780091706"
+	DisplayTextVillain "P1261193162"
+	Icon "badge_DayJobAcc_CreyScientist"
+	Visible DJ_Crey_Employee owned? DJ_Scholar owned? || villain type char> eq &&
+	Hinted 1
+	Requires DJ_Crey_Employee owned? DJ_Scholar owned? && villain type char> eq &&
+	Meter DJ_Crey_Employee owned? DJ_Scholar owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Web_Weaver
+	Category kPerk
+	DisplayTitle "P505112813"
+	DisplayHint "P2364778439"
+	DisplayText "P2275206840"
+	DisplayTitleVillain "P3338364146"
+	DisplayHintVillain "P2364778439"
+	DisplayTextVillain "P1699667224"
+	Icon "badge_DayJobAcc_WebWeaver"
+	Visible DJ_Demagogue owned? DJ_Arachnos_Agent owned? || villain type char> eq &&
+	Hinted 1
+	Requires DJ_Demagogue owned? DJ_Arachnos_Agent owned? && villain type char> eq &&
+	Meter DJ_Demagogue owned? DJ_Arachnos_Agent owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Black_Marketeer
+	Category kPerk
+	DisplayTitle "P828731630"
+	DisplayHint "P1689995765"
+	DisplayText "P2632750211"
+	DisplayTitleVillain "P1100986288"
+	DisplayHintVillain "P1689995765"
+	DisplayTextVillain "P3954654609"
+	Icon "badge_DayJobAcc_Entreprenaur"
+	Visible DJ_Smuggler owned? DJ_Auctioneer owned? || villain type char> eq &&
+	Hinted 1
+	Requires DJ_Smuggler owned? DJ_Auctioneer owned? && villain type char> eq &&
+	Meter DJ_Smuggler owned? DJ_Auctioneer owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name DJ_Master_Architect
+	Category kPerk
+	DisplayTitle "P3679841808"
+	DisplayHint "P1393775155"
+	DisplayText "P233596086"
+	DisplayTitleVillain "P3679841808"
+	DisplayHintVillain "P1393775155"
+	DisplayTextVillain "P385949608"
+	Reward MasterArchitectAccolade
+	Icon "badge_DayJobAcc_MasterArchitect"
+	Visible DJ_Architect owned? DJ_Scholar owned? ||
+	Hinted 1
+	Requires DJ_Scholar owned? DJ_Architect owned? &&
+	Meter DJ_Scholar owned? DJ_Architect owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name ArchitectAccolade
+	Category kPerk
+	DisplayTitle "P1572372047"
+	DisplayHint "P3866538729"
+	DisplayText "P1196306916"
+	Icon "badge_ArchitectMissionEngineer"
+	Visible MissionArchitectTourism owned? ArchitectPlay25 owned? || ArchitectTickets100 owned? || ArchitectAuthor50 owned? || ArchitectTotalStars100 owned? || ArchitectFirstPlay owned? || ArchitectCustomBoss owned? || ArchitectTestOwnMission owned? ||
+	Hinted 1
+	Requires MissionArchitectTourism owned? ArchitectPlay25 owned? && ArchitectTickets100 owned? && ArchitectAuthor50 owned? && ArchitectTotalStars100 owned? && ArchitectFirstPlay owned? && ArchitectCustomBoss owned? && ArchitectTestOwnMission owned? &&
+	Meter MissionArchitectTourism owned? ArchitectPlay25 owned? + ArchitectTickets100 owned? + ArchitectAuthor50 owned? + ArchitectTotalStars100 owned? + ArchitectFirstPlay owned? + ArchitectCustomBoss owned? + ArchitectTestOwnMission owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name Loyalty2011
+	Category kPerk
+	DisplayTitle "P1287582993"
+	DisplayHint "P1346562197"
+	DisplayText "P3391019053"
+	Icon "Badge_Loyalty2010"
+	Visible AtlasParkExplorer owned? WalkedDownMemoryLane owned? ||
+	Hinted 1
+	Requires AtlasParkExplorer owned? WalkedDownMemoryLane owned? &&
+	Meter AtlasParkExplorer owned? WalkedDownMemoryLane owned? + 2 %
+	Revoke 0
+	BadgeValues 2
+}
+
+Badge
+{
+	Name P_VivaPraetoria
+	Category kPerk
+	DisplayTitle "P3444823297"
+	DisplayHint "P1700327718"
+	DisplayText "P961897909"
+	Icon "Badge_Accolade_VivaPraetoria"
+	Visible P_NovaPraetoriaExplorer owned? P_ImperialCityExplorer owned? || P_UndergroundNovaPraetoriaExplorer owned? || P_UndergroundImperialCityExplorer owned? || P_NeutropolisExplorer owned? || P_UndergroundNeutropolisExplorer owned? || P_RailRider owned? || P_GoingRouge owned? ||
+	Hinted 1
+	Requires P_NovaPraetoriaExplorer owned? P_ImperialCityExplorer owned? && P_UndergroundNovaPraetoriaExplorer owned? && P_UndergroundImperialCityExplorer owned? && P_NeutropolisExplorer owned? && P_UndergroundNeutropolisExplorer owned? && P_RailRider owned? && P_GoingRouge owned? &&
+	Meter P_NovaPraetoriaExplorer owned? P_ImperialCityExplorer owned? + P_UndergroundNovaPraetoriaExplorer owned? + P_UndergroundImperialCityExplorer owned? + P_NeutropolisExplorer owned? + P_UndergroundNeutropolisExplorer owned? + P_RailRider owned? + P_GoingRouge owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name AtlasParkExplorer
+	Category kPerk
+	DisplayTitle "P641433174"
+	DisplayHint "P4180536192"
+	DisplayText "P360458652"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible AtlasParkTour1 owned? AtlasParkTour2 owned? || AtlasParkTour3 owned? || AtlasParkTour4 owned? || AtlasParkTour5 owned? || AtlasParkTour6 owned? || AtlasParkTour7 owned? || AtlasParkTour8 owned? ||
+	Hinted 1
+	Requires AtlasParkTour1 owned? AtlasParkTour2 owned? && AtlasParkTour3 owned? && AtlasParkTour4 owned? && AtlasParkTour5 owned? && AtlasParkTour6 owned? && AtlasParkTour7 owned? && AtlasParkTour8 owned? &&
+	Meter AtlasParkTour1 owned? AtlasParkTour2 owned? + AtlasParkTour3 owned? + AtlasParkTour4 owned? + AtlasParkTour5 owned? + AtlasParkTour6 owned? + AtlasParkTour7 owned? + AtlasParkTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name WalkedDownMemoryLane
+	Category kPerk
+	DisplayTitle "P1110082098"
+	DisplayHint "P3683049428"
+	DisplayText "P2536114984"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible CityTraveler owned? Condemned owned? || N_Tutorial_Knowledgeable owned? || Resilient owned? || Rookie owned? || Trustworthy owned? || ArchitectHeroMissions75 owned? || OutOfHarmsWay owned? ||
+	Hinted 1
+	Requires CityTraveler owned? Condemned owned? && N_Tutorial_Knowledgeable owned? && Resilient owned? && Rookie owned? && Trustworthy owned? && ArchitectHeroMissions75 owned? && OutOfHarmsWay owned? &&
+	Meter CityTraveler owned? Condemned owned? + N_Tutorial_Knowledgeable owned? + Resilient owned? + Rookie owned? + Trustworthy owned? + ArchitectHeroMissions75 owned? + OutOfHarmsWay owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name HollowsExplorer
+	Category kPerk
+	DisplayTitle "P1936613915"
+	DisplayHint "P71648074"
+	DisplayText "P3010778369"
+	DisplayTitleVillain "P570739199"
+	DisplayHintVillain "P71648074"
+	DisplayTextVillain "P3010778369"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible HollowsTour1 owned? HollowsTour2 owned? || HollowsTour3 owned? || HollowsTour4 owned? || HollowsTour5 owned? || HollowsTour6 owned? || HollowsTour7 owned? || HollowsTour8 owned? ||
+	Hinted 1
+	Requires HollowsTour1 owned? HollowsTour2 owned? && HollowsTour3 owned? && HollowsTour4 owned? && HollowsTour5 owned? && HollowsTour6 owned? && HollowsTour7 owned? && HollowsTour8 owned? &&
+	Meter HollowsTour1 owned? HollowsTour2 owned? + HollowsTour3 owned? + HollowsTour4 owned? + HollowsTour5 owned? + HollowsTour6 owned? + HollowsTour7 owned? + HollowsTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name GalaxyCityExplorer
+	Category kPerk
+	DisplayTitle "P1231945451"
+	DisplayHint "P3840415085"
+	DisplayText "P4185436858"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible GalaxyCityTour1 owned? GalaxyCityTour2 owned? || GalaxyCityTour3 owned? || GalaxyCityTour4 owned? || GalaxyCityTour5 owned? || GalaxyCityTour6 owned? || GalaxyCityTour7 owned? || GalaxyCityTour8 owned? ||
+	Hinted 1
+	Requires GalaxyCityTour1 owned? GalaxyCityTour2 owned? && GalaxyCityTour3 owned? && GalaxyCityTour4 owned? && GalaxyCityTour5 owned? && GalaxyCityTour6 owned? && GalaxyCityTour7 owned? && GalaxyCityTour8 owned? &&
+	Meter GalaxyCityTour1 owned? GalaxyCityTour2 owned? + GalaxyCityTour3 owned? + GalaxyCityTour4 owned? + GalaxyCityTour5 owned? + GalaxyCityTour6 owned? + GalaxyCityTour7 owned? + GalaxyCityTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name KingsRowExplorer
+	Category kPerk
+	DisplayTitle "P444616621"
+	DisplayHint "P889848658"
+	DisplayText "P425723430"
+	DisplayTitleVillain "P3283981037"
+	DisplayHintVillain "P889848658"
+	DisplayTextVillain "P425723430"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible KingsRowTour1 owned? KingsRowTour2 owned? || KingsRowTour3 owned? || KingsRowTour4 owned? || KingsRowTour5 owned? || KingsRowTour6 owned? || KingsRowTour7 owned? || KingsRowTour8 owned? ||
+	Hinted 1
+	Requires KingsRowTour1 owned? KingsRowTour2 owned? && KingsRowTour3 owned? && KingsRowTour4 owned? && KingsRowTour5 owned? && KingsRowTour6 owned? && KingsRowTour7 owned? && KingsRowTour8 owned? &&
+	Meter KingsRowTour1 owned? KingsRowTour2 owned? + KingsRowTour3 owned? + KingsRowTour4 owned? + KingsRowTour5 owned? + KingsRowTour6 owned? + KingsRowTour7 owned? + KingsRowTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name SteelCanyonExplorer
+	Category kPerk
+	DisplayTitle "P661231796"
+	DisplayHint "P575252503"
+	DisplayText "P1423807970"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible SteelCanyonTour1 owned? SteelCanyonTour2 owned? || SteelCanyonTour3 owned? || SteelCanyonTour4 owned? || SteelCanyonTour5 owned? || SteelCanyonTour6 owned? || SteelCanyonTour7 owned? || SteelCanyonTour8 owned? ||
+	Hinted 1
+	Requires SteelCanyonTour1 owned? SteelCanyonTour2 owned? && SteelCanyonTour3 owned? && SteelCanyonTour4 owned? && SteelCanyonTour5 owned? && SteelCanyonTour6 owned? && SteelCanyonTour7 owned? && SteelCanyonTour8 owned? &&
+	Meter SteelCanyonTour1 owned? SteelCanyonTour2 owned? + SteelCanyonTour3 owned? + SteelCanyonTour4 owned? + SteelCanyonTour5 owned? + SteelCanyonTour6 owned? + SteelCanyonTour7 owned? + SteelCanyonTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name SkywayCityExplorer
+	Category kPerk
+	DisplayTitle "P3366269813"
+	DisplayHint "P1239196216"
+	DisplayText "P1767925738"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible SkywayCityTour1 owned? SkywayCityTour2 owned? || SkywayCityTour3 owned? || SkywayCityTour4 owned? || SkywayCityTour5 owned? || SkywayCityTour6 owned? || SkywayCityTour7 owned? || SkywayCityTour8 owned? ||
+	Hinted 1
+	Requires SkywayCityTour1 owned? SkywayCityTour2 owned? && SkywayCityTour3 owned? && SkywayCityTour4 owned? && SkywayCityTour5 owned? && SkywayCityTour6 owned? && SkywayCityTour7 owned? && SkywayCityTour8 owned? &&
+	Meter SkywayCityTour1 owned? SkywayCityTour2 owned? + SkywayCityTour3 owned? + SkywayCityTour4 owned? + SkywayCityTour5 owned? + SkywayCityTour6 owned? + SkywayCityTour7 owned? + SkywayCityTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name FaultlineExplorer
+	Category kPerk
+	DisplayTitle "P2096510981"
+	DisplayHint "P4202117384"
+	DisplayText "P2861217469"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible FaultlineTour1 owned? FaultlineTour13 owned? || FaultlineTour14 owned? || FaultlineTour15 owned? || FaultlineTour5 owned? || FaultlineTour6 owned? || FaultlineTour7 owned? || FaultlineEaster owned? ||
+	Hinted 1
+	Requires FaultlineTour1 owned? FaultlineTour13 owned? && FaultlineTour14 owned? && FaultlineTour15 owned? && FaultlineTour5 owned? && FaultlineTour6 owned? && FaultlineTour7 owned? && FaultlineEaster owned? &&
+	Meter FaultlineTour1 owned? FaultlineTour13 owned? + FaultlineTour14 owned? + FaultlineTour15 owned? + FaultlineTour5 owned? + FaultlineTour6 owned? + FaultlineTour7 owned? + FaultlineEaster owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name EchoFaultlineExplorer
+	Category kPerk
+	DisplayTitle "P826310855"
+	DisplayHint "P175879235"
+	DisplayText "P4099720171"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible FaultlineTour8 owned? FaultlineTour2 owned? || FaultlineTour3 owned? || FaultlineTour4 owned? || FaultlineTour9 owned? || FaultlineTour10 owned? || FaultlineTour11 owned? || FaultlineTour12 owned? ||
+	Hinted 1
+	Requires FaultlineTour8 owned? FaultlineTour2 owned? && FaultlineTour3 owned? && FaultlineTour4 owned? && FaultlineTour9 owned? && FaultlineTour10 owned? && FaultlineTour11 owned? && FaultlineTour12 owned? &&
+	Meter FaultlineTour8 owned? FaultlineTour2 owned? + FaultlineTour3 owned? + FaultlineTour4 owned? + FaultlineTour9 owned? + FaultlineTour10 owned? + FaultlineTour11 owned? + FaultlineTour12 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name CroatoaExplorer
+	Category kPerk
+	DisplayTitle "P4282557724"
+	DisplayHint "P220912174"
+	DisplayText "P36630821"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible CroatoaTour1 owned? CroatoaTour2 owned? || CroatoaTour3 owned? || CroatoaTour4 owned? || CroatoaTour5 owned? || CroatoaTour6 owned? || CroatoaTour7 owned? || CroatoaTour8 owned? ||
+	Hinted 1
+	Requires CroatoaTour1 owned? CroatoaTour2 owned? && CroatoaTour3 owned? && CroatoaTour4 owned? && CroatoaTour5 owned? && CroatoaTour6 owned? && CroatoaTour7 owned? && CroatoaTour8 owned? &&
+	Meter CroatoaTour1 owned? CroatoaTour2 owned? + CroatoaTour3 owned? + CroatoaTour4 owned? + CroatoaTour5 owned? + CroatoaTour6 owned? + CroatoaTour7 owned? + CroatoaTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name TalosIslandExplorer
+	Category kPerk
+	DisplayTitle "P1825048380"
+	DisplayHint "P2492235759"
+	DisplayText "P1546483913"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible TalosIslandTour1 owned? TalosIslandTour2 owned? || TalosIslandTour3 owned? || TalosIslandTour4 owned? || TalosIslandTour5 owned? || TalosIslandTour6 owned? || TalosIslandTour7 owned? || TalosIslandTour8 owned? ||
+	Hinted 1
+	Requires TalosIslandTour1 owned? TalosIslandTour2 owned? && TalosIslandTour3 owned? && TalosIslandTour4 owned? && TalosIslandTour5 owned? && TalosIslandTour6 owned? && TalosIslandTour7 owned? && TalosIslandTour8 owned? &&
+	Meter TalosIslandTour1 owned? TalosIslandTour2 owned? + TalosIslandTour3 owned? + TalosIslandTour4 owned? + TalosIslandTour5 owned? + TalosIslandTour6 owned? + TalosIslandTour7 owned? + TalosIslandTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name IndependencePortExplorer
+	Category kPerk
+	DisplayTitle "P1436479071"
+	DisplayHint "P590955759"
+	DisplayText "P762587807"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible IndependancePortTour1 owned? IndependancePortTour2 owned? || IndependancePortTour3 owned? || IndependencePortTour4 owned? || IndependencePortTour5 owned? || IndependencePortTour6 owned? || IndependencePortTour7 owned? || IndependencePortTour8 owned? ||
+	Hinted 1
+	Requires IndependancePortTour1 owned? IndependancePortTour2 owned? && IndependancePortTour3 owned? && IndependencePortTour4 owned? && IndependencePortTour5 owned? && IndependencePortTour6 owned? && IndependencePortTour7 owned? && IndependencePortTour8 owned? &&
+	Meter IndependancePortTour1 owned? IndependancePortTour2 owned? + IndependancePortTour3 owned? + IndependencePortTour4 owned? + IndependencePortTour5 owned? + IndependencePortTour6 owned? + IndependencePortTour7 owned? + IndependencePortTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name FoundersFallsExplorer
+	Category kPerk
+	DisplayTitle "P1615276052"
+	DisplayHint "P1135971932"
+	DisplayText "P143402863"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible FoundersFallsTour1 owned? FoundersFallsTour2 owned? || FoundersFallsTour3 owned? || FoundersFallsTour4 owned? || FoundersFallsTour5 owned? || FoundersFallsTour6 owned? || FoundersFallsTour7 owned? || FoundersFallsTour8 owned? ||
+	Hinted 1
+	Requires FoundersFallsTour1 owned? FoundersFallsTour2 owned? && FoundersFallsTour3 owned? && FoundersFallsTour4 owned? && FoundersFallsTour5 owned? && FoundersFallsTour6 owned? && FoundersFallsTour7 owned? && FoundersFallsTour8 owned? &&
+	Meter FoundersFallsTour1 owned? FoundersFallsTour2 owned? + FoundersFallsTour3 owned? + FoundersFallsTour4 owned? + FoundersFallsTour5 owned? + FoundersFallsTour6 owned? + FoundersFallsTour7 owned? + FoundersFallsTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name BrickstownExplorer
+	Category kPerk
+	DisplayTitle "P559835090"
+	DisplayHint "P2154258416"
+	DisplayText "P4164623681"
+	DisplayTitleVillain "P386549540"
+	DisplayHintVillain "P2154258416"
+	DisplayTextVillain "P4164623681"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible BrickstownTour1 owned? BrickstownTour2 owned? || BrickstownTour3 owned? || BrickstownTour4 owned? || BrickstownTour5 owned? || BrickstownTour6 owned? || BrickstownTour7 owned? || BrickstownTour8 owned? ||
+	Hinted 1
+	Requires BrickstownTour1 owned? BrickstownTour2 owned? && BrickstownTour3 owned? && BrickstownTour4 owned? && BrickstownTour5 owned? && BrickstownTour6 owned? && BrickstownTour7 owned? && BrickstownTour8 owned? &&
+	Meter BrickstownTour1 owned? BrickstownTour2 owned? + BrickstownTour3 owned? + BrickstownTour4 owned? + BrickstownTour5 owned? + BrickstownTour6 owned? + BrickstownTour7 owned? + BrickstownTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name PeregrineIslandExplorer
+	Category kPerk
+	DisplayTitle "P2994217235"
+	DisplayHint "P2257312724"
+	DisplayText "P2109940961"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_HeroExploreAccolade"
+	Visible PeregrineIslandTour1 owned? PeregrineIslandTour2 owned? || PeregrineIslandTour3 owned? || PeregrineIslandTour4 owned? || PeregrineIslandTour5 owned? || PeregrineIslandTour6 owned? || PeregrineIslandTour7 owned? || PeregrineIslandTour8 owned? ||
+	Hinted 1
+	Requires PeregrineIslandTour1 owned? PeregrineIslandTour2 owned? && PeregrineIslandTour3 owned? && PeregrineIslandTour4 owned? && PeregrineIslandTour5 owned? && PeregrineIslandTour6 owned? && PeregrineIslandTour7 owned? && PeregrineIslandTour8 owned? &&
+	Meter PeregrineIslandTour1 owned? PeregrineIslandTour2 owned? + PeregrineIslandTour3 owned? + PeregrineIslandTour4 owned? + PeregrineIslandTour5 owned? + PeregrineIslandTour6 owned? + PeregrineIslandTour7 owned? + PeregrineIslandTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name MercyIslandExplorer
+	Category kPerk
+	DisplayTitle "P3142337902"
+	DisplayHint "P1876227886"
+	DisplayText "P522938969"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_VillainExploreAccolade"
+	Visible MercyIslandTour1 owned? MercyIslandTour2 owned? || MercyIslandTour3 owned? || MercyIslandTour4 owned? || MercyIslandTour5 owned? || MercyIslandTour6 owned? || MercyIslandTour7 owned? || MercyIslandTour8 owned? ||
+	Hinted 1
+	Requires MercyIslandTour1 owned? MercyIslandTour2 owned? && MercyIslandTour3 owned? && MercyIslandTour4 owned? && MercyIslandTour5 owned? && MercyIslandTour6 owned? && MercyIslandTour7 owned? && MercyIslandTour8 owned? &&
+	Meter MercyIslandTour1 owned? MercyIslandTour2 owned? + MercyIslandTour3 owned? + MercyIslandTour4 owned? + MercyIslandTour5 owned? + MercyIslandTour6 owned? + MercyIslandTour7 owned? + MercyIslandTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name PortOakesExplorer
+	Category kPerk
+	DisplayTitle "P1686008678"
+	DisplayHint "P933372745"
+	DisplayText "P1979907199"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_VillainExploreAccolade"
+	Visible PortOakesTour1 owned? PortOakesTour2 owned? || PortOakesTour3 owned? || PortOakesTour4 owned? || PortOakesTour5 owned? || PortOakesTour6 owned? || PortOakesTour7 owned? || PortOakesTour8 owned? ||
+	Hinted 1
+	Requires PortOakesTour1 owned? PortOakesTour2 owned? && PortOakesTour3 owned? && PortOakesTour4 owned? && PortOakesTour5 owned? && PortOakesTour6 owned? && PortOakesTour7 owned? && PortOakesTour8 owned? &&
+	Meter PortOakesTour1 owned? PortOakesTour2 owned? + PortOakesTour3 owned? + PortOakesTour4 owned? + PortOakesTour5 owned? + PortOakesTour6 owned? + PortOakesTour7 owned? + PortOakesTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name CapAuDiableExplorer
+	Category kPerk
+	DisplayTitle "P533489352"
+	DisplayHint "P2091754075"
+	DisplayText "P1389097435"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_VillainExploreAccolade"
+	Visible CapAuDiableTour1 owned? CapAuDiableTour2 owned? || CapAuDiableTour3 owned? || CapAuDiableTour4 owned? || CapAuDiableTour5 owned? || CapAuDiableTour6 owned? || CapAuDiableTour7 owned? || CapAuDiableTour8 owned? ||
+	Hinted 1
+	Requires CapAuDiableTour1 owned? CapAuDiableTour2 owned? && CapAuDiableTour3 owned? && CapAuDiableTour4 owned? && CapAuDiableTour5 owned? && CapAuDiableTour6 owned? && CapAuDiableTour7 owned? && CapAuDiableTour8 owned? &&
+	Meter CapAuDiableTour1 owned? CapAuDiableTour2 owned? + CapAuDiableTour3 owned? + CapAuDiableTour4 owned? + CapAuDiableTour5 owned? + CapAuDiableTour6 owned? + CapAuDiableTour7 owned? + CapAuDiableTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name SharkheadExplorer
+	Category kPerk
+	DisplayTitle "P3806411463"
+	DisplayHint "P3815951382"
+	DisplayText "P3631629001"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_VillainExploreAccolade"
+	Visible SharkheadTour1 owned? SharkheadTour2 owned? || SharkheadTour3 owned? || SharkheadTour4 owned? || SharkheadTour5 owned? || SharkheadTour6 owned? || SharkheadTour7 owned? || SharkheadTour8 owned? ||
+	Hinted 1
+	Requires SharkheadTour1 owned? SharkheadTour2 owned? && SharkheadTour3 owned? && SharkheadTour4 owned? && SharkheadTour5 owned? && SharkheadTour6 owned? && SharkheadTour7 owned? && SharkheadTour8 owned? &&
+	Meter SharkheadTour1 owned? SharkheadTour2 owned? + SharkheadTour3 owned? + SharkheadTour4 owned? + SharkheadTour5 owned? + SharkheadTour6 owned? + SharkheadTour7 owned? + SharkheadTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name NervaExplorer
+	Category kPerk
+	DisplayTitle "P984709540"
+	DisplayHint "P9534825"
+	DisplayText "P1558353416"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_VillainExploreAccolade"
+	Visible NervaTour1 owned? NervaTour2 owned? || NervaTour3 owned? || NervaTour4 owned? || NervaTour5 owned? || NervaTour6 owned? || NervaTour7 owned? || NervaTour8 owned? ||
+	Hinted 1
+	Requires NervaTour1 owned? NervaTour2 owned? && NervaTour3 owned? && NervaTour4 owned? && NervaTour5 owned? && NervaTour6 owned? && NervaTour7 owned? && NervaTour8 owned? &&
+	Meter NervaTour1 owned? NervaTour2 owned? + NervaTour3 owned? + NervaTour4 owned? + NervaTour5 owned? + NervaTour6 owned? + NervaTour7 owned? + NervaTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name StMartialExplorer
+	Category kPerk
+	DisplayTitle "P494500730"
+	DisplayHint "P33330849"
+	DisplayText "P2623670588"
+	DisplayTitleVillain "P1318539473"
+	DisplayHintVillain "P33330849"
+	DisplayTextVillain "P2623670588"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_VillainExploreAccolade"
+	Visible StMartialTour1 owned? StMartialTour2 owned? || StMartialTour3 owned? || StMartialTour4 owned? || StMartialTour5 owned? || StMartialTour6 owned? || StMartialTour7 owned? || StMartialTour8 owned? ||
+	Hinted 1
+	Requires StMartialTour1 owned? StMartialTour2 owned? && StMartialTour3 owned? && StMartialTour4 owned? && StMartialTour5 owned? && StMartialTour6 owned? && StMartialTour7 owned? && StMartialTour8 owned? &&
+	Meter StMartialTour1 owned? StMartialTour2 owned? + StMartialTour3 owned? + StMartialTour4 owned? + StMartialTour5 owned? + StMartialTour6 owned? + StMartialTour7 owned? + StMartialTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name GrandvilleExplorer
+	Category kPerk
+	DisplayTitle "P4223684612"
+	DisplayHint "P2223581599"
+	DisplayText "P1987481111"
+	DisplayTitleVillain "P2102959344"
+	DisplayHintVillain "P2223581599"
+	DisplayTextVillain "P1987481111"
+	Reward ExplorationAccoladeTable
+	Icon "Badge_VillainExploreAccolade"
+	Visible GrandvilleTour1 owned? GrandvilleTour2 owned? || GrandvilleTour3 owned? || GrandvilleTour4 owned? || GrandvilleTour5 owned? || GrandvilleTour6 owned? || GrandvilleTour7 owned? || GrandvilleTour8 owned? ||
+	Hinted 1
+	Requires GrandvilleTour1 owned? GrandvilleTour2 owned? && GrandvilleTour3 owned? && GrandvilleTour4 owned? && GrandvilleTour5 owned? && GrandvilleTour6 owned? && GrandvilleTour7 owned? && GrandvilleTour8 owned? &&
+	Meter GrandvilleTour1 owned? GrandvilleTour2 owned? + GrandvilleTour3 owned? + GrandvilleTour4 owned? + GrandvilleTour5 owned? + GrandvilleTour6 owned? + GrandvilleTour7 owned? + GrandvilleTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name P_NovaPraetoriaExplorer
+	Category kPerk
+	DisplayTitle "P2730551499"
+	DisplayHint "P2972523672"
+	DisplayText "P1413157472"
+	Reward ExplorationAccoladeTable
+	Icon "P_NovaPraetoriaExplorer"
+	Visible P_Ambitious owned? P_CitizenCole owned? || P_CivicMinded owned? || P_Technophile owned? || P_GuardiansOfJustice owned? || P_Waterfront owned? || P_UnCivilSociety owned? || P_IntoTheWild owned? ||
+	Hinted 1
+	Requires P_Ambitious owned? P_CitizenCole owned? && P_CivicMinded owned? && P_Technophile owned? && P_GuardiansOfJustice owned? && P_Waterfront owned? && P_UnCivilSociety owned? && P_IntoTheWild owned? &&
+	Meter P_Ambitious owned? P_CitizenCole owned? + P_CivicMinded owned? + P_Technophile owned? + P_GuardiansOfJustice owned? + P_Waterfront owned? + P_UnCivilSociety owned? + P_IntoTheWild owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name P_ImperialCityExplorer
+	Category kPerk
+	DisplayTitle "P1266063115"
+	DisplayHint "P1438998860"
+	DisplayText "P3709408660"
+	Reward ExplorationAccoladeTable
+	Icon "P_NovaPraetoriaExplorer"
+	Visible P_GoldDigger owned? P_MercyMissionary owned? || P_ParkRanger owned? || P_PraetorianOfPrivilege owned? || P_Seen owned? || P_Seer owned? || P_TiberianOverseer owned? || P_TunedIn owned? ||
+	Hinted 1
+	Requires P_GoldDigger owned? P_MercyMissionary owned? && P_ParkRanger owned? && P_PraetorianOfPrivilege owned? && P_Seen owned? && P_Seer owned? && P_TiberianOverseer owned? && P_TunedIn owned? &&
+	Meter P_GoldDigger owned? P_MercyMissionary owned? + P_ParkRanger owned? + P_PraetorianOfPrivilege owned? + P_Seen owned? + P_Seer owned? + P_TiberianOverseer owned? + P_TunedIn owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name P_UndergroundNovaPraetoriaExplorer
+	Category kPerk
+	DisplayTitle "P379608278"
+	DisplayHint "P4164946979"
+	DisplayText "P560094764"
+	Reward ExplorationAccoladeTable
+	Icon "P_NovaPraetoriaExplorer"
+	Visible P_ClockworkMechanic owned? P_Disappeared owned? || P_FerrymanOfTheDamned owned? || P_Morbid owned? || P_SecretPrisoner owned? || P_Trainspotter owned? || P_UrbanSpelunker owned? || P_WarriorAtTheGate owned? ||
+	Hinted 1
+	Requires P_ClockworkMechanic owned? P_Disappeared owned? && P_FerrymanOfTheDamned owned? && P_Morbid owned? && P_SecretPrisoner owned? && P_Trainspotter owned? && P_UrbanSpelunker owned? && P_WarriorAtTheGate owned? &&
+	Meter P_ClockworkMechanic owned? P_Disappeared owned? + P_FerrymanOfTheDamned owned? + P_Morbid owned? + P_SecretPrisoner owned? + P_Trainspotter owned? + P_UrbanSpelunker owned? + P_WarriorAtTheGate owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name P_UndergroundImperialCityExplorer
+	Category kPerk
+	DisplayTitle "P2304665002"
+	DisplayHint "P3247786180"
+	DisplayText "P3557279157"
+	Reward ExplorationAccoladeTable
+	Icon "P_NovaPraetoriaExplorer"
+	Visible P_BrokenMind owned? P_Condemning owned? || P_Engineer owned? || P_EyesOfTheDark owned? || P_Hoarder owned? || P_Lowlife owned? || P_SilentWitness owned? || P_UndergroundExplorer owned? ||
+	Hinted 1
+	Requires P_BrokenMind owned? P_Condemning owned? && P_Engineer owned? && P_EyesOfTheDark owned? && P_Hoarder owned? && P_Lowlife owned? && P_SilentWitness owned? && P_UndergroundExplorer owned? &&
+	Meter P_BrokenMind owned? P_Condemning owned? + P_Engineer owned? + P_EyesOfTheDark owned? + P_Hoarder owned? + P_Lowlife owned? + P_SilentWitness owned? + P_UndergroundExplorer owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name P_NeutropolisExplorer
+	Category kPerk
+	DisplayTitle "P4293055507"
+	DisplayHint "P1086751498"
+	DisplayText "P2908357088"
+	Reward ExplorationAccoladeTable
+	Icon "P_NovaPraetoriaExplorer"
+	Visible P_Airlift owned? P_DontDrinkIt owned? || P_EyesToTheFuture owned? || P_Longshoreman owned? || P_MorePower owned? || P_Stockpiling owned? || P_StuffOfLife owned? || P_UrbanRenewal owned? ||
+	Hinted 1
+	Requires P_Airlift owned? P_DontDrinkIt owned? && P_EyesToTheFuture owned? && P_Longshoreman owned? && P_MorePower owned? && P_Stockpiling owned? && P_StuffOfLife owned? && P_UrbanRenewal owned? &&
+	Meter P_Airlift owned? P_DontDrinkIt owned? + P_EyesToTheFuture owned? + P_Longshoreman owned? + P_MorePower owned? + P_Stockpiling owned? + P_StuffOfLife owned? + P_UrbanRenewal owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name P_UndergroundNeutropolisExplorer
+	Category kPerk
+	DisplayTitle "P2968158177"
+	DisplayHint "P358815931"
+	DisplayText "P3936682580"
+	Reward ExplorationAccoladeTable
+	Icon "P_NovaPraetoriaExplorer"
+	Visible P_BingeEater owned? P_Cluttered owned? || P_DrinkEnriche owned? || P_GradeF owned? || P_KeepingTheLightsOn owned? || P_ReadyForAnything owned? || P_Nailbiter owned? || P_TheNewBoss owned? ||
+	Hinted 1
+	Requires P_BingeEater owned? P_Cluttered owned? && P_DrinkEnriche owned? && P_GradeF owned? && P_KeepingTheLightsOn owned? && P_ReadyForAnything owned? && P_Nailbiter owned? && P_TheNewBoss owned? &&
+	Meter P_BingeEater owned? P_Cluttered owned? + P_DrinkEnriche owned? + P_GradeF owned? + P_KeepingTheLightsOn owned? + P_ReadyForAnything owned? + P_Nailbiter owned? + P_TheNewBoss owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name FirstWardExplorer
+	Category kPerk
+	DisplayTitle "P3208189887"
+	DisplayHint "P2863249864"
+	DisplayText "P1150576547"
+	Reward ExplorationAccoladeTable
+	Icon "P_NovaPraetoriaExplorer"
+	Visible FirstWardTour1 owned? FirstWardTour2 owned? || FirstWardTour3 owned? || FirstWardTour4 owned? || FirstWardTour5 owned? || FirstWardTour6 owned? || FirstWardTour7 owned? || FirstWardTour8 owned? ||
+	Hinted 1
+	Requires FirstWardTour1 owned? FirstWardTour2 owned? && FirstWardTour3 owned? && FirstWardTour4 owned? && FirstWardTour5 owned? && FirstWardTour6 owned? && FirstWardTour7 owned? && FirstWardTour8 owned? &&
+	Meter FirstWardTour1 owned? FirstWardTour2 owned? + FirstWardTour3 owned? + FirstWardTour4 owned? + FirstWardTour5 owned? + FirstWardTour6 owned? + FirstWardTour7 owned? + FirstWardTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name NightWardExplorer
+	Category kPerk
+	DisplayTitle "P2242540192"
+	DisplayHint "P2492248509"
+	DisplayText "P970042533"
+	Reward ExplorationAccoladeTable
+	Icon "P_NovaPraetoriaExplorer"
+	Visible NightWardTour1 owned? NightWardTour2 owned? || NightWardTour3 owned? || NightWardTour4 owned? || NightWardTour5 owned? || NightWardTour6 owned? || NightWardTour7 owned? || NightWardTour8 owned? ||
+	Hinted 1
+	Requires NightWardTour1 owned? NightWardTour2 owned? && NightWardTour3 owned? && NightWardTour4 owned? && NightWardTour5 owned? && NightWardTour6 owned? && NightWardTour7 owned? && NightWardTour8 owned? &&
+	Meter NightWardTour1 owned? NightWardTour2 owned? + NightWardTour3 owned? + NightWardTour4 owned? + NightWardTour5 owned? + NightWardTour6 owned? + NightWardTour7 owned? + NightWardTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name PerezParkExplorer
+	Category kPerk
+	DisplayTitle "P3937409142"
+	DisplayHint "P3028802857"
+	DisplayText "P3350727307"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible PerezParkTour1 owned? PerezParkTour2 owned? || PerezParkTour3 owned? || PerezParkTour4 owned? || PerezParkTour5 owned? || PerezParkTour6 owned? || PerezParkTour7 owned? || PerezParkTour8 owned? ||
+	Hinted 1
+	Requires PerezParkTour1 owned? PerezParkTour2 owned? && PerezParkTour3 owned? && PerezParkTour4 owned? && PerezParkTour5 owned? && PerezParkTour6 owned? && PerezParkTour7 owned? && PerezParkTour8 owned? &&
+	Meter PerezParkTour1 owned? PerezParkTour2 owned? + PerezParkTour3 owned? + PerezParkTour4 owned? + PerezParkTour5 owned? + PerezParkTour6 owned? + PerezParkTour7 owned? + PerezParkTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name BoomtownExplorer
+	Category kPerk
+	DisplayTitle "P775840432"
+	DisplayHint "P1352160214"
+	DisplayText "P705132785"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible BoomtownTour1 owned? BoomtownTour2 owned? || BoomtownTour3 owned? || BoomtownTour4 owned? || BoomtownTour5 owned? || BoomtownTour6 owned? || BoomtownTour7 owned? || BoomtownTour8 owned? ||
+	Hinted 1
+	Requires BoomtownTour1 owned? BoomtownTour2 owned? && BoomtownTour3 owned? && BoomtownTour4 owned? && BoomtownTour5 owned? && BoomtownTour6 owned? && BoomtownTour7 owned? && BoomtownTour8 owned? &&
+	Meter BoomtownTour1 owned? BoomtownTour2 owned? + BoomtownTour3 owned? + BoomtownTour4 owned? + BoomtownTour5 owned? + BoomtownTour6 owned? + BoomtownTour7 owned? + BoomtownTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name DarkAstoriaIncarnateExplorer
+	Category kPerk
+	DisplayTitle "P2480500315"
+	DisplayHint "P1193820643"
+	DisplayText "P654173943"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible DarkAstoriaIncarnateTour1 owned? DarkAstoriaIncarnateTour2 owned? || DarkAstoriaIncarnateTour3 owned? || DarkAstoriaIncarnateTour4 owned? || DarkAstoriaIncarnateTour5 owned? || DarkAstoriaIncarnateTour6 owned? || DarkAstoriaIncarnateTour7 owned? || DarkAstoriaIncarnateTour8 owned? ||
+	Hinted 1
+	Requires DarkAstoriaIncarnateTour1 owned? DarkAstoriaIncarnateTour2 owned? && DarkAstoriaIncarnateTour3 owned? && DarkAstoriaIncarnateTour4 owned? && DarkAstoriaIncarnateTour5 owned? && DarkAstoriaIncarnateTour6 owned? && DarkAstoriaIncarnateTour7 owned? && DarkAstoriaIncarnateTour8 owned? &&
+	Meter DarkAstoriaIncarnateTour1 owned? DarkAstoriaIncarnateTour2 owned? + DarkAstoriaIncarnateTour3 owned? + DarkAstoriaIncarnateTour4 owned? + DarkAstoriaIncarnateTour5 owned? + DarkAstoriaIncarnateTour6 owned? + DarkAstoriaIncarnateTour7 owned? + DarkAstoriaIncarnateTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name DarkAstoriaExplorer
+	Category kPerk
+	DisplayTitle "P1974084514"
+	DisplayHint "P1917048960"
+	DisplayText "P654173943"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible DarkAstoriaTour1 owned? DarkAstoriaTour2 owned? || DarkAstoriaTour3 owned? || DarkAstoriaTour4 owned? || DarkAstoriaTour5 owned? || DarkAstoriaTour6 owned? || DarkAstoriaTour7 owned? || DarkAstoriaTour8 owned? ||
+	Hinted 1
+	Requires DarkAstoriaTour1 owned? DarkAstoriaTour2 owned? && DarkAstoriaTour3 owned? && DarkAstoriaTour4 owned? && DarkAstoriaTour5 owned? && DarkAstoriaTour6 owned? && DarkAstoriaTour7 owned? && DarkAstoriaTour8 owned? &&
+	Meter DarkAstoriaTour1 owned? DarkAstoriaTour2 owned? + DarkAstoriaTour3 owned? + DarkAstoriaTour4 owned? + DarkAstoriaTour5 owned? + DarkAstoriaTour6 owned? + DarkAstoriaTour7 owned? + DarkAstoriaTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name StrigaExplorer
+	Category kPerk
+	DisplayTitle "P32988837"
+	DisplayHint "P456989077"
+	DisplayText "P3682922002"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible StrigaTour1 owned? StrigaTour2 owned? || StrigaTour3 owned? || StrigaTour4 owned? || StrigaTour5 owned? || StrigaTour6 owned? || StrigaTour7 owned? || StrigaTour8 owned? ||
+	Hinted 1
+	Requires StrigaTour1 owned? StrigaTour2 owned? && StrigaTour3 owned? && StrigaTour4 owned? && StrigaTour5 owned? && StrigaTour6 owned? && StrigaTour7 owned? && StrigaTour8 owned? &&
+	Meter StrigaTour1 owned? StrigaTour2 owned? + StrigaTour3 owned? + StrigaTour4 owned? + StrigaTour5 owned? + StrigaTour6 owned? + StrigaTour7 owned? + StrigaTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name CreysFolleyExplorer
+	Category kPerk
+	DisplayTitle "P3040333845"
+	DisplayHint "P1262021281"
+	DisplayText "P1217284453"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible CreysFolleyTour1 owned? CreysFolleyTour2 owned? || CreysFolleyTour3 owned? || CreysFolleyTour4 owned? || CreysFolleyTour5 owned? || CreysFolleyTour6 owned? || CreysFolleyTour7 owned? || CreysFolleyTour8 owned? ||
+	Hinted 1
+	Requires CreysFolleyTour1 owned? CreysFolleyTour2 owned? && CreysFolleyTour3 owned? && CreysFolleyTour4 owned? && CreysFolleyTour5 owned? && CreysFolleyTour6 owned? && CreysFolleyTour7 owned? && CreysFolleyTour8 owned? &&
+	Meter CreysFolleyTour1 owned? CreysFolleyTour2 owned? + CreysFolleyTour3 owned? + CreysFolleyTour4 owned? + CreysFolleyTour5 owned? + CreysFolleyTour6 owned? + CreysFolleyTour7 owned? + CreysFolleyTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name RiktiWarZoneExplorer
+	Category kPerk
+	DisplayTitle "P2602435350"
+	DisplayHint "P2685653206"
+	DisplayText "P4278258906"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible RiktiWarZoneTour1 owned? RiktiWarZoneTour2 owned? RiktiWarZoneTour4 owned? RiktiWarZoneTour6 owned? RiktiWarZoneTour7 owned? RiktiWarZoneTour8 owned? RiktiWarZoneTour9 owned? RiktiWarZoneTour12 owned? || || || || || || ||
+	Hinted 1
+	Requires RiktiWarZoneTour1 owned? RiktiWarZoneTour2 owned? RiktiWarZoneTour4 owned? RiktiWarZoneTour6 owned? RiktiWarZoneTour7 owned? RiktiWarZoneTour8 owned? RiktiWarZoneTour9 owned? RiktiWarZoneTour12 owned? && && && && && && &&
+	Meter RiktiWarZoneTour1 owned? RiktiWarZoneTour2 owned? RiktiWarZoneTour4 owned? RiktiWarZoneTour6 owned? RiktiWarZoneTour7 owned? RiktiWarZoneTour8 owned? RiktiWarZoneTour9 owned? RiktiWarZoneTour12 owned? + + + + + + + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name RiktiCrashSiteExplorer
+	Category kPerk
+	DisplayTitle "P3143898900"
+	DisplayHint "P3981580206"
+	DisplayText "P3301810082"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible RiktiCrashSiteTour1 owned? RiktiWarZoneTour3 owned? RiktiWarZoneTour5 owned? RiktiWarZoneTour10 owned? RiktiWarZoneTour11 owned? RiktiWarZoneTour13 owned? CommSpecialist owned? Shielded owned? || || || || || || ||
+	Hinted 1
+	Requires RiktiCrashSiteTour1 owned? RiktiWarZoneTour3 owned? RiktiWarZoneTour5 owned? RiktiWarZoneTour10 owned? RiktiWarZoneTour11 owned? RiktiWarZoneTour13 owned? CommSpecialist owned? Shielded owned? && && && && && && &&
+	Meter RiktiCrashSiteTour1 owned? RiktiWarZoneTour3 owned? RiktiWarZoneTour5 owned? RiktiWarZoneTour10 owned? RiktiWarZoneTour11 owned? RiktiWarZoneTour13 owned? CommSpecialist owned? Shielded owned? + + + + + + + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name FirebaseZuluExplorer
+	Category kPerk
+	DisplayTitle "P1929858163"
+	DisplayHint "P3044398711"
+	DisplayText "P1505797390"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible FirebaseZuluTour1 owned? FirebaseZuluTour2 owned? || FirebaseZuluTour3 owned? || FirebaseZuluTour4 owned? || FirebaseZuluTour5 owned? || FirebaseZuluTour6 owned? || FirebaseZuluTour7 owned? || FirebaseZuluTour8 owned? ||
+	Hinted 1
+	Requires FirebaseZuluTour1 owned? FirebaseZuluTour2 owned? && FirebaseZuluTour3 owned? && FirebaseZuluTour4 owned? && FirebaseZuluTour5 owned? && FirebaseZuluTour6 owned? && FirebaseZuluTour7 owned? && FirebaseZuluTour8 owned? &&
+	Meter FirebaseZuluTour1 owned? FirebaseZuluTour2 owned? + FirebaseZuluTour3 owned? + FirebaseZuluTour4 owned? + FirebaseZuluTour5 owned? + FirebaseZuluTour6 owned? + FirebaseZuluTour7 owned? + FirebaseZuluTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name CascadeArchExplorer
+	Category kPerk
+	DisplayTitle "P1798509906"
+	DisplayHint "P218976618"
+	DisplayText "P1019204477"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible CascadeArchTour1 owned? CascadeArchTour2 owned? || CascadeArchTour3 owned? || CascadeArchTour4 owned? || CascadeArchTour5 owned? || CascadeArchTour6 owned? || CascadeArchTour7 owned? || CascadeArchTour8 owned? ||
+	Hinted 1
+	Requires CascadeArchTour1 owned? CascadeArchTour2 owned? && CascadeArchTour3 owned? && CascadeArchTour4 owned? && CascadeArchTour5 owned? && CascadeArchTour6 owned? && CascadeArchTour7 owned? && CascadeArchTour8 owned? &&
+	Meter CascadeArchTour1 owned? CascadeArchTour2 owned? + CascadeArchTour3 owned? + CascadeArchTour4 owned? + CascadeArchTour5 owned? + CascadeArchTour6 owned? + CascadeArchTour7 owned? + CascadeArchTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name ChantryExplorer
+	Category kPerk
+	DisplayTitle "P3834676126"
+	DisplayHint "P3410665179"
+	DisplayText "P2530954648"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible ChantryTour1 owned? ChantryTour2 owned? || ChantryTour3 owned? || ChantryTour4 owned? || ChantryTour5 owned? || ChantryTour6 owned? || ChantryTour7 owned? || ChantryTour8 owned? ||
+	Hinted 1
+	Requires ChantryTour1 owned? ChantryTour2 owned? && ChantryTour3 owned? && ChantryTour4 owned? && ChantryTour5 owned? && ChantryTour6 owned? && ChantryTour7 owned? && ChantryTour8 owned? &&
+	Meter ChantryTour1 owned? ChantryTour2 owned? + ChantryTour3 owned? + ChantryTour4 owned? + ChantryTour5 owned? + ChantryTour6 owned? + ChantryTour7 owned? + ChantryTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name AbSewerNetworkExplorer
+	Category kPerk
+	DisplayTitle "P2953854905"
+	DisplayHint "P2851746152"
+	DisplayText "P3885887246"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible AbSewerNetworkTour1 owned? AbSewerNetworkTour2 owned? || AbSewerNetworkTour3 owned? || AbSewerNetworkTour4 owned? || AbSewerNetworkTour5 owned? || AbSewerNetworkTour6 owned? || AbSewerNetworkTour7 owned? || AbSewerNetworkTour8 owned? ||
+	Hinted 1
+	Requires AbSewerNetworkTour1 owned? AbSewerNetworkTour2 owned? && AbSewerNetworkTour3 owned? && AbSewerNetworkTour4 owned? && AbSewerNetworkTour5 owned? && AbSewerNetworkTour6 owned? && AbSewerNetworkTour7 owned? && AbSewerNetworkTour8 owned? &&
+	Meter AbSewerNetworkTour1 owned? AbSewerNetworkTour2 owned? + AbSewerNetworkTour3 owned? + AbSewerNetworkTour4 owned? + AbSewerNetworkTour5 owned? + AbSewerNetworkTour6 owned? + AbSewerNetworkTour7 owned? + AbSewerNetworkTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name SewerNetworkExplorer
+	Category kPerk
+	DisplayTitle "P1265620354"
+	DisplayHint "P2138755721"
+	DisplayText "P617952629"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible SewerNetworkTour1 owned? SewerNetworkTour2 owned? || SewerNetworkTour3 owned? || SewerNetworkTour4 owned? || SewerNetworkTour5 owned? || SewerNetworkTour6 owned? || SewerNetworkTour7 owned? || SewerNetworkTour8 owned? ||
+	Hinted 1
+	Requires SewerNetworkTour1 owned? SewerNetworkTour2 owned? && SewerNetworkTour3 owned? && SewerNetworkTour4 owned? && SewerNetworkTour5 owned? && SewerNetworkTour6 owned? && SewerNetworkTour7 owned? && SewerNetworkTour8 owned? &&
+	Meter SewerNetworkTour1 owned? SewerNetworkTour2 owned? + SewerNetworkTour3 owned? + SewerNetworkTour4 owned? + SewerNetworkTour5 owned? + SewerNetworkTour6 owned? + SewerNetworkTour7 owned? + SewerNetworkTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name TerraVoltaExplorer
+	Category kPerk
+	DisplayTitle "P2772799496"
+	DisplayHint "P1655090792"
+	DisplayText "P658240269"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible TerraVoltaTour1 owned? TerraVoltaTour2 owned? || TerraVoltaTour3 owned? || TerraVoltaTour4 owned? || TerraVoltaTour5 owned? || TerraVoltaTour6 owned? || TerraVoltaTour7 owned? || TerraVoltaTour8 owned? ||
+	Hinted 1
+	Requires TerraVoltaTour1 owned? TerraVoltaTour2 owned? && TerraVoltaTour3 owned? && TerraVoltaTour4 owned? && TerraVoltaTour5 owned? && TerraVoltaTour6 owned? && TerraVoltaTour7 owned? && TerraVoltaTour8 owned? &&
+	Meter TerraVoltaTour1 owned? TerraVoltaTour2 owned? + TerraVoltaTour3 owned? + TerraVoltaTour4 owned? + TerraVoltaTour5 owned? + TerraVoltaTour6 owned? + TerraVoltaTour7 owned? + TerraVoltaTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name EdenExplorer
+	Category kPerk
+	DisplayTitle "P113346649"
+	DisplayHint "P2431456046"
+	DisplayText "P3121229262"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible EdenTour1 owned? EdenTour2 owned? || EdenTour3 owned? || EdenTour4 owned? || EdenTour5 owned? || EdenTour6 owned? || EdenTour7 owned? || EdenTour8 owned? ||
+	Hinted 1
+	Requires EdenTour1 owned? EdenTour2 owned? && EdenTour3 owned? && EdenTour4 owned? && EdenTour5 owned? && EdenTour6 owned? && EdenTour7 owned? && EdenTour8 owned? &&
+	Meter EdenTour1 owned? EdenTour2 owned? + EdenTour3 owned? + EdenTour4 owned? + EdenTour5 owned? + EdenTour6 owned? + EdenTour7 owned? + EdenTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name TheHiveExplorer
+	Category kPerk
+	DisplayTitle "P2373902571"
+	DisplayHint "P733897398"
+	DisplayText "P3386062827"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible TheHiveTour1 owned? TheHiveTour2 owned? || TheHiveTour3 owned? || TheHiveTour4 owned? || TheHiveTour5 owned? || TheHiveTour6 owned? || TheHiveTour7 owned? || TheHiveTour8 owned? ||
+	Hinted 1
+	Requires TheHiveTour1 owned? TheHiveTour2 owned? && TheHiveTour3 owned? && TheHiveTour4 owned? && TheHiveTour5 owned? && TheHiveTour6 owned? && TheHiveTour7 owned? && TheHiveTour8 owned? &&
+	Meter TheHiveTour1 owned? TheHiveTour2 owned? + TheHiveTour3 owned? + TheHiveTour4 owned? + TheHiveTour5 owned? + TheHiveTour6 owned? + TheHiveTour7 owned? + TheHiveTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name StormPalaceExplorer
+	Category kPerk
+	DisplayTitle "P370356539"
+	DisplayHint "P52507925"
+	DisplayText "P3636627903"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible StormPalaceTour1 owned? StormPalaceTour2 owned? || StormPalaceTour3 owned? || StormPalaceTour4 owned? || StormPalaceTour5 owned? || StormPalaceTour6 owned? || StormPalaceTour7 owned? || StormPalaceTour8 owned? ||
+	Hinted 1
+	Requires StormPalaceTour1 owned? StormPalaceTour2 owned? && StormPalaceTour3 owned? && StormPalaceTour4 owned? && StormPalaceTour5 owned? && StormPalaceTour6 owned? && StormPalaceTour7 owned? && StormPalaceTour8 owned? &&
+	Meter StormPalaceTour1 owned? StormPalaceTour2 owned? + StormPalaceTour3 owned? + StormPalaceTour4 owned? + StormPalaceTour5 owned? + StormPalaceTour6 owned? + StormPalaceTour7 owned? + StormPalaceTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name AbyssExplorer
+	Category kPerk
+	DisplayTitle "P3282695540"
+	DisplayHint "P2175817032"
+	DisplayText "P650610385"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible AbyssTour1 owned? AbyssTour2 owned? || AbyssTour3 owned? || AbyssTour4 owned? || AbyssTour5 owned? || AbyssTour6 owned? || AbyssTour7 owned? || AbyssTour8 owned? ||
+	Hinted 1
+	Requires AbyssTour1 owned? AbyssTour2 owned? && AbyssTour3 owned? && AbyssTour4 owned? && AbyssTour5 owned? && AbyssTour6 owned? && AbyssTour7 owned? && AbyssTour8 owned? &&
+	Meter AbyssTour1 owned? AbyssTour2 owned? + AbyssTour3 owned? + AbyssTour4 owned? + AbyssTour5 owned? + AbyssTour6 owned? + AbyssTour7 owned? + AbyssTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name MonsterIslandExplorer
+	Category kPerk
+	DisplayTitle "P2982888868"
+	DisplayHint "P3266453811"
+	DisplayText "P2160547925"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_hazard_accolade"
+	Visible MonsterIslandTour1 owned? MonsterIslandTour2 owned? || MonsterIslandTour3 owned? || MonsterIslandTour4 owned? || MonsterIslandTour5 owned? || MonsterIslandTour6 owned? || MonsterIslandTour7 owned? || MonsterIslandTour8 owned? ||
+	Hinted 1
+	Requires MonsterIslandTour1 owned? MonsterIslandTour2 owned? && MonsterIslandTour3 owned? && MonsterIslandTour4 owned? && MonsterIslandTour5 owned? && MonsterIslandTour6 owned? && MonsterIslandTour7 owned? && MonsterIslandTour8 owned? &&
+	Meter MonsterIslandTour1 owned? MonsterIslandTour2 owned? + MonsterIslandTour3 owned? + MonsterIslandTour4 owned? + MonsterIslandTour5 owned? + MonsterIslandTour6 owned? + MonsterIslandTour7 owned? + MonsterIslandTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name BloodyBayExplorer
+	Category kPerk
+	DisplayTitle "P3398168428"
+	DisplayHint "P4126846813"
+	DisplayText "P819582700"
+	DisplayTitleVillain "P3398168428"
+	DisplayHintVillain "P347906217"
+	DisplayTextVillain "P819582700"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_pvp_accolade"
+	Visible BloodyBayTour1 owned? BloodyBayTour2 owned? || BloodyBayTour3 owned? || BloodyBayTour4 owned? || BloodyBayTour5 owned? || BloodyBayTour6 owned? || BloodyBayTour7 owned? || BloodyBayTour8 owned? ||
+	Hinted 1
+	Requires BloodyBayTour1 owned? BloodyBayTour2 owned? && BloodyBayTour3 owned? && BloodyBayTour4 owned? && BloodyBayTour5 owned? && BloodyBayTour6 owned? && BloodyBayTour7 owned? && BloodyBayTour8 owned? &&
+	Meter BloodyBayTour1 owned? BloodyBayTour2 owned? + BloodyBayTour3 owned? + BloodyBayTour4 owned? + BloodyBayTour5 owned? + BloodyBayTour6 owned? + BloodyBayTour7 owned? + BloodyBayTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name SirensCallExplorer
+	Category kPerk
+	DisplayTitle "P1994364058"
+	DisplayHint "P4202800814"
+	DisplayText "P2508176802"
+	Reward ExplorationAccoladeTable
+	Icon "badge_tourism_pvp_accolade"
+	Visible SirensCallTour1 owned? SirensCallTour2 owned? || SirensCallTour3 owned? || SirensCallTour4 owned? || SirensCallTour5 owned? || SirensCallTour6 owned? || SirensCallTour7 owned? || SirensCallTour8 owned? ||
+	Hinted 1
+	Requires SirensCallTour1 owned? SirensCallTour2 owned? && SirensCallTour3 owned? && SirensCallTour4 owned? && SirensCallTour5 owned? && SirensCallTour6 owned? && SirensCallTour7 owned? && SirensCallTour8 owned? &&
+	Meter SirensCallTour1 owned? SirensCallTour2 owned? + SirensCallTour3 owned? + SirensCallTour4 owned? + SirensCallTour5 owned? + SirensCallTour6 owned? + SirensCallTour7 owned? + SirensCallTour8 owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name IncarnateAlphaSlot
+	Category kPerk
+	DisplayTitle "P1989325993"
+	DisplayHint "P2174269417"
+	DisplayText "P2925823066"
+	Icon "Badge_Accolade_AlphaSlot"
+	Visible IncarnateAlphaPoints 1 >=
+	Hinted 1
+	Requires IncarnateAlphaPoints 1000000 >=
+	Meter IncarnateAlphaPoints 1000000 %
+	Revoke 0
+	AwardText "P2054987754"
+	BadgeValues 1000000
+}
+
+Badge
+{
+	Name IncarnateJudgementSlot
+	Category kPerk
+	DisplayTitle "P2025335439"
+	DisplayHint "P89299081"
+	DisplayText "P2485357745"
+	Icon "Badge_Accolade_JudgementSlot"
+	Visible IncarnateJudgementPoints 1 >=
+	Hinted 1
+	Requires IncarnateJudgementPoints 1500000 >=
+	Meter IncarnateJudgementPoints 1500000 %
+	Revoke 0
+	AwardText "P11436768"
+	BadgeValues 1500000
+}
+
+Badge
+{
+	Name IncarnateInterfaceSlot
+	Category kPerk
+	DisplayTitle "P2584494116"
+	DisplayHint "P1709381370"
+	DisplayText "P863726227"
+	Icon "Badge_Accolade_InterfaceSlot"
+	Visible IncarnateInterfacePoints 1 >=
+	Hinted 1
+	Requires IncarnateInterfacePoints 1500000 >=
+	Meter IncarnateInterfacePoints 1500000 %
+	Revoke 0
+	AwardText "P2558644514"
+	BadgeValues 1500000
+}
+
+Badge
+{
+	Name IncarnateLoreSlot
+	Category kPerk
+	DisplayTitle "P4239104038"
+	DisplayHint "P877331000"
+	DisplayText "P3436809973"
+	Icon "Badge_Accolade_LoreSlot"
+	Visible IncarnateLorePoints 1 >=
+	Hinted 1
+	Requires IncarnateLorePoints 2250000 >=
+	Meter IncarnateLorePoints 2250000 %
+	Revoke 0
+	AwardText "P4029338271"
+	BadgeValues 2250000
+}
+
+Badge
+{
+	Name IncarnateDestinySlot
+	Category kPerk
+	DisplayTitle "P698740402"
+	DisplayHint "P3208261046"
+	DisplayText "P958581374"
+	Icon "Badge_Accolade_DestinySlot"
+	Visible IncarnateDestinyPoints 1 >=
+	Hinted 1
+	Requires IncarnateDestinyPoints 2250000 >=
+	Meter IncarnateDestinyPoints 2250000 %
+	Revoke 0
+	AwardText "P1808929613"
+	BadgeValues 2250000
+}
+
+Badge
+{
+	Name IncarnateHybridSlot
+	Category kPerk
+	DisplayTitle "P3699221850"
+	DisplayHint "P640652532"
+	DisplayText "P3746454667"
+	Icon "Badge_Accolade_LoreHybrid"
+	Visible IncarnateHybridPoints 1 >=
+	Hinted 1
+	Requires IncarnateHybridPoints 3375000 >=
+	Meter IncarnateHybridPoints 3375000 %
+	Revoke 0
+	AwardText "P3993617335"
+	BadgeValues 3375000
+}
+
+Badge
+{
+	Name IncarnateGenesisSlot
+	Category kPerk
+	DisplayTitle "P1619192319"
+	DisplayHint "P950385882"
+	DisplayText "P2890982509"
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible IncarnateGenesisPoints 1 >=
+	Hinted 1
+	Requires IncarnateGenesisPoints 3370000 >=
+	Meter IncarnateGenesisPoints 3370000 %
+	Revoke 0
+	AwardText "P681244455"
+	BadgeValues 3370000
+}
+
+Badge
+{
+	Name IncarnateMindSlot
+	Category kPerk
+	DisplayTitle "P2234440049"
+	DisplayHint "P636501852"
+	DisplayText "P4030956969"
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible IncarnateMindPoints 1 >=
+	Hinted 1
+	Requires IncarnateMindPoints 5062000 >=
+	Meter IncarnateMindPoints 5062000 %
+	Revoke 0
+	AwardText "P93687551"
+	BadgeValues 5062000
+}
+
+Badge
+{
+	Name IncarnateVitaeSlot
+	Category kPerk
+	DisplayTitle "P425866390"
+	DisplayHint "P1181265278"
+	DisplayText "P3863371518"
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible IncarnateVitaePoints 1 >=
+	Hinted 1
+	Requires IncarnateVitaePoints 5062000 >=
+	Meter IncarnateVitaePoints 5062000 %
+	Revoke 0
+	AwardText "P4217045178"
+	BadgeValues 5062000
+}
+
+Badge
+{
+	Name IncarnateOmegaSlot
+	Category kPerk
+	DisplayTitle "P1742493318"
+	DisplayHint "P588110476"
+	DisplayText "P392184622"
+	Icon "badge_tourist_01"
+	VillainIcon "v_badge_TourismBadge"
+	Visible IncarnateOmegaAPoints 1 >= IncarnateOmegaBPoints 1 >= &&
+	Hinted 1
+	Requires IncarnateOmegaAPoints 5062000 >= IncarnateOmegaBPoints 5062000 >= &&
+	Meter IncarnateOmegaAPoints 5062000 >= IncarnateOmegaBPoints 5060000 >= + 10124000 %
+	Revoke 0
+	AwardText "P3099417343"
+	BadgeValues 10124000
+}
+
+Badge
+{
+	Name NovaPraetoriaStoryArcs
+	Category kPerk
+	DisplayTitle "P1066821264"
+	DisplayHint "P470541713"
+	DisplayText "P1189886413"
+	Reward IS.Gift20Merits
+	Icon "Badge_Accolade_Hero_GoingRogueBadge"
+	VillainIcon "Badge_Accolade_Villain_GoingRogueBadge"
+	Visible Misinformation HasSouvenir? GettingOutAlive HasSouvenir? || FixingFixodyneClue HasSouvenir? || RageQuitSouvenirClue HasSouvenir? || JustifyingtheMeans HasSouvenir? || InsertParanoiaHere HasSouvenir? || IDestroyThereforeIAmSouvenirClue HasSouvenir? || DestroyOrNotDestroyThatIsTheQuestionClue HasSouvenir? || JoiningThePackClue HasSouvenir? || HitListSouvenirClue HasSouvenir? || OrganizedCrusadersClue HasSouvenir? || NoMansLadySouvenirClue HasSouvenir? || ShrewdLessonsSouvenirClue HasSouvenir? || GunsAndMoneySouvenirClue HasSouvenir? || RisetoPower HasSouvenir? || TheStrongSurviveSouvenirClue HasSouvenir? ||
+	Hinted 1
+	Requires Misinformation HasSouvenir? GettingOutAlive HasSouvenir? && FixingFixodyneClue HasSouvenir? && RageQuitSouvenirClue HasSouvenir? && JustifyingtheMeans HasSouvenir? && InsertParanoiaHere HasSouvenir? && IDestroyThereforeIAmSouvenirClue HasSouvenir? && DestroyOrNotDestroyThatIsTheQuestionClue HasSouvenir? && JoiningThePackClue HasSouvenir? && HitListSouvenirClue HasSouvenir? && OrganizedCrusadersClue HasSouvenir? && NoMansLadySouvenirClue HasSouvenir? && ShrewdLessonsSouvenirClue HasSouvenir? && GunsAndMoneySouvenirClue HasSouvenir? && RisetoPower HasSouvenir? && TheStrongSurviveSouvenirClue HasSouvenir? &&
+	Meter Misinformation HasSouvenir? GettingOutAlive HasSouvenir? + FixingFixodyneClue HasSouvenir? + RageQuitSouvenirClue HasSouvenir? + JustifyingtheMeans HasSouvenir? + InsertParanoiaHere HasSouvenir? + IDestroyThereforeIAmSouvenirClue HasSouvenir? + DestroyOrNotDestroyThatIsTheQuestionClue HasSouvenir? + JoiningThePackClue HasSouvenir? + HitListSouvenirClue HasSouvenir? + OrganizedCrusadersClue HasSouvenir? + NoMansLadySouvenirClue HasSouvenir? + ShrewdLessonsSouvenirClue HasSouvenir? + GunsAndMoneySouvenirClue HasSouvenir? + RisetoPower HasSouvenir? + TheStrongSurviveSouvenirClue HasSouvenir? + 16 %
+	Revoke 0
+	BadgeValues 16
+}
+
+Badge
+{
+	Name ImperialCityStoryArcs
+	Category kPerk
+	DisplayTitle "P658092891"
+	DisplayHint "P2260387385"
+	DisplayText "P3185305805"
+	Reward IS.Gift20Merits
+	Icon "Badge_Accolade_Hero_GoingRogueBadge"
+	VillainIcon "Badge_Accolade_Villain_GoingRogueBadge"
+	Visible TruthHurtsSouvenirClue HasSouvenir? WhoNeedsEnemiesSouvenirClue HasSouvenir? || SelfRestraintSouvenirClue HasSouvenir? || YouCantGoHomeSouvenirClue HasSouvenir? || MindFreedomSouvenir HasSouvenir? || HatchetSouvenirClue HasSouvenir? || BeholderStorySouvenir HasSouvenir? || VagabondStoryArc HasSouvenir? || WardogStoryArc HasSouvenir? || BloodofTyrants HasSouvenir? || SacrificesMustBeMadeSouvenirClue HasSouvenir? || ClockFaceSouvenirClue HasSouvenir? || TrashCollectorsSouvenirClue HasSouvenir? || CorpWarsSouvenirClue HasSouvenir? || OneWeaknessSouvenir HasSouvenir? || PersonalMonsterSouvenir HasSouvenir? || PowertoDieForSouvenir HasSouvenir? || HowtoMakeHeadlinesSouvenir HasSouvenir? || TheFavoriteAssassinSouvenir HasSouvenir? || ProjectPhoenixSouvenir HasSouvenir? ||
+	Hinted 1
+	Requires TruthHurtsSouvenirClue HasSouvenir? WhoNeedsEnemiesSouvenirClue HasSouvenir? && SelfRestraintSouvenirClue HasSouvenir? && YouCantGoHomeSouvenirClue HasSouvenir? && MindFreedomSouvenir HasSouvenir? && HatchetSouvenirClue HasSouvenir? && BeholderStorySouvenir HasSouvenir? && VagabondStoryArc HasSouvenir? && WardogStoryArc HasSouvenir? && BloodofTyrants HasSouvenir? && SacrificesMustBeMadeSouvenirClue HasSouvenir? && ClockFaceSouvenirClue HasSouvenir? && TrashCollectorsSouvenirClue HasSouvenir? && CorpWarsSouvenirClue HasSouvenir? && OneWeaknessSouvenir HasSouvenir? && PersonalMonsterSouvenir HasSouvenir? && PowertoDieForSouvenir HasSouvenir? && HowtoMakeHeadlinesSouvenir HasSouvenir? && TheFavoriteAssassinSouvenir HasSouvenir? && ProjectPhoenixSouvenir HasSouvenir? &&
+	Meter TruthHurtsSouvenirClue HasSouvenir? WhoNeedsEnemiesSouvenirClue HasSouvenir? + SelfRestraintSouvenirClue HasSouvenir? + YouCantGoHomeSouvenirClue HasSouvenir? + MindFreedomSouvenir HasSouvenir? + HatchetSouvenirClue HasSouvenir? + BeholderStorySouvenir HasSouvenir? + VagabondStoryArc HasSouvenir? + WardogStoryArc HasSouvenir? + BloodofTyrants HasSouvenir? + SacrificesMustBeMadeSouvenirClue HasSouvenir? + ClockFaceSouvenirClue HasSouvenir? + TrashCollectorsSouvenirClue HasSouvenir? + CorpWarsSouvenirClue HasSouvenir? + OneWeaknessSouvenir HasSouvenir? + PersonalMonsterSouvenir HasSouvenir? + PowertoDieForSouvenir HasSouvenir? + HowtoMakeHeadlinesSouvenir HasSouvenir? + TheFavoriteAssassinSouvenir HasSouvenir? + ProjectPhoenixSouvenir HasSouvenir? + 20 %
+	Revoke 0
+	BadgeValues 20
+}
+
+Badge
+{
+	Name NeutropolisStoryArcs
+	Category kPerk
+	DisplayTitle "P366527166"
+	DisplayHint "P525853905"
+	DisplayText "P3652262694"
+	Reward IS.Gift20Merits
+	Icon "Badge_Accolade_Hero_GoingRogueBadge"
+	VillainIcon "Badge_Accolade_Villain_GoingRogueBadge"
+	Visible AaronWalkerStoryarc HasSouvenir? PraetoriaYinStoryArc HasSouvenir? || PraetoriaDarkWatcherArc HasSouvenir? || DarkWatcherMoralChoice HasSouvenir? || HonorTheFallenSouvenirClue HasSouvenir? || FreshFacesSouvenirClue HasSouvenir? || TheTurningPointSouvenirClue HasSouvenir? || CalvinScottMoralChoice HasSouvenir? || IVyStoryArcSouvenir HasSouvenir? || MotherMayhemArcSouvenir HasSouvenir? || AntiMatterArc1Souvenir HasSouvenir? || AntiMatterMoralChoice HasSouvenir? || ForTheTakingSouvenirClue HasSouvenir? || BestFriendsForeverSouvenirClue HasSouvenir? || AGodAmongstMenSouvenirClue HasSouvenir? || NeuronMoralChoice HasSouvenir? ||
+	Hinted 1
+	Requires AaronWalkerStoryarc HasSouvenir? PraetoriaYinStoryArc HasSouvenir? && PraetoriaDarkWatcherArc HasSouvenir? && DarkWatcherMoralChoice HasSouvenir? && HonorTheFallenSouvenirClue HasSouvenir? && FreshFacesSouvenirClue HasSouvenir? && TheTurningPointSouvenirClue HasSouvenir? && CalvinScottMoralChoice HasSouvenir? && IVyStoryArcSouvenir HasSouvenir? && MotherMayhemArcSouvenir HasSouvenir? && AntiMatterArc1Souvenir HasSouvenir? && AntiMatterMoralChoice HasSouvenir? && ForTheTakingSouvenirClue HasSouvenir? && BestFriendsForeverSouvenirClue HasSouvenir? && AGodAmongstMenSouvenirClue HasSouvenir? && NeuronMoralChoice HasSouvenir? &&
+	Meter AaronWalkerStoryarc HasSouvenir? PraetoriaYinStoryArc HasSouvenir? + PraetoriaDarkWatcherArc HasSouvenir? + DarkWatcherMoralChoice HasSouvenir? + HonorTheFallenSouvenirClue HasSouvenir? + FreshFacesSouvenirClue HasSouvenir? + TheTurningPointSouvenirClue HasSouvenir? + CalvinScottMoralChoice HasSouvenir? + IVyStoryArcSouvenir HasSouvenir? + MotherMayhemArcSouvenir HasSouvenir? + AntiMatterArc1Souvenir HasSouvenir? + AntiMatterMoralChoice HasSouvenir? + ForTheTakingSouvenirClue HasSouvenir? + BestFriendsForeverSouvenirClue HasSouvenir? + AGodAmongstMenSouvenirClue HasSouvenir? + NeuronMoralChoice HasSouvenir? + 16 %
+	Revoke 0
+	BadgeValues 16
+}
+
+Badge
+{
+	Name AtlasParkStoryArcs
+	Category kPerk
+	DisplayTitle "P2772842334"
+	DisplayHint "P3474927817"
+	DisplayText "P1337226527"
+	Reward IS.Gift20Merits
+	Icon "Badge_Vigilant_Hero"
+	Visible SL1_MatthewHabashy HasSouvenir? SL1_OfficerNelson HasSouvenir? || SL1_SondraCostel HasSouvenir? || SL1_AaronThiery HasSouvenir? || ShiningStarsActIClueSouvenirClue HasSouvenir? || RisingStarsActIIClueSouvenirClue HasSouvenir? || RisingStarsActIIIClueSouvenirClue HasSouvenir? ||
+	Hinted 1
+	Requires SL1_MatthewHabashy HasSouvenir? SL1_OfficerNelson HasSouvenir? && SL1_SondraCostel HasSouvenir? && SL1_AaronThiery HasSouvenir? && ShiningStarsActIClueSouvenirClue HasSouvenir? && RisingStarsActIIClueSouvenirClue HasSouvenir? && RisingStarsActIIIClueSouvenirClue HasSouvenir? &&
+	Meter SL1_MatthewHabashy HasSouvenir? SL1_OfficerNelson HasSouvenir? + SL1_SondraCostel HasSouvenir? + SL1_AaronThiery HasSouvenir? + ShiningStarsActIClueSouvenirClue HasSouvenir? + RisingStarsActIIClueSouvenirClue HasSouvenir? + RisingStarsActIIIClueSouvenirClue HasSouvenir? + 7 %
+	Revoke 0
+	BadgeValues 7
+}
+
+Badge
+{
+	Name HollowsStoryArcs
+	Category kPerk
+	DisplayTitle "P2396090553"
+	DisplayHint "P2792039714"
+	DisplayText "P3752727615"
+	Reward IS.Gift20Merits
+	Icon "Badge_Vigilant_Hero"
+	Visible Hollows_Wincott_StoryArc_Souvenir HasSouvenir? Hollows_Flux_StoryArc_Souvenir HasSouvenir? || Hollows_Julius_StoryArc_Souvenir HasSouvenir? || SL2_Hollows_SA_Talshak HasSouvenir? ||
+	Hinted 1
+	Requires Hollows_Wincott_StoryArc_Souvenir HasSouvenir? Hollows_Flux_StoryArc_Souvenir HasSouvenir? && Hollows_Julius_StoryArc_Souvenir HasSouvenir? && SL2_Hollows_SA_Talshak HasSouvenir? &&
+	Meter Hollows_Wincott_StoryArc_Souvenir HasSouvenir? Hollows_Flux_StoryArc_Souvenir HasSouvenir? + Hollows_Julius_StoryArc_Souvenir HasSouvenir? + SL2_Hollows_SA_Talshak HasSouvenir? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name FaultlineStoryArcs
+	Category kPerk
+	DisplayTitle "P2637096318"
+	DisplayHint "P774526333"
+	DisplayText "P1728654915"
+	Reward IS.Gift20Merits
+	Icon "Badge_Vigilant_Hero"
+	Visible SL3_Jim_Temblor_MiniArc1_Souvenir HasSouvenir? SL3_FL_Penelope_Yin_MiniArc1_Souvenir HasSouvenir? || SL4_Doc_Delilah_MiniArc1_Souvenir HasSouvenir? || SL4_FL_Agent_G_StoryArc1F_Souvenir HasSouvenir? SL4_FL_Agent_G_StoryArc1A_Souvenir HasSouvenir? || ||
+	Hinted 1
+	Requires SL3_Jim_Temblor_MiniArc1_Souvenir HasSouvenir? SL3_FL_Penelope_Yin_MiniArc1_Souvenir HasSouvenir? && SL4_Doc_Delilah_MiniArc1_Souvenir HasSouvenir? && SL4_FL_Agent_G_StoryArc1F_Souvenir HasSouvenir? SL4_FL_Agent_G_StoryArc1A_Souvenir HasSouvenir? || &&
+	Meter SL3_Jim_Temblor_MiniArc1_Souvenir HasSouvenir? SL3_FL_Penelope_Yin_MiniArc1_Souvenir HasSouvenir? + SL4_Doc_Delilah_MiniArc1_Souvenir HasSouvenir? + SL4_FL_Agent_G_StoryArc1F_Souvenir HasSouvenir? SL4_FL_Agent_G_StoryArc1A_Souvenir HasSouvenir? || + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name StrigaStoryArcs
+	Category kPerk
+	DisplayTitle "P954563594"
+	DisplayHint "P195757301"
+	DisplayText "P2943349972"
+	Reward IS.Gift20Merits
+	Icon "Badge_Vigilant_Hero"
+	Visible Striga_Peebles_Arc HasSouvenir? Striga_Jack_Arc_Souvenir HasSouvenir? || Striga_Tobias_Arc_Souvenir HasSouvenir? || Striga_Lars_Arc_Souvenir HasSouvenir? ||
+	Hinted 1
+	Requires Striga_Peebles_Arc HasSouvenir? Striga_Jack_Arc_Souvenir HasSouvenir? && Striga_Tobias_Arc_Souvenir HasSouvenir? && Striga_Lars_Arc_Souvenir HasSouvenir? &&
+	Meter Striga_Peebles_Arc HasSouvenir? Striga_Jack_Arc_Souvenir HasSouvenir? + Striga_Tobias_Arc_Souvenir HasSouvenir? + Striga_Lars_Arc_Souvenir HasSouvenir? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name CroatoaStoryArcs
+	Category kPerk
+	DisplayTitle "P2896244666"
+	DisplayHint "P3559935765"
+	DisplayText "P1108618707"
+	Reward IS.Gift20Merits
+	Icon "Badge_Vigilant_Hero"
+	Visible Croatoa_Bower_Arc_Souvenir HasSouvenir? Croatoa_Skipper_Arc_Souvenir HasSouvenir? || Croatoa_Kelly_Arc_Souvenir HasSouvenir? || Souvenier_Crossing_Over HasSouvenir? ||
+	Hinted 1
+	Requires Croatoa_Bower_Arc_Souvenir HasSouvenir? Croatoa_Skipper_Arc_Souvenir HasSouvenir? && Croatoa_Kelly_Arc_Souvenir HasSouvenir? && Souvenier_Crossing_Over HasSouvenir? &&
+	Meter Croatoa_Bower_Arc_Souvenir HasSouvenir? Croatoa_Skipper_Arc_Souvenir HasSouvenir? + Croatoa_Kelly_Arc_Souvenir HasSouvenir? + Souvenier_Crossing_Over HasSouvenir? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name RitkiWarZoneStoryArcs
+	Category kPerk
+	DisplayTitle "P4251262048"
+	DisplayHint "P633753087"
+	DisplayText "P387535937"
+	Reward IS.Gift20Merits
+	Icon "Badge_Vigilant_Hero"
+	VillainIcon "Badge_Vigilant_Villain"
+	Visible SL7_RWZ_Levantera_StoryArc1_SouvenirClue HasSouvenir? SL7_RWZ_Levantera_MiniArc2_Souvenir HasSouvenir? || SL8_RWZ_Drummer_StoryArc3_SouvenirClue HasSouvenir? || SL9_RWZ_Gaussian_StoryArc3_SouvenirClue HasSouvenir? || SL9_RWZ_Watcher_StoryArc3_Souvenir HasSouvenir? ||
+	Hinted 1
+	Requires SL7_RWZ_Levantera_StoryArc1_SouvenirClue HasSouvenir? SL7_RWZ_Levantera_MiniArc2_Souvenir HasSouvenir? && SL8_RWZ_Drummer_StoryArc3_SouvenirClue HasSouvenir? && SL9_RWZ_Gaussian_StoryArc3_SouvenirClue HasSouvenir? && SL9_RWZ_Watcher_StoryArc3_Souvenir HasSouvenir? &&
+	Meter SL7_RWZ_Levantera_StoryArc1_SouvenirClue HasSouvenir? SL7_RWZ_Levantera_MiniArc2_Souvenir HasSouvenir? + SL8_RWZ_Drummer_StoryArc3_SouvenirClue HasSouvenir? + SL9_RWZ_Gaussian_StoryArc3_SouvenirClue HasSouvenir? + SL9_RWZ_Watcher_StoryArc3_Souvenir HasSouvenir? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name DarkAstoriaStoryArcs
+	Category kPerk
+	DisplayTitle "P3804335193"
+	DisplayHint "P1242023345"
+	DisplayText "P1418619496"
+	Reward IS.Gift20Merits
+	Icon "Badge_Vigilant_Hero"
+	VillainIcon "Badge_Vigilant_Villain"
+	Visible SL9_CaptainNolan HasSouvenir? SL9_ArachnosThreat HasSouvenir? || SL9_JamesMason HasSouvenir? || SL9_JamesMason_PersonalStory HasSouvenir? || SL9_MuVorkan HasSouvenir? || SL9_MuVorkan_PersonalStory HasSouvenir? || DarkAstoria_Max_Rescued11 TokenOwned? || DarkAstoria_Max_RescuedGyrfalcon TokenOwned? || DarkAstoria_Max_RescuedSlinger TokenOwned? || DarkAstoria_Max_StoppedKoV TokenOwned? || DarkAstoria_Max_PlayedPersonalStory TokenOwned? || SL9_PraetorDuncan HasSouvenir? || SL9_PraetorDuncan_PersonalStory HasSouvenir? || SL9_Sister_Solaris HasSouvenir? || SL9_SisterSolaris_PersonalStory HasSouvenir? || SL9_DreamDoctor HasSouvenir? || SL9_DreamDoctor_PersonalStory HasSouvenir? ||
+	Hinted 1
+	Requires SL9_CaptainNolan HasSouvenir? SL9_ArachnosThreat HasSouvenir? || SL9_JamesMason HasSouvenir? && SL9_JamesMason_PersonalStory HasSouvenir? && SL9_MuVorkan HasSouvenir? && SL9_MuVorkan_PersonalStory HasSouvenir? && DarkAstoria_Max_Rescued11 TokenOwned? && DarkAstoria_Max_RescuedGyrfalcon TokenOwned? && DarkAstoria_Max_RescuedSlinger TokenOwned? && DarkAstoria_Max_StoppedKoV TokenOwned? && DarkAstoria_Max_PlayedPersonalStory TokenOwned? && SL9_PraetorDuncan HasSouvenir? && SL9_PraetorDuncan_PersonalStory HasSouvenir? && SL9_Sister_Solaris HasSouvenir? && SL9_SisterSolaris_PersonalStory HasSouvenir? && SL9_DreamDoctor HasSouvenir? && SL9_DreamDoctor_PersonalStory HasSouvenir? &&
+	Meter SL9_CaptainNolan HasSouvenir? SL9_ArachnosThreat HasSouvenir? || SL9_JamesMason HasSouvenir? + SL9_JamesMason_PersonalStory HasSouvenir? + SL9_MuVorkan HasSouvenir? + SL9_MuVorkan_PersonalStory HasSouvenir? + DarkAstoria_Max_Rescued11 TokenOwned? + DarkAstoria_Max_RescuedGyrfalcon TokenOwned? + DarkAstoria_Max_RescuedSlinger TokenOwned? + DarkAstoria_Max_StoppedKoV TokenOwned? + DarkAstoria_Max_PlayedPersonalStory TokenOwned? + SL9_PraetorDuncan HasSouvenir? + SL9_PraetorDuncan_PersonalStory HasSouvenir? + SL9_Sister_Solaris HasSouvenir? + SL9_SisterSolaris_PersonalStory HasSouvenir? + SL9_DreamDoctor HasSouvenir? + SL9_DreamDoctor_PersonalStory HasSouvenir? + 16 %
+	Revoke 0
+	BadgeValues 16
+}
+
+Badge
+{
+	Name MercyIslandStoryArcs
+	Category kPerk
+	DisplayTitle "P3560011603"
+	DisplayHint "P2880514492"
+	DisplayText "P1834542790"
+	Reward IS.Gift20Merits
+	Icon "Badge_Vigilant_Villain"
+	Visible SL1_MI_Kalinda_MiniArc2 HasSouvenir? SL1_MI_Mongoose_Mini_Arc_Souvenir HasSouvenir? || SL1_MI_Burke_MiniArc2_Souvenir HasSouvenir? || SouvenirGeistTestTube HasSouvenir? || SL1_OperativeKuzmin HasSouvenir? || SL1_DrWeber HasSouvenir? || SL1_FireWire HasSouvenir? || SL1_LtHarris HasSouvenir? || SL3_SeerMarino_StoryArc1_SouvenirClue HasSouvenir? || SL3_SeerMarino_StoryArc1F_SouvenirClue HasSouvenir? || HeartsofDarknessActIClueSouvenirClue HasSouvenir? || HeartsofDarknessActIIClueSouvenirClue HasSouvenir? || HeartsofDarknessActIIIClueSouvenirClue HasSouvenir? ||
+	Hinted 1
+	Requires SL1_MI_Kalinda_MiniArc2 HasSouvenir? SL1_MI_Mongoose_Mini_Arc_Souvenir HasSouvenir? && SL1_MI_Burke_MiniArc2_Souvenir HasSouvenir? && SouvenirGeistTestTube HasSouvenir? && SL1_OperativeKuzmin HasSouvenir? && SL1_DrWeber HasSouvenir? && SL1_FireWire HasSouvenir? && SL1_LtHarris HasSouvenir? && SL3_SeerMarino_StoryArc1_SouvenirClue HasSouvenir? SL3_SeerMarino_StoryArc1F_SouvenirClue HasSouvenir? || && HeartsofDarknessActIClueSouvenirClue HasSouvenir? && HeartsofDarknessActIIClueSouvenirClue HasSouvenir? && HeartsofDarknessActIIIClueSouvenirClue HasSouvenir? &&
+	Meter SL1_MI_Kalinda_MiniArc2 HasSouvenir? SL1_MI_Mongoose_Mini_Arc_Souvenir HasSouvenir? + SL1_MI_Burke_MiniArc2_Souvenir HasSouvenir? + SouvenirGeistTestTube HasSouvenir? + SL1_OperativeKuzmin HasSouvenir? + SL1_DrWeber HasSouvenir? + SL1_FireWire HasSouvenir? + SL1_LtHarris HasSouvenir? + SL3_SeerMarino_StoryArc1_SouvenirClue HasSouvenir? SL3_SeerMarino_StoryArc1F_SouvenirClue HasSouvenir? || + HeartsofDarknessActIClueSouvenirClue HasSouvenir? + HeartsofDarknessActIIClueSouvenirClue HasSouvenir? + HeartsofDarknessActIIIClueSouvenirClue HasSouvenir? + 12 %
+	Revoke 0
+	BadgeValues 12
+}
+
+Badge
+{
+	Name P_DVDEdition
+	Category kPerk
+	DisplayTitle "P850252548"
+	DisplayText "P1221643637"
+	Icon "badge_DVD"
+	Visible 0
+	Hinted 0
+	Requires praetorianprogress char> normal eq ! praetorianprogress char> NeutralInPrimalTutorial eq ! &&
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Loyalty2012
+	Category kPerk
+	DisplayTitle "P132220588"
+	DisplayHint "P377705163"
+	DisplayText "P301759426"
+	Reward IS.Gift20Merits
+	Icon "badge_Tempered_Through_Fire"
+	Visible P_ResistanceBadge owned? P_Obliterator owned? || P_Survivor owned? || P_LoyalistBadge owned? || P_Magistrate owned? || P_Tyrant owned? || P_Escapist owned? ||
+	Hinted 1
+	Requires P_ResistanceBadge owned? P_Obliterator owned? && P_Survivor owned? && P_LoyalistBadge owned? && P_Magistrate owned? && P_Tyrant owned? && P_Escapist owned? &&
+	Meter P_ResistanceBadge owned? P_Obliterator owned? + P_Survivor owned? + P_LoyalistBadge owned? + P_Magistrate owned? + P_Tyrant owned? + P_Escapist owned? + 7 %
+	Revoke 0
+	BadgeValues 7
+}
+
+Badge
+{
+	Name Halloween2010Accolade
+	Category kPerk
+	DisplayTitle "P3194211593"
+	DisplayHint "P670818069"
+	DisplayText "P1288873470"
+	Icon "badge_event_halloween2010_accolade"
+	Visible Halloween2010Secured owned? Halloween2010PowerHungry owned? || Halloween2010ArtifactDestroyer owned? || Halloween2010Veiled owned? || Halloween2010Arriviste owned? || Halloween2010Trusting owned? ||
+	Hinted 1
+	Requires Halloween2010Secured owned? Halloween2010PowerHungry owned? && Halloween2010ArtifactDestroyer owned? && Halloween2010Veiled owned? && Halloween2010Arriviste owned? Halloween2010Trusting owned? || &&
+	Meter Halloween2010Secured owned? Halloween2010PowerHungry owned? + Halloween2010ArtifactDestroyer owned? + Halloween2010Veiled owned? + Halloween2010Arriviste owned? Halloween2010Trusting owned? || + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name FashionVictim
+	Category kPerk
+	DisplayTitle "P355509060"
+	DisplayHint "P311889491"
+	DisplayText "P775919895"
+	DisplayHintVillain "P602898540"
+	Reward is.CostumeChange
+	Icon "badge_i26_fashion_victim"
+	Visible inf.costume 1 >=
+	Hinted 1
+	Requires inf.costume 50000000 >=
+	Meter inf.costume 50000000 %
+	Revoke 0
+	BadgeValues 50000000
+}
+
+Badge
+{
+	Name InitiateAllStar
+	Category kPerk
+	DisplayTitle "P2127103748"
+	DisplayHint "P1406164349"
+	DisplayText "P3683502826"
+	Icon "Badge_arena_AllStar_5"
+	Visible 1ArenaWin owned? 1WinDuel owned? || 1WinSwissDraw owned? || 1WinFreeForAll owned? || 1WinPentad owned? ||
+	Hinted 1
+	Requires 1ArenaWin owned? 1WinDuel owned? && 1WinSwissDraw owned? && 1WinFreeForAll owned? && 1WinPentad owned? &&
+	Meter 1ArenaWin owned? 1WinDuel owned? + 1WinSwissDraw owned? + 1WinFreeForAll owned? + 1WinPentad owned? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name DVDEdition
+	Category kPerk
+	DisplayTitle "P2806446058"
+	DisplayText "P2369634465"
+	DisplayTitleVillain "P3841370537"
+	DisplayTextVillain "P446019170"
+	Icon "badge_DVD"
+	Visible 0
+	Hinted 0
+	Requires praetorianprogress char> normal eq
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name AtlasSet
+	Category kPerk
+	DisplayTitle "P1566859362"
+	DisplayHint "P3137967389"
+	DisplayText "P3155411513"
+	DisplayTitleVillain "P4191793269"
+	DisplayHintVillain "P3137967389"
+	DisplayTextVillain "P804653475"
+	Reward BadgePerk1
+	Icon "badge_atlas_set_01"
+	Visible AtlasParkTour5 owned? AtlasHistory owned? || SL2Point5Mission owned? || SilverBullet owned? || Slayer owned? || hero type char> eq &&
+	Hinted 1
+	Requires AtlasParkTour5 owned? AtlasHistory owned? && SL2Point5Mission owned? && SilverBullet owned? && Slayer owned? &&  Marshal owned? || hero type char> eq &&
+	Meter AtlasParkTour5 owned? AtlasHistory owned? + SL2Point5Mission owned? + SilverBullet owned? + Slayer owned? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name CreySet
+	Category kPerk
+	DisplayTitle "P314211939"
+	DisplayHint "P2456303606"
+	DisplayText "P748770145"
+	DisplayTitleVillain "P314211939"
+	DisplayHintVillain "P2456303606"
+	DisplayTextVillain "P1567829940"
+	Reward BadgePerk8
+	Icon "badge_crey_set_01"
+	Visible Infiltrator owned? SL7MissionA owned? || EdenTour1 owned? || CreysFolleyTour1 owned? || IndependancePortTour1 owned? || GalaxyCityTour1 owned? || hero type char> eq &&
+	Hinted 1
+	Requires Infiltrator owned? SL7MissionA owned? && EdenTour1 owned? && CreysFolleyTour1 owned? && IndependancePortTour1 owned? && GalaxyCityTour1 owned? && HeadlineStealer owned? || hero type char> eq level char> 30 >= && &&
+	Meter Infiltrator owned? SL7MissionA owned? + EdenTour1 owned? + CreysFolleyTour1 owned? + IndependancePortTour1 owned? + GalaxyCityTour1 owned? + 6 %
+	Revoke 0
+	BadgeValues 6
+}
+
+Badge
+{
+	Name DimensionalHopperSet
+	Category kPerk
+	DisplayTitle "P4023825941"
+	DisplayHint "P1741382370"
+	DisplayText "P2465954822"
+	DisplayTitleVillain "P4023825941"
+	DisplayHintVillain "P1741382370"
+	DisplayTextVillain "P2405352554"
+	Reward BadgePerk5
+	Icon "badge_dimensional_set_01"
+	Visible DimensionalWarder owned? HydraDimension1 owned? || BlackShroudDimension1 owned? || DimensionalBarrier owned? || type char> hero eq &&
+	Hinted 1
+	Requires DimensionalWarder owned? HydraDimension1 owned? && BlackShroudDimension1 owned? && DimensionalBarrier owned? && BornInBattle owned? || type char> hero eq &&
+	Meter DimensionalWarder owned? HydraDimension1 owned? + BlackShroudDimension1 owned? + DimensionalBarrier owned? + 4 %
+	Revoke 0
+	BadgeValues 4
+}
+
+Badge
+{
+	Name FreedomPhalanxSet
+	Category kPerk
+	DisplayTitle "P3914164391"
+	DisplayHint "P2752025216"
+	DisplayText "P477785478"
+	DisplayTitleVillain "P326987887"
+	DisplayHintVillain "P2752025216"
+	DisplayTextVillain "P2348355093"
+	Reward BadgePerk2
+	Icon "badge_phalanx_set_01"
+	Visible FreedomPhalanx owned? Gearsmasher owned? || Blitzkrieg owned? || Unveiler owned? || GalaxyCityTour3 owned? || KingsRowTour1 owned? || KingsRowTour4 owned? || SteelCanyonTour3 owned? || BoomtownTour2 owned? || SkywayCityTour1 owned? || IndependancePortTour3 owned? || hero type char> eq &&
+	Hinted 1
+	Requires FreedomPhalanx owned? Gearsmasher owned? && Blitzkrieg owned? && Unveiler owned? && GalaxyCityTour3 owned? && KingsRowTour1 owned? && KingsRowTour4 owned? && SteelCanyonTour3 owned? && BoomtownTour2 owned? && SkywayCityTour1 owned? && IndependancePortTour3 owned? && HighPainThreshold owned? || hero type char> eq level char> 21 >= && &&
+	Meter FreedomPhalanx owned? Gearsmasher owned? + Blitzkrieg owned? + Unveiler owned? + GalaxyCityTour3 owned? + KingsRowTour1 owned? + KingsRowTour4 owned? + SteelCanyonTour3 owned? + BoomtownTour2 owned? + SkywayCityTour1 owned? + IndependancePortTour3 owned? + 11 %
+	Revoke 0
+	BadgeValues 11
+}
+
+Badge
+{
+	Name MagusSet
+	Category kPerk
+	DisplayTitle "P1274903326"
+	DisplayHint "P4238554919"
+	DisplayText "P2153198705"
+	DisplayTitleVillain "P1274903326"
+	DisplayHintVillain "P4238554919"
+	DisplayTextVillain "P1529992370"
+	Reward BadgePerk6
+	Icon "badge_magus_set_01"
+	Visible KingsRowTour3 owned? FaultlineTour3 owned? || DarkAstoriaTour1 owned? || BrickstownTour1 owned? || Tracer owned? || Banisher owned? || SoulBinder owned? || Illusionist owned? || hero type char> eq &&
+	Hinted 1
+	Requires KingsRowTour3 owned? FaultlineTour3 owned? && DarkAstoriaTour1 owned? && BrickstownTour1 owned? && Tracer owned? && Banisher owned? && SoulBinder owned? && Illusionist owned? && Demonic owned? || hero type char> eq level char> 21 >= && &&
+	Meter KingsRowTour3 owned? FaultlineTour3 owned? + DarkAstoriaTour1 owned? + BrickstownTour1 owned? + Tracer owned? + Banisher owned? + SoulBinder owned? + Illusionist owned? + 8 %
+	Revoke 0
+	BadgeValues 8
+}
+
+Badge
+{
+	Name RiktiWarSet
+	Category kPerk
+	DisplayTitle "P2154096770"
+	DisplayHint "P221947217"
+	DisplayText "P3094400810"
+	DisplayTitleVillain "P2154096770"
+	DisplayHintVillain "P221947217"
+	DisplayTextVillain "P506976124"
+	Reward BadgePerk4
+	Icon "badge_rikti_war_set_01"
+	Visible RiktiCrashSiteTour1 owned? PeregrineIslandTour1 owned? || RiktiWar owned? || Zookeeper owned? || Finder owned? || hero type char> eq &&
+	Hinted 1
+	Requires RiktiCrashSiteTour1 owned? PeregrineIslandTour1 owned? && RiktiWar owned? && Zookeeper owned? && Finder owned? && Megalomaniac owned? || hero type char> eq level char> 35 >= && &&
+	Meter RiktiCrashSiteTour1 owned? PeregrineIslandTour1 owned? + RiktiWar owned? + Zookeeper owned? + Finder owned? + 5 %
+	Revoke 0
+	BadgeValues 5
+}
+
+Badge
+{
+	Name StalwartMedallionUsed
+	Category kPerk
+	DisplayTitle "P3839230701"
+	DisplayText "P2101899033"
+	DisplayTitleVillain "P3790086026"
+	DisplayTextVillain "P2101899033"
+	Icon "badge_respec_stalwart"
+	Visible 0
+	Hinted 0
+	Requires StalwartMedallion owned?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name StatesmanStarUsed
+	Category kPerk
+	DisplayTitle "P4255794218"
+	DisplayText "P238749641"
+	DisplayTitleVillain "P1432948930"
+	DisplayTextVillain "P238749641"
+	Icon "badge_respec_statesman"
+	Visible 0
+	Hinted 0
+	Requires StatesmanStar owned?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name FreedomCrossUsed
+	Category kPerk
+	DisplayTitle "P98090273"
+	DisplayText "P2063523499"
+	DisplayTitleVillain "P4063151039"
+	DisplayTextVillain "P2063523499"
+	Icon "badge_respec_freedom"
+	Visible 0
+	Hinted 0
+	Requires FreedomCross owned?
+	Meter 0
+	Revoke 0
+}
+
+Badge
+{
+	Name Mission_DA_Zone_Complete
+	Category kPerk
+	DisplayTitle "P3391001422"
+	DisplayHint "P1461275309"
+	DisplayText "P2935716690"
+	Icon "Mission_DA_Zone_Complete"
+	Visible Mission_DA_Arc_Complete_01 owned? Mission_DA_Arc_Complete_02 owned? || Mission_DA_Arc_Complete_03 owned? || Mission_DA_Arc_Complete_04 owned? || Mission_DA_Arc_Complete_05 owned? || Mission_DA_Arc_Complete_06 owned? || Mission_DA_PersonalArc_Complete_01 owned? || Mission_DA_PersonalArc_Complete_02 owned? || Mission_DA_PersonalArc_Complete_03 owned? || Mission_DA_PersonalArc_Complete_04 owned? || Mission_DA_PersonalArc_Complete_05 owned? || Mission_DA_PersonalArc_Complete_06 owned? || Mission_DA_Zone_Achievement_01 owned? || Mission_DA_Zone_Achievement_02 owned? || Mission_DA_Zone_Achievement_03 owned? || Mission_DA_Zone_Achievement_04 owned? || Mission_DA_Zone_Achievement_05 owned? ||
+	Hinted 1
+	Requires Mission_DA_Arc_Complete_01 owned? Mission_DA_Arc_Complete_02 owned? && Mission_DA_Arc_Complete_03 owned? && Mission_DA_Arc_Complete_04 owned? && Mission_DA_Arc_Complete_05 owned? && Mission_DA_Arc_Complete_06 owned? && Mission_DA_PersonalArc_Complete_01 owned? && Mission_DA_PersonalArc_Complete_02 owned? && Mission_DA_PersonalArc_Complete_03 owned? && Mission_DA_PersonalArc_Complete_04 owned? && Mission_DA_PersonalArc_Complete_05 owned? && Mission_DA_PersonalArc_Complete_06 owned? && Mission_DA_Zone_Achievement_01 owned? && Mission_DA_Zone_Achievement_02 owned? && Mission_DA_Zone_Achievement_03 owned? && Mission_DA_Zone_Achievement_04 owned? && Mission_DA_Zone_Achievement_05 owned? &&
+	Meter Mission_DA_Arc_Complete_01 owned? Mission_DA_Arc_Complete_02 owned? + Mission_DA_Arc_Complete_03 owned? + Mission_DA_Arc_Complete_04 owned? + Mission_DA_Arc_Complete_05 owned? + Mission_DA_Arc_Complete_06 owned? + Mission_DA_PersonalArc_Complete_01 owned? + Mission_DA_PersonalArc_Complete_02 owned? + Mission_DA_PersonalArc_Complete_03 owned? + Mission_DA_PersonalArc_Complete_04 owned? + Mission_DA_PersonalArc_Complete_05 owned? + Mission_DA_PersonalArc_Complete_06 owned? + Mission_DA_Zone_Achievement_01 owned? + Mission_DA_Zone_Achievement_02 owned? + Mission_DA_Zone_Achievement_03 owned? + Mission_DA_Zone_Achievement_04 owned? + Mission_DA_Zone_Achievement_05 owned? + 17 %
+	Revoke 0
+	BadgeValues 17
+}
+
+Badge
+{
+	Name GeasoftheKindOnes
+	Category kPerk
+	DisplayTitle "P60758833"
+	DisplayHint "P1334239745"
+	DisplayText "P4206948511"
+	DisplayTitleVillain "P60758833"
+	DisplayHintVillain "P1334239745"
+	DisplayTextVillain "P336025322"
+	Reward BadgePerkCroatoa2
+	Icon "Badge_croatoa_geas_of_the_kind_ones"
+	Visible CroatoaTF owned? GiantKiller owned? || PumpkinKing owned? || Believer owned? || CapBuster owned? || PumpkinMaster owned? || BaneofDannan owned? || Spellbinding owned? || Haunted owned? || type char> hero eq &&
+	Hinted 1
+	Requires CroatoaTF owned? GiantKiller owned? && PumpkinKing owned? && Believer owned? && CapBuster owned? && PumpkinMaster owned? && BaneofDannan owned? && Spellbinding owned? && Haunted owned? && MayhemForceOfNature owned? || type char> hero eq &&
+	Meter CroatoaTF owned? GiantKiller owned? + PumpkinKing owned? + Believer owned? + CapBuster owned? + PumpkinMaster owned? + BaneofDannan owned? + Spellbinding owned? + Haunted owned? + 9 %
+	Revoke 0
+	BadgeValues 9
+}
+
+Badge
+{
+	Name FlamesConvert
+	Category kPerk
+	DisplayTitle "P3846854201"
+	DisplayText "P1615935884"
+	Icon "badge_I20VillainStrikeForce"
+	Visible 0
+	Hinted 0
+	Requires FlamesGrantedToken TokenOwned? IncarnateAlphaSlot owned? && FlamesConvertToken TokenOwned? ! &&
+	Meter 0
+	Revoke FlamesConvertToken TokenOwned?
+	DisplayButton "P2097585379"
+	ButtonReward FlamesConversion,FlamesConvertToken
+	DoNotCount 1
+}
+
+Badge
+{
+	Name Flashbaccolade
+	Category kPerk
+	DisplayTitle "P2198684466"
+	DisplayHint "P113640692"
+	DisplayText "P1631049489"
+	Icon "badge_FB_Flashbaccolade"
+	Visible DeBuffedPartyatSL9 owned? BuffedEnemiesatSL9 owned? || ArchetypePowersOnlyatSL9 owned? || NoTravelPowersatSL9 owned? || NoTemporaryPowersatSL9 owned? || NoEpicPowersatSL9 owned? || NoInspirationsatSL9 owned? || NoEnhancementsatSL9 owned? || TimeLimitGold owned? || LivesTeamPool0 owned? || Flashback50 owned? || P_PraetorianFlashback owned? ||
+	Hinted 1
+	Requires DeBuffedPartyatSL9 owned? BuffedEnemiesatSL9 owned? && ArchetypePowersOnlyatSL9 owned? && NoTravelPowersatSL9 owned? && NoTemporaryPowersatSL9 owned? && NoEpicPowersatSL9 owned? && NoInspirationsatSL9 owned? && NoEnhancementsatSL9 owned? && TimeLimitGold owned? && LivesTeamPool0 owned? && Flashback50 owned? && P_PraetorianFlashback owned? &&
+	Meter DeBuffedPartyatSL9 owned? BuffedEnemiesatSL9 owned? + ArchetypePowersOnlyatSL9 owned? + NoTravelPowersatSL9 owned? + NoTemporaryPowersatSL9 owned? + NoEpicPowersatSL9 owned? + NoInspirationsatSL9 owned? + NoEnhancementsatSL9 owned? + TimeLimitGold owned? + LivesTeamPool0 owned? + Flashback50 owned? + P_PraetorianFlashback owned? + 12 %
+	Revoke 0
+	BadgeValues 12
+}
+

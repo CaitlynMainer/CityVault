@@ -4,9 +4,9 @@ const sql = require('mssql');
 const path = require('path');
 const fs = require('fs');
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
-const attributeMap = require(global.BASE_DIR + '/utils/attributeMap');
+const { getAttributeMap } = require(global.BASE_DIR + '/utils/attributeMap');
 const { getOwnedBadgesFromBitfield } = require(global.BASE_DIR + '/utils/badgeParser');
-const { getBadgeDetails, getAllBadges, badgeEquivalents } = require(global.BASE_DIR + '/utils/badgeDetails');
+const { getBadgeDetails, getAllBadges, getBadgeEquivalents } = require(global.BASE_DIR + '/utils/badgeDetails');
 const { getAlignment } = require(global.BASE_DIR + '/utils/alignment');
 const { getGlobalHandle } = require(global.BASE_DIR + '/utils/characterInfo/getGlobalHandle');
 const { resolveSupergroupLink } = require(global.BASE_DIR + '/utils/characterInfo/resolveSupergroupLink');
@@ -35,7 +35,6 @@ const CATEGORY_LABELS = {
   Uncategorized: 'Other'
 };
 
-
 const upload = multer({
   storage: multer.memoryStorage(),
   fileFilter: (req, file, cb) => {
@@ -45,7 +44,7 @@ const upload = multer({
     }
     cb(null, true);
   },
-  limits: { fileSize: 5 * 1024 * 1024 } // max 5MB
+  limits: { fileSize: 5 * 1024 * 1024 }
 }).single('portrait');
 
 async function uploadPortrait(req, res) {
@@ -91,26 +90,44 @@ async function uploadPortrait(req, res) {
   });
 }
 
-
-function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender) {
-  const ownedNames = new Set(ownedBadges.map(b => b.internalName));
+function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender, badgeEquivalents) {
   const visibleBadges = [];
+
+  const ownedNames = new Set(
+    ownedBadges
+      .map(b => b.internalName)
+      .filter(name => {
+        if (!allBadgeDetails[name]) {
+          console.warn(`[getVisibleBadges] Owned badge "${name}" not found in allBadgeDetails`);
+          return false;
+        }
+        return true;
+      })
+  );
 
   const isVillainAligned = ['Villain', 'Rogue', 'Loyalist'].includes(alignment);
 
   for (const [name, meta] of Object.entries(allBadgeDetails)) {
+    if (!meta) {
+      console.warn(`[getVisibleBadges] Skipping "${name}": no meta`);
+      continue;
+    }
+
     if (!meta.DisplayTitle || meta.DisplayTitle === '.') continue;
     if (meta.Category === 'kInternal' || meta.Category === 'kNone') continue;
 
     const isOwned = ownedNames.has(name);
     const altName = badgeEquivalents[name];
+
+    if (altName && !allBadgeDetails[altName]) {
+      console.warn(`[getVisibleBadges] badgeEquivalents maps "${name}" to missing alt "${altName}"`);
+    }
+
     const altOwned = altName && ownedNames.has(altName);
+    if (altOwned && !isOwned) continue;
 
     const resolvedDisplayTitle = meta.DisplayTitle;
     const resolvedVillainTitle = meta.DisplayTitleVillain || meta.DisplayTitle;
-
-    if (altOwned && !isOwned) continue;
-
     const image = isVillainAligned && meta.VillainIcon ? meta.VillainIcon : meta.Icon;
 
     visibleBadges.push({
@@ -127,6 +144,9 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender) {
 
   return visibleBadges;
 }
+
+
+
 
 function groupBadgesByCategory(badges) {
   const groups = {};
@@ -146,35 +166,26 @@ function groupBadgesByCategory(badges) {
 }
 
 async function showCharacter(req, res) {
-
   const [serverKey, dbidStr] = (req.params.id || '').split(':');
   const dbid = parseInt(dbidStr);
 
   if (!serverKey || isNaN(dbid)) {
     return res.status(400).send('Invalid character ID format.');
   }
+
+  const attributeMap = getAttributeMap(serverKey);
+
   const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.png`);
   let portraitVersion = 0;
   try {
-  const stat = fs.statSync(portraitPath);
-  portraitVersion = stat.mtimeMs;
+    const stat = fs.statSync(portraitPath);
+    portraitVersion = stat.mtimeMs;
   } catch (e) {
     // File doesn't exist, fallback stays 0
   }
 
   try {
-    let pool;
-    try {
-      pool = await getGamePool(serverKey);
-    } catch (err) {
-      if (/Unknown server key/i.test(err.message)) {
-        return res.status(404).render('error', {
-          title: 'Unknown Server',
-          message: `The server "${stringClean(serverKey)}" is not recognized.`
-        });
-      }
-      throw err;
-    }
+    const pool = await getGamePool(serverKey);
 
     const charResult = await pool.request()
       .input('dbid', sql.Int, dbid)
@@ -217,7 +228,6 @@ async function showCharacter(req, res) {
 
     let character = charResult.recordset[0];
 
-    // 🔒 Privacy check
     const authPool = await getAuthPool();
     const authResult = await authPool.request()
       .input('uid', sql.Int, character.AuthId)
@@ -271,10 +281,11 @@ async function showCharacter(req, res) {
       .query(`SELECT Owned FROM dbo.Badges WHERE ContainerId = @dbid`);
 
     const badgeBitfield = badgeResult.recordset[0]?.Owned || '';
-    const ownedBadgeIds = getOwnedBadgesFromBitfield(badgeBitfield);
+    const ownedBadgeIds = getOwnedBadgesFromBitfield(badgeBitfield, serverKey);
 
-    const allBadgeDetails = getAllBadges();
-    const visibleBadges = getVisibleBadges(allBadgeDetails, ownedBadgeIds, character.alignment, character.Gender);
+    const allBadgeDetails = getAllBadges(serverKey);
+    const badgeEquivalents = getBadgeEquivalents(serverKey);
+    const visibleBadges = getVisibleBadges(allBadgeDetails, ownedBadgeIds, character.alignment, character.Gender, badgeEquivalents);
     const totalBadges = visibleBadges.length;
     const ownedBadges = visibleBadges.filter(b => b.owned).length;
     const unearnedBadges = visibleBadges.filter(b => !b.owned);

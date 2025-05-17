@@ -43,7 +43,7 @@ async function showCharacterList(req, res) {
         `);
 
       const enriched = result.recordset.map(row => {
-        const enrichedChar = enrichCharacterSummary(row);
+        const enrichedChar = enrichCharacterSummary(row, serverKey);
         const filename = `${serverKey}_${row.ContainerId}.png`;
         const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', filename);
         let portraitVersion = 0;
