@@ -16,24 +16,26 @@ jobs:
       - name: Checkout main branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # required for tags and pushing
+          fetch-depth: 0  # required for full history and tags
 
       - name: Extract version from tag
         id: version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
-      - name: Get previous tag
+      - name: Get previous tag (if any)
         id: prev
         run: |
-          PREV=$(git describe --tags --abbrev=0 HEAD^)
+          PREV=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
           echo "previous_tag=$PREV" >> $GITHUB_OUTPUT
 
       - name: Generate changelog
         id: changelog
         run: |
-          LOG=$(git log ${{ steps.prev.outputs.previous_tag }}..HEAD --pretty=format:"- %s" \
-            | grep -v '^[-*] Update version\.json' \
-            | grep -v '^[-*] Merge branch '\''main'\'' of')
+          if [ -z "${{ steps.prev.outputs.previous_tag }}" ]; then
+            LOG=$(git log --pretty=format:"- %s" | grep -vE '^(Merge branch|Update version\.json)')
+          else
+            LOG=$(git log ${{ steps.prev.outputs.previous_tag }}..HEAD --pretty=format:"- %s" | grep -vE '^(Merge branch|Update version\.json)')
+          fi
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$LOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
