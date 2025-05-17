@@ -1,0 +1,56 @@
+{
+    "siteName": "CityVault",
+    "domain": "panel.cityofheroes.dev",
+    "ipAddr": "15.235.28.228",
+    "session_secret": "G7X9V1KTQRMJ3Y2PDZ8HWC0EN4LASF65",
+    "auth": {
+        "dbHost": "pc-logix.com",
+        "dbPort": 1433,
+        "dbUser": "sa",
+        "dbPass": "Br45oicu812!",
+        "dbName": "cohauth"
+    },
+    "chat": {
+        "dbHost": "pc-logix.com",
+        "dbPort": 1433,
+        "dbUser": "sa",
+        "dbPass": "Br45oicu812!",
+        "dbName": "cohchat"
+    },
+    "servers": {
+        "victory": {
+            "label": "Victory",
+            "dbHost": "pc-logix.com",
+            "dbPort": 1433,
+            "dbUser": "sa",
+            "dbPass": "Br45oicu812!",
+            "dbName": "cohdb",
+            "badgeVersion": "i25"
+        },
+        "i24": {
+            "label": "i24",
+            "dbHost": "pc-logix.com",
+            "dbPort": 1433,
+            "dbUser": "sa",
+            "dbPass": "Br45oicu812!",
+            "dbName": "cohdb-i24",
+            "badgeVersion": "i24"
+        }
+    },
+    "schedule": {
+        "tasks": {
+            "badgeSpotlight": {
+                "intervalMinutes": 15,
+                "handler": "homeWidgets.regenerateBadgeSpotlight"
+            },
+            "checkForUpdates": {
+                "intervalMinutes": 60,
+                "handler": "updateChecker.checkForUpdates"
+            }
+        }
+    },
+    "logs": {
+        "accessRetentionDays": 30,
+        "compress": true
+    }
+}
