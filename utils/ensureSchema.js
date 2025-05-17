@@ -1,5 +1,7 @@
 const sql = require('mssql');
 const readline = require('readline');
+const crypto = require('crypto');
+const { gameHashPassword } = require('../utils/hashUtils');
 
 module.exports = async function ensureSchema(authConfig) {
   try {
@@ -46,35 +48,90 @@ module.exports = async function ensureSchema(authConfig) {
       console.log('[INFO] user_notes table created.');
     }
 
-    const adminCheck = await pool.request().query(
-      `SELECT COUNT(*) AS count FROM cohauth.dbo.user_account WHERE role = 'admin'`
+    const userCount = await pool.request().query(
+      `SELECT COUNT(*) AS count FROM cohauth.dbo.user_account`
     );
 
-    if (adminCheck.recordset[0].count === 0) {
-      console.log("[WARN] No admin user found.");
+    if (userCount.recordset[0].count === 0) {
+      console.log("[WARN] No users found. Creating initial admin account...");
 
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
       });
 
-      rl.question("Enter the AuthName of the user to promote to admin: ", async (authName) => {
-        rl.close();
+      const ask = (q) => new Promise(resolve => rl.question(q, resolve));
 
-        const userCheck = await pool.request()
-          .input('authName', sql.VarChar, authName)
-          .query(`SELECT uid FROM cohauth.dbo.user_account WHERE account = @authName`);
+      const username = await ask("Enter a username: ");
+      const password = await ask("Enter a password: ");
+      const email = await ask("Enter an email (optional): ");
+      rl.close();
 
-        if (userCheck.recordset.length === 0) {
-          console.log(`[ERROR] No user found with AuthName "${authName}".`);
-        } else {
-          const uid = userCheck.recordset[0].uid;
-          await pool.request()
-            .input('uid', sql.Int, uid)
-            .query(`UPDATE cohauth.dbo.user_account SET role = 'admin' WHERE uid = @uid`);
-          console.log(`[SUCCESS] User "${authName}" has been promoted to admin.`);
-        }
-      });
+      const blockFlag = 0;
+      const token = crypto.randomBytes(32).toString('hex');
+      const hexString = gameHashPassword(password, username);
+
+      const transaction = new sql.Transaction(pool);
+      await transaction.begin();
+      const tRequest = new sql.Request(transaction);
+
+      const uidResult = await tRequest.query(`SELECT ISNULL(MAX(uid), 0) + 1 AS newID FROM dbo.user_account`);
+      const uid = uidResult.recordset[0].newID;
+
+      await tRequest
+        .input('username', sql.VarChar, username)
+        .input('uid', sql.Int, uid)
+        .input('email', sql.VarChar, email || null)
+        .input('block_flag', sql.Int, blockFlag)
+        .input('token', sql.VarChar, token)
+        .query(`
+          INSERT INTO dbo.user_account (account, uid, forum_id, pay_stat, email, role, block_flag)
+          VALUES (@username, @uid, @uid, 1014, @email, 'admin', @block_flag)
+        `);
+
+      await tRequest
+        .input('password', sql.VarChar, hexString)
+        .query(`
+          INSERT INTO dbo.user_auth (account, password, salt, hash_type)
+          VALUES (@username, CONVERT(BINARY(128), @password), 0, 1)
+        `);
+
+      await tRequest.query(`INSERT INTO dbo.user_data (uid, user_data) VALUES (@uid, 0x0080C2E000D00B0C000000000CB40058)`);
+      await tRequest.query(`INSERT INTO dbo.user_server_group (uid, server_group_id) VALUES (@uid, 1)`);
+
+      await transaction.commit();
+
+      console.log(`[SUCCESS] Admin account '${username}' created.`);
+    } else {
+      const adminCheck = await pool.request().query(
+        `SELECT COUNT(*) AS count FROM cohauth.dbo.user_account WHERE role = 'admin'`
+      );
+
+      if (adminCheck.recordset[0].count === 0) {
+        console.log("[WARN] No admin user found.");
+        const rl = readline.createInterface({
+          input: process.stdin,
+          output: process.stdout
+        });
+
+        rl.question("Enter the AuthName of the user to promote to admin: ", async (authName) => {
+          rl.close();
+
+          const userCheck = await pool.request()
+            .input('authName', sql.VarChar, authName)
+            .query(`SELECT uid FROM cohauth.dbo.user_account WHERE account = @authName`);
+
+          if (userCheck.recordset.length === 0) {
+            console.log(`[ERROR] No user found with AuthName "${authName}".`);
+          } else {
+            const uid = userCheck.recordset[0].uid;
+            await pool.request()
+              .input('uid', sql.Int, uid)
+              .query(`UPDATE cohauth.dbo.user_account SET role = 'admin' WHERE uid = @uid`);
+            console.log(`[SUCCESS] User "${authName}" has been promoted to admin.`);
+          }
+        });
+      }
     }
   } catch (err) {
     console.error("[ERROR] Failed to ensure schema:", err);
