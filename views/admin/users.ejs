@@ -18,66 +18,63 @@
   <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
 </form>
 
-<div class="overflow-x-auto shadow rounded-lg bg-gray-900 border border-gray-700">
-  <table class="min-w-full text-sm text-left text-gray-300">
+<div class="overflow-x-auto max-w-screen-lg shadow rounded-lg bg-gray-900 border border-gray-700">
+  <table class="table-auto w-full text-sm text-left text-gray-300">
     <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
       <tr>
-        <th class="px-4 py-3 border-b border-gray-700">Username</th>
-        <th class="px-4 py-3 border-b border-gray-700">Email</th>
-        <th class="px-4 py-3 border-b border-gray-700">Role</th>
-        <th class="px-4 py-3 border-b border-gray-700">Status</th>
-        <th class="px-4 py-3 border-b border-gray-700">Actions</th>
-        <th class="px-4 py-3 border-b border-gray-700">Notes</th>
+        <th class="px-2 py-3 border-b border-gray-700 w-32">Username</th>
+        <th class="px-2 py-3 border-b border-gray-700 w-48">Email</th>
+        <th class="px-2 py-3 border-b border-gray-700 w-20">Role</th>
+        <th class="px-2 py-3 border-b border-gray-700 w-24">Status</th>
+        <th class="px-2 py-3 border-b border-gray-700 w-64">Actions</th>
+        <th class="px-2 py-3 border-b border-gray-700 w-24">Notes</th>
       </tr>
     </thead>
     <tbody>
       <% users.forEach(user => { %>
         <tr class="hover:bg-gray-800">
-          <td class="px-4 py-2 border-b border-gray-700"><%= user.account %></td>
-          <td class="px-4 py-2 border-b border-gray-700"><%= user.email %></td>
-          <td class="px-4 py-2 border-b border-gray-700">
-            <span class="px-2 py-1 rounded-full text-xs font-medium
-              <%= user.role === 'admin'
-                ? 'bg-purple-700 text-white'
-                : 'bg-blue-700 text-white' %>">
+          <td class="px-2 py-2 border-b border-gray-700 truncate"><%= user.account %></td>
+          <td class="px-2 py-2 border-b border-gray-700 truncate"><%= user.email %></td>
+          <td class="px-2 py-2 border-b border-gray-700">
+            <span class="px-2 py-1 rounded-full text-xs font-medium <%= user.role === 'admin' ? 'bg-purple-700' : 'bg-blue-700' %> text-white">
               <%= user.role %>
             </span>
           </td>
-          <td class="px-4 py-2 border-b border-gray-700">
+          <td class="px-2 py-2 border-b border-gray-700">
             <span class="px-2 py-1 rounded-full text-xs font-medium
               <%= user.status === 'Banned'
-                  ? 'bg-red-700 text-white'
+                  ? 'bg-red-700'
                   : user.status === 'Unconfirmed'
                       ? 'bg-yellow-600 text-black'
-                      : 'bg-green-700 text-white' %>">
+                      : 'bg-green-700' %> text-white">
               <%= user.status %>
             </span>
           </td>
-          <td class="px-4 py-2 border-b border-gray-700 space-x-2">
+          <td class="px-2 py-2 border-b border-gray-700 space-x-1">
             <button type="button"
-                    data-form-action="/admin/users/<%= user.uid %>/role"
-                    data-form-method="POST"
-                    data-form-fields='{"newRole":"<%= user.role === "admin" ? "user" : "admin" %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>"}'
-                    data-confirm-message="Are you sure you want to <%= user.role === 'admin' ? 'demote' : 'promote' %> this user?"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-3 py-1 rounded"
-                    onclick="openConfirmModal(this)">
+              data-form-action="/admin/users/<%= user.uid %>/role"
+              data-form-method="POST"
+              data-form-fields='{"newRole":"<%= user.role === "admin" ? "user" : "admin" %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>"}'
+              data-confirm-message="Are you sure you want to <%= user.role === 'admin' ? 'demote' : 'promote' %> this user?"
+              class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-2 py-1 rounded"
+              onclick="openConfirmModal(this)">
               <%= user.role === 'admin' ? 'Demote' : 'Promote' %>
             </button>
 
             <button type="button"
-                    data-form-action="/admin/users/<%= user.uid %>/ban"
-                    data-form-method="POST"
-                    data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>","reason":""}'
-                    data-confirm-message="Are you sure you want to <%= user.actionLabel.toLowerCase() %> this user?"
-                    class="bg-yellow-600 hover:bg-yellow-700 text-black text-xs px-3 py-1 rounded"
-                    onclick="openConfirmModal(this, <%= ['ban', 'unban'].includes(user.actionLabel.toLowerCase()) ? 'true' : 'false' %>)">
+              data-form-action="/admin/users/<%= user.uid %>/ban"
+              data-form-method="POST"
+              data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>","reason":""}'
+              data-confirm-message="Are you sure you want to <%= user.actionLabel.toLowerCase() %> this user?"
+              class="bg-yellow-600 hover:bg-yellow-700 text-black text-xs px-2 py-1 rounded"
+              onclick="openConfirmModal(this, <%= ['ban', 'unban'].includes(user.actionLabel.toLowerCase()) ? 'true' : 'false' %>)">
               <%= user.actionLabel %>
             </button>
           </td>
-          <td class="px-4 py-2 border-b border-gray-700 space-x-2">
+          <td class="px-2 py-2 border-b border-gray-700">
             <button type="button"
-                    class="bg-gray-700 hover:bg-gray-600 text-white text-xs px-3 py-1 rounded"
-                    onclick="openNotesModal(<%= user.uid %>, '<%= user.account %>')">
+              class="bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded"
+              onclick="openNotesModal(<%= user.uid %>, '<%= user.account %>')">
               Notes (<%= user.noteCount || 0 %>)
             </button>
           </td>
@@ -86,6 +83,7 @@
     </tbody>
   </table>
 </div>
+
 
 <div class="mt-6 flex justify-center space-x-2">
   <% for (let i = 1; i <= totalPages; i++) { %>

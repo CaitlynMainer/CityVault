@@ -40,7 +40,7 @@ function updateBlacklist(req, res) {
 
   try {
     saveBlacklist(lines);
-    res.redirect('/admin/edit_blacklist');
+    res.redirect('/admin/blacklist');
   } catch (err) {
     const blacklist = lines.map(e => e.trim()).filter(e => e && !e.startsWith('#'));
     res.render('admin/edit_blacklist', {
