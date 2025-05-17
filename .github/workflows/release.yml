@@ -31,7 +31,9 @@ jobs:
       - name: Generate changelog
         id: changelog
         run: |
-          LOG=$(git log ${{ steps.prev.outputs.previous_tag }}..HEAD --pretty=format:"- %s")
+          LOG=$(git log ${{ steps.prev.outputs.previous_tag }}..HEAD --pretty=format:"- %s" \
+            | grep -v '^[-*] Update version\.json' \
+            | grep -v '^[-*] Merge branch '\''main'\'' of')
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$LOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
