@@ -11,11 +11,12 @@ A Node.js based City of Heroes server control panel.  Offers automatic manifest 
 
 ## Requirements
 
-- Node.js 22+
+- Node.js 22+ (https://nodejs.org/en)
 - npm 9+
 - SQL Server
 
 ## Installation
+0. Download Node.js LTS from https://nodejs.org/en and install.
 
 1. Clone the repository:
    ```bash
