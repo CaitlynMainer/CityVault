@@ -18,11 +18,7 @@ A Node.js based City of Heroes server control panel.  Offers automatic manifest 
 ## Installation
 0. Download Node.js LTS from https://nodejs.org/en and install.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/CaitlynMainer/CityVault
-   cd CityVault
-   ```
+1. Download the latest release: https://github.com/CaitlynMainer/CityVault/releases
 
 2. Install dependencies:
    ```bash
