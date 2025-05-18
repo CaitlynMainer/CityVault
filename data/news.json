@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1746725171923",
+    "title": "Setup",
+    "content": "<p>Download <a href=\"https://panel.cityofheroes.dev/Tequila.exe\" target=\"_blank\">[Tequila]</a>, and add the manifest: http://panel.cityofheroes.dev/manifest.xml</p>",
+    "pinned": true,
+    "date": "2025-05-09T21:36:19.126Z"
+  },
+  {
+    "id": "1746823410245",
+    "title": "This is a news post!",
+    "content": "<p>Hello! Be newsed at! Huzzah!</p>",
+    "pinned": false,
+    "date": "2025-05-09T23:55:53.948Z"
+  }
+]

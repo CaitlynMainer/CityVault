@@ -137,7 +137,6 @@ dist
 data/config.json
 data/config.json.bak
 data/badgeSpotlight.json
-data/news.json
 data/manifest-config.json
 public/game/*
 !public/game/.noempty
