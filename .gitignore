@@ -141,6 +141,7 @@ data/news.json
 data/manifest-config.json
 public/game/*
 !public/game/.noempty
+public/manifest.xml
 # Ignore everything under portrait/
 public/images/portrait/**
 # Allow the folder and the .noempty marker

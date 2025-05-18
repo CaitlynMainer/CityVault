@@ -12,7 +12,7 @@
     </div>
   <% } %>
 
-  <form method="POST" action="/admin/manifest/config">
+  <form method="POST" action="/admin/manifest">
     <label class="block">Label:
       <input class="w-full" type="text" name="label" value="<%= config.label || '' %>">
     </label>
@@ -54,8 +54,8 @@
     <button class="bg-blue-600 px-4 py-2 mt-6 text-white">Save</button>
   </form>
 
-  <form method="GET" action="/admin/manifest/generate" class="mt-6">
-    <button class="bg-green-600 px-4 py-2 text-white">Generate Manifest</button>
+  <form method="GET" action="/admin/manifest/generate" class="mt-6" onsubmit="showLoadingModal()">
+    <button type="submit" class="bg-green-600 px-4 py-2 text-white">Generate Manifest</button>
   </form>
 
   <script>
@@ -91,3 +91,28 @@
     }
   </script>
 </main>
+<!-- Loading Modal -->
+<div id="loadingModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-lg p-6 text-center">
+    <div class="flex justify-center mb-4">
+      <!-- Spinner -->
+      <svg class="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+      </svg>
+    </div>
+    <p class="text-lg font-semibold text-gray-700">Generating Manifest...</p>
+  </div>
+</div>
+<script>
+  function showLoadingModal() {
+  const modal = document.getElementById('loadingModal');
+  const submitButton = document.querySelector('form button[type="submit"]');
+  if (modal) {
+    modal.classList.remove('hidden');
+  }
+  if (submitButton) {
+    submitButton.disabled = true;
+  }
+}
+</script>

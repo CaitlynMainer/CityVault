@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const configPath = path.join(__dirname, '../../data/manifest-config.json');
-const gameDir = path.join(__dirname, '../../public/game');
-const manifestPath = path.join(__dirname, '../../public/manifest.xml');
+const configPath = path.join(global.BASE_DIR, '/data/manifest-config.json');
+const gameDir = path.join(global.BASE_DIR, '/public/game');
+const manifestPath = path.join(global.BASE_DIR, '/public/manifest.xml');
 
 function showConfigPage(req, res) {
   let config = {};
@@ -40,7 +40,7 @@ function saveConfig(req, res) {
   }
 
   req.session.save(() => {
-    res.redirect('/admin/manifest/config');
+    res.redirect('/admin/manifest');
   });
 }
 
@@ -52,7 +52,7 @@ function generateManifest(req, res) {
     config = JSON.parse(fs.readFileSync(configPath));
   } else {
     req.flash('error', 'No config found.');
-    return res.redirect('/admin/manifest/config');
+    return res.redirect('/admin/manifest');
   }
 
   const dateStr = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15);
@@ -84,7 +84,7 @@ function walk(dir) {
       const md5 = crypto.createHash('md5').update(fileData).digest('hex');
       const size = fs.statSync(fullPath).size;
       
-      const baseUrl = config.webpage?.replace(/\/+$/, '') || 'http://localhost:3000'; // fallback
+      const baseUrl = (config.webpage?.replace(/\/+$/, '').replace(/^https:/, 'http:')) || 'http://localhost:3000';
       const fileUrl = `${baseUrl}/game/${relPath}`;
 
       xml += `    <file name="${relPath}" size="${size}" md5="${md5}">
@@ -110,7 +110,7 @@ function walk(dir) {
 
   fs.writeFileSync(manifestPath, xml);
   req.flash('success', 'Manifest generated.');
-  res.redirect('/admin/manifest/config');
+  res.redirect('/admin/manifest');
 }
 
 module.exports = {

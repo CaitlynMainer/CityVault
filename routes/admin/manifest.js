@@ -9,7 +9,7 @@ const {
 
 // These are now relative to /admin/manifest
 router.get('/', requireAdmin, showConfigPage);
-router.post('/config', requireAdmin, saveConfig);
+router.post('/', requireAdmin, saveConfig);
 router.get('/generate', requireAdmin, generateManifest);
 
 module.exports = router;
