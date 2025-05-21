@@ -65,7 +65,6 @@ jobs:
           name: CityVault v${{ env.VERSION }}
           body: ${{ steps.changelog.outputs.changelog }}
           tag_name: v${{ env.VERSION }}
-          asset_name: cityvault-${{ env.VERSION }}.zip
 
       - name: Update update.json in gh-pages
         run: |
