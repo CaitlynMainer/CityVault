@@ -148,7 +148,6 @@ public/images/portrait/**
 !public/images/portrait/.noempty
 sessions/*
 !sessions/.noempty
-badges.attribute
 data/badges/*
 !data/badges/
 !data/badges/blacklist.json
