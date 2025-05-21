@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const https = require('https');
+const { https } = require('follow-redirects');
 const unzipper = require('unzipper');
 const { exec } = require('child_process');
 
