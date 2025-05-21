@@ -1,6 +1,6 @@
 const sql = require('mssql');
 const { getAuthPool } = require(global.BASE_DIR + '/db');
-const { gameHashPassword } = require('../utils/hashUtils');
+const { gameHashPassword } = require(global.BASE_DIR + '/utils/hashUtils');
 
 async function showAccountPage(req, res) {
   try {

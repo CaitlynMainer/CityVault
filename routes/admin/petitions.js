@@ -14,6 +14,8 @@ router.post('/:serverKey/:id/fetch', controller.markFetched);
 // Mark petition as Done
 router.post('/:serverKey/:id/done', controller.markDone);
 
+router.post('/:serverKey/:id/toggle/:field', controller.toggleStatus);
+
 module.exports = router;
 // Add this for route metadata
 module.exports.meta = {

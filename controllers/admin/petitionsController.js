@@ -101,3 +101,29 @@ exports.markDone = async (req, res) => {
     res.status(500).send('Internal server error');
   }
 };
+
+exports.toggleStatus = async (req, res) => {
+  const { serverKey, id, field } = req.params;
+  if (!['Fetched', 'Done'].includes(field)) return res.status(400).send('Invalid field');
+
+  try {
+    const pool = await getGamePool(serverKey);
+    // Get current value
+    const result = await pool.request()
+      .input('id', sql.Int, id)
+      .query(`SELECT ${field} FROM dbo.Petitions WHERE ContainerId = @id`);
+
+    if (result.recordset.length === 0) return res.status(404).send('Not found');
+    const current = result.recordset[0][field];
+
+    // Toggle value
+    await pool.request()
+      .input('id', sql.Int, id)
+      .query(`UPDATE dbo.Petitions SET ${field} = ${current ? 0 : 1} WHERE ContainerId = @id`);
+
+    res.redirect(`/admin/petitions/${serverKey}/${id}`);
+  } catch (err) {
+    console.error('Error toggling petition status:', err);
+    res.status(500).send('Internal server error');
+  }
+};

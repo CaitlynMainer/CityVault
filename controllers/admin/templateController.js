@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const templatesDir = path.join(global.BASE_DIR, 'views', 'emails');
+const templatesDir = path.join(global.BASE_DIR, 'userContent', 'views', 'emails');
 
 function listTemplates(req, res) {
   try {

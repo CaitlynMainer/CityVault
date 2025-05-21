@@ -1,0 +1,34 @@
+<h1 class="text-2xl font-bold mb-6">📋 Your Petitions</h1>
+
+<% if (petitions.length === 0) { %>
+  <p class="text-gray-400">You haven’t submitted any petitions yet.</p>
+<% } else { %>
+  <table class="min-w-full table-auto border border-gray-700 text-sm text-left text-gray-300 bg-gray-900 rounded shadow">
+    <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
+      <tr>
+        <th class="px-4 py-2 border-b border-gray-700">Date</th>
+        <th class="px-4 py-2 border-b border-gray-700">Server</th>
+        <th class="px-4 py-2 border-b border-gray-700">Summary</th>
+        <th class="px-4 py-2 border-b border-gray-700">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% petitions.forEach(p => { %>
+        <tr class="hover:bg-gray-800 transition">
+          <td class="px-4 py-2 border-b border-gray-700"><%= new Date(p.Date).toLocaleString() %></td>
+          <td class="px-4 py-2 border-b border-gray-700 text-xs"><%= p.serverKey %></td>
+          <td class="px-4 py-2 border-b border-gray-700 text-yellow-300"><%= p.Summary %></td>
+          <td class="px-4 py-2 border-b border-gray-700">
+            <% if (p.Done) { %>
+              <span class="text-green-400 font-semibold">Resolved</span>
+            <% } else if (p.Fetched) { %>
+              <span class="text-yellow-300 font-semibold">In Progress</span>
+            <% } else { %>
+              <span class="text-red-400 font-semibold">Unseen</span>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>

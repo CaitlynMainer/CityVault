@@ -13,19 +13,24 @@
 <% } %>
 
   <p><strong>Category:</strong> <%= petition.CategoryName %></p>
-  <p><strong>Fetched:</strong> <%= petition.Fetched ? '✅' : '❌' %></p>
-  <p><strong>Done:</strong> <%= petition.Done ? '✅' : '❌' %></p>
+    <p><strong>In Progress:</strong> <%= petition.Fetched ? '✅' : '❌' %></p>
+    <p><strong>Done:</strong> <%= petition.Done ? '✅' : '❌' %></p>
   <p><strong>Summary:</strong></p>
   <p class="italic text-yellow-300"><%= petition.Summary %></p>
   <p class="mt-4"><strong>Message:</strong></p>
   <pre class="whitespace-pre-wrap bg-gray-900 p-3 rounded text-gray-100 border border-gray-700"><%= petition.Msg %></pre>
 
-  <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/fetch" method="POST" class="inline-block mt-4 mr-2">
-    <button class="btn btn-blue" type="submit">Mark as Fetched</button>
-  </form>
-  <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/done" method="POST" class="inline-block mt-4">
-    <button class="btn btn-green" type="submit">Mark as Done</button>
-  </form>
+    <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/toggle/Fetched" method="POST" class="inline-block mr-2">
+    <button type="submit" class="btn <%= petition.Fetched ? 'btn-yellow' : 'btn-outline-yellow' %>">
+        <%= petition.Fetched ? 'Mark Not In Progress' : 'Mark In Progress' %>
+    </button>
+    </form>
+
+    <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/toggle/Done" method="POST" class="inline-block">
+    <button type="submit" class="btn <%= petition.Done ? 'btn-green' : 'btn-outline-green' %>">
+        <%= petition.Done ? 'Mark Undone' : 'Mark Done' %>
+    </button>
+    </form>
 </div>
 
 <p class="mt-6">

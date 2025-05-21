@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
 const { getGamePool } = require(global.BASE_DIR + '/db');
-const { debugBadgeDiscrepancies } = require('../utils/debugBadges');
-const { showCharacterList } = require('../controllers/characterListController');
-const { showPublicProfile } = require('../controllers/publicProfileController');
-const { showSupergroup } = require('../controllers/supergroupController');
+const { debugBadgeDiscrepancies } = require(global.BASE_DIR + '/utils/debugBadges');
+const { showCharacterList } = require(global.BASE_DIR + '/controllers/account/characterListController');
+const { showPublicProfile } = require(global.BASE_DIR + '/controllers/publicProfileController');
+const { showSupergroup } = require(global.BASE_DIR + '/controllers/supergroupController');
 
 // Homepage
-const { showHomePage } = require('../controllers/indexController');
+const { showHomePage } = require(global.BASE_DIR + '/controllers/indexController');
 router.get('/', showHomePage);
 
 // User-related routes
@@ -26,6 +26,8 @@ router.get('/supergroup/:id', showSupergroup);
 // Public character/profile views
 router.get('/account/characters', showCharacterList);
 router.get('/profile/:authId', showPublicProfile);
+
+router.use('/account/petitions', require('./accounts/petitions'));
 
 // Admin routes (under /admin/)
 router.use('/admin', require('./admin'));

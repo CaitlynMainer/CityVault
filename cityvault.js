@@ -99,7 +99,12 @@ module.exports = function startApp(config) {
   }));
 
   app.set('view engine', 'ejs');
-  app.set('views', path.join(__dirname, 'views'));
+  // Look in userContent/views first, fallback to views
+  app.set('views', [
+    path.join(__dirname, 'userContent', 'views'),
+    path.join(__dirname, 'views')
+  ]);
+  
   app.use(expressLayouts);
   app.set('layout', 'layout');
   app.use(express.json());

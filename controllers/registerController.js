@@ -1,9 +1,9 @@
 const sql = require('mssql');
 const crypto = require('crypto');
-const { gameHashPassword } = require('../utils/hashUtils');
+const { gameHashPassword } = require(global.BASE_DIR + '/utils/hashUtils');
 const { getAuthPool } = require(global.BASE_DIR + '/db');
 const config = require(global.BASE_DIR + '/utils/config');
-const { sendMail } = require('../services/mail');
+const { sendMail } = require(global.BASE_DIR + '/services/mail');
 
 function handleRegisterPage(req, res) {
   res.render('register');
