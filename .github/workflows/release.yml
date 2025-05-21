@@ -61,10 +61,11 @@ jobs:
       - name: Upload Release ZIP
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/cityvault-${{ env.VERSION }}.zip#cityvault-${{ env.VERSION }}.zip
+          files: dist/cityvault-${{ env.VERSION }}.zip
           name: CityVault v${{ env.VERSION }}
           body: ${{ steps.changelog.outputs.changelog }}
           tag_name: v${{ env.VERSION }}
+          asset_name: cityvault-${{ env.VERSION }}.zip
 
       - name: Update update.json in gh-pages
         run: |
