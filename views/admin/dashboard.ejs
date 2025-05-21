@@ -5,7 +5,7 @@
       Version <strong><%= updateInfo.latestVersion %></strong> is available.
       You are running <strong><%= updateInfo.currentVersion %></strong>.
     </p>
-    <form action="/admin/update/download-update" method="POST" onsubmit="return confirm('Download and extract the update now?');">
+    <form action="/admin/download-update" method="POST" onsubmit="return confirm('Download and extract the update now?');">
       <input type="hidden" name="zipUrl" value="<%= updateInfo.url %>">
       <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded">⬇️ Download Update</button>
     </form>
