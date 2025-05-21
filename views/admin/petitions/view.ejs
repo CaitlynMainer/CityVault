@@ -1,0 +1,33 @@
+<h1 class="text-xl font-bold mb-4">Petition Details</h1>
+
+<div class="bg-gray-800 p-4 rounded border border-gray-700">
+  <p><strong>Submitted By:</strong> <%= petition.Name %> (<%= petition.AuthName %>)</p>
+  <p><strong>Date:</strong> <%= new Date(petition.Date).toLocaleString() %></p>
+<p>
+  <strong>Map:</strong>
+  <%= petition.MapDisplay %>
+  [<%= petition.PosX %>, <%= petition.PosY %>, <%= petition.PosZ %>]
+</p>
+<% if (petition.MapContainerId) { %>
+  <p class="text-sm text-gray-400">Suggested command: <code>/mapmove <%= petition.MapContainerId %></code></p>
+<% } %>
+
+  <p><strong>Category:</strong> <%= petition.CategoryName %></p>
+  <p><strong>Fetched:</strong> <%= petition.Fetched ? '✅' : '❌' %></p>
+  <p><strong>Done:</strong> <%= petition.Done ? '✅' : '❌' %></p>
+  <p><strong>Summary:</strong></p>
+  <p class="italic text-yellow-300"><%= petition.Summary %></p>
+  <p class="mt-4"><strong>Message:</strong></p>
+  <pre class="whitespace-pre-wrap bg-gray-900 p-3 rounded text-gray-100 border border-gray-700"><%= petition.Msg %></pre>
+
+  <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/fetch" method="POST" class="inline-block mt-4 mr-2">
+    <button class="btn btn-blue" type="submit">Mark as Fetched</button>
+  </form>
+  <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/done" method="POST" class="inline-block mt-4">
+    <button class="btn btn-green" type="submit">Mark as Done</button>
+  </form>
+</div>
+
+<p class="mt-6">
+  <a href="/admin/petitions" class="text-blue-400 hover:underline">&larr; Back to list</a>
+</p>

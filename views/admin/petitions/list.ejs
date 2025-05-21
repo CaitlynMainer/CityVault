@@ -1,0 +1,46 @@
+<h1 class="text-2xl font-bold mb-6">📋 Petitions</h1>
+
+<table class="min-w-full table-auto border border-gray-700 text-sm text-left text-gray-300 bg-gray-900 rounded shadow">
+  <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
+    <tr>
+      <th class="px-4 py-2 border-b border-gray-700">Date</th>
+      <th class="px-4 py-2 border-b border-gray-700">Server</th>
+      <th class="px-4 py-2 border-b border-gray-700">Name</th>
+      <th class="px-4 py-2 border-b border-gray-700">Summary</th>
+      <th class="px-4 py-2 border-b border-gray-700">Fetched</th>
+      <th class="px-4 py-2 border-b border-gray-700">Done</th>
+      <th class="px-4 py-2 border-b border-gray-700">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% petitions.forEach(p => { %>
+      <tr class="hover:bg-gray-800 transition">
+        <td class="px-4 py-2 border-b border-gray-700 whitespace-nowrap"><%= new Date(p.Date).toLocaleString() %></td>
+        <td class="px-4 py-2 border-b border-gray-700 text-xs text-gray-400"><%= p.serverKey %></td>
+        <td class="px-4 py-2 border-b border-gray-700 font-medium"><%= p.Name %></td>
+        <td class="px-4 py-2 border-b border-gray-700 text-yellow-300"><%= p.Summary %></td>
+        <td class="px-4 py-2 border-b border-gray-700"><%= p.Fetched ? '✅' : '❌' %></td>
+        <td class="px-4 py-2 border-b border-gray-700"><%= p.Done ? '✅' : '❌' %></td>
+        <td class="px-4 py-2 border-b border-gray-700">
+          <a href="/admin/petitions/<%= p.serverKey %>/<%= p.ContainerId %>" class="text-blue-400 hover:underline">View</a>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% if (totalPages > 1) { %>
+  <div class="mt-4 flex justify-between items-center text-sm text-gray-400">
+    <div>
+      Page <%= currentPage %> of <%= totalPages %> — <%= totalItems %> total
+    </div>
+    <div class="space-x-2">
+      <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>" class="px-3 py-1 bg-gray-800 border border-gray-600 rounded hover:bg-gray-700">Previous</a>
+      <% } %>
+      <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>" class="px-3 py-1 bg-gray-800 border border-gray-600 rounded hover:bg-gray-700">Next</a>
+      <% } %>
+    </div>
+  </div>
+<% } %>

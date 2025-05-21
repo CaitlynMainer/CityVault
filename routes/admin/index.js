@@ -12,5 +12,6 @@ router.use('/config', require('./config'));
 router.use('/download-update', require('./update'));
 router.use('/templates', require('./templates'));
 router.use('/servers', require('./servers'));
+router.use('/petitions', require('./petitions'));
 
 module.exports = router;

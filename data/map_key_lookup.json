@@ -1,0 +1,410 @@
+[
+  {
+    "MapName": "maps/City_Zones/City_01_01/City_01_01.txt",
+    "MapKey": "atlaspark",
+    "FriendlyName": "Atlas Park",
+    "ContainerId": 1
+  },
+  {
+    "MapName": "maps/City_Zones/City_03_04/City_03_04.txt",
+    "MapKey": "cimerora",
+    "FriendlyName": "Cimerora",
+    "ContainerId": 3
+  },
+  {
+    "MapName": "maps/City_Zones/Coop_02_01/Coop_02_01.txt",
+    "MapKey": "midnighterclub",
+    "FriendlyName": "Midnighter Club",
+    "ContainerId": 4
+  },
+  {
+    "MapName": "maps/City_Zones/City_01_02/City_01_02.txt",
+    "MapKey": "kingsrow",
+    "FriendlyName": "Kings Row",
+    "ContainerId": 5
+  },
+  {
+    "MapName": "maps/City_Zones/City_02_01/City_02_01.txt",
+    "MapKey": "steelcanyon",
+    "FriendlyName": "Steel Canyon",
+    "ContainerId": 6
+  },
+  {
+    "MapName": "maps/City_Zones/City_02_02/City_02_02.txt",
+    "MapKey": "skywaycity",
+    "FriendlyName": "Skyway City",
+    "ContainerId": 7
+  },
+  {
+    "MapName": "maps/City_Zones/City_03_01/City_03_01.txt",
+    "MapKey": "talosisland",
+    "FriendlyName": "Talos Island",
+    "ContainerId": 8
+  },
+  {
+    "MapName": "maps/City_Zones/City_03_02/City_03_02.txt",
+    "MapKey": "independenceport",
+    "FriendlyName": "Independence Port",
+    "ContainerId": 9
+  },
+  {
+    "MapName": "maps/City_Zones/City_04_01/City_04_01.txt",
+    "MapKey": "foundersfalls",
+    "FriendlyName": "Founders Falls",
+    "ContainerId": 10
+  },
+  {
+    "MapName": "maps/City_Zones/City_04_02/City_04_02.txt",
+    "MapKey": "brickstown",
+    "FriendlyName": "Brickstown",
+    "ContainerId": 11
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_01_01/Hazard_01_01.txt",
+    "MapKey": "perezpark",
+    "FriendlyName": "Perez Park",
+    "ContainerId": 12
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_02_01/Hazard_02_01.txt",
+    "MapKey": "boomtown",
+    "FriendlyName": "Boomtown",
+    "ContainerId": 13
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_03_01/Hazard_03_01.txt",
+    "MapKey": "darkastoriaold",
+    "FriendlyName": "Dark Astoria Old",
+    "ContainerId": 14
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_04_01/Hazard_04_01.txt",
+    "MapKey": "creysfolly",
+    "FriendlyName": "Creys Folly",
+    "ContainerId": 15
+  },
+  {
+    "MapName": "maps/City_Zones/City_06_01/City_06_01.txt",
+    "MapKey": "ouroborosh",
+    "FriendlyName": "Ouroboros Hero",
+    "ContainerId": 16
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_06_01/V_City_06_01.txt",
+    "MapKey": "ouroborosv",
+    "FriendlyName": "Ouroboros Villain",
+    "ContainerId": 17
+  },
+  {
+    "MapName": "maps/City_Zones/Trial_01_01/Trial_01_01.txt",
+    "MapKey": "abandonedsewernetwork",
+    "FriendlyName": "Abandoned Sewer Network",
+    "ContainerId": 18
+  },
+  {
+    "MapName": "maps/City_Zones/Trial_02_01/Trial_02_01.txt",
+    "MapKey": "faultlineold",
+    "FriendlyName": "Faultline Old",
+    "ContainerId": 19
+  },
+  {
+    "MapName": "maps/City_Zones/Trial_03_01/Trial_03_01.txt",
+    "MapKey": "terravolta",
+    "FriendlyName": "Terra Volta",
+    "ContainerId": 20
+  },
+  {
+    "MapName": "maps/City_Zones/Trial_04_01/Trial_04_01.txt",
+    "MapKey": "eden",
+    "FriendlyName": "Eden",
+    "ContainerId": 21
+  },
+  {
+    "MapName": "maps/City_Zones/Trial_04_02/Trial_04_02.txt",
+    "MapKey": "thehive",
+    "FriendlyName": "The Hive",
+    "ContainerId": 22
+  },
+  {
+    "MapName": "maps/City_Zones/Trial_01_02/Trial_01_02.txt",
+    "MapKey": "sewernetwork",
+    "FriendlyName": "Sewer Network",
+    "ContainerId": 23
+  },
+  {
+    "MapName": "maps/City_Zones/City_00_01/City_00_01.txt",
+    "MapKey": "outbreak",
+    "FriendlyName": "Outbreak",
+    "ContainerId": 24
+  },
+  {
+    "MapName": "maps/City_Zones/City_01_03/City_01_03.txt",
+    "MapKey": "galaxycity",
+    "FriendlyName": "Galaxy City",
+    "ContainerId": 29
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_01/P_City_00_01.txt",
+    "MapKey": "novapraetoria",
+    "FriendlyName": "Nova Praetoria",
+    "ContainerId": 36
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_02/P_City_00_02.txt",
+    "MapKey": "imperialcity",
+    "FriendlyName": "Imperial City",
+    "ContainerId": 37
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_03/P_City_00_03.txt",
+    "MapKey": "neutropolis",
+    "FriendlyName": "Neutropolis",
+    "ContainerId": 38
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_06/P_City_00_06.txt",
+    "MapKey": "undergroundnova",
+    "FriendlyName": "Underground Nova",
+    "ContainerId": 39
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_05/P_City_00_05.txt",
+    "MapKey": "precinctfive",
+    "FriendlyName": "Precinct Five",
+    "ContainerId": 40
+  },
+  {
+    "MapName": "maps/City_Zones/N_City_00_01/N_City_00_01.txt",
+    "MapKey": "destroyedgalaxycity",
+    "FriendlyName": "Destroyed Galaxy City (Tutorial)",
+    "ContainerId": 41
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_07/P_City_00_07.txt",
+    "MapKey": "undergroundimperial",
+    "FriendlyName": "Underground Imperial",
+    "ContainerId": 42
+  },
+  {
+    "MapName": "maps/City_Zones/Coop_06_01/Coop_06_01.txt",
+    "MapKey": "darkastoria",
+    "FriendlyName": "Dark Astoria",
+    "ContainerId": 43
+  },
+  {
+    "MapName": "maps/City_Zones/City_05_03/City_05_03.txt",
+    "MapKey": "kallistiwharf",
+    "FriendlyName": "Kallisti Wharf",
+    "ContainerId": 44
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_04/P_City_00_04.txt",
+    "MapKey": "firstward",
+    "FriendlyName": "First Ward",
+    "ContainerId": 49
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_08/P_City_00_08.txt",
+    "MapKey": "undergroundneutropolis",
+    "FriendlyName": "Underground Neutropolis",
+    "ContainerId": 51
+  },
+  {
+    "MapName": "maps/City_Zones/P_City_00_09/P_City_00_09.txt",
+    "MapKey": "nightward",
+    "FriendlyName": "Night Ward",
+    "ContainerId": 52
+  },
+  {
+    "MapName": "maps/City_Zones/City_06_02/City_06_02.txt",
+    "MapKey": "HeroLounge",
+    "FriendlyName": "Hero Lounge",
+    "ContainerId": 55
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_06_02/V_City_06_02.txt",
+    "MapKey": "VillainLounge",
+    "FriendlyName": "Villain Lounge",
+    "ContainerId": 56
+  },
+  {
+    "MapName": "maps/City_Zones/Trial_05_01/Trial_05_01.txt",
+    "MapKey": "rikticrashsite",
+    "FriendlyName": "Rikti Crash Site",
+    "ContainerId": 60
+  },
+  {
+    "MapName": "maps/City_Zones/City_05_01/City_05_01.txt",
+    "MapKey": "peregrineisland",
+    "FriendlyName": "Peregrine Island",
+    "ContainerId": 61
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_01_02/Hazard_01_02.txt",
+    "MapKey": "thehollows",
+    "FriendlyName": "The Hollows",
+    "ContainerId": 62
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_01_03/Hazard_01_03.txt",
+    "MapKey": "thetunnels",
+    "FriendlyName": "The Tunnels",
+    "ContainerId": 63
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_06_01/Hazard_06_01.txt",
+    "MapKey": "fire",
+    "FriendlyName": "Fire",
+    "ContainerId": 64
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_06_02/Hazard_06_02.txt",
+    "MapKey": "cascadearchipelago",
+    "FriendlyName": "Cascade Archipelago",
+    "ContainerId": 65
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_06_03/Hazard_06_03.txt",
+    "MapKey": "thechantry",
+    "FriendlyName": "The Chantry",
+    "ContainerId": 66
+  },
+  {
+    "MapName": "maps/City_Zones/Trial_06_01/Trial_06_01.txt",
+    "MapKey": "thestormpalace",
+    "FriendlyName": "The Stormpalace",
+    "ContainerId": 67
+  },
+  {
+    "MapName": "maps/City_Zones/City_02_03/City_02_03.txt",
+    "MapKey": "paragondanceparty",
+    "FriendlyName": "Paragon Dance Party",
+    "ContainerId": 68
+  },
+  {
+    "MapName": "maps/City_Zones/Hazard_03_02/Hazard_03_02.txt",
+    "MapKey": "strigaisle",
+    "FriendlyName": "Striga Isle",
+    "ContainerId": 69
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_00_01/V_City_00_01.txt",
+    "MapKey": "breakout",
+    "FriendlyName": "Breakout",
+    "ContainerId": 70
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_01_01/V_City_01_01.txt",
+    "MapKey": "mercyisland",
+    "FriendlyName": "Mercy Island",
+    "ContainerId": 71
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_01_02/V_City_01_02.txt",
+    "MapKey": "portoakes",
+    "FriendlyName": "Port Oakes",
+    "ContainerId": 72
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_02_01/V_City_02_01.txt",
+    "MapKey": "capaudiable",
+    "FriendlyName": "Cap au Diable",
+    "ContainerId": 73
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_03_01/V_City_03_01.txt",
+    "MapKey": "sharkheadisle",
+    "FriendlyName": "Sharkhead Isle",
+    "ContainerId": 74
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_03_02/V_City_03_02.txt",
+    "MapKey": "nervaarchipelago",
+    "FriendlyName": "Nerva Archipelago",
+    "ContainerId": 75
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_04_01/V_City_04_01.txt",
+    "MapKey": "stmartial",
+    "FriendlyName": "St. Martial",
+    "ContainerId": 76
+  },
+  {
+    "MapName": "maps/City_Zones/V_City_05_01/V_City_05_01.txt",
+    "MapKey": "grandville",
+    "FriendlyName": "Grandville",
+    "ContainerId": 77
+  },
+  {
+    "MapName": "maps/City_Zones/V_PvP_02_01/V_PvP_02_01.txt",
+    "MapKey": "bloodybay",
+    "FriendlyName": "Bloody Bay",
+    "ContainerId": 78
+  },
+  {
+    "MapName": "maps/City_Zones/V_PvP_03_01/V_PvP_03_01.txt",
+    "MapKey": "sirenscall",
+    "FriendlyName": "Sirens' Call",
+    "ContainerId": 79
+  },
+  {
+    "MapName": "maps/City_Zones/V_PvP_04_01/V_PvP_04_01.txt",
+    "MapKey": "warburg",
+    "FriendlyName": "Warburg",
+    "ContainerId": 80
+  },
+  {
+    "MapName": "maps/City_Zones/V_PvP_05_01/V_PvP_05_01.txt",
+    "MapKey": "reclusesvictory",
+    "FriendlyName": "Recluse's Victory",
+    "ContainerId": 81
+  },
+  {
+    "MapName": "maps/City_Zones/City_03_03/City_03_03.txt",
+    "MapKey": "croatoa",
+    "FriendlyName": "Croatoa",
+    "ContainerId": 82
+  },
+  {
+    "MapName": "maps/City_Zones/City_02_04/City_02_04.txt",
+    "MapKey": "pocketd",
+    "FriendlyName": "Pocket D",
+    "ContainerId": 83
+  },
+  {
+    "MapName": "maps/City_Zones/City_02_05/City_02_05.txt",
+    "MapKey": "faultline",
+    "FriendlyName": "Faultline",
+    "ContainerId": 84
+  },
+  {
+    "MapName": "maps/City_Zones/War_05_01/War_05_01.txt",
+    "MapKey": "riktiwarzone",
+    "FriendlyName": "Rikti War Zone",
+    "ContainerId": 85
+  },
+  {
+    "MapName": "maps/City_Zones/V_Trial_04_02/V_Trial_04_02.txt",
+    "MapKey": "theabyss",
+    "FriendlyName": "The Abyss",
+    "ContainerId": 86
+  },
+  {
+    "MapName": "maps/City_Zones/V_Trial_04_03/V_Trial_04_03.txt",
+    "MapKey": "monsterisland",
+    "FriendlyName": "Monster Island",
+    "ContainerId": 87
+  },
+  {
+    "MapName": "maps/City_Zones/City_01_05/City_01_05.txt",
+    "MapKey": "echoatlaspark",
+    "FriendlyName": "Echo Atlas Park",
+    "ContainerId": 625
+  },
+  {
+    "MapName": "maps/City_Zones/City_01_04/City_01_04.txt",
+    "MapKey": "echogalaxycity",
+    "FriendlyName": "Echo Galaxy City",
+    "ContainerId": 626
+  }
+]
