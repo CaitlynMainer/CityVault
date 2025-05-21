@@ -15,16 +15,16 @@ global.BASE_DIR = __dirname;
 // Create CommonJS `require`
 const require = createRequire(import.meta.url);
 
-// ✅ Ensure config is ready (and run wizard if missing)
+// Ensure config is ready (and run wizard if missing)
 const ensureConfig = await import('./utils/ensureConfig.mjs');
 await ensureConfig.default();
 
-// ✅ Load config and initialize app
+// Load config and initialize app
 const config = require('./utils/config');
 const startApp = require('./cityvault');      // this is now a function
 const expressApp = startApp(config);          // call it with config
 
-// ✅ AutoEncrypt HTTPS server
+// AutoEncrypt HTTPS server
 AutoEncrypt.createServer({
   domains: [config.domain],
   httpHost: config.ipAddr
