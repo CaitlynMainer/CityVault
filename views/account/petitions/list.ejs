@@ -4,14 +4,15 @@
   <p class="text-gray-400">You haven’t submitted any petitions yet.</p>
 <% } else { %>
   <table class="min-w-full table-auto border border-gray-700 text-sm text-left text-gray-300 bg-gray-900 rounded shadow">
-    <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
-      <tr>
-        <th class="px-4 py-2 border-b border-gray-700">Date</th>
-        <th class="px-4 py-2 border-b border-gray-700">Server</th>
-        <th class="px-4 py-2 border-b border-gray-700">Summary</th>
-        <th class="px-4 py-2 border-b border-gray-700">Status</th>
-      </tr>
-    </thead>
+<thead class="bg-gray-800 text-gray-400 uppercase text-xs">
+  <tr>
+    <th class="px-4 py-2 border-b border-gray-700">Date</th>
+    <th class="px-4 py-2 border-b border-gray-700">Server</th>
+    <th class="px-4 py-2 border-b border-gray-700">Summary</th>
+    <th class="px-4 py-2 border-b border-gray-700">Status</th>
+    <th class="px-4 py-2 border-b border-gray-700">Actions</th>
+  </tr>
+</thead>
     <tbody>
       <% petitions.forEach(p => { %>
         <tr class="hover:bg-gray-800 transition">
@@ -26,6 +27,9 @@
             <% } else { %>
               <span class="text-red-400 font-semibold">Unseen</span>
             <% } %>
+          </td>
+          <td class="px-4 py-2 border-b border-gray-700">
+            <a href="/account/petitions/<%= p.serverKey %>/<%= p.ContainerId %>" class="text-blue-400 hover:underline">View</a>
           </td>
         </tr>
       <% }) %>

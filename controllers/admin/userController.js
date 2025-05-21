@@ -2,6 +2,7 @@ const sql = require('mssql');
 const { getAuthPool } = require(global.BASE_DIR + '/db');
 const { sendMail } = require(global.BASE_DIR + '/services/mail');
 const { renderTemplate } = require(global.BASE_DIR + '/services/mail/template');
+const { isGM } = require(global.BASE_DIR + '/utils/roles');
 
 function getAccountStatus(flag) {
   if (flag & 1) return 'Banned';
@@ -16,6 +17,9 @@ function getActionLabel(flag) {
 }
 
 async function listUsers(req, res) {
+  if (!isGM(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const search = req.query.search || '';
   const searchLike = `%${search}%`;
   const limit = parseInt(req.query.limit) || parseInt(req.cookies.userListLimit) || 10;
@@ -65,9 +69,7 @@ async function listUsers(req, res) {
       stylesheets: '<link rel="stylesheet" href="/css/admin.css">',
       scripts: '<script src="/js/admin.js"></script>',
       importmap: '',
-      role: req.session.role,
       users,
-      username: req.session.username,
       page,
       totalPages,
       search,
@@ -80,11 +82,44 @@ async function listUsers(req, res) {
 }
 
 async function updateUserRole(req, res) {
+  if (!isGM(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const { uid } = req.params;
   const { newRole, page, search, limit } = req.body;
 
-  if (!['user', 'admin'].includes(newRole)) {
+  if (!['user', 'gm', 'admin'].includes(newRole)) {
     return res.status(400).send('Invalid role');
+  }
+
+  const actingRole = req.user?.role;
+  if (!actingRole) return res.status(403).send('Forbidden');
+
+  const pool = await getAuthPool();
+  const targetUser = await pool.request()
+    .input('uid', sql.Int, uid)
+    .query(`SELECT role FROM cohauth.dbo.user_account WHERE uid = @uid`);
+
+  if (targetUser.recordset.length === 0) return res.status(404).send('User not found');
+  const currentRole = targetUser.recordset[0].role;
+  if (actingRole !== 'admin') {
+    return res.status(403).send('Only admins can modify roles.');
+  }
+
+  if (currentRole === 'admin' && newRole !== 'admin') {
+    return res.status(403).send('Admins cannot be demoted through the panel.');
+  }
+
+  if (targetUser.account === req.session.username) {
+    return res.status(403).send('You cannot change your own role.');
+  }
+  // Final enforcement
+  if (actingRole !== 'admin') {
+    return res.status(403).send('Only admins can modify roles.');
+  }
+
+  if (currentRole === 'admin' && newRole !== 'admin') {
+    return res.status(403).send('Admins cannot be demoted through the panel.');
   }
 
   try {
@@ -108,11 +143,41 @@ async function updateUserRole(req, res) {
 }
 
 async function toggleUserBan(req, res) {
+  if (!isGM(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
+
   const { uid } = req.params;
   const { action, page, search, limit, reason = '' } = req.body;
 
+  const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
+
   try {
     const pool = await getAuthPool();
+
+    // Get the target user's role and email first
+    const userResult = await pool.request()
+      .input('uid', sql.Int, uid)
+      .query(`SELECT account, email, role FROM cohauth.dbo.user_account WHERE uid = @uid`);
+
+    const user = userResult.recordset[0];
+
+    if (!user) {
+      req.flash('error', 'User not found.');
+      return res.redirect('/admin/users' + qs);
+    }
+
+    // Prevent banning or unbanning of Admin users
+    if (user.role === 'admin') {
+      req.flash('error', 'You cannot ban or unban Admin users.');
+      return res.redirect('/admin/users' + qs);
+    }
+
+    // Prevent GMs from banning or unbanning other GMs
+    if (req.user.role === 'gm' && user.role === 'gm') {
+      req.flash('error', 'GMs cannot ban or unban other GMs.');
+      return res.redirect('/admin/users' + qs);
+    }
 
     let query;
     if (action === 'ban') {
@@ -127,38 +192,32 @@ async function toggleUserBan(req, res) {
 
     await pool.request().input('uid', sql.Int, uid).query(query);
 
-    // Fetch account + email for email notice
-    const userResult = await pool.request()
-      .input('uid', sql.Int, uid)
-      .query(`SELECT account, email FROM cohauth.dbo.user_account WHERE uid = @uid`);
-
-    const user = userResult.recordset[0];
-
-    if (action === 'ban' && user?.email) {
-      const html = await renderTemplate('user_banned', {
-        username: user.account,
-        reason
-      });
-
-      await sendMail({
-        to: user.email,
-        subject: 'Your account has been banned',
-        html
-      });
-    } else if (action === 'unban' && user?.email) {
-      const html = await renderTemplate('user_unbanned', {
-        username: user.account,
-        reason
-      });
-
-      await sendMail({
-        to: user.email,
-        subject: 'Your account has been unbanned',
-        html
-      });
+    // Send email notification if applicable
+    if (user?.email) {
+      let html;
+      if (action === 'ban') {
+        html = await renderTemplate('user_banned', {
+          username: user.account,
+          reason
+        });
+        await sendMail({
+          to: user.email,
+          subject: 'Your account has been banned',
+          html
+        });
+      } else if (action === 'unban') {
+        html = await renderTemplate('user_unbanned', {
+          username: user.account,
+          reason
+        });
+        await sendMail({
+          to: user.email,
+          subject: 'Your account has been unbanned',
+          html
+        });
+      }
     }
 
-    const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
     res.redirect('/admin/users' + qs);
   } catch (err) {
     console.error(err);
@@ -166,8 +225,12 @@ async function toggleUserBan(req, res) {
   }
 }
 
+
 // Fetch notes for a user
 async function getUserNotes(req, res) {
+  if (!isGM(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const uid = parseInt(req.params.uid, 10);
   if (isNaN(uid)) {
     return res.status(400).json({ success: false, error: 'Invalid user ID.' });
@@ -192,6 +255,9 @@ async function getUserNotes(req, res) {
 
 // Add a new note
 async function addUserNote(req, res) {
+  if (!isGM(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const uid = parseInt(req.params.uid, 10);
   const note = req.body.note?.trim();
   const author = req.session.username;

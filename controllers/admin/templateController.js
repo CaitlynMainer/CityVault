@@ -1,9 +1,13 @@
 const fs = require('fs');
 const path = require('path');
-
+const { isGM } = require(global.BASE_DIR + '/utils/roles');
 const templatesDir = path.join(global.BASE_DIR, 'userContent', 'views', 'emails');
+const { isAdmin } = require(global.BASE_DIR + '/utils/roles');
 
 function listTemplates(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   try {
     const templates = fs.readdirSync(templatesDir)
       .filter(file => file.endsWith('.ejs'))
@@ -22,6 +26,9 @@ function listTemplates(req, res) {
 }
 
 function showEditTemplate(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const name = req.params.name;
   const filePath = path.join(templatesDir, `${name}.ejs`);
 
@@ -50,6 +57,9 @@ function showEditTemplate(req, res) {
 }
 
 function saveTemplate(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const name = req.params.name;
   const filePath = path.join(templatesDir, `${name}.ejs`);
 

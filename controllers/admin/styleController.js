@@ -1,10 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 
+const { isGM } = require(global.BASE_DIR + '/utils/roles');
+
 const cssPath = path.join(global.BASE_DIR, 'public', 'css', 'custom.css');
 const defaultPath = path.join(global.BASE_DIR, 'public', 'css', 'default.css');
 
 exports.showStyleEditor = (req, res) => {
+  if (!isGM(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   fs.readFile(cssPath, 'utf8', (err, css) => {
     if (err || !css.trim()) {
       // fallback to default

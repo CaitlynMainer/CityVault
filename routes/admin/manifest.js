@@ -17,5 +17,6 @@ module.exports = router;
 // Add this for route metadata
 module.exports.meta = {
   label: 'Manifest Config',
-  icon: '📦'
+  icon: '📦',
+  access: ['admin']
 };

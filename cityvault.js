@@ -55,7 +55,7 @@ module.exports = function startApp(config) {
       signed: true
     }
   }));
-
+  app.use(require('./middleware/attachUserInfo'));
   const logDir = path.join(__dirname, 'logs');
   if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir, { recursive: true });
@@ -83,7 +83,7 @@ module.exports = function startApp(config) {
   app.use((req, res, next) => {
     res.locals.currentPath = req.path;
     res.locals.username = req.session.username || null;
-    res.locals.role = req.session.role || null;
+    res.locals.role = req.user?.role || null;
     res.locals.getMessages = () => ({
       success: req.flash('success'),
       error: req.flash('error')

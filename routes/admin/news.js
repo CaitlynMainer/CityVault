@@ -14,5 +14,6 @@ module.exports = router;
 // Add this for route metadata
 module.exports.meta = {
   label: 'Edit News',
-  icon: '📰'
+  icon: '📰',
+  access: ['gm', 'admin']
 };

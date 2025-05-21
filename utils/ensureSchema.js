@@ -1,57 +1,23 @@
 const sql = require('mssql');
 const readline = require('readline');
 const crypto = require('crypto');
-const { gameHashPassword } = require('../utils/hashUtils');
+const { gameHashPassword } = require(global.BASE_DIR + '/utils/hashUtils');
+const { servers } = require(global.BASE_DIR + '/utils/config');
 
 module.exports = async function ensureSchema(authConfig) {
   try {
     const pool = await sql.connect(authConfig);
 
-    const checks = [
-      { column: 'email', query: "ALTER TABLE cohauth.dbo.user_account ADD email VARCHAR(254) NULL;" },
-      { column: 'role', query: "ALTER TABLE cohauth.dbo.user_account ADD role VARCHAR(16) NOT NULL DEFAULT 'user';" },
-      { column: 'tracker', query: "ALTER TABLE cohauth.dbo.user_account ADD tracker VARCHAR(1) NOT NULL DEFAULT '1';" },
-      { column: 'reset_token', query: "ALTER TABLE cohauth.dbo.user_account ADD reset_token VARCHAR(128) NULL;" },
-      { column: 'reset_expires', query: "ALTER TABLE cohauth.dbo.user_account ADD reset_expires BIGINT NULL;" },
-      { column: 'register_token', query: "ALTER TABLE cohauth.dbo.user_account ADD register_token VARCHAR(128) NULL;" },
-      { column: 'block_flag', query: "ALTER TABLE cohauth.dbo.user_account ADD block_flag INT NOT NULL DEFAULT 0;" }
-    ];
+    await ensureAuthSchema(pool);
+    await ensureInitialAdmin(pool);
+    await ensureGameSchemas();
 
-    for (const check of checks) {
-      const exists = await pool.request().query(`
-        SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS
-        WHERE TABLE_NAME = 'user_account' AND COLUMN_NAME = '${check.column}'
-      `);
-      if (exists.recordset.length === 0) {
-        console.log(`[INFO] Adding '${check.column}' column to user_account...`);
-        await pool.request().query(check.query);
-        console.log(`[INFO] '${check.column}' column added.`);
-      }
-    }
+  } catch (err) {
+    console.error("[ERROR] Failed to ensure schema:", err);
+  }
+};
 
-    const tableExists = await pool.request().query(`
-      SELECT * FROM INFORMATION_SCHEMA.TABLES
-      WHERE TABLE_NAME = 'user_notes' AND TABLE_SCHEMA = 'dbo'
-    `);
-
-    if (tableExists.recordset.length === 0) {
-      console.log('[INFO] Creating user_notes table...');
-      await pool.request().query(`
-        CREATE TABLE cohauth.dbo.user_notes (
-          id INT IDENTITY(1,1) PRIMARY KEY,
-          uid INT NOT NULL,
-          created_at DATETIME DEFAULT GETUTCDATE(),
-          author VARCHAR(50) NOT NULL,
-          note TEXT NOT NULL
-        );
-      `);
-      console.log('[INFO] user_notes table created.');
-    }
-
-    const userCount = await pool.request().query(
-      `SELECT COUNT(*) AS count FROM cohauth.dbo.user_account`
-    );
-
+async function ensureInitialAdmin(pool) {
     if (userCount.recordset[0].count === 0) {
       console.log("[WARN] No users found. Creating initial admin account...");
 
@@ -133,7 +99,103 @@ module.exports = async function ensureSchema(authConfig) {
         });
       }
     }
+}
+
+module.exports = async function ensureAuthSchema(authConfig) {
+  try {
+    const pool = await sql.connect(authConfig);
+
+    const checks = [
+      { column: 'email', query: "ALTER TABLE cohauth.dbo.user_account ADD email VARCHAR(254) NULL;" },
+      { column: 'role', query: "ALTER TABLE cohauth.dbo.user_account ADD role VARCHAR(16) NOT NULL DEFAULT 'user';" },
+      { column: 'tracker', query: "ALTER TABLE cohauth.dbo.user_account ADD tracker VARCHAR(1) NOT NULL DEFAULT '1';" },
+      { column: 'reset_token', query: "ALTER TABLE cohauth.dbo.user_account ADD reset_token VARCHAR(128) NULL;" },
+      { column: 'reset_expires', query: "ALTER TABLE cohauth.dbo.user_account ADD reset_expires BIGINT NULL;" },
+      { column: 'register_token', query: "ALTER TABLE cohauth.dbo.user_account ADD register_token VARCHAR(128) NULL;" },
+      { column: 'block_flag', query: "ALTER TABLE cohauth.dbo.user_account ADD block_flag INT NOT NULL DEFAULT 0;" }
+    ];
+
+    for (const check of checks) {
+      const exists = await pool.request().query(`
+        SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS
+        WHERE TABLE_NAME = 'user_account' AND COLUMN_NAME = '${check.column}'
+      `);
+      if (exists.recordset.length === 0) {
+        console.log(`[INFO] Adding '${check.column}' column to user_account...`);
+        await pool.request().query(check.query);
+        console.log(`[INFO] '${check.column}' column added.`);
+      }
+    }
+
+    const tableExists = await pool.request().query(`
+      SELECT * FROM INFORMATION_SCHEMA.TABLES
+      WHERE TABLE_NAME = 'user_notes' AND TABLE_SCHEMA = 'dbo'
+    `);
+
+    if (tableExists.recordset.length === 0) {
+      console.log('[INFO] Creating user_notes table...');
+      await pool.request().query(`
+        CREATE TABLE cohauth.dbo.user_notes (
+          id INT IDENTITY(1,1) PRIMARY KEY,
+          uid INT NOT NULL,
+          created_at DATETIME DEFAULT GETUTCDATE(),
+          author VARCHAR(50) NOT NULL,
+          note TEXT NOT NULL
+        );
+      `);
+      console.log('[INFO] user_notes table created.');
+    }
+
+    const userCount = await pool.request().query(
+      `SELECT COUNT(*) AS count FROM cohauth.dbo.user_account`
+    );
+
   } catch (err) {
     console.error("[ERROR] Failed to ensure schema:", err);
   }
 };
+
+module.exports = async function ensureGameSchemas() {
+  for (const [serverKey, serverConfig] of Object.entries(servers)) {
+    try {
+      console.log(`[INFO] Checking PetitionComments table on server: ${serverKey}`);
+
+      const pool = await sql.connect({
+        server: serverConfig.dbHost,
+        port: serverConfig.dbPort,
+        user: serverConfig.dbUser,
+        password: serverConfig.dbPass,
+        database: serverConfig.dbName,
+        options: {
+          trustServerCertificate: true
+        }
+      });
+
+      const tableExists = await pool.request().query(`
+        SELECT * FROM INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_NAME = 'PetitionComments' AND TABLE_SCHEMA = 'dbo'
+      `);
+
+      if (tableExists.recordset.length === 0) {
+        console.log(`[INFO] Creating PetitionComments table on ${serverKey}...`);
+        await pool.request().query(`
+          CREATE TABLE dbo.PetitionComments (
+            id INT IDENTITY(1,1) PRIMARY KEY,
+            petition_id INT NOT NULL,
+            author VARCHAR(32) NOT NULL,
+            is_admin BIT NOT NULL DEFAULT 0,
+            posted DATETIME NOT NULL DEFAULT GETUTCDATE(),
+            body TEXT NOT NULL
+          );
+        `);
+        console.log(`[INFO] PetitionComments table created on ${serverKey}.`);
+      } else {
+        console.log(`[OK] PetitionComments already exists on ${serverKey}.`);
+      }
+
+      await pool.close();
+    } catch (err) {
+      console.error(`[ERROR] Failed checking PetitionComments on ${serverKey}:`, err);
+    }
+  }
+}

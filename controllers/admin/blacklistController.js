@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const blacklistPath = path.join(global.BASE_DIR, 'data', 'badges_blacklist.json');
+const { isAdmin } = require(global.BASE_DIR + '/utils/roles');
 
 function loadBlacklist() {
   try {
@@ -13,6 +14,9 @@ function loadBlacklist() {
 }
 
 function saveBlacklist(entries) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const cleaned = entries
     .map(e => e.trim())
     .filter(e => e && !e.startsWith('#'));
@@ -30,6 +34,9 @@ function saveBlacklist(entries) {
 
 
 function showBlacklist(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const blacklist = loadBlacklist();
   res.render('admin/edit_blacklist', { blacklist });
 }

@@ -11,5 +11,6 @@ module.exports = router;
 
 module.exports.meta = {
   label: 'Manage Servers',
-  icon: '🖥️'
+  icon: '🖥️',
+  access: ['admin']
 };

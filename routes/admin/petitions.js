@@ -16,9 +16,12 @@ router.post('/:serverKey/:id/done', controller.markDone);
 
 router.post('/:serverKey/:id/toggle/:field', controller.toggleStatus);
 
+router.post('/:serverKey/:id/comment', controller.addComment);
+
 module.exports = router;
 // Add this for route metadata
 module.exports.meta = {
   label: 'Ingame Support',
-  icon: '🆘'
+  icon: '🆘',
+  access: ['gm', 'admin'] // ✅ restrict to GM and admin
 };

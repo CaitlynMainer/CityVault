@@ -44,4 +44,29 @@
     </nav>
   </div>
   <% } %>
+
+  <!-- GM Section -->
+  <% if (role === 'gm') { %>
+  <div class="mt-6 border-t border-gray-700 pt-4">
+    <button @click="openSections.gm = !openSections.gm" class="w-full text-left font-bold">GM</button>
+    <nav x-show="openSections.gm" class="ml-2 mt-2 space-y-1">
+      <a href="/admin"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin' ? 'bg-gray-700' : '' %>">
+         Dashboard
+      </a>
+      <a href="/admin/news"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/news' ? 'bg-gray-700' : '' %>">
+         Edit News
+      </a>
+      <a href="/admin/users"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/users' ? 'bg-gray-700' : '' %>">
+         User Management
+      </a>
+      <a href="/admin/petitions"
+         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/petitions' ? 'bg-gray-700' : '' %>">
+         Support Requests
+      </a>
+    </nav>
+  </div>
+  <% } %>
 </aside>

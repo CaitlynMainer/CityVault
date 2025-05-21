@@ -1,7 +1,11 @@
 const sql = require('mssql');
 const { getAuthPool } = require(global.BASE_DIR + '/db');
+const { isAdmin } = require(global.BASE_DIR + '/utils/roles');
 
 async function listServers(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   try {
     const pool = await getAuthPool();
     const result = await pool.request().query('SELECT id, name, ip, inner_ip, server_group_id FROM dbo.server ORDER BY id');
@@ -18,6 +22,9 @@ async function listServers(req, res) {
 }
 
 async function saveServer(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const { id, name, ip, inner_ip, server_group_id } = req.body;
 
   try {

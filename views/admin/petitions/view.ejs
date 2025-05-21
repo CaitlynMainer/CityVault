@@ -33,6 +33,30 @@
     </form>
 </div>
 
+<h2 class="text-lg font-bold mt-6 mb-2">🗨️ Comments</h2>
+
+<% if (petition.comments.length === 0) { %>
+  <p class="text-gray-400 italic mb-4">No comments yet.</p>
+<% } else { %>
+  <div class="space-y-4 mb-6">
+    <% petition.comments.forEach(comment => { %>
+      <div class="border border-gray-700 p-3 rounded bg-gray-800">
+        <div class="text-sm text-gray-400 mb-1">
+          <strong><%= comment.author %></strong>
+          <% if (comment.is_admin) { %><span class="ml-1 text-yellow-300">(GM)</span><% } %>
+          — <%= new Date(comment.posted).toLocaleString() %>
+        </div>
+        <div class="text-gray-200 whitespace-pre-wrap"><%= comment.body %></div>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
+<form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/comment" method="POST" class="mt-4">
+  <textarea name="comment" rows="4" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-gray-200" required></textarea>
+  <button type="submit" class="btn btn-blue mt-2">Post Comment</button>
+</form>
+
 <p class="mt-6">
   <a href="/admin/petitions" class="text-blue-400 hover:underline">&larr; Back to list</a>
 </p>

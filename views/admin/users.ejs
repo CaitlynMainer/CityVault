@@ -1,3 +1,8 @@
+<style>
+  .bg-orange-600 {
+    background-color: #ea580c; /* Tailwind's value */
+  }
+</style>
 <h2 class="text-2xl font-bold text-gray-100 mb-4">User Management</h2>
 
 <form method="GET" action="/admin/users" class="flex flex-wrap items-center gap-4 mb-6">
@@ -36,10 +41,33 @@
           <td class="px-2 py-2 border-b border-gray-700 truncate"><%= user.account %></td>
           <td class="px-2 py-2 border-b border-gray-700 truncate"><%= user.email %></td>
           <td class="px-2 py-2 border-b border-gray-700">
-            <span class="px-2 py-1 rounded-full text-xs font-medium <%= user.role === 'admin' ? 'bg-purple-700' : 'bg-blue-700' %> text-white">
-              <%= user.role %>
-            </span>
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-1 rounded-full text-xs font-medium 
+                <%= user.role === 'admin'
+                      ? 'bg-purple-700'
+                      : user.role === 'gm'
+                        ? 'bg-orange-600'
+                        : 'bg-blue-700' %> text-white">
+                <%= user.role %>
+              </span>
+
+              <% if (role === 'admin' && user.account !== username) { %>
+                <form method="POST" action="/admin/users/<%= user.uid %>/role" class="inline-block">
+                  <input type="hidden" name="page" value="<%= page %>">
+                  <input type="hidden" name="search" value="<%= search %>">
+                  <input type="hidden" name="limit" value="<%= limit %>">
+                  <select name="newRole" onchange="confirmRoleChange(this, '<%= user.uid %>', '<%= user.account %>')" class="bg-gray-800 border border-gray-600 text-white text-xs rounded">
+                    <% ['user', 'gm', 'admin'].forEach(roleOption => { %>
+                      <option value="<%= roleOption %>" <%= user.role === roleOption ? 'selected' : '' %>><%= roleOption %></option>
+                    <% }) %>
+                  </select>
+                </form>
+              <% } else { %>
+                <span class="text-xs text-gray-500">🔒</span>
+              <% } %>
+            </div>
           </td>
+
           <td class="px-2 py-2 border-b border-gray-700">
             <span class="px-2 py-1 rounded-full text-xs font-medium
               <%= user.status === 'Banned'
@@ -50,27 +78,19 @@
               <%= user.status %>
             </span>
           </td>
-          <td class="px-2 py-2 border-b border-gray-700 space-x-1">
-            <button type="button"
-              data-form-action="/admin/users/<%= user.uid %>/role"
-              data-form-method="POST"
-              data-form-fields='{"newRole":"<%= user.role === "admin" ? "user" : "admin" %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>"}'
-              data-confirm-message="Are you sure you want to <%= user.role === 'admin' ? 'demote' : 'promote' %> this user?"
-              class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-2 py-1 rounded"
-              onclick="openConfirmModal(this)">
-              <%= user.role === 'admin' ? 'Demote' : 'Promote' %>
-            </button>
+            <td class="px-2 py-2 border-b border-gray-700 space-x-1">
+              <!-- Ban/Unban/Confirm Action -->
+              <button type="button"
+                data-form-action="/admin/users/<%= user.uid %>/ban"
+                data-form-method="POST"
+                data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>","reason":""}'
+                data-confirm-message="Are you sure you want to <%= user.actionLabel.toLowerCase() %> this user?"
+                class="bg-yellow-600 hover:bg-yellow-700 text-black text-xs px-2 py-1 rounded"
+                onclick="openConfirmModal(this, <%= ['ban', 'unban'].includes(user.actionLabel.toLowerCase()) ? 'true' : 'false' %>)">
+                <%= user.actionLabel %>
+              </button>
+            </td>
 
-            <button type="button"
-              data-form-action="/admin/users/<%= user.uid %>/ban"
-              data-form-method="POST"
-              data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>","reason":""}'
-              data-confirm-message="Are you sure you want to <%= user.actionLabel.toLowerCase() %> this user?"
-              class="bg-yellow-600 hover:bg-yellow-700 text-black text-xs px-2 py-1 rounded"
-              onclick="openConfirmModal(this, <%= ['ban', 'unban'].includes(user.actionLabel.toLowerCase()) ? 'true' : 'false' %>)">
-              <%= user.actionLabel %>
-            </button>
-          </td>
           <td class="px-2 py-2 border-b border-gray-700">
             <button type="button"
               class="bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded"
@@ -87,19 +107,60 @@
 
 <div class="mt-6 flex justify-center">
   <div class="max-w-screen-lg w-full px-4">
-    <div class="flex flex-wrap justify-center gap-2">
-      <% for (let i = 1; i <= totalPages; i++) { %>
-        <a href="?page=<%= i %>&search=<%= encodeURIComponent(search) %>&limit=<%= limit %>"
-           class="px-3 py-1 rounded border text-sm
-                  <%= page === i
-                    ? 'bg-blue-600 text-white border-blue-700'
-                    : 'bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700' %>">
-          <%= i %>
+    <div class="flex flex-wrap justify-center gap-2 items-center">
+
+      <% if (page > 1) { %>
+        <a href="?page=<%= page - 1 %>&search=<%= encodeURIComponent(search) %>&limit=<%= limit %>"
+           class="px-3 py-1 rounded border text-sm bg-gray-700 text-white hover:bg-gray-600">
+          « Prev
         </a>
       <% } %>
+
+      <% const pageWindow = 2; %>
+      <% for (let i = 1; i <= totalPages; i++) {
+           const showAlways = i <= 2 || i > totalPages - 2;
+           const nearCurrent = Math.abs(i - page) <= pageWindow;
+           const shouldShow = showAlways || nearCurrent;
+
+           if (shouldShow) { %>
+             <a href="?page=<%= i %>&search=<%= encodeURIComponent(search) %>&limit=<%= limit %>"
+                class="px-3 py-1 rounded border text-sm
+                       <%= page === i
+                         ? 'bg-blue-600 text-white border-blue-700'
+                         : 'bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700' %>">
+               <%= i %>
+             </a>
+      <%   } else if (
+             (i === 3 && page > 5) || 
+             (i === totalPages - 2 && page < totalPages - 4) ||
+             (i === page - pageWindow - 1) ||
+             (i === page + pageWindow + 1)
+           ) { %>
+             <span class="px-3 py-1 text-sm text-gray-500">…</span>
+      <% } %>
+      <% } %>
+
+      <% if (page < totalPages) { %>
+        <a href="?page=<%= page + 1 %>&search=<%= encodeURIComponent(search) %>&limit=<%= limit %>"
+           class="px-3 py-1 rounded border text-sm bg-gray-700 text-white hover:bg-gray-600">
+          Next »
+        </a>
+      <% } %>
+
+      <!-- Optional: Compact dropdown for mobile -->
+      <div class="ml-4 block sm:hidden">
+        <select onchange="location.href='?page=' + this.value + '&search=<%= encodeURIComponent(search) %>&limit=<%= limit %>'"
+                class="bg-gray-800 text-white text-sm border border-gray-600 rounded px-2 py-1">
+          <% for (let i = 1; i <= totalPages; i++) { %>
+            <option value="<%= i %>" <%= page === i ? 'selected' : '' %>>Page <%= i %></option>
+          <% } %>
+        </select>
+      </div>
+
     </div>
   </div>
 </div>
+
 
 
 <!-- Confirmation Modal -->
@@ -117,7 +178,7 @@
     </div>
   </div>
 </div>
-
+<form id="roleChangeForm" method="POST" class="hidden"></form>
 <script>
   let pendingFormData = null;
   let isBanAction = false;
@@ -228,4 +289,57 @@ function submitNote() {
       }
     });
 }
+</script>
+<script>
+  function confirmRoleChange(select, uid, account) {
+    const newRole = select.value;
+    const oldRole = select.querySelector('option[selected]')?.value || 'user';
+
+    if (newRole === oldRole) return; // no change
+
+    const confirmed = confirm(`Are you sure you want to change ${account}'s role from ${oldRole} to ${newRole}?`);
+    if (!confirmed) {
+      // Reset select to old value
+      select.value = oldRole;
+      return;
+    }
+
+    const form = document.getElementById('roleChangeForm');
+    form.action = `/admin/users/${uid}/role`;
+    form.innerHTML = '';
+
+    const fields = {
+      newRole,
+      page: '<%= page %>',
+      search: '<%= search %>',
+      limit: '<%= limit %>'
+    };
+
+    for (const [key, value] of Object.entries(fields)) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    }
+
+    form.submit();
+  }
+</script>
+<script>
+document.addEventListener('keydown', function (e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+  <% if (page > 1) { %>
+    if (e.key === 'ArrowLeft') {
+      window.location.href = "?page=<%= page - 1 %>&search=<%= encodeURIComponent(search) %>&limit=<%= limit %>";
+    }
+  <% } %>
+
+  <% if (page < totalPages) { %>
+    if (e.key === 'ArrowRight') {
+      window.location.href = "?page=<%= page + 1 %>&search=<%= encodeURIComponent(search) %>&limit=<%= limit %>";
+    }
+  <% } %>
+});
 </script>

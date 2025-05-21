@@ -1,8 +1,8 @@
 function requireAdmin(req, res, next) {
-    if (!req.session.username || req.session.role !== 'admin') {
-      return res.status(403).send('Access denied.');
-    }
-    next();
+  if (!req.user?.username || !['gm', 'admin'].includes(req.user.role)) {
+    return res.status(403).send('Access denied.');
   }
-  
-  module.exports = requireAdmin;
+  next();
+}
+
+module.exports = requireAdmin;

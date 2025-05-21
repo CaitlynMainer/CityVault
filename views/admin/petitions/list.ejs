@@ -28,19 +28,78 @@
     <% }) %>
   </tbody>
 </table>
-
 <% if (totalPages > 1) { %>
-  <div class="mt-4 flex justify-between items-center text-sm text-gray-400">
+  <div class="mt-4 flex flex-wrap justify-between items-center text-sm text-gray-400 gap-4">
     <div>
       Page <%= currentPage %> of <%= totalPages %> — <%= totalItems %> total
     </div>
-    <div class="space-x-2">
+
+    <div class="flex flex-wrap items-center gap-2">
+
       <% if (currentPage > 1) { %>
-        <a href="?page=<%= currentPage - 1 %>" class="px-3 py-1 bg-gray-800 border border-gray-600 rounded hover:bg-gray-700">Previous</a>
+        <a href="?page=<%= currentPage - 1 %>"
+           class="px-3 py-1 bg-gray-800 border border-gray-600 rounded hover:bg-gray-700 text-white">
+          « Prev
+        </a>
       <% } %>
+
+      <% const windowSize = 2; %>
+      <% for (let i = 1; i <= totalPages; i++) {
+           const alwaysShow = i <= 2 || i > totalPages - 2;
+           const nearPage = Math.abs(i - currentPage) <= windowSize;
+           const showPage = alwaysShow || nearPage;
+
+           if (showPage) { %>
+             <a href="?page=<%= i %>"
+                class="px-3 py-1 rounded border text-sm
+                       <%= currentPage === i
+                         ? 'bg-blue-600 text-white border-blue-700'
+                         : 'bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700' %>">
+               <%= i %>
+             </a>
+      <%   } else if (
+             (i === 3 && currentPage > 5) ||
+             (i === totalPages - 2 && currentPage < totalPages - 4) ||
+             (i === currentPage - windowSize - 1) ||
+             (i === currentPage + windowSize + 1)
+           ) { %>
+             <span class="px-3 py-1 text-sm text-gray-500">…</span>
+      <% } %>
+      <% } %>
+
       <% if (currentPage < totalPages) { %>
-        <a href="?page=<%= currentPage + 1 %>" class="px-3 py-1 bg-gray-800 border border-gray-600 rounded hover:bg-gray-700">Next</a>
+        <a href="?page=<%= currentPage + 1 %>"
+           class="px-3 py-1 bg-gray-800 border border-gray-600 rounded hover:bg-gray-700 text-white">
+          Next »
+        </a>
       <% } %>
+
+      <!-- Optional mobile dropdown -->
+      <div class="ml-4 block sm:hidden">
+        <select onchange="location.href='?page=' + this.value"
+                class="bg-gray-800 text-white text-sm border border-gray-600 rounded px-2 py-1">
+          <% for (let i = 1; i <= totalPages; i++) { %>
+            <option value="<%= i %>" <%= currentPage === i ? 'selected' : '' %>>Page <%= i %></option>
+          <% } %>
+        </select>
+      </div>
+
     </div>
   </div>
 <% } %>
+<script>
+document.addEventListener('keydown', function (e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+  <% if (currentPage > 1) { %>
+    if (e.key === 'ArrowLeft') {
+      window.location.href = "?page=<%= currentPage - 1 %>";
+    }
+  <% } %>
+  <% if (currentPage < totalPages) { %>
+    if (e.key === 'ArrowRight') {
+      window.location.href = "?page=<%= currentPage + 1 %>";
+    }
+  <% } %>
+});
+</script>

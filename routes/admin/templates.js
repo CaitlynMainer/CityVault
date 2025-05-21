@@ -16,5 +16,6 @@ module.exports = router;
 // Add this for route metadata
 module.exports.meta = {
   label: 'Edit Email Templates',
-  icon: '📧'
+  icon: '📧',
+  access: ['admin']
 };

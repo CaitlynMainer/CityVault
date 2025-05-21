@@ -4,4 +4,8 @@ const controller = require(global.BASE_DIR + '/controllers/account/petitionsCont
 
 router.get('/', controller.list);
 
+router.get('/:serverKey/:id', controller.view);
+router.post('/:serverKey/:id/comment', controller.addComment);
+
+
 module.exports = router;

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const newsPath = path.join(global.BASE_DIR, 'data', 'news.json');
+  const { isGM } = require(global.BASE_DIR + '/utils/roles');
 function readNews() {
     if (!fs.existsSync(newsPath)) return [];
     try {
@@ -21,6 +22,9 @@ function readNews() {
   }
   
   function showNewsEditor(req, res) {
+    if (!isGM(req.user?.role)) {
+      return res.status(403).send('Forbidden');
+    }
     const news = readNews();
     // Sort: pinned first, then newest first
     news.sort((a, b) => {
@@ -35,6 +39,9 @@ function readNews() {
 
   
   function saveNews(req, res) {
+    if (!isGM(req.user?.role)) {
+      return res.status(403).send('Forbidden');
+    }
     const news = readNews();
     const { id, title, content } = req.body;
   

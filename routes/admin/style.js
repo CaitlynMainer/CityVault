@@ -12,5 +12,6 @@ module.exports = router;
 // Add this for route metadata
 module.exports.meta = {
   label: 'Edit Site Style',
-  icon: '🎨'
+  icon: '🎨',
+  access: ['admin']
 };

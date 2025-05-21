@@ -5,8 +5,12 @@ const crypto = require('crypto');
 const configPath = path.join(global.BASE_DIR, '/data/manifest-config.json');
 const gameDir = path.join(global.BASE_DIR, '/public/game');
 const manifestPath = path.join(global.BASE_DIR, '/public/manifest.xml');
+const { isAdmin } = require(global.BASE_DIR + '/utils/roles');
 
 function showConfigPage(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   let config = {};
   if (fs.existsSync(configPath)) {
     config = JSON.parse(fs.readFileSync(configPath));
@@ -15,6 +19,9 @@ function showConfigPage(req, res) {
 }
 
 function saveConfig(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   const { label, forumName, forumUrl, webpage, posterImage, profiles } = req.body;
 
   // Convert object of profiles into array (handles both indexed arrays and nested objects)
@@ -47,6 +54,9 @@ function saveConfig(req, res) {
 
 
 function generateManifest(req, res) {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   let config = {};
   if (fs.existsSync(configPath)) {
     config = JSON.parse(fs.readFileSync(configPath));

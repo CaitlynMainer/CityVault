@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const configPath = path.join(global.BASE_DIR, 'data/config.json');
 
+const { isAdmin } = require(global.BASE_DIR + '/utils/roles');
 function cleanKeys(obj) {
   if (typeof obj !== 'object' || obj === null) return obj;
 
@@ -33,6 +34,9 @@ function cleanKeys(obj) {
 }
 
 exports.showEditor = (req, res) => {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   try {
     const config = JSON.parse(fs.readFileSync(configPath));
     res.render('admin/config_editor', {
@@ -47,6 +51,9 @@ exports.showEditor = (req, res) => {
 };
 
 exports.saveEditor = (req, res) => {
+  if (!isAdmin(req.user?.role)) {
+    return res.status(403).send('Forbidden');
+  }
   try {
     const postedConfig = req.body.config;
     const cleaned = cleanKeys(postedConfig);
