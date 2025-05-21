@@ -28,7 +28,7 @@ async function downloadAndExtractUpdate(req, res) {
       try {
         console.log('[Update] Download complete. Cleaning old files...');
 
-        const keepDirs = new Set(['data', 'public', 'node_modules', 'sessions']);
+        const keepDirs = new Set(['data', 'public', 'node_modules', 'sessions', 'userContent']);
         const keepFiles = new Set(['tmp_update.zip']);
 
         fs.readdirSync(global.BASE_DIR).forEach(entry => {
