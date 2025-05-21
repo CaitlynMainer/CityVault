@@ -32,12 +32,13 @@ jobs:
         id: changelog
         run: |
           if [ -z "${{ steps.prev.outputs.previous_tag }}" ]; then
-            LOG=$(git log --pretty=format:"- %s" | grep -vE '^(Merge branch|Update version\.json)')
+            RANGE=""
           else
-            LOG=$(git log ${{ steps.prev.outputs.previous_tag }}..HEAD --pretty=format:"- %s" | grep -vE '^(Merge branch|Update version\.json)')
+            RANGE="${{ steps.prev.outputs.previous_tag }}..HEAD"
           fi
+
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          echo "$LOG" >> $GITHUB_OUTPUT
+          git log $RANGE --pretty=format:"- %s" | grep -vE '^(Merge branch|Update version\.json)' >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Update version.json in main
@@ -57,7 +58,7 @@ jobs:
       - name: Upload Release ZIP
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/cityvault-${VERSION}.zip
+          files: dist/cityvault-${{ env.VERSION }}.zip#cityvault-${{ env.VERSION }}.zip
           name: CityVault v${{ env.VERSION }}
           body: ${{ steps.changelog.outputs.changelog }}
           tag_name: v${{ env.VERSION }}
