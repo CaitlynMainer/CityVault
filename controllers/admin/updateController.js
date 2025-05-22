@@ -1,6 +1,6 @@
 const path = require('path');
-const fs = require('fs');
-const { https } = require('follow-redirects'); // npm install follow-redirects
+const fs = require('fs-extra');
+const { https } = require('follow-redirects');
 const unzipper = require('unzipper');
 const { exec } = require('child_process');
 const { finished } = require('stream');
@@ -14,6 +14,7 @@ async function downloadAndExtractUpdate(req, res) {
   }
 
   const tmpPath = path.join(global.BASE_DIR, 'tmp_update.zip');
+  const tmpExtractDir = path.join(global.BASE_DIR, 'tmpExtract');
   const file = fs.createWriteStream(tmpPath);
 
   https.get(zipUrl, (response) => {
@@ -51,12 +52,27 @@ async function downloadAndExtractUpdate(req, res) {
           }
         });
 
-        console.log('[Update] Extracting update...');
+        console.log('[Update] Extracting update to temp folder...');
         await fs.createReadStream(tmpPath)
-          .pipe(unzipper.Extract({ path: global.BASE_DIR }))
+          .pipe(unzipper.Extract({ path: tmpExtractDir }))
           .promise();
 
-        console.log('[Update] Extraction complete. Running npm install...');
+        console.log('[Update] Copying update into base dir (excluding /data)...');
+        await fs.copy(tmpExtractDir, global.BASE_DIR, {
+          filter: (src) => {
+            const rel = path.relative(tmpExtractDir, src);
+            if (rel === 'data' || rel.startsWith('data' + path.sep)) {
+              console.log(`[Update] Skipping: ${rel}`);
+              return false;
+            }
+            return true;
+          }
+        });
+
+        console.log('[Update] Cleaning up temp extract...');
+        await fs.remove(tmpExtractDir);
+
+        console.log('[Update] Running npm install...');
         exec('npm install', { cwd: global.BASE_DIR }, (err, stdout, stderr) => {
           if (err) {
             console.error('[Update] npm install failed:', err);
@@ -66,7 +82,6 @@ async function downloadAndExtractUpdate(req, res) {
           console.log('[Update] npm install complete.');
           console.log(stdout);
 
-          // Clean up the temp ZIP
           try {
             fs.unlinkSync(tmpPath);
             console.log('[Update] Cleaned up tmp_update.zip');
@@ -74,7 +89,7 @@ async function downloadAndExtractUpdate(req, res) {
             console.warn('[Update] Could not delete tmp_update.zip:', err.message);
           }
 
-          res.send('Update downloaded, extracted, and npm install completed. Please restart the server.');
+          res.send('Update downloaded, extracted (excluding /data), and npm install completed. Please restart the server.');
         });
       } catch (extractErr) {
         console.error('[Update] Extraction failed:', extractErr);
