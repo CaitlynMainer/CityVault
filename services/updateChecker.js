@@ -29,7 +29,7 @@ function fetchJSON(url) {
 }
 
 async function checkForUpdates() {
-  const localVersionPath = path.join(global.BASE_DIR, 'data', 'version.json');
+  const localVersionPath = path.join(global.BASE_DIR, 'version.json');
   const localVersion = JSON.parse(fs.readFileSync(localVersionPath)).version;
 
   try {
