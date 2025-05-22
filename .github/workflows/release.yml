@@ -80,6 +80,3 @@ jobs:
           git add update.json
           git commit -m "Update update.json for v${{ env.VERSION }}" || echo "No changes"
           git push origin gh-pages
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2

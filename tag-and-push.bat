@@ -67,10 +67,8 @@ if %ERRORLEVEL%==0 (
     exit /b 1
 )
 
-REM Write version.json with new version (strip leading 'v')
+REM Write version.json with new version (strip leading 'v') for local use only
 echo { "version": "%NEW_TAG:~1%" } > version.json
-git add version.json
-git commit -m "Update version.json to %NEW_TAG:~1%"
 
 REM Tag and push
 git tag %NEW_TAG%
