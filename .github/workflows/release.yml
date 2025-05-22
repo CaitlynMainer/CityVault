@@ -63,6 +63,9 @@ jobs:
           body: ${{ steps.changelog.outputs.changelog }}
           tag_name: v${{ env.VERSION }}
 
+      - name: Remove version.json before switching branches
+        run: rm -f version.json
+
       - name: Update update.json in gh-pages
         run: |
           git fetch origin gh-pages
