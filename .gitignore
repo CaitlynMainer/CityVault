@@ -153,3 +153,4 @@ data/badges/*
 !data/badges/blacklist.json
 data/vars.attribute
 logs/*
+version.json

@@ -78,12 +78,12 @@ async function renderFullShot(pool, serverKey, containerId, slotId = 0, costumeD
   for (const row of rows) {
     const csvRow = [
       row.idx,
-      `"${row.geom}"`,
-      `"${row.tex1}"`,
-      `"${row.tex2}"`,
-      `"${row.displayName}"`,
-      `"${row.color1}"`,
-      `"${row.color2}"`,
+      `"${row.geom ?? 0}"`,
+      `"${row.tex1 ?? 0}"`,
+      `"${row.tex2 ?? 0}"`,
+      `"${row.displayName ?? 0}"`,
+      `"${row.color1 ?? 0}"`
+      `"${row.color2 ?? 0}"`,
       bodyType,
       skinColorInt,
       appearance.BodyScale ?? 0,
