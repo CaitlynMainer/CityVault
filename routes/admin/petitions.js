@@ -23,5 +23,5 @@ module.exports = router;
 module.exports.meta = {
   label: 'Ingame Support',
   icon: '🆘',
-  access: ['gm', 'admin'] // ✅ restrict to GM and admin
+  access: ['gm', 'admin']
 };

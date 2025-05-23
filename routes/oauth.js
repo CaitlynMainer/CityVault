@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const OAuth2Server = require('oauth2-server');
-const oauthModel = require('../oauth/oauthModel');
+const oauthModel = require(global.BASE_DIR + '/oauth/oauthModel');
 
 const oauth = new OAuth2Server({
   model: oauthModel,
