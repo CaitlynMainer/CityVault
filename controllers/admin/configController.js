@@ -1,32 +1,32 @@
 const path = require('path');
 const fs = require('fs');
 const configPath = path.join(global.BASE_DIR, 'data/config.json');
-
 const { isAdmin } = require(global.BASE_DIR + '/utils/roles');
-function cleanKeys(obj) {
+
+function cleanKeys(obj, existing = {}) {
   if (typeof obj !== 'object' || obj === null) return obj;
 
   const cleaned = Array.isArray(obj) ? [] : {};
 
-  for (const key in obj) {
+  for (const key of new Set([...Object.keys(existing), ...Object.keys(obj)])) {
     if (key === '_key') continue;
 
-    const value = cleanKeys(obj[key]);
+    const newValue = obj[key];
+    const oldValue = existing[key];
 
-    // Convert specific numeric strings to numbers
-    if (['dbPort', 'intervalMinutes', 'accessRetentionDays'].includes(key) && typeof value === 'string' && /^\d+$/.test(value)) {
-      cleaned[key] = parseInt(value, 10);
-    } else if (typeof value === 'string' || Array.isArray(value)) {
-      // Handle checkboxes: single or multiple values
-      if (value === 'true' || (Array.isArray(value) && value.includes('true'))) {
-        cleaned[key] = true;
-      } else if (value === 'false' || (Array.isArray(value) && value.includes('false'))) {
-        cleaned[key] = false;
-      } else {
-        cleaned[key] = value;
-      }
+    if (typeof newValue === 'object' && newValue !== null && !Array.isArray(newValue)) {
+      cleaned[key] = cleanKeys(newValue, oldValue || {});
+    } else if (['dbPort', 'intervalMinutes', 'accessRetentionDays'].includes(key) && typeof newValue === 'string' && /^\d+$/.test(newValue)) {
+      cleaned[key] = parseInt(newValue, 10);
+    } else if (newValue === 'true' || (Array.isArray(newValue) && newValue.includes('true'))) {
+      cleaned[key] = true;
+    } else if (newValue === 'false' || (Array.isArray(newValue) && newValue.includes('false'))) {
+      cleaned[key] = false;
+    } else if (newValue !== undefined) {
+      cleaned[key] = newValue;
     } else {
-      cleaned[key] = value;
+      // If new value is missing, preserve the old one
+      cleaned[key] = oldValue;
     }
   }
 
@@ -56,12 +56,10 @@ exports.saveEditor = (req, res) => {
   }
   try {
     const postedConfig = req.body.config;
-    const cleaned = cleanKeys(postedConfig);
+    const existing = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    const cleaned = cleanKeys(postedConfig, existing);
 
-    // Backup current config
     fs.copyFileSync(configPath, configPath + '.bak');
-
-    // Save cleaned config
     fs.writeFileSync(configPath, JSON.stringify(cleaned, null, 4));
     fs.writeFileSync(path.join(global.BASE_DIR, 'data/.config-reload'), '');
 

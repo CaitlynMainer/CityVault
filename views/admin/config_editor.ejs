@@ -248,7 +248,21 @@
         </div>
       <% }); %>
     </div>
-
+    
+    <h2 class="text-xl font-semibold mb-2">Costume Rendering</h2>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <% Object.keys(config.costumeRendering).forEach(function(key) { %>
+        <div>
+          <label class="block text-sm font-medium"><%= key %></label>
+          <% if (typeof config.costumeRendering[key] === 'boolean') { %>
+            <input type="hidden" name="config[costumeRendering][<%= key %>]" value="false" />
+            <input type="checkbox" name="config[costumeRendering][<%= key %>]" value="true" <%= config.costumeRendering[key] ? 'checked' : '' %> />
+          <% } else { %>
+            <input type="text" name="config[costumeRendering][<%= key %>]" value="<%= config.costumeRendering[key] %>" class="input" />
+          <% } %>
+        </div>
+      <% }); %>
+    </div>
     <button type="submit" class="btn btn-green">Save Config</button>
   </form>
 </div>

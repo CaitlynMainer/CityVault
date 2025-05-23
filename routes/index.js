@@ -32,6 +32,8 @@ router.use('/account/petitions', require('./accounts/petitions'));
 // Admin routes (under /admin/)
 router.use('/admin', require('./admin'));
 
+router.use('/images/portrait', require('./portrait'));
+
 // Debug routes
 router.get('/debug/missing-badges/:serverKey/:dbid', async (req, res) => {
   const { serverKey, dbid } = req.params;

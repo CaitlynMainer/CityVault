@@ -13,6 +13,8 @@ const { resolveSupergroupLink } = require(global.BASE_DIR + '/utils/characterInf
 const { enrichCharacter } = require(global.BASE_DIR + '/utils/characterInfo/formatCharacterDetails');
 const { getPoolsAndAncillaries } = require(global.BASE_DIR + '/utils/characterInfo/powersetLoader');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
+const { renderFullShot } = require(global.BASE_DIR + '/services/renderFullShot');
+const { fetchCostumeData } = require(global.BASE_DIR + '/services/fetchCostumeData');
 const multer = require('multer');
 const sharp = require('sharp');
 
@@ -270,7 +272,7 @@ async function showCharacter(req, res) {
       isAdmin = viewerCheck.recordset[0]?.role === 'admin';
       isOwner = viewerUsername === owner.account;
     }
-
+    await renderFullShot(pool, serverKey, dbid, 0, fetchCostumeData, true);
     let forcedAccess = false;
     if (owner.tracker !== '1') {
       if (isAdmin) {

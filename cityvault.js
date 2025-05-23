@@ -1,4 +1,3 @@
-// cityvault.js
 module.exports = function startApp(config) {
   global.BASE_DIR = __dirname;
 
@@ -19,8 +18,11 @@ module.exports = function startApp(config) {
   const ensureSchema = require('./utils/ensureSchema');
   const morgan = require('morgan');
   const rfs = require('rotating-file-stream');
-  const readline = require('readline');
+  const readline = require('readline');  
+  const ensureConfigDefaults = require(global.BASE_DIR + '/utils/ensureConfigDefaults');
 
+
+  
   const authConfig = {
     user: config.auth.dbUser,
     password: config.auth.dbPass,
@@ -156,5 +158,26 @@ module.exports = function startApp(config) {
   });
   startScheduledTasks();
 
+  const outputPath = path.join(global.BASE_DIR, 'renders');
+  const renderOutputPath = path.join(global.BASE_DIR, 'public', 'images', 'portrait');
+  fs.mkdirSync(outputPath, { recursive: true });
+
+  ensureConfigDefaults({
+    costumeRendering: {
+      outputPath,
+      renderOutputPath,
+      enabled: false,
+      autoStartImageServer: false
+    }
+  });
+  if (config.costumeRendering?.autoStartImageServer) {
+    const { ensureImageServerInstalled, launchImageServer } = require('./utils/imageServerSetup');
+
+    ensureImageServerInstalled()
+      .then(() => launchImageServer(config))
+      .catch(err => {
+        console.error('[ImageServer] Installation error:', err);
+      });
+  }
   return app;
 };
