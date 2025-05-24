@@ -13,7 +13,7 @@ async function list(req, res) {
     const pool = await getGamePool(serverKey);
     const result = await pool.request()
       .input('authName', sql.VarChar(32), username)
-      .query(`SELECT *, '${serverKey}' AS serverKey FROM dbo.Petitions WHERE AuthName = @authName`);
+      .query(`SELECT *, '${serverKey}' AS server FROM dbo.Petitions WHERE AuthName = @authName`);
 
     allPetitions.push(...result.recordset);
   }
@@ -42,9 +42,16 @@ async function view(req, res) {
     petition.Summary = stringClean(petition.Summary);
     petition.Msg = stringClean(petition.Msg);
 
-    const commentResult = await pool.request()
-      .input('petition_id', sql.Int, id)
-      .query(`SELECT * FROM dbo.PetitionComments WHERE petition_id = @petition_id ORDER BY posted ASC`);
+    // Pull comments from auth DB
+    const authPool = await getAuthPool();
+    const commentResult = await authPool.request()
+      .input('petitionId', sql.Int, id)
+      .input('server', sql.VarChar(32), serverKey)
+      .query(`
+        SELECT * FROM dbo.PetitionComments
+        WHERE petitionId = @petitionId AND server = @server
+        ORDER BY created_at ASC
+      `);
 
     petition.comments = commentResult.recordset;
 
@@ -73,14 +80,16 @@ async function addComment(req, res) {
 
     if (verify.recordset.length === 0) return res.status(403).send('Not your petition');
 
-    await pool.request()
-      .input('petition_id', sql.Int, id)
+    const authPool = await getAuthPool();
+    await authPool.request()
+      .input('server', sql.VarChar(32), serverKey)
+      .input('petitionId', sql.Int, id)
       .input('author', sql.VarChar(32), username)
       .input('is_admin', sql.Bit, 0)
-      .input('body', sql.Text, comment)
+      .input('content', sql.Text, comment)
       .query(`
-        INSERT INTO dbo.PetitionComments (petition_id, author, is_admin, body)
-        VALUES (@petition_id, @author, @is_admin, @body)
+        INSERT INTO dbo.PetitionComments (server, petitionId, author, is_admin, content)
+        VALUES (@server, @petitionId, @author, @is_admin, @content)
       `);
 
     res.redirect(`/account/petitions/${serverKey}/${id}`);
@@ -91,7 +100,7 @@ async function addComment(req, res) {
 }
 
 module.exports = {
-  list, // your existing list
+  list,
   view,
   addComment
 };

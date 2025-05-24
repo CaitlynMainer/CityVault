@@ -10,7 +10,6 @@ async function ensureSchema(authConfig) {
 
     await ensureAuthSchema(pool);
     await ensureInitialAdmin(pool);
-    await ensureGameSchemas();
 
   } catch (err) {
     console.error("[ERROR] Failed to ensure schema:", err);
@@ -165,51 +164,44 @@ async function ensureAuthSchema(pool) {
     `);
     console.log('[INFO] CostumeHash table created.');
   }
-}
-
-async function ensureGameSchemas() {
-  for (const [serverKey, serverConfig] of Object.entries(servers)) {
-    try {
-      console.log(`[INFO] Checking PetitionComments table on server: ${serverKey}`);
-
-      const pool = await sql.connect({
-        server: serverConfig.dbHost,
-        port: serverConfig.dbPort,
-        user: serverConfig.dbUser,
-        password: serverConfig.dbPass,
-        database: serverConfig.dbName,
-        options: {
-          trustServerCertificate: true
-        }
-      });
-
-      const tableExists = await pool.request().query(`
-        SELECT * FROM INFORMATION_SCHEMA.TABLES
-        WHERE TABLE_NAME = 'PetitionComments' AND TABLE_SCHEMA = 'dbo'
-      `);
-
-      if (tableExists.recordset.length === 0) {
-        console.log(`[INFO] Creating PetitionComments table on ${serverKey}...`);
-        await pool.request().query(`
-          CREATE TABLE dbo.PetitionComments (
-            id INT IDENTITY(1,1) PRIMARY KEY,
-            petition_id INT NOT NULL,
-            author VARCHAR(32) NOT NULL,
-            is_admin BIT NOT NULL DEFAULT 0,
-            posted DATETIME NOT NULL DEFAULT GETUTCDATE(),
-            body TEXT NOT NULL
-          );
-        `);
-        console.log(`[INFO] PetitionComments table created on ${serverKey}.`);
-      } else {
-        console.log(`[OK] PetitionComments already exists on ${serverKey}.`);
-      }
-
-      await pool.close();
-    } catch (err) {
-      console.error(`[ERROR] Failed checking PetitionComments on ${serverKey}:`, err);
-    }
+  // PetitionComments
+  const commentsCheck = await pool.request().query(`
+    SELECT * FROM INFORMATION_SCHEMA.TABLES
+    WHERE TABLE_NAME = 'PetitionComments' AND TABLE_SCHEMA = 'dbo'
+  `);
+  if (commentsCheck.recordset.length === 0) {
+    console.log('[INFO] Creating PetitionComments table...');
+    await pool.request().query(`
+      CREATE TABLE dbo.PetitionComments (
+        id INT IDENTITY(1,1) PRIMARY KEY,
+        server VARCHAR(32) NOT NULL,
+        petitionId INT NOT NULL,
+        author VARCHAR(50) NOT NULL,
+        is_admin BIT NOT NULL DEFAULT 0,
+        content TEXT NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT GETUTCDATE()
+      );
+    `);
   }
+
+  // PetitionNotifications
+  const notifyCheck = await pool.request().query(`
+    SELECT * FROM INFORMATION_SCHEMA.TABLES
+    WHERE TABLE_NAME = 'PetitionNotifications' AND TABLE_SCHEMA = 'dbo'
+  `);
+  if (notifyCheck.recordset.length === 0) {
+    console.log('[INFO] Creating PetitionNotifications table...');
+    await pool.request().query(`
+      CREATE TABLE dbo.PetitionNotifications (
+        id INT IDENTITY(1,1) PRIMARY KEY,
+        server VARCHAR(32) NOT NULL,
+        petitionId INT NOT NULL,
+        notified BIT NOT NULL DEFAULT 0,
+        detected_at DATETIME NOT NULL DEFAULT GETUTCDATE()
+      );
+    `);
+  }
+
 }
 
 module.exports = ensureSchema;

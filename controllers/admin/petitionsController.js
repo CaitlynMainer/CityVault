@@ -1,6 +1,6 @@
 const sql = require('mssql');
 const config = require(global.BASE_DIR + '/utils/config');
-const { getGamePool } = require(global.BASE_DIR + '/db');
+const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 const mapNameLookup = require(global.BASE_DIR + '/utils/mapNameLookup');
 
@@ -71,13 +71,14 @@ async function view(req, res) {
 
     petition.MapDisplay = mapData?.FriendlyName || petition.MapName;
     petition.MapContainerId = mapData?.ContainerId || null;
-
-    const commentsResult = await pool.request()
-      .input('petition_id', sql.Int, id)
+    const authPool = await getAuthPool();
+    const commentsResult = await authPool.request()
+      .input('petitionId', sql.Int, id)
+      .input('serverKey', sql.VarChar(32), serverKey)
       .query(`
         SELECT * FROM dbo.PetitionComments
-        WHERE petition_id = @petition_id
-        ORDER BY posted ASC
+        WHERE petitionId = @petitionId AND server = @serverKey
+        ORDER BY created_at ASC
       `);
 
     petition.comments = commentsResult.recordset;
@@ -154,16 +155,17 @@ async function addComment(req, res) {
   if (!['admin', 'gm'].includes(role)) return res.status(403).send('Permission denied');
 
   try {
-    const pool = await getGamePool(serverKey);
+    const pool = await getAuthPool();
 
     await pool.request()
-      .input('petition_id', sql.Int, id)
+      .input('serverKey', sql.VarChar(32), serverKey)
+      .input('petitionId', sql.Int, id)
       .input('author', sql.VarChar(32), username)
       .input('is_admin', sql.Bit, 1)
-      .input('body', sql.Text, comment)
+      .input('content', sql.Text, comment)
       .query(`
-        INSERT INTO dbo.PetitionComments (petition_id, author, is_admin, body)
-        VALUES (@petition_id, @author, @is_admin, @body)
+        INSERT INTO dbo.PetitionComments (server, petitionId, author, is_admin, content)
+        VALUES (@serverKey, @petitionId, @author, @is_admin, @content)
       `);
 
     res.redirect(`/admin/petitions/${serverKey}/${id}`);
