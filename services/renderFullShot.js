@@ -21,7 +21,7 @@ async function renderFullShot(pool, serverKey, containerId, slotId = 0, costumeD
 
   const appearance = costume.appearance;
   const skinColorInt = appearance.ColorSkin + 16777216;
-  const bodyType = appearance.BodyType;
+  const bodyType = appearance.BodyType ?? 0;
 
   const zoom = bodyType === 1 ? 26 : (bodyType === 0 ? 30 : 32);
   const theThing = slotId === 0 ? '' : `_${slotId}`;
