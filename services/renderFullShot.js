@@ -82,7 +82,7 @@ async function renderFullShot(pool, serverKey, containerId, slotId = 0, costumeD
       `"${row.tex1 ?? 0}"`,
       `"${row.tex2 ?? 0}"`,
       `"${row.displayName ?? 0}"`,
-      `"${row.color1 ?? 0}"`
+      `"${row.color1 ?? 0}"`,
       `"${row.color2 ?? 0}"`,
       bodyType,
       skinColorInt,
