@@ -237,6 +237,7 @@ async function showCharacter(req, res) {
           e.TitleCommon,
           e.TitleOrigin,
           e.TitleSpecial,
+          e.CurrentCostume,
           en2.originalPrimary,
           en2.originalSecondary,
           en2.PlayerSubType,
@@ -272,7 +273,7 @@ async function showCharacter(req, res) {
       isAdmin = viewerCheck.recordset[0]?.role === 'admin';
       isOwner = viewerUsername === owner.account;
     }
-    await renderFullShot(pool, serverKey, dbid, 0, fetchCostumeData, true);
+    await renderFullShot(pool, serverKey, dbid, character.CurrentCostume, fetchCostumeData);
     let forcedAccess = false;
     if (owner.tracker !== '1') {
       if (isAdmin) {

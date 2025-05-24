@@ -10,9 +10,16 @@
   <div class="character-profile-container" style="display: flex; gap: 24px; align-items: flex-start;">
     <!-- Left Column: Character Summary -->
     <div class="left-panel" style="flex: 0 0 360px;">
+      <% 
+        const hasCustomSlot = (typeof character.CurrentCostume !== 'undefined' && parseInt(character.CurrentCostume) > 0);
+        const portraitFilename = hasCustomSlot 
+          ? `${serverKey}_${character.ContainerId}_${character.CurrentCostume}` 
+          : `${serverKey}_${character.ContainerId}`;
+      %>
+
       <div style="display: flex; justify-content: center;">
         <img id="portrait"
-            src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %>.png?v=<%= portraitVersion %>"
+            src="/images/portrait/<%= portraitFilename %>.png?v=<%= portraitVersion %>"
             onerror="this.style.display='none';"
             alt="Character Portrait"
             style="max-width: 200px; max-height: 400px; width: auto; height: auto; border-radius: 8px; margin-bottom: 8px;" />
