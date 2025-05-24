@@ -12,7 +12,7 @@
     <div class="left-panel" style="flex: 0 0 360px;">
 		<% if (role === 'admin' || viewerIsOwner) { %>
 		  <div style="display: grid; grid-template-columns: repeat(2, auto); gap: 8px; justify-content: center; margin-top: 8px;">
-			<form method="POST" action="/admin/clear-costume-render" style="margin: 0;">
+			<form method="POST" action="/clear-costume-render" style="margin: 0;">
 			  <input type="hidden" name="serverKey" value="<%= serverKey %>">
 			  <input type="hidden" name="containerId" value="<%= character.ContainerId %>">
 			  <input type="hidden" name="slot" value="<%= character.CurrentCostume || 0 %>">
