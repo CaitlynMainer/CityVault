@@ -28,7 +28,7 @@
         <div class="text-sm text-gray-400 mb-1">
           <strong><%= comment.author %></strong>
           <% if (comment.is_admin) { %><span class="ml-1 text-yellow-300">(GM)</span><% } %>
-          — <%= new Date(comment.created).toLocaleString() %>
+          — <%= new Date(comment.created_at).toLocaleString() %>
         </div>
         <div class="text-gray-200 whitespace-pre-wrap"><%= comment.content %></div>
       </div>
