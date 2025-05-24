@@ -118,8 +118,8 @@ module.exports = function startApp(config) {
     next();
   });
 
-  // Handle portrait via custom controller route
-  app.use('/images/portrait', require('./routes/portrait'));
+  const routes = require('./routes');
+  app.use(routes);
 
   // Serve all other /images from disk
   app.use('/images', express.static(path.join(BASE_DIR, 'public/images'), {
