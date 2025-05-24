@@ -42,11 +42,8 @@ exports.servePortrait = async (req, res) => {
     const pngBuffer = await tga2png(tgaBuffer);
     await fs.writeFile(pngPath, pngBuffer);
     await fs.unlink(tgaPath); // Delete .tga after conversion
-
-    console.log(`[CONVERT] ${filename}.tga → ${filename}.png (TGA deleted)`);
     return res.type('png').send(pngBuffer);
   } catch (err) {
-    console.warn(`[MISS] Portrait not found or conversion failed: ${filename}`, err.message);
     return res.status(404).send('Not found');
   }
 };
