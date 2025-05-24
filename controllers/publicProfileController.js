@@ -60,7 +60,7 @@ async function showPublicProfile(req, res) {
       const result = await pool.request()
         .input('authId', sql.Int, authId)
         .query(`
-          SELECT e.ContainerId, e.Name, e.Level, e.Class, e.Origin, e.DateCreated, e.LastActive,
+          SELECT e.ContainerId, e.Name, e.Level, e.Class, e.Origin, e.DateCreated, e.LastActive, e.CurrentCostume,
                  e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress, en2.originalPrimary, en2.originalSecondary,
                  e.TitleCommon, e.TitleOrigin, e.TitleSpecial, en2.TitleTheText
           FROM dbo.Ents e
