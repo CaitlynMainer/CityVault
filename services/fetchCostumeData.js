@@ -140,7 +140,7 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
 
 
   // Build padded array using PartIndex directly
-  const padded = Array.from({ length: 25 }, (_, i) => {
+  const padded = Array.from({ length: 32 }, (_, i) => {
     const found = pieces.find(p => p.PartIndex === i);
     return {
       PartIndex: i,
