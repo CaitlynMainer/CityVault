@@ -34,6 +34,8 @@ router.use('/admin', require('./admin'));
 
 router.use('/images/portrait', require('./portrait'));
 
+router.use('/clear-costume-render', require('./costumeRender'));
+
 // Debug routes
 router.get('/debug/missing-badges/:serverKey/:dbid', async (req, res) => {
   const { serverKey, dbid } = req.params;

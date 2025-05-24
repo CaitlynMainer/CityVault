@@ -38,71 +38,105 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
 
  let pieces = [];
 
-try {
-  // Try i25 server query (dbo.Costumes)
-  const costumeResult = await pool.request()
-    .input('cid', sql.Int, containerId)
-    .input('slot', sql.Int, slotValue)
-    .query(`
-      SELECT ISNULL(PartIndex, 0) AS PartIndex,
-             att2.name AS Geom,
-             att3.name AS Tex1,
-             att4.name AS Tex2,
-             att5.name AS DisplayName,
-             att6.name AS Region,
-             att7.name AS BodySet,
-             Color1, Color2,
-             att8.name AS FxName,
-             Color3, Color4
-      FROM dbo.Costumes
-      LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
-      LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
-      LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
-      LEFT JOIN dbo.Attributes att5 ON att5.Id = Costumes.Name
-      LEFT JOIN dbo.Attributes att6 ON att6.Id = Costumes.Region
-      LEFT JOIN dbo.Attributes att7 ON att7.Id = Costumes.BodySet
-      LEFT JOIN dbo.Attributes att8 ON att8.Id = Costumes.FxName
-      INNER JOIN dbo.Ents ON Ents.ContainerId = Costumes.ContainerId
-      WHERE Costumes.ContainerId = @cid
-        AND (Costume = @slot OR (Costume IS NULL AND @slot IS NULL) OR (Costume = 0 AND @slot IS NULL))
-    `);
-  pieces = costumeResult.recordset;
-} catch (err) {
-  if (err.message.includes("Invalid object name") && err.message.includes("Costumes")) {
-    console.warn('[WARN] Costumes table missing, assuming i24 — using CostumeParts fallback');
-
-    const fallbackResult = await pool.request()
+  try {
+    const costumeResult = await pool.request()
       .input('cid', sql.Int, containerId)
       .input('slot', sql.Int, slotValue)
-      .query(`SELECT SubId % 60 AS PartIndex,
-                    att2.name AS Geom,
-                    att3.name AS Tex1,
-                    att4.name AS Tex2,
-                    att5.name AS DisplayName,
-                    att6.name AS Region,
-                    att7.name AS BodySet,
-                    Color1, Color2,
-                    att8.name AS FxName,
-                    Color3, Color4
-              FROM dbo.CostumeParts
-              LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
-              LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
-              LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
-              LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
-              LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
-              LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
-              LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
-              INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
-              WHERE CostumeParts.ContainerId = @cid
-                AND (
-                  CostumeNum = @slot OR 
-                  (@slot IS NULL AND CostumeNum IS NULL)
-                )`);
-    pieces = fallbackResult.recordset;
-  } else {
-    throw err; // Unexpected error, rethrow
+      .query(`
+        SELECT ISNULL(PartIndex, 0) AS PartIndex,
+              att2.name AS Geom,
+              att3.name AS Tex1,
+              att4.name AS Tex2,
+              att5.name AS DisplayName,
+              att6.name AS Region,
+              att7.name AS BodySet,
+              Color1, Color2,
+              att8.name AS FxName,
+              Color3, Color4
+        FROM dbo.Costumes
+        LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
+        LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
+        LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
+        LEFT JOIN dbo.Attributes att5 ON att5.Id = Costumes.Name
+        LEFT JOIN dbo.Attributes att6 ON att6.Id = Costumes.Region
+        LEFT JOIN dbo.Attributes att7 ON att7.Id = Costumes.BodySet
+        LEFT JOIN dbo.Attributes att8 ON att8.Id = Costumes.FxName
+        INNER JOIN dbo.Ents ON Ents.ContainerId = Costumes.ContainerId
+        WHERE Costumes.ContainerId = @cid
+          AND (Costume = @slot OR (Costume IS NULL AND @slot IS NULL) OR (Costume = 0 AND @slot IS NULL))
+      `);
+
+    if (costumeResult.recordset.length > 0) {
+      pieces = costumeResult.recordset;
+    } else {
+      console.warn('[WARN] No entries in dbo.Costumes for this character. Falling back to CostumeParts.');
+
+      const fallbackResult = await pool.request()
+        .input('cid', sql.Int, containerId)
+        .input('slot', sql.Int, slotValue)
+        .query(`
+          SELECT SubId % 60 AS PartIndex,
+                att2.name AS Geom,
+                att3.name AS Tex1,
+                att4.name AS Tex2,
+                att5.name AS DisplayName,
+                att6.name AS Region,
+                att7.name AS BodySet,
+                Color1, Color2,
+                att8.name AS FxName,
+                Color3, Color4
+          FROM dbo.CostumeParts
+          LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
+          LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
+          LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
+          LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
+          LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
+          LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
+          LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
+          INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
+          WHERE CostumeParts.ContainerId = @cid
+            AND (CostumeNum = @slot OR (@slot IS NULL AND CostumeNum IS NULL))
+        `);
+
+      pieces = fallbackResult.recordset;
+    }
+
+  } catch (err) {
+    if (err.message.includes("Invalid object name") && err.message.includes("Costumes")) {
+      console.warn('[WARN] Costumes table missing, assuming i24 — using CostumeParts fallback');
+
+      const fallbackResult = await pool.request()
+        .input('cid', sql.Int, containerId)
+        .input('slot', sql.Int, slotValue)
+        .query(`
+          SELECT SubId % 60 AS PartIndex,
+                att2.name AS Geom,
+                att3.name AS Tex1,
+                att4.name AS Tex2,
+                att5.name AS DisplayName,
+                att6.name AS Region,
+                att7.name AS BodySet,
+                Color1, Color2,
+                att8.name AS FxName,
+                Color3, Color4
+          FROM dbo.CostumeParts
+          LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
+          LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
+          LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
+          LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
+          LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
+          LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
+          LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
+          INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
+          WHERE CostumeParts.ContainerId = @cid
+            AND (CostumeNum = @slot OR (@slot IS NULL AND CostumeNum IS NULL))
+        `);
+      pieces = fallbackResult.recordset;
+    } else {
+      throw err;
+    }
   }
-}
+
 
 
   // Build padded array using PartIndex directly

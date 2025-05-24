@@ -13,6 +13,6 @@ router.use('/download-update', require('./update'));
 router.use('/templates', require('./templates'));
 router.use('/servers', require('./servers'));
 router.use('/petitions', require('./petitions'));
-
+router.use('/clear-costume-render', require('./costumeRender'));
 
 module.exports = router;

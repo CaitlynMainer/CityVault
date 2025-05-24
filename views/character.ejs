@@ -10,29 +10,39 @@
   <div class="character-profile-container" style="display: flex; gap: 24px; align-items: flex-start;">
     <!-- Left Column: Character Summary -->
     <div class="left-panel" style="flex: 0 0 360px;">
-      <% 
-        const hasCustomSlot = (typeof character.CurrentCostume !== 'undefined' && parseInt(character.CurrentCostume) > 0);
-        const portraitFilename = hasCustomSlot 
-          ? `${serverKey}_${character.ContainerId}_${character.CurrentCostume}` 
-          : `${serverKey}_${character.ContainerId}`;
-      %>
+		<% if (role === 'admin' || viewerIsOwner) { %>
+		  <div style="display: grid; grid-template-columns: repeat(2, auto); gap: 8px; justify-content: center; margin-top: 8px;">
+			<form method="POST" action="/admin/clear-costume-render" style="margin: 0;">
+			  <input type="hidden" name="serverKey" value="<%= serverKey %>">
+			  <input type="hidden" name="containerId" value="<%= character.ContainerId %>">
+			  <input type="hidden" name="slot" value="<%= character.CurrentCostume || 0 %>">
+			  <button type="submit" class="btn btn-red text-xs px-2 py-1" onclick="return confirm('Are you sure you want to clear this render?')">
+				Clear Render
+			  </button>
+			</form>
 
-      <div style="display: flex; justify-content: center;">
-        <img id="portrait"
-            src="/images/portrait/<%= portraitFilename %>.png?v=<%= portraitVersion %>"
-            onerror="this.style.display='none';"
-            alt="Character Portrait"
-            style="max-width: 200px; max-height: 400px; width: auto; height: auto; border-radius: 8px; margin-bottom: 8px;" />
-      </div>
-
-      <% if (viewerIsOwner) { %>
-        <form action="/character/uploadPortrait" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="characterId" value="<%= serverKey %>:<%= character.ContainerId %>">
-          <input type="file" name="portrait" accept="image/*" required>
-          <button type="submit" class="btn btn-blue mt-2">Upload Portrait</button>
-        </form>
-      <% } %>
-
+			<form method="POST" action="/character/deletePortrait" style="margin: 0;">
+			  <input type="hidden" name="characterId" value="<%= serverKey %>:<%= character.ContainerId %>">
+			  <button type="submit" class="btn btn-red text-xs px-2 py-1" onclick="return confirm('Delete your custom portrait?')">
+				Delete Portrait
+			  </button>
+			</form>
+		  </div>
+		<% } %>
+		<div style="display: flex; justify-content: center;">
+		  <img id="portrait"
+			   src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %><%= character.CurrentCostume && character.CurrentCostume !== 0 ? `_${character.CurrentCostume}` : '' %>.png?v=<%= Date.now() %>"
+			   onerror="handlePortraitError(this)"
+			   alt="Character Portrait"
+			   style="max-width: 200px; max-height: 400px; width: auto; height: auto; border-radius: 8px; margin-bottom: 8px;" />
+		</div>
+		<% if (viewerIsOwner) { %>
+		  <form action="/character/uploadPortrait" method="post" enctype="multipart/form-data" style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px;">
+			<input type="hidden" name="characterId" value="<%= serverKey %>:<%= character.ContainerId %>">
+			<input type="file" name="portrait" accept="image/*" required style="font-size: 0.75rem; padding: 2px;">
+			<button type="submit" class="btn btn-blue text-xs px-2 py-1">Upload</button>
+		  </form>
+		<% } %>
       <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 12px;">
         <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" alt="Alignment" title="<%= character.alignment %>" height="32" />
         <img src="/images/icons/<%= character.OriginName.toLowerCase() %>.png" alt="Origin" title="<%= character.OriginName %>" height="32" />
@@ -188,3 +198,36 @@
         }
       }
     </script>
+	<script>
+	  function handlePortraitError(img) {
+		const originalSrc = img.src;
+		img.onerror = null; // prevent loop
+		img.src = '/images/portrait/rendering.jpg';
+		retryPortrait(img, originalSrc);
+	  }
+
+	  function retryPortrait(img, originalSrc) {
+		let retries = 0;
+		const maxRetries = 10;
+		const delay = 3000; // 3 seconds
+
+		const tryReload = () => {
+		  fetch(originalSrc, { method: 'HEAD', cache: 'no-cache' }).then(res => {
+			if (res.ok) {
+			  img.src = originalSrc + '&retry=' + Date.now(); // cache-bust
+			  img.style.display = 'block';
+			} else if (++retries < maxRetries) {
+			  setTimeout(tryReload, delay);
+			} else {
+			  console.warn('Portrait still not available after retries.');
+			}
+		  }).catch(() => {
+			if (++retries < maxRetries) {
+			  setTimeout(tryReload, delay);
+			}
+		  });
+		};
+
+		tryReload();
+	  }
+	</script>

@@ -60,6 +60,43 @@ function resolveGenderString(text, gender) {
   });
 }
 
+async function deletePortrait(req, res) {
+  if (!req.session?.username) return res.status(403).send('Login required');
+
+  const [serverKey, dbidStr] = (req.body.characterId || '').split(':');
+  const dbid = parseInt(dbidStr);
+  if (!serverKey || isNaN(dbid)) return res.status(400).send('Invalid character ID.');
+
+  try {
+    const pool = await getGamePool(serverKey);
+    const charResult = await pool.request()
+      .input('dbid', sql.Int, dbid)
+      .query(`SELECT AuthId FROM dbo.Ents WHERE ContainerId = @dbid`);
+    const character = charResult.recordset[0];
+    if (!character) return res.status(404).send('Character not found.');
+
+    const authPool = await getAuthPool();
+    const authResult = await authPool.request()
+      .input('uid', sql.Int, character.AuthId)
+      .query(`SELECT account FROM dbo.user_account WHERE uid = @uid`);
+    const owner = authResult.recordset[0];
+    if (!owner || owner.account !== req.session.username) {
+      return res.status(403).send('You do not own this character.');
+    }
+
+    const filePath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}_custom.png`);
+    await fs.promises.unlink(filePath);
+
+    req.flash('success', 'Custom portrait deleted.');
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      console.error('[Portrait Delete Error]', error);
+      req.flash('error', 'Error deleting portrait.');
+    }
+  }
+
+  return res.redirect(`/character/${serverKey}:${dbid}`);
+}
 
 async function uploadPortrait(req, res) {
   if (!req.session?.username) return res.status(403).send('Login required');
@@ -90,7 +127,7 @@ async function uploadPortrait(req, res) {
         return res.status(403).send('You do not own this character.');
       }
 
-      const destPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.png`);
+      const destPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}_custom.png`);
       await sharp(req.file.buffer)
         .resize(400, 800, { fit: 'inside', withoutEnlargement: true })
         .png({ quality: 90 })
@@ -273,7 +310,7 @@ async function showCharacter(req, res) {
       isAdmin = viewerCheck.recordset[0]?.role === 'admin';
       isOwner = viewerUsername === owner.account;
     }
-    await renderFullShot(pool, serverKey, dbid, character.CurrentCostume, fetchCostumeData);
+    await renderFullShot(authPool, pool, serverKey, dbid, character.CurrentCostume, fetchCostumeData);
     let forcedAccess = false;
     if (owner.tracker !== '1') {
       if (isAdmin) {
@@ -360,5 +397,6 @@ async function showCharacter(req, res) {
 
 module.exports = {
   showCharacter,
-  uploadPortrait
+  uploadPortrait,
+  deletePortrait
 };

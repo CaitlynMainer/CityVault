@@ -8,28 +8,37 @@ function defaultScale(scaleArray) {
   return Array.isArray(scaleArray) && scaleArray.length === 3 ? scaleArray : [0, 0, 0];
 }
 
-async function renderFullShot(pool, serverKey, containerId, slotId = 0, costumeDataFetcher, force = false) {
+async function renderFullShot(authPool, pool, serverKey, containerId, slotId = 0, costumeDataFetcher, force = false) {
   const renderingCfg = config.costumeRendering;
 
   if (!renderingCfg || !renderingCfg.enabled || !renderingCfg.outputPath || !renderingCfg.renderOutputPath) {
-    console.log('[SKIP] Costume rendering is disabled or misconfigured.');
     return;
   }
 
-  const costume = await costumeDataFetcher(pool, containerId, slotId);
-  if (!costume || !costume.appearance || !Array.isArray(costume.pieces)) return;
+  const safeSlotId = typeof slotId === 'number' && !isNaN(slotId) ? slotId : 0;
+  if (slotId == null || isNaN(slotId)) {
+  }
+
+
+  const costume = await costumeDataFetcher(pool, containerId, safeSlotId);
+  if (!costume || !costume.appearance || !Array.isArray(costume.pieces)) {
+    console.warn('[WARN] Costume data incomplete or invalid.');
+    return;
+  }
+
 
   const appearance = costume.appearance;
   const skinColorInt = appearance.ColorSkin + 16777216;
   const bodyType = appearance.BodyType ?? 0;
-
   const zoom = bodyType === 1 ? 26 : (bodyType === 0 ? 30 : 32);
-  const theThing = slotId === 0 ? '' : `_${slotId}`;
+
+  const theThing = safeSlotId === 0 ? '' : `_${safeSlotId}`;
   const filename = `${serverKey}_${containerId}${theThing}`;
   const imageOutName = `${filename}.tga`;
 
   const renderOutputPath = path.join(renderingCfg.renderOutputPath, imageOutName);
   const csvOutPath = path.join(renderingCfg.outputPath, `${filename}.csv`);
+  const portraitPath = path.join(global.BASE_DIR, 'public', 'images', 'portrait', `${filename}.png`);
 
   let outstring =
     `PARAMS: X=200,Y=400\n` +
@@ -37,7 +46,6 @@ async function renderFullShot(pool, serverKey, containerId, slotId = 0, costumeD
     `PARAMS: DELETECSV\n` +
     `PARAMS: OUTPUTNAME=${renderOutputPath}\r\n`;
 
-  // Default 25 rows
   const rows = Array.from({ length: 25 }, (_, idx) => ({
     idx,
     geom: "none",
@@ -53,7 +61,6 @@ async function renderFullShot(pool, serverKey, containerId, slotId = 0, costumeD
     bodySet: "none"
   }));
 
-  // Inject costume pieces
   for (const piece of costume.pieces) {
     const idx = piece.PartIndex ?? 0;
     if (idx < 0 || idx >= 25) continue;
@@ -74,16 +81,15 @@ async function renderFullShot(pool, serverKey, containerId, slotId = 0, costumeD
     };
   }
 
-  // Append rows to CSV
   for (const row of rows) {
     const csvRow = [
       row.idx,
-      `"${row.geom ?? 0}"`,
-      `"${row.tex1 ?? 0}"`,
-      `"${row.tex2 ?? 0}"`,
-      `"${row.displayName ?? 0}"`,
-      `"${row.color1 ?? 0}"`,
-      `"${row.color2 ?? 0}"`,
+      `"${row.geom}"`,
+      `"${row.tex1}"`,
+      `"${row.tex2}"`,
+      `"${row.displayName}"`,
+      `"${row.color1}"`,
+      `"${row.color2}"`,
       bodyType,
       skinColorInt,
       appearance.BodyScale ?? 0,
@@ -113,20 +119,26 @@ async function renderFullShot(pool, serverKey, containerId, slotId = 0, costumeD
   }
 
   const hash = crypto.createHash('md5').update(outstring).digest('hex');
-  const hashKey = `${slotId}_body`;
+  const hashKey = `${safeSlotId}_body`;
 
-  const isSame = await checkCostumeHash(pool, serverKey, containerId, hashKey, hash);
+  const isSame = await checkCostumeHash(authPool, serverKey, containerId, hashKey, hash);
+
   if (isSame && !force) {
-    console.log('[SKIP] Costume unchanged, skipping write.');
     return;
   }
 
-  await updateCostumeHash(pool, serverKey, containerId, hashKey, hash);
+  await updateCostumeHash(authPool, serverKey, containerId, hashKey, hash);
+
+  try {
+    await fs.unlink(portraitPath);
+  } catch (err) {
+    if (err.code !== 'ENOENT') {
+      console.warn(`[WARN] Failed to delete old PNG: ${err.message}`);
+    }
+  }
 
   await fs.mkdir(path.dirname(csvOutPath), { recursive: true });
   await fs.writeFile(csvOutPath, outstring);
-  console.log(`[INFO] Costume CSV written: ${csvOutPath}`);
-  console.log(`[NOTE] TGA OUTPUTNAME in CSV set to: ${renderOutputPath}`);
 }
 
 module.exports = { renderFullShot };

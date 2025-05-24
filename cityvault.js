@@ -96,10 +96,6 @@ module.exports = function startApp(config) {
 
   app.locals.stringClean = stringClean;
 
-  app.use('/images', express.static(path.join(BASE_DIR, 'public/images'), {
-    maxAge: '7d'
-  }));
-
   app.set('view engine', 'ejs');
   // Look in userContent/views first, fallback to views
   app.set('views', [
@@ -110,7 +106,6 @@ module.exports = function startApp(config) {
   app.use(expressLayouts);
   app.set('layout', 'layout');
   app.use(express.json());
-  app.use(express.static(path.join(__dirname, 'public')));
 
   app.use((req, res, next) => {
     const _setHeader = res.setHeader;
@@ -123,15 +118,25 @@ module.exports = function startApp(config) {
     next();
   });
 
-  const routes = require('./routes');
-  app.use(routes);
+  // Handle portrait via custom controller route
+  app.use('/images/portrait', require('./routes/portrait'));
 
+  // Serve all other /images from disk
+  app.use('/images', express.static(path.join(BASE_DIR, 'public/images'), {
+    maxAge: '7d'
+  }));
+
+  // Serve all remaining static files (CSS, JS, etc.)
+  app.use(express.static(path.join(__dirname, 'public')));
+
+  // Final 404 fallback
   app.use((req, res) => {
     res.status(404).render('error', {
       title: 'Page Not Found',
       message: 'The page you requested does not exist.'
     });
   });
+
 
   app.use((err, req, res, next) => {
     const logLine = [
