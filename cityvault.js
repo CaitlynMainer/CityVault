@@ -20,8 +20,14 @@ module.exports = function startApp(config) {
   const rfs = require('rotating-file-stream');
   const readline = require('readline');  
   const ensureConfigDefaults = require(global.BASE_DIR + '/utils/ensureConfigDefaults');
+  const SQLiteStore = require('connect-sqlite3')(session);
 
+  const migrateSessionsToSQLite = require('./utils/migrateSessionsToSQLite');
 
+  const sessionsDir = path.join(__dirname, 'sessions');
+  const sqlitePath = path.join(__dirname, 'data', 'sessions.sqlite');
+
+  migrateSessionsToSQLite(sessionsDir, sqlitePath);
   
   const authConfig = {
     user: config.auth.dbUser,
@@ -41,11 +47,9 @@ module.exports = function startApp(config) {
   app.use(express.urlencoded({ extended: true }));
 
   app.use(session({
-    store: new FileStore({
-      path: path.join(__dirname, 'sessions'),
-      retries: 1,
-      fileExtension: '.json',
-      logFn: function () {}
+    store: new SQLiteStore({
+      db: 'sessions.sqlite',
+      dir: path.join(__dirname, 'data')
     }),
     secret: config.session_secret,
     resave: false,
@@ -57,6 +61,7 @@ module.exports = function startApp(config) {
       signed: true
     }
   }));
+
   app.use(require('./middleware/attachUserInfo'));
   const logDir = path.join(__dirname, 'logs');
   if (!fs.existsSync(logDir)) {
@@ -150,11 +155,17 @@ module.exports = function startApp(config) {
     errorLogStream.write(logLine);
     console.error(logLine);
 
+    if (res.headersSent) {
+      // Don't try to send a response again
+      return next(err);
+    }
+
     res.status(500).render('error', {
       title: 'Internal Server Error',
       message: 'An unexpected error occurred.'
     });
   });
+
 
   ensureSchema(authConfig).then(() => {
     // optional: log success
