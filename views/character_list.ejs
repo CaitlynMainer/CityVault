@@ -2,10 +2,6 @@
   <h2 style="margin-top: 24px; font-size: 20px; color: #eee;"><%= serverKey.toUpperCase() %></h2>
   <div class="character-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
     <% characters.forEach(character => { %>
-	<% console.log('serverKey:', serverKey); %>
-	<% console.log('ContainerId:', character.ContainerId); %>
-	<% console.log('CurrentCostume:', character.CurrentCostume); %>
-
       <div style="position: relative;">
         <a href="/character/<%= serverKey %>:<%= character.ContainerId %>" style="text-decoration: none; position: absolute; inset: 0; z-index: 2;"></a>
         <div class="character-card" style="background: #222; padding: 12px; border-radius: 8px; text-align: center; color: #ccc; transition: background 0.2s; position: relative; z-index: 1;">
