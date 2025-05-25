@@ -149,7 +149,6 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender, badge
       .map(b => b.internalName)
       .filter(name => {
         if (!allBadgeDetails[name]) {
-          console.warn(`[getVisibleBadges] Owned badge "${name}" not found in allBadgeDetails`);
           return false;
         }
         return true;
@@ -160,7 +159,6 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender, badge
 
   for (const [name, meta] of Object.entries(allBadgeDetails)) {
     if (!meta) {
-      console.warn(`[getVisibleBadges] Skipping "${name}": no meta`);
       continue;
     }
 
@@ -171,7 +169,6 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender, badge
     const altName = badgeEquivalents[name];
 
     if (altName && !allBadgeDetails[altName]) {
-      console.warn(`[getVisibleBadges] badgeEquivalents maps "${name}" to missing alt "${altName}"`);
     }
 
     const altOwned = altName && ownedNames.has(altName);

@@ -153,7 +153,6 @@ function loadBadgeSet(version) {
   const badgeStrings = loadBadgeStrings(baseDir);
   loadBadgeDefs(baseDir, badgeStrings, badgeData[version].badgeDetailsMap);
   buildBadgeEquivalents(badgeData[version].badgeDetailsMap, badgeData[version].badgeEquivalents);
-  console.log(`[Equivalents] Built ${Object.keys(badgeData[version].badgeEquivalents).length} equivalents for ${version}`);
 }
 
 function init() {
