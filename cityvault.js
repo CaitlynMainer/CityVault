@@ -20,9 +20,7 @@ module.exports = function startApp(config) {
   const rfs = require('rotating-file-stream');
   const readline = require('readline');  
   const ensureConfigDefaults = require(global.BASE_DIR + '/utils/ensureConfigDefaults');
-  const SQLiteStore = require('connect-sqlite3')(session);
-
-  const migrateSessionsToSQLite = require('./utils/migrateSessionsToSQLite');
+  const migrateSessionsToSQLite = require(global.BASE_DIR + '/utils/migrateSessionsToSQLite');
 
   const sessionsDir = path.join(__dirname, 'sessions');
   const sqlitePath = path.join(__dirname, 'data', 'sessions.sqlite');
@@ -45,15 +43,15 @@ module.exports = function startApp(config) {
 
   app.use(cookieParser());
   app.use(express.urlencoded({ extended: true }));
+  const BetterSessionStore = require('./utils/BetterSessionStore');
 
   app.use(session({
-    store: new SQLiteStore({
-      db: 'sessions.sqlite',
-      dir: path.join(__dirname, 'data')
+    store: new BetterSessionStore(path.join(__dirname, 'data', 'sessions.sqlite'), {
+      ttl: 365 * 24 * 60 * 60 // 1 year
     }),
     secret: config.session_secret,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     rolling: true,
     cookie: {
       maxAge: 365 * 24 * 60 * 60 * 1000,
@@ -61,6 +59,17 @@ module.exports = function startApp(config) {
       signed: true
     }
   }));
+
+  // ✅ Now req.session will exist if the middleware creates it
+  app.use((req, res, next) => {
+    if (!req.session) {
+      req.session = {}; // optional, safety net
+    }
+    if (!req.session.cookie) {
+      req.session.cookie = {};
+    }
+    next();
+  });
 
   app.use(require('./middleware/attachUserInfo'));
   const logDir = path.join(__dirname, 'logs');
