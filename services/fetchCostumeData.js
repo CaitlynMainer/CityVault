@@ -42,32 +42,36 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
     const result = await pool.request()
       .input('cid', sql.Int, containerId)
       .input('slot', sql.Int, slotValue)
-      .query(`
-        SELECT ROW_NUMBER() OVER (
-                 PARTITION BY CostumeNum
-                 ORDER BY SubId
-               ) - 1 AS PartIndex,
-               att2.name AS Geom,
-               att3.name AS Tex1,
-               att4.name AS Tex2,
-               att5.name AS DisplayName,
-               att6.name AS Region,
-               att7.name AS BodySet,
-               Color1, Color2,
-               att8.name AS FxName,
-               Color3, Color4
-        FROM dbo.CostumeParts
-        LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
-        LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
-        LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
-        LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
-        LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
-        LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
-        LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
-        INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
-        WHERE CostumeParts.ContainerId = @cid
-          AND (CostumeNum = @slot OR (@slot IS NULL AND CostumeNum IS NULL))
-      `);
+		.query(`
+		  SELECT
+			CAST(
+			  CASE
+				WHEN CostumeNum IS NULL THEN SubId
+				ELSE ROW_NUMBER() OVER (PARTITION BY CostumeNum ORDER BY SubId) - 1
+			  END AS INT
+			) AS PartIndex,
+			att2.name AS Geom,
+			att3.name AS Tex1,
+			att4.name AS Tex2,
+			att5.name AS DisplayName,
+			att6.name AS Region,
+			att7.name AS BodySet,
+			Color1, Color2,
+			att8.name AS FxName,
+			Color3, Color4
+		  FROM dbo.CostumeParts
+		  LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
+		  LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
+		  LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
+		  LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
+		  LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
+		  LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
+		  LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
+		  INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
+		  WHERE CostumeParts.ContainerId = @cid
+			AND (CostumeNum = @slot OR (@slot IS NULL AND CostumeNum IS NULL))
+		`);
+
     return result.recordset;
   };
 
