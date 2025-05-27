@@ -3,7 +3,8 @@ const sql = require('mssql');
 async function fetchCostumeData(pool, containerId, slotId, force = false) {
   const costume = {
     appearance: {},
-    pieces: []
+    pieces: [],
+    source: ''
   };
 
   const slotValue = slotId === 0 ? null : slotId;
@@ -37,59 +38,32 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
   }
 
   let pieces = [];
-
-  const queryCostumeParts = async () => {
-    const result = await pool.request()
-      .input('cid', sql.Int, containerId)
-      .input('slot', sql.Int, slotValue)
-		.query(`
-		  SELECT
-			CAST(
-			  CASE
-				WHEN CostumeNum IS NULL THEN SubId
-				ELSE ROW_NUMBER() OVER (PARTITION BY CostumeNum ORDER BY SubId) - 1
-			  END AS INT
-			) AS PartIndex,
-			att2.name AS Geom,
-			att3.name AS Tex1,
-			att4.name AS Tex2,
-			att5.name AS DisplayName,
-			att6.name AS Region,
-			att7.name AS BodySet,
-			Color1, Color2,
-			att8.name AS FxName,
-			Color3, Color4
-		  FROM dbo.CostumeParts
-		  LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
-		  LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
-		  LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
-		  LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
-		  LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
-		  LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
-		  LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
-		  INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
-		  WHERE CostumeParts.ContainerId = @cid
-			AND (CostumeNum = @slot OR (@slot IS NULL AND CostumeNum IS NULL))
-		`);
-
-    return result.recordset;
-  };
+  let usingI25 = false;
+  let costumesTableExists = false;
 
   try {
-    const costumeResult = await pool.request()
+    await pool.request().query('SELECT TOP 1 * FROM dbo.Costumes');
+    costumesTableExists = true;
+  } catch {
+    costumesTableExists = false;
+  }
+
+  // Only query dbo.Costumes if there is data for the costume in it
+  if (costumesTableExists) {
+    const i25Result = await pool.request()
       .input('cid', sql.Int, containerId)
       .input('slot', sql.Int, slotValue)
       .query(`
-        SELECT ISNULL(PartIndex, 0) AS PartIndex,
-              att2.name AS Geom,
-              att3.name AS Tex1,
-              att4.name AS Tex2,
-              att5.name AS DisplayName,
-              att6.name AS Region,
-              att7.name AS BodySet,
-              Color1, Color2,
-              att8.name AS FxName,
-              Color3, Color4
+        SELECT PartIndex,
+               att2.name AS Geom,
+               att3.name AS Tex1,
+               att4.name AS Tex2,
+               att5.name AS DisplayName,
+               att6.name AS Region,
+               att7.name AS BodySet,
+               Color1, Color2,
+               att8.name AS FxName,
+               Color3, Color4
         FROM dbo.Costumes
         LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
         LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
@@ -101,71 +75,80 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
         INNER JOIN dbo.Ents ON Ents.ContainerId = Costumes.ContainerId
         WHERE Costumes.ContainerId = @cid
           AND (Costume = @slot OR (Costume IS NULL AND @slot IS NULL) OR (Costume = 0 AND @slot IS NULL))
+        ORDER BY PartIndex ASC
       `);
 
-    if (costumeResult.recordset.length > 0) {
-      pieces = costumeResult.recordset;
-    } else {
-      console.warn('[WARN] No entries in dbo.Costumes for this character. Falling back to CostumeParts.');
-      pieces = await queryCostumeParts();
-	  // Normalize PartIndex to integer
-	  pieces = pieces.map(p => ({
-		...p,
-		PartIndex: typeof p.PartIndex === 'string' ? parseInt(p.PartIndex, 10) : p.PartIndex
-	  }));
-    }
-  } catch (err) {
-    if (err.message.includes("Invalid object name") && err.message.includes("Costumes")) {
-      console.warn('[WARN] Costumes table missing, assuming i24 — using CostumeParts fallback');
-      pieces = await queryCostumeParts();
-    } else {
-      throw err;
+    if (i25Result.recordset.length > 0) {
+      pieces = i25Result.recordset;
+      costume.source = 'dbo.Costumes';
+      usingI25 = true;
     }
   }
 
-  // Build piece map
-  const pieceMap = new Map();
-  for (const p of pieces) {
-    pieceMap.set(p.PartIndex, {
-      PartIndex: p.PartIndex,
-      Geom: p.Geom ?? 'none',
-      Tex1: p.Tex1 ?? 'none',
-      Tex2: p.Tex2 ?? 'none',
-      DisplayName: p.DisplayName ?? null,
-      Region: p.Region ?? 'none',
-      BodySet: p.BodySet ?? 'none',
-      Color1: p.Color1 ?? 0,
-      Color2: p.Color2 ?? 0,
-      FxName: p.FxName ?? 'none',
-      Color3: p.Color3 ?? 0,
-      Color4: p.Color4 ?? 0
-    });
+  // Fallback: dbo.CostumeParts used in i25-style flat exports or legacy format
+  if (!usingI25) {
+    const fallbackResult = await pool.request()
+      .input('cid', sql.Int, containerId)
+      .input('slot', sql.Int, slotValue)
+      .query(`
+        SELECT
+          SubId,
+          att2.name AS Geom,
+          att3.name AS Tex1,
+          att4.name AS Tex2,
+          att5.name AS DisplayName,
+          att6.name AS Region,
+          att7.name AS BodySet,
+          Color1, Color2,
+          att8.name AS FxName,
+          Color3, Color4
+        FROM dbo.CostumeParts
+        LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
+        LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
+        LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
+        LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
+        LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
+        LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
+        LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
+        INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
+        WHERE CostumeParts.ContainerId = @cid
+          AND (CostumeNum = @slot OR (CostumeNum IS NULL AND @slot IS NULL) OR (CostumeNum = 0 AND @slot IS NULL))
+        ORDER BY SubId ASC
+      `);
+
+    // Remap SubId relative to base costume row (i.e., modulo 30)
+    pieces = fallbackResult.recordset.map((p, index) => ({
+      ...p,
+      PartIndex: p.SubId - ((slotValue ?? 0) * 30)
+    }));
+
+    costume.source = 'dbo.CostumeParts';
   }
 
-  // Pad slots 0–31
-  const padded = Array.from({ length: 32 }, (_, i) => {
-    return pieceMap.get(i) || {
-      PartIndex: i,
-      Geom: 'none',
-      Tex1: 'none',
-      Tex2: 'none',
-      DisplayName: null,
-      Region: 'none',
-      BodySet: 'none',
-      Color1: 0,
-      Color2: 0,
-      FxName: 'none',
-      Color3: 0,
-      Color4: 0
-    };
+  console.log(`[DEBUG] Loaded ${pieces.length} parts from ${costume.source}`);
+
+  pieces = pieces.filter(p => {
+    const region = (p.Region ?? '').toLowerCase();
+    const fx = (p.FxName ?? '').toLowerCase();
+    return region !== 'special' && (fx === 'none' || !fx.includes('auras/'));
   });
 
-  // Append any valid slots above 31
-  for (const [index, part] of pieceMap) {
-    if (index >= 32) padded.push(part);
-  }
+  costume.pieces = pieces.map(p => ({
+    PartIndex: p.PartIndex ?? 0,
+    Geom: p.Geom ?? 'none',
+    Tex1: p.Tex1 ?? 'none',
+    Tex2: p.Tex2 ?? 'none',
+    DisplayName: p.DisplayName ?? null,
+    Region: p.Region ?? 'none',
+    BodySet: p.BodySet ?? 'none',
+    Color1: p.Color1 ?? 0,
+    Color2: p.Color2 ?? 0,
+    FxName: p.FxName ?? 'none',
+    Color3: p.Color3 ?? 0,
+    Color4: p.Color4 ?? 0
+  }));
 
-  costume.pieces = padded;
+  console.log(`[fetchCostumeData] ContainerId=${containerId} Slot=${slotId} Source=${costume.source}`);
   return costume;
 }
 

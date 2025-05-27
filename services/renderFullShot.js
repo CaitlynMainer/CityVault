@@ -16,16 +16,12 @@ async function renderFullShot(authPool, pool, serverKey, containerId, slotId = 0
   }
 
   const safeSlotId = typeof slotId === 'number' && !isNaN(slotId) ? slotId : 0;
-  if (slotId == null || isNaN(slotId)) {
-  }
-
 
   const costume = await costumeDataFetcher(pool, containerId, safeSlotId);
   if (!costume || !costume.appearance || !Array.isArray(costume.pieces)) {
     console.warn('[WARN] Costume data incomplete or invalid.');
     return;
   }
-
 
   const appearance = costume.appearance;
   const skinColorInt = appearance.ColorSkin + 16777216;
@@ -46,7 +42,8 @@ async function renderFullShot(authPool, pool, serverKey, containerId, slotId = 0
     `PARAMS: DELETECSV\n` +
     `PARAMS: OUTPUTNAME=${renderOutputPath}\r\n`;
 
-  const rows = Array.from({ length: 25 }, (_, idx) => ({
+  const NUM_SLOTS = Math.max(60, ...costume.pieces.map(p => (p.PartIndex ?? 0) + 1));
+  const rows = Array.from({ length: NUM_SLOTS }, (_, idx) => ({
     idx,
     geom: "none",
     tex1: "none",
@@ -63,7 +60,10 @@ async function renderFullShot(authPool, pool, serverKey, containerId, slotId = 0
 
   for (const piece of costume.pieces) {
     const idx = piece.PartIndex ?? 0;
-    if (idx < 0 || idx >= 25) continue;
+    if (idx < 0 || idx >= rows.length) {
+      console.warn(`[WARN] Skipping out-of-range piece index=${idx}`);
+      continue;
+    }
 
     rows[idx] = {
       idx,
@@ -80,6 +80,11 @@ async function renderFullShot(authPool, pool, serverKey, containerId, slotId = 0
       bodySet: piece.BodySet || "none"
     };
   }
+  
+  for (const piece of costume.pieces) {
+  console.log('[DEBUG] Piece', piece.PartIndex, piece.Geom, piece.Region, piece.BodySet);
+}
+
 
   for (const row of rows) {
     const csvRow = [
