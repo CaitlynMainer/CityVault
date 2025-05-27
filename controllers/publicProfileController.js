@@ -40,7 +40,7 @@ async function showPublicProfile(req, res) {
         title: 'Private Profile',
         message: "This user doesn't share their characters.",
         charactersByServer: {},
-        username,
+		profileUsername: username,
         servers: config.servers,
         errors: []
       });
@@ -92,7 +92,7 @@ async function showPublicProfile(req, res) {
     res.render('public_profile', {
       title: `Public Profile: ${username}`,
       charactersByServer,
-      username,
+	  profileUsername: username,
       servers: config.servers,
       message: forcedAccess ? "This is a private profile. Displaying because you are an admin." : null,
       stringClean

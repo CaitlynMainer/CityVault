@@ -29,7 +29,13 @@
 			</form>
 		  </div>
 		<% } %>
-		<div style="display: flex; justify-content: center;">
+		<div style="display: flex;
+		justify-content: center;
+		background-image: url('/<%= bgPath %>');
+		background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+			">
 		  <img id="portrait"
 			   src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %><%= character.CurrentCostume && character.CurrentCostume !== 0 ? `_${character.CurrentCostume}` : '' %>.png?v=<%= Date.now() %>"
 			   onerror="handlePortraitError(this)"

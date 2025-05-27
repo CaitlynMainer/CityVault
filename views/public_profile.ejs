@@ -1,7 +1,10 @@
 <% if (message) { %>
   <div class="alert" style="background: #333; color: #ffc; padding: 10px; margin-bottom: 20px;"><%= message %></div>
 <% } %>
-
+<h2>Public Profile: <%= profileUsername %></h2>
+<% if (username && username !== profileUsername) { %>
+  <p style="color: #aaa;">You are logged in as <%= username %></p>
+<% } %>
 <% if (Object.keys(charactersByServer).length === 0) { %>
   <p style="color: #888;">No characters found.</p>
 <% } else { %>
@@ -11,20 +14,46 @@
       <% characters.forEach(character => { %>
         <div style="position: relative;">
           <a href="/character/<%= serverKey %>:<%= character.ContainerId %>" style="text-decoration: none; position: absolute; inset: 0; z-index: 2;"></a>
-          <div class="character-card" style="background: #222; padding: 12px; border-radius: 8px; text-align: center; color: #ccc; transition: background 0.2s; position: relative; z-index: 1;">
-            <img
-			src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %><%= character.CurrentCostume && character.CurrentCostume !== 0 ? `_${character.CurrentCostume}` : '' %>.png?v=<%= Date.now() %>"
-			onerror="this.onerror=null;this.src='/images/portrait/placeholder.png';"
-			style="width: 100%; border-radius: 4px; margin-bottom: 8px; object-fit: cover; object-position: top; aspect-ratio: 4/5;">
-            <h3 style="margin: 0 0 4px 0; font-size: 18px; color: #fff;"><%= stringClean(character.Name) %></h3>
-            <p style="margin: 0 0 8px; font-size: 14px; color: #aaa;">
-              Level <%= character.Level %>
-            </p>
-            <div style="display: flex; justify-content: center; gap: 6px; margin-bottom: 4px;">
-              <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" title="<%= character.alignment %>" height="24">
-              <img src="/images/icons/<%= character.OriginName.toLowerCase() %>.png" title="<%= character.OriginName %>" height="24">
-              <img src="/images/icons/<%= character.ClassName.toLowerCase() %>.png" title="<%= character.ClassName %>" height="24">
+          <div class="character-card"
+               style="
+                 background-image: url('/<%= character.bgPath %>');
+                 background-size: cover;
+                 background-repeat: no-repeat;
+                 background-position: center;
+                 padding: 12px;
+                 border-radius: 8px;
+                 text-align: center;
+                 color: #ccc;
+                 transition: background 0.2s;
+                 position: relative;
+                 z-index: 1;">
+            
+            <!-- Optional dark overlay for readability -->
+            <div style="
+                  position: absolute;
+                  inset: 0;
+                  background: rgba(0,0,0,0.6);
+                  border-radius: 8px;
+                  z-index: 0;"></div>
+
+            <div style="position: relative; z-index: 1;">
+              <img
+                src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %><%= character.CurrentCostume && character.CurrentCostume !== 0 ? `_${character.CurrentCostume}` : '' %>.png?v=<%= Date.now() %>"
+                onerror="this.onerror=null;this.src='/images/portrait/placeholder.png';"
+                alt="<%= character.Name %>"
+                style="width: 100%; border-radius: 4px; margin-bottom: 8px; object-fit: cover; object-position: top; aspect-ratio: 4/5;">
+              
+              <h3 style="margin: 0 0 4px 0; font-size: 18px; color: #fff;"><%= stringClean(character.Name) %></h3>
+              <p style="margin: 0 0 8px; font-size: 14px; color: #ddd;">
+                Level <%= character.Level %>
+              </p>
+              <div style="display: flex; justify-content: center; gap: 6px; margin-bottom: 4px;">
+                <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" title="<%= character.alignment %>" height="24">
+                <img src="/images/icons/<%= character.OriginName.toLowerCase() %>.png" title="<%= character.OriginName %>" height="24">
+                <img src="/images/icons/<%= character.ClassName.toLowerCase() %>.png" title="<%= character.ClassName %>" height="24">
+              </div>
             </div>
+
           </div>
         </div>
       <% }); %>

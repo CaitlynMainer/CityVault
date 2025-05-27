@@ -97,8 +97,8 @@
 
   </section>
 
-<div id="birthdayModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
-  <div class="bg-gray-800 text-white rounded-lg p-6 w-full max-w-3xl max-h-[80vh] overflow-y-auto">
+<div id="birthdayModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden overflow-y-auto">
+  <div class="bg-gray-800 text-white rounded-lg mx-auto my-10 p-6 w-full max-w-3xl shadow-lg">
     <h2 class="text-xl font-bold mb-4">All Birthday Characters</h2>
     <ul class="space-y-2">
       <% allBirthdays.forEach(char => { %>
@@ -112,7 +112,9 @@
       </li>
       <% }); %>
     </ul>
-    <button onclick="hideBirthdayModal()" class="mt-4 btn btn-blue">Close</button>
+    <div class="mt-6 text-right">
+      <button onclick="hideBirthdayModal()" class="btn btn-blue">Close</button>
+    </div>
   </div>
 </div>
 
@@ -125,5 +127,6 @@
     document.getElementById('birthdayModal').classList.add('hidden');
   }
 </script>
+
 
 </main>

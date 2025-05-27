@@ -10,6 +10,24 @@ function formatSeconds(sec) {
   return `${h}h ${m}m`;
 }
 
+// Background picker
+function getAlignmentBg(alignment) {
+  const map = {
+    hero: 'background',
+    vigilante: 'background',
+    villain: 'vil_background',
+    rogue: 'vil_background',
+    resistance: 'gold_background',
+    loyalist: 'gold_background',
+    unknown: 'vil_background',
+    pvp: 'vil_background',
+  };
+
+  const normalized = (alignment || '').toLowerCase();
+  const bgName = map[normalized] || 'background';
+  return `images/backgrounds/${bgName}.png`;
+}
+
 function enrichCharacterSummary(character, serverKey) {
   const attributeMap = getAttributeMap(serverKey);
 
@@ -23,6 +41,10 @@ function enrichCharacterSummary(character, serverKey) {
   character.TotalTimePlayed = formatSeconds(character.TotalTime);
   character.Created = character.DateCreated?.toISOString().split('T')[0] || 'Unknown';
   character.LastSeen = character.LastActive?.toISOString().split('T')[0] || 'Unknown';
+
+  // Add background path based on alignment
+  character.bgPath = getAlignmentBg(character.alignment);
+
   return character;
 }
 

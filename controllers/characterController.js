@@ -224,6 +224,25 @@ function groupBadgesByCategory(badges) {
   return Object.values(groups).sort((a, b) => a.name.localeCompare(b.name));
 }
 
+function getAlignmentBg(alignment) {
+	
+  const map = {
+    hero: 'background',
+    vigilante: 'background',
+    villain: 'vil_background',
+    rogue: 'vil_background',
+    resistance: 'gold_background',
+    loyalist: 'gold_background',
+    unknown: 'vil_background',
+    pvp: 'vil_background',
+  };
+
+  const normalized = (alignment || '').toLowerCase();
+  const bgName = map[normalized] || 'background';
+  return `images/backgrounds/${bgName}.png`; // ← add extension here
+}
+
+
 async function showCharacter(req, res) {
   const [serverKey, dbidStr] = (req.params.id || '').split(':');
   const dbid = parseInt(dbidStr);
@@ -350,6 +369,7 @@ async function showCharacter(req, res) {
     const ownedBadges = visibleBadges.filter(b => b.owned).length;
     const unearnedBadges = visibleBadges.filter(b => !b.owned);
     const unearnedBadgeCategories = groupBadgesByCategory(unearnedBadges);
+    const bgPath = getAlignmentBg(character.alignment);
 
     const badgeCategories = {};
     for (const badge of visibleBadges) {
@@ -383,7 +403,8 @@ async function showCharacter(req, res) {
       message: forcedAccess ? "This is a private character. Displaying because you are an admin." : null,
       viewerIsOwner: isOwner,
       stringClean,
-      portraitVersion
+      portraitVersion,
+      bgPath,
     });
 
   } catch (err) {
