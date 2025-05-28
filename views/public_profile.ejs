@@ -13,7 +13,6 @@
     <div class="character-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
       <% characters.forEach(character => { %>
         <div style="position: relative;">
-          <a href="/character/<%= serverKey %>:<%= character.ContainerId %>" style="text-decoration: none; position: absolute; inset: 0; z-index: 2;"></a>
           <div class="character-card"
                style="
                  background-image: url('/<%= character.bgPath %>');
@@ -28,6 +27,7 @@
                  position: relative;
                  z-index: 1;">
             
+            <a href="/character/<%= serverKey %>:<%= character.ContainerId %>" style="text-decoration: none; position: absolute; inset: 0; z-index: 2;"></a>
             <!-- Optional dark overlay for readability -->
             <div style="
                   position: absolute;
