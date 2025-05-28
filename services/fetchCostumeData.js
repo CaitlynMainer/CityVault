@@ -7,7 +7,7 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
     source: ''
   };
 
-  const slotValue = slotId === 0 ? null : slotId;
+  const slotValue = slotId;
 
   // Fetch appearance
   const appearanceResult = await pool.request()
@@ -38,89 +38,92 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
   }
 
   let pieces = [];
-  let usingI25 = false;
-  let costumesTableExists = false;
 
+  // Try dbo.Costumes (i25+)
   try {
     await pool.request().query('SELECT TOP 1 * FROM dbo.Costumes');
-    costumesTableExists = true;
-  } catch {
-    costumesTableExists = false;
-  }
+    const sqlQuery = `
+      SELECT PartIndex,
+             att2.name AS Geom,
+             att3.name AS Tex1,
+             att4.name AS Tex2,
+             att5.name AS DisplayName,
+             att6.name AS Region,
+             att7.name AS BodySet,
+             Color1, Color2,
+             att8.name AS FxName,
+             Color3, Color4
+      FROM dbo.Costumes
+      LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
+      LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
+      LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
+      LEFT JOIN dbo.Attributes att5 ON att5.Id = Costumes.Name
+      LEFT JOIN dbo.Attributes att6 ON att6.Id = Costumes.Region
+      LEFT JOIN dbo.Attributes att7 ON att7.Id = Costumes.BodySet
+      LEFT JOIN dbo.Attributes att8 ON att8.Id = Costumes.FxName
+      INNER JOIN dbo.Ents ON Ents.ContainerId = Costumes.ContainerId
+      WHERE Costumes.ContainerId = @cid
+        AND (Costume = @slot OR (Costume IS NULL AND @slot = 0))
+      ORDER BY PartIndex ASC
+    `;
+    console.log('[SQL]', sqlQuery);
 
-  // Only query dbo.Costumes if there is data for the costume in it
-  if (costumesTableExists) {
-    const i25Result = await pool.request()
+    const result = await pool.request()
       .input('cid', sql.Int, containerId)
       .input('slot', sql.Int, slotValue)
-      .query(`
-        SELECT PartIndex,
-               att2.name AS Geom,
-               att3.name AS Tex1,
-               att4.name AS Tex2,
-               att5.name AS DisplayName,
-               att6.name AS Region,
-               att7.name AS BodySet,
-               Color1, Color2,
-               att8.name AS FxName,
-               Color3, Color4
-        FROM dbo.Costumes
-        LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
-        LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
-        LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
-        LEFT JOIN dbo.Attributes att5 ON att5.Id = Costumes.Name
-        LEFT JOIN dbo.Attributes att6 ON att6.Id = Costumes.Region
-        LEFT JOIN dbo.Attributes att7 ON att7.Id = Costumes.BodySet
-        LEFT JOIN dbo.Attributes att8 ON att8.Id = Costumes.FxName
-        INNER JOIN dbo.Ents ON Ents.ContainerId = Costumes.ContainerId
-        WHERE Costumes.ContainerId = @cid
-          AND (Costume = @slot OR (Costume IS NULL AND @slot IS NULL) OR (Costume = 0 AND @slot IS NULL))
-        ORDER BY PartIndex ASC
-      `);
+      .query(sqlQuery);
 
-    if (i25Result.recordset.length > 0) {
-      pieces = i25Result.recordset;
+    if (result.recordset.length > 0) {
+      pieces = result.recordset;
       costume.source = 'dbo.Costumes';
-      usingI25 = true;
     }
-  }
+  } catch {}
 
-  // Fallback: dbo.CostumeParts used in i25-style flat exports or legacy format
-  if (!usingI25) {
-    const fallbackResult = await pool.request()
+  // Fallback to dbo.CostumeParts (i24/i25 legacy)
+  if (!pieces.length) {
+    const sqlQuery = `
+      SELECT SubId,
+             att2.name AS Geom,
+             att3.name AS Tex1,
+             att4.name AS Tex2,
+             att5.name AS DisplayName,
+             att6.name AS Region,
+             att7.name AS BodySet,
+             Color1, Color2,
+             att8.name AS FxName,
+             Color3, Color4
+      FROM dbo.CostumeParts
+      LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
+      LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
+      LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
+      LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
+      LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
+      LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
+      LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
+      INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
+      WHERE CostumeParts.ContainerId = @cid
+        AND (CostumeNum = @slot OR (CostumeNum IS NULL AND @slot = 0))
+      ORDER BY SubId ASC
+    `;
+    console.log('[SQL]', sqlQuery);
+
+    const result = await pool.request()
       .input('cid', sql.Int, containerId)
       .input('slot', sql.Int, slotValue)
-      .query(`
-        SELECT
-          SubId,
-          att2.name AS Geom,
-          att3.name AS Tex1,
-          att4.name AS Tex2,
-          att5.name AS DisplayName,
-          att6.name AS Region,
-          att7.name AS BodySet,
-          Color1, Color2,
-          att8.name AS FxName,
-          Color3, Color4
-        FROM dbo.CostumeParts
-        LEFT JOIN dbo.Attributes att2 ON att2.Id = Geom
-        LEFT JOIN dbo.Attributes att3 ON att3.Id = Tex1
-        LEFT JOIN dbo.Attributes att4 ON att4.Id = Tex2
-        LEFT JOIN dbo.Attributes att5 ON att5.Id = CostumeParts.Name
-        LEFT JOIN dbo.Attributes att6 ON att6.Id = CostumeParts.Region
-        LEFT JOIN dbo.Attributes att7 ON att7.Id = CostumeParts.BodySet
-        LEFT JOIN dbo.Attributes att8 ON att8.Id = CostumeParts.FxName
-        INNER JOIN dbo.Ents ON Ents.ContainerId = CostumeParts.ContainerId
-        WHERE CostumeParts.ContainerId = @cid
-          AND (CostumeNum = @slot OR (CostumeNum IS NULL AND @slot IS NULL) OR (CostumeNum = 0 AND @slot IS NULL))
-        ORDER BY SubId ASC
-      `);
+      .query(sqlQuery);
 
-    // Remap SubId relative to base costume row (i.e., modulo 30)
-    pieces = fallbackResult.recordset.map((p, index) => ({
-      ...p,
-      PartIndex: p.SubId - ((slotValue ?? 0) * 30)
-    }));
+    const isLegacy = result.recordset.length <= 30;
+
+    pieces = result.recordset
+      .filter(p => p.SubId !== null)
+      .map(p => {
+        const baseOffset = p.SubId % (isLegacy ? 30 : 60);
+        console.log('[DEBUG] raw SubId:', p.SubId, 'slotValue:', slotValue, '=> baseOffset:', baseOffset);
+        return {
+          ...p,
+          PartIndex: baseOffset
+        };
+      });
 
     costume.source = 'dbo.CostumeParts';
   }
