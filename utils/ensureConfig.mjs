@@ -119,7 +119,13 @@ async function runSetupWizard() {
       name: 'ipAddr',
       message: 'Server IP address:',
       default: '0.0.0.0'
-    }
+    },
+	{
+	  type: 'confirm',
+	  name: 'useAutoEncrypt',
+	  message: 'Enable AutoEncrypt HTTPS? (Let\'s Encrypt, production domains only)',
+	  default: true
+	}
   ]);
 
   const authAnswers = await promptDbConfig('Auth', {
@@ -144,6 +150,7 @@ async function runSetupWizard() {
     siteName: answers.siteName,
     domain: answers.domain,
     ipAddr: answers.ipAddr,
+	useAutoEncrypt: answers.useAutoEncrypt,
     session_secret: sessionSecret,
     email: {
       provider: '',
@@ -173,10 +180,6 @@ async function runSetupWizard() {
         checkForUpdates: {
           intervalMinutes: 60,
           handler: 'updateChecker.checkForUpdates'
-        },
-        convertAllPortraits: {
-          intervalMinutes: 60,
-          handler: 'portraitService.convertAllPortraits'
         }
       }
     },

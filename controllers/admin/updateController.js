@@ -4,6 +4,7 @@ const { https } = require('follow-redirects');
 const { exec } = require('child_process');
 const { finished } = require('stream');
 const AdmZip = require('adm-zip');
+const { spawn, exec } = require('child_process');
 		
 async function downloadAndExtractUpdate(req, res) {
   const zipUrl = req.body.zipUrl;
@@ -73,24 +74,42 @@ async function downloadAndExtractUpdate(req, res) {
         await fs.remove(tmpExtractDir);
 
         console.log('[Update] Running npm install...');
-        exec('npm install', { cwd: global.BASE_DIR }, (err, stdout, stderr) => {
-          if (err) {
-            console.error('[Update] npm install failed:', err);
-            return res.status(500).send('Update extracted, but npm install failed.');
-          }
+		exec('npm install', { cwd: global.BASE_DIR }, (err, stdout, stderr) => {
+		  if (err) {
+			console.error('[Update] npm install failed:', err);
+			return res.status(500).send('Update extracted, but npm install failed.');
+		  }
 
-          console.log('[Update] npm install complete.');
-          console.log(stdout);
+		  console.log('[Update] npm install complete.');
+		  console.log(stdout);
 
-          try {
-            fs.unlinkSync(tmpPath);
-            console.log('[Update] Cleaned up tmp_update.zip');
-          } catch (err) {
-            console.warn('[Update] Could not delete tmp_update.zip:', err.message);
-          }
+		  try {
+			fs.unlinkSync(tmpPath);
+			console.log('[Update] Cleaned up tmp_update.zip');
+		  } catch (err) {
+			console.warn('[Update] Could not delete tmp_update.zip:', err.message);
+		  }
 
-          res.send('Update downloaded, extracted (excluding /data), and npm install completed. Please restart the server.');
-        });
+		  // Send redirect BEFORE exiting
+		  res.redirect('/'); // Or your desired path
+
+		  // Delay just enough to let the response flush
+		  setTimeout(() => {
+			console.log('[Update] Relaunching application...');
+			const nodePath = process.execPath;
+			const entryPoint = path.join(global.BASE_DIR, 'index.js'); // adjust if needed
+
+			const child = spawn(nodePath, [entryPoint], {
+			  cwd: global.BASE_DIR,
+			  detached: true,
+			  stdio: 'ignore'
+			});
+
+			child.unref();
+			process.exit(0);
+		  }, 500); // Small delay to allow redirect to be sent
+		});
+
       } catch (extractErr) {
         console.error('[Update] Extraction failed:', extractErr);
         res.status(500).send('Extraction failed.');

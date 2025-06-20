@@ -1,10 +1,8 @@
 // server.mjs
 import { createRequire } from 'module';
-import AutoEncrypt from '@small-tech/auto-encrypt';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import HttpServer from '@small-tech/auto-encrypt/lib/HttpServer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,21 +19,34 @@ await ensureConfig.default();
 
 // Load config and initialize app
 const config = require('./utils/config');
-const startApp = require('./cityvault');      // this is now a function
-const expressApp = startApp(config);          // call it with config
+const startApp = require('./cityvault');
+const expressApp = startApp(config);
 
-// AutoEncrypt HTTPS server
-AutoEncrypt.createServer({
-  domains: [config.domain],
-  httpHost: config.ipAddr
-}, expressApp).listen(443, config.ipAddr, async () => {
-  console.log(`AutoEncrypt HTTPS server running at https://${config.domain} bound to ${config.ipAddr}`);
+// Support HTTPS with AutoEncrypt or fall back to HTTP
+if (config.useAutoEncrypt) {
+  const AutoEncrypt = (await import('@small-tech/auto-encrypt')).default;
+  const HttpServer = (await import('@small-tech/auto-encrypt/lib/HttpServer.js')).default;
 
-  const http = await HttpServer.getSharedInstance();
-  http.addResponder((req, res) => {
-    if (req.url.startsWith('/.well-known/acme-challenge/')) return false;
+  AutoEncrypt.createServer({
+    domains: [config.domain],
+    httpHost: config.ipAddr
+  }, expressApp).listen(443, config.ipAddr, async () => {
+    console.log(`AutoEncrypt HTTPS server running at https://${config.domain} bound to ${config.ipAddr}`);
 
-    expressApp(req, res);
-    return true;
+    const http = await HttpServer.getSharedInstance();
+    http.addResponder((req, res) => {
+      if (req.url.startsWith('/.well-known/acme-challenge/')) return false;
+      expressApp(req, res);
+      return true;
+    });
   });
-});
+
+} else {
+  // Plain HTTP fallback
+  const http = require('http');
+  const port = config.port || 3000;
+
+  http.createServer(expressApp).listen(port, config.ipAddr, () => {
+    console.log(`HTTP server running at http://${config.ipAddr}:${port}`);
+  });
+}

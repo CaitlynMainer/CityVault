@@ -55,7 +55,7 @@ module.exports = function startApp(config) {
     rolling: true,
     cookie: {
       maxAge: 365 * 24 * 60 * 60 * 1000,
-      secure: true,
+      secure: config.useAutoEncrypt === true,
       signed: true
     }
   }));
