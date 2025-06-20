@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "@small-tech/auto-encrypt": "^4.3.0",
+    "adm-zip": "^0.5.16",
     "better-sqlite3": "^11.10.0",
     "better-sqlite3-session-store": "^0.1.0",
     "body-parser": "^2.2.0",
@@ -36,7 +37,6 @@
     "rotating-file-stream": "^3.2.6",
     "session-file-store": "^1.5.0",
     "sharp": "^0.34.1",
-    "tga2png": "^0.1.3",
-    "unzipper": "^0.12.3"
+    "tga2png": "^0.1.3"
   }
 }

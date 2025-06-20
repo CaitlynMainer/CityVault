@@ -19,34 +19,31 @@ if not defined LAST_TAG (
 
 echo Latest tag: %LAST_TAG%
 
-REM Strip leading v and save to temp file
-echo %LAST_TAG:~1% > version_parts.txt
+REM Strip leading v if it exists
+set "TAG_VER=%LAST_TAG%"
+if /i "%TAG_VER:~0,1%"=="v" set "TAG_VER=%TAG_VER:~1%"
 
-REM Clear values before parsing
+REM Parse version components
 set MAJOR=
 set MINOR=
 set PATCH=
-
-REM Read and parse version parts
-for /f "tokens=1,2,3 delims=." %%a in (version_parts.txt) do (
-    call set MAJOR=%%a
-    call set MINOR=%%b
-    call set PATCH=%%c
+for /f "tokens=1,2,3 delims=." %%a in ("%TAG_VER%") do (
+    set "MAJOR=%%a"
+    set "MINOR=%%b"
+    set "PATCH=%%c"
 )
-del version_parts.txt
+
+REM Fallback defaults
+if "%MAJOR%"=="" set MAJOR=0
+if "%MINOR%"=="" set MINOR=0
+if "%PATCH%"=="" set PATCH=0
 
 REM DEBUG
 echo MAJOR=%MAJOR%
 echo MINOR=%MINOR%
 echo PATCH=%PATCH%
 
-REM Default values if unset
-if "%MAJOR%"=="" set MAJOR=0
-if "%MINOR%"=="" set MINOR=1
-if "%PATCH%"=="" set PATCH=0
-
 call set /a NEXT_PATCH=%PATCH% + 1
-
 set "SUGGESTED_TAG=v%MAJOR%.%MINOR%.%NEXT_PATCH%"
 
 :done_suggest
@@ -58,6 +55,11 @@ if "%NEW_TAG%"=="" (
     set "NEW_TAG=%SUGGESTED_TAG%"
 )
 
+REM Add leading v if user forgot it
+if /i not "%NEW_TAG:~0,1%"=="v" (
+    set "NEW_TAG=v%NEW_TAG%"
+)
+
 REM Check if tag exists
 git rev-parse -q --verify "refs/tags/%NEW_TAG%" >nul 2>&1
 if %ERRORLEVEL%==0 (
@@ -67,7 +69,7 @@ if %ERRORLEVEL%==0 (
     exit /b 1
 )
 
-REM Write version.json with new version (strip leading 'v') for local use only
+REM Write version.json with new version (strip leading 'v')
 echo { "version": "%NEW_TAG:~1%" } > version.json
 
 REM Tag and push

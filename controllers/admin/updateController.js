@@ -1,10 +1,10 @@
 const path = require('path');
 const fs = require('fs-extra');
 const { https } = require('follow-redirects');
-const unzipper = require('unzipper');
 const { exec } = require('child_process');
 const { finished } = require('stream');
-
+const AdmZip = require('adm-zip');
+		
 async function downloadAndExtractUpdate(req, res) {
   const zipUrl = req.body.zipUrl;
   console.log('[Update] Downloading from:', zipUrl);
@@ -53,9 +53,9 @@ async function downloadAndExtractUpdate(req, res) {
         });
 
         console.log('[Update] Extracting update to temp folder...');
-        await fs.createReadStream(tmpPath)
-          .pipe(unzipper.Extract({ path: tmpExtractDir }))
-          .promise();
+		const zip = new AdmZip(tmpPath);
+		zip.extractAllTo(tmpExtractDir, true); // true = overwrite
+
 
         console.log('[Update] Copying update into base dir (excluding /data)...');
         await fs.copy(tmpExtractDir, global.BASE_DIR, {
