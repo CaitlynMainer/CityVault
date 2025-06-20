@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs-extra');
 const { https } = require('follow-redirects');
-const { exec } = require('child_process');
 const { finished } = require('stream');
 const AdmZip = require('adm-zip');
 const { spawn, exec } = require('child_process');
