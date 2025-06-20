@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const extract = require('extract-zip');
+const StreamZip = require('node-stream-zip');
 const { spawn } = require('child_process');
 const { exec } = require('child_process');
 const os = require('os');
@@ -41,34 +41,94 @@ async function ensureImageServerInstalled() {
     return;
   }
 
+	if (!fs.existsSync(zipPath)) {
+	  await downloadWithProgress(IMAGE_SERVER_URL, zipPath);
+	} else {
+	  console.log('[ImageServer] ImageServer.zip already exists, skipping download.');
+	}
+
+  try {
+    console.log('[ImageServer] Extracting...');
+    //await extract(zipPath, { dir: global.BASE_DIR });
+	await extractWithProgress(zipPath, global.BASE_DIR);
+
+    console.log('[ImageServer] Installed to', global.BASE_DIR);
+    // Delete the zip after extraction
+    //fs.unlinkSync(zipPath);
+  } catch (err) {
+    throw new Error(`[ImageServer] Extraction failed: ${err.message}`);
+  }
+}
+
+async function downloadWithProgress(url, zipPath) {
   if (!fs.existsSync(zipPath)) {
     console.log('[ImageServer] Downloading ImageServer.zip...');
+
     await new Promise((resolve, reject) => {
       const file = fs.createWriteStream(zipPath);
-      https.get(IMAGE_SERVER_URL, response => {
+
+      https.get(url, response => {
         if (response.statusCode !== 200) {
           return reject(new Error(`HTTP ${response.statusCode}`));
         }
 
+        const totalBytes = parseInt(response.headers['content-length'], 10);
+        let downloadedBytes = 0;
+
+        response.on('data', chunk => {
+          downloadedBytes += chunk.length;
+          const percent = downloadedBytes / totalBytes;
+          const barLength = 30;
+          const filledLength = Math.floor(barLength * percent);
+          const bar = '█'.repeat(filledLength) + '-'.repeat(barLength - filledLength);
+          const percentText = (percent * 100).toFixed(1).padStart(5);
+          process.stdout.write(`\r[ImageServer] [${bar}] ${percentText}%`);
+        });
+
         response.pipe(file);
-        file.on('finish', () => file.close(resolve));
+
+        file.on('finish', () => {
+          file.close(() => {
+            process.stdout.write('\n[ImageServer] Download complete.\n');
+            resolve();
+          });
+        });
+
         file.on('error', reject);
       }).on('error', reject);
     });
-    console.log('[ImageServer] Download complete.');
+
   } else {
     console.log('[ImageServer] ImageServer.zip already exists, skipping download.');
   }
+}
 
-  try {
-    console.log('[ImageServer] Extracting...');
-    await extract(zipPath, { dir: global.BASE_DIR });
-    console.log('[ImageServer] Installed to', installDir);
-    // Delete the zip after extraction
-    fs.unlinkSync(zipPath);
-  } catch (err) {
-    throw new Error(`[ImageServer] Extraction failed: ${err.message}`);
+async function extractWithProgress(zipPath, outputDir) {
+  const zip = new StreamZip.async({ file: zipPath });
+  const entries = await zip.entries();
+  const total = Object.keys(entries).length;
+
+  console.log(`[ImageServer] Extracting ZIP: ${zipPath} → ${outputDir}`);
+
+  let extracted = 0;
+  for (const entryName of Object.keys(entries)) {
+    const entry = entries[entryName];
+    if (entry.isDirectory) {
+      fs.mkdirSync(path.join(outputDir, entryName), { recursive: true });
+    } else {
+      await zip.extract(entryName, path.join(outputDir, entryName));
+    }
+
+    extracted++;
+    const percent = ((extracted / total) * 100).toFixed(1).padStart(5);
+    const barLength = 30;
+    const filled = Math.floor((extracted / total) * barLength);
+    const bar = '█'.repeat(filled) + '-'.repeat(barLength - filled);
+    process.stdout.write(`\r[ImageServer] [${bar}] ${percent}%`);
   }
+
+  await zip.close();
+  process.stdout.write('\n[ImageServer] Extraction complete.\n');
 }
 
 function launchImageServer(config) {

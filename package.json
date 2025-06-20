@@ -33,6 +33,7 @@
     "msnodesqlv8": "^4.5.0",
     "mssql": "^11.0.1",
     "multer": "^1.4.5-lts.2",
+    "node-stream-zip": "^1.15.0",
     "nodemailer": "^7.0.3",
     "rotating-file-stream": "^3.2.6",
     "session-file-store": "^1.5.0",
