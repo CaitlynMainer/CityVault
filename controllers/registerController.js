@@ -25,9 +25,15 @@ async function handleRegister(req, res) {
     return res.redirect('/register');
   }
 
+  let transaction;
+  let uid;
+
   try {
     const pool = await getAuthPool();
+    const driverName = pool?.driver?.name || 'unknown';
+    const useTransaction = (driverName === 'tedious');
 
+    // Check username
     const checkUser = await pool.request()
       .input('username', sql.VarChar, username)
       .query(`SELECT COUNT(*) AS count FROM dbo.user_account WHERE account = @username`);
@@ -37,6 +43,7 @@ async function handleRegister(req, res) {
       return res.redirect('/register');
     }
 
+    // Check email
     const checkEmail = await pool.request()
       .input('email', sql.VarChar, email)
       .query(`SELECT COUNT(*) AS count FROM dbo.user_account WHERE email = @email`);
@@ -46,17 +53,24 @@ async function handleRegister(req, res) {
       return res.redirect('/register');
     }
 
+    // UID assignment
+    const uidResult = await pool.request().query(`SELECT ISNULL(MAX(uid), 0) + 1 AS newID FROM dbo.user_account`);
+    uid = uidResult.recordset[0].newID;
+
     const token = crypto.randomBytes(32).toString('hex');
     const blockFlag = config.email?.provider && config.email?.fromEmail ? 2 : 0;
 
-    const transaction = new sql.Transaction(pool);
-    await transaction.begin();
-    const tRequest = new sql.Request(transaction);
+    if (useTransaction) {
+      transaction = new sql.Transaction(pool);
+      await transaction.begin();
+    }
 
-    const uidResult = await tRequest.query(`SELECT ISNULL(MAX(uid), 0) + 1 AS newID FROM dbo.user_account`);
-    const uid = uidResult.recordset[0].newID;
+    const getRequest = () => useTransaction
+      ? new sql.Request(transaction)
+      : pool.request();
 
-    await tRequest
+    // user_account insert
+    await getRequest()
       .input('username', sql.VarChar, username)
       .input('uid', sql.Int, uid)
       .input('email', sql.VarChar, email)
@@ -67,21 +81,35 @@ async function handleRegister(req, res) {
         VALUES (@username, @uid, @uid, 1014, @email, 'user', @block_flag, @token)
       `);
 
-    await tRequest
+    // user_auth insert
+    await getRequest()
+      .input('username', sql.VarChar, username)
       .input('password', sql.VarChar, hexString)
       .query(`
         INSERT INTO dbo.user_auth (account, password, salt, hash_type)
         VALUES (@username, CONVERT(BINARY(128), @password), 0, 1)
       `);
 
-    await tRequest.query(`INSERT INTO dbo.user_data (uid, user_data) VALUES (@uid, 0x0080C2E000D00B0C000000000CB40058)`);
-    await tRequest.query(`INSERT INTO dbo.user_server_group (uid, server_group_id) VALUES (@uid, 1)`);
+    // user_data insert
+    await getRequest()
+      .input('uid', sql.Int, uid)
+      .query(`
+        INSERT INTO dbo.user_data (uid, user_data)
+        VALUES (@uid, 0x0080C2E000D00B0C000000000CB40058)
+      `);
 
-    await transaction.commit();
+    // user_server_group insert
+    await getRequest()
+      .input('uid', sql.Int, uid)
+      .query(`
+        INSERT INTO dbo.user_server_group (uid, server_group_id)
+        VALUES (@uid, 1)
+      `);
+
+    if (transaction) await transaction.commit();
 
     if (blockFlag === 2) {
       const { renderTemplate } = require(global.BASE_DIR + '/services/mail/template');
-
       const confirmUrl = `${config.domain.startsWith('http') ? config.domain : 'https://' + config.domain}/register/confirm/${token}`;
 
       const html = await renderTemplate('register_confirm', {
@@ -104,10 +132,26 @@ async function handleRegister(req, res) {
     return res.redirect('/login');
   } catch (err) {
     console.error('[Register Error]', err);
+
+    // Cleanup fallback if no transaction support
+    if (!transaction && uid) {
+      try {
+        const pool = await getAuthPool();
+
+        await pool.request().input('uid', sql.Int, uid).query(`DELETE FROM dbo.user_account WHERE uid = @uid`);
+        await pool.request().input('uid', sql.Int, uid).query(`DELETE FROM dbo.user_data WHERE uid = @uid`);
+        await pool.request().input('uid', sql.Int, uid).query(`DELETE FROM dbo.user_server_group WHERE uid = @uid`);
+        await pool.request().input('username', sql.VarChar, username).query(`DELETE FROM dbo.user_auth WHERE account = @username`);
+      } catch (cleanupErr) {
+        console.error('[Register Cleanup Failed]', cleanupErr);
+      }
+    }
+
     req.flash('error', 'Account creation failed.');
     return res.redirect('/register');
   }
 }
+
 
 async function handleConfirmAccount(req, res) {
   const token = req.params.token;
