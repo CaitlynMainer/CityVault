@@ -1,13 +1,13 @@
-const sql = require('mssql');
 const readline = require('readline');
 const crypto = require('crypto');
 const { gameHashPassword } = require(global.BASE_DIR + '/utils/hashUtils');
 const { servers } = require(global.BASE_DIR + '/utils/config');
+const { getAuthPool } = require(global.BASE_DIR + '/db/index');
+
 
 async function ensureSchema(authConfig) {
   try {
-    const pool = await sql.connect(authConfig);
-
+    const pool = await getAuthPool();
     await ensureAuthSchema(pool);
     await ensureInitialAdmin(pool);
 

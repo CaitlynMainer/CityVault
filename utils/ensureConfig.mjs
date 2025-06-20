@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import sql from 'mssql';
+import os from 'os';
+import { fileURLToPath } from 'url';
+import * as db from '../db/index.js';
 
 let inquirer;
 async function getInquirer() {
@@ -12,30 +14,87 @@ async function getInquirer() {
   return inquirer;
 }
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const configPath = path.join(global.BASE_DIR || __dirname, 'data', 'config.json');
 
-async function validateSqlConnection({ dbHost, dbPort, dbUser, dbPass, dbName }) {
-  const config = {
-    server: dbHost,
-    port: dbPort,
-    user: dbUser,
-    password: dbPass,
-    database: dbName,
-    options: {
-      encrypt: false,
-      trustServerCertificate: true
-    },
-    connectionTimeout: 5000
-  };
-
+// Use app's own DB pool system for validation
+async function validateSqlConnection(cfg) {
   try {
-    const pool = await sql.connect(config);
+    const pool = await db.createPool(cfg);
     await pool.close();
     return true;
   } catch (err) {
     console.error('\n❌ Failed to connect to SQL Server:\n' + err.message);
     return false;
   }
+}
+
+async function promptDbConfig(role, defaults) {
+  const inq = await getInquirer();
+  let valid = false;
+  let answers;
+
+  while (!valid) {
+    answers = await inq.prompt([
+      {
+        type: 'confirm',
+        name: 'useLocalDB',
+        message: `Use LocalDB for ${role}? (Windows only, no username/password)`,
+        default: false
+      },
+      {
+        type: 'input',
+        name: 'dbHost',
+        message: `${role} DB host (e.g. localdb\\MSSQLLocalDB):`,
+        default: 'localdb\\MSSQLLocalDB',
+        when: a => a.useLocalDB
+      },
+      {
+        type: 'input',
+        name: 'dbHost',
+        message: `${role} DB host:`,
+        default: defaults.dbHost,
+        when: a => !a.useLocalDB
+      },
+      {
+        type: 'number',
+        name: 'dbPort',
+        message: `${role} DB port:`,
+        default: defaults.dbPort,
+        when: a => !a.useLocalDB
+      },
+      {
+        type: 'input',
+        name: 'dbUser',
+        message: `${role} DB user:`,
+        default: defaults.dbUser,
+        when: a => !a.useLocalDB
+      },
+      {
+        type: 'password',
+        name: 'dbPass',
+        message: `${role} DB password:`,
+        mask: '*',
+        default: defaults.dbPass,
+        when: a => !a.useLocalDB,
+        validate: input => input ? true : 'Password cannot be empty'
+      },
+      {
+        type: 'input',
+        name: 'dbName',
+        message: `${role} DB name:`,
+        default: defaults.dbName
+      }
+    ]);
+
+    console.log(`\n🔌 Testing connection to SQL Server (${role})...`);
+    valid = await validateSqlConnection(answers);
+    if (!valid) {
+      console.log('Please check your credentials and try again.\n');
+    }
+  }
+
+  return answers;
 }
 
 async function runSetupWizard() {
@@ -63,95 +122,22 @@ async function runSetupWizard() {
     }
   ]);
 
-  let authValid = false;
-  let authAnswers;
+  const authAnswers = await promptDbConfig('Auth', {
+    dbHost: 'localhost',
+    dbPort: 1433,
+    dbUser: 'sa',
+    dbPass: '',
+    dbName: 'cohauth'
+  });
 
-  while (!authValid) {
-    authAnswers = await inq.prompt([
-      {
-        type: 'input',
-        name: 'dbHost',
-        message: 'Auth DB host:',
-        default: 'localhost'
-      },
-      {
-        type: 'number',
-        name: 'dbPort',
-        message: 'Auth DB port:',
-        default: 1433
-      },
-      {
-        type: 'input',
-        name: 'dbUser',
-        message: 'Auth DB user:',
-        default: 'sa'
-      },
-      {
-        type: 'password',
-        name: 'dbPass',
-        message: 'Auth DB password:',
-        mask: '*',
-        validate: input => input ? true : 'Password cannot be empty'
-      },
-      {
-        type: 'input',
-        name: 'dbName',
-        message: 'Auth DB name:',
-        default: 'cohauth'
-      }
-    ]);
+  const chatAnswers = await promptDbConfig('Chat', {
+    dbHost: authAnswers.dbHost,
+    dbPort: authAnswers.dbPort,
+    dbUser: authAnswers.dbUser,
+    dbPass: authAnswers.dbPass,
+    dbName: 'cohchat'
+  });
 
-    console.log('\n🔌 Testing connection to SQL Server (cohauth)...');
-    authValid = await validateSqlConnection(authAnswers);
-    if (!authValid) {
-      console.log('Please check your credentials and try again.\n');
-    }
-  }
-
-  let chatValid = false;
-  let chatAnswers;
-
-  while (!chatValid) {
-    chatAnswers = await inq.prompt([
-      {
-        type: 'input',
-        name: 'dbHost',
-        message: 'Chat DB host:',
-        default: authAnswers.dbHost
-      },
-      {
-        type: 'number',
-        name: 'dbPort',
-        message: 'Chat DB port:',
-        default: authAnswers.dbPort
-      },
-      {
-        type: 'input',
-        name: 'dbUser',
-        message: 'Chat DB user:',
-        default: authAnswers.dbUser
-      },
-      {
-        type: 'password',
-        name: 'dbPass',
-        message: 'Chat DB password:',
-        mask: '*',
-        default: authAnswers.dbPass
-      },
-      {
-        type: 'input',
-        name: 'dbName',
-        message: 'Chat DB name:',
-        default: 'cohchat'
-      }
-    ]);
-
-    console.log('\n🔌 Testing connection to SQL Server (cohchat)...');
-    chatValid = await validateSqlConnection(chatAnswers);
-    if (!chatValid) {
-      console.log('Please check your credentials and try again.\n');
-    }
-  }
   const sessionSecret = crypto.randomBytes(32).toString('hex');
 
   const finalConfig = {
@@ -187,6 +173,10 @@ async function runSetupWizard() {
         checkForUpdates: {
           intervalMinutes: 60,
           handler: 'updateChecker.checkForUpdates'
+        },
+        convertAllPortraits: {
+          intervalMinutes: 60,
+          handler: 'portraitService.convertAllPortraits'
         }
       }
     },

@@ -16,7 +16,11 @@ function cleanKeys(obj, existing = {}) {
 
     if (typeof newValue === 'object' && newValue !== null && !Array.isArray(newValue)) {
       cleaned[key] = cleanKeys(newValue, oldValue || {});
-    } else if (['dbPort', 'intervalMinutes', 'accessRetentionDays'].includes(key) && typeof newValue === 'string' && /^\d+$/.test(newValue)) {
+    } else if (
+      ['dbPort', 'intervalMinutes', 'accessRetentionDays'].includes(key) &&
+      typeof newValue === 'string' &&
+      /^\d+$/.test(newValue)
+    ) {
       cleaned[key] = parseInt(newValue, 10);
     } else if (newValue === 'true' || (Array.isArray(newValue) && newValue.includes('true'))) {
       cleaned[key] = true;
@@ -25,12 +29,29 @@ function cleanKeys(obj, existing = {}) {
     } else if (newValue !== undefined) {
       cleaned[key] = newValue;
     } else {
-      // If new value is missing, preserve the old one
       cleaned[key] = oldValue;
     }
   }
 
   return cleaned;
+}
+
+// Handle LocalDB: if useLocalDB is true, strip out dbUser/dbPass/dbPort from posted config before cleaning
+function normalizeForLocalDB(postedConfig) {
+  const keys = ['auth', 'chat', ...(Object.keys(postedConfig.servers || {}))];
+
+  for (const key of keys) {
+    const section = key === 'auth' || key === 'chat' ? postedConfig[key] : postedConfig.servers[key];
+    if (!section || typeof section !== 'object') continue;
+
+    if (section.useLocalDB === 'true' || section.useLocalDB === true) {
+      delete section.dbUser;
+      delete section.dbPass;
+      delete section.dbPort;
+    }
+  }
+
+  return postedConfig;
 }
 
 exports.showEditor = (req, res) => {
@@ -54,8 +75,9 @@ exports.saveEditor = (req, res) => {
   if (!isAdmin(req.user?.role)) {
     return res.status(403).send('Forbidden');
   }
+
   try {
-    const postedConfig = req.body.config;
+    const postedConfig = normalizeForLocalDB(req.body.config);
     const existing = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     const cleaned = cleanKeys(postedConfig, existing);
 

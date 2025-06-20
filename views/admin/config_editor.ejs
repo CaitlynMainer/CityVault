@@ -163,6 +163,9 @@
     </div>
 
     <h2 class="text-xl font-semibold mb-2">Game Servers</h2>
+<% const authLocal = config.auth.dbHost && config.auth.dbHost.toLowerCase().startsWith('localdb\\'); %>
+<% const chatLocal = config.chat.dbHost && config.chat.dbHost.toLowerCase().startsWith('localdb\\'); %>
+
     <div id="serversContainer" class="mb-4">
       <% Object.keys(config.servers).forEach(function(key) { %>
         <fieldset class="border p-4 mb-2">
@@ -271,40 +274,60 @@
   let serverCounter = 1000;
   let taskCounter = 1000;
 
-  function addServer() {
-    let key = prompt("Enter a unique server key (e.g. 'freedom'):");
-    if (!key) return;
+  
+	function addServer() {
+	  let key = prompt("Enter a unique server key (e.g. 'freedom'):");
+	  if (!key) return;
 
-    if (document.querySelector(`input[name="config[servers][${key}][_key]"]`)) {
-      alert(`A server with the key "${key}" already exists.`);
-      return;
-    }
+	  if (document.querySelector(`input[name="config[servers][${key}][_key]"]`)) {
+		alert(`A server with the key "${key}" already exists.`);
+		return;
+	  }
 
-    key = key.trim().toLowerCase();
-    const label = key.charAt(0).toUpperCase() + key.slice(1);
-    const container = document.getElementById('serversContainer');
-    const html = `
-      <fieldset class="border p-4 mb-2">
-        <legend class="font-semibold">Server: ${key}</legend>
-        <input type="hidden" name="config[servers][${key}][_key]" value="${key}" />
-        <div><label class="block text-sm font-medium">label</label><input type="text" name="config[servers][${key}][label]" class="input" value="${label}" /></div>
-        <div><label class="block text-sm font-medium">dbHost</label><input type="text" name="config[servers][${key}][dbHost]" class="input" /></div>
-        <div><label class="block text-sm font-medium">dbPort</label><input type="number" name="config[servers][${key}][dbPort]" class="input" min="1" max="65535" value="1433" /></div>
-        <div><label class="block text-sm font-medium">dbUser</label><input type="text" name="config[servers][${key}][dbUser]" class="input" /></div>
-        <div><label class="block text-sm font-medium">dbPass</label><input type="password" name="config[servers][${key}][dbPass]" class="input" /></div>
-        <div><label class="block text-sm font-medium">dbName</label><input type="text" name="config[servers][${key}][dbName]" class="input" /></div>
-        <div>
-          <label class="block text-sm font-medium">Data Version</label>
-          <select name="config[servers][${key}][badgeVersion]" class="input">
-            <option value="i24">i24 / v2 (OuroDev)</option>
-            <option value="i25">i25+ (Homecoming Based)</option>
-          </select>
-        </div>
-        <button type="button" onclick="removeServer(this)" class="text-red-600">Remove Server</button>
-      </fieldset>
-    `;
-    container.insertAdjacentHTML('beforeend', html);
-  }
+	  key = key.trim().toLowerCase();
+	  const label = key.charAt(0).toUpperCase() + key.slice(1);
+	  const container = document.getElementById('serversContainer');
+
+	  // DEBUG LOGGING
+	  const authHostEl = document.querySelector('[name="config[auth][dbHost]"]');
+	  const chatHostEl = document.querySelector('[name="config[chat][dbHost]"]');
+
+	  const authHost = authHostEl?.value.toLowerCase() || '';
+	  const chatHost = chatHostEl?.value.toLowerCase() || '';
+
+	  console.log('auth.dbHost =', authHost);
+	  console.log('chat.dbHost =', chatHost);
+
+	  const isLocalDB = authHost.startsWith('localdb\\') || chatHost.startsWith('localdb\\');
+
+	  console.log('Detected LocalDB Mode:', isLocalDB);
+
+	  const dbFields = isLocalDB ? '' : `
+		<div><label class="block text-sm font-medium">dbPort</label><input type="number" name="config[servers][${key}][dbPort]" class="input" min="1" max="65535" value="1433" /></div>
+		<div><label class="block text-sm font-medium">dbUser</label><input type="text" name="config[servers][${key}][dbUser]" class="input" /></div>
+		<div><label class="block text-sm font-medium">dbPass</label><input type="password" name="config[servers][${key}][dbPass]" class="input" /></div>
+	  `;
+
+	  const html = `
+		<fieldset class="border p-4 mb-2">
+		  <legend class="font-semibold">Server: ${key}</legend>
+		  <input type="hidden" name="config[servers][${key}][_key]" value="${key}" />
+		  <div><label class="block text-sm font-medium">label</label><input type="text" name="config[servers][${key}][label]" class="input" value="${label}" /></div>
+		  <div><label class="block text-sm font-medium">dbHost</label><input type="text" name="config[servers][${key}][dbHost]" class="input" /></div>
+		  ${dbFields}
+		  <div><label class="block text-sm font-medium">dbName</label><input type="text" name="config[servers][${key}][dbName]" class="input" /></div>
+		  <div>
+			<label class="block text-sm font-medium">Data Version</label>
+			<select name="config[servers][${key}][badgeVersion]" class="input">
+			  <option value="i24">i24 / v2 (OuroDev)</option>
+			  <option value="i25">i25+ (Homecoming Based)</option>
+			</select>
+		  </div>
+		  <button type="button" onclick="removeServer(this)" class="text-red-600">Remove Server</button>
+		</fieldset>
+	  `;
+	  container.insertAdjacentHTML('beforeend', html);
+	}
 
 
   function removeServer(button) {
