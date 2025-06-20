@@ -120,13 +120,21 @@ async function runSetupWizard() {
       message: 'Server IP address:',
       default: '0.0.0.0'
     },
-	{
-	  type: 'confirm',
-	  name: 'useAutoEncrypt',
-	  message: 'Enable AutoEncrypt HTTPS? (Let\'s Encrypt, production domains only)',
-	  default: true
-	}
+    {
+      type: 'confirm',
+      name: 'useAutoEncrypt',
+      message: 'Enable AutoEncrypt HTTPS? (Let\'s Encrypt, production domains only)',
+      default: true
+    },
+    {
+      type: 'number',
+      name: 'port',
+      message: 'HTTP port to use:',
+      default: 3000,
+      when: answers => !answers.useAutoEncrypt
+    }
   ]);
+
 
   const authAnswers = await promptDbConfig('Auth', {
     dbHost: 'localhost',
