@@ -186,6 +186,7 @@ module.exports = function startApp(config) {
   const outputPath = path.join(global.BASE_DIR, 'renders');
   const renderOutputPath = path.join(global.BASE_DIR, 'public', 'images', 'portrait');
   fs.mkdirSync(outputPath, { recursive: true });
+  fs.mkdirSync(renderOutputPath, { recursive: true });
 
   ensureConfigDefaults({
     costumeRendering: {
