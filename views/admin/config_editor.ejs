@@ -45,6 +45,32 @@
             </button>
         </div>
       </div>
+      <div>
+        <label class="block text-sm font-medium">Access Level Filter (0 - 11)</label>
+          <input type="number"
+            name="config[accessLevelFilter]"
+            min="0" max="11" step="1"
+            value="<%= config.accessLevelFilter ?? 0 %>"
+            class="input" />
+        <p class="text-xs text-gray-500">
+        Characters above this Access Level will not be included in site stats.
+        </p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Minimum Badges for Spotlight (0 - 500)</label>
+          <input type="number"
+            name="config[minBadges]"
+            min="0" max="500" step="10"
+            value="<%= config.minBadges ?? 500 %>"
+            class="input" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Character Birthday Granularity</label>
+        <select name="config[quantizeBirthDate]" class="input">
+          <option value="day"   <%= config.quantizeBirthDate === 'day'   ? 'selected' : '' %>>Exact Day</option>
+          <option value="month" <%= config.quantizeBirthDate === 'month' ? 'selected' : '' %>>Whole Month</option>
+        </select>
+      </div>
     </div>
 
     <h2 class="text-xl font-semibold mb-2">Auth DB</h2>

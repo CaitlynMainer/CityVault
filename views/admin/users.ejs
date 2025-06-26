@@ -79,6 +79,12 @@
             </span>
           </td>
             <td class="px-2 py-2 border-b border-gray-700 space-x-1">
+              <!-- Manage Characters Action -->
+              <button type="button"
+                class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1 rounded"
+                onclick="location.href='/account/characters?uid=<%= user.uid %>'">
+                Manage
+              </button>
               <!-- Ban/Unban/Confirm Action -->
               <button type="button"
                 data-form-action="/admin/users/<%= user.uid %>/ban"

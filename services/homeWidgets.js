@@ -26,12 +26,18 @@ async function getRecentlyOnline() {
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
-    const result = await pool.request().query(`
-      SELECT TOP 9 e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.LastActive
-      FROM dbo.Ents e
-      WHERE (e.AccessLevel IS NULL OR e.AccessLevel = 0)
-      AND e.Active IS NULL
-      ORDER BY e.LastActive DESC
+    const result = await pool.request()
+      .input(
+        'maxAccess',
+        sql.Int,
+        Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
+      )
+      .query(`
+        SELECT TOP 9 e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.LastActive
+        FROM   dbo.Ents e
+        WHERE  (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
+        AND    (e.Active IS NULL OR e.Active = 0)
+        ORDER  BY e.LastActive DESC
     `);
     combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
   }
@@ -69,6 +75,7 @@ async function getCharacterBirthdays() {
   const now = new Date();
   const month = now.getMonth() + 1;
   const day = now.getDate();
+  const granularity = (config.quantizeBirthDate || 'day').toLowerCase(); // 'day' | 'month'
 
   //console.log(`[getCharacterBirthdays] Today is ${month}/${day}`);
   const combined = [];
@@ -78,12 +85,17 @@ async function getCharacterBirthdays() {
       const pool = await getGamePool(serverKey);
       const result = await pool.request()
         .input('month', sql.Int, month)
-        .input('day', sql.Int, day)
+		    .input(
+          'maxAccess',
+          sql.Int,
+          Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
+        )
         .query(`SELECT e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.DateCreated, e.LastActive
-          FROM dbo.Ents e
-          WHERE DATEPART(mm, e.DateCreated) = @month AND DATEPART(dd, e.DateCreated) = @day
-          AND (e.AccessLevel IS NULL OR e.AccessLevel = 0)
-          ORDER BY e.LastActive DESC`);
+           FROM   dbo.Ents e
+           WHERE  DATEPART(mm, e.DateCreated) = @month
+           AND    (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
+           ORDER  BY e.LastActive DESC
+      `);
 
       //console.log(`[getCharacterBirthdays] Server ${serverKey} returned ${result.recordset.length} character(s)`);
 
@@ -99,10 +111,25 @@ async function getCharacterBirthdays() {
     }
   }
 
-  const authIds = [...new Set(combined.map(row => row.AuthId))];
+  // Query returns all characters born in current month; check config setting to filter on current day
+  let filtered = combined;
+
+  if (granularity === 'day') {
+    filtered = combined.filter(row => new Date(row.DateCreated).getDate() === day);
+  }
+
+  // Birth-month sort: asc by day, otherwise desc by LastActive (so no change if using day-level granularity)
+  filtered.sort((a, b) => {
+    const aDay = new Date(a.DateCreated).getDate();
+    const bDay = new Date(b.DateCreated).getDate();
+    return aDay !== bDay ? aDay - bDay : new Date(b.LastActive) - new Date(a.LastActive);
+  });
+
+  // Now use filtered instead of combined
+  const authIds = [...new Set(filtered.map(row => row.AuthId))];
   await batchGetGlobalHandles(authIds);
 
-  const fullList = combined.map(row => {
+  const fullList = filtered.map(row => {
     const attributeMap = getAttributeMap(row.serverKey);
     const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
     const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
@@ -113,7 +140,7 @@ async function getCharacterBirthdays() {
       OriginName,
       GlobalName: globalHandleCache.get(row.AuthId)
     };
-  }).sort((a, b) => new Date(b.LastActive) - new Date(a.LastActive));
+  })
 
   return {
     entries: fullList,
@@ -127,12 +154,19 @@ async function getQuickStats() {
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
-    const result = await pool.request().query(`
-      SELECT e.Origin, e.Class, e.Level, e.InfluencePoints, e.LastActive,
-             e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress, e.Active
-      FROM dbo.Ents e
-      JOIN dbo.Ents2 en2 ON e.ContainerId = en2.ContainerId
-      WHERE (e.AccessLevel IS NULL OR e.AccessLevel = 0)`);
+    const result = await pool.request()
+      .input(
+        'maxAccess',
+        sql.Int,
+        Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
+      )
+      .query(`
+        SELECT e.Origin, e.Class, e.Level, e.InfluencePoints, e.LastActive,
+               e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress, e.Active
+        FROM   dbo.Ents e
+        JOIN   dbo.Ents2 en2 ON e.ContainerId = en2.ContainerId
+        WHERE  (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
+    `);
     combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
   }
 
@@ -219,11 +253,18 @@ async function regenerateBadgeSpotlight() {
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
-    const result = await pool.request().query(`
-      SELECT e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.LastActive, b.Owned
-      FROM dbo.Ents e
-      JOIN dbo.Badges b ON e.ContainerId = b.ContainerId
-      WHERE (e.AccessLevel IS NULL OR e.AccessLevel = 0) AND b.Owned IS NOT NULL
+    const result = await pool
+      .request()
+      .input(
+        'maxAccess',
+        sql.Int,
+        Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
+      )
+      .query(`
+        SELECT e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.LastActive, b.Owned
+        FROM   dbo.Ents e
+        JOIN   dbo.Badges b ON e.ContainerId = b.ContainerId
+        WHERE  (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess) AND b.Owned IS NOT NULL
     `);
     combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
   }
@@ -234,7 +275,9 @@ async function regenerateBadgeSpotlight() {
   for (const row of combined) {
     const owned = row.Owned?.toString('hex') || '';
     const badges = getOwnedBadgesFromBitfield(owned, row.serverKey);
-    if (badges.length >= 500) {
+    
+    // Check against minBadges (configurable in Admin Dashboard)
+    if (badges.length >= config.minBadges) {
       authIds.push(row.AuthId);
       eligible.push({ ...row, badgeCount: badges.length });
     }

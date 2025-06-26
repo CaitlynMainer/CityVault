@@ -158,8 +158,11 @@ async function runSetupWizard() {
     siteName: answers.siteName,
     domain: answers.domain,
     ipAddr: answers.ipAddr,
-	useAutoEncrypt: answers.useAutoEncrypt,
+    useAutoEncrypt: answers.useAutoEncrypt,
     session_secret: sessionSecret,
+    accessLevelFilter: 0,
+    minBadges: 500,
+    quantizeBirthDate: 'day',
     email: {
       provider: '',
       fromEmail: '',

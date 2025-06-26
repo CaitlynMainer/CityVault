@@ -1,5 +1,25 @@
 <% Object.entries(charactersByServer).forEach(([serverKey, characters]) => { %>
   <h2 style="margin-top: 24px; font-size: 20px; color: #eee;"><%= serverKey.toUpperCase() %></h2>
+
+  <!-- Toggle Details -->
+  <a href="javascript:void(0)"
+     onclick="document.getElementById('stats-<%= serverKey %>').classList.toggle('hidden')"
+     style="display: inline-block; font-size: 14px; color:#eee; margin: 2px 0 8px;">
+    Toggle Details
+  </a>
+
+  <!-- Shard Stats Wrapper (hidden until toggled) -->
+  <% const t = totalsByServer && totalsByServer[serverKey] ? totalsByServer[serverKey] : null; %>
+  <% if (t) { %>
+    <div id="stats-<%= serverKey %>"
+         class="hidden flex flex-wrap"
+         style="font-size: 14px; color: #ccc; gap: 2rem; margin: 4px 0 12px;">
+      <div><strong>Characters: </strong><%= t.totalCharacters.toLocaleString() %></div>
+      <div><strong>Logins: </strong><%= t.totalLogins.toLocaleString() %></div>
+      <div><strong>Hours Played: </strong><%= t.totalHours.toLocaleString() %></div>
+    </div>
+  <% } %>
+  
   <div class="character-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
     <% characters.forEach(character => { %>
 		<div class="character-card"
