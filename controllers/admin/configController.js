@@ -17,7 +17,7 @@ function cleanKeys(obj, existing = {}) {
     if (typeof newValue === 'object' && newValue !== null && !Array.isArray(newValue)) {
       cleaned[key] = cleanKeys(newValue, oldValue || {});
     } else if (
-      ['dbPort', 'intervalMinutes', 'accessRetentionDays'].includes(key) &&
+      ['dbPort', 'intervalMinutes', 'accessRetentionDays', 'accessLevelFilter', 'minBadges'].includes(key) &&
       typeof newValue === 'string' &&
       /^\d+$/.test(newValue)
     ) {

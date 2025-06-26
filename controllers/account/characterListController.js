@@ -12,20 +12,34 @@ async function showCharacterList(req, res) {
     return res.redirect('/login');
   }
 
-  let authId;
-  try {
-    const authPool = await getAuthPool();
-    const result = await authPool.request()
-      .input('username', sql.VarChar, req.session.username)
-      .query(`SELECT uid FROM dbo.user_account WHERE account = @username`);
-    authId = result.recordset[0]?.uid;
-    if (!authId) throw new Error('User not found');
-  } catch (err) {
-    console.error('[CharacterList] AuthId lookup failed:', err);
-    return res.status(500).send('Unable to look up account ID.');
+  /* 
+  // If the user is an admin, look for a ?uid=## override appended to the url.
+  // If override exists, use that as the authId when loading the charcer list.
+  // Such overrides are rejected if somehow present when the user is not admin.
+  */
+  const isAdmin = req.session.role === 'admin';
+  let   authId  = (isAdmin && req.query.uid) ? parseInt(req.query.uid, 10) : undefined;
+
+  // Sanitize bad input for uid just in case
+  if (isNaN(authId)) authId = undefined;
+
+  // If no override or not admin, fallback to standard uid lookup of current user
+  if (!authId) {
+    try {
+      const authPool = await getAuthPool();
+      const result = await authPool.request()
+        .input('username', sql.VarChar, req.session.username)
+        .query(`SELECT uid FROM dbo.user_account WHERE account = @username`);
+      authId = result.recordset[0]?.uid;
+      if (!authId) throw new Error('User not found');
+    } catch (err) {
+      console.error('[CharacterList] AuthId lookup failed:', err);
+      return res.status(500).send('Unable to look up account ID.');
+    }
   }
 
   const charactersByServer = {};
+  const totalsByServer	   = {};
 
   try {
     for (const serverKey of Object.keys(config.servers)) {
@@ -34,7 +48,7 @@ async function showCharacterList(req, res) {
       const result = await pool.request()
         .input('authId', sql.Int, authId)
         .query(`
-          SELECT e.ContainerId, e.Name, e.Level, e.Class, e.Origin, e.DateCreated, e.LastActive, e.CurrentCostume,
+          SELECT e.ContainerId, e.Name, e.Level, e.Class, e.Origin, e.DateCreated, e.LastActive, e.TotalTime, e.LoginCount, e.CurrentCostume,
                  e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress, en2.originalPrimary, en2.originalSecondary,
                  e.TitleCommon, e.TitleOrigin, e.TitleSpecial, en2.TitleTheText
           FROM dbo.Ents e
@@ -57,13 +71,20 @@ async function showCharacterList(req, res) {
           portraitVersion
         };
       });
+	  
+      // Tally up number of characters, logins, and play time for the shard
+      const totalSeconds        = result.recordset.reduce((s, r) => s + (r.TotalTime  || 0), 0);
+      const totalLogins         = result.recordset.reduce((s, r) => s + (r.LoginCount || 0), 0);
+      const totalHours          = Math.round(totalSeconds / 3600);
+      const totalCharacters     = result.recordset.length;
+      totalsByServer[serverKey] = { totalHours, totalLogins, totalCharacters };
 
       if (enriched.length) {
         charactersByServer[serverKey] = enriched;
       }
     }
 
-    res.render('character_list', { charactersByServer, stringClean });
+	res.render('character_list', { charactersByServer, totalsByServer, stringClean });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error loading character list');

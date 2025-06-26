@@ -286,6 +286,7 @@ async function showCharacter(req, res) {
           e.InfluencePoints,
           e.TotalTime,
           e.LoginCount,
+          e.AccessLevel,
           e.LastActive,
           e.TitleCommon,
           e.TitleOrigin,
@@ -405,6 +406,7 @@ async function showCharacter(req, res) {
       stringClean,
       portraitVersion,
       bgPath,
+      role: isAdmin ? 'admin' : 'user'
     });
 
   } catch (err) {

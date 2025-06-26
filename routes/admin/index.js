@@ -5,6 +5,7 @@ const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
 router.use('/', require('./dashboard'));
 router.use('/manifest', require('./manifest'));
 router.use('/users', require('./users'));
+router.use('/updateAccessLevel', require('./updateAccessLevel'));
 router.use('/news', require('./news'));
 router.use('/style', require('./style')); 
 router.use('/blacklist', require('./blacklist')); 

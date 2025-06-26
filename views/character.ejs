@@ -29,6 +29,9 @@
 			</form>
 		  </div>
 		<% } %>
+		
+		<br>
+		
 		<div style="display: flex;
 		justify-content: center;
 		background-image: url('/<%= bgPath %>');
@@ -83,12 +86,31 @@
             (Unknown)
           <% } %>
         </li>
+        <li><strong>Access Level:</strong>
+          <% if (role === 'admin') { %>
+            <form action="/admin/updateAccessLevel" method="post" style="display:inline;">
+              <input type="hidden" name="serverKey"   value="<%= serverKey %>">
+              <input type="hidden" name="containerId" value="<%= character.ContainerId %>">
+              <select name="accessLevel"
+                onchange="this.form.submit()"
+                style="background:#222;color:#fff;">
+                <% for (let i = 0; i <= 11; i++) { %>
+                  <option value="<%= i %>" <%= character.AccessLevel === i ? 'selected' : '' %>>
+                    <%= i %>
+                  </option>
+                <% } %>
+              </select>
+            </form>
+          <% } else { %>
+            <%= character.AccessLevel ?? 0 %>
+          <% } %>
+        </li>
       </ul>
     </div>
 
     <!-- Right Column: Character Name, Bio, and Badges -->
     <div class="right-panel" style="flex: 1; max-width: 720px;">
-      <h1 style="margin-top: 0;"><%= stringClean(character.Name) %></h1>
+	  <h1 class="text-3xl font-bold mb-4"><%= stringClean(character.Name) %></h1>
       <p><strong>Player:</strong> @<%= stringClean(character.globalHandle) %></p>
 
       <div style="margin: 12px 0;">
@@ -96,7 +118,7 @@
         <p style="white-space: pre-wrap;"><%- stringClean(character.Description) %></p>
       </div>
 
-      <h2>Badge Tracking</h2>
+	  <h2 class="text-xl font-bold mb-2">Badge Tracking</h2>
       <div style="margin: 24px 0;">
         <div style="background: #ccc; border-radius: 4px; height: 12px; overflow: hidden;">
           <div style="background: linear-gradient(to right, orange, gold); width: <%= Math.floor((ownedBadges / totalBadges) * 100) %>%; height: 100%;"></div>
@@ -107,7 +129,7 @@
       </div>
 
       <% badgeCategoryList.forEach(category => { %>
-        <h3><%= category.name %></h3>
+        <h3 class="text-lg font-semibold"><%= category.name %></h3>
         <div style="margin-bottom: 8px;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
             <div style="flex: 1; background: #ccc; height: 16px; border-radius: 4px; margin-right: 8px;">
@@ -123,10 +145,12 @@
           <li class="loading-spinner">Loading...</li>
         </ul>
       <% }) %>
-
-      <h2>Unearned but Eligible Badges</h2>
+      
+      <br>
+      
+      <h2 class="text-xl font-bold mb-2">Unearned but Eligible Badges</h2>
       <% unearnedBadgeCategories.forEach(category => { %>
-        <h3><%= category.name %></h3>
+        <h3 class="text-lg font-semibold"><%= category.name %></h3>
         <div style="margin-bottom: 8px;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
             <div style="flex: 1; background: #ccc; height: 16px; border-radius: 4px; margin-right: 8px;">
