@@ -194,7 +194,11 @@ module.exports = function startApp(config) {
       renderOutputPath,
       enabled: false,
       autoStartImageServer: false
-    }
+    },
+	accessLevelFilter: 0,
+    minBadges: 500,
+    quantizeBirthDate: 'day',
+	useAutoEncrypt: true,
   });
   if (config.costumeRendering?.autoStartImageServer) {
     const { ensureImageServerInstalled, launchImageServer } = require('./utils/imageServerSetup');
