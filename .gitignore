@@ -154,3 +154,8 @@ data/badges/*
 data/vars.attribute
 logs/*
 version.json
+ImageServer/*
+data/config.*
+data/sessions.sqlite
+data/sessions.sqlite-shm
+data/sessions.sqlite-wal
