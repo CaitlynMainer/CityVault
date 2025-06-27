@@ -1,6 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const { handleRegisterPage, handleRegister, handleConfirmAccount } = require('../controllers/registerController');
+const router = express.Router();const loadController = require(global.BASE_DIR + '/utils/loadController');
+
+const {
+  handleRegisterPage,
+  handleRegister,
+  handleConfirmAccount
+} = loadController('registerController');
+
 
 router.get('/', handleRegisterPage);
 router.post('/', handleRegister);

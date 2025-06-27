@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
-const styleController = require(global.BASE_DIR + '/controllers/admin/styleController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+const styleController = loadController('admin/styleController');
+
 
 router.get('/', requireAdmin, styleController.showStyleEditor);
 router.post('/', requireAdmin, styleController.saveStyle);

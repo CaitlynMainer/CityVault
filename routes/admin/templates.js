@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+
 const {
   listTemplates,
   showEditTemplate,
   saveTemplate
-} = require(global.BASE_DIR + '/controllers/admin/templateController');
+} = loadController('admin/templateController');
+
 
 router.get('/', requireAdmin, listTemplates);
 router.get('/edit/:name', requireAdmin, showEditTemplate);

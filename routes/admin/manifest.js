@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+
 const {
   showConfigPage,
   saveConfig,
-  generateManifest,
-} = require(global.BASE_DIR + '/controllers/admin/manifestController');
+  generateManifest
+} = loadController('admin/manifestController');
+
 
 // These are now relative to /admin/manifest
 router.get('/', requireAdmin, showConfigPage);

@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+
 const {
   handleLoginPage,
   handleLogin,
@@ -7,7 +9,8 @@ const {
   handleResetRequest,
   handleResetConfirmPage,
   handleResetConfirm
-} = require('../controllers/loginController');
+} = loadController('loginController');
+
 
 // Serve /login page
 router.get('/', handleLoginPage);

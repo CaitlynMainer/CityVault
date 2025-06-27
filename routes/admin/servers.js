@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
-const serverController = require(global.BASE_DIR + '/controllers/admin/serverController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+const serverController = loadController('admin/serverController');
+
 
 router.get('/', requireAdmin, serverController.listServers);
 router.post('/save', requireAdmin, serverController.saveServer);

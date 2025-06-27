@@ -3,12 +3,13 @@ const router = express.Router();
 const sql = require('mssql');
 const { getGamePool } = require(global.BASE_DIR + '/db');
 const { debugBadgeDiscrepancies } = require(global.BASE_DIR + '/utils/debugBadges');
-const { showCharacterList } = require(global.BASE_DIR + '/controllers/account/characterListController');
-const { showPublicProfile } = require(global.BASE_DIR + '/controllers/publicProfileController');
-const { showSupergroup } = require(global.BASE_DIR + '/controllers/supergroupController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
 
-// Homepage
-const { showHomePage } = require(global.BASE_DIR + '/controllers/indexController');
+const { showCharacterList } = loadController('account/characterListController');
+const { showPublicProfile } = loadController('publicProfileController');
+const { showSupergroup } = loadController('supergroupController');
+const { showHomePage } = loadController('indexController');
+
 router.get('/', showHomePage);
 
 // User-related routes

@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
-const newsController = require(global.BASE_DIR + '/controllers/admin/newsController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+const newsController = loadController('admin/newsController');
+
 
 // These will be served under /admin/news/*
 router.get('/', requireAdmin, newsController.showNewsEditor);

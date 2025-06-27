@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const controller = require(global.BASE_DIR + '/controllers/account/petitionsController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+const controller = loadController('account/petitionsController');
+
 
 router.get('/', controller.list);
 

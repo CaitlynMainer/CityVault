@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const controller = require(global.BASE_DIR + '/controllers/admin/petitionsController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+const controller = loadController('admin/petitionsController');
+
 
 // Paginated list of all petitions (across all servers)
 router.get('/', controller.list);

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const configController = require(global.BASE_DIR + '/controllers/admin/configController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+const configController = loadController('admin/configController');
+
 
 router.get('/', configController.showEditor);
 router.post('/', configController.saveEditor);

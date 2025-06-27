@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const controller = require(global.BASE_DIR + '/controllers/admin/blacklistController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+const controller = loadController('admin/blacklistController');
+
 
 router.get('/', controller.showBlacklist);
 router.post('/', controller.updateBlacklist);

@@ -1,7 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
-const { listUsers, updateUserRole, toggleUserBan, getUserNotes, addUserNote } = require(global.BASE_DIR + '/controllers/admin/userController');
+const loadController = require(global.BASE_DIR + '/utils/loadController');
+
+const {
+  listUsers,
+  updateUserRole,
+  toggleUserBan,
+  getUserNotes,
+  addUserNote
+} = loadController('admin/userController');
 
 router.get('/', requireAdmin, listUsers);
 router.post('/:uid/role', requireAdmin, updateUserRole);
