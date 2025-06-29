@@ -23,8 +23,9 @@
       <h2 class="text-xl font-bold mb-2">Recently Online</h2>
       <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
         <% recent.forEach(char => { %>
-          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition">
-            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white">
+          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition
+           <%= char.bannerClass %> bg-center bg-cover bg-no-repeat banner-hover">
+            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white text-shadow">
               <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
               Level <%= char.Level %> <%= char.Archetype %><br>
               <span class="text-gray-400 text-xs">Last seen: <%= new Date(char.LastActive).toLocaleDateString() %></span>
@@ -60,11 +61,12 @@
       <h2 class="text-xl font-bold mb-2">Character Birthdays</h2>
       <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
         <% birthdays.forEach(char => { %>
-          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition">
-            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white">
+          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition
+           <%= char.bannerClass %> bg-center bg-cover bg-no-repeat banner-hover">
+            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white text-shadow">
               <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
               Level <%= char.Level %> <%= char.Archetype %><br>
-              Created on <%= new Date(char.DateCreated).toLocaleDateString() %>
+              <span class="text-gray-400 text-xs">Created on <%= new Date(char.DateCreated).toLocaleDateString() %></span>
             </a>
           </li>
         <% }) %>
@@ -83,8 +85,9 @@
       <h2 class="text-xl font-bold mb-2">Badge Spotlight</h2>
       <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
         <% badgeSpotlight.forEach(char => { %>
-          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition">
-            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white">
+          <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition
+           <%= char.bannerClass %> bg-center bg-cover bg-no-repeat banner-hover">
+            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white text-shadow">
               <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
               Level <%= char.Level %> <%= char.Archetype %><br>
               Total Badges: <%= char.badgeCount %><br>
