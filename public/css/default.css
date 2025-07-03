@@ -21,3 +21,14 @@ input, select, textarea {
   .btn:hover {
     background-color: #2563eb;
   }
+  
+  /* Widget Alignment Banners */
+  .tile-banner-hero    { background:url('/images/backgrounds/Widget_Banner_Hero.png') center / cover no-repeat; }
+  .tile-banner-praeto  { background:url('/images/backgrounds/Widget_Banner_Praetorian.png') center / cover no-repeat; }
+  .tile-banner-villain { background:url('/images/backgrounds/Widget_Banner_Villain.png') center / cover no-repeat; }
+
+  /* Drop-shadow for incresed legibility of text on images (like alignment banners) */
+  .text-shadow { text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.9); }
+  
+  /* Mouse hover effect for widget alignment banners  */
+  .banner-hover:hover { filter: brightness(1.25); }

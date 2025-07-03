@@ -21,6 +21,15 @@ async function batchGetGlobalHandles(authIds) {
   }
 }
 
+/* Helper for Widgets: Get alignment to choose a banner image for character tiles */
+function bannerClassFromAlignment(alignment = '') {
+  const a = alignment.toLowerCase();
+  if (['villain', 'rogue', 'pvp', ''].includes(a))          return 'tile-banner-villain';
+  if (['resistance', 'loyalist'].includes(a))               return 'tile-banner-praeto';
+  /* For 'hero', 'vigilante', anything else: */
+  return 'tile-banner-hero';
+}
+
 async function getRecentlyOnline() {
   const combined = [];
 
@@ -33,12 +42,14 @@ async function getRecentlyOnline() {
         Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
       )
       .query(`
-        SELECT TOP 9 e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.LastActive
-        FROM   dbo.Ents e
-        WHERE  (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
-        AND    (e.Active IS NULL OR e.Active = 0)
-        ORDER  BY e.LastActive DESC
-    `);
+        SELECT TOP 9 e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.LastActive, 
+                     e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress
+        FROM         dbo.Ents e
+        LEFT JOIN    dbo.Ents2 en2 ON en2.ContainerId = e.ContainerId
+        WHERE        (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
+        AND          (e.Active IS NULL OR e.Active = 0)
+        ORDER BY     e.LastActive DESC
+      `);
     combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
   }
 
@@ -57,6 +68,7 @@ async function getRecentlyOnline() {
     const attributeMap = getAttributeMap(row.serverKey);
     const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
     const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
+    const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
 
     return {
       ...row,
@@ -64,7 +76,9 @@ async function getRecentlyOnline() {
       Archetype: ClassName,
       OriginName,
       GlobalName: globalHandleCache.get(row.AuthId),
-      serverKey: row.serverKey
+      serverKey: row.serverKey,
+      alignment,
+      bannerClass: bannerClassFromAlignment(alignment)
     };
   });
 
@@ -90,11 +104,14 @@ async function getCharacterBirthdays() {
           sql.Int,
           Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
         )
-        .query(`SELECT e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.DateCreated, e.LastActive
-           FROM   dbo.Ents e
-           WHERE  DATEPART(mm, e.DateCreated) = @month
-           AND    (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
-           ORDER  BY e.LastActive DESC
+        .query(`
+          SELECT    e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.DateCreated, e.LastActive, 
+                    e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress
+          FROM      dbo.Ents e
+		      LEFT JOIN dbo.Ents2 en2 ON en2.ContainerId = e.ContainerId
+          WHERE     DATEPART(mm, e.DateCreated) = @month
+          AND       (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
+          ORDER BY  e.LastActive DESC
       `);
 
       //console.log(`[getCharacterBirthdays] Server ${serverKey} returned ${result.recordset.length} character(s)`);
@@ -133,12 +150,15 @@ async function getCharacterBirthdays() {
     const attributeMap = getAttributeMap(row.serverKey);
     const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
     const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
+	  const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
     return {
       ...row,
       Level: row.Level + 1,
       Archetype: ClassName,
       OriginName,
-      GlobalName: globalHandleCache.get(row.AuthId)
+      GlobalName: globalHandleCache.get(row.AuthId),
+      alignment,
+      bannerClass: bannerClassFromAlignment(alignment)
     };
   })
 
@@ -261,23 +281,27 @@ async function regenerateBadgeSpotlight() {
         Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
       )
       .query(`
-        SELECT e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.LastActive, b.Owned
-        FROM   dbo.Ents e
-        JOIN   dbo.Badges b ON e.ContainerId = b.ContainerId
-        WHERE  (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess) AND b.Owned IS NOT NULL
+        SELECT    e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.LastActive, b.Owned, 
+                  e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress
+        FROM      dbo.Ents e
+        JOIN      dbo.Badges b ON e.ContainerId = b.ContainerId
+	      LEFT JOIN dbo.Ents2 en2 ON en2.ContainerId = e.ContainerId
+        WHERE     (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess) AND b.Owned IS NOT NULL
     `);
     combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
   }
 
   const eligible = [];
   const authIds = [];
+  // Failsafe: minBadges defaults to 500 if key not found in json (or NaN)
+  const minBadges = Number.isInteger(config.minBadges) ? config.minBadges: 500;
 
   for (const row of combined) {
     const owned = row.Owned?.toString('hex') || '';
     const badges = getOwnedBadgesFromBitfield(owned, row.serverKey);
-    
+	
     // Check against minBadges (configurable in Admin Dashboard)
-    if (badges.length >= config.minBadges) {
+	  if (badges.length >= minBadges) {
       authIds.push(row.AuthId);
       eligible.push({ ...row, badgeCount: badges.length });
     }
@@ -289,13 +313,17 @@ async function regenerateBadgeSpotlight() {
     const attributeMap = getAttributeMap(row.serverKey);
     const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
     const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
+	  const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
+	
     return {
       ...row,
       Level: row.Level + 1,
       Archetype: ClassName,
       OriginName,
       GlobalName: globalHandleCache.get(row.AuthId),
-      serverKey: row.serverKey
+      serverKey: row.serverKey,
+      alignment,
+      bannerClass: bannerClassFromAlignment(alignment)
     };
   }).sort(() => 0.5 - Math.random()).slice(0, 6);
 
