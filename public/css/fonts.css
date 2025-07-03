@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Paragon City';
+    src: url("/fonts/ParagonCity.woff2") format('woff2'),
+         url("/fonts/ParagonCity.woff") format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+    font-family: 'Paragon City';
+    src: url("/fonts/ParagonCityItalic.woff2") format('woff2'),
+         url("/fonts/ParagonCityItalic.woff") format('woff');
+    font-weight: normal;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* One utility class; invoke using "font-paragon" or "font-paragon italic" */
+.font-paragon {
+	font-family: "Paragon City", sans-serif;
+	letter-spacing: 0.5px
+}
