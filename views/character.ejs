@@ -111,7 +111,11 @@
     <!-- Right Column: Character Name, Bio, and Badges -->
     <div class="right-panel" style="flex: 1; max-width: 720px;">
 	  <h1 class="text-3xl font-bold mb-4"><%= stringClean(character.Name) %></h1>
-      <p><strong>Player:</strong> @<%= stringClean(character.globalHandle) %></p>
+      <p><strong>Player:</strong>          <% if (character.globalHandle) { %>
+            <a href="/profile/<%= character.AuthId %>">@<%= stringClean(character.globalHandle) %></a>
+          <% } else { %>
+            (Unknown)
+          <% } %></p>
 
       <div style="margin: 12px 0;">
         <strong>Description:</strong><br />
