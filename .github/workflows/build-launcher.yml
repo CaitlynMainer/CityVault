@@ -1,0 +1,79 @@
+name: Build Electron Launcher
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger only on version tags
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        arch: [x64]
+    runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        working-directory: launcher
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Determine platform
+        id: platform
+        run: |
+          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+            echo "platform=win32" >> "$GITHUB_OUTPUT"
+          else
+            echo "platform=linux" >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+
+      - name: Package launcher
+        run: |
+          npx electron-packager . cityvault-launcher \
+            --platform=${{ steps.platform.outputs.platform }} \
+            --arch=${{ matrix.arch }} \
+            --icon=icon.ico \
+            --overwrite \
+            --asar.unpack=config.json \
+            --ignore="^/tests" \
+            --ignore="^/docs" \
+            --ignore=".*\\.map" \
+            --ignore=".*\\.md" \
+            --ignore="^/node_modules/(electron|.*-dev).*" \
+            --ignore="^/config"
+
+      - name: Upload app.asar
+        uses: softprops/action-gh-release@v1
+        with:
+          files: launcher/cityvault-launcher-*/resources/app.asar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Archive build (Windows)
+        if: matrix.os == 'windows-latest'
+        run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }}\* -DestinationPath cityvault-launcher-win.zip
+
+      - name: Archive build (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: tar -czf cityvault-launcher-linux.tar.gz cityvault-launcher-linux-${{ matrix.arch }}
+
+      - name: Upload zipped build
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            launcher/cityvault-launcher-win.zip
+            launcher/cityvault-launcher-linux.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

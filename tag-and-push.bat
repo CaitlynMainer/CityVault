@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal enabledelayedexpansion
 
 REM Pull latest changes
 git pull
@@ -19,43 +19,32 @@ if not defined LAST_TAG (
 
 echo Latest tag: %LAST_TAG%
 
-REM Strip leading v if it exists
+REM Strip leading v
 set "TAG_VER=%LAST_TAG%"
 if /i "%TAG_VER:~0,1%"=="v" set "TAG_VER=%TAG_VER:~1%"
 
 REM Parse version components
-set MAJOR=
-set MINOR=
-set PATCH=
 for /f "tokens=1,2,3 delims=." %%a in ("%TAG_VER%") do (
     set "MAJOR=%%a"
     set "MINOR=%%b"
     set "PATCH=%%c"
 )
 
-REM Fallback defaults
 if "%MAJOR%"=="" set MAJOR=0
 if "%MINOR%"=="" set MINOR=0
 if "%PATCH%"=="" set PATCH=0
 
-REM DEBUG
-echo MAJOR=%MAJOR%
-echo MINOR=%MINOR%
-echo PATCH=%PATCH%
-
-call set /a NEXT_PATCH=%PATCH% + 1
+set /a NEXT_PATCH=%PATCH% + 1
 set "SUGGESTED_TAG=v%MAJOR%.%MINOR%.%NEXT_PATCH%"
 
 :done_suggest
 echo.
 echo Suggested next tag: %SUGGESTED_TAG%
 set /p NEW_TAG=Enter new tag (or press Enter to use suggested): 
-
 if "%NEW_TAG%"=="" (
     set "NEW_TAG=%SUGGESTED_TAG%"
 )
 
-REM Add leading v if user forgot it
 if /i not "%NEW_TAG:~0,1%"=="v" (
     set "NEW_TAG=v%NEW_TAG%"
 )
@@ -69,8 +58,27 @@ if %ERRORLEVEL%==0 (
     exit /b 1
 )
 
-REM Write version.json with new version (strip leading 'v')
-echo { "version": "%NEW_TAG:~1%" } > version.json
+REM Strip 'v' prefix for version fields
+set "VERNUM=%NEW_TAG:~1%"
+
+echo.
+echo Updating root package.json...
+call npm version %VERNUM% --no-git-tag-version
+
+REM Check if launcher folder has changed since last tag
+git diff --name-only %LAST_TAG% HEAD | findstr /R "^launcher/" >nul 2>&1
+if %ERRORLEVEL%==0 (
+    echo Updating launcher/package.json...
+    pushd launcher
+    call npm version %VERNUM% --no-git-tag-version
+    popd
+) else (
+    echo No launcher changes detected, skipping launcher version bump.
+)
+
+REM Commit version bumps
+git add package.json launcher/package.json 2>nul
+git commit -m "Bump version to %NEW_TAG%"
 
 REM Tag and push
 git tag %NEW_TAG%
@@ -78,5 +86,5 @@ git push
 git push origin %NEW_TAG%
 
 echo.
-echo Tag %NEW_TAG% created and pushed successfully.
+echo Tag %NEW_TAG% created, committed, and pushed successfully.
 pause

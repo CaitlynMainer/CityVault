@@ -159,3 +159,5 @@ data/config.*
 data/sessions.sqlite
 data/sessions.sqlite-shm
 data/sessions.sqlite-wal
+public/launcher/cityvault-launcher-win.zip
+/launcher_downloads

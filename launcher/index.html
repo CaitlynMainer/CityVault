@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>City of Heroes Launcher</title>
+  <link rel="stylesheet" href="./public/tailwind.css" />
+</head>
+<body id="launcherBackground" class="text-white font-sans bg-center bg-cover bg-no-repeat min-h-screen">
+
+  <!-- Top-right Settings Button -->
+  <button id="openSettingsBtn" class="fixed top-4 right-4 z-50 bg-gray-800 hover:bg-gray-700 text-white px-3 py-1 rounded shadow">
+    ⚙ Settings
+  </button>
+
+  <!-- Layout Grid -->
+  <div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-6 relative z-10">
+
+    <!-- Left Column -->
+    <div class="flex flex-col gap-6">
+
+      <!-- Profiles -->
+      <div class="bg-black/50 backdrop-blur border border-blue-300/20 rounded-lg p-4">
+        <h2 class="text-lg font-bold border-b border-white/20 pb-2">Launch Profiles</h2>
+        <div id="profileList" class="flex flex-col gap-2 mt-3"></div>
+        <button id="launchBtn" class="w-full mt-4 bg-green-500 hover:bg-green-400 text-black font-bold py-2 rounded shadow">
+          ▶ Play
+        </button>
+      </div>
+
+      <!-- Patch Section -->
+      <div class="bg-black/50 backdrop-blur border border-yellow-300/20 rounded-lg p-4 text-sm text-gray-300">
+        <div id="overallLabel">Progress: 0 / 0</div>
+        <div class="h-3 bg-gray-700 rounded overflow-hidden mt-2">
+          <div id="overallProgress" class="h-full bg-yellow-400 transition-all duration-300" style="width: 0%;"></div>
+        </div>
+        <button id="patchBtn" class="w-full mt-3 bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-1.5 rounded shadow">
+          🔄 Verify
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="flex flex-col gap-6">
+
+    <!-- News -->
+    <div id="newsPanel" class="bg-black/50 backdrop-blur border border-blue-300/20 rounded-lg p-4">
+      <h2 class="text-xl font-semibold text-yellow-300">Update News</h2>
+      <div id="newsContent" class="mt-2 space-y-2 text-sm text-gray-200 max-h-60 overflow-y-auto pr-2">
+        <div>Loading news...</div>
+      </div>
+    </div>
+
+      <!-- Log Box -->
+      <div id="log" class="bg-black/50 border border-gray-700 p-4 rounded-lg h-48 overflow-y-auto whitespace-pre-wrap font-mono text-sm text-gray-200 shadow-inner">
+        <!-- Log entries -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-900 text-white rounded-lg shadow-xl w-full max-w-md p-6 relative border border-blue-300/20">
+      <button id="closeSettingsBtn" class="absolute top-2 right-3 text-white text-xl">&times;</button>
+      <h2 class="text-xl font-semibold text-yellow-300 mb-4">Settings</h2>
+
+      <label class="flex items-center gap-2 mb-4 text-sm">
+        <input type="checkbox" id="closeAfterLaunch" class="accent-yellow-500" />
+        Close launcher after launching the game
+      </label>
+
+      <div class="flex flex-col text-sm mb-4">
+        <label for="extraParams" class="mb-1">Extra Launch Parameters</label>
+        <input id="extraParams" type="text" class="bg-gray-800 border border-gray-600 rounded px-2 py-1 text-white" placeholder="-usetexenvcombine 1" />
+      </div>
+
+      <div class="flex justify-end gap-2">
+        <button id="saveSettingsBtn" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+        <button id="closeSettingsBtn2" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded">Cancel</button>
+      </div>
+
+      <div id="linuxLaunchCommandField" class="flex flex-col text-sm mb-4">
+        <label for="linuxLaunchCommand" class="mb-1">Linux Launch Command</label>
+        <input id="linuxLaunchCommand" type="text"
+          class="bg-gray-800 border border-gray-600 rounded px-2 py-1 text-white"
+          placeholder="wine" />
+        <small class="text-gray-400 mt-1">Used to run the game on Linux (e.g. wine, wine64, lutris)</small>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

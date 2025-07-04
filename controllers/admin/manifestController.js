@@ -1,11 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { spawn } = require('child_process');
 
 const configPath = path.join(global.BASE_DIR, '/data/manifest-config.json');
 const gameDir = path.join(global.BASE_DIR, '/public/game');
 const manifestPath = path.join(global.BASE_DIR, '/public/manifest.xml');
 const { isAdmin } = require(global.BASE_DIR + '/utils/roles');
+
+const injectorScript = path.join(global.BASE_DIR, 'utils/inject-and-publish.js');
 
 function showConfigPage(req, res) {
   if (!isAdmin(req.user?.role)) {
@@ -37,6 +40,11 @@ function saveConfig(req, res) {
     posterImage,
     profiles: parsedProfiles
   };
+  
+  spawn(process.execPath, [injectorScript], {
+    detached: true,
+    stdio: 'ignore' // or ['ignore', fs.openSync('log.txt', 'a'), 'ignore'] for logging
+  }).unref();
 
   try {
     fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
