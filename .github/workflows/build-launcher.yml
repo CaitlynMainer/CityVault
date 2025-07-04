@@ -41,20 +41,37 @@ jobs:
           fi
         shell: bash
 
-      - name: Package launcher
-        run: |
-          npx electron-packager . cityvault-launcher \
-            --platform=${{ steps.platform.outputs.platform }} \
-            --arch=${{ matrix.arch }} \
-            --icon=icon.ico \
-            --overwrite \
-            --asar.unpack=config.json \
-            --ignore="^/tests" \
-            --ignore="^/docs" \
-            --ignore=".*\\.map" \
-            --ignore=".*\\.md" \
-            --ignore="^/node_modules/(electron|.*-dev).*" \
-            --ignore="^/config"
+      - name: Package launcher (Unix)
+        if: runner.os != 'Windows'
+        run: >
+          npx electron-packager . cityvault-launcher
+          --platform=${{ steps.platform.outputs.platform }}
+          --arch=${{ matrix.arch }}
+          --icon=icon.ico
+          --overwrite
+          --asar.unpack=config.json
+          --ignore="^/tests"
+          --ignore="^/docs"
+          --ignore=".*\.map"
+          --ignore=".*\.md"
+          --ignore="^/node_modules/(electron|.*-dev).*"
+          --ignore="^/config"
+
+      - name: Package launcher (Windows)
+        if: runner.os == 'Windows'
+        run: >
+          npx electron-packager . cityvault-launcher
+          --platform=win32
+          --arch=${{ matrix.arch }}
+          --icon=icon.ico
+          --overwrite
+          --asar.unpack=config.json
+          --ignore="^/tests"
+          --ignore="^/docs"
+          --ignore=".*\.map"
+          --ignore=".*\.md"
+          --ignore="^/node_modules/(electron|.*-dev).*"
+          --ignore="^/config"
 
       - name: Archive build (Windows)
         if: matrix.os == 'windows-latest'
@@ -77,13 +94,14 @@ jobs:
 
       - name: Prepare launcher version JSON
         run: |
-          mkdir -p launcher_version_tmp
+          mkdir -p ../launcher_version_tmp
           if [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
-            echo "{ \"version\": \"dev-${{ github.run_number }}\" }" > launcher_version_tmp/dev-launcher-version.json
-          elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "{ \"version\": \"dev-${{ github.run_number }}\" }" > ../launcher_version_tmp/dev-launcher-version.json
+          elif [[ "${GITHUB_REF}" == refs/tags/* || "${GITHUB_REF}" == refs/tags/v* ]]; then
             VERSION="${GITHUB_REF#refs/tags/v}"
-            echo "{ \"version\": \"$VERSION\" }" > launcher_version_tmp/launcher-version.json
+            echo "{ \"version\": \"$VERSION\" }" > ../launcher_version_tmp/launcher-version.json
           fi
+        shell: bash
 
       - name: Commit version JSON to gh-pages
         run: |
@@ -91,7 +109,8 @@ jobs:
           git config user.email "github-actions@users.noreply.github.com"
           git fetch origin gh-pages
           git checkout gh-pages
-          cp -r ../launcher_version_tmp/* .
+          cp ../launcher_version_tmp/* .
           git add *.json
           git commit -m "Update launcher version JSON from $GITHUB_REF" || echo "No changes"
           git push origin gh-pages
+        shell: bash
