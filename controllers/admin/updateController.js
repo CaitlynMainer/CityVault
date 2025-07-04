@@ -29,7 +29,7 @@ async function downloadAndExtractUpdate(req, res) {
       try {
         console.log('[Update] Download complete. Cleaning old files...');
 
-        const keepDirs = new Set(['data', 'public', 'node_modules', 'sessions', 'userContent', 'ImageServer']);
+        const keepDirs = new Set(['data', 'public', 'node_modules', 'sessions', 'userContent', 'ImageServer', '.git', '.github']);
         const keepFiles = new Set(['tmp_update.zip']);
 
         fs.readdirSync(global.BASE_DIR).forEach(entry => {
@@ -71,6 +71,17 @@ async function downloadAndExtractUpdate(req, res) {
 
         console.log('[Update] Cleaning up temp extract...');
         await fs.remove(tmpExtractDir);
+		
+		console.log('[Update] Running npm install in launcher/...');
+		const launcherPath = path.join(global.BASE_DIR, 'launcher');
+		exec('npm install', { cwd: launcherPath }, (err, stdout, stderr) => {
+		  if (err) {
+			console.error('[Update] launcher npm install failed:', err);
+		  } else {
+			console.log('[Update] launcher npm install complete.');
+			console.log(stdout);
+		  }
+		});
 
         console.log('[Update] Running npm install...');
 		exec('npm install', { cwd: global.BASE_DIR }, (err, stdout, stderr) => {
@@ -96,12 +107,11 @@ async function downloadAndExtractUpdate(req, res) {
 		  setTimeout(() => {
 			console.log('[Update] Relaunching application...');
 			const nodePath = process.execPath;
-			const entryPoint = path.join(global.BASE_DIR, 'index.js'); // adjust if needed
-
-			const child = spawn(nodePath, [entryPoint], {
+			const child = spawn('npm', ['start'], {
 			  cwd: global.BASE_DIR,
 			  detached: true,
-			  stdio: 'ignore'
+			  stdio: 'ignore',
+			  shell: true // required on Windows to locate npm
 			});
 
 			child.unref();
