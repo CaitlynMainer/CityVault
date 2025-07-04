@@ -28,21 +28,25 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
+      - name: Install dependencies (Linux)
+        if: runner.os != 'Windows'
         run: npm ci
+
+      - name: Install dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: npm install --force
 
       - name: Determine platform
         id: platform
-        shell: bash
         run: |
           if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
             echo "platform=win32" >> "$GITHUB_OUTPUT"
           else
             echo "platform=linux" >> "$GITHUB_OUTPUT"
           fi
+        shell: bash
 
       - name: Package launcher
-        shell: pwsh
         run: |
           npx electron-packager . cityvault-launcher `
             --platform=${{ steps.platform.outputs.platform }} `
@@ -50,18 +54,17 @@ jobs:
             --icon=icon.ico `
             --overwrite `
             --asar.unpack=config.json `
-            "--ignore=^/tests" `
-            "--ignore=^/docs" `
-            "--ignore=.*\.map" `
-            "--ignore=.*\.md" `
-            "--ignore=^/node_modules/(electron|.*-dev).*" `
-            "--ignore=^/config"
+            --ignore="^/tests" `
+            --ignore="^/docs" `
+            --ignore=".*\\.map" `
+            --ignore=".*\\.md" `
+            --ignore="^/node_modules/(electron|.*-dev).*" `
+            --ignore="^/config"
+        shell: pwsh
 
       - name: Archive build (Windows)
         if: matrix.os == 'windows-latest'
-        shell: pwsh
-        run: |
-          Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }}\* -DestinationPath cityvault-launcher-win.zip
+        run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }}\* -DestinationPath cityvault-launcher-win.zip
 
       - name: Archive build (Linux)
         if: matrix.os == 'ubuntu-latest'
@@ -95,7 +98,10 @@ jobs:
           git config user.email "github-actions@users.noreply.github.com"
           git fetch origin gh-pages
           git checkout gh-pages
-          cp -r ../launcher/launcher_version_tmp/* .
+          cp -r ../launcher_version_tmp/* .
           git add *.json
           git commit -m "Update launcher version JSON from $GITHUB_REF" || echo "No changes"
           git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
