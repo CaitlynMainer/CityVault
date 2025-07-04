@@ -9,9 +9,6 @@ on:
 
 jobs:
   build:
-    permissions:
-      contents: write
-
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]
@@ -36,36 +33,38 @@ jobs:
 
       - name: Determine platform
         id: platform
+        shell: bash
         run: |
           if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
             echo "platform=win32" >> "$GITHUB_OUTPUT"
           else
             echo "platform=linux" >> "$GITHUB_OUTPUT"
           fi
-        shell: bash
 
       - name: Package launcher
-        shell: bash
         run: |
-          npx electron-packager . cityvault-launcher \
-            --platform=${{ steps.platform.outputs.platform }} \
-            --arch=${{ matrix.arch }} \
-            --icon=icon.ico \
-            --overwrite \
-            --asar.unpack=config.json \
-            --ignore="^/tests" \
-            --ignore="^/docs" \
-            --ignore=".*\\.map" \
-            --ignore=".*\\.md" \
-            --ignore="^/node_modules/(electron|.*-dev).*" \
+          npx electron-packager . cityvault-launcher `
+            --platform=${{ steps.platform.outputs.platform }} `
+            --arch=${{ matrix.arch }} `
+            --icon=icon.ico `
+            --overwrite `
+            --asar.unpack=config.json `
+            --ignore="^/tests" `
+            --ignore="^/docs" `
+            --ignore=".*\\.map" `
+            --ignore=".*\\.md" `
+            --ignore="^/node_modules/(electron|.*-dev).*" `
             --ignore="^/config"
+        shell: pwsh
 
       - name: Archive build (Windows)
         if: matrix.os == 'windows-latest'
-        run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }}\* -DestinationPath cityvault-launcher-win.zip
+        shell: pwsh
+        run: Compress-Archive -Path "cityvault-launcher-win32-${{ matrix.arch }}\\*" -DestinationPath cityvault-launcher-win.zip
 
       - name: Archive build (Linux)
         if: matrix.os == 'ubuntu-latest'
+        shell: bash
         run: tar -czf cityvault-launcher-linux.tar.gz cityvault-launcher-linux-${{ matrix.arch }}
 
       - name: Upload zipped build to GitHub Release (only for tag)
@@ -83,21 +82,26 @@ jobs:
         shell: bash
         run: |
           mkdir -p launcher_version_tmp
+          REF_NAME="${GITHUB_REF##*/}"
           if [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
             echo "{ \"version\": \"dev-${{ github.run_number }}\" }" > launcher_version_tmp/dev-launcher-version.json
           elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            VERSION="${GITHUB_REF#refs/tags/v}"
-            echo "{ \"version\": \"$VERSION\" }" > launcher_version_tmp/launcher-version.json
+            echo "{ \"version\": \"$REF_NAME\" }" > launcher_version_tmp/launcher-version.json
+          else
+            echo "Skipping version file creation; not a dev branch or version tag."
           fi
 
       - name: Commit version JSON to gh-pages
         shell: bash
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git fetch origin gh-pages
-          git checkout gh-pages
-          cp -r ../launcher_version_tmp/* .
-          git add *.json
-          git commit -m "Update launcher version JSON from $GITHUB_REF" || echo "No changes"
-          git push origin gh-pages
+          if ls launcher_version_tmp/*.json 1> /dev/null 2>&1; then
+            git config user.name "github-actions"
+            git config user.email "github-actions@users.noreply.github.com"
+            git fetch origin gh-pages
+            git checkout gh-pages
+            cp -r launcher_version_tmp/*.json .
+            git add *.json
+            git commit -m "Update launcher version JSON from $GITHUB_REF" || echo "No changes"
+            git push origin gh-pages
+          else
+            echo "No version JSON created — skipping gh-pages update."
