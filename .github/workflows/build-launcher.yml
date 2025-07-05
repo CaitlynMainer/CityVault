@@ -41,18 +41,6 @@ jobs:
           fi
         shell: bash
 
-      - name: Extract version
-        id: version
-        run: |
-          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
-            echo "value=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
-          else
-            echo "value=dev-${GITHUB_RUN_NUMBER}" >> $GITHUB_OUTPUT
-          fi
-        shell: bash
-        env:
-          GITHUB_REF_TYPE: ${{ github.ref_type }}
-
       - name: Package launcher
         run: |
           npx electron-packager . cityvault-launcher \
@@ -67,49 +55,48 @@ jobs:
             --ignore=".*\\.md" \
             --ignore="^/node_modules/(electron|.*-dev).*" \
             --ignore="^/config"
-        shell: bash
 
       - name: Archive build (Windows)
         if: matrix.os == 'windows-latest'
-        run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }}\* -DestinationPath cityvault-launcher-win.zip
+        run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }}\* -DestinationPath ../cityvault-launcher-win.zip
         shell: pwsh
 
       - name: Archive build (Linux)
         if: matrix.os == 'ubuntu-latest'
-        run: tar -czf cityvault-launcher-linux.tar.gz cityvault-launcher-linux-${{ matrix.arch }}
-        shell: bash
+        run: tar -czf ../cityvault-launcher-linux.tar.gz cityvault-launcher-linux-${{ matrix.arch }}
 
       - name: Upload zipped build to GitHub Release (only for tag)
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            launcher/cityvault-launcher-win.zip
-            launcher/cityvault-launcher-linux.tar.gz
+            cityvault-launcher-win.zip
+            cityvault-launcher-linux.tar.gz
             launcher/cityvault-launcher-*/resources/app.asar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prepare launcher version JSON
         run: |
-          mkdir -p launcher_version_tmp
+          mkdir -p ../launcher_version_tmp
           if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
-            echo "{ \"version\": \"${{ steps.version.outputs.value }}\" }" > launcher_version_tmp/launcher-version.json
+            VERSION="${GITHUB_REF#refs/tags/v}"
+            echo "{ \"version\": \"$VERSION\" }" > ../launcher_version_tmp/launcher-version.json
           else
-            echo "{ \"version\": \"${{ steps.version.outputs.value }}\" }" > launcher_version_tmp/dev-launcher-version.json
+            echo "{ \"version\": \"dev-${{ github.run_number }}\" }" > ../launcher_version_tmp/dev-launcher-version.json
           fi
         shell: bash
         env:
           GITHUB_REF_TYPE: ${{ github.ref_type }}
 
       - name: Commit version JSON to gh-pages
-        if: matrix.os == 'ubuntu-latest' # Only do this once
+        if: always()
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git fetch origin gh-pages
           git checkout gh-pages
-          cp -r ../launcher_version_tmp/* .
+          cp -r launcher_version_tmp/* .
           git add *.json
           git commit -m "Update launcher version JSON from $GITHUB_REF" || echo "No changes"
           git push origin gh-pages
