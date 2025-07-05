@@ -41,6 +41,16 @@ jobs:
           fi
         shell: bash
 
+      - name: Determine version string
+        id: version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "value=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=dev-${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+
       - name: Package launcher
         run: |
           npx --yes @electron/packager . cityvault-launcher \
@@ -60,15 +70,14 @@ jobs:
       - name: Archive build (Windows)
         if: matrix.os == 'windows-latest'
         run: |
-          $zipName = "cityvault-launcher-win-${{ github.ref_type == 'tag' && github.ref_name || 'dev-' + $env:GITHUB_RUN_NUMBER }}.zip"
+          $zipName = "cityvault-launcher-win-${{ steps.version.outputs.value }}.zip"
           Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }}\* -DestinationPath $zipName
         shell: pwsh
 
       - name: Archive build (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          ls -lah
-          TAR_NAME="cityvault-launcher-linux-${{ github.ref_type == 'tag' && github.ref_name || 'dev-' }}${{ github.run_number }}.tar.gz"
+          TAR_NAME="cityvault-launcher-linux-${{ steps.version.outputs.value }}.tar.gz"
           tar -czf "$TAR_NAME" cityvault-launcher-linux-${{ matrix.arch }}
 
       - name: Upload zipped build to GitHub Release (only for tag)
@@ -85,12 +94,7 @@ jobs:
       - name: Prepare launcher version JSON
         run: |
           mkdir -p launcher_version_tmp
-          if [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
-            echo "{ \"version\": \"dev-${{ github.run_number }}\" }" > launcher_version_tmp/dev-launcher-version.json
-          elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            VERSION="${GITHUB_REF#refs/tags/v}"
-            echo "{ \"version\": \"$VERSION\" }" > launcher_version_tmp/launcher-version.json
-          fi
+          echo "{ \"version\": \"${{ steps.version.outputs.value }}\" }" > launcher_version_tmp/${{ github.ref_type == 'tag' && 'launcher-version.json' || 'dev-launcher-version.json' }}
         shell: bash
 
       - name: Commit version JSON to gh-pages
