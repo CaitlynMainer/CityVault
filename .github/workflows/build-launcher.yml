@@ -53,19 +53,19 @@ jobs:
       - name: Package launcher (Windows)
         if: matrix.os == 'windows-latest'
         shell: pwsh
-        run: |
-          npx @electron/packager . cityvault-launcher `
-            --platform=win32 `
-            --arch=${{ matrix.arch }} `
-            --icon=icon.ico `
-            --overwrite `
-            --asar.unpack=config.json `
-            "--ignore=^/tests" `
-            "--ignore=^/docs" `
-            "--ignore=.*\\.map" `
-            "--ignore=.*\\.md" `
-            "--ignore=^/node_modules/(electron|.*-dev).*" `
-            "--ignore=^/config"
+        run: >
+          npx @electron/packager . cityvault-launcher
+          --platform=win32
+          --arch=${{ matrix.arch }}
+          --icon=icon.ico
+          --overwrite
+          --asar.unpack=config.json
+          "--ignore=^/tests"
+          "--ignore=^/docs"
+          "--ignore=.*\\.map"
+          "--ignore=.*\\.md"
+          "--ignore=^/node_modules/(electron|.*-dev).*"
+          "--ignore=^/config"
 
       - name: Verify Linux build exists
         if: matrix.os == 'ubuntu-latest'
