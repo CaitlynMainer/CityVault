@@ -98,4 +98,5 @@ jobs:
           cp -r "$GITHUB_WORKSPACE/launcher_version_tmp/"* .
           git add *.json
           git commit -m "Update launcher version JSON from $GITHUB_REF" || echo "No changes"
-          git push origin gh-pages
+          git push https://x-access-token:${{ secrets.PAGES_PUSH_TOKEN }}@github.com/${{ github.repository }} gh-pages
+
