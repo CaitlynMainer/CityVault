@@ -29,12 +29,14 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm install --save-dev @electron/packager
 
       - name: Package launcher (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          npx electron-packager . cityvault-launcher \
+          npx @electron/packager . cityvault-launcher \
             --platform=linux \
             --arch=${{ matrix.arch }} \
             --icon=icon.ico \
@@ -52,7 +54,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          npx electron-packager . cityvault-launcher `
+          npx @electron/packager . cityvault-launcher `
             --platform=win32 `
             --arch=${{ matrix.arch }} `
             --icon=icon.ico `
@@ -64,6 +66,15 @@ jobs:
             --ignore='.*\\.md' `
             --ignore='^/node_modules/(electron|.*-dev).*' `
             --ignore='^/config'
+
+      - name: Verify Linux build exists
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          if [ ! -d "cityvault-launcher-linux-${{ matrix.arch }}" ]; then
+            echo "ERROR: Linux build folder missing"
+            exit 1
+          fi
+          ls -lah cityvault-launcher-linux-${{ matrix.arch }}
 
       - name: Archive build (Windows)
         if: matrix.os == 'windows-latest'
