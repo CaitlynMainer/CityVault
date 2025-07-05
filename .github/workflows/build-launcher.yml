@@ -79,18 +79,20 @@ jobs:
       - name: Prepare launcher version JSON
         run: |
           mkdir -p launcher_version_tmp
-          if [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
-            echo "{ \"version\": \"dev-${{ github.run_number }}\" }" > launcher_version_tmp/dev-launcher-version.json
-          elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
             VERSION="${GITHUB_REF#refs/tags/v}"
             echo "{ \"version\": \"$VERSION\" }" > launcher_version_tmp/launcher-version.json
+          else
+            echo "{ \"version\": \"dev-${GITHUB_RUN_NUMBER}\" }" > launcher_version_tmp/dev-launcher-version.json
           fi
+        shell: bash
 
-      - name: Publish JSON to gh-pages
+      - name: Deploy launcher version JSON to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./launcher_version_tmp
           destination_dir: launcher
           keep_files: true
-          commit_message: "Update launcher version JSON from ${{ github.ref }}"
+          publish_branch: gh-pages
+          commit_message: Update launcher version JSON from ${{ github.ref }}
