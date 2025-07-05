@@ -31,20 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Determine platform
-        id: platform
-        run: |
-          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-            echo "platform=win32" >> "$GITHUB_OUTPUT"
-          else
-            echo "platform=linux" >> "$GITHUB_OUTPUT"
-          fi
-        shell: bash
-
-      - name: Package launcher
+      - name: Package launcher (Linux)
+        if: matrix.os == 'ubuntu-latest'
         run: |
           npx electron-packager . cityvault-launcher \
-            --platform=${{ steps.platform.outputs.platform }} \
+            --platform=linux \
             --arch=${{ matrix.arch }} \
             --icon=icon.ico \
             --overwrite \
@@ -55,6 +46,24 @@ jobs:
             --ignore=".*\\.md" \
             --ignore="^/node_modules/(electron|.*-dev).*" \
             --ignore="^/config"
+        shell: bash
+
+      - name: Package launcher (Windows)
+        if: matrix.os == 'windows-latest'
+        run: >
+          npx electron-packager . cityvault-launcher
+          --platform=win32
+          --arch=${{ matrix.arch }}
+          --icon=icon.ico
+          --overwrite
+          --asar.unpack=config.json
+          --ignore="^/tests"
+          --ignore="^/docs"
+          --ignore=".*\\.map"
+          --ignore=".*\\.md"
+          --ignore="^/node_modules/(electron|.*-dev).*"
+          --ignore="^/config"
+        shell: pwsh
 
       - name: Archive build (Windows)
         if: matrix.os == 'windows-latest'
@@ -64,6 +73,7 @@ jobs:
       - name: Archive build (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: tar -czf cityvault-launcher-linux.tar.gz cityvault-launcher-linux-${{ matrix.arch }}
+        shell: bash
 
       - name: Upload zipped build to GitHub Release (only for tag)
         if: startsWith(github.ref, 'refs/tags/')
