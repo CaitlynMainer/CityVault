@@ -1,4 +1,4 @@
-name: Release CityVault
+name: Build & Release CityVault
 
 on:
   push:
@@ -13,7 +13,81 @@ permissions:
   id-token: write
 
 jobs:
+  build-launchers:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        arch: [x64]
+    runs-on: ${{ matrix.os }}
+
+    defaults:
+      run:
+        working-directory: launcher
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm install --save-dev @electron/packager
+
+      - name: Package launcher (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          npx @electron/packager . cityvault-launcher \
+            --platform=linux \
+            --arch=${{ matrix.arch }} \
+            --icon=icon.ico \
+            --overwrite \
+            --asar.unpack=config.json \
+            --ignore="^/tests" \
+            --ignore="^/docs" \
+            --ignore=".*\\.map" \
+            --ignore=".*\\.md" \
+            --ignore="^/node_modules/(electron|.*-dev).*" \
+            --ignore="^/config"
+        shell: bash
+
+      - name: Package launcher (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: cmd
+        run: >
+          npx @electron/packager . cityvault-launcher
+          --platform=win32
+          --arch=${{ matrix.arch }}
+          --icon=icon.ico
+          --overwrite
+          --asar.unpack=config.json
+          "--ignore=^/tests"
+          "--ignore=^/docs"
+          "--ignore=.*\\.map"
+          "--ignore=.*\\.md"
+          "--ignore=^/node_modules/`(electron`|.*-dev`)`.*"
+          "--ignore=^/config"
+
+      - name: Upload Windows launcher
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cityvault-launcher-win
+          path: launcher/cityvault-launcher-win32-${{ matrix.arch }}
+
+      - name: Upload Linux launcher
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cityvault-launcher-linux
+          path: launcher/cityvault-launcher-linux-${{ matrix.arch }}
+
   build-release:
+    needs: build-launchers
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +95,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: true
 
       - name: Set version string
         id: set_version
@@ -34,58 +107,42 @@ jobs:
             echo "IS_TAG=false" >> $GITHUB_ENV
           fi
 
-      - name: Get previous tag (only on tag push)
-        if: env.IS_TAG == 'true'
-        id: prev
-        run: |
-          PREV=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
-          echo "previous_tag=$PREV" >> $GITHUB_OUTPUT
-
-      - name: Generate changelog (only on tag push)
-        if: env.IS_TAG == 'true'
-        id: changelog
-        run: |
-          if [ -z "${{ steps.prev.outputs.previous_tag }}" ]; then
-            RANGE=""
-          else
-            RANGE="${{ steps.prev.outputs.previous_tag }}..${{ github.ref_name }}"
-          fi
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          git log $RANGE --pretty=format:"- %s" | grep -vEi 'update.*version\.json|bump.*version\.json|version\.json' >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Download Windows launcher artifact
+      - name: Download Windows launcher
         uses: actions/download-artifact@v4
         with:
           name: cityvault-launcher-win
-          path: launcher_downloads/windows
+          path: launcher_downloads/cityvault-launcher-win
 
-      - name: Download Linux launcher artifact
+      - name: Download Linux launcher
         uses: actions/download-artifact@v4
         with:
           name: cityvault-launcher-linux
-          path: launcher_downloads/linux
+          path: launcher_downloads/cityvault-launcher-linux
 
-      - name: Write version.json for ZIP
-        run: |
-          echo "{ \"version\": \"${{ env.VERSION }}\" }" > version.json
+      - name: Write version.json
+        run: echo "{ \"version\": \"${{ env.VERSION }}\" }" > version.json
 
-      - name: Create ZIP artifact
+      - name: Create combined release ZIP
         run: |
           mkdir -p dist
           zip -r "dist/cityvault-${{ env.VERSION }}.zip" . \
-            -x "*.git*" "node_modules/*" "dist/*"
+            -x "*.git*" \
+            "node_modules/*" \
+            "launcher/*" \
+            "dist/*" \
+            "launcher_version_tmp/*"
 
-      - name: Debug ZIP output
-        run: ls -lh dist/
+      - name: Debug ZIP contents
+        run: unzip -l dist/cityvault-${{ env.VERSION }}.zip
 
-      - name: Upload Release ZIP (only on tag)
+      - name: Upload ZIP to GitHub Release (only on tag)
         if: env.IS_TAG == 'true'
         uses: softprops/action-gh-release@v1
         with:
           files: dist/cityvault-${{ env.VERSION }}.zip
           name: CityVault v${{ env.VERSION }}
-          body: ${{ steps.changelog.outputs.changelog }}
+          body: |
+            Automated release for v${{ env.VERSION }}
           tag_name: v${{ env.VERSION }}
 
       - name: Remove version.json
