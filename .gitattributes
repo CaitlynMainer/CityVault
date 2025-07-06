@@ -1,0 +1,21 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# Explicitly define line endings for known types
+*.js     text eol=lf
+*.json   text eol=lf
+*.css    text eol=lf
+*.html   text eol=lf
+*.ejs    text eol=lf
+*.sh     text eol=lf
+*.bat    text eol=crlf
+*.cmd    text eol=crlf
+
+# Do not normalize binary files
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.webp   binary
+*.woff2  binary
+*.zip    binary
