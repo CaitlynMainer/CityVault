@@ -161,3 +161,5 @@ data/sessions.sqlite-shm
 data/sessions.sqlite-wal
 public/launcher/cityvault-launcher-win.zip
 /launcher_downloads
+ImageServer.zip
+public/launcher/cityvault-launcher-linux.zip
