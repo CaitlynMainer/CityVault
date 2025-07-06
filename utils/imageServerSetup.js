@@ -129,6 +129,8 @@ async function extractWithProgress(zipPath, outputDir) {
 
   await zip.close();
   process.stdout.write('\n[ImageServer] Extraction complete.\n');
+  // Delete the zip after extraction
+  fs.unlinkSync(zipPath);
 }
 
 function launchImageServer(config) {
