@@ -107,6 +107,13 @@ jobs:
             echo "IS_TAG=false" >> $GITHUB_ENV
           fi
 
+      - name: Generate changelog
+        id: changelog
+        run: |
+          echo 'log<<EOF' >> $GITHUB_OUTPUT
+          git log --pretty=format:'- %s' $(git describe --tags --abbrev=0)..HEAD >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
+
       - name: Download Windows launcher
         uses: actions/download-artifact@v4
         with:
@@ -143,7 +150,7 @@ jobs:
           files: dist/cityvault-${{ env.VERSION }}.zip
           name: CityVault v${{ env.VERSION }}
           tag_name: v${{ env.VERSION }}
-          generate_release_notes: true
+          body: ${{ steps.changelog.outputs.log }}
 
       - name: Remove version.json
         run: rm -f version.json
