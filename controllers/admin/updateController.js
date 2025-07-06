@@ -84,7 +84,7 @@ async function downloadAndExtractUpdate(req, res) {
 		});
 
         console.log('[Update] Running npm install...');
-		exec('npm install', { cwd: global.BASE_DIR }, (err, stdout, stderr) => {
+		exec('npm install', { cwd: global.BASE_DIR, shell: true }, (err, stdout, stderr) => {
 		  if (err) {
 			console.error('[Update] npm install failed:', err);
 			return res.status(500).send('Update extracted, but npm install failed.');
