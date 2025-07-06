@@ -29,7 +29,7 @@ async function downloadAndExtractUpdate(req, res) {
       try {
         console.log('[Update] Download complete. Cleaning old files...');
 
-        const keepDirs = new Set(['data', 'public', 'node_modules', 'sessions', 'userContent', 'ImageServer', '.git', '.github']);
+        const keepDirs = new Set(['data', 'public', 'node_modules', 'sessions', 'userContent', 'ImageServer', '.git', '.github', 'launcher']);
         const keepFiles = new Set(['tmp_update.zip']);
 
         fs.readdirSync(global.BASE_DIR).forEach(entry => {
@@ -101,7 +101,21 @@ async function downloadAndExtractUpdate(req, res) {
 		  }
 
 		  // Send redirect BEFORE exiting
-		  res.redirect('/'); // Or your desired path
+			res.set('Content-Type', 'text/html');
+			res.send(`
+			  <html>
+				<head>
+				  <meta http-equiv="refresh" content="10;URL='/'" />
+				  <title>Update Installed</title>
+				</head>
+				<body>
+				  <h2>Update installed!</h2>
+				  <p>The server will restart automatically.</p>
+				  <p>You will be redirected in 10 seconds...</p>
+				</body>
+			  </html>
+			`);
+
 
 		  // Delay just enough to let the response flush
 		  setTimeout(() => {
