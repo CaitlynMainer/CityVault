@@ -66,7 +66,7 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
         AND (Costume = @slot OR (Costume IS NULL AND @slot = 0))
       ORDER BY PartIndex ASC
     `;
-    console.log('[SQL]', sqlQuery);
+    //console.log('[SQL]', sqlQuery);
 
     const result = await pool.request()
       .input('cid', sql.Int, containerId)
@@ -105,7 +105,7 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
         AND (CostumeNum = @slot OR (CostumeNum IS NULL AND @slot = 0))
       ORDER BY SubId ASC
     `;
-    console.log('[SQL]', sqlQuery);
+    //console.log('[SQL]', sqlQuery);
 
     const result = await pool.request()
       .input('cid', sql.Int, containerId)
@@ -118,7 +118,7 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
       .filter(p => p.SubId !== null)
       .map(p => {
         const baseOffset = p.SubId % (isLegacy ? 30 : 60);
-        console.log('[DEBUG] raw SubId:', p.SubId, 'slotValue:', slotValue, '=> baseOffset:', baseOffset);
+        //console.log('[DEBUG] raw SubId:', p.SubId, 'slotValue:', slotValue, '=> baseOffset:', baseOffset);
         return {
           ...p,
           PartIndex: baseOffset
@@ -128,7 +128,7 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
     costume.source = 'dbo.CostumeParts';
   }
 
-  console.log(`[DEBUG] Loaded ${pieces.length} parts from ${costume.source}`);
+  //console.log(`[DEBUG] Loaded ${pieces.length} parts from ${costume.source}`);
 
   pieces = pieces.filter(p => {
     const region = (p.Region ?? '').toLowerCase();
@@ -151,7 +151,7 @@ async function fetchCostumeData(pool, containerId, slotId, force = false) {
     Color4: p.Color4 ?? 0
   }));
 
-  console.log(`[fetchCostumeData] ContainerId=${containerId} Slot=${slotId} Source=${costume.source}`);
+  //console.log(`[fetchCostumeData] ContainerId=${containerId} Slot=${slotId} Source=${costume.source}`);
   return costume;
 }
 

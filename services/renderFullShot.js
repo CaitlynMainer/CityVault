@@ -81,9 +81,9 @@ async function renderFullShot(authPool, pool, serverKey, containerId, slotId = 0
     };
   }
   
-  for (const piece of costume.pieces) {
-  console.log('[DEBUG] Piece', piece.PartIndex, piece.Geom, piece.Region, piece.BodySet);
-}
+  //for (const piece of costume.pieces) {
+  //console.log('[DEBUG] Piece', piece.PartIndex, piece.Geom, piece.Region, piece.BodySet);
+  //}
 
 
   for (const row of rows) {

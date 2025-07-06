@@ -60,7 +60,7 @@ async function connectPool(cfg) {
   const conn = new driverModule.ConnectionPool(cfg);
   conn._driver = driverModule; // store actual module for .Int etc
   await conn.connect();
-  console.log('[DB DEBUG] Connected using driver:', driverName);
+  //console.log('[DB DEBUG] Connected using driver:', driverName);
   return conn;
 }
 
@@ -78,7 +78,7 @@ async function getAuthPool() {
       throw new Error(`[CRITICAL] Mismatched Auth DB: expected ${config.auth.dbName}, got ${actualDb}`);
     }
 
-    console.log('[DB DEBUG] Connected to Auth DB:', actualDb);
+    //console.log('[DB DEBUG] Connected to Auth DB:', actualDb);
   }
 
   return authPool;
@@ -98,7 +98,7 @@ async function getChatPool() {
       throw new Error(`[CRITICAL] Mismatched Chat DB: expected ${config.chat.dbName}, got ${actualDb}`);
     }
 
-    console.log('[DB DEBUG] Connected to Chat DB:', actualDb);
+    //console.log('[DB DEBUG] Connected to Chat DB:', actualDb);
   }
   return chatPool;
 }
