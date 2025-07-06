@@ -1,6 +1,6 @@
 {
   "name": "cityvault",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "main": "server.mjs",
   "scripts": {
     "start": "node server.mjs",
