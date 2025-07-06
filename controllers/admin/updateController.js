@@ -71,18 +71,6 @@ async function downloadAndExtractUpdate(req, res) {
 
         console.log('[Update] Cleaning up temp extract...');
         await fs.remove(tmpExtractDir);
-		
-		console.log('[Update] Running npm install in launcher/...');
-		const launcherPath = path.join(global.BASE_DIR, 'launcher');
-		exec('npm install', { cwd: launcherPath }, (err, stdout, stderr) => {
-		  if (err) {
-			console.error('[Update] launcher npm install failed:', err);
-		  } else {
-			console.log('[Update] launcher npm install complete.');
-			console.log(stdout);
-		  }
-		});
-
         console.log('[Update] Running npm install...');
 		exec('npm install', { cwd: global.BASE_DIR, shell: true }, (err, stdout, stderr) => {
 		  if (err) {
