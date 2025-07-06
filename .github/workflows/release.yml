@@ -2,6 +2,8 @@ name: Release CityVault
 
 on:
   push:
+    branches:
+      - dev
     tags:
       - 'v*'
 
@@ -14,24 +16,32 @@ jobs:
   build-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main branch
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Extract version from tag
-        id: version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      - name: Set version string
+        id: set_version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+            echo "IS_TAG=true" >> $GITHUB_ENV
+          else
+            echo "VERSION=dev-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+            echo "IS_TAG=false" >> $GITHUB_ENV
+          fi
 
-      - name: Get previous tag (if any)
+      - name: Get previous tag (only on tag push)
+        if: env.IS_TAG == 'true'
         id: prev
         run: |
           PREV=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
           echo "previous_tag=$PREV" >> $GITHUB_OUTPUT
 
-      - name: Generate changelog
+      - name: Generate changelog (only on tag push)
+        if: env.IS_TAG == 'true'
         id: changelog
         run: |
           if [ -z "${{ steps.prev.outputs.previous_tag }}" ]; then
@@ -43,19 +53,29 @@ jobs:
           git log $RANGE --pretty=format:"- %s" | grep -vEi 'update.*version\\.json|bump.*version\\.json|version\\.json' >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      - name: Download launchers from build workflow
+        if: env.IS_TAG == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: launchers
+          path: launchers
+
       - name: Write version.json for ZIP
         run: |
           echo '{ "version": "${{ env.VERSION }}" }' > version.json
 
-      - name: Create ZIP artifact
+      - name: Create ZIP artifact with launchers
         run: |
-          mkdir dist
+          mkdir -p dist/launchers
+          mv launchers/*.zip dist/launchers/ || true
+          mv launchers/*.tar.gz dist/launchers/ || true
           zip -r "dist/cityvault-${{ env.VERSION }}.zip" . -x "*.git*" "node_modules/*"
 
       - name: Debug ZIP output
         run: ls -lh dist/
 
-      - name: Upload Release ZIP
+      - name: Upload Release ZIP (only on tag)
+        if: env.IS_TAG == 'true'
         uses: softprops/action-gh-release@v1
         with:
           files: dist/cityvault-${{ env.VERSION }}.zip
@@ -63,20 +83,28 @@ jobs:
           body: ${{ steps.changelog.outputs.changelog }}
           tag_name: v${{ env.VERSION }}
 
-      - name: Remove version.json before switching branches
+      - name: Remove version.json
         run: rm -f version.json
 
-      - name: Update update.json in gh-pages
+      - name: Update JSON on gh-pages
         run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          echo '{
-            "latest": "${{ env.VERSION }}",
-            "url": "https://github.com/${{ github.repository }}/releases/download/v${{ env.VERSION }}/cityvault-${{ env.VERSION }}.zip",
-            "notes": "See https://github.com/${{ github.repository }}/releases/tag/v${{ env.VERSION }}"
-          }' > update.json
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add update.json
-          git commit -m "Update update.json for v${{ env.VERSION }}" || echo "No changes"
+          git fetch origin gh-pages
+          git checkout gh-pages
+
+          if [[ "${{ env.IS_TAG }}" == "true" ]]; then
+            echo '{
+              "latest": "${{ env.VERSION }}",
+              "url": "https://github.com/${{ github.repository }}/releases/download/v${{ env.VERSION }}/cityvault-${{ env.VERSION }}.zip",
+              "notes": "See https://github.com/${{ github.repository }}/releases/tag/v${{ env.VERSION }}"
+            }' > update.json
+            git add update.json
+            git commit -m "Update update.json for v${{ env.VERSION }}" || echo "No changes"
+          else
+            echo '{ "version": "${{ env.VERSION }}" }' > dev-version.json
+            git add dev-version.json
+            git commit -m "Update dev-version.json for $GITHUB_SHA" || echo "No changes"
+          fi
+
           git push origin gh-pages

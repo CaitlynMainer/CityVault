@@ -2,8 +2,10 @@ name: Build Electron Launcher
 
 on:
   push:
+    branches:
+      - dev
     tags:
-      - 'v*'  # Trigger only on version tags
+      - 'v*'
 
 jobs:
   build:
@@ -27,22 +29,15 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm ci
-
-      - name: Determine platform
-        id: platform
         run: |
-          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
-            echo "platform=win32" >> "$GITHUB_OUTPUT"
-          else
-            echo "platform=linux" >> "$GITHUB_OUTPUT"
-          fi
-        shell: bash
+          npm ci
+          npm install --save-dev @electron/packager
 
-      - name: Package launcher
+      - name: Package launcher (Linux)
+        if: matrix.os == 'ubuntu-latest'
         run: |
-          npx electron-packager . cityvault-launcher \
-            --platform=${{ steps.platform.outputs.platform }} \
+          npx @electron/packager . cityvault-launcher \
+            --platform=linux \
             --arch=${{ matrix.arch }} \
             --icon=icon.ico \
             --overwrite \
@@ -53,27 +48,77 @@ jobs:
             --ignore=".*\\.md" \
             --ignore="^/node_modules/(electron|.*-dev).*" \
             --ignore="^/config"
+        shell: bash
 
-      - name: Upload app.asar
-        uses: softprops/action-gh-release@v1
-        with:
-          files: launcher/cityvault-launcher-*/resources/app.asar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Archive build (Windows)
+      - name: Package launcher (Windows)
         if: matrix.os == 'windows-latest'
-        run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }}\* -DestinationPath cityvault-launcher-win.zip
+        shell: cmd
+        run: >
+          npx @electron/packager . cityvault-launcher
+          --platform=win32
+          --arch=${{ matrix.arch }}
+          --icon=icon.ico
+          --overwrite
+          --asar.unpack=config.json
+          "--ignore=^/tests"
+          "--ignore=^/docs"
+          "--ignore=.*\\.map"
+          "--ignore=.*\\.md"
+          "--ignore=^/node_modules/`(electron`|.*-dev`)`.*"
+          "--ignore=^/config"
 
-      - name: Archive build (Linux)
-        if: matrix.os == 'ubuntu-latest'
+      - name: Archive build (Windows) for GitHub Release only
+        if: matrix.os == 'windows-latest' && startsWith(github.ref, 'refs/tags/')
+        run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }} -DestinationPath cityvault-launcher-win.zip
+        shell: pwsh
+
+      - name: Archive build (Linux) for GitHub Release only
+        if: matrix.os == 'ubuntu-latest' && startsWith(github.ref, 'refs/tags/')
         run: tar -czf cityvault-launcher-linux.tar.gz cityvault-launcher-linux-${{ matrix.arch }}
+        shell: bash
 
-      - name: Upload zipped build
+      - name: Upload Windows build artifact (folder)
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cityvault-launcher-win
+          path: launcher/cityvault-launcher-win32-${{ matrix.arch }}
+
+      - name: Upload Linux build artifact (folder)
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cityvault-launcher-linux
+          path: launcher/cityvault-launcher-linux-${{ matrix.arch }}
+
+      - name: Upload zipped build to GitHub Release (only for tag)
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: |
             launcher/cityvault-launcher-win.zip
             launcher/cityvault-launcher-linux.tar.gz
+            launcher/cityvault-launcher-*/resources/app.asar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prepare launcher version JSON
+        run: |
+          mkdir -p launcher_version_tmp
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF#refs/tags/v}"
+            echo "{ \"version\": \"$VERSION\" }" > launcher_version_tmp/launcher-version.json
+          else
+            echo "{ \"version\": \"dev-${GITHUB_RUN_NUMBER}\" }" > launcher_version_tmp/dev-launcher-version.json
+          fi
+        shell: bash
+
+      - name: Deploy launcher version JSON to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./launcher_version_tmp
+          destination_dir: launcher
+          keep_files: true
+          publish_branch: gh-pages
+          commit_message: Update launcher version JSON from ${{ github.ref }}
