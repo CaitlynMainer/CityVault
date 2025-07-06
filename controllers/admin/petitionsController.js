@@ -122,66 +122,60 @@ async function markFetched(req, res) {
   try {
     const pool = await getGamePool(serverKey);
 
-    // Check current value before update
-    const currentResult = await pool.request()
+    const result = await pool.request()
       .input('id', sql.Int, id)
       .query(`SELECT Fetched, AuthName, Summary FROM dbo.Petitions WHERE ContainerId = @id`);
 
-    if (currentResult.recordset.length === 0) {
-      return res.status(404).send('Petition not found');
-    }
+    if (result.recordset.length === 0) return res.status(404).send('Petition not found');
 
-    const { Fetched, AuthName, Summary } = currentResult.recordset[0];
+    const { Fetched: current, AuthName, Summary } = result.recordset[0];
+    const newValue = current ? 0 : 1;
 
-    // Only proceed if Fetched was 0
-    if (!Fetched) {
-      await pool.request()
-        .input('id', sql.Int, id)
-        .query(`UPDATE dbo.Petitions SET Fetched = 1 WHERE ContainerId = @id`);
+    await pool.request()
+      .input('id', sql.Int, id)
+      .query(`UPDATE dbo.Petitions SET Fetched = ${newValue} WHERE ContainerId = @id`);
 
+    // Only send email if changing from 0 → 1
+    if (!current) {
       await notifyUserByAuthName(AuthName, 'petition_in_progress', 'Your support request is being reviewed', { summary: Summary });
     }
 
     res.redirect(`/admin/petitions/${serverKey}/${id}`);
   } catch (err) {
-    console.error('Error marking fetched:', err);
+    console.error('Error toggling fetched:', err);
     res.status(500).send('Internal server error');
   }
 }
-
 
 async function markDone(req, res) {
   const { serverKey, id } = req.params;
   try {
     const pool = await getGamePool(serverKey);
 
-    // Check current value before update
-    const currentResult = await pool.request()
+    const result = await pool.request()
       .input('id', sql.Int, id)
       .query(`SELECT Done, AuthName, Summary FROM dbo.Petitions WHERE ContainerId = @id`);
 
-    if (currentResult.recordset.length === 0) {
-      return res.status(404).send('Petition not found');
-    }
+    if (result.recordset.length === 0) return res.status(404).send('Petition not found');
 
-    const { Done, AuthName, Summary } = currentResult.recordset[0];
+    const { Done: current, AuthName, Summary } = result.recordset[0];
+    const newValue = current ? 0 : 1;
 
-    // Only proceed if Done was 0
-    if (!Done) {
-      await pool.request()
-        .input('id', sql.Int, id)
-        .query(`UPDATE dbo.Petitions SET Done = 1 WHERE ContainerId = @id`);
+    await pool.request()
+      .input('id', sql.Int, id)
+      .query(`UPDATE dbo.Petitions SET Done = ${newValue} WHERE ContainerId = @id`);
 
-      await notifyUserByAuthName(AuthName, 'petition_completed', 'Your support request has been completed', { summary: Summary });
+    // Only send email if changing from 0 → 1
+    if (!current) {
+      await notifyUserByAuthName(AuthName, 'petition_completed', 'Your support request has been resolved', { summary: Summary });
     }
 
     res.redirect(`/admin/petitions/${serverKey}/${id}`);
   } catch (err) {
-    console.error('Error marking done:', err);
+    console.error('Error toggling done:', err);
     res.status(500).send('Internal server error');
   }
 }
-
 
 async function toggleStatus(req, res) {
   const { serverKey, id, field } = req.params;
