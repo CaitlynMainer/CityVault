@@ -67,7 +67,7 @@ jobs:
           path: launcher_downloads/linux
 
       - name: Write version.json for ZIP
-        run: echo '{ "version": "${{ env.VERSION }}" }' > version.json
+        run: echo "{ \"version\": \"${{ env.VERSION }}\" }" > version.json
 
       - name: Create ZIP artifact
         run: |
