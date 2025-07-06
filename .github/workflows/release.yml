@@ -142,9 +142,8 @@ jobs:
         with:
           files: dist/cityvault-${{ env.VERSION }}.zip
           name: CityVault v${{ env.VERSION }}
-          body: |
-            Automated release for v${{ env.VERSION }}
           tag_name: v${{ env.VERSION }}
+          generate_release_notes: true
 
       - name: Remove version.json
         run: rm -f version.json
