@@ -111,7 +111,8 @@ jobs:
         run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }} -DestinationPath cityvault-launcher-win.zip
 
       - name: Write version.json
-        run: echo '{ "version": "${{ env.VERSION }}" }' > version.json
+        run: |
+          echo '{ "version": "${{ env.VERSION }}" }' > version.json
 
       - name: Create CityVault ZIP including launchers
         run: |
