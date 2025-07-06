@@ -9,30 +9,40 @@ const which = require('which');
 const fs = require('fs');
 const crypto = require('crypto');
 const https = require('https');
+const unzipper = require('unzipper');
 
 const isDev = !app.isPackaged;
 
-const configPath = isDev
-  ? path.join(__dirname, 'config.json')
-  : path.join(path.dirname(process.execPath), 'config.json');
+const configPath = path.join(path.dirname(process.execPath), 'config.json');
 
 console.log('[CONFIG] Loading config from:', configPath);
 
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
-// Extract base domain from manifestUrl
 const manifestUrl = new URL(config.manifestUrl);
 const baseUrl = manifestUrl.origin;
-const updateUrl = `${baseUrl}/launcher/app.asar`;
-const updateHashUrl = `${baseUrl}/launcher/app.hash`;
 
 let win;
+let logBuffer = [];
+
+function sendLog(line) {
+  const tag = '[Main] ' + line;
+  console.log(tag); // fallback log to terminal if visible
+  if (win?.webContents?.isLoadingMainFrame?.()) {
+    logBuffer.push(tag);
+  } else if (win?.webContents) {
+    win.webContents.send('patch-log', tag);
+  } else {
+    logBuffer.push(tag);
+  }
+}
+
 app.disableHardwareAcceleration();
 
 app.whenReady().then(async () => {
-  const updated = await checkAndUpdateAsar();
+  const updated = await checkAndUpdateLauncherZip();
   if (updated) {
-    console.log('[Updater] Update applied. Restarting...');
+    sendLog('[Updater] Update applied. Restarting...');
     app.relaunch();
     app.exit();
     return;
@@ -52,8 +62,15 @@ function createWindow() {
     }
   });
 
-  // win.webContents.openDevTools({ mode: 'detach' });
+  win.webContents.openDevTools({ mode: 'detach' });
   win.loadFile('index.html');
+
+  win.webContents.on('did-finish-load', () => {
+    for (const line of logBuffer) {
+      win.webContents.send('patch-log', line);
+    }
+    logBuffer = [];
+  });
 
   setupMenu();
 }
@@ -65,11 +82,7 @@ function setupMenu() {
       submenu: [
         {
           label: 'Settings',
-          click: () => {
-            if (win) {
-              win.webContents.send('open-settings');
-            }
-          }
+          click: () => win?.webContents.send('open-settings')
         },
         { type: 'separator' },
         { role: 'quit' }
@@ -83,63 +96,115 @@ function setupMenu() {
 
 // Update logic
 function getRemoteHash(url) {
+  sendLog(`[Updater] Fetching remote hash from: ${url}`);
   return new Promise((resolve, reject) => {
     https.get(url, res => {
       if (res.statusCode !== 200) return reject(`Hash fetch failed: ${res.statusCode}`);
       let data = '';
       res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve(data.trim()));
-    }).on('error', reject);
+      res.on('end', () => {
+        sendLog(`[Updater] Remote hash: ${data.trim()}`);
+        resolve(data.trim());
+      });
+    }).on('error', err => {
+      sendLog(`[Updater] Error fetching remote hash: ${err.message}`);
+      reject(err);
+    });
   });
 }
 
 function getFileHash(filePath) {
+  sendLog(`[Updater] Calculating local file hash: ${filePath}`);
   return new Promise((resolve, reject) => {
-    const hash = crypto.createHash('sha256');
-    const stream = fs.createReadStream(filePath);
-    stream.on('data', chunk => hash.update(chunk));
-    stream.on('end', () => resolve(hash.digest('hex')));
-    stream.on('error', reject);
+    try {
+      const hash = crypto.createHash('sha256');
+      const stream = fs.createReadStream(filePath);
+      stream.on('data', chunk => hash.update(chunk));
+      stream.on('end', () => {
+        const digest = hash.digest('hex');
+        sendLog(`[Updater] Local file hash: ${digest}`);
+        resolve(digest);
+      });
+      stream.on('error', err => {
+        sendLog(`[Updater] Error reading file for hash: ${err.message}`);
+        reject(err);
+      });
+    } catch (err) {
+      sendLog(`[Updater] Exception during hashing: ${err.message}`);
+      reject(err);
+    }
   });
 }
 
 function downloadFile(url, destPath) {
+  sendLog(`[Updater] Downloading update from ${url}`);
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(destPath);
     https.get(url, res => {
       if (res.statusCode !== 200) return reject(new Error(`HTTP ${res.statusCode}`));
       res.pipe(file);
-      file.on('finish', () => file.close(resolve));
-    }).on('error', reject);
+      file.on('finish', () => {
+        sendLog(`[Updater] Downloaded update to ${destPath}`);
+        file.close(resolve);
+      });
+    }).on('error', err => {
+      sendLog(`[Updater] Download error: ${err.message}`);
+      reject(err);
+    });
   });
 }
 
-async function checkAndUpdateAsar() {
-  const localAsar = path.join(process.resourcesPath, 'app.asar');
-  const tmpAsar = path.join(app.getPath('temp'), 'update_app.asar');
+async function checkAndUpdateLauncherZip() {
+  const localHashPath = path.join(app.getPath('userData'), 'launcher.hash');
+  const tmpZip = path.join(app.getPath('temp'), 'launcher_update.zip');
+  const tmpExtractDir = path.join(app.getPath('userData'), 'tmp_launcher_extract');
+  const localScriptsDir = path.dirname(app.getAppPath());
 
-  try {
-    const [remoteHash, localHash] = await Promise.all([
-      getRemoteHash(updateHashUrl),
-      getFileHash(localAsar)
-    ]);
+  sendLog(`[Updater] Checking for launcher.zip update...`);
 
-    if (remoteHash !== localHash) {
-      console.log('[Updater] New version detected. Downloading update...');
-      await downloadFile(updateUrl, tmpAsar);
-      fs.copyFileSync(tmpAsar, localAsar);
-      console.log('[Updater] Update complete.');
-      return true;
-    }
+  const remoteHash = await getRemoteHash(`${baseUrl}/launcher/launcher.hash`);
+  sendLog(`[Updater] Remote zip hash: ${remoteHash}`);
 
-    console.log('[Updater] Already up to date.');
-    return false;
-  } catch (err) {
-    console.error('[Updater] Failed:', err);
-    return false;
-  } finally {
-    if (fs.existsSync(tmpAsar)) fs.unlinkSync(tmpAsar);
+  let localHash = null;
+  if (fs.existsSync(localHashPath)) {
+    localHash = fs.readFileSync(localHashPath, 'utf8').trim();
+    sendLog(`[Updater] Local zip hash: ${localHash}`);
   }
+
+  if (remoteHash === localHash) {
+    sendLog('[Updater] Already up to date.');
+    return false;
+  }
+
+  sendLog('[Updater] New version detected. Downloading...');
+
+  await downloadFile(`${baseUrl}/launcher/launcher.zip`, tmpZip);
+
+  sendLog('[Updater] Extracting launcher.zip to temp folder...');
+  await fs.createReadStream(tmpZip)
+    .pipe(unzipper.Extract({ path: tmpExtractDir }))
+    .promise();
+
+  // Sanity check to make sure it's a valid Electron app
+  const mainExists = fs.existsSync(path.join(tmpExtractDir, 'main.js'));
+  const packageExists = fs.existsSync(path.join(tmpExtractDir, 'package.json'));
+
+  if (!mainExists || !packageExists) {
+    sendLog('[Updater] Extracted update is invalid (missing main.js or package.json). Aborting.');
+    fs.unlinkSync(tmpZip);
+    fs.rmSync(tmpExtractDir, { recursive: true, force: true });
+    return false;
+  }
+
+  sendLog('[Updater] Copying update over current app...');
+  fs.cpSync(tmpExtractDir, localScriptsDir, { recursive: true });
+
+  fs.writeFileSync(localHashPath, remoteHash);
+  fs.unlinkSync(tmpZip);
+  fs.rmSync(tmpExtractDir, { recursive: true, force: true });
+
+  sendLog('[Updater] Update complete.');
+  return true;
 }
 
 // IPC handlers
@@ -150,18 +215,17 @@ ipcMain.handle('start-patch', async (event) => {
   await patchFromManifest(
     manifestUrl,
     installDir,
-    (progress) => {
-      event.sender.send('patch-progress', progress);
-    },
+    (progress) => event.sender.send('patch-progress', progress),
     (logLine) => {
       event.sender.send('patch-log', logLine);
+      sendLog(logLine);
     }
   );
 });
 
 ipcMain.handle('get-launch-profiles', async () => {
   const manifestUrl = config.manifestUrl;
-  console.log('[get-launch-profiles] manifestUrl:', manifestUrl);
+  sendLog(`[get-launch-profiles] Fetching from: ${manifestUrl}`);
   const xml = await axios.get(manifestUrl).then(r => r.data);
   const parser = new XMLParser({ ignoreAttributes: false });
   const parsed = parser.parse(xml);
@@ -169,11 +233,10 @@ ipcMain.handle('get-launch-profiles', async () => {
 
   const extract = (type) => {
     const items = launches?.[type];
-    if (!items) return [];
-    return Array.isArray(items) ? items : [items];
+    return Array.isArray(items) ? items : items ? [items] : [];
   };
 
-  const result = [
+  return [
     ...extract('launch'),
     ...extract('devlaunch')
   ].map(entry => ({
@@ -181,8 +244,6 @@ ipcMain.handle('get-launch-profiles', async () => {
     exec: entry['@_exec'],
     params: entry['@_params']
   }));
-
-  return result;
 });
 
 ipcMain.handle('launch-game', async (event, { exec, params, closeLauncher }) => {
@@ -192,15 +253,12 @@ ipcMain.handle('launch-game', async (event, { exec, params, closeLauncher }) => 
   let command, finalArgs;
 
   if (os.platform() === 'win32') {
-    // Windows
     command = path.resolve(cwd, exec);
     finalArgs = args;
   } else {
-    // Linux/macOS
     const wineCmd = config.linuxLaunchCommand || 'wine';
-
     try {
-      await which(wineCmd); // throws if not found
+      await which(wineCmd);
     } catch {
       event.sender.send('patch-log', `[LAUNCH ERROR] ${wineCmd} not found in PATH`);
       return;
@@ -210,9 +268,9 @@ ipcMain.handle('launch-game', async (event, { exec, params, closeLauncher }) => 
     finalArgs = [path.resolve(cwd, exec), ...args];
   }
 
-  console.log(`[LAUNCH] Working directory: ${cwd}`);
-  console.log(`[LAUNCH] Executable: ${command}`);
-  event.sender.send('patch-log', `[LAUNCH] Params: ${finalArgs.join(' ')}`);
+  sendLog(`[LAUNCH] Working directory: ${cwd}`);
+  sendLog(`[LAUNCH] Executable: ${command}`);
+  sendLog(`[LAUNCH] Params: ${finalArgs.join(' ')}`);
 
   const child = spawn(command, finalArgs, {
     cwd,

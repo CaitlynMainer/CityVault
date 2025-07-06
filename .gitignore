@@ -165,3 +165,9 @@ ImageServer.zip
 public/launcher/cityvault-launcher-linux.zip
 public/launcher/app.asar
 public/launcher/app.hash
+/launcher/cityvault-launcher-win32-x64
+public/launcher/cityvault-linux.zip
+public/launcher/cityvault-win.zip
+public/launcher/launcher.hash
+public/launcher/launcher.zip
+public/images/Michiyo-ServerIcon-Pride.png

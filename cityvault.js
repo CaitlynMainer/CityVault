@@ -21,7 +21,7 @@ module.exports = function startApp(config) {
   const readline = require('readline');  
   const ensureConfigDefaults = require(global.BASE_DIR + '/utils/ensureConfigDefaults');
   const migrateSessionsToSQLite = require(global.BASE_DIR + '/utils/migrateSessionsToSQLite');  
-  const { deployLauncherAsar } = require('./utils/deployLauncherAsar');
+  const { deployLauncherZip } = require('./utils/deployLauncherZip');
 
   const sessionsDir = path.join(__dirname, 'sessions');
   const sqlitePath = path.join(__dirname, 'data', 'sessions.sqlite');
@@ -176,7 +176,7 @@ module.exports = function startApp(config) {
     });
   });
 
-  deployLauncherAsar();
+  deployLauncherZip();
 
 
   ensureSchema(authConfig).then(() => {
