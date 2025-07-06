@@ -1,6 +1,6 @@
 {
   "name": "coh-launcher",
-  "version": "0.5.12",
+  "version": "0.5.13",
   "description": "City of Heroes Portable Launcher",
   "main": "main.js",
   "scripts": {
