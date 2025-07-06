@@ -14,7 +14,11 @@ permissions:
 
 jobs:
   build-release:
+    strategy:
+      matrix:
+        arch: [x64]
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -53,26 +57,68 @@ jobs:
           git log $RANGE --pretty=format:"- %s" | grep -vEi 'update.*version\\.json|bump.*version\\.json|version\\.json' >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Download launchers from build workflow
-        if: env.IS_TAG == 'true'
-        uses: actions/download-artifact@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          name: launchers
-          path: launchers
+          node-version: 20
 
-      - name: Write version.json for ZIP
+      - name: Install launcher dependencies
+        working-directory: launcher
         run: |
-          echo '{ "version": "${{ env.VERSION }}" }' > version.json
+          npm ci
+          npm install --save-dev @electron/packager
 
-      - name: Create ZIP artifact with launchers
+      - name: Build Electron launcher (Linux)
+        working-directory: launcher
+        run: |
+          npx @electron/packager . cityvault-launcher \
+            --platform=linux \
+            --arch=${{ matrix.arch }} \
+            --icon=icon.ico \
+            --overwrite \
+            --asar.unpack=config.json \
+            --ignore="^/tests" \
+            --ignore="^/docs" \
+            --ignore=".*\\.map" \
+            --ignore=".*\\.md" \
+            --ignore="^/node_modules/(electron|.*-dev).*" \
+            --ignore="^/config"
+
+      - name: Archive Linux launcher
+        working-directory: launcher
+        run: tar -czf cityvault-launcher-linux.tar.gz cityvault-launcher-linux-${{ matrix.arch }}
+
+      - name: Build Electron launcher (Windows)
+        shell: cmd
+        working-directory: launcher
+        run: >
+          npx @electron/packager . cityvault-launcher
+          --platform=win32
+          --arch=${{ matrix.arch }}
+          --icon=icon.ico
+          --overwrite
+          --asar.unpack=config.json
+          "--ignore=^/tests"
+          "--ignore=^/docs"
+          "--ignore=.*\\.map"
+          "--ignore=.*\\.md"
+          "--ignore=^/node_modules/(electron|.*-dev).*"
+          "--ignore=^/config"
+
+      - name: Archive Windows launcher
+        shell: pwsh
+        working-directory: launcher
+        run: Compress-Archive -Path cityvault-launcher-win32-${{ matrix.arch }} -DestinationPath cityvault-launcher-win.zip
+
+      - name: Write version.json
+        run: echo '{ "version": "${{ env.VERSION }}" }' > version.json
+
+      - name: Create CityVault ZIP including launchers
         run: |
           mkdir -p dist/launchers
-          mv launchers/*.zip dist/launchers/ || true
-          mv launchers/*.tar.gz dist/launchers/ || true
+          mv launcher/cityvault-launcher-win.zip dist/launchers/
+          mv launcher/cityvault-launcher-linux.tar.gz dist/launchers/
           zip -r "dist/cityvault-${{ env.VERSION }}.zip" . -x "*.git*" "node_modules/*"
-
-      - name: Debug ZIP output
-        run: ls -lh dist/
 
       - name: Upload Release ZIP (only on tag)
         if: env.IS_TAG == 'true'
