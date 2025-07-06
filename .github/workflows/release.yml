@@ -128,7 +128,7 @@ jobs:
             RANGE="$PREVIOUS_TAG..$CURRENT_TAG"
           fi
 
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "log<<EOF" >> $GITHUB_OUTPUT
           git log $RANGE --pretty=format:"- %s" |
             grep -vEi 'update.*version\.json|bump.*version\.json|version\.json' >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
