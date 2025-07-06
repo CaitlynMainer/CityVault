@@ -39,12 +39,24 @@ function sendLog(line) {
 
 app.disableHardwareAcceleration();
 
+function forceRestart() {
+  const exe = process.execPath;
+  const args = process.argv.slice(1); // preserve any args
+  spawn(exe, args, {
+    detached: true,
+    stdio: 'ignore'
+  }).unref();
+  app.exit(0);
+}
+
 app.whenReady().then(async () => {
+  console.log(`[DEBUG] Launcher PID: ${process.pid}`);
+  sendLog(`[DEBUG] Launcher PID: ${process.pid}`);
+
   const updated = await checkAndUpdateLauncherZip();
   if (updated) {
     sendLog('[Updater] Update applied. Restarting...');
-    app.relaunch();
-    app.exit();
+    forceRestart();
     return;
   }
 
@@ -62,7 +74,7 @@ function createWindow() {
     }
   });
 
-  win.webContents.openDevTools({ mode: 'detach' });
+  //win.webContents.openDevTools({ mode: 'detach' });
   win.loadFile('index.html');
 
   win.webContents.on('did-finish-load', () => {
@@ -158,6 +170,7 @@ async function checkAndUpdateLauncherZip() {
   const localHashPath = path.join(app.getPath('userData'), 'launcher.hash');
   const tmpZip = path.join(app.getPath('temp'), 'launcher_update.zip');
   const tmpExtractDir = path.join(app.getPath('userData'), 'tmp_launcher_extract');
+  const extractedAppDir = path.join(tmpExtractDir, 'app');
   const localScriptsDir = path.dirname(app.getAppPath());
 
   sendLog(`[Updater] Checking for launcher.zip update...`);
@@ -186,15 +199,34 @@ async function checkAndUpdateLauncherZip() {
     .promise();
 
   // Sanity check to make sure it's a valid Electron app
-  const mainExists = fs.existsSync(path.join(tmpExtractDir, 'main.js'));
-  const packageExists = fs.existsSync(path.join(tmpExtractDir, 'package.json'));
+	const mainPath = path.join(extractedAppDir, 'main.js');
+	const packagePath = path.join(extractedAppDir, 'package.json');
 
-  if (!mainExists || !packageExists) {
-    sendLog('[Updater] Extracted update is invalid (missing main.js or package.json). Aborting.');
-    fs.unlinkSync(tmpZip);
-    fs.rmSync(tmpExtractDir, { recursive: true, force: true });
-    return false;
-  }
+	const mainExists = fs.existsSync(mainPath);
+	const packageExists = fs.existsSync(packagePath);
+
+	if (!mainExists || !packageExists) {
+	  sendLog('[Updater] Extracted update is invalid. Aborting.');
+	  sendLog(`[Updater] Checked for:`);
+	  sendLog(`[Updater]   main.js: ${mainPath} => ${mainExists ? 'FOUND' : 'MISSING'}`);
+	  sendLog(`[Updater]   package.json: ${packagePath} => ${packageExists ? 'FOUND' : 'MISSING'}`);
+
+	  // Also list directory contents to aid debugging
+	  try {
+		const files = fs.readdirSync(extractedAppDir);
+		sendLog(`[Updater] Contents of ${extractedAppDir}:`);
+		for (const f of files) {
+		  sendLog(`[Updater]   - ${f}`);
+		}
+	  } catch (err) {
+		sendLog(`[Updater] Could not list contents of ${extractedAppDir}: ${err.message}`);
+	  }
+
+	  fs.unlinkSync(tmpZip);
+	  fs.rmSync(tmpExtractDir, { recursive: true, force: true });
+	  return false;
+	}
+
 
   sendLog('[Updater] Copying update over current app...');
   fs.cpSync(tmpExtractDir, localScriptsDir, { recursive: true });
