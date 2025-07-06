@@ -107,16 +107,30 @@ jobs:
             echo "IS_TAG=false" >> $GITHUB_ENV
           fi
 
+      - name: Find previous tag
+        id: prev
+        run: |
+          TAGS=$(git tag --sort=-creatordate | grep '^v')
+          PREV=$(echo "$TAGS" | sed -n 2p)
+          echo "previous_tag=$PREV" >> $GITHUB_OUTPUT
+
       - name: Generate changelog
         id: changelog
         run: |
-          if [ -z "${{ steps.prev.outputs.previous_tag }}" ]; then
+          CURRENT_TAG="${{ github.ref_name }}"
+          PREVIOUS_TAG="${{ steps.prev.outputs.previous_tag }}"
+
+          echo "Generating changelog from $PREVIOUS_TAG to $CURRENT_TAG"
+
+          if [ -z "$PREVIOUS_TAG" ]; then
             RANGE=""
           else
-            RANGE="${{ steps.prev.outputs.previous_tag }}..${{ github.ref_name }}"
+            RANGE="$PREVIOUS_TAG..$CURRENT_TAG"
           fi
+
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          git log $RANGE --pretty=format:"- %s" | grep -vEi 'update.*version\\.json|bump.*version\\.json|version\\.json' >> $GITHUB_OUTPUT
+          git log $RANGE --pretty=format:"- %s" |
+            grep -vEi 'update.*version\.json|bump.*version\.json|version\.json' >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Download Windows launcher
