@@ -30,7 +30,7 @@ async function downloadAndExtractUpdate(req, res) {
         console.log('[Update] Download complete. Cleaning old files...');
 
         const keepDirs = new Set(['data', 'public', 'node_modules', 'sessions', 'userContent', 'ImageServer', '.git', '.github', 'launcher']);
-        const keepFiles = new Set(['tmp_update.zip', '.gitignore']);
+        const keepFiles = new Set(['tmp_update.zip', '.gitignore', '.gitattributes']);
 
         fs.readdirSync(global.BASE_DIR).forEach(entry => {
           if (keepDirs.has(entry) || keepFiles.has(entry)) {
