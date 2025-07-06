@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
 const axios = require('axios');
@@ -7,6 +7,8 @@ const { patchFromManifest } = require('./patcher');
 const os = require('os');
 const which = require('which');
 const fs = require('fs');
+const crypto = require('crypto');
+const https = require('https');
 
 const isDev = !app.isPackaged;
 
@@ -18,9 +20,26 @@ console.log('[CONFIG] Loading config from:', configPath);
 
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
-const { Menu } = require('electron');
+// Extract base domain from manifestUrl
+const manifestUrl = new URL(config.manifestUrl);
+const baseUrl = manifestUrl.origin;
+const updateUrl = `${baseUrl}/launcher/app.asar`;
+const updateHashUrl = `${baseUrl}/launcher/app.hash`;
+
 let win;
 app.disableHardwareAcceleration();
+
+app.whenReady().then(async () => {
+  const updated = await checkAndUpdateAsar();
+  if (updated) {
+    console.log('[Updater] Update applied. Restarting...');
+    app.relaunch();
+    app.exit();
+    return;
+  }
+
+  createWindow();
+});
 
 function createWindow() {
   win = new BrowserWindow({
@@ -33,18 +52,13 @@ function createWindow() {
     }
   });
 
-  //win.webContents.openDevTools({ mode: 'detach' });
-
+  // win.webContents.openDevTools({ mode: 'detach' });
   win.loadFile('index.html');
 
-  setupMenu(); // setup menu *after* win is created
+  setupMenu();
 }
 
-app.whenReady().then(createWindow);
-
 function setupMenu() {
-  const { Menu } = require('electron');
-
   const template = [
     {
       label: 'File',
@@ -67,8 +81,68 @@ function setupMenu() {
   Menu.setApplicationMenu(menu);
 }
 
+// Update logic
+function getRemoteHash(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, res => {
+      if (res.statusCode !== 200) return reject(`Hash fetch failed: ${res.statusCode}`);
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => resolve(data.trim()));
+    }).on('error', reject);
+  });
+}
 
+function getFileHash(filePath) {
+  return new Promise((resolve, reject) => {
+    const hash = crypto.createHash('sha256');
+    const stream = fs.createReadStream(filePath);
+    stream.on('data', chunk => hash.update(chunk));
+    stream.on('end', () => resolve(hash.digest('hex')));
+    stream.on('error', reject);
+  });
+}
 
+function downloadFile(url, destPath) {
+  return new Promise((resolve, reject) => {
+    const file = fs.createWriteStream(destPath);
+    https.get(url, res => {
+      if (res.statusCode !== 200) return reject(new Error(`HTTP ${res.statusCode}`));
+      res.pipe(file);
+      file.on('finish', () => file.close(resolve));
+    }).on('error', reject);
+  });
+}
+
+async function checkAndUpdateAsar() {
+  const localAsar = path.join(process.resourcesPath, 'app.asar');
+  const tmpAsar = path.join(app.getPath('temp'), 'update_app.asar');
+
+  try {
+    const [remoteHash, localHash] = await Promise.all([
+      getRemoteHash(updateHashUrl),
+      getFileHash(localAsar)
+    ]);
+
+    if (remoteHash !== localHash) {
+      console.log('[Updater] New version detected. Downloading update...');
+      await downloadFile(updateUrl, tmpAsar);
+      fs.copyFileSync(tmpAsar, localAsar);
+      console.log('[Updater] Update complete.');
+      return true;
+    }
+
+    console.log('[Updater] Already up to date.');
+    return false;
+  } catch (err) {
+    console.error('[Updater] Failed:', err);
+    return false;
+  } finally {
+    if (fs.existsSync(tmpAsar)) fs.unlinkSync(tmpAsar);
+  }
+}
+
+// IPC handlers
 ipcMain.handle('start-patch', async (event) => {
   const manifestUrl = config.manifestUrl;
   const installDir = path.join(path.dirname(process.execPath), 'game');
@@ -113,7 +187,6 @@ ipcMain.handle('get-launch-profiles', async () => {
 
 ipcMain.handle('launch-game', async (event, { exec, params, closeLauncher }) => {
   const cwd = path.resolve(path.dirname(process.execPath), config.installDir);
-
   const args = params.trim().split(/\s+/);
 
   let command, finalArgs;
@@ -153,6 +226,3 @@ ipcMain.handle('launch-game', async (event, { exec, params, closeLauncher }) => 
     app.quit();
   }
 });
-
-
-

@@ -163,3 +163,5 @@ public/launcher/cityvault-launcher-win.zip
 /launcher_downloads
 ImageServer.zip
 public/launcher/cityvault-launcher-linux.zip
+public/launcher/app.asar
+public/launcher/app.hash

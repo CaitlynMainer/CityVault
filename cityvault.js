@@ -20,7 +20,8 @@ module.exports = function startApp(config) {
   const rfs = require('rotating-file-stream');
   const readline = require('readline');  
   const ensureConfigDefaults = require(global.BASE_DIR + '/utils/ensureConfigDefaults');
-  const migrateSessionsToSQLite = require(global.BASE_DIR + '/utils/migrateSessionsToSQLite');
+  const migrateSessionsToSQLite = require(global.BASE_DIR + '/utils/migrateSessionsToSQLite');  
+  const { deployLauncherAsar } = require('./utils/deployLauncherAsar');
 
   const sessionsDir = path.join(__dirname, 'sessions');
   const sqlitePath = path.join(__dirname, 'data', 'sessions.sqlite');
@@ -174,6 +175,8 @@ module.exports = function startApp(config) {
       message: 'An unexpected error occurred.'
     });
   });
+
+  deployLauncherAsar();
 
 
   ensureSchema(authConfig).then(() => {
