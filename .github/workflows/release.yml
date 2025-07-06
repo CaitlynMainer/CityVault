@@ -110,9 +110,14 @@ jobs:
       - name: Generate changelog
         id: changelog
         run: |
-          echo 'log<<EOF' >> $GITHUB_OUTPUT
-          git log --pretty=format:'- %s' $(git describe --tags --abbrev=0)..HEAD >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
+          if [ -z "${{ steps.prev.outputs.previous_tag }}" ]; then
+            RANGE=""
+          else
+            RANGE="${{ steps.prev.outputs.previous_tag }}..${{ github.ref_name }}"
+          fi
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          git log $RANGE --pretty=format:"- %s" | grep -vEi 'update.*version\\.json|bump.*version\\.json|version\\.json' >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Download Windows launcher
         uses: actions/download-artifact@v4
