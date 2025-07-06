@@ -53,13 +53,22 @@ jobs:
           git log $RANGE --pretty=format:"- %s" | grep -vEi 'update.*version\\.json|bump.*version\\.json|version\\.json' >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      - name: Download launchers from build workflow
+        if: env.IS_TAG == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: launchers
+          path: launchers
+
       - name: Write version.json for ZIP
         run: |
           echo '{ "version": "${{ env.VERSION }}" }' > version.json
 
-      - name: Create ZIP artifact
+      - name: Create ZIP artifact with launchers
         run: |
-          mkdir dist
+          mkdir -p dist/launchers
+          mv launchers/*.zip dist/launchers/ || true
+          mv launchers/*.tar.gz dist/launchers/ || true
           zip -r "dist/cityvault-${{ env.VERSION }}.zip" . -x "*.git*" "node_modules/*"
 
       - name: Debug ZIP output
