@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Support Request Response</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px; }
+      .container { background: white; padding: 20px; border-radius: 8px; max-width: 600px; margin: auto; }
+      blockquote { background: #f1f1f1; padding: 10px; border-left: 5px solid #ccc; margin: 15px 0; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Update on Your Support Request</h2>
+      <p>Hello <%= username %>,</p>
+      <p>A GM has responded to your support request:</p>
+      <blockquote><%= comment %></blockquote>
+      <p><strong>Request summary:</strong> <%= summary %></p>
+    </div>
+  </body>
+</html>

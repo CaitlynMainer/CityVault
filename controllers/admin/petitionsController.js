@@ -3,7 +3,8 @@ const config = require(global.BASE_DIR + '/utils/config');
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 const mapNameLookup = require(global.BASE_DIR + '/utils/mapNameLookup');
-
+const { renderTemplate } = require(global.BASE_DIR + '/services/mail/template');
+const { sendMail } = require(global.BASE_DIR + '/services/mail');
 const { isGM } = require(global.BASE_DIR + '/utils/roles');
 
 const petitionCategories = {
@@ -16,9 +17,8 @@ const petitionCategories = {
 };
 
 async function list(req, res) {
-  if (!isGM(req.user?.role)) {
-    return res.status(403).send('Forbidden');
-  }
+  if (!isGM(req.user?.role)) return res.status(403).send('Forbidden');
+
   const page = parseInt(req.query.page) || 1;
   const pageSize = 25;
   const allPetitions = [];
@@ -47,9 +47,8 @@ async function list(req, res) {
 }
 
 async function view(req, res) {
-  if (!isGM(req.user?.role)) {
-    return res.status(403).send('Forbidden');
-  }
+  if (!isGM(req.user?.role)) return res.status(403).send('Forbidden');
+
   const { serverKey, id } = req.params;
 
   try {
@@ -71,6 +70,7 @@ async function view(req, res) {
 
     petition.MapDisplay = mapData?.FriendlyName || petition.MapName;
     petition.MapContainerId = mapData?.ContainerId || null;
+
     const authPool = await getAuthPool();
     const commentsResult = await authPool.request()
       .input('petitionId', sql.Int, id)
@@ -85,8 +85,35 @@ async function view(req, res) {
 
     res.render('admin/petitions/view', { petition });
   } catch (err) {
-    console.error('Error loading petition:', err);
+    console.error('[View] Error loading petition:', err);
     res.status(500).send('Internal server error');
+  }
+}
+
+async function notifyUserByAuthName(authName, template, subject, templateData) {
+  try {
+    const authPool = await getAuthPool();
+    const userResult = await authPool.request()
+      .input('authName', sql.VarChar(32), authName)
+      .query(`SELECT email, account FROM cohauth.dbo.user_account WHERE account = @authName`);
+
+    if (userResult.recordset.length === 0) {
+      console.warn(`[Notify] No user found with account = ${authName}`);
+      return;
+    }
+
+    const user = userResult.recordset[0];
+
+    if (!user.email) {
+      console.warn('[Notify] No email found, skipping send.');
+      return;
+    }
+
+    const html = await renderTemplate(template, { ...templateData, username: user.account });
+
+    await sendMail({ to: user.email, subject, html });
+  } catch (err) {
+    console.error('[Notify] Failed to send email:', err);
   }
 }
 
@@ -94,9 +121,27 @@ async function markFetched(req, res) {
   const { serverKey, id } = req.params;
   try {
     const pool = await getGamePool(serverKey);
-    await pool.request()
+
+    // Check current value before update
+    const currentResult = await pool.request()
       .input('id', sql.Int, id)
-      .query(`UPDATE dbo.Petitions SET Fetched = 1 WHERE ContainerId = @id`);
+      .query(`SELECT Fetched, AuthName, Summary FROM dbo.Petitions WHERE ContainerId = @id`);
+
+    if (currentResult.recordset.length === 0) {
+      return res.status(404).send('Petition not found');
+    }
+
+    const { Fetched, AuthName, Summary } = currentResult.recordset[0];
+
+    // Only proceed if Fetched was 0
+    if (!Fetched) {
+      await pool.request()
+        .input('id', sql.Int, id)
+        .query(`UPDATE dbo.Petitions SET Fetched = 1 WHERE ContainerId = @id`);
+
+      await notifyUserByAuthName(AuthName, 'petition_in_progress', 'Your support request is being reviewed', { summary: Summary });
+    }
+
     res.redirect(`/admin/petitions/${serverKey}/${id}`);
   } catch (err) {
     console.error('Error marking fetched:', err);
@@ -104,19 +149,39 @@ async function markFetched(req, res) {
   }
 }
 
+
 async function markDone(req, res) {
   const { serverKey, id } = req.params;
   try {
     const pool = await getGamePool(serverKey);
-    await pool.request()
+
+    // Check current value before update
+    const currentResult = await pool.request()
       .input('id', sql.Int, id)
-      .query(`UPDATE dbo.Petitions SET Done = 1 WHERE ContainerId = @id`);
+      .query(`SELECT Done, AuthName, Summary FROM dbo.Petitions WHERE ContainerId = @id`);
+
+    if (currentResult.recordset.length === 0) {
+      return res.status(404).send('Petition not found');
+    }
+
+    const { Done, AuthName, Summary } = currentResult.recordset[0];
+
+    // Only proceed if Done was 0
+    if (!Done) {
+      await pool.request()
+        .input('id', sql.Int, id)
+        .query(`UPDATE dbo.Petitions SET Done = 1 WHERE ContainerId = @id`);
+
+      await notifyUserByAuthName(AuthName, 'petition_completed', 'Your support request has been completed', { summary: Summary });
+    }
+
     res.redirect(`/admin/petitions/${serverKey}/${id}`);
   } catch (err) {
     console.error('Error marking done:', err);
     res.status(500).send('Internal server error');
   }
 }
+
 
 async function toggleStatus(req, res) {
   const { serverKey, id, field } = req.params;
@@ -142,10 +207,10 @@ async function toggleStatus(req, res) {
   }
 }
 
+
 async function addComment(req, res) {
-  if (!isGM(req.user?.role)) {
-    return res.status(403).send('Forbidden');
-  }
+  if (!isGM(req.user?.role)) return res.status(403).send('Forbidden');
+
   const { serverKey, id } = req.params;
   const { comment } = req.body;
   const username = req.session.username;
@@ -155,9 +220,9 @@ async function addComment(req, res) {
   if (!['admin', 'gm'].includes(role)) return res.status(403).send('Permission denied');
 
   try {
-    const pool = await getAuthPool();
+    const authPool = await getAuthPool();
 
-    await pool.request()
+    await authPool.request()
       .input('serverKey', sql.VarChar(32), serverKey)
       .input('petitionId', sql.Int, id)
       .input('author', sql.VarChar(32), username)
@@ -168,9 +233,19 @@ async function addComment(req, res) {
         VALUES (@serverKey, @petitionId, @author, @is_admin, @content)
       `);
 
+    const gamePool = await getGamePool(serverKey);
+    const petitionResult = await gamePool.request()
+      .input('id', sql.Int, id)
+      .query(`SELECT AuthName, Summary FROM dbo.Petitions WHERE ContainerId = @id`);
+
+    if (petitionResult.recordset.length > 0) {
+      const { AuthName, Summary } = petitionResult.recordset[0];
+      await notifyUserByAuthName(AuthName, 'petition_commented', 'A GM has responded to your support request', { comment, summary: Summary });
+    }
+
     res.redirect(`/admin/petitions/${serverKey}/${id}`);
   } catch (err) {
-    console.error(`[ERROR] Failed to add comment:`, err);
+    console.error('[ERROR] Failed to add comment:', err);
     res.status(500).send('Server error');
   }
 }
@@ -178,6 +253,7 @@ async function addComment(req, res) {
 module.exports = {
   list,
   view,
+  notifyUserByAuthName,
   markFetched,
   markDone,
   toggleStatus,
