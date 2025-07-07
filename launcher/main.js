@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
 const axios = require('axios');
@@ -55,20 +55,42 @@ app.whenReady().then(async () => {
   console.log(`[DEBUG] Launcher PID: ${process.pid}`);
   sendLog(`[DEBUG] Launcher PID: ${process.pid}`);
 
-	if (!isDev) {
-	  const updated = await checkAndUpdateLauncherZip();
-	  if (updated) {
-		sendLog('[Updater] Update applied. Restarting...');
-		forceRestart();
-		return;
-	  }
-	}
+  if (!isDev) {
+    const updated = await checkAndUpdateLauncherZip();
+    if (updated) {
+      sendLog('[Updater] Update applied. Restarting...');
+      forceRestart();
+      return;
+    }
+  }
 
+  let forums = [];
+  let websiteUrl = null;
 
-  createWindow();
+  try {
+    const xml = await axios.get(config.manifestUrl).then(r => r.data);
+    const parser = new XMLParser({ ignoreAttributes: false });
+    const parsed = parser.parse(xml);
+
+    websiteUrl = parsed?.manifest?.webpage || null;
+
+    const forumList = parsed?.manifest?.forums?.forum;
+    if (Array.isArray(forumList)) {
+      forums = forumList.map(f => ({ name: f['@_name'], url: f['@_url'] }));
+    } else if (forumList?.['@_name']) {
+      forums = [{ name: forumList['@_name'], url: forumList['@_url'] }];
+    }
+
+    sendLog(`[Menu] Loaded ${forums.length} forum link(s)`);
+    if (websiteUrl) sendLog(`[Menu] Website link: ${websiteUrl}`);
+  } catch (err) {
+    sendLog(`[ERROR] Failed to parse forums/webpage from manifest: ${err.message}`);
+  }
+
+  createWindow(forums, websiteUrl);
 });
 
-function createWindow() {
+function createWindow(forums, websiteUrl) {
   win = new BrowserWindow({
     width: 800,
     height: 700,
@@ -89,10 +111,23 @@ function createWindow() {
     logBuffer = [];
   });
 
-  setupMenu();
+  setupMenu(forums, websiteUrl);
 }
 
-function setupMenu() {
+function setupMenu(forums = [], websiteUrl = null) {
+  const forumMenus = forums.map(forum => ({
+    label: forum.name,
+    click: () => shell.openExternal(forum.url)
+  }));
+
+  const extraMenus = [
+    ...forumMenus,
+    ...(websiteUrl ? [{
+      label: 'Website',
+      click: () => shell.openExternal(websiteUrl)
+    }] : [])
+  ];
+
   const template = [
     {
       label: 'File',
@@ -104,12 +139,15 @@ function setupMenu() {
         { type: 'separator' },
         { role: 'quit' }
       ]
-    }
+    },
+    ...extraMenus // <-- Now top-level entries
   ];
 
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 }
+
+
 
 // Update logic
 function getRemoteHash(url) {
