@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>City of Heroes Launcher</title>
-  <link rel="stylesheet" href="./public/tailwind.css" />
+  <link rel="stylesheet" href="./public/styles.css" />
 </head>
 <body id="launcherBackground" class="text-white font-sans bg-center bg-cover bg-no-repeat min-h-screen">
 
@@ -12,49 +12,54 @@
     ⚙ Settings
   </button>
 
-  <!-- Layout Grid -->
-  <div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-6 relative z-10">
+  <!-- Content Wrapper -->
+  <div class="max-w-6xl mx-auto p-6 relative z-10">
+    <div class="flex flex-col space-y-6"><!-- NEW WRAPPER with vertical spacing -->
 
-    <!-- Left Column -->
-    <div class="flex flex-col gap-6">
+      <!-- Grid Layout -->
+      <div class="grid grid-cols-2 gap-6 items-start">
 
-      <!-- Profiles -->
-      <div class="bg-black/50 backdrop-blur border border-blue-300/20 rounded-lg p-4">
-        <h2 class="text-lg font-bold border-b border-white/20 pb-2">Launch Profiles</h2>
-        <div id="profileList" class="flex flex-col gap-2 mt-3"></div>
-        <button id="launchBtn" class="w-full mt-4 bg-green-500 hover:bg-green-400 text-black font-bold py-2 rounded shadow">
-          ▶ Play
-        </button>
-      </div>
+        <!-- Left Column -->
+        <div class="flex flex-col gap-6">
+          <!-- Profiles -->
+          <div class="bg-black/50 backdrop-blur border border-blue-300/20 rounded-lg p-4">
+            <h2 class="text-lg font-bold border-b border-white/20 pb-2">Launch Profiles</h2>
+            <div id="profileList" class="flex flex-col gap-2 mt-3"></div>
+            <button id="launchBtn" class="w-full mt-4 bg-green-500 hover:bg-green-400 text-black font-bold py-2 rounded shadow">
+              ▶ Play
+            </button>
+          </div>
 
-      <!-- Patch Section -->
-      <div class="bg-black/50 backdrop-blur border border-yellow-300/20 rounded-lg p-4 text-sm text-gray-300">
-        <div id="overallLabel">Progress: 0 / 0</div>
-        <div class="h-3 bg-gray-700 rounded overflow-hidden mt-2">
-          <div id="overallProgress" class="h-full bg-yellow-400 transition-all duration-300" style="width: 0%;"></div>
+          <!-- Patch Section -->
+          <div class="bg-black/50 backdrop-blur border border-yellow-300/20 rounded-lg p-4 text-sm text-gray-300">
+            <div id="overallLabel">Progress: 0 / 0</div>
+            <div class="h-3 bg-gray-700 rounded overflow-hidden mt-2">
+              <div id="overallProgress" class="h-full bg-yellow-400 transition-all duration-300" style="width: 0%;"></div>
+            </div>
+            <button id="patchBtn" class="w-full mt-3 bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-1.5 rounded shadow">
+              🔄 Verify
+            </button>
+          </div>
         </div>
-        <button id="patchBtn" class="w-full mt-3 bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-1.5 rounded shadow">
-          🔄 Verify
-        </button>
+
+        <!-- Right Column -->
+        <div class="flex flex-col h-full justify-between">
+          <!-- News -->
+          <div id="newsPanel" class="flex-grow bg-black/50 backdrop-blur-2xl border border-blue-300/20 rounded-lg p-4">
+            <h2 class="text-xl font-semibold text-yellow-300">Update News</h2>
+            <div id="newsContent" class="mt-2 space-y-2 text-sm text-gray-200 max-h-full overflow-y-auto pr-2">
+              <div>Loading news...</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Right Column -->
-    <div class="flex flex-col gap-6">
-
-    <!-- News -->
-    <div id="newsPanel" class="bg-black/50 backdrop-blur border border-blue-300/20 rounded-lg p-4">
-      <h2 class="text-xl font-semibold text-yellow-300">Update News</h2>
-      <div id="newsContent" class="mt-2 space-y-2 text-sm text-gray-200 max-h-60 overflow-y-auto pr-2">
-        <div>Loading news...</div>
-      </div>
-    </div>
-
-      <!-- Log Box -->
-      <div id="log" class="bg-black/50 border border-gray-700 p-4 rounded-lg h-48 overflow-y-auto whitespace-pre-wrap font-mono text-sm text-gray-200 shadow-inner">
+      <!-- Log Section (now spaced below grid) -->
+      <div id="log" class="flex-grow min-h-full bg-black/50 border backdrop-blur-2xl border-gray-700 p-4 rounded-lg h-48 overflow-y-auto whitespace-pre-wrap font-mono text-sm text-gray-200 shadow-inner">
         <!-- Log entries -->
       </div>
-    </div>
+
+    </div> <!-- /flex flex-col -->
   </div>
 
   <!-- Settings Modal -->

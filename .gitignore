@@ -171,3 +171,5 @@ public/launcher/cityvault-win.zip
 public/launcher/launcher.hash
 public/launcher/launcher.zip
 public/images/Michiyo-ServerIcon-Pride.png
+launcher/debug.txt
+launcher/config.json

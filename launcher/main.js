@@ -13,7 +13,9 @@ const unzipper = require('unzipper');
 
 const isDev = !app.isPackaged;
 
-const configPath = path.join(path.dirname(process.execPath), 'config.json');
+const configPath = isDev
+  ? path.join(__dirname, 'config.json') // local project dir in dev
+  : path.join(path.dirname(process.execPath), 'config.json'); // packaged exe dir in prod
 
 console.log('[CONFIG] Loading config from:', configPath);
 
@@ -53,12 +55,15 @@ app.whenReady().then(async () => {
   console.log(`[DEBUG] Launcher PID: ${process.pid}`);
   sendLog(`[DEBUG] Launcher PID: ${process.pid}`);
 
-  const updated = await checkAndUpdateLauncherZip();
-  if (updated) {
-    sendLog('[Updater] Update applied. Restarting...');
-    forceRestart();
-    return;
-  }
+	if (!isDev) {
+	  const updated = await checkAndUpdateLauncherZip();
+	  if (updated) {
+		sendLog('[Updater] Update applied. Restarting...');
+		forceRestart();
+		return;
+	  }
+	}
+
 
   createWindow();
 });
@@ -66,7 +71,7 @@ app.whenReady().then(async () => {
 function createWindow() {
   win = new BrowserWindow({
     width: 800,
-    height: 650,
+    height: 700,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
