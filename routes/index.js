@@ -40,6 +40,8 @@ router.use('/clear-costume-render', require('./costumeRender'));
 
 //API
 router.use('/api', require('./api/news'));
+router.use('/api/character', require('./api/characterExport'));
+router.use('/api/character', require('./api/characterImport'));
 
 // Debug routes
 router.get('/debug/missing-badges/:serverKey/:dbid', async (req, res) => {

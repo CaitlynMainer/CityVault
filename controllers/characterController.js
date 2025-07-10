@@ -1,5 +1,3 @@
-// Full updated characterController.js using modular characterInfo helpers with privacy check
-
 const sql = require('mssql');
 const path = require('path');
 const fs = require('fs');
@@ -324,7 +322,7 @@ async function showCharacter(req, res) {
       const viewerCheck = await authPool.request()
         .input('viewer', sql.VarChar, viewerUsername)
         .query(`SELECT role FROM dbo.user_account WHERE account = @viewer`);
-      isAdmin = viewerCheck.recordset[0]?.role === 'admin';
+      isAdmin = ['admin', 'gm'].includes(viewerCheck.recordset[0]?.role);
       isOwner = viewerUsername === owner.account;
     }
     await renderFullShot(authPool, pool, serverKey, dbid, character.CurrentCostume, fetchCostumeData);

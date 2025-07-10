@@ -22,6 +22,8 @@ module.exports = function startApp(config) {
   const ensureConfigDefaults = require(global.BASE_DIR + '/utils/ensureConfigDefaults');
   const migrateSessionsToSQLite = require(global.BASE_DIR + '/utils/migrateSessionsToSQLite');  
   const { deployLauncherZip } = require('./utils/deployLauncherZip');
+  const multer = require('multer');
+  const upload = multer({ storage: multer.memoryStorage() });
 
   const sessionsDir = path.join(__dirname, 'sessions');
   const sqlitePath = path.join(__dirname, 'data', 'sessions.sqlite');

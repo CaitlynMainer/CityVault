@@ -1,0 +1,101 @@
+<h2 class="text-xl font-bold mb-4">Import Character</h2>
+
+<% if (message.length) { %>
+  <div class="bg-green-100 text-green-800 p-2 mb-4"><%= message %></div>
+<% } %>
+<% if (error.length) { %>
+  <div class="bg-red-100 text-red-800 p-2 mb-4"><%= error %></div>
+<% } %>
+
+<form method="POST" action="/admin/character-import" enctype="multipart/form-data" class="space-y-4">
+  <div>
+    <label class="block font-semibold">Target Server</label>
+	<select name="serverKey" required class="border px-2 py-1 w-full">
+	  <% servers.forEach(server => { %>
+		<option value="<%= server.key %>"><%= server.label || server.key %></option>
+	  <% }) %>
+	</select>
+  </div>
+
+  <div>
+    <label class="block font-semibold">Target Account</label>
+		<select id="targetAccount" name="targetAccount" required class="border px-2 py-1 w-full">
+		  <% accounts.forEach(account => { %>
+			<option value="<%= account %>"><%= account %></option>
+		  <% }) %>
+		</select>
+  </div>
+
+  <div>
+    <label class="block font-semibold">Character ZIP File</label>
+    <input type="file" name="importZip" required class="border px-2 py-1 w-full" accept=".zip" />
+  </div>
+
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Import Character</button>
+</form>
+<!-- Select2 Bootstrap 4 theme -->
+<link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.4.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+
+<!-- In <head> or layout -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Before </body> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#targetAccount').select2({
+      theme: 'bootstrap-5',
+      placeholder: 'Select or search for an account...',
+      width: '100%'
+    });
+  });
+</script>
+<style>
+  /* The visible selected box */
+  .select2-container--bootstrap-5 .select2-selection--single {
+    background-color: #1e293b; /* slate-800 */
+    color: white;
+    border: 1px solid #334155; /* slate-700 */
+    height: 2.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem; /* rounded-md */
+  }
+
+  .select2-container--bootstrap-5 .select2-selection__rendered {
+    color: white;
+    line-height: 2.25rem;
+  }
+
+  .select2-container--bootstrap-5 .select2-selection__arrow {
+    height: 2.5rem;
+  }
+
+  /* The actual dropdown menu */
+  .select2-container--bootstrap-5 .select2-dropdown {
+    background-color: #1e293b; /* slate-800 */
+    color: white;
+    border: 1px solid #334155;
+  }
+
+  .select2-container--bootstrap-5 .select2-results__option {
+    color: white;
+    background-color: #1e293b; /* match dropdown bg */
+  }
+
+  .select2-container--bootstrap-5 .select2-results__option--highlighted {
+    background-color: #3b82f6 !important; /* blue-500 */
+    color: white;
+  }
+
+  .select2-container--bootstrap-5 .select2-search__field {
+    background-color: #0f172a;
+    color: white;
+  }
+
+  /* Optional: match the border of the search box inside dropdown */
+  .select2-container--bootstrap-5 .select2-search--dropdown {
+    padding: 4px;
+  }
+</style>
+
