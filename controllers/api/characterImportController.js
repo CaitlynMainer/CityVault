@@ -13,7 +13,8 @@ function logToFile(...lines) {
 }
 
 async function importCharacter(req, res) {
-  fs.writeFileSync(logPath, ''); // Clear log
+  console.log('[IMPORT DEBUG] Active character import handler triggered.');
+  fs.writeFileSync(logPath, '');
 
   const { serverKey } = req.params;
   const viewerUsername = req.body.viewerUsername;
@@ -30,7 +31,6 @@ async function importCharacter(req, res) {
       .input('viewer', sql.VarChar, viewerUsername)
       .query(`SELECT role FROM dbo.user_account WHERE account = @viewer`);
     const viewerRole = viewerResult.recordset[0]?.role || '';
-
     if (!['admin', 'gm'].includes(viewerRole)) {
       return res.status(403).send('Only admins or GMs may import characters.');
     }
@@ -45,11 +45,9 @@ async function importCharacter(req, res) {
     const newAuthName = target.account;
 
     const gamePool = await getGamePool(serverKey);
-
     const idResult = await gamePool.request().query(`SELECT MAX(ContainerId) AS maxId FROM dbo.Ents`);
-    let newContainerId = (idResult.recordset[0]?.maxId || 0) + 1;
+    let nextContainerId = (idResult.recordset[0]?.maxId || 0) + 1;
 
-    // Determine costume table(s) present
     const tableCheck = await gamePool.request().query(`
       SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo'
     `);
@@ -60,7 +58,6 @@ async function importCharacter(req, res) {
     const zip = new AdmZip(zipFile.buffer);
     const entries = zip.getEntries();
 
-    // Sort so Ents_0.json comes first
     entries.sort((a, b) => {
       const aName = a.entryName.toLowerCase();
       const bName = b.entryName.toLowerCase();
@@ -70,7 +67,8 @@ async function importCharacter(req, res) {
     });
 
     const inserted = {};
-    let finalName = null;
+    const importedNames = [];
+    const prefixToContainerId = new Map();
 
     for (const entry of entries) {
       if (entry.isDirectory) continue;
@@ -78,9 +76,9 @@ async function importCharacter(req, res) {
       const match = entry.entryName.match(/(?:([^/\\]+)\/)?([A-Za-z0-9_]+)_(\d+)\.json$/);
       if (!match) continue;
 
-      const [, , table, index] = match;
+      const [ , prefixRaw, table, index ] = match;
+      const prefix = prefixRaw || 'default';
 
-      // Skip costume tables that aren't valid for this server
       if (table === 'Costumes' && !hasCostumes) continue;
       if (table === 'CostumeParts' && !hasCostumeParts) continue;
 
@@ -98,7 +96,6 @@ async function importCharacter(req, res) {
         }
       }
 
-      // Fix known SGColorMap issue: string instead of binary
       if (
         typeof rowData.SGColorMap === 'string' &&
         /^[0-9a-fA-F]+$/.test(rowData.SGColorMap)
@@ -117,7 +114,6 @@ async function importCharacter(req, res) {
         const baseName = rowData.Name || `Imported${Date.now()}`;
         let tryName = baseName;
         let suffix = 1;
-
         while (true) {
           const check = await gamePool.request()
             .input('name', sql.VarChar, tryName)
@@ -127,18 +123,23 @@ async function importCharacter(req, res) {
         }
 
         rowData.Name = tryName;
-        finalName = tryName;
+
+        // We'll assign a temp ContainerId for now, update it after insert
+        rowData.ContainerId = nextContainerId;
+        prefixToContainerId.set(prefix, nextContainerId);
       }
 
-      // Always apply new ContainerId/AuthId/AuthName
-      if ('ContainerId' in rowData) rowData.ContainerId = newContainerId;
+      // For all rows, assign ContainerId/Auth
+      const containerId = prefixToContainerId.get(prefix);
+      if ('ContainerId' in rowData) rowData.ContainerId = containerId;
       if ('AuthId' in rowData) rowData.AuthId = newAuthId;
       if ('AuthName' in rowData) rowData.AuthName = newAuthName;
 
       let columns = Object.keys(rowData);
       let values = Object.values(rowData);
 
-      if (table === 'Ents') {
+      const skipInsertContainerId = table === 'Ents';
+      if (skipInsertContainerId) {
         const idx = columns.indexOf('ContainerId');
         if (idx !== -1) {
           columns.splice(idx, 1);
@@ -174,25 +175,35 @@ async function importCharacter(req, res) {
         logToFile(`[${table}_${index}] OK`, inlineSql);
         if (table === 'Ents') {
           const result = await request.query(`${sqlQuery}; SELECT SCOPE_IDENTITY() AS newId`);
-          newContainerId = (result.recordsets?.[1]?.[0]?.newId)
-                        ?? (result.recordsets?.[0]?.[0]?.newId)
-                        ?? null;
+          const newId =
+            (result.recordsets?.[1]?.[0]?.newId) ??
+            (result.recordsets?.[0]?.[0]?.newId) ??
+            null;
+          if (newId) prefixToContainerId.set(prefix, newId);
+          nextContainerId = Math.max(nextContainerId, newId + 1);
+
+          if (!inserted.Ents) inserted.Ents = [];
+          inserted.Ents.push(rowData.Name);
+          importedNames.push(rowData.Name);
         } else {
           await request.query(sqlQuery);
+          if (!inserted[table]) inserted[table] = [];
+          inserted[table].push(`Row_${index}`);
         }
       } catch (err) {
         logToFile(`[${table}_${index}] ERROR: ${err.message}`, inlineSql);
       }
     }
 
+    const importedCount = importedNames.length;
     return res.send({
       success: true,
-      message: `Character imported as ContainerId ${newContainerId}`,
-      newContainerId,
-      finalName,
+      message: `Imported ${importedCount} character${importedCount !== 1 ? 's' : ''} to account ${newAuthName}: ${importedNames.join(', ')}`,
+      newContainerId: null, // not meaningful anymore
       targetAccount: newAuthName,
-      inserted
+      imported: inserted
     });
+
   } catch (err) {
     console.error('[Character Import Error]', err);
     return res.status(500).send('Server error during import.');

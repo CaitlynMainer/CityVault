@@ -42,13 +42,6 @@ async function handleImportSubmit(req, res) {
   const zipFile = req.file;
   const { serverKey, targetAccount } = req.body;
 
-  console.log('[DEBUG] session:', session);
-  console.log('[DEBUG] username:', session?.username);
-  console.log('[DEBUG] zipFile:', zipFile);
-  console.log('[DEBUG] serverKey:', serverKey);
-  console.log('[DEBUG] targetAccount:', targetAccount);
-  console.log('[DEBUG] req.body:', req.body);
-
   if (!session?.username) return res.redirect('/login');
   if (!['admin', 'gm'].includes(session.role)) return res.status(403).send('Forbidden');
 
@@ -72,14 +65,14 @@ async function handleImportSubmit(req, res) {
     });
 
     const apiUrl = `${req.protocol}://${req.get('host')}/api/character/import/${serverKey}`;
-    console.log('[DEBUG] Posting to API URL:', apiUrl);
+    //console.log('[DEBUG] Posting to API URL:', apiUrl);
 
     const response = await axios.post(apiUrl, form, {
       headers: form.getHeaders(),
       maxBodyLength: Infinity
     });
 
-    req.flash('success', `Imported character as ContainerId ${response.data.newContainerId}`);
+    req.flash('success', response.data.message || `Imported character as ContainerId ${response.data.newContainerId}`);
   } catch (err) {
     console.error('[Import Submit Error]', err.response?.data || err.message);
     req.flash('error', 'Import failed. Check console for details.');
