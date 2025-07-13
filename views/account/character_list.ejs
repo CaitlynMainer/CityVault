@@ -18,7 +18,13 @@
       <div><strong>Logins: </strong><%= t.totalLogins.toLocaleString() %></div>
       <div><strong>Hours Played: </strong><%= t.totalHours.toLocaleString() %></div>
     </div>
+	<h2><%= serverKey %> Server</h2>
+		<form method="POST" action="/account/export/<%= serverKey %>">
+		<button type="submit" class="btn btn-sm btn-primary">Export All Characters</button>
+	</form>
   <% } %>
+
+
   
   <div class="character-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
     <% characters.forEach(character => { %>
