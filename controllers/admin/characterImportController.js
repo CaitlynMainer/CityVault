@@ -4,6 +4,8 @@ const FormData = require('form-data');
 const { getAuthPool } = require(global.BASE_DIR + '/db');
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
+const path = require('path');
+const fs = require('fs-extra');
 
 function loadServerList() {
   const config = require(global.BASE_DIR + '/data/config.json');
@@ -37,6 +39,10 @@ async function showImportForm(req, res) {
   });
 }
 
+function generateUUID() {
+  return crypto.randomUUID();
+}
+
 async function handleImportSubmit(req, res) {
   const session = req.session;
   const zipFile = req.file;
@@ -45,44 +51,50 @@ async function handleImportSubmit(req, res) {
   if (!session?.username) return res.redirect('/login');
   if (!['admin', 'gm'].includes(session.role)) return res.status(403).send('Forbidden');
 
-  if (!serverKey || !targetAccount) {
-    req.flash('error', 'Server key and account are required.');
+  if (!serverKey || !targetAccount || !zipFile) {
+    req.flash('error', 'Missing required fields.');
     return res.redirect('/admin/character-import');
   }
 
-  if (!zipFile) {
-    req.flash('error', 'ZIP file is missing.');
-    return res.redirect('/admin/character-import');
-  }
+  const taskId = generateUUID();
+  const zipPath = path.join(global.importTmpDir, `${taskId}.zip`);
 
-  try {
-    const form = new FormData();
-    form.append('targetAccount', targetAccount);
-    form.append('viewerUsername', session.username);
-    form.append('importZip', zipFile.buffer, {
-      filename: zipFile.originalname,
-      contentType: zipFile.mimetype
-    });
+  await fs.writeFile(zipPath, zipFile.buffer);
 
-    const apiUrl = `${req.protocol}://${req.get('host')}/api/character/import/${serverKey}`;
-    //console.log('[DEBUG] Posting to API URL:', apiUrl);
+  global.characterImportTasks.set(taskId, {
+    status: 'in_progress',
+    message: null,
+    error: null
+  });
 
-    const response = await axios.post(apiUrl, form, {
-      headers: form.getHeaders(),
-      maxBodyLength: Infinity
-    });
+  // Launch background import
+  const { importCharacterFromFile } = require(global.BASE_DIR + '/controllers/api/characterImportController');
+  importCharacterFromFile({
+    zipPath,
+    serverKey,
+    viewerUsername: session.username,
+    targetAccount,
+    taskId
+  });
 
-    req.flash('success', response.data.message || `Imported character as ContainerId ${response.data.newContainerId}`);
-  } catch (err) {
-    console.error('[Import Submit Error]', err.response?.data || err.message);
-    req.flash('error', 'Import failed. Check console for details.');
-  }
-
-  res.redirect('/admin/character-import');
+  res.redirect(`/admin/character-import/status/${taskId}`);
 }
 
+function showImportStatusPage(req, res) {
+  const { taskId } = req.params;
+
+  if (!global.characterImportTasks.has(taskId)) {
+    return res.status(404).render('error', {
+      title: 'Import Not Found',
+      message: 'No import task exists for that ID.'
+    });
+  }
+
+  res.render('admin/character-import-status', { taskId });
+}
 
 module.exports = {
   showImportForm,
-  handleImportSubmit
+  handleImportSubmit,
+  showImportStatusPage
 };

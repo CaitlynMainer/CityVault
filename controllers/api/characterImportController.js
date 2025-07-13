@@ -2,7 +2,7 @@ const multer = require('multer');
 const AdmZip = require('adm-zip');
 const sql = require('mssql');
 const { getGamePool, getAuthPool } = require(global.BASE_DIR + '/db');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 const logPath = path.join(__dirname, '../../logs/character-import.log');
@@ -107,27 +107,25 @@ async function importCharacter(req, res) {
         }
       }
 
-      if (table === 'Ents') {
-        rowData.AuthId = newAuthId;
-        rowData.AuthName = newAuthName;
+      const baseNameRaw = rowData.Name || `Imported${Date.now()}`;
+      const maxLength = 20;
+      let suffix = 1;
+      let tryName = baseNameRaw;
 
-        const baseName = rowData.Name || `Imported${Date.now()}`;
-        let tryName = baseName;
-        let suffix = 1;
-        while (true) {
-          const check = await gamePool.request()
-            .input('name', sql.VarChar, tryName)
-            .query(`SELECT COUNT(*) AS count FROM dbo.Ents WHERE Name = @name`);
-          if (check.recordset[0].count === 0) break;
-          tryName = `${baseName}${suffix++}`;
-        }
+      while (true) {
+        const suffixStr = suffix === 1 ? '' : String(suffix);
+        const truncatedBase = baseNameRaw.slice(0, maxLength - suffixStr.length);
+        tryName = truncatedBase + suffixStr;
 
-        rowData.Name = tryName;
+        const check = await gamePool.request()
+          .input('name', sql.VarChar, tryName)
+          .query(`SELECT COUNT(*) AS count FROM dbo.Ents WHERE Name = @name`);
 
-        // We'll assign a temp ContainerId for now, update it after insert
-        rowData.ContainerId = nextContainerId;
-        prefixToContainerId.set(prefix, nextContainerId);
+        if (check.recordset[0].count === 0) break;
+        suffix++;
       }
+
+      rowData.Name = tryName;
 
       // For all rows, assign ContainerId/Auth
       const containerId = prefixToContainerId.get(prefix);
@@ -210,6 +208,50 @@ async function importCharacter(req, res) {
   }
 }
 
+async function importCharacterFromFile({ zipPath, serverKey, viewerUsername, targetAccount, taskId }) {
+  try {
+    const buffer = await fs.readFile(zipPath);
+    const reqMock = {
+      file: { buffer },
+      params: { serverKey },
+      body: { viewerUsername, targetAccount }
+    };
+
+    const resMock = {
+      send: (data) => {
+        global.characterImportTasks.set(taskId, {
+          status: 'done',
+          message: data.message,
+          result: data
+        });
+      },
+      status: function(code) {
+        this._status = code;
+        return this;
+      },
+      json: (data) => {
+        global.characterImportTasks.set(taskId, {
+          status: 'error',
+          message: `Failed: ${data}`,
+          error: data
+        });
+      }
+    };
+
+    await importCharacter(reqMock, resMock);
+  } catch (err) {
+    console.error(`[Import Task ${taskId}]`, err);
+    global.characterImportTasks.set(taskId, {
+      status: 'error',
+      message: err.message,
+      error: err
+    });
+  } finally {
+    fs.remove(zipPath).catch(() => {});
+  }
+}
+
 module.exports = {
-  importCharacter
+  importCharacter,
+  importCharacterFromFile
 };

@@ -3,16 +3,16 @@ const router = express.Router();
 const loadController = require(global.BASE_DIR + '/utils/loadController');
 const multer = require('multer');
 
-// Load controller functions
-const { showImportForm, handleImportSubmit } = loadController('admin/characterImportController');
+const { showImportForm, handleImportSubmit, showImportStatusPage } = loadController('admin/characterImportController');
+const { getImportStatus } = loadController('api/importStatusController');
 
-// Configure Multer to store file in memory
 const upload = multer({ storage: multer.memoryStorage() });
 
-// Route to show the form
 router.get('/', showImportForm);
-
-// Route to handle the form submission with file upload
 router.post('/', upload.single('importZip'), handleImportSubmit);
+
+router.get('/status/:taskId', showImportStatusPage);
+
+router.get('/import/status/:taskId', getImportStatus);
 
 module.exports = router;

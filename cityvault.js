@@ -1,7 +1,7 @@
 module.exports = function startApp(config) {
   global.BASE_DIR = __dirname;
 
-  const fs = require('fs');
+  const fs = require('fs-extra');
   const express = require('express');
   const path = require('path');
   const session = require('express-session');
@@ -27,6 +27,13 @@ module.exports = function startApp(config) {
 
   const sessionsDir = path.join(__dirname, 'sessions');
   const sqlitePath = path.join(__dirname, 'data', 'sessions.sqlite');
+
+  const tmpDir = path.join(__dirname, 'tmp', 'imports');
+  fs.ensureDirSync(tmpDir);
+  fs.emptyDirSync(tmpDir); // 💥 Clear all previous uploads
+
+  global.characterImportTasks = new Map(); // TaskID → { status, message, ... }
+  global.importTmpDir = tmpDir;
 
   migrateSessionsToSQLite(sessionsDir, sqlitePath);
   

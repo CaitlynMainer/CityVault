@@ -1,0 +1,11 @@
+<h2>Importing...</h2>
+<div id="statusBox">Initializing...</div>
+
+<script src="/js/importStatus.js"></script>
+<script>
+  const taskId = "<%= taskId %>";
+  checkImportStatus(taskId);
+</script>
+<div id="doneActions" style="display:none; margin-top: 1em;">
+  <a href="/admin/character-import" class="btn btn-primary">← Back to Character Import</a>
+</div>
