@@ -84,7 +84,7 @@ async function showCharacterList(req, res) {
       }
     }
 
-	res.render('character_list', { charactersByServer, totalsByServer, stringClean });
+	res.render('account/character_list', { charactersByServer, totalsByServer, stringClean });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error loading character list');

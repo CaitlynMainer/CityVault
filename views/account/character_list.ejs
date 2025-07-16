@@ -1,0 +1,147 @@
+<% Object.entries(charactersByServer).forEach(([serverKey, characters]) => { %>
+  <h2 style="margin-top: 24px; font-size: 20px; color: #eee;"><%= serverKey.toUpperCase() %></h2>
+
+  <!-- Toggle Details -->
+  <a href="javascript:void(0)"
+     onclick="document.getElementById('stats-<%= serverKey %>').classList.toggle('hidden')"
+     style="display: inline-block; font-size: 14px; color:#eee; margin: 2px 0 8px;">
+    Toggle Details
+  </a>
+
+  <!-- Shard Stats Wrapper (hidden until toggled) -->
+  <% const t = totalsByServer && totalsByServer[serverKey] ? totalsByServer[serverKey] : null; %>
+  <% if (t) { %>
+    <div id="stats-<%= serverKey %>"
+         class="hidden flex flex-wrap"
+         style="font-size: 14px; color: #ccc; gap: 2rem; margin: 4px 0 12px;">
+      <div><strong>Characters: </strong><%= t.totalCharacters.toLocaleString() %></div>
+      <div><strong>Logins: </strong><%= t.totalLogins.toLocaleString() %></div>
+      <div><strong>Hours Played: </strong><%= t.totalHours.toLocaleString() %></div>
+	  <form method="POST" action="/account/character-export">
+		<input type="hidden" name="serverKey" value="<%= serverKey %>">
+		<button class="btn btn-sm btn-secondary">Export All</button>
+	  </form>
+    </div>
+  <% } %>
+
+
+  
+  <div class="character-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
+    <% characters.forEach(character => { %>
+		<div class="character-card"
+			 style="
+			   background-image: url('/<%= character.bgPath %>');
+			   background-size: cover;
+			   background-repeat: no-repeat;
+			   background-position: center;
+			   padding: 12px;
+			   border-radius: 8px;
+			   text-align: center;
+			   color: #ccc;
+			   transition: background 0.2s;
+			   position: relative;
+			   z-index: 1;
+			 ">
+          <a href="/character/<%= serverKey %>:<%= character.ContainerId %>" style="text-decoration: none; position: absolute; inset: 0; z-index: 2;"></a>
+		  <!-- Optional dark overlay for readability -->
+		  <div style="
+				position: absolute;
+				inset: 0;
+				background: rgba(0,0,0,0.6);
+				border-radius: 8px;
+				z-index: 0;
+			  "></div>
+
+		  <div style="position: relative; z-index: 1;">
+			<img
+			  src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %><%= character.CurrentCostume && character.CurrentCostume !== 0 ? `_${character.CurrentCostume}` : '' %>.png?v=<%= Date.now() %>"
+			  onerror="this.onerror=null;this.src='/images/portrait/placeholder.png';"
+			  alt="<%= character.Name %>"
+			  style="width: 100%; border-radius: 4px; margin-bottom: 8px; object-fit: cover; object-position: top; aspect-ratio: 4/5;">
+			<h3 style="margin: 0 0 4px 0; font-size: 18px; color: #fff;"><%= stringClean(character.Name) %></h3>
+			<p style="margin: 0 0 8px; font-size: 14px; color: #ddd;">
+			  Level <%= character.Level %>
+			</p>
+			<div style="display: flex; justify-content: center; gap: 6px; margin-bottom: 4px;">
+			  <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" title="<%= character.alignment %>" height="24">
+			  <img src="/images/icons/<%= character.OriginName.toLowerCase() %>.png" title="<%= character.OriginName %>" height="24">
+			  <img src="/images/icons/<%= character.ClassName.toLowerCase() %>.png" title="<%= character.ClassName %>" height="24">
+			</div>
+		  </div>
+		</div>
+    <% }); %>
+  </div>
+<% }); %>
+
+
+<script>
+  document.querySelectorAll('.export-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const serverKey = form.dataset.server;
+
+      try {
+        const res = await fetch('/api/character/export/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ serverKey })
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.taskId) {
+          alert('Failed to start export: ' + (data.message || 'Unknown error'));
+          return;
+        }
+
+        const taskId = data.taskId;
+        pollExportStatus(taskId);
+      } catch (err) {
+        console.error('[Export Error]', err);
+        alert('Unexpected error starting export.');
+      }
+    });
+  });
+
+  async function pollExportStatus(taskId) {
+    const pollInterval = 1000;
+    const maxTries = 300;
+    let tries = 0;
+
+    const poll = setInterval(async () => {
+      tries++;
+      if (tries > maxTries) {
+        clearInterval(poll);
+        alert('Export timed out.');
+        return;
+      }
+
+      const res = await fetch(`/api/character/export/status/${taskId}`);
+      if (res.status === 404) return; // Not ready yet
+
+      const contentType = res.headers.get('Content-Type');
+
+      if (contentType && contentType.includes('application/zip')) {
+        clearInterval(poll);
+
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'characters.zip';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      try {
+        const json = await res.json();
+        console.log(`[Export] ${json.status}: ${json.message}`);
+        // Optional: update a status div
+      } catch (e) {
+        console.warn('Unexpected response from status endpoint');
+      }
+    }, pollInterval);
+  }
+</script>
