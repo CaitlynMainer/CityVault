@@ -17,7 +17,7 @@
       <% petitions.forEach(p => { %>
         <tr class="hover:bg-gray-800 transition">
           <td class="px-4 py-2 border-b border-gray-700"><%= new Date(p.Date).toLocaleString() %></td>
-          <td class="px-4 py-2 border-b border-gray-700 text-xs"><%= p.serverKey %></td>
+          <td class="px-4 py-2 border-b border-gray-700 text-xs"><%= p.server %></td>
           <td class="px-4 py-2 border-b border-gray-700 text-yellow-300"><%= p.Summary %></td>
           <td class="px-4 py-2 border-b border-gray-700">
             <% if (p.Done) { %>
