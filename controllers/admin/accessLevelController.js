@@ -16,10 +16,10 @@ async function updateAccessLevel(req, res) {
         WHERE ContainerId = @cid
       `);
 
-    res.redirect('back');
+    res.redirect(req.get('Referrer') || '/');
   } catch (err) {
     console.error('[updateAccessLevel]', err);
-    res.redirect('back');
+    res.redirect(req.get('Referrer') || '/');
   }
 }
 
