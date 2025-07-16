@@ -17,11 +17,11 @@
       <div><strong>Characters: </strong><%= t.totalCharacters.toLocaleString() %></div>
       <div><strong>Logins: </strong><%= t.totalLogins.toLocaleString() %></div>
       <div><strong>Hours Played: </strong><%= t.totalHours.toLocaleString() %></div>
+	  <form method="POST" action="/account/character-export">
+		<input type="hidden" name="serverKey" value="<%= serverKey %>">
+		<button class="btn btn-sm btn-secondary">Export All</button>
+	  </form>
     </div>
-	<h2><%= serverKey %> Server</h2>
-		<form method="POST" action="/account/export/<%= serverKey %>">
-		<button type="submit" class="btn btn-sm btn-primary">Export All Characters</button>
-	</form>
   <% } %>
 
 
@@ -72,3 +72,76 @@
     <% }); %>
   </div>
 <% }); %>
+
+
+<script>
+  document.querySelectorAll('.export-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const serverKey = form.dataset.server;
+
+      try {
+        const res = await fetch('/api/character/export/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ serverKey })
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.taskId) {
+          alert('Failed to start export: ' + (data.message || 'Unknown error'));
+          return;
+        }
+
+        const taskId = data.taskId;
+        pollExportStatus(taskId);
+      } catch (err) {
+        console.error('[Export Error]', err);
+        alert('Unexpected error starting export.');
+      }
+    });
+  });
+
+  async function pollExportStatus(taskId) {
+    const pollInterval = 1000;
+    const maxTries = 300;
+    let tries = 0;
+
+    const poll = setInterval(async () => {
+      tries++;
+      if (tries > maxTries) {
+        clearInterval(poll);
+        alert('Export timed out.');
+        return;
+      }
+
+      const res = await fetch(`/api/character/export/status/${taskId}`);
+      if (res.status === 404) return; // Not ready yet
+
+      const contentType = res.headers.get('Content-Type');
+
+      if (contentType && contentType.includes('application/zip')) {
+        clearInterval(poll);
+
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'characters.zip';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      try {
+        const json = await res.json();
+        console.log(`[Export] ${json.status}: ${json.message}`);
+        // Optional: update a status div
+      } catch (e) {
+        console.warn('Unexpected response from status endpoint');
+      }
+    }, pollInterval);
+  }
+</script>

@@ -1,0 +1,76 @@
+<div class="container">
+  <h1 class="page-title">Export Status</h1>
+
+  <div id="statusBox">Checking status...</div>
+  <progress id="exportProgress" value="0" max="1" style="width: 100%; display: none; margin-top: 10px;"></progress>
+
+  <div id="doneActions" style="display: none; margin-top: 20px;">
+    <a id="downloadLink" href="#" class="btn btn-success" download>Download Export</a>
+  </div>
+</div>
+
+<script>
+  let retryCount = 0;
+  const maxRetries = 300; // 15 minutes @ 3s intervals
+  const interval = 3000;
+
+  function checkExportStatus(taskId) {
+    fetch(`/api/character/export/status/${taskId}`)
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log('[ExportStatus]', data);
+
+        const box = document.getElementById('statusBox');
+        const doneActions = document.getElementById('doneActions');
+        const downloadLink = document.getElementById('downloadLink');
+        const progressBar = document.getElementById('exportProgress');
+
+        if (data.status === 'in_progress') {
+          const total = data.total ?? '?';
+          const completed = data.completed ?? 0;
+
+          box.innerText = `Exporting... (${completed} of ${total})`;
+
+          if (typeof data.total === 'number') {
+            progressBar.max = data.total;
+            progressBar.value = completed;
+            progressBar.style.display = 'block';
+          }
+
+          retryCount++;
+          if (retryCount < maxRetries) {
+            setTimeout(() => checkExportStatus(taskId), interval);
+          } else {
+            box.innerHTML = `
+              Timed out after ${(retryCount * interval / 1000 / 60).toFixed(1)} minutes.<br>
+              <button id="resumeExportBtn" class="btn btn-warning" style="margin-top: 10px;">Keep Waiting</button>
+            `;
+            progressBar.style.display = 'none';
+            document.getElementById('resumeExportBtn').onclick = () => {
+              retryCount = 0;
+              checkExportStatus(taskId);
+            };
+          }
+        } else if (data.status === 'done') {
+          box.innerText = data.message || 'Export completed.';
+          downloadLink.href = data.path;
+          doneActions.style.display = 'block';
+          progressBar.style.display = 'none';
+        } else {
+          box.innerText = data.message || 'An error occurred.';
+          doneActions.style.display = 'none';
+          progressBar.style.display = 'none';
+        }
+      })
+      .catch(err => {
+        console.error('[ExportStatus ERROR]', err);
+        document.getElementById('statusBox').innerText = 'Status check failed.';
+        document.getElementById('exportProgress').style.display = 'none';
+      });
+  }
+
+  checkExportStatus("<%= taskId %>");
+</script>

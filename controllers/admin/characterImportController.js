@@ -53,7 +53,7 @@ async function handleImportSubmit(req, res) {
 
   if (!serverKey || !targetAccount || !zipFile) {
     req.flash('error', 'Missing required fields.');
-    return res.redirect('/admin/character-import');
+    return res.redirect('/admin/characterimport');
   }
 
   const taskId = generateUUID();
@@ -77,7 +77,7 @@ async function handleImportSubmit(req, res) {
     taskId
   });
 
-  res.redirect(`/admin/character-import/status/${taskId}`);
+  res.redirect(`/admin/characterimport/status/${taskId}`);
 }
 
 function showImportStatusPage(req, res) {

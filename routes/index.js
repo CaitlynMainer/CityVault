@@ -28,7 +28,8 @@ router.get('/supergroup/:id', showSupergroup);
 router.get('/account/characters', showCharacterList);
 router.get('/profile/:authId', showPublicProfile);
 
-router.use('/account/petitions', require('./accounts/petitions'));
+router.use('/account/petitions', require('./account/petitions'));
+router.use('/account/character-export', require('./account/characterExport'));
 
 // Admin routes (under /admin/)
 router.use('/admin', require('./admin'));
@@ -40,8 +41,9 @@ router.use('/clear-costume-render', require('./costumeRender'));
 
 //API
 router.use('/api', require('./api/news'));
-router.use('/api/character', require('./api/characterExport'));
-router.use('/api/character', require('./api/characterImport'));
+router.use('/api/character/export', require('./api/characterExport'));
+router.use('/api/character/import', require('./api/characterImport'));
+
 
 // Debug routes
 router.get('/debug/missing-badges/:serverKey/:dbid', async (req, res) => {

@@ -14,7 +14,7 @@ router.use('/download-update', require('./update'));
 router.use('/templates', require('./templates'));
 router.use('/servers', require('./servers'));
 router.use('/petitions', require('./petitions'));
-router.use('/character-import', require('./characterImport'));
+router.use('/characterimport', require('./characterImport'));
 
 
 module.exports = router;

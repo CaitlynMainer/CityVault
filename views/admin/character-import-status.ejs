@@ -1,11 +1,57 @@
 <h2>Importing...</h2>
+
 <div id="statusBox">Initializing...</div>
 
-<script src="/js/importStatus.js"></script>
+<div id="progressContainer" style="margin-top: 1em; display: none;">
+  <div style="width: 100%; background: #eee; border: 1px solid #ccc; border-radius: 4px;">
+    <div id="progressBar" style="width: 0%; background: #007bff; height: 20px; border-radius: 4px;"></div>
+  </div>
+  <div id="progressText" style="margin-top: 0.5em; font-size: 0.9em;"></div>
+</div>
+
 <script>
   const taskId = "<%= taskId %>";
+
+  function checkImportStatus(taskId) {
+    fetch(`/api/character/import/status/${taskId}`)
+      .then(res => res.json())
+      .then(data => {
+        const box = document.getElementById('statusBox');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const doneActions = document.getElementById('doneActions');
+
+        if (data.status === 'in_progress') {
+          box.innerText = "Still importing...";
+
+          if (data.total && data.completed != null) {
+            const percent = Math.floor((data.completed / data.total) * 100);
+            progressContainer.style.display = 'block';
+            progressBar.style.width = percent + '%';
+            progressText.innerText = `${data.completed} / ${data.total} entries imported (${percent}%)`;
+          }
+
+          setTimeout(() => checkImportStatus(taskId), 3000);
+        } else if (data.status === 'done') {
+          box.innerText = data.message || 'Import completed.';
+          progressBar.style.width = '100%';
+          progressText.innerText = 'Import complete!';
+          progressContainer.style.display = 'block';
+          doneActions.style.display = 'block';
+        } else {
+          box.innerText = data.message || 'An error occurred.';
+          doneActions.style.display = 'block';
+        }
+      })
+      .catch(err => {
+        document.getElementById('statusBox').innerText = 'Status check failed.';
+      });
+  }
+
   checkImportStatus(taskId);
 </script>
-<div id="doneActions" style="display:none; margin-top: 1em;">
-  <a href="/admin/character-import" class="btn btn-primary">← Back to Character Import</a>
+
+<div id="doneActions" style="display: none; margin-top: 1em;">
+  <a href="/admin/characterimport" class="btn btn-primary">← Back to Character Import</a>
 </div>

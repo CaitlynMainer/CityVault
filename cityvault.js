@@ -30,10 +30,18 @@ module.exports = function startApp(config) {
 
   const tmpDir = path.join(__dirname, 'tmp', 'imports');
   fs.ensureDirSync(tmpDir);
-  fs.emptyDirSync(tmpDir); // 💥 Clear all previous uploads
+  fs.emptyDirSync(tmpDir); 
 
   global.characterImportTasks = new Map(); // TaskID → { status, message, ... }
   global.importTmpDir = tmpDir;
+
+  const exportTmpDir = path.join(__dirname, 'tmp', 'exports');
+  fs.ensureDirSync(exportTmpDir);
+  fs.emptyDirSync(exportTmpDir);
+  global.characterExportTasks = new Map();
+  global.exportTmpDir = exportTmpDir;
+  fs.ensureDirSync(path.join(__dirname, 'public', 'exports'));
+
 
   migrateSessionsToSQLite(sessionsDir, sqlitePath);
   
@@ -80,6 +88,7 @@ module.exports = function startApp(config) {
     }
     next();
   });
+  
 
   app.use(require('./middleware/attachUserInfo'));
   const logDir = path.join(__dirname, 'logs');

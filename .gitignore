@@ -174,3 +174,5 @@ public/images/Michiyo-ServerIcon-Pride.png
 launcher/debug.txt
 launcher/config.json
 scripts/diff-report.txt
+/tmp
+/renders

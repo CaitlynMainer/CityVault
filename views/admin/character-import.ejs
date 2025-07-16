@@ -7,7 +7,7 @@
   <div class="bg-red-100 text-red-800 p-2 mb-4"><%= error %></div>
 <% } %>
 
-<form method="POST" action="/admin/character-import" enctype="multipart/form-data" class="space-y-4">
+<form method="POST" action="/admin/characterimport" enctype="multipart/form-data" class="space-y-4">
   <div>
     <label class="block font-semibold">Target Server</label>
 	<select name="serverKey" required class="border px-2 py-1 w-full">
@@ -51,6 +51,40 @@
     });
   });
 </script>
+
+<div class="bg-white shadow rounded p-6 text-gray-800 max-w-3xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">Character Import Instructions</h2>
+
+  <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6">
+    <p class="font-semibold">⚠️ Warning: Incompatible Data Versions</p>
+    <p>
+      Do <strong>not</strong> import characters between servers using different data versions (e.g., I24 → I25).
+      Doing so may result in <strong>broken or unplayable characters</strong>. Always ensure both the export and import target servers are using the same data version.
+    </p>
+  </div>
+
+  <h3 class="text-xl font-semibold mb-2">How to Import Characters</h3>
+  <ol class="list-decimal list-inside mb-4 space-y-1">
+    <li>Select the <strong>target server</strong> you want to import characters to.</li>
+    <li>Choose a <strong>user account</strong> to assign the characters to.</li>
+    <li>Upload a ZIP file containing the exported character data. Each character must have a folder with their data files (e.g., <code>Ents_0.json</code>).</li>
+    <li>Click <strong>Start Import</strong> to begin the process. You can monitor progress on the next screen.</li>
+  </ol>
+
+  <h3 class="text-xl font-semibold mb-2">Import Notes</h3>
+  <ul class="list-disc list-inside space-y-1">
+    <li>Only characters with valid <code>Ents2</code> entries will be imported.</li>
+    <li>Supergroup, Taskforce, and MapGroup-related data is <strong>not imported</strong>.</li>
+    <li>Character names will be automatically adjusted to avoid conflicts.</li>
+    <li>Invalid fields or missing tables will be skipped silently and logged.</li>
+  </ul>
+
+  <p class="mt-4 text-sm text-gray-600">
+    For best results, export and import characters between servers using the <strong>same data version</strong> (e.g., I24 → I24).
+  </p>
+</div>
+
+
 <style>
   /* The visible selected box */
   .select2-container--bootstrap-5 .select2-selection--single {

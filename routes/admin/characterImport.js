@@ -16,3 +16,10 @@ router.get('/status/:taskId', showImportStatusPage);
 router.get('/import/status/:taskId', getImportStatus);
 
 module.exports = router;
+
+// Add this for route metadata
+module.exports.meta = {
+  label: 'Character Import',
+  icon: '🗃️',
+  access: ['admin']
+};
