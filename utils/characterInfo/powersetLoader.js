@@ -12,7 +12,7 @@ async function getPoolsAndAncillaries(pool, containerId, buildNum = null) {
     FROM Powers p
     JOIN Attributes a ON p.PowerSetName = a.id
     WHERE p.ContainerID = @cid
-      AND p.CategoryName = 35
+      AND (p.CategoryName = 35 OR p.CategoryName = 5049)
       AND a.Name <> 'fitness'
       ${buildNum !== null ? 'AND BuildNum = @buildNum' : 'AND BuildNum IS NULL'}
   `;
@@ -22,7 +22,7 @@ async function getPoolsAndAncillaries(pool, containerId, buildNum = null) {
     FROM Powers p
     JOIN Attributes a ON p.PowerSetName = a.id
     WHERE p.ContainerID = @cid
-      AND p.CategoryName = 7171
+      AND (p.CategoryName = 7171 OR p.CategoryName = 8137)
       ${buildNum !== null ? 'AND BuildNum = @buildNum' : 'AND BuildNum IS NULL'}
   `;
 
