@@ -350,7 +350,7 @@ async function showCharacter(req, res) {
 
     character = enrichCharacter(character);
 
-    const { pools, ancillaries } = await getPoolsAndAncillaries(pool, dbid, null);
+    const { pools, ancillaries } = await getPoolsAndAncillaries(pool, dbid, serverKey, null);
     character.Pools = pools;
     character.AncillaryPools = ancillaries;
 

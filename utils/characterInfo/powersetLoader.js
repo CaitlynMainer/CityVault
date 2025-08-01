@@ -1,4 +1,5 @@
 const sql = require('mssql');
+const { getAttributeIdByName } = require(global.BASE_DIR + '/utils/attributeMap');
 
 function formatDisplayName(name) {
   return name
@@ -6,25 +7,28 @@ function formatDisplayName(name) {
     .replace(/\b\w/g, c => c.toUpperCase());
 }
 
-async function getPoolsAndAncillaries(pool, containerId, buildNum = null) {
+async function getPoolsAndAncillaries(pool, containerId, serverKey, buildNum = null) {
+  const epicID = getAttributeIdByName(serverKey, 'Epic');
+  const poolID = getAttributeIdByName(serverKey, 'Pool');
+
   const poolsQuery = `
-    SELECT DISTINCT p.PowerSetName, a.Name
-    FROM Powers p
-    JOIN Attributes a ON p.PowerSetName = a.id
-    WHERE p.ContainerID = @cid
-      AND (p.CategoryName = 35 OR p.CategoryName = 5049)
-      AND a.Name <> 'fitness'
-      ${buildNum !== null ? 'AND BuildNum = @buildNum' : 'AND BuildNum IS NULL'}
-  `;
+  SELECT DISTINCT p.PowerSetName, a.Name
+  FROM Powers p
+  JOIN Attributes a ON p.PowerSetName = a.id
+  WHERE p.ContainerID = @cid
+    AND p.CategoryName = ${poolID}
+    AND a.Name <> 'fitness'
+    ${buildNum !== null ? 'AND BuildNum = @buildNum' : 'AND BuildNum IS NULL'}
+`;
 
   const ancillaryQuery = `
-    SELECT DISTINCT p.PowerSetName, a.Name
-    FROM Powers p
-    JOIN Attributes a ON p.PowerSetName = a.id
-    WHERE p.ContainerID = @cid
-      AND (p.CategoryName = 7171 OR p.CategoryName = 8137)
-      ${buildNum !== null ? 'AND BuildNum = @buildNum' : 'AND BuildNum IS NULL'}
-  `;
+  SELECT DISTINCT p.PowerSetName, a.Name
+  FROM Powers p
+  JOIN Attributes a ON p.PowerSetName = a.id
+  WHERE p.ContainerID = @cid
+    AND p.CategoryName = ${epicID}
+    ${buildNum !== null ? 'AND BuildNum = @buildNum' : 'AND BuildNum IS NULL'}
+`;
 
   const request = pool.request().input('cid', sql.Int, containerId);
   if (buildNum !== null) request.input('buildNum', sql.Int, buildNum);
