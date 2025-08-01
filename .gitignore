@@ -145,6 +145,7 @@ public/manifest.xml
 public/images/portrait/**
 # Allow the folder and the .noempty marker
 !public/images/portrait/
+!public/images/portrait/placeholder.png
 !public/images/portrait/.noempty
 sessions/*
 !sessions/.noempty
