@@ -4,7 +4,10 @@
     <% if (username) { %>
       <span>Welcome, <%= username %> | <a href="/logout" class="ml-4 text-blue-400 hover:underline">Logout</a></span>
     <% } else { %>
-      <a href="/login" class="text-blue-400 hover:underline">Login</a> | <a href="/register" class="text-blue-400 hover:underline">Register</a>
+      <a href="/login" class="text-blue-400 hover:underline">Login</a>
+      <% if (config.allowRegistration) { %>
+        | <a href="/register" class="text-blue-400 hover:underline">Register</a>
+      <% } %>
     <% } %>
   </div>
 </header>
