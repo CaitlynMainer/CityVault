@@ -79,6 +79,7 @@ async function deletePortrait(req, res) {
 
   try {
     const pool = await getGamePool(serverKey);
+    if (!pool) return res.status(400).send('Invalid server.');
     const charResult = await pool.request()
       .input('dbid', sql.Int, dbid)
       .query(`SELECT AuthId FROM dbo.Ents WHERE ContainerId = @dbid`);
@@ -120,6 +121,7 @@ async function uploadPortrait(req, res) {
 
     try {
       const pool = await getGamePool(serverKey);
+      if (!pool) return res.status(400).send('Invalid server.');
       const charResult = await pool.request()
         .input('dbid', sql.Int, dbid)
         .query(`SELECT AuthId FROM dbo.Ents WHERE ContainerId = @dbid`);
@@ -190,7 +192,7 @@ function getVisibleBadges(allBadgeDetails, ownedBadges, alignment, gender, badge
 
 
 
-        // Alignment-specific filtering (rudimentary but effective)
+    // Alignment-specific filtering (rudimentary but effective)
     if (meta.Requires) {
       const r = meta.Requires;
 
@@ -235,7 +237,7 @@ function groupBadgesByCategory(badges) {
 }
 
 function getAlignmentBg(alignment) {
-	
+
   const map = {
     hero: 'background',
     vigilante: 'background',
@@ -260,24 +262,25 @@ async function showCharacter(req, res) {
   if (!serverKey || isNaN(dbid)) {
     return res.status(400).send('Invalid character ID format.');
   }
-
-  const attributeMap = await getAttributeMap(serverKey);
-
-  const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.png`);
-  let portraitVersion = 0;
   try {
-    const stat = fs.statSync(portraitPath);
-    portraitVersion = stat.mtimeMs;
-  } catch (e) {
-    // File doesn't exist, fallback stays 0
-  }
+    const attributeMap = await getAttributeMap(serverKey);
 
-  try {
-    const pool = await getGamePool(serverKey);
+    const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.png`);
+    let portraitVersion = 0;
+    try {
+      const stat = fs.statSync(portraitPath);
+      portraitVersion = stat.mtimeMs;
+    } catch (e) {
+      // File doesn't exist, fallback stays 0
+    }
 
-    const charResult = await pool.request()
-      .input('dbid', sql.Int, dbid)
-      .query(`
+    try {
+      const pool = await getGamePool(serverKey);
+      if (!pool) return res.status(400).send('Invalid server.');
+
+      const charResult = await pool.request()
+        .input('dbid', sql.Int, dbid)
+        .query(`
         SELECT 
           e.ContainerId,
           e.SupergroupsId,
@@ -312,116 +315,120 @@ async function showCharacter(req, res) {
         WHERE e.ContainerId = @dbid
       `);
 
-    if (!charResult.recordset.length) {
-      return res.status(404).send('Character not found.');
-    }
-
-    let character = charResult.recordset[0];
-
-    const authPool = await getAuthPool();
-    const authResult = await authPool.request()
-      .input('uid', sql.Int, character.AuthId)
-      .query(`SELECT tracker, account FROM dbo.user_account WHERE uid = @uid`);
-
-    const owner = authResult.recordset[0];
-    if (!owner) return res.status(404).send('Character owner not found');
-
-    const viewerUsername = req.session?.username;
-    let isAdmin = false;
-    let isOwner = false;
-
-    if (viewerUsername) {
-      const viewerCheck = await authPool.request()
-        .input('viewer', sql.VarChar, viewerUsername)
-        .query(`SELECT role FROM dbo.user_account WHERE account = @viewer`);
-      isAdmin = ['admin', 'gm'].includes(viewerCheck.recordset[0]?.role);
-      isOwner = viewerUsername === owner.account;
-    }
-    await renderFullShot(authPool, pool, serverKey, dbid, character.CurrentCostume, fetchCostumeData);
-    let forcedAccess = false;
-    if (owner.tracker !== '1') {
-      if (isAdmin) {
-        forcedAccess = true;
-      } else if (!isOwner) {
-        return res.render('character', {
-          title: 'Private Character',
-          message: 'This character is part of a private profile and cannot be viewed.',
-          character: null,
-          serverKey,
-          badgeCategoryList: [],
-          totalBadges: 0,
-          ownedBadges: 0,
-          unearnedBadgeCategories: []
-        });
+      if (!charResult.recordset.length) {
+        return res.status(404).send('Character not found.');
       }
-    }
 
-    character.ClassName = ucfirst(attributeMap[character.Class]?.replace(/^class_/, '') || `Class ${character.Class}`, true);
-    character.OriginName = attributeMap[character.Origin] || `Origin ${character.Origin}`;
-    character.alignment = getAlignment(character.PlayerType, character.PlayerSubType, character.PraetorianProgress);
+      let character = charResult.recordset[0];
 
-    character = await enrichCharacter(character);
+      const authPool = await getAuthPool();
+      const authResult = await authPool.request()
+        .input('uid', sql.Int, character.AuthId)
+        .query(`SELECT tracker, account FROM dbo.user_account WHERE uid = @uid`);
 
-    const { pools, ancillaries } = await getPoolsAndAncillaries(pool, dbid, serverKey, null);
-    character.Pools = pools;
-    character.AncillaryPools = ancillaries;
+      const owner = authResult.recordset[0];
+      if (!owner) return res.status(404).send('Character owner not found');
 
-    const badgeResult = await pool.request()
-      .input('dbid', sql.Int, dbid)
-      .query(`SELECT Owned FROM dbo.Badges WHERE ContainerId = @dbid`);
+      const viewerUsername = req.session?.username;
+      let isAdmin = false;
+      let isOwner = false;
 
-    const badgeBitfield = badgeResult.recordset[0]?.Owned || '';
-    const ownedBadgeIds = getOwnedBadgesFromBitfield(badgeBitfield, serverKey);
-
-    const allBadgeDetails = getAllBadges(serverKey);
-    const badgeEquivalents = getBadgeEquivalents(serverKey);
-    const visibleBadges = getVisibleBadges(allBadgeDetails, ownedBadgeIds, character.alignment, character.Gender, badgeEquivalents);
-    const totalBadges = visibleBadges.length;
-    const ownedBadges = visibleBadges.filter(b => b.owned).length;
-    const unearnedBadges = visibleBadges.filter(b => !b.owned);
-    const unearnedBadgeCategories = groupBadgesByCategory(unearnedBadges);
-    const bgPath = getAlignmentBg(character.alignment);
-
-    const badgeCategories = {};
-    for (const badge of visibleBadges) {
-      const label = badge.CategoryLabel || badge.Category || 'Uncategorized';
-      if (!badgeCategories[label]) {
-        badgeCategories[label] = {
-          name: label,
-          owned: 0,
-          total: 0,
-          badges: []
-        };
+      if (viewerUsername) {
+        const viewerCheck = await authPool.request()
+          .input('viewer', sql.VarChar, viewerUsername)
+          .query(`SELECT role FROM dbo.user_account WHERE account = @viewer`);
+        isAdmin = ['admin', 'gm'].includes(viewerCheck.recordset[0]?.role);
+        isOwner = viewerUsername === owner.account;
       }
-      badgeCategories[label].total++;
-      if (badge.owned) badgeCategories[label].owned++;
-      badgeCategories[label].badges.push(badge);
+      await renderFullShot(authPool, pool, serverKey, dbid, character.CurrentCostume, fetchCostumeData);
+      let forcedAccess = false;
+      if (owner.tracker !== '1') {
+        if (isAdmin) {
+          forcedAccess = true;
+        } else if (!isOwner) {
+          return res.render('character', {
+            title: 'Private Character',
+            message: 'This character is part of a private profile and cannot be viewed.',
+            character: null,
+            serverKey,
+            badgeCategoryList: [],
+            totalBadges: 0,
+            ownedBadges: 0,
+            unearnedBadgeCategories: []
+          });
+        }
+      }
+
+      character.ClassName = ucfirst(attributeMap[character.Class]?.replace(/^class_/, '') || `Class ${character.Class}`, true);
+      character.OriginName = attributeMap[character.Origin] || `Origin ${character.Origin}`;
+      character.alignment = getAlignment(character.PlayerType, character.PlayerSubType, character.PraetorianProgress);
+
+      character = await enrichCharacter(character);
+
+      const { pools, ancillaries } = await getPoolsAndAncillaries(pool, dbid, serverKey, null);
+      character.Pools = pools;
+      character.AncillaryPools = ancillaries;
+
+      const badgeResult = await pool.request()
+        .input('dbid', sql.Int, dbid)
+        .query(`SELECT Owned FROM dbo.Badges WHERE ContainerId = @dbid`);
+
+      const badgeBitfield = badgeResult.recordset[0]?.Owned || '';
+      const ownedBadgeIds = getOwnedBadgesFromBitfield(badgeBitfield, serverKey);
+
+      const allBadgeDetails = getAllBadges(serverKey);
+      const badgeEquivalents = getBadgeEquivalents(serverKey);
+      const visibleBadges = getVisibleBadges(allBadgeDetails, ownedBadgeIds, character.alignment, character.Gender, badgeEquivalents);
+      const totalBadges = visibleBadges.length;
+      const ownedBadges = visibleBadges.filter(b => b.owned).length;
+      const unearnedBadges = visibleBadges.filter(b => !b.owned);
+      const unearnedBadgeCategories = groupBadgesByCategory(unearnedBadges);
+      const bgPath = getAlignmentBg(character.alignment);
+
+      const badgeCategories = {};
+      for (const badge of visibleBadges) {
+        const label = badge.CategoryLabel || badge.Category || 'Uncategorized';
+        if (!badgeCategories[label]) {
+          badgeCategories[label] = {
+            name: label,
+            owned: 0,
+            total: 0,
+            badges: []
+          };
+        }
+        badgeCategories[label].total++;
+        if (badge.owned) badgeCategories[label].owned++;
+        badgeCategories[label].badges.push(badge);
+      }
+
+      character.SupergroupLink = await resolveSupergroupLink(pool, character.SupergroupsId);
+      character.globalHandle = await getGlobalHandle(character.AuthId);
+
+      const badgeCategoryList = Object.values(badgeCategories).sort((a, b) => a.name.localeCompare(b.name));
+
+      res.render('character', {
+        title: `Character: ${stringClean(character.Name)}`,
+        character,
+        serverKey,
+        badgeCategoryList,
+        totalBadges,
+        ownedBadges,
+        unearnedBadgeCategories,
+        message: forcedAccess ? "This is a private character. Displaying because you are an admin." : null,
+        viewerIsOwner: isOwner,
+        stringClean,
+        portraitVersion,
+        bgPath,
+        role: isAdmin ? 'admin' : 'user'
+      });
+
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error loading character.');
     }
-
-    character.SupergroupLink = await resolveSupergroupLink(pool, character.SupergroupsId);
-    character.globalHandle = await getGlobalHandle(character.AuthId);
-
-    const badgeCategoryList = Object.values(badgeCategories).sort((a, b) => a.name.localeCompare(b.name));
-
-    res.render('character', {
-      title: `Character: ${character.Name}`,
-      character,
-      serverKey,
-      badgeCategoryList,
-      totalBadges,
-      ownedBadges,
-      unearnedBadgeCategories,
-      message: forcedAccess ? "This is a private character. Displaying because you are an admin." : null,
-      viewerIsOwner: isOwner,
-      stringClean,
-      portraitVersion,
-      bgPath,
-      role: isAdmin ? 'admin' : 'user'
-    });
-
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Server error loading character.');
+    console.error('[Character] Failed to load attribute map:', err);
+    return res.status(400).send('Invalid server or attribute map error');
   }
 }
 

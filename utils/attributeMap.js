@@ -16,6 +16,7 @@ async function loadAttributeMapFromDB(serverKey) {
 
   try {
     const pool = await getGamePool(serverKey);
+    if (!pool) throw new Error(`[DB] Invalid server key: ${serverKey}`);
     const result = await pool.request().query(`SELECT Id, Name FROM dbo.Attributes`);
 
     for (const row of result.recordset) {

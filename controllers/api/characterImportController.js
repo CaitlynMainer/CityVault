@@ -81,6 +81,7 @@ async function importCharacter(req, res) {
     const newAuthName = target.account;
 
     const gamePool = await getGamePool(serverKey);
+	  if (!gamePool) return res.status(400).send('Invalid server.');
     const idResult = await gamePool.request().query(`SELECT MAX(ContainerId) AS maxId FROM dbo.Ents`);
     let nextContainerId = (idResult.recordset[0]?.maxId || 0) + 1;
 

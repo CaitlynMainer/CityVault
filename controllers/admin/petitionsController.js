@@ -25,6 +25,7 @@ async function list(req, res) {
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     const result = await pool.request().query(`
       SELECT *, '${serverKey}' AS serverKey FROM dbo.Petitions
     `);
@@ -53,6 +54,7 @@ async function view(req, res) {
 
   try {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     const result = await pool.request()
       .input('id', sql.Int, id)
       .query(`SELECT *, '${serverKey}' AS serverKey FROM dbo.Petitions WHERE ContainerId = @id`);
@@ -121,6 +123,7 @@ async function markFetched(req, res) {
   const { serverKey, id } = req.params;
   try {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
 
     const result = await pool.request()
       .input('id', sql.Int, id)
@@ -151,6 +154,7 @@ async function markDone(req, res) {
   const { serverKey, id } = req.params;
   try {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
 
     const result = await pool.request()
       .input('id', sql.Int, id)
@@ -183,6 +187,7 @@ async function toggleStatus(req, res) {
 
   try {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     const result = await pool.request()
       .input('id', sql.Int, id)
       .query(`SELECT ${field} FROM dbo.Petitions WHERE ContainerId = @id`);
@@ -228,6 +233,7 @@ async function addComment(req, res) {
       `);
 
     const gamePool = await getGamePool(serverKey);
+	  if (!gamePool) return res.status(400).send('Invalid server.');
     const petitionResult = await gamePool.request()
       .input('id', sql.Int, id)
       .query(`SELECT AuthName, Summary FROM dbo.Petitions WHERE ContainerId = @id`);

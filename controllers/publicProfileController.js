@@ -57,6 +57,7 @@ async function showPublicProfile(req, res) {
   try {
     for (const serverKey of Object.keys(config.servers)) {
       const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
       const result = await pool.request()
         .input('authId', sql.Int, authId)
         .query(`

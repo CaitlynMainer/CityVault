@@ -27,7 +27,10 @@
            <%= char.bannerClass %> bg-center bg-cover bg-no-repeat banner-hover">
             <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white text-shadow">
               <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
-              Level <%= char.Level %> <%= char.Archetype %><br>
+              Level <%= char.Level %> <%= char.Archetype.replace(/^class_/, '')
+            .replace(/^.*?:/, '')
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase()); %><br>
               <span class="text-gray-400 text-xs">Last seen: <%= new Date(char.LastActive).toLocaleDateString() %></span>
             </a>
           </li>
@@ -48,10 +51,29 @@
         <li><strong>Average Level:</strong> <%= stats.avgLevel.toFixed(1) %></li>
         <li><strong>Average Influence:</strong> <%= stats.avgInfluence.toLocaleString() %></li>
         <li><strong>Top Archetypes:</strong>
-          <%= Object.entries(stats.archetypeCounts).sort((a, b) => b[1] - a[1]).slice(0, 3).map(e => e[0] + ' (' + e[1] + ')').join(', ') %>
+          <%= Object.entries(stats.archetypeCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3)
+            .map(([key, count]) =>
+              key
+                .replace(/^class_/, '')
+                .replace(/^.*?:/, '')
+                .replace(/_/g, ' ')
+                .replace(/\b\w/g, c => c.toUpperCase()) + ' (' + count + ')'
+            ).join(', ')
+          %>
         </li>
+
         <li><strong>Top Origins:</strong>
-          <%= Object.entries(stats.originCounts).sort((a, b) => b[1] - a[1]).slice(0, 3).map(e => e[0] + ' (' + e[1] + ')').join(', ') %>
+          <%= Object.entries(stats.originCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3)
+            .map(([key, count]) =>
+              key
+                .replace(/_/g, ' ')
+                .replace(/\b\w/g, c => c.toUpperCase()) + ' (' + count + ')'
+            ).join(', ')
+          %>
         </li>
       </ul>
     </section>
@@ -65,7 +87,10 @@
            <%= char.bannerClass %> bg-center bg-cover bg-no-repeat banner-hover">
             <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white text-shadow">
               <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
-              Level <%= char.Level %> <%= char.Archetype %><br>
+              Level <%= char.Level %> <%= char.Archetype.replace(/^class_/, '')
+            .replace(/^.*?:/, '')
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase()); %><br>
               <span class="text-gray-400 text-xs">Created on <%= new Date(char.DateCreated).toLocaleDateString() %></span>
             </a>
           </li>
@@ -98,7 +123,10 @@
            <%= char.bannerClass %> bg-center bg-cover bg-no-repeat banner-hover">
             <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block no-underline text-white text-shadow">
               <strong class="break-words"><%= stringClean(char.Name) %></strong><br>
-              Level <%= char.Level %> <%= char.Archetype %><br>
+              Level <%= char.Level %> <%= char.Archetype.replace(/^class_/, '')
+            .replace(/^.*?:/, '')
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase()); %><br>
               Total Badges: <%= char.badgeCount %><br>
               <span class="text-gray-400 text-xs">Last Active: <%= new Date(char.LastActive).toLocaleDateString() %></span>
             </a>
@@ -119,7 +147,10 @@
           href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" 
           class="block text-white hover:text-blue-400 hover:underline hover:bg-gray-700 rounded px-2 py-1 transition">
           <strong><%= char.Name %></strong>
-          (@<%= char.GlobalName %>) – Level <%= char.Level %> <%= char.Archetype %>
+          (@<%= char.GlobalName %>) – Level <%= char.Level %> <%= char.Archetype.replace(/^class_/, '')
+            .replace(/^.*?:/, '')
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase()); %>
         </a>
       </li>
       <% }); %>

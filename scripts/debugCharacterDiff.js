@@ -51,6 +51,7 @@ function getHexDiff(bufA, bufB) {
 
 async function runComparison() {
   const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
 
   for (const table of tablesToDump) {
     try {

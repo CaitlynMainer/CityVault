@@ -41,6 +41,7 @@ async function getRecentlyOnline() {
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     const result = await pool.request()
       .input(
         'maxAccess',
@@ -114,6 +115,7 @@ async function getCharacterBirthdays() {
   for (const serverKey of Object.keys(config.servers)) {
     try {
       const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
       const result = await pool.request()
         .input('month', sql.Int, month)
         .input(
@@ -181,98 +183,80 @@ async function getCharacterBirthdays() {
   };
 }
 
-
 async function getQuickStats() {
-  const combined = [];
+  const statsPath = path.join(global.BASE_DIR, 'data', 'cache.dat');
+  let statsByServer = {};
+  try {
+    statsByServer = JSON.parse(fs.readFileSync(statsPath, 'utf8'));
+  } catch (err) {
+    console.error('[QuickStats] Failed to read cache.dat:', err);
+    return null;
+  }
+
+  const combined = Object.values(statsByServer).reduce((acc, cur) => {
+    for (const [k, v] of Object.entries(cur)) {
+      if (typeof v === 'number') {
+        acc[k] = (acc[k] || 0) + v;
+      } else if (typeof v === 'object' && v !== null) {
+        acc[k] = acc[k] || {};
+        for (const [subK, subV] of Object.entries(v)) {
+          acc[k][subK] = (acc[k][subK] || 0) + subV;
+        }
+      }
+    }
+    return acc;
+  }, {});
+
+  const totalChars = combined.general_count || 0;
+  const avgLevel = Math.round(combined.general_avg_lvl || 0);
+  const avgInfluence = Math.round((combined.total_inf || 0) / (totalChars || 1));
+  const hero50s = combined.hero_count ? Math.round((combined.hero_count * 0.05)) : 0; // estimated
+  const villain50s = combined.villain_count ? Math.round((combined.villain_count * 0.05)) : 0; // estimated
+  const archetypeCounts = combined.classes || {};
+  const originCounts = combined.origins || {};
+
+  // Live stats
+  let onlineNow = 0;
+  let onlineToday = 0;
+  let onlineMonth = 0;
+  const now = new Date();
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
-    const result = await pool.request()
-      .input(
-        'maxAccess',
-        sql.Int,
-        Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
-      )
-      .query(`
-        SELECT e.Origin, e.Class, e.Level, e.InfluencePoints, e.LastActive,
-               e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress, e.Active
-        FROM   dbo.Ents e
-        JOIN   dbo.Ents2 en2 ON e.ContainerId = en2.ContainerId
-        WHERE  (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
-    `);
-    combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
+    if (!pool) continue;
+
+    try {
+      const result = await pool.request().query(`
+        SELECT Active, LastActive FROM dbo.Ents
+        WHERE (AccessLevel IS NULL OR AccessLevel <= ${Number(config.accessLevelFilter) || 0})
+      `);
+      for (const row of result.recordset) {
+        if (row.Active) onlineNow++;
+        const last = new Date(row.LastActive);
+        if (!isNaN(last)) {
+          if (last.toDateString() === now.toDateString()) onlineToday++;
+          if (last.getMonth() === now.getMonth() && last.getFullYear() === now.getFullYear()) onlineMonth++;
+        }
+      }
+    } catch (err) {
+      console.warn(`[QuickStats] Failed to fetch live data from ${serverKey}:`, err);
+    }
   }
 
-  const stats = {
-    totalChars: combined.length,
-    avgLevel: 0,
-    avgInfluence: 0,
-    archetypeCounts: {},
-    originCounts: {},
-    onlineToday: 0,
-    onlineMonth: 0,
-    onlineNow: 0,
-    hero50s: 0,
-    villain50s: 0
+  return {
+    totalChars,
+    avgLevel,
+    avgInfluence,
+    archetypeCounts,
+    originCounts,
+    hero50s,
+    villain50s,
+    onlineNow,
+    onlineToday,
+    onlineMonth
   };
-
-  let levelSum = 0, infSum = 0;
-  let validLevelCount = 0, validInfCount = 0;
-  const now = new Date();
-
-
-  for (const row of combined) {
-    if (!maps[row.serverKey]) {
-      maps[row.serverKey] = await getAttributeMap(row.serverKey);
-    }
-
-    const attributeMap = maps[row.serverKey];
-    const level = Number(row.Level);
-
-    if (!isNaN(level)) {
-      levelSum += level;
-      validLevelCount++;
-
-      if (level >= 49) {
-        const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
-        if (['Hero', 'Resistance', 'Vigilante'].includes(alignment)) stats.hero50s++;
-        if (['Villain', 'Loyalist', 'Rogue'].includes(alignment)) stats.villain50s++;
-      }
-    }
-
-    const inf = Number(row.InfluencePoints);
-    if (!isNaN(inf)) {
-      infSum += inf;
-      validInfCount++;
-    }
-
-    const className = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
-    const originName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
-    stats.archetypeCounts[className] = (stats.archetypeCounts[className] || 0) + 1;
-    stats.originCounts[originName] = (stats.originCounts[originName] || 0) + 1;
-
-    const lastActive = new Date(row.LastActive);
-    if (!isNaN(lastActive)) {
-      if (lastActive.toDateString() === now.toDateString()) stats.onlineToday++;
-      if (
-        lastActive.getMonth() === now.getMonth() &&
-        lastActive.getFullYear() === now.getFullYear()
-      ) {
-        stats.onlineMonth++;
-      }
-    }
-
-    if (row.Active !== null && row.Active !== 0) {
-      stats.onlineNow++;
-    }
-  }
-
-
-  stats.avgLevel = validLevelCount ? (levelSum / validLevelCount) : 0;
-  stats.avgInfluence = validInfCount ? (infSum / validInfCount) : 0;
-
-  return stats;
 }
+
 
 async function getBadgeSpotlight() {
   const cachePath = path.join(global.BASE_DIR, 'data', 'badgeSpotlight.json');
@@ -304,6 +288,7 @@ async function regenerateBadgeSpotlight() {
   // Step 2: Get badge data from game databases
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     const result = await pool
       .request()
       .input(

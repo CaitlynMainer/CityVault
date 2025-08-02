@@ -15,6 +15,7 @@ async function showSupergroup(req, res) {
 
   try {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     const authPool = await getAuthPool();
     const result = await pool.request()
       .input('id', sql.Int, sgid)

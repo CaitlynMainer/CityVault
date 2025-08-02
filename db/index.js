@@ -108,7 +108,10 @@ async function getChatPool() {
 const gamePools = {};
 async function getGamePool(serverKey) {
   const cfg = config.servers[serverKey];
-  if (!cfg) throw new Error(`[DB] Unknown server key: ${serverKey}`);
+  if (!cfg) {
+    console.warn(`[DB] Invalid server key requested: ${serverKey}`);
+    return null;
+  }
 
   if (!gamePools[serverKey]) {
     const poolCfg = buildPoolConfig(cfg);

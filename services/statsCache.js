@@ -27,6 +27,7 @@ async function buildStatsCache() {
         const epicID = await getAttributeIdByName(serverKey, 'Epic');
         const poolID = await getAttributeIdByName(serverKey, 'Pool');
         const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
         const maxAccess = Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0;
 
         const serverStats = allStats[serverKey] = {

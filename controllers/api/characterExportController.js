@@ -25,6 +25,7 @@ const staticTables = [
 
 async function exportCharacterToDisk(serverKey, containerId, characterName, outputDir) {
   const gamePool = await getGamePool(serverKey);
+	  if (!gamePool) return res.status(400).send('Invalid server.');
   const allTables = [...staticTables, ...alwaysExport];
 
   for (const table of conditionalExport) {
@@ -65,6 +66,7 @@ async function exportAllCharacters(serverKey, targetAccount, isAdmin, taskId) {
   try {
     const authPool = await getAuthPool();
     const gamePool = await getGamePool(serverKey);
+	  if (!gamePool) return res.status(400).send('Invalid server.');
 
     const userResult = await authPool.request()
       .input('account', sql.VarChar, targetAccount)
@@ -155,6 +157,7 @@ async function exportCharacter(req, res) {
 
   try {
     const gamePool = await getGamePool(serverKey);
+	  if (!gamePool) return res.status(400).send('Invalid server.');
     const authPool = await getAuthPool();
 
     const charResult = await gamePool.request()
@@ -258,6 +261,7 @@ async function queueCharacterExport(req, res) {
     try {
       if (containerId) {
         const gamePool = await getGamePool(serverKey);
+	  if (!gamePool) return res.status(400).send('Invalid server.');
         const charQuery = await gamePool.request()
           .input('id', sql.Int, containerId)
           .query(`SELECT Name FROM dbo.Ents WHERE ContainerId = @id`);

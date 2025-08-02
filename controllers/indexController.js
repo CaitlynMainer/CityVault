@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const config = require(global.BASE_DIR + '/utils/config');
-const { getGamePool } = require(global.BASE_DIR + '/db');
 const { stringClean } = require(global.BASE_DIR + '/utils/textSanitizer');
 
 const {

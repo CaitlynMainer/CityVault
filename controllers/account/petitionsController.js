@@ -11,6 +11,7 @@ async function list(req, res) {
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     const result = await pool.request()
       .input('authName', sql.VarChar(32), username)
       .query(`SELECT *, '${serverKey}' AS server FROM dbo.Petitions WHERE AuthName = @authName`);
@@ -31,6 +32,7 @@ async function view(req, res) {
 
   try {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     const result = await pool.request()
       .input('id', sql.Int, id)
       .input('authName', sql.VarChar(32), username)
@@ -71,6 +73,7 @@ async function addComment(req, res) {
 
   try {
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
 
     // Ensure petition belongs to user before allowing comment
     const verify = await pool.request()

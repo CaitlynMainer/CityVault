@@ -78,6 +78,7 @@ async function startSingleExport(req, res) {
   setImmediate(async () => {
     try {
       const gamePool = await require(global.BASE_DIR + '/db').getGamePool(serverKey);
+	  if (!gamePool) return res.status(400).send('Invalid server.');
       const result = await gamePool.request()
         .input('id', sql.Int, containerId)
         .query(`SELECT Name FROM dbo.Ents WHERE ContainerId = @id`);

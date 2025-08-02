@@ -7,6 +7,7 @@ async function updateAccessLevel(req, res) {
     const lvl = Math.max(0, Math.min(11, Number(accessLevel)));
 
     const pool = await getGamePool(serverKey);
+	  if (!pool) return res.status(400).send('Invalid server.');
     await pool.request()
       .input('lvl', sql.Int, lvl)
       .input('cid', sql.Int, containerId)
