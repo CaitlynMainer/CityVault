@@ -1,5 +1,3 @@
-console.log('[ROUTE] characterExport routes loaded');
-
 const express = require('express');
 const router = express.Router();
 const loadController = require(global.BASE_DIR + '/utils/loadController');
@@ -33,8 +31,5 @@ router.get('/:serverKey/:containerId', (req, res) => {
   console.log('[ROUTE] GET /:serverKey/:containerId', req.params);
   return startSingleExport(req, res);
 });
-
-
-
 
 module.exports = router;

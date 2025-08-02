@@ -3,7 +3,6 @@ const { getAuthPool } = require(global.BASE_DIR + '/db');
 const path = require('path');
 const fs = require('fs-extra');
 const crypto = require('crypto');
-console.log('[DEBUG] characterExportController LOADED');
 
 function loadServerList() {
   const config = require(global.BASE_DIR + '/data/config.json');
