@@ -9,7 +9,7 @@ const alwaysExport = ['CostumeParts'];
 const conditionalExport = ['Costumes'];
 
 const staticTables = [
-  'Attributes', 'AccountInventory', 'Appearance', 'BadgeMonitor', 'Badges', 'Badges01', 'Badges02',
+  'AccountInventory', 'Appearance', 'BadgeMonitor', 'Badges', 'Badges01', 'Badges02',
   'Boosts', 'CertificationHistory', 'ChatChannels', 'ChatTabs',
   'ChatWindows', 'CombatMonitorStat', 'CompletedOrders', 'Contacts',
   'DefeatRecord', 'Email', 'Ents', 'Ents2', 'EventHistory',
