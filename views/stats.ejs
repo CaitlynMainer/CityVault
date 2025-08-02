@@ -1,0 +1,180 @@
+<div class="max-w-7xl mx-auto px-4 py-6 text-sm text-white">
+  <form method="get" action="/stats" class="mb-6">
+    <label for="server" class="text-gray-400 mr-2">Viewing data for:</label>
+    <select name="server" id="server" onchange="this.form.submit()" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-white">
+      <% serverOptions.forEach(server => { %>
+        <option value="<%= server %>" <%= server === selectedKey ? 'selected' : '' %>>
+          <%= server === 'combined' ? 'Combined (All Servers)' : server %>
+        </option>
+      <% }) %>
+    </select>
+  </form>
+
+  <h1 class="text-2xl font-bold mb-4">Character Statistics</h1>
+
+  <div id="stats_general" class="grid gap-6 md:grid-cols-2">
+    <div class="border border-gray-700 rounded bg-gray-800 p-4 shadow">
+      <h3 class="text-xl font-semibold mb-2">General Information</h3>
+      <table class="w-full border-collapse">
+        <tbody>
+          <tr>
+            <th colspan="2" class="text-left text-gray-300 uppercase tracking-wide text-xs pb-2">
+              <img src="/images/icons/chart.png" alt="" width="16" height="16" class="inline-block mr-2"> Character Statistics
+            </th>
+          </tr>
+          <% [
+            { key: 'general_count', label: 'Total Characters', icon: 'both.png' },
+            { key: 'hero_count', label: 'Heroes', icon: 'hero.png' },
+            { key: 'vigilante_count', label: 'Vigilantes', icon: 'vigilante.png' },
+            { key: 'rogue_count', label: 'Rogues', icon: 'rogue.png' },
+            { key: 'villain_count', label: 'Villains', icon: 'villain.png' },
+            { key: 'resistance_count', label: 'Resistance', icon: 'resistance.png' },
+            { key: 'loyalist_count', label: 'Loyalists', icon: 'loyalist.png' },
+            { key: 'pvp_count', label: 'PvP Only', icon: 'unknown.png' },
+            { key: 'unknown_count', label: 'Unknown', icon: 'unknown.png' }
+          ].forEach(row => { %>
+            <tr class="border-t border-gray-700 hover:bg-gray-700/50 transition">
+              <td class="py-1"><img src="/images/icons/<%= row.icon %>" alt="" width="16" height="16" class="inline-block mr-2"><%= row.label %></td>
+              <td class="text-right"><%= (chars[row.key] || 0).toLocaleString() %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="border border-gray-700 rounded bg-gray-800 p-4 shadow">
+      <h3 class="text-xl font-semibold mb-2">Level & Monetary Statistics</h3>
+      <table class="w-full border-collapse">
+        <tbody>
+          <% ['general', 'hero', 'villain'].forEach(type => { %>
+            <tr>
+              <th colspan="2" class="text-left text-gray-300 uppercase tracking-wide text-xs pt-4 pb-1">
+                <img src="/images/icons/<%= type %>.png" alt="" width="16" height="16" class="inline-block mr-2">
+                <%= type === 'general' ? 'Both' : type.charAt(0).toUpperCase() + type.slice(1) %> Level Statistics
+              </th>
+            </tr>
+            <% ['highest', 'lowest', 'avg'].forEach(stat => { %>
+              <tr class="border-t border-gray-700 hover:bg-gray-700/50 transition">
+                <td class="py-1"><%= stat.charAt(0).toUpperCase() + stat.slice(1) %> Level</td>
+                <td class="text-right">
+                  <%= stat === 'avg' ? Math.round(chars[`${type}_${stat}_lvl`] ?? 0) : (chars[`${type}_${stat}_lvl`] ?? 0) %>
+                </td>
+              </tr>
+            <% }); %>
+          <% }); %>
+
+
+          <tr>
+            <th colspan="2" class="text-left text-gray-300 uppercase tracking-wide text-xs pt-4 pb-1">
+              <img src="/images/icons/dollar.png" alt="" width="16" height="16" class="inline-block mr-2"> Monetary Statistics
+            </th>
+          </tr>
+          <% [
+            { key: 'hero_inf', label: 'Influence', icon: 'hero.png' },
+            { key: 'villain_inf', label: 'Infamy', icon: 'villain.png' },
+            { key: 'prae_inf', label: 'Information', icon: 'loyalist.png' },
+            { key: 'total_inf', label: 'Total', icon: 'unknown.png' }
+          ].forEach(row => { %>
+            <tr class="border-t border-gray-700 hover:bg-gray-700/50 transition" title="<%= row.label %>">
+              <td class="py-1">
+                <img src="/images/icons/<%= row.icon %>" alt="" width="16" height="16" class="inline-block mr-2"><%= row.label %>
+              </td>
+              <td class="text-right"><%= (chars[row.key] || 0).toLocaleString() %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<div id="stats_detailed" class="grid gap-6 md:grid-cols-2 mt-8">
+  <% const sections = [
+    { key: 'classes', title: 'Archetype Usage' },
+    { key: 'origins', title: 'Origin Usage' }
+  ]; %>
+  <% sections.forEach(section => { %>
+    <div class="border border-gray-700 rounded bg-gray-800 p-4 shadow">
+      <h3 class="text-xl font-semibold mb-2"><%= section.title %></h3>
+      <table class="w-full border-collapse">
+        <tr>
+          <th class="text-left text-gray-400 uppercase text-xs pb-1">Name</th>
+          <th class="text-right text-gray-400 uppercase text-xs pb-1">Count</th>
+        </tr>
+        <% Object.entries(chars[section.key] || {})
+          .sort((a, b) => b[1] - a[1])
+          .forEach(([key, value]) => {
+            const label = key
+              .replace(/^class_/, '')
+              .replace(/^origin_/, '')
+              .replace(/_/g, ' ')
+              .replace(/\b\w/g, c => c.toUpperCase());
+        %>
+          <tr class="border-t border-gray-700 hover:bg-gray-700/50 transition">
+            <td class="py-1">
+              <img src="/images/icons/<%= key.toLowerCase().replace(/^class_/, '').replace(/^origin_/, '').replace('_16', '') %>.png"
+                   width="16" height="16" alt="" class="inline-block mr-2">
+              <%= label %>
+            </td>
+            <td class="text-right"><%= value.toLocaleString() %></td>
+          </tr>
+        <% }); %>
+      </table>
+    </div>
+  <% }); %>
+
+  <% ['primaries', 'secondaries', 'ancillaries'].forEach(section => {
+       const title = section.charAt(0).toUpperCase() + section.slice(1).replace('ies', 'y');
+  %>
+    <div class="border border-gray-700 rounded bg-gray-800 p-4 shadow">
+      <h3 class="text-xl font-semibold mb-2"><%= title %> Powerset Usage</h3>
+      <table class="w-full border-collapse">
+        <tr>
+          <th class="text-left text-gray-400 uppercase text-xs pb-1">Powerset</th>
+          <th class="text-right text-gray-400 uppercase text-xs pb-1">Count</th>
+        </tr>
+        <% Object.entries(chars[section] || {})
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 10)
+          .forEach(([key, value]) => {
+            const [at, powerset] = key.split(':');
+            const label = powerset.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        %>
+          <tr class="border-t border-gray-700 hover:bg-gray-700/50 transition">
+            <td class="py-1">
+              <img src="/images/icons/<%= at.toLowerCase().replace(/^class_/, '') %>.png"
+                   width="16" height="16" alt="" class="inline-block mr-2">
+              <%= label %>
+            </td>
+            <td class="text-right"><%= value.toLocaleString() %></td>
+          </tr>
+        <% }); %>
+      </table>
+    </div>
+  <% }); %>
+
+  <div class="border border-gray-700 rounded bg-gray-800 p-4 shadow">
+    <h3 class="text-xl font-semibold mb-2">Power Pool Usage</h3>
+    <table class="w-full border-collapse">
+      <tr>
+        <th class="text-left text-gray-400 uppercase text-xs pb-1">Powerset</th>
+        <th class="text-right text-gray-400 uppercase text-xs pb-1">Count</th>
+      </tr>
+      <% Object.entries(chars.pools || {})
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10)
+        .forEach(([key, value]) => {
+          const label = key
+            .replace(/^class_/, '')
+            .replace(/^.*?:/, '')
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase());
+      %>
+        <tr class="border-t border-gray-700 hover:bg-gray-700/50 transition">
+          <td class="py-1"><%= label %></td>
+          <td class="text-right"><%= value.toLocaleString() %></td>
+        </tr>
+      <% }); %>
+    </table>
+  </div>
+</div>
+
+</div>

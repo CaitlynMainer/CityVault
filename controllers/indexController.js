@@ -39,7 +39,6 @@ async function showHomePage(req, res) {
   };
 
   try {
-    // ✅ Call once — these internally loop over config.servers
     const [recent, birthdayData, badgeSpotlight] = await Promise.all([
       getRecentlyOnline(),
       getCharacterBirthdays(),
@@ -56,16 +55,18 @@ async function showHomePage(req, res) {
     recent.sort((a, b) => new Date(b.LastActive) - new Date(a.LastActive));
     birthdays.sort((a, b) => new Date(b.DateCreated) - new Date(a.DateCreated));
     badgeSpotlight.sort(() => 0.5 - Math.random());
+    minBadges = Number.isInteger(config.minBadges) ? config.minBadges : 500;
 
     res.render('index', {
       news,
       recent: recent.slice(0, 9),
       birthdays: birthdays.slice(0, 6),
       allBirthdays,
-      moreBirthdays, // 👈 add this
+      moreBirthdays,
       stats: statsCombined,
       badgeSpotlight: badgeSpotlight.slice(0, 6),
-      stringClean
+      stringClean,
+      minBadges
     });
 
   } catch (err) {

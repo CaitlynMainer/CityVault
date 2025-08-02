@@ -3,7 +3,7 @@ const sql = require('mssql');
 const fs = require('fs');
 const path = require('path');
 const config = require(global.BASE_DIR + '/utils/config');
-const { getGamePool, getChatPool } = require(global.BASE_DIR + '/db');
+const { getGamePool, getChatPool, getAuthPool } = require(global.BASE_DIR + '/db');
 const { getGlobalHandle } = require(global.BASE_DIR + '/utils/characterInfo/getGlobalHandle');
 const { getOwnedBadgesFromBitfield } = require(global.BASE_DIR + '/utils/badgeParser');
 const { getAlignment } = require(global.BASE_DIR + '/utils/alignment');
@@ -20,18 +20,24 @@ async function batchGetGlobalHandles(authIds) {
     globalHandleCache.set(authId, global);
   }
 }
-
+  const maps = {};
 /* Helper for Widgets: Get alignment to choose a banner image for character tiles */
 function bannerClassFromAlignment(alignment = '') {
   const a = alignment.toLowerCase();
-  if (['villain', 'rogue', 'pvp', ''].includes(a))          return 'tile-banner-villain';
-  if (['resistance', 'loyalist'].includes(a))               return 'tile-banner-praeto';
+  if (['villain', 'rogue', 'pvp', ''].includes(a)) return 'tile-banner-villain';
+  if (['resistance', 'loyalist'].includes(a)) return 'tile-banner-praeto';
   /* For 'hero', 'vigilante', anything else: */
   return 'tile-banner-hero';
 }
 
 async function getRecentlyOnline() {
   const combined = [];
+
+  const authPool = await getAuthPool();
+  const trackerResult = await authPool.request().query(`
+    SELECT uid as AuthId FROM dbo.user_account WHERE tracker = 1
+  `);
+  const allowedAuthIds = new Set(trackerResult.recordset.map(row => row.AuthId));
 
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
@@ -50,7 +56,10 @@ async function getRecentlyOnline() {
         AND          (e.Active IS NULL OR e.Active = 0)
         ORDER BY     e.LastActive DESC
       `);
-    combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
+
+    // Apply tracker filter immediately
+    const filtered = result.recordset.filter(row => allowedAuthIds.has(row.AuthId));
+    combined.push(...filtered.map(row => ({ ...row, serverKey })));
   }
 
   const authIds = [...new Set(combined.map(row => row.AuthId))];
@@ -64,23 +73,26 @@ async function getRecentlyOnline() {
     return true;
   });
 
-  const mapped = unique.map(row => {
-    const attributeMap = getAttributeMap(row.serverKey);
-    const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
-    const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
-    const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
+  const mapped = await Promise.all(
+    unique.map(async row => {
+      const attributeMap = await getAttributeMap(row.serverKey);
+      const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
+      const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
+      const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
 
-    return {
-      ...row,
-      Level: row.Level + 1,
-      Archetype: ClassName,
-      OriginName,
-      GlobalName: globalHandleCache.get(row.AuthId),
-      serverKey: row.serverKey,
-      alignment,
-      bannerClass: bannerClassFromAlignment(alignment)
-    };
-  });
+      return {
+        ...row,
+        Level: row.Level + 1,
+        Archetype: ClassName,
+        OriginName,
+        GlobalName: globalHandleCache.get(row.AuthId),
+        serverKey: row.serverKey,
+        alignment,
+        bannerClass: bannerClassFromAlignment(alignment)
+      };
+    })
+  );
+
 
   return mapped.sort((a, b) => new Date(b.LastActive) - new Date(a.LastActive)).slice(0, 9);
 }
@@ -91,7 +103,12 @@ async function getCharacterBirthdays() {
   const day = now.getDate();
   const granularity = (config.quantizeBirthDate || 'day').toLowerCase(); // 'day' | 'month'
 
-  //console.log(`[getCharacterBirthdays] Today is ${month}/${day}`);
+  const authPool = await getAuthPool();
+  const trackerResult = await authPool.request().query(`
+    SELECT uid as AuthId FROM dbo.user_account WHERE tracker = 1
+  `);
+  const allowedAuthIds = new Set(trackerResult.recordset.map(row => row.AuthId));
+
   const combined = [];
 
   for (const serverKey of Object.keys(config.servers)) {
@@ -99,7 +116,7 @@ async function getCharacterBirthdays() {
       const pool = await getGamePool(serverKey);
       const result = await pool.request()
         .input('month', sql.Int, month)
-		    .input(
+        .input(
           'maxAccess',
           sql.Int,
           Number.isInteger(config.accessLevelFilter) ? config.accessLevelFilter : 0
@@ -108,59 +125,55 @@ async function getCharacterBirthdays() {
           SELECT    e.ContainerId, e.AuthId, e.Name, e.Origin, e.Class, e.Level, e.DateCreated, e.LastActive, 
                     e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress
           FROM      dbo.Ents e
-		      LEFT JOIN dbo.Ents2 en2 ON en2.ContainerId = e.ContainerId
+          LEFT JOIN dbo.Ents2 en2 ON en2.ContainerId = e.ContainerId
           WHERE     DATEPART(mm, e.DateCreated) = @month
           AND       (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess)
           ORDER BY  e.LastActive DESC
-      `);
+        `);
 
-      //console.log(`[getCharacterBirthdays] Server ${serverKey} returned ${result.recordset.length} character(s)`);
-
-      if (result.recordset.length > 0) {
-        result.recordset.forEach(row => {
-          //console.log(`  ↪ ${row.Name} (Created: ${row.DateCreated?.toISOString?.().split('T')[0] || 'unknown'})`);
-        });
-      }
-
-      combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
+      // Apply tracker filter before pushing
+      const filtered = result.recordset.filter(row => allowedAuthIds.has(row.AuthId));
+      combined.push(...filtered.map(row => ({ ...row, serverKey })));
     } catch (err) {
-      //console.warn(`[getCharacterBirthdays] Error querying ${serverKey}:`, err);
+      // console.warn(`[getCharacterBirthdays] Error querying ${serverKey}:`, err);
     }
   }
 
-  // Query returns all characters born in current month; check config setting to filter on current day
+  // Filter by day if needed
   let filtered = combined;
-
   if (granularity === 'day') {
     filtered = combined.filter(row => new Date(row.DateCreated).getDate() === day);
   }
 
-  // Birth-month sort: asc by day, otherwise desc by LastActive (so no change if using day-level granularity)
+  // Sort: asc by day, then desc by last active
   filtered.sort((a, b) => {
     const aDay = new Date(a.DateCreated).getDate();
     const bDay = new Date(b.DateCreated).getDate();
     return aDay !== bDay ? aDay - bDay : new Date(b.LastActive) - new Date(a.LastActive);
   });
 
-  // Now use filtered instead of combined
   const authIds = [...new Set(filtered.map(row => row.AuthId))];
   await batchGetGlobalHandles(authIds);
 
-  const fullList = filtered.map(row => {
-    const attributeMap = getAttributeMap(row.serverKey);
-    const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
-    const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
-	  const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
-    return {
-      ...row,
-      Level: row.Level + 1,
-      Archetype: ClassName,
-      OriginName,
-      GlobalName: globalHandleCache.get(row.AuthId),
-      alignment,
-      bannerClass: bannerClassFromAlignment(alignment)
-    };
-  })
+  const fullList = await Promise.all(
+    filtered.map(async row => {
+      const attributeMap = await getAttributeMap(row.serverKey);
+      const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
+      const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
+      const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
+
+      return {
+        ...row,
+        Level: row.Level + 1,
+        Archetype: ClassName,
+        OriginName,
+        GlobalName: globalHandleCache.get(row.AuthId),
+        alignment,
+        bannerClass: bannerClassFromAlignment(alignment)
+      };
+    })
+  );
+
 
   return {
     entries: fullList,
@@ -207,9 +220,15 @@ async function getQuickStats() {
   let validLevelCount = 0, validInfCount = 0;
   const now = new Date();
 
-  combined.forEach(row => {
-    const attributeMap = getAttributeMap(row.serverKey);
+
+  for (const row of combined) {
+    if (!maps[row.serverKey]) {
+      maps[row.serverKey] = await getAttributeMap(row.serverKey);
+    }
+
+    const attributeMap = maps[row.serverKey];
     const level = Number(row.Level);
+
     if (!isNaN(level)) {
       levelSum += level;
       validLevelCount++;
@@ -235,7 +254,10 @@ async function getQuickStats() {
     const lastActive = new Date(row.LastActive);
     if (!isNaN(lastActive)) {
       if (lastActive.toDateString() === now.toDateString()) stats.onlineToday++;
-      if (lastActive.getMonth() === now.getMonth() && lastActive.getFullYear() === now.getFullYear()) {
+      if (
+        lastActive.getMonth() === now.getMonth() &&
+        lastActive.getFullYear() === now.getFullYear()
+      ) {
         stats.onlineMonth++;
       }
     }
@@ -243,7 +265,8 @@ async function getQuickStats() {
     if (row.Active !== null && row.Active !== 0) {
       stats.onlineNow++;
     }
-  });
+  }
+
 
   stats.avgLevel = validLevelCount ? (levelSum / validLevelCount) : 0;
   stats.avgInfluence = validInfCount ? (infSum / validInfCount) : 0;
@@ -271,6 +294,14 @@ async function regenerateBadgeSpotlight() {
   const cachePath = path.join(global.BASE_DIR, 'data', 'badgeSpotlight.json');
   const combined = [];
 
+  // Step 1: Get allowed AuthIds from auth server
+  const authPool = await getAuthPool();
+  const trackerResult = await authPool.request().query(`
+    SELECT uid as AuthId FROM dbo.user_account WHERE tracker = 1
+  `);
+  const allowedAuthIds = new Set(trackerResult.recordset.map(row => row.AuthId));
+
+  // Step 2: Get badge data from game databases
   for (const serverKey of Object.keys(config.servers)) {
     const pool = await getGamePool(serverKey);
     const result = await pool
@@ -285,50 +316,73 @@ async function regenerateBadgeSpotlight() {
                   e.PlayerType, en2.PlayerSubType, en2.PraetorianProgress
         FROM      dbo.Ents e
         JOIN      dbo.Badges b ON e.ContainerId = b.ContainerId
-	      LEFT JOIN dbo.Ents2 en2 ON en2.ContainerId = e.ContainerId
+        LEFT JOIN dbo.Ents2 en2 ON en2.ContainerId = e.ContainerId
         WHERE     (e.AccessLevel IS NULL OR e.AccessLevel <= @maxAccess) AND b.Owned IS NOT NULL
-    `);
+      `);
     combined.push(...result.recordset.map(row => ({ ...row, serverKey })));
   }
 
   const eligible = [];
   const authIds = [];
-  // Failsafe: minBadges defaults to 500 if key not found in json (or NaN)
-  const minBadges = Number.isInteger(config.minBadges) ? config.minBadges: 500;
+  const minBadges = Number.isInteger(config.minBadges) ? config.minBadges : 500;
+
+  let trackerFiltered = 0;
+  let badgeFiltered = 0;
 
   for (const row of combined) {
+    if (!allowedAuthIds.has(row.AuthId)) {
+      trackerFiltered++;
+      continue;
+    }
+
     const owned = row.Owned?.toString('hex') || '';
     const badges = getOwnedBadgesFromBitfield(owned, row.serverKey);
-	
-    // Check against minBadges (configurable in Admin Dashboard)
-	  if (badges.length >= minBadges) {
-      authIds.push(row.AuthId);
-      eligible.push({ ...row, badgeCount: badges.length });
+
+    if (badges.length < minBadges) {
+      badgeFiltered++;
+      continue;
     }
+
+    authIds.push(row.AuthId);
+    eligible.push({ ...row, badgeCount: badges.length });
   }
+
 
   await batchGetGlobalHandles(authIds);
 
-  const final = eligible.map(row => {
-    const attributeMap = getAttributeMap(row.serverKey);
-    const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
-    const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
-	  const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
-	
-    return {
-      ...row,
-      Level: row.Level + 1,
-      Archetype: ClassName,
-      OriginName,
-      GlobalName: globalHandleCache.get(row.AuthId),
-      serverKey: row.serverKey,
-      alignment,
-      bannerClass: bannerClassFromAlignment(alignment)
-    };
-  }).sort(() => 0.5 - Math.random()).slice(0, 6);
+
+
+  const final = (
+    await Promise.all(
+      eligible.map(async row => {
+        if (!maps[row.serverKey]) {
+          maps[row.serverKey] = await getAttributeMap(row.serverKey);
+        }
+
+        const attributeMap = maps[row.serverKey];
+        const ClassName = attributeMap[row.Class]?.replace(/^Class_/, '') || `Class ${row.Class}`;
+        const OriginName = attributeMap[row.Origin] || `Origin ${row.Origin}`;
+        const alignment = getAlignment(row.PlayerType, row.PlayerSubType, row.PraetorianProgress);
+
+        return {
+          ...row,
+          Level: row.Level + 1,
+          Archetype: ClassName,
+          OriginName,
+          GlobalName: globalHandleCache.get(row.AuthId),
+          serverKey: row.serverKey,
+          alignment,
+          bannerClass: bannerClassFromAlignment(alignment),
+          minBadges
+        };
+      })
+    )
+  ).sort(() => 0.5 - Math.random()).slice(0, 6);
+
 
   fs.writeFileSync(cachePath, JSON.stringify(final, null, 2));
 }
+
 
 module.exports = {
   getRecentlyOnline,

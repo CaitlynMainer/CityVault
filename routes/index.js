@@ -9,6 +9,7 @@ const { showCharacterList } = loadController('account/characterListController');
 const { showPublicProfile } = loadController('publicProfileController');
 const { showSupergroup } = loadController('supergroupController');
 const { showHomePage } = loadController('indexController');
+const { showStats } = loadController('statsController');
 
 router.get('/', showHomePage);
 
@@ -38,6 +39,7 @@ router.use('/images/portrait', require('./portrait'));
 
 router.use('/clear-costume-render', require('./costumeRender'));
 
+router.get('/stats', showStats);
 
 //API
 router.use('/api', require('./api/news'));

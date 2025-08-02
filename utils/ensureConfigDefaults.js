@@ -22,23 +22,42 @@ function ensureConfigDefaults(keyOrSection, defaultValue) {
       updated = true;
     }
   } else if (typeof keyOrSection === 'object' && keyOrSection !== null) {
-    // Section object patch
+    // Object merge patch
     for (const sectionKey in keyOrSection) {
       const defaults = keyOrSection[sectionKey];
 
       if (!(sectionKey in config)) {
         config[sectionKey] = defaults;
         updated = true;
-      } else if (typeof defaults === 'object' && defaults !== null) {
-        if (typeof config[sectionKey] !== 'object' || config[sectionKey] === null) {
-          config[sectionKey] = {};
-          updated = true;
-        }
+        continue;
+      }
 
-        for (const subKey in defaults) {
-          if (!(subKey in config[sectionKey])) {
-            config[sectionKey][subKey] = defaults[subKey];
-            updated = true;
+      // If not both objects, skip deep merge
+      const sectionIsObj = typeof config[sectionKey] === 'object' && config[sectionKey] !== null && !Array.isArray(config[sectionKey]);
+      const defaultsIsObj = typeof defaults === 'object' && defaults !== null && !Array.isArray(defaults);
+
+      if (!sectionIsObj || !defaultsIsObj) {
+        continue; // Don't deep merge non-objects
+      }
+
+      for (const subKey in defaults) {
+        const subDefault = defaults[subKey];
+
+        if (!(subKey in config[sectionKey])) {
+          config[sectionKey][subKey] = subDefault;
+          updated = true;
+        } else {
+          const existing = config[sectionKey][subKey];
+          const subIsObj = typeof existing === 'object' && existing !== null && !Array.isArray(existing);
+          const subDefaultIsObj = typeof subDefault === 'object' && subDefault !== null && !Array.isArray(subDefault);
+
+          if (subIsObj && subDefaultIsObj) {
+            for (const nestedKey in subDefault) {
+              if (!(nestedKey in existing)) {
+                existing[nestedKey] = subDefault[nestedKey];
+                updated = true;
+              }
+            }
           }
         }
       }

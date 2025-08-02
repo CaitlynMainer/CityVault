@@ -56,37 +56,37 @@ async function showSupergroup(req, res) {
 
     // Check account tracker values and anonymize if needed
     for (const m of rawMembers) {
-    m.anonymized = false;
+      m.anonymized = false;
 
-    if (m.AuthId != null) {
+      if (m.AuthId != null) {
         try {
-        const trackerResult = await authPool.request()
+          const trackerResult = await authPool.request()
             .input('uid', sql.Int, m.AuthId)
             .query('SELECT tracker FROM dbo.user_account WHERE uid = @uid');
 
-        const isTracked = trackerResult.recordset[0]?.tracker === '1';
+          const isTracked = trackerResult.recordset[0]?.tracker === '1';
 
-        if (!isTracked) {
+          if (!isTracked) {
             m.Name = 'Private Character';
             m.globalHandle = 'Private';
             m.AuthId = null; // ← prevent linking to profile
             m.anonymized = true;
-        }
+          }
         } catch (e) {
-        m.globalHandle = 'Unknown';
+          m.globalHandle = 'Unknown';
         }
-    } else {
+      } else {
         m.globalHandle = 'Unknown';
-    }
+      }
     }
 
-    const members = membersResult.recordset
-    .filter(row =>
+    let members = membersResult.recordset
+      .filter(row =>
         row?.ContainerId &&
         row?.Name &&
         row?.Rank !== 6 // hide GM_Hidden
-    )
-    .sort((a, b) => {
+      )
+      .sort((a, b) => {
         // Rank descending (Leader 5 at top, Member null or 0 at bottom)
         const rankA = a.Rank ?? -1;
         const rankB = b.Rank ?? -1;
@@ -97,27 +97,40 @@ async function showSupergroup(req, res) {
         const dateA = a.LastActive ? new Date(a.LastActive) : new Date(0);
         const dateB = b.LastActive ? new Date(b.LastActive) : new Date(0);
         return dateA - dateB;
-    })
-    .map(row => {
-        const enriched = enrichCharacterSummary(row, serverKey);
-        enriched.RankName = row.CustomRankName || 'Member';
+      });
+
+    members = await Promise.all(
+      members.map(async m => {
+        if (!m.Origin || !m.Class) {
+          console.warn(`[WARN] Missing enrichment fields for member ${m.Name || m.ContainerId}`, {
+            PlayerType: m.PlayerType,
+            Origin: m.Origin,
+            Class: m.Class
+          });
+        }
+
+        const enriched = await enrichCharacterSummary(m, serverKey);
+        enriched.RankName = m.CustomRankName || 'Member';
         return enriched;
-    });
-     const chatPool = await getChatPool();
+      })
+    );
+
+
+    const chatPool = await getChatPool();
 
     for (const m of members) {
-    if (!m.anonymized && m.AuthId != null) {
+      if (!m.anonymized && m.AuthId != null) {
         try {
-        const chatResult = await chatPool.request()
+          const chatResult = await chatPool.request()
             .input('authId', sql.Int, m.AuthId)
             .query('SELECT data FROM dbo.users WHERE user_id = @authId');
 
-        const raw = chatResult.recordset[0]?.data;
-        m.globalHandle = extractGlobalName(raw) || 'Unknown';
+          const raw = chatResult.recordset[0]?.data;
+          m.globalHandle = extractGlobalName(raw) || 'Unknown';
         } catch (e) {
-        m.globalHandle = 'Unknown';
+          m.globalHandle = 'Unknown';
         }
-    }
+      }
     }
 
     res.render('supergroup', {

@@ -61,6 +61,14 @@ async function getAttributeIdByName(serverKey, name) {
   return reverseAttributeCache[serverKey]?.[name.toLowerCase()] ?? null;
 }
 
+async function getAttributeNameById(serverKey, id) {
+  if (!attributeCache[serverKey]) {
+    await loadAttributeMapFromDB(serverKey);
+  }
+  return attributeCache[serverKey]?.[id] ?? null;
+}
+
+
 async function preloadAttributeMaps(serverKeys) {
   const unique = [...new Set(serverKeys)];
   await Promise.all(unique.map(loadAttributeMapFromDB));
@@ -82,6 +90,7 @@ function getAttributeMapCacheStats() {
 module.exports = {
   getAttributeMap,
   getAttributeIdByName,
+  getAttributeNameById,
   preloadAttributeMaps,
   getAttributeMapCacheStats
 };
