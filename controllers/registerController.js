@@ -6,10 +6,18 @@ const config = require(global.BASE_DIR + '/utils/config');
 const { sendMail } = require(global.BASE_DIR + '/services/mail');
 
 function handleRegisterPage(req, res) {
+  if (!config.allowRegistration) {
+    return res.render('register-disabled'); // Or whatever alternate template
+    // Or: return res.status(403).send('Registration is currently disabled.');
+    // Or: return res.redirect('/login'); — totally up to you
+  }
   res.render('register');
 }
 
 async function handleRegister(req, res) {
+  if (!config.allowRegistration) {
+    return res.status(403).send('Registration is disabled.');
+  }
   const { username, password, email } = req.body;
   const hashedPassword = gameHashPassword(username, password);
   const hexString = hashedPassword.toString('hex');
@@ -154,6 +162,9 @@ async function handleRegister(req, res) {
 
 
 async function handleConfirmAccount(req, res) {
+  if (!config.allowRegistration) {
+    return res.status(403).send('Registration is disabled.');
+  }
   const token = req.params.token;
   try {
     const pool = await getAuthPool();

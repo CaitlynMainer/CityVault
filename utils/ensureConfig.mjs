@@ -132,6 +132,12 @@ async function runSetupWizard() {
       message: 'HTTP port to use:',
       default: 3000,
       when: answers => !answers.useAutoEncrypt
+    },
+    {
+      type: 'confirm',
+      name: 'allowRegistration',
+      message: 'Allow user registrations?',
+      default: true
     }
   ]);
 
