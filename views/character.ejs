@@ -161,7 +161,7 @@
           <div style="background: linear-gradient(to right, orange, gold); width: <%= Math.floor((ownedBadges / totalBadges) * 100) %>%; height: 100%;"></div>
         </div>
         <div style="margin-top: 4px; text-align: center; font-size: 14px; color: #ddd;">
-          <strong><%= character.Name %></strong> has collected <strong><%= ownedBadges %></strong> of <strong><%= totalBadges %></strong> badges.
+          <strong><%= stringClean(character.Name) %></strong> has collected <strong><%= ownedBadges %></strong> of <strong><%= totalBadges %></strong> badges.
         </div>
       </div>
 
