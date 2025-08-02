@@ -47,7 +47,7 @@ function loadBadgeStrings(baseDir) {
 
       for (const line of raw.split('\n')) {
         const trimmed = line.trim();
-        const match = trimmed.match(/^"?P(\d+)"?\s+"(.*)"$/);
+        const match = trimmed.match(/^"(.+?)"\s+"(.*)"$/);
         if (match) {
           const [, id, text] = match;
           map[`P${id}`] = text;
