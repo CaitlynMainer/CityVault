@@ -35,6 +35,18 @@ const CATEGORY_LABELS = {
   Uncategorized: 'Other'
 };
 
+function ucfirst(str, removeUnderscore = false) {
+  if (removeUnderscore) {
+    return str
+      .split('_')
+      .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+      .join(' ');
+  } else {
+    return str.replace(/\b\w/g, c => c.toUpperCase());
+  }
+}
+
+
 const upload = multer({
   storage: multer.memoryStorage(),
   fileFilter: (req, file, cb) => {
@@ -249,7 +261,7 @@ async function showCharacter(req, res) {
     return res.status(400).send('Invalid character ID format.');
   }
 
-  const attributeMap = getAttributeMap(serverKey);
+  const attributeMap = await getAttributeMap(serverKey);
 
   const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', `${serverKey}_${dbid}.png`);
   let portraitVersion = 0;
@@ -344,11 +356,11 @@ async function showCharacter(req, res) {
       }
     }
 
-    character.ClassName = attributeMap[character.Class]?.replace(/^Class_/, '') || `Class ${character.Class}`;
+    character.ClassName = ucfirst(attributeMap[character.Class]?.replace(/^class_/, '') || `Class ${character.Class}`, true);
     character.OriginName = attributeMap[character.Origin] || `Origin ${character.Origin}`;
     character.alignment = getAlignment(character.PlayerType, character.PlayerSubType, character.PraetorianProgress);
 
-    character = enrichCharacter(character);
+    character = await enrichCharacter(character);
 
     const { pools, ancillaries } = await getPoolsAndAncillaries(pool, dbid, serverKey, null);
     character.Pools = pools;

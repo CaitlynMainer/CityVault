@@ -8,8 +8,8 @@ function formatDisplayName(name) {
 }
 
 async function getPoolsAndAncillaries(pool, containerId, serverKey, buildNum = null) {
-  const epicID = getAttributeIdByName(serverKey, 'Epic');
-  const poolID = getAttributeIdByName(serverKey, 'Pool');
+  const epicID = await getAttributeIdByName(serverKey, 'Epic');
+  const poolID = await getAttributeIdByName(serverKey, 'Pool');
 
   const poolsQuery = `
   SELECT DISTINCT p.PowerSetName, a.Name

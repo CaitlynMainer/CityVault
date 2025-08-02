@@ -2,8 +2,8 @@ const { getAttributeMap } = require('./attributeMap');
 const { getAllBadges } = require('./badgeDetails');
 const { getOwnedBadgesFromBitfield } = require('./badgeParser');
 
-function debugBadgeDiscrepancies(hexBitfield, serverKey) {
-  const attributeMap = getAttributeMap(serverKey);
+async function debugBadgeDiscrepancies(hexBitfield, serverKey) {
+  const attributeMap = await getAttributeMap(serverKey);
   const detailsMap = getAllBadges(serverKey);
   const ownedBadges = getOwnedBadgesFromBitfield(hexBitfield, serverKey);
   const ownedSet = new Set(ownedBadges.map(b => b.internalName));

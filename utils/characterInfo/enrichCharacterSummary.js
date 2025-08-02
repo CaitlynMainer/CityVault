@@ -27,14 +27,17 @@ function getAlignmentBg(alignment) {
   const bgName = map[normalized] || 'background';
   return `images/backgrounds/${bgName}.png`;
 }
+function ucfirst(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
-function enrichCharacterSummary(character, serverKey) {
-  const attributeMap = getAttributeMap(serverKey);
+async function enrichCharacterSummary(character, serverKey) {
+  const attributeMap = await getAttributeMap(serverKey);
 
   character.Level = (character.Level || 0) + 1;
-  character.ClassName = attributeMap[character.Class]?.replace(/^Class_/, '') || `Class ${character.Class}`;
+  character.ClassName = ucfirst(attributeMap[character.Class]?.replace(/^class_/, '') || `Class ${character.Class}`);
   character.OriginName = attributeMap[character.Origin] || `Origin ${character.Origin}`;
-  character.alignment = getAlignment(character.PlayerType, character.PlayerSubType, character.PraetorianProgress);
+  character.alignment = getAlignment(character.PlayerType, character.PlayerSubType, character.PraetorianProgress) || 'Unknown';
   character.PrimaryPowerset = getPowersetName(character.originalPrimary);
   character.SecondaryPowerset = getPowersetName(character.originalSecondary);
   character.DisplayTitle = buildDisplayTitle(character.TitleTheText, character.TitleCommon, character.TitleOrigin, character.TitleSpecial);
@@ -44,6 +47,28 @@ function enrichCharacterSummary(character, serverKey) {
 
   // Add background path based on alignment
   character.bgPath = getAlignmentBg(character.alignment);
+
+  const requiredFields = {
+    Level: character.Level,
+    ClassName: character.ClassName,
+    OriginName: character.OriginName,
+    alignment: character.alignment,
+    PrimaryPowerset: character.PrimaryPowerset,
+    SecondaryPowerset: character.SecondaryPowerset,
+    DisplayTitle: character.DisplayTitle,
+    TotalTimePlayed: character.TotalTimePlayed,
+    Created: character.Created,
+    LastSeen: character.LastSeen
+  };
+
+  const missing = Object.entries(requiredFields)
+    .filter(([_, value]) => value === undefined || value === null || value === '')
+    .map(([key]) => key);
+
+  if (missing.length) {
+    //console.warn(`[ENRICH WARN] Missing values for character ${character.Name || '(unnamed)'} [${character.ContainerId}] on ${serverKey}:`, missing);
+  }
+
 
   return character;
 }

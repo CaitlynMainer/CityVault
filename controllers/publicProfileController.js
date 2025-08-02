@@ -40,7 +40,7 @@ async function showPublicProfile(req, res) {
         title: 'Private Profile',
         message: "This user doesn't share their characters.",
         charactersByServer: {},
-		profileUsername: username,
+        profileUsername: username,
         servers: config.servers,
         errors: []
       });
@@ -68,21 +68,26 @@ async function showPublicProfile(req, res) {
           WHERE e.AuthId = @authId
         `);
 
-      const enriched = result.recordset.map(row => {
-        const enrichedChar = enrichCharacterSummary(row, serverKey);
-        const filename = `${serverKey}_${row.ContainerId}.png`;
-        const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', filename);
-        let portraitVersion = 0;
-        try {
-          const stat = fs.statSync(portraitPath);
-          portraitVersion = stat.mtimeMs;
-        } catch (_) {}
-        return {
-          ...enrichedChar,
-          serverKey,
-          portraitVersion
-        };
-      });
+      const enriched = await Promise.all(
+        result.recordset.map(async row => {
+          const enrichedChar = await enrichCharacterSummary(row, serverKey);
+          const filename = `${serverKey}_${row.ContainerId}.png`;
+          const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', filename);
+
+          let portraitVersion = 0;
+          try {
+            const stat = fs.statSync(portraitPath);
+            portraitVersion = stat.mtimeMs;
+          } catch (_) { }
+
+          return {
+            ...enrichedChar,
+            serverKey,
+            portraitVersion
+          };
+        })
+      );
+
 
       if (enriched.length) {
         charactersByServer[serverKey] = enriched;
@@ -92,7 +97,7 @@ async function showPublicProfile(req, res) {
     res.render('public_profile', {
       title: `Public Profile: ${username}`,
       charactersByServer,
-	  profileUsername: username,
+      profileUsername: username,
       servers: config.servers,
       message: forcedAccess ? "This is a private profile. Displaying because you are an admin." : null,
       stringClean

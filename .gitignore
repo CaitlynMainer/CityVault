@@ -177,3 +177,4 @@ launcher/config.json
 scripts/diff-report.txt
 /tmp
 /renders
+data/cache.dat

@@ -20,7 +20,7 @@ await ensureConfig.default();
 // Load config and initialize app
 const config = require('./utils/config');
 const startApp = require('./cityvault');
-const expressApp = startApp(config);
+const expressApp = await startApp(config);
 
 // Support HTTPS with AutoEncrypt or fall back to HTTP
 if (config.useAutoEncrypt) {

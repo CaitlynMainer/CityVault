@@ -29,6 +29,7 @@ function buildPoolConfig(cfg) {
       database: dbName,
       user: dbUser,
       password: dbPass,
+      requestTimeout: 60000,
       options: {
         trustServerCertificate: true,
         instanceName: instance
@@ -44,6 +45,7 @@ function buildPoolConfig(cfg) {
     user: dbUser,
     password: dbPass,
     port: dbPort,
+    requestTimeout: 60000,
     options: {
       trustServerCertificate: true
     }

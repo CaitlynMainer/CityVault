@@ -7,6 +7,39 @@
   <% if (isForced) { %>
     <div class="alert">This character is part of a private profile. Displaying because you are an admin.</div>
   <% } %>
+  	<script>
+	  function handlePortraitError(img) {
+		const originalSrc = img.src;
+		img.onerror = null; // prevent loop
+		img.src = '/images/portrait/rendering.jpg';
+		retryPortrait(img, originalSrc);
+	  }
+
+	  function retryPortrait(img, originalSrc) {
+		let retries = 0;
+		const maxRetries = 10;
+		const delay = 3000; // 3 seconds
+
+		const tryReload = () => {
+		  fetch(originalSrc, { method: 'HEAD', cache: 'no-cache' }).then(res => {
+			if (res.ok) {
+			  img.src = originalSrc + '&retry=' + Date.now(); // cache-bust
+			  img.style.display = 'block';
+			} else if (++retries < maxRetries) {
+			  setTimeout(tryReload, delay);
+			} else {
+			  console.warn('Portrait still not available after retries.');
+			}
+		  }).catch(() => {
+			if (++retries < maxRetries) {
+			  setTimeout(tryReload, delay);
+			}
+		  });
+		};
+
+		tryReload();
+	  }
+	</script>
   <div class="character-profile-container" style="display: flex; gap: 24px; align-items: flex-start;">
     <!-- Left Column: Character Summary -->
     <div class="left-panel" style="flex: 0 0 360px;">
@@ -232,36 +265,3 @@
         }
       }
     </script>
-	<script>
-	  function handlePortraitError(img) {
-		const originalSrc = img.src;
-		img.onerror = null; // prevent loop
-		img.src = '/images/portrait/rendering.jpg';
-		retryPortrait(img, originalSrc);
-	  }
-
-	  function retryPortrait(img, originalSrc) {
-		let retries = 0;
-		const maxRetries = 10;
-		const delay = 3000; // 3 seconds
-
-		const tryReload = () => {
-		  fetch(originalSrc, { method: 'HEAD', cache: 'no-cache' }).then(res => {
-			if (res.ok) {
-			  img.src = originalSrc + '&retry=' + Date.now(); // cache-bust
-			  img.style.display = 'block';
-			} else if (++retries < maxRetries) {
-			  setTimeout(tryReload, delay);
-			} else {
-			  console.warn('Portrait still not available after retries.');
-			}
-		  }).catch(() => {
-			if (++retries < maxRetries) {
-			  setTimeout(tryReload, delay);
-			}
-		  });
-		};
-
-		tryReload();
-	  }
-	</script>

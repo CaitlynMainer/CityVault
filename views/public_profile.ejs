@@ -1,10 +1,13 @@
 <% if (message) { %>
   <div class="alert" style="background: #333; color: #ffc; padding: 10px; margin-bottom: 20px;"><%= message %></div>
 <% } %>
+
 <h2>Public Profile: <%= profileUsername %></h2>
+
 <% if (username && username !== profileUsername) { %>
   <p style="color: #aaa;">You are logged in as <%= username %></p>
 <% } %>
+
 <% if (Object.keys(charactersByServer).length === 0) { %>
   <p style="color: #888;">No characters found.</p>
 <% } else { %>
@@ -12,10 +15,14 @@
     <h2 style="margin-top: 24px; font-size: 20px; color: #eee;"><%= serverKey.toUpperCase() %></h2>
     <div class="character-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
       <% characters.forEach(character => { %>
+        <% const alignmentIcon = (character.alignment || 'unknown').toLowerCase(); %>
+        <% const originIcon = (character.OriginName || 'unknown').toLowerCase(); %>
+        <% const classIcon = (character.ClassName || 'unknown').toLowerCase(); %>
+
         <div style="position: relative;">
           <div class="character-card"
                style="
-                 background-image: url('/<%= character.bgPath %>');
+                 background-image: url('/<%= character.bgPath || 'images/backgrounds/vil_background.png' %>');
                  background-size: cover;
                  background-repeat: no-repeat;
                  background-position: center;
@@ -28,7 +35,7 @@
                  z-index: 1;">
             
             <a href="/character/<%= serverKey %>:<%= character.ContainerId %>" style="text-decoration: none; position: absolute; inset: 0; z-index: 2;"></a>
-            <!-- Optional dark overlay for readability -->
+
             <div style="
                   position: absolute;
                   inset: 0;
@@ -48,9 +55,9 @@
                 Level <%= character.Level %>
               </p>
               <div style="display: flex; justify-content: center; gap: 6px; margin-bottom: 4px;">
-                <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" title="<%= character.alignment %>" height="24">
-                <img src="/images/icons/<%= character.OriginName.toLowerCase() %>.png" title="<%= character.OriginName %>" height="24">
-                <img src="/images/icons/<%= character.ClassName.toLowerCase() %>.png" title="<%= character.ClassName %>" height="24">
+                <img src="/images/icons/<%= alignmentIcon %>.png" title="<%= character.alignment || 'Unknown' %>" height="24">
+                <img src="/images/icons/<%= originIcon %>.png" title="<%= character.OriginName || 'Unknown Origin' %>" height="24">
+                <img src="/images/icons/<%= classIcon %>.png" title="<%= character.ClassName || 'Unknown Class' %>" height="24">
               </div>
             </div>
 

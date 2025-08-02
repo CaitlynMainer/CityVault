@@ -1,53 +1,87 @@
-const fs = require('fs');
-const path = require('path');
-const config = require(global.BASE_DIR + '/utils/config');
+const { getGamePool } = require(global.BASE_DIR + '/db');
 
-const attributeCache = {};       // id → name
-const reverseAttributeCache = {}; // name → id
+const attributeCache = {};
+const reverseAttributeCache = {};
+const loadLocks = {}; // prevent concurrent loads
 
-function getVersionForServer(serverKey) {
-  return config.servers?.[serverKey]?.badgeVersion === 'i24' ? 'i24' : 'i25';
-}
+let cacheHits = 0;
+let cacheMisses = 0;
 
-function getAttributeMap(serverKey) {
-  const version = getVersionForServer(serverKey);
-  if (attributeCache[version]) return attributeCache[version];
+async function loadAttributeMapFromDB(serverKey) {
+  cacheMisses++;
+  console.debug(`[AttributeMap] Cache MISS for ${serverKey} — loading from DB`);
 
-  const attributePath = path.join(global.BASE_DIR, 'data', version, 'vars.attribute');
   const map = {};
   const reverseMap = {};
-  attributeCache[version] = map;
-  reverseAttributeCache[version] = reverseMap;
 
   try {
-    const raw = fs.readFileSync(attributePath, 'utf8');
-    raw.split('\n').forEach(line => {
-      const match = line.trim().match(/^(\d+)\s+"(.+)"$/);
-      if (match) {
-        const id = parseInt(match[1], 10);
-        const name = match[2];
-        map[id] = name;
-        reverseMap[name] = id;
-      }
-    });
-  } catch (err) {
-    if (err.code === 'ENOENT') {
-      console.warn(`[WARN] attributeMap: File not found at ${attributePath}. Proceeding with empty map.`);
-    } else {
-      console.error(`[ERROR] Failed to read attributeMap for version ${version}:`, err);
+    const pool = await getGamePool(serverKey);
+    const result = await pool.request().query(`SELECT Id, Name FROM dbo.Attributes`);
+
+    for (const row of result.recordset) {
+      map[row.Id] = row.Name;
+      reverseMap[row.Name.toLowerCase()] = row.Id;
     }
+
+    console.debug(`[AttributeMap] Loaded ${result.recordset.length} attributes for ${serverKey}`);
+    attributeCache[serverKey] = map;
+    reverseAttributeCache[serverKey] = reverseMap;
+  } catch (err) {
+    console.error(`[ERROR] Failed to load attribute map for ${serverKey}:`, err);
+    throw err;
   }
 
   return map;
 }
 
-function getAttributeIdByName(serverKey, name) {
-  const version = getVersionForServer(serverKey);
-  if (!reverseAttributeCache[version]) getAttributeMap(serverKey); // Ensure loaded
-  return reverseAttributeCache[version]?.[name] ?? null;
+async function getAttributeMap(serverKey) {
+  const map = attributeCache[serverKey];
+
+  // Use if valid
+  if (map && Object.keys(map).length > 0) {
+    cacheHits++;
+    return map;
+  }
+
+  // Only load once
+  if (!loadLocks[serverKey]) {
+    loadLocks[serverKey] = loadAttributeMapFromDB(serverKey).finally(() => {
+      delete loadLocks[serverKey];
+    });
+  }
+
+  return await loadLocks[serverKey];
+}
+
+
+async function getAttributeIdByName(serverKey, name) {
+  if (!reverseAttributeCache[serverKey]) {
+    await loadAttributeMapFromDB(serverKey);
+  }
+  return reverseAttributeCache[serverKey]?.[name.toLowerCase()] ?? null;
+}
+
+async function preloadAttributeMaps(serverKeys) {
+  const unique = [...new Set(serverKeys)];
+  await Promise.all(unique.map(loadAttributeMapFromDB));
+}
+
+// For diagnostics/reporting
+function getAttributeMapCacheStats() {
+  return {
+    serverKeys: Object.keys(attributeCache),
+    totalCached: Object.keys(attributeCache).length,
+    cacheHits,
+    cacheMisses,
+    perServerCount: Object.fromEntries(
+      Object.entries(attributeCache).map(([serverKey, map]) => [serverKey, Object.keys(map).length])
+    )
+  };
 }
 
 module.exports = {
   getAttributeMap,
   getAttributeIdByName,
+  preloadAttributeMaps,
+  getAttributeMapCacheStats
 };

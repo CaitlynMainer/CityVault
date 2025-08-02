@@ -1,4 +1,4 @@
-module.exports = function startApp(config) {
+module.exports = async function startApp(config) {
   global.BASE_DIR = __dirname;
 
   const fs = require('fs-extra');
@@ -18,19 +18,24 @@ module.exports = function startApp(config) {
   const ensureSchema = require('./utils/ensureSchema');
   const morgan = require('morgan');
   const rfs = require('rotating-file-stream');
-  const readline = require('readline');  
+  const readline = require('readline');
   const ensureConfigDefaults = require(global.BASE_DIR + '/utils/ensureConfigDefaults');
-  const migrateSessionsToSQLite = require(global.BASE_DIR + '/utils/migrateSessionsToSQLite');  
+  const migrateSessionsToSQLite = require(global.BASE_DIR + '/utils/migrateSessionsToSQLite');
   const { deployLauncherZip } = require('./utils/deployLauncherZip');
   const multer = require('multer');
   const upload = multer({ storage: multer.memoryStorage() });
+  const { preloadAttributeMaps } = require('./utils/attributeMap'); // adjust path if needed
+
+
+  await preloadAttributeMaps(Object.keys(config.servers));
+  console.log('[Init] Attribute maps preloaded for:', Object.keys(config.servers).join(', '));
 
   const sessionsDir = path.join(__dirname, 'sessions');
   const sqlitePath = path.join(__dirname, 'data', 'sessions.sqlite');
 
   const tmpDir = path.join(__dirname, 'tmp', 'imports');
   fs.ensureDirSync(tmpDir);
-  fs.emptyDirSync(tmpDir); 
+  fs.emptyDirSync(tmpDir);
 
   global.characterImportTasks = new Map(); // TaskID → { status, message, ... }
   global.importTmpDir = tmpDir;
@@ -44,7 +49,7 @@ module.exports = function startApp(config) {
 
 
   migrateSessionsToSQLite(sessionsDir, sqlitePath);
-  
+
   const authConfig = {
     user: config.auth.dbUser,
     password: config.auth.dbPass,
@@ -88,7 +93,7 @@ module.exports = function startApp(config) {
     }
     next();
   });
-  
+
 
   app.use(require('./middleware/attachUserInfo'));
   const logDir = path.join(__dirname, 'logs');
@@ -135,7 +140,7 @@ module.exports = function startApp(config) {
     path.join(__dirname, 'userContent', 'views'),
     path.join(__dirname, 'views')
   ]);
-  
+
   app.use(expressLayouts);
   app.set('layout', 'layout');
   app.use(express.json());
@@ -169,6 +174,18 @@ module.exports = function startApp(config) {
       message: 'The page you requested does not exist.'
     });
   });
+
+  app.locals.tooltip = function (content, tooltipText) {
+    return `
+      <span class="relative group cursor-pointer align-middle" title="">
+        ${content}
+        <div class="absolute left-6 top-1 z-10 w-64 rounded bg-gray-800 text-white text-xs p-2 
+                    opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+          ${tooltipText}
+        </div>
+      </span>
+    `;
+  };
 
 
   app.use((err, req, res, next) => {
@@ -216,10 +233,22 @@ module.exports = function startApp(config) {
       enabled: false,
       autoStartImageServer: false
     },
-	accessLevelFilter: 0,
+    allowRegistration: true,
+    accessLevelFilter: 0,
     minBadges: 500,
     quantizeBirthDate: 'day',
-	useAutoEncrypt: true,
+    useAutoEncrypt: true,
+    schedule: {
+      tasks: {
+        buildStatsCache: {
+          intervalMinutes: 60,
+          handler: 'statsCache.buildStatsCache'
+        }, convertAllPortraits: {
+          intervalMinutes: 60,
+          handler: 'portraitService.convertAllPortraits'
+        }
+      }
+    }
   });
   if (config.costumeRendering?.autoStartImageServer) {
     const { ensureImageServerInstalled, launchImageServer } = require('./utils/imageServerSetup');

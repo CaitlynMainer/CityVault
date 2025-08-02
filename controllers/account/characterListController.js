@@ -18,7 +18,7 @@ async function showCharacterList(req, res) {
   // Such overrides are rejected if somehow present when the user is not admin.
   */
   const isAdmin = req.session.role === 'admin';
-  let   authId  = (isAdmin && req.query.uid) ? parseInt(req.query.uid, 10) : undefined;
+  let authId = (isAdmin && req.query.uid) ? parseInt(req.query.uid, 10) : undefined;
 
   // Sanitize bad input for uid just in case
   if (isNaN(authId)) authId = undefined;
@@ -39,7 +39,7 @@ async function showCharacterList(req, res) {
   }
 
   const charactersByServer = {};
-  const totalsByServer	   = {};
+  const totalsByServer = {};
 
   try {
     for (const serverKey of Object.keys(config.servers)) {
@@ -56,27 +56,30 @@ async function showCharacterList(req, res) {
           WHERE e.AuthId = @authId
         `);
 
-      const enriched = result.recordset.map(row => {
-        const enrichedChar = enrichCharacterSummary(row, serverKey);
-        const filename = `${serverKey}_${row.ContainerId}.png`;
-        const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', filename);
-        let portraitVersion = 0;
-        try {
-          const stat = fs.statSync(portraitPath);
-          portraitVersion = stat.mtimeMs;
-        } catch (_) {}
-        return {
-          ...enrichedChar,
-          serverKey,
-          portraitVersion
-        };
-      });
-	  
+      const enriched = await Promise.all(
+        result.recordset.map(async row => {
+          const enrichedChar = await enrichCharacterSummary(row, serverKey);
+          const filename = `${serverKey}_${row.ContainerId}.png`;
+          const portraitPath = path.join(global.BASE_DIR, 'public/images/portrait', filename);
+          let portraitVersion = 0;
+          try {
+            const stat = fs.statSync(portraitPath);
+            portraitVersion = stat.mtimeMs;
+          } catch (_) { }
+          return {
+            ...enrichedChar,
+            serverKey,
+            portraitVersion
+          };
+        })
+      );
+
+
       // Tally up number of characters, logins, and play time for the shard
-      const totalSeconds        = result.recordset.reduce((s, r) => s + (r.TotalTime  || 0), 0);
-      const totalLogins         = result.recordset.reduce((s, r) => s + (r.LoginCount || 0), 0);
-      const totalHours          = Math.round(totalSeconds / 3600);
-      const totalCharacters     = result.recordset.length;
+      const totalSeconds = result.recordset.reduce((s, r) => s + (r.TotalTime || 0), 0);
+      const totalLogins = result.recordset.reduce((s, r) => s + (r.LoginCount || 0), 0);
+      const totalHours = Math.round(totalSeconds / 3600);
+      const totalCharacters = result.recordset.length;
       totalsByServer[serverKey] = { totalHours, totalLogins, totalCharacters };
 
       if (enriched.length) {
@@ -84,7 +87,7 @@ async function showCharacterList(req, res) {
       }
     }
 
-	res.render('account/character_list', { charactersByServer, totalsByServer, stringClean });
+    res.render('account/character_list', { charactersByServer, totalsByServer, stringClean });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error loading character list');
