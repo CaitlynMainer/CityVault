@@ -50,7 +50,7 @@ function loadBadgeStrings(baseDir) {
         const match = trimmed.match(/^"(.+?)"\s+"(.*)"$/);
         if (match) {
           const [, id, text] = match;
-          map[`P${id}`] = text;
+          map[`${id}`] = text;
         }
       }
     }
