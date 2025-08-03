@@ -1,3 +1,28 @@
+<style>
+  .character-profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  @media (min-width: 1024px) {
+    .character-profile-container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .left-panel {
+    flex: 0 0 360px;
+  }
+
+  .right-panel {
+    flex: 1;
+    max-width: 720px;
+  }
+</style>
+
 <% const isForced = typeof forcedAccess !== 'undefined' && forcedAccess; %>
 <% const isAllowed = typeof character !== 'undefined' && character !== null; %>
 <% if (isAllowed || isForced) { %>
@@ -40,9 +65,9 @@
 		tryReload();
 	  }
 	</script>
-	<div class="flex flex-col lg:flex-row gap-6 items-start">
-	  <!-- Left Panel -->
-	  <div class="w-full lg:w-[360px]">
+  <div class="character-profile-container">
+    <!-- Left Column: Character Summary -->
+    <div class="left-panel" style="flex: 0 0 360px;">
 		<% if (role === 'admin' || viewerIsOwner) { %>
 		  <div style="display: grid; grid-template-columns: repeat(2, auto); gap: 8px; justify-content: center; margin-top: 8px;">
 			<form method="POST" action="/clear-costume-render" style="margin: 0;">
@@ -141,8 +166,8 @@
       </ul>
     </div>
 
-	<!-- Right Panel -->
-	<div class="flex-1 w-full">
+    <!-- Right Column: Character Name, Bio, and Badges -->
+    <div class="right-panel" style="flex: 1; max-width: 720px;">
 	  <h1 class="text-3xl font-bold mb-4"><%= stringClean(character.Name) %></h1>
       <p><strong>Player:</strong>          <% if (character.globalHandle) { %>
             <a href="/profile/<%= character.AuthId %>">@<%= stringClean(character.globalHandle) %></a>
