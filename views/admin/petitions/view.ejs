@@ -1,10 +1,10 @@
-<h1 class="text-xl font-bold mb-4">Petition Details</h1>
+<h1 class="text-xl font-bold mb-4"><span class="font-paragon">Petition Details</span></h1>
 
 <div class="bg-gray-800 p-4 rounded border border-gray-700">
-  <p><strong>Submitted By:</strong> <%= petition.Name %> (<%= petition.AuthName %>)</p>
-  <p><strong>Date:</strong> <%= new Date(petition.Date).toLocaleString() %></p>
+  <p><strong><span class="font-paragon">Submitted By:</span></strong> <%= petition.Name %> (<%= petition.AuthName %>)</p>
+  <p><strong><span class="font-paragon">Date:</span></strong> <%= new Date(petition.Date).toLocaleString() %></p>
 <p>
-  <strong>Map:</strong>
+  <strong><span class="font-paragon">Map:</span></strong>
   <%= petition.MapDisplay %>
   [<%= petition.PosX %>, <%= petition.PosY %>, <%= petition.PosZ %>]
 </p>
@@ -12,28 +12,28 @@
   <p class="text-sm text-gray-400">Mapmove: <code>/mapmove <%= petition.MapContainerId %></code></p>
 <% } %>
 
-  <p><strong>Category:</strong> <%= petition.CategoryName %></p>
-    <p><strong>In Progress:</strong> <%= petition.Fetched ? '✅' : '❌' %></p>
-    <p><strong>Done:</strong> <%= petition.Done ? '✅' : '❌' %></p>
-  <p><strong>Summary:</strong></p>
+  <p><strong><span class="font-paragon">Category:</span></strong> <%= petition.CategoryName %></p>
+  <p><strong><span class="font-paragon">In Progress</span>:</strong> <%= petition.Fetched ? '✅' : '❌' %></p>
+  <p><strong><span class="font-paragon">Done:</span></strong> <%= petition.Done ? '✅' : '❌' %></p>
+  <p><strong><span class="font-paragon">Summary:</span></strong></p>
   <p class="italic text-yellow-300"><%= petition.Summary %></p>
-  <p class="mt-4"><strong>Message:</strong></p>
+  <p class="mt-4"><strong><span class="font-paragon">Message:</span></strong></p>
   <pre class="whitespace-pre-wrap bg-gray-900 p-3 rounded text-gray-100 border border-gray-700"><%= petition.Msg %></pre>
 
     <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/fetch" method="POST" class="inline-block mr-2">
     <button type="submit" class="btn <%= petition.Fetched ? 'btn-yellow' : 'btn-outline-yellow' %>">
-        <%= petition.Fetched ? 'Mark Not In Progress' : 'Mark In Progress' %>
+        <span class="font-paragon"><%= petition.Fetched ? 'Mark Not In Progress' : 'Mark In Progress' %></span>
     </button>
     </form>
 
     <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/done" method="POST" class="inline-block">
     <button type="submit" class="btn <%= petition.Done ? 'btn-green' : 'btn-outline-green' %>">
-        <%= petition.Done ? 'Mark Undone' : 'Mark Done' %>
+        <span class="font-paragon"><%= petition.Done ? 'Mark Undone' : 'Mark Done' %></span>
     </button>
     </form>
 </div>
 
-<h2 class="text-lg font-bold mt-6 mb-2">🗨️ Comments</h2>
+<h2 class="text-lg font-bold mt-6 mb-2"><span class="font-paragon">🗨️ Comments</span></h2>
 
 <% if (petition.comments.length === 0) { %>
   <p class="text-gray-400 italic mb-4">No comments yet.</p>
@@ -54,7 +54,7 @@
 
 <form action="/admin/petitions/<%= petition.serverKey %>/<%= petition.ContainerId %>/comment" method="POST" class="mt-4">
   <textarea name="comment" rows="4" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-gray-200" required></textarea>
-  <button type="submit" class="btn btn-blue mt-2">Post Comment</button>
+  <button type="submit" class="btn btn-blue mt-2"><span class="font-paragon">Post Comment</span></button>
 </form>
 
 <p class="mt-6">

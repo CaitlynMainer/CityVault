@@ -21,6 +21,99 @@
     flex: 1;
     max-width: 720px;
   }
+  .badge-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.badge-tile {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.badge-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.badge-icon {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 32px; /* Or 48px if your original icons are larger */
+  image-rendering: pixelated; /* Optional: for pixel-art-style badges */
+}
+
+.badge-owned {
+  color: #00ff99;
+  font-weight: 500;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-unowned {
+  color: #ccc;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.badge-status {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.badge-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.badge-toggle-btn {
+  background: none;
+  border: none;
+  color: #66ccff;
+  cursor: pointer;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.badge-description {
+  font-size: 0.75rem;
+  color: #aaa;
+  line-height: 1.25;
+  margin-top: 4px;
+}
+
+.badge-description.hidden {
+  display: none;
+}
+
 </style>
 
 <% const isForced = typeof forcedAccess !== 'undefined' && forcedAccess; %>
@@ -75,14 +168,14 @@
 			  <input type="hidden" name="containerId" value="<%= character.ContainerId %>">
 			  <input type="hidden" name="slot" value="<%= character.CurrentCostume || 0 %>">
 			  <button type="submit" class="btn btn-red text-xs px-2 py-1" onclick="return confirm('Are you sure you want to clear this render?')">
-				Clear Render
+				<span class="font-paragon">Clear Render</span>
 			  </button>
 			</form>
 
 			<form method="POST" action="/character/deletePortrait" style="margin: 0;">
 			  <input type="hidden" name="characterId" value="<%= serverKey %>:<%= character.ContainerId %>">
 			  <button type="submit" class="btn btn-red text-xs px-2 py-1" onclick="return confirm('Delete your custom portrait?')">
-				Delete Portrait
+				<span class="font-paragon">Delete Portrait</span>
 			  </button>
 			</form>
 		  </div>
@@ -117,34 +210,34 @@
       </div>
 
       <ul style="font-size: 14px; color: #ccc; line-height: 1.6;">
-        <li><strong>Title:</strong> <%= character.DisplayTitle || '(None)' %></li>
-        <li><strong>Supergroup:</strong>
+        <li><strong><span class="font-paragon">Title:</span></strong> <%= character.DisplayTitle || '(None)' %></li>
+        <li><strong><span class="font-paragon">Supergroup:</span></strong>
           <% if (character.SupergroupLink) { %>
             <a href="/supergroup/<%= serverKey %>:<%= character.SupergroupLink.id %>"><%= stringClean(character.SupergroupLink.name) %></a>
           <% } else { %>
             (None)
           <% } %>
         </li>
-        <li><strong>Archetype:</strong> <%= character.ClassName %></li>
-        <li><strong>Primary:</strong> <%= character.PrimaryPowerset %></li>
-        <li><strong>Secondary:</strong> <%= character.SecondaryPowerset %></li>
-        <li><strong>Pools:</strong> <%= character.Pools.join(', ') %></li>
-        <li><strong>Ancillary Pools:</strong> <%= character.AncillaryPools.join(', ') %></li>
-        <li><strong>XP Level:</strong> <%= character.Level %></li>
-        <li><strong>Experience:</strong> <%= character.Experience %></li>
-        <li><strong>Influence:</strong> <%= character.Influence %></li>
-        <li><strong>Last Seen:</strong> <%= character.LastSeen %></li>
-        <li><strong>Created:</strong> <%= character.Created %></li>
-        <li><strong>Login Count:</strong> <%= character.LoginCount %></li>
-        <li><strong>Total Time Played:</strong> <%= character.TotalTimePlayed %></li>
-        <li><strong>Global:</strong>
+        <li><strong><span class="font-paragon">Archetype:</span></strong> <%= character.ClassName %></li>
+        <li><strong><span class="font-paragon">Primary:</span></strong> <%= character.PrimaryPowerset %></li>
+        <li><strong><span class="font-paragon">Secondary:</span></strong> <%= character.SecondaryPowerset %></li>
+        <li><strong><span class="font-paragon">Pools:</span></strong> <%= character.Pools.join(', ') %></li>
+        <li><strong><span class="font-paragon">Ancillary Pools:</span></strong> <%= character.AncillaryPools.join(', ') %></li>
+        <li><strong><span class="font-paragon">XP Level:</span></strong> <%= character.Level %></li>
+        <li><strong><span class="font-paragon">Experience:</span></strong> <%= character.Experience %></li>
+        <li><strong><span class="font-paragon">Influence</span>:</strong> <%= character.Influence %></li>
+        <li><strong><span class="font-paragon">Last Seen:</span></strong> <%= character.LastSeen %></li>
+        <li><strong><span class="font-paragon">Created:</span></strong> <%= character.Created %></li>
+        <li><strong><span class="font-paragon">Login Count:</span></strong> <%= character.LoginCount %></li>
+        <li><strong><span class="font-paragon">Total Time Played:</span></strong> <%= character.TotalTimePlayed %></li>
+        <li><strong><span class="font-paragon">Global:</span></strong>
           <% if (character.globalHandle) { %>
             <a href="/profile/<%= character.AuthId %>">@<%= stringClean(character.globalHandle) %></a>
           <% } else { %>
             (Unknown)
           <% } %>
         </li>
-        <li><strong>Access Level:</strong>
+        <li><strong><span class="font-paragon">Access Level:</span></strong>
           <% if (role === 'admin') { %>
             <form action="/admin/updateAccessLevel" method="post" style="display:inline;">
               <input type="hidden" name="serverKey"   value="<%= serverKey %>">
@@ -169,29 +262,34 @@
     <!-- Right Column: Character Name, Bio, and Badges -->
     <div class="right-panel" style="flex: 1; max-width: 720px;">
 	  <h1 class="text-3xl font-bold mb-4"><%= stringClean(character.Name) %></h1>
-      <p><strong>Player:</strong>          <% if (character.globalHandle) { %>
+      <p><strong><span class="font-paragon">Player:</span></strong>          <% if (character.globalHandle) { %>
             <a href="/profile/<%= character.AuthId %>">@<%= stringClean(character.globalHandle) %></a>
           <% } else { %>
             (Unknown)
           <% } %></p>
 
       <div style="margin: 12px 0;">
-        <strong>Description:</strong><br />
+        <strong><span class="font-paragon">Description:</span></strong><br />
         <p style="white-space: pre-wrap;"><%- stringClean(character.Description) %></p>
       </div>
 
-	  <h2 class="text-xl font-bold mb-2">Badge Tracking</h2>
+	  <h2 class="text-xl font-bold mb-2"><span class="font-paragon">Badge Tracking</span></h2>
       <div style="margin: 24px 0;">
+        <div style="margin-top: 4px; text-align: center; font-size: 14px; color: #ddd;">
+          <div class="text-lg text-center text-gray-200">
+            <strong><%= stringClean(character.Name) %></strong> has collected
+            <strong><%= ownedBadges %></strong> of
+            <strong><%= totalBadges %></strong> badges.
+          </div>
+        </div>
         <div style="background: #ccc; border-radius: 4px; height: 12px; overflow: hidden;">
           <div style="background: linear-gradient(to right, orange, gold); width: <%= Math.floor((ownedBadges / totalBadges) * 100) %>%; height: 100%;"></div>
         </div>
-        <div style="margin-top: 4px; text-align: center; font-size: 14px; color: #ddd;">
-          <strong><%= stringClean(character.Name) %></strong> has collected <strong><%= ownedBadges %></strong> of <strong><%= totalBadges %></strong> badges.
-        </div>
       </div>
+      <br>
 
       <% badgeCategoryList.forEach(category => { %>
-        <h3 class="text-lg font-semibold"><%= category.name %></h3>
+        <h3 class="text-lg font-semibold"><span class="font-paragon"><%= category.name %></span></h3>
         <div style="margin-bottom: 8px;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
             <div style="flex: 1; background: #ccc; height: 16px; border-radius: 4px; margin-right: 8px;">
@@ -210,9 +308,9 @@
       
       <br>
       
-      <h2 class="text-xl font-bold mb-2">Unearned but Eligible Badges</h2>
+      <h2 class="text-xl font-bold mb-2"><span class="font-paragon">Unearned but Eligible Badges</span></h2>
       <% unearnedBadgeCategories.forEach(category => { %>
-        <h3 class="text-lg font-semibold"><%= category.name %></h3>
+        <h3 class="text-lg font-semibold"><span class="font-paragon"><%= category.name %></span></h3>
         <div style="margin-bottom: 8px;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
             <div style="flex: 1; background: #ccc; height: 16px; border-radius: 4px; margin-right: 8px;">
@@ -234,59 +332,75 @@
   <div class="alert"><%= message %></div>
 <% } %>
     <script>
-      function toggleBadges(cat) {
-        const el = document.getElementById('details-' + cat);
-        if (!el) return;
+ function toggleBadges(categoryName) {
+  const container = document.getElementById(`details-${categoryName}`);
+  if (!container) return;
 
-        if (el.style.display === 'none') {
-          el.style.display = 'block';
+  if (container.style.display === 'none') {
+    container.style.display = 'block';
 
-          if (!el.dataset.loaded) {
-            try {
-              const decoded = decodeURIComponent(el.dataset.badges);
-              const badges = JSON.parse(decoded);
+    if (!container.dataset.loaded) {
+      const raw = container.dataset.badges;
+      const badges = JSON.parse(decodeURIComponent(raw));
+      container.innerHTML = '';
 
-              const spinner = el.querySelector('.loading-spinner');
-              if (spinner) spinner.remove();
-                for (const b of badges) {
-                  const li = document.createElement('li');
-                  li.style.display = 'grid';
-                  li.style.gridTemplateColumns = '1.5em 80px 1fr';
-                  li.style.alignItems = 'center';
-                  li.style.columnGap = '8px';
-                  li.style.marginBottom = '6px';
+for (const badge of badges) {
+  const li = document.createElement('li');
+  li.className = 'badge-tile';
 
-                  const status = document.createElement('span');
-                  status.textContent = b.owned ? '✅' : '❌';
+  // Top row: [✅] [Icon] [Title] [ⓘ]
+  const topRow = document.createElement('div');
+  topRow.className = 'badge-top-row';
 
-                  const iconWrapper = document.createElement('div');
-                  iconWrapper.style.width = '80px';
-                  iconWrapper.style.display = 'flex';
-                  iconWrapper.style.alignItems = 'center';
+  // Status ✅/❌
+  const status = document.createElement('span');
+  status.className = 'badge-status';
+  status.textContent = badge.owned ? '✅' : '❌';
+  topRow.appendChild(status);
 
-                  const icon = document.createElement('img');
-                  icon.src = `/images/badges/${b.image}.png`;
-                  icon.alt = b.DisplayTitle;
-                  icon.style.height = '32px';
-                  icon.style.maxWidth = '100%';
-                  iconWrapper.appendChild(icon);
+  // Icon
+  const img = document.createElement('img');
+  img.src = `/images/badges/${badge.Icon || 'unknown'}.png`;
+  img.alt = badge.DisplayTitle || badge.Name;
+  img.className = 'badge-icon';
+  topRow.appendChild(img);
 
-                  const label = document.createElement('span');
-                  label.textContent = b.DisplayTitle;
+  // Title text
+  const nameText = document.createElement('span');
+  nameText.textContent = badge.DisplayTitle || badge.Name;
+  nameText.className = 'badge-name';
+  topRow.appendChild(nameText);
 
-                  li.appendChild(status);
-                  li.appendChild(iconWrapper);
-                  li.appendChild(label);
+  // Info toggle (optional)
+  let desc;
+  if (badge.DisplayText || badge.DisplayTextVillain) {
+    const btn = document.createElement('button');
+    btn.textContent = 'ⓘ';
+    btn.className = 'badge-toggle-btn';
+    btn.onclick = () => desc.classList.toggle('hidden');
+    topRow.appendChild(btn);
+  }
 
-                  el.appendChild(li);
-                }
-              el.dataset.loaded = 'true';
-            } catch (e) {
-              console.error('Failed to parse badges:', e);
-            }
-          }
-        } else {
-          el.style.display = 'none';
-        }
-      }
+  // Add the row
+  li.appendChild(topRow);
+
+  // Optional: Description row
+  if (badge.DisplayText || badge.DisplayTextVillain) {
+    desc = document.createElement('div');
+    desc.className = 'badge-description hidden';
+    desc.textContent = badge.DisplayText || badge.DisplayTextVillain;
+    li.appendChild(desc);
+  }
+
+  container.appendChild(li);
+}
+
+
+      container.dataset.loaded = 'true';
+    }
+  } else {
+    container.style.display = 'none';
+  }
+}
+
     </script>

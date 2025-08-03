@@ -1,28 +1,28 @@
-<a href="/account/petitions/">View your support requests</a>
+<a href="/account/petitions/" style="text-decoration: underline;">View your support requests</a>
 
-<h2 class="text-2xl font-bold mb-4">Account Settings</h2>
+<h2 class="text-2xl font-bold mb-4"><span class="font-paragon">Account Settings</span></h2>
 <form method="POST" action="/account" class="space-y-4 max-w-md">
   <div>
-    <label>Email Address</label>
+    <label><span class="font-paragon">Email Address</span></label>
     <input type="email" name="email" value="<%= email %>" class="bg-gray-800 text-white border border-gray-600 rounded px-3 py-2 w-full">
   </div>
 
   <div>
-    <label>Current Password</label>
+    <label><span class="font-paragon">Current Password</span></label>
     <input type="password" name="oldPassword" class="bg-gray-800 text-white border border-gray-600 rounded px-3 py-2 w-full" required>
   </div>
 
   <div>
-    <label>New Password (leave blank to keep current)</label>
+    <label><span class="font-paragon">New Password</span> (leave blank to keep current)</label>
     <input type="password" name="newPassword" class="bg-gray-800 text-white border border-gray-600 rounded px-3 py-2 w-full">
   </div>
 
   <div>
     <label>
       <input type="checkbox" name="tracker" <%= tracker ? 'checked' : '' %> />
-      Share my characters publicly
+      <span class="font-paragon">Share my characters publicly</span>
     </label>
   </div>
 
-  <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Update Account</button>
+  <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white"><span class="font-paragon">Update Account</span></button>
 </form>

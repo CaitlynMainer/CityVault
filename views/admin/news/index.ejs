@@ -1,5 +1,5 @@
 <main>
-  <h2 class="text-xl font-bold mb-4">News Editor</h2>
+  <h2 class="text-xl font-bold mb-4"><span class="font-paragon">News Editor</span></h2>
 
   <% if (typeof messages !== 'undefined' && (messages.success.length || messages.error.length)) { %>
     <div>
@@ -15,20 +15,20 @@
   <form id="news-form" method="POST" action="/admin/news/save">
     <input type="hidden" name="id" id="news-id" value="<%= post?.id || '' %>">
     
-    <label class="block mb-1">Title:</label>
+    <label class="block mb-1"><span class="font-paragon">Title:</span></label>
     <input type="text" class="w-full mb-2" name="title" id="news-title" value="<%= post?.title || '' %>">
 
-    <label class="block mb-1">Pinned:</label>
+    <label class="block mb-1"><span class="font-paragon">Pinned:</span></label>
     <input type="checkbox" name="pinned" id="news-pinned" <%= post?.pinned ? 'checked' : '' %>> Pinned
 
-    <label class="block mb-1 mt-3">Content:</label>
+    <label class="block mb-1 mt-3"><span class="font-paragon">Content:</span></label>
     <div id="editor" class="bg-white text-black mb-2 p-2 rounded" style="min-height: 150px;"></div>
     <input type="hidden" name="content" id="news-content" value="<%- post?.content || '' %>">
 
-    <button type="submit" class="bg-blue-600 px-4 py-2 text-white">Save</button>
+    <button type="submit" class="bg-blue-600 px-4 py-2 text-white"><span class="font-paragon">Save</span></button>
   </form>
 
-  <h3 class="text-lg font-semibold mt-6">All News Posts</h3>
+  <h3 class="text-lg font-semibold mt-6"><span class="font-paragon">All News Posts</span></h3>
   <ul id="news-list" class="mt-2 space-y-2">
     <% news.forEach(item => { %>
       <li class="bg-gray-700 p-3 rounded flex justify-between items-center" data-id="<%= item.id %>">

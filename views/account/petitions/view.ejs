@@ -1,12 +1,12 @@
-<h1 class="text-xl font-bold mb-4">📋 Petition Detail</h1>
+<h1 class="text-xl font-bold mb-4"><span class="font-paragon">📋 Petition Detail</span></h1>
 
-<p><strong>Server:</strong> <%= serverKey %></p>
-<p><strong>Submitted:</strong> <%= new Date(petition.Date).toLocaleString() %></p>
-<p><strong>Summary:</strong> <%= petition.Summary %></p>
-<p><strong>Message:</strong></p>
+<p><strong><span class="font-paragon">Server:</span></strong> <%= serverKey %></p>
+<p><strong><span class="font-paragon">Submitted:</span></strong> <%= new Date(petition.Date).toLocaleString() %></p>
+<p><strong><span class="font-paragon">Summary:</span></strong> <%= petition.Summary %></p>
+<p><strong><span class="font-paragon">Message:</span></strong></p>
 <pre class="bg-gray-900 border border-gray-700 p-2 rounded text-gray-100"><%= petition.Msg %></pre>
 
-<p class="mt-4"><strong>Status:</strong>
+<p class="mt-4"><strong><span class="font-paragon">Status:</span></strong>
   <% if (petition.Done) { %>
     <span class="text-green-400 font-semibold">Resolved</span>
   <% } else if (petition.Fetched) { %>
@@ -18,7 +18,7 @@
 
 <hr class="my-4 border-gray-700">
 
-<h2 class="text-lg font-bold mb-2">🗨️ Comments</h2>
+<h2 class="text-lg font-bold mb-2"><span class="font-paragon">🗨️ Comments</span></h2>
 
 <% if (petition.comments.length === 0) { %>
   <p class="text-gray-400 italic mb-4">No comments yet.</p>
@@ -39,7 +39,7 @@
 
 <form action="/account/petitions/<%= serverKey %>/<%= petition.ContainerId %>/comment" method="POST" class="mt-4">
   <textarea name="comment" rows="4" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-gray-200" required></textarea>
-  <button type="submit" class="btn btn-blue mt-2">Post Reply</button>
+  <button type="submit" class="btn btn-blue mt-2"><span class="font-paragon">Post Reply</span></button>
 </form>
 
 <p class="mt-6"><a href="/account/petitions" class="text-blue-400 hover:underline">&larr; Back to your petitions</a></p>

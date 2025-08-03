@@ -1,24 +1,27 @@
-<h1 style="color: #fff;"><%= supergroup.Name %></h1>
-<p style="color: #aaa;"><strong>Motto:</strong> <%= supergroup.Motto || '(None)' %></p>
-<p style="color: #aaa;"><strong>Description:</strong> <%= supergroup.Description || '(None)' %></p>
-<p style="color: #aaa;"><strong>Created:</strong> <%= supergroup.DateCreated %></p>
-<p style="color: #aaa;"><strong>Prestige:</strong> <%= supergroup.Prestige != null ? supergroup.Prestige.toLocaleString() : '0' %></p>
-<p style="color: #aaa;"><strong>Rent Due:</strong> <%= supergroup.UpkeepRentDue ? new Date(supergroup.UpkeepRentDue * 1000).toISOString().split('T')[0] : '(Unknown)' %></p>
+<h3 class="text-5xl text-yellow-300 font-extrabold tracking-widest text-center mb-6">
+  <%= supergroup.Name %>
+</h3>
 
-<h2 style="margin-top: 32px; color: #fff;">Supergroup Roster: <%= members.length %> Characters</h2>
+<p style="color: #aaa;"><strong><span class="font-paragon">Motto:</span></strong> <%= supergroup.Motto || '(None)' %></p>
+<p style="color: #aaa;"><strong><span class="font-paragon">Description:</span></strong> <%= supergroup.Description || '(None)' %></p>
+<p style="color: #aaa;"><strong><span class="font-paragon">Created:</span></strong> <%= supergroup.DateCreated %></p>
+<p style="color: #aaa;"><strong><span class="font-paragon">Prestige:</span></strong> <%= supergroup.Prestige != null ? supergroup.Prestige.toLocaleString() : '0' %></p>
+<p style="color: #aaa;"><strong><span class="font-paragon">Rent Due:</span></strong> <%= supergroup.UpkeepRentDue ? new Date(supergroup.UpkeepRentDue * 1000).toISOString().split('T')[0] : '(Unknown)' %></p>
+
+<h2 style="margin-top: 32px; color: #fff;"><span class="font-paragon">Supergroup Roster:</span> <%= members.length %> Characters</h2>
 <p><a href="#" id="resetSort" style="color: #9cf; text-decoration: underline; font-size: 0.9em;">Reset sorting</a></p>
 
 <table id="sg-roster" style="width: 100%; border-collapse: collapse; margin-top: 12px;">
   <thead>
     <tr style="background: #333; color: #ddd;">
-      <th data-sort="text">Name</th>
-      <th data-sort="number">Level</th>
-      <th data-sort="rank">Rank</th>
-      <th>Alignment</th>
-      <th>Origin</th>
-      <th>Archetype</th>
-      <th data-sort="lastseen">Last Seen ▼</th>
-      <th data-sort="text">Player</th>
+      <th data-sort="text"><span class="font-paragon">Name</span></th>
+      <th data-sort="number"><span class="font-paragon">Level</span></th>
+      <th data-sort="rank"><span class="font-paragon">Rank</span></th>
+      <th><span class="font-paragon">Alignment</span></th>
+      <th><span class="font-paragon">Origin</span></th>
+      <th><span class="font-paragon">Archetype</span></th>
+      <th data-sort="lastseen"><span class="font-paragon">Last Seen ▼</span></th>
+      <th data-sort="text"><span class="font-paragon">Player</span></th>
     </tr>
   </thead>
   <% function daysAgo(date) {
@@ -30,7 +33,7 @@
   <tbody>
     <% members.forEach(m => { %>
       <tr style="border-top: 1px solid #444; color: #ccc;">
-        <td><a href="/character/<%= serverKey %>:<%= m.ContainerId %>" style="color: #fff;"><%= stringClean(m.Name) %></a></td>
+        <td><a href="/character/<%= serverKey %>:<%= m.ContainerId %>" style="color: #fff; text-decoration: underline; text-decoration-skip-ink: none;"><%= stringClean(m.Name) %></a></td>
         <td align="center"><%= m.Level %></td>
         <td align="center" data-rank="<%= m.Rank ?? -1 %>"><%= m.RankName || 'Member' %></td>
         <td align="center"><img src="/images/icons/<%= m.alignment.toLowerCase() %>.png" title="<%= m.alignment %>" height="20"></td>

@@ -1,5 +1,5 @@
 <div class="container mx-auto px-4 py-6">
-  <h1 class="text-2xl font-bold mb-4">Configuration Editor</h1>
+  <h1 class="text-2xl font-bold mb-4"><span class="font-paragon">Configuration Editor</span></h1>
 
   <% if (messages && messages.success) { %>
     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
@@ -13,23 +13,23 @@
   <% } %>
 
   <form method="POST" action="/admin/config" id="configForm">
-    <h2 class="text-xl font-semibold mb-2">Site Settings</h2>
+    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Site Settings</span></h2>
     <div class="grid grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium">Site Name</label>
+        <label class="block text-sm font-medium"><span class="font-paragon">Site Name</span></label>
         <input type="text" name="config[siteName]" value="<%= config.siteName %>" class="input" />
       </div>
       <div>
-        <label class="block text-sm font-medium">Domain</label>
+        <label class="block text-sm font-medium"><span class="font-paragon">Domain</span></label>
         <input type="text" name="config[domain]" value="<%= config.domain %>" class="input" />
       </div>
       <div>
-        <label class="block text-sm font-medium">IP Address</label>
+        <label class="block text-sm font-medium"><span class="font-paragon">IP Address</span></label>
         <input type="text" name="config[ipAddr]" value="<%= config.ipAddr %>" class="input" />
       </div>
       <div>
         <div class="relative">
-        <label class="block text-sm font-medium">Session Secret</label>
+        <label class="block text-sm font-medium"><span class="font-paragon">Session Secret</span></label>
             <input
               type="password"
                name="config[session_secret]"
@@ -46,7 +46,7 @@
         </div>
       </div>
       <div>
-        <label class="block text-sm font-medium">Access Level Filter (0 - 11)</label>
+        <label class="block text-sm font-medium"><span class="font-paragon">Access Level Filter</span> (0 - 11)</label>
           <input type="number"
             name="config[accessLevelFilter]"
             min="0" max="11" step="1"
@@ -57,7 +57,7 @@
         </p>
       </div>
       <div>
-        <label class="block text-sm font-medium">Minimum Badges for Spotlight (0 - 500)</label>
+        <label class="block text-sm font-medium"><span class="font-paragon">Minimum Badges for Spotlight</span> (0 - 500)</label>
           <input type="number"
             name="config[minBadges]"
             min="0" max="500" step="10"
@@ -65,19 +65,23 @@
             class="input" />
       </div>
       <div>
-        <label class="block text-sm font-medium">Character Birthday Granularity</label>
+        <label class="block text-sm font-medium"><span class="font-paragon">Character Birthday Granularity</span></label>
         <select name="config[quantizeBirthDate]" class="input">
           <option value="day"   <%= config.quantizeBirthDate === 'day'   ? 'selected' : '' %>>Exact Day</option>
           <option value="month" <%= config.quantizeBirthDate === 'month' ? 'selected' : '' %>>Whole Month</option>
         </select>
       </div>
+      <div>
+        <label class="block text-sm font-medium"><span class="font-paragon">Allow Registration</span></label>
+        <input type="checkbox" name="config[allowRegistration]" value="true" <%= config.allowRegistration ? 'checked' : '' %> />
+      </div>
     </div>
 
-    <h2 class="text-xl font-semibold mb-2">Auth DB</h2>
+    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Auth DB</span></h2>
     <div class="grid grid-cols-2 gap-4 mb-4">
       <% Object.keys(config.auth).forEach(function(key) { %>
         <div>
-          <label class="block text-sm font-medium"><%= key %></label>
+          <label class="block text-sm font-medium"><span class="font-paragon"><%= key %></span></label>
           <% if (key === 'dbPass') { %>
           <div class="relative">
             <input
@@ -104,11 +108,11 @@
     </div>
 
 
-    <h2 class="text-xl font-semibold mb-2">Chat DB</h2>
+    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Chat DB</span></h2>
     <div class="grid grid-cols-2 gap-4 mb-4">
       <% Object.keys(config.chat).forEach(function(key) { %>
         <div>
-          <label class="block text-sm font-medium"><%= key %></label>
+          <label class="block text-sm font-medium"><span class="font-paragon"><%= key %></span></label>
           <% if (key === 'dbPass') { %>
             <div class="relative">
               <input
@@ -134,7 +138,7 @@
       <% }); %>
     </div>
 
-    <h2 class="text-xl font-semibold mb-2">Email Configuration</h2>
+    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon"><Email Configuration/span></h2>
     <div class="grid grid-cols-2 gap-4 mb-4">
       <div>
         <label class="block text-sm font-medium">Provider</label>
@@ -145,17 +149,17 @@
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium">From Email</label>
+        <label class="block text-sm font-medium"><span class="font-paragon">From Email</span></label>
         <input type="email" name="config[email][fromEmail]" value="<%= config.email.fromEmail %>" class="input" />
       </div>
     </div>
 
     <!-- MailerSend Fields -->
     <div id="mailersend-fields" class="mb-4">
-      <h3 class="text-lg font-semibold mb-2">MailerSend</h3>
+      <h3 class="text-lg font-semibold mb-2"><span class="font-paragon">MailerSend</span></h3>
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium">API Key</label>
+          <label class="block text-sm font-medium"><span class="font-paragon">API Key</span></label>
           <input type="text" name="config[email][mailersend][apiKey]" value="<%= config.email.mailersend?.apiKey || '' %>" class="input" />
         </div>
       </div>
@@ -163,44 +167,44 @@
 
     <!-- SMTP Fields -->
     <div id="smtp-fields" class="mb-4">
-      <h3 class="text-lg font-semibold mb-2">SMTP</h3>
+      <h3 class="text-lg font-semibold mb-2"><span class="font-paragon">SMTP</span></h3>
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium">Host</label>
+          <label class="block text-sm font-medium"><span class="font-paragon">Host</span></label>
           <input type="text" name="config[email][smtp][host]" value="<%= config.email.smtp?.host || '' %>" class="input" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Port</label>
+          <label class="block text-sm font-medium"><span class="font-paragon">Port</span></label>
           <input type="number" name="config[email][smtp][port]" value="<%= config.email.smtp?.port || 587 %>" class="input" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Use TLS/SSL</label>
+          <label class="block text-sm font-medium"><span class="font-paragon">Use TLS/SSL</span></label>
           <input type="checkbox" name="config[email][smtp][secure]" value="true" <%= config.email.smtp?.secure ? 'checked' : '' %> />
         </div>
         <div>
-          <label class="block text-sm font-medium">Username</label>
+          <label class="block text-sm font-medium"><span class="font-paragon">Username</span></label>
           <input type="text" name="config[email][smtp][auth][user]" value="<%= config.email.smtp?.auth?.user || '' %>" class="input" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Password</label>
+          <label class="block text-sm font-medium"><span class="font-paragon">Password</span></label>
           <input type="password" name="config[email][smtp][auth][pass]" value="<%= config.email.smtp?.auth?.pass || '' %>" class="input" />
         </div>
       </div>
     </div>
 
-    <h2 class="text-xl font-semibold mb-2">Game Servers</h2>
+    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Game Servers</span></h2>
 <% const authLocal = config.auth.dbHost && config.auth.dbHost.toLowerCase().startsWith('localdb\\'); %>
 <% const chatLocal = config.chat.dbHost && config.chat.dbHost.toLowerCase().startsWith('localdb\\'); %>
 
     <div id="serversContainer" class="mb-4">
       <% Object.keys(config.servers).forEach(function(key) { %>
         <fieldset class="border p-4 mb-2">
-          <legend class="font-semibold">Server: <%= key %></legend>
+          <legend class="font-semibold"><span class="font-paragon">Server: <%= key %></span></legend>
           <input type="hidden" name="config[servers][<%= key %>][_key]" value="<%= key %>" />
           <% Object.keys(config.servers[key]).forEach(function(field) { %>
             <% if (field === 'badgeVersion') { %>
               <div>
-                <label class="block text-sm font-medium">Data Version</label>
+                <label class="block text-sm font-medium"><span class="font-paragon">Data Version</span></label>
                 <select name="config[servers][<%= key %>][badgeVersion]" class="input">
                   <option value="i24" <%= config.servers[key][field] === 'i24' ? 'selected' : '' %>>i24 / v2 (OuroDev)</option>
                   <option value="i25" <%= config.servers[key][field] === 'i25' ? 'selected' : '' %>>i25+ (Homecoming Based)</option>
@@ -208,12 +212,12 @@
               </div>
             <% } else if (field === 'dbPort') { %>
               <div>
-                <label class="block text-sm font-medium">dbPort</label>
+                <label class="block text-sm font-medium"><span class="font-paragon">dbPort</span></label>
                 <input type="number" name="config[servers][<%= key %>][dbPort]" value="<%= config.servers[key][field] %>" class="input" min="1" max="65535" />
               </div>
             <% } else if (field === 'dbPass') { %>
               <div>
-                <label class="block text-sm font-medium">dbPass</label>
+                <label class="block text-sm font-medium"><span class="font-paragon">dbPass</span></label>
                 <div class="relative">
                   <input
                     type="password"
@@ -233,22 +237,22 @@
               </div>
             <% } else { %>
               <div>
-                <label class="block text-sm font-medium"><%= field %></label>
+                <label class="block text-sm font-medium"><span class="font-paragon"><%= field %></span></label>
                 <input type="text" name="config[servers][<%= key %>][<%= field %>]" value="<%= config.servers[key][field] %>" class="input" />
               </div>
             <% } %>
           <% }); %>
-          <button type="button" onclick="removeServer(this)" class="text-red-600">Remove Server</button>
+          <button type="button" onclick="removeServer(this)" class="text-red-600"><span class="font-paragon">Remove Server</span></button>
         </fieldset>
       <% }); %>
     </div>
-    <button type="button" onclick="addServer()" class="btn btn-blue mb-4">Add Server</button>
+    <button type="button" onclick="addServer()" class="btn btn-blue mb-4"><span class="font-paragon">Add Server</span></button>
 
-    <h2 class="text-xl font-semibold mb-2">Scheduled Tasks</h2>
+    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Scheduled Tasks</span></h2>
     <div id="tasksContainer" class="mb-4">
       <% Object.keys(config.schedule.tasks).forEach(function(key) { %>
         <fieldset class="border p-4 mb-2">
-          <legend class="font-semibold">Task: <%= key %></legend>
+          <legend class="font-semibold"><span class="font-paragon">Task:</span> <%= key %></legend>
           <input type="hidden" name="config[schedule][tasks][<%= key %>][_key]" value="<%= key %>" />
           <% Object.keys(config.schedule.tasks[key]).forEach(function(field) { %>
             <div>
@@ -256,43 +260,48 @@
               <input type="text" name="config[schedule][tasks][<%= key %>][<%= field %>]" value="<%= config.schedule.tasks[key][field] %>" class="input" />
             </div>
           <% }); %>
-          <button type="button" onclick="removeTask(this)" class="text-red-600">Remove Task</button>
+          <button type="button" onclick="removeTask(this)" class="text-red-600"><span class="font-paragon">Remove Task</span></button>
         </fieldset>
       <% }); %>
     </div>
-    <button type="button" onclick="addTask()" class="btn btn-blue mb-4">Add Task</button>
+    <button type="button" onclick="addTask()" class="btn btn-blue mb-4"><span class="font-paragon">Add Task</span></button>
 
-    <h2 class="text-xl font-semibold mb-2">Log Settings</h2>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <% Object.keys(config.logs).forEach(function(key) { %>
-        <div>
-          <label class="block text-sm font-medium"><%= key %></label>
-          <% if (key === 'compress') { %>
-            <input type="checkbox" name="config[logs][compress]" value="true" <%= config.logs.compress ? 'checked' : '' %> />
-          <% } else if (key === 'accessRetentionDays') { %>
-            <input type="number" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" min="1" />
-          <% } else { %>
-            <input type="text" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" />
-          <% } %>
-        </div>
-      <% }); %>
-    </div>
-    
-    <h2 class="text-xl font-semibold mb-2">Costume Rendering</h2>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <% Object.keys(config.costumeRendering).forEach(function(key) { %>
-        <div>
-          <label class="block text-sm font-medium"><%= key %></label>
-          <% if (typeof config.costumeRendering[key] === 'boolean') { %>
-            <input type="hidden" name="config[costumeRendering][<%= key %>]" value="false" />
-            <input type="checkbox" name="config[costumeRendering][<%= key %>]" value="true" <%= config.costumeRendering[key] ? 'checked' : '' %> />
-          <% } else { %>
-            <input type="text" name="config[costumeRendering][<%= key %>]" value="<%= config.costumeRendering[key] %>" class="input" />
-          <% } %>
-        </div>
-      <% }); %>
-    </div>
-    <button type="submit" class="btn btn-green">Save Config</button>
+    <fieldset class="border p-4 mb-4">
+      <legend class="text-xl font-semibold mb-2"><span class="font-paragon">Log Settings</span></legend>
+      <div class="grid grid-cols-2 gap-4">
+        <% Object.keys(config.logs).forEach(function(key) { %>
+          <div>
+            <label class="block text-sm font-medium"><%= key %></label>
+            <% if (key === 'compress') { %>
+              <input type="checkbox" name="config[logs][compress]" value="true" <%= config.logs.compress ? 'checked' : '' %> />
+            <% } else if (key === 'accessRetentionDays') { %>
+              <input type="number" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" min="1" />
+            <% } else { %>
+              <input type="text" name="config[logs][<%= key %>]" value="<%= config.logs[key] %>" class="input" />
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-4 mb-4">
+      <legend class="text-xl font-semibold mb-2"><span class="font-paragon">Costume Rendering</span></legend>
+      <div class="grid grid-cols-2 gap-4">
+        <% Object.keys(config.costumeRendering).forEach(function(key) { %>
+          <div>
+            <label class="block text-sm font-medium"><%= key %></label>
+            <% if (typeof config.costumeRendering[key] === 'boolean') { %>
+              <input type="hidden" name="config[costumeRendering][<%= key %>]" value="false" />
+              <input type="checkbox" name="config[costumeRendering][<%= key %>]" value="true" <%= config.costumeRendering[key] ? 'checked' : '' %> />
+            <% } else { %>
+              <input type="text" name="config[costumeRendering][<%= key %>]" value="<%= config.costumeRendering[key] %>" class="input" />
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn-green"><span class="font-paragon">Save Config</span></button>
   </form>
 </div>
 

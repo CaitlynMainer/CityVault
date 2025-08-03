@@ -1,13 +1,13 @@
 <main class="grid grid-cols-1 lg:grid-cols-5 gap-8">
   <!-- News Column (2/5 width on large screens) -->
   <section class="lg:col-span-2">
-    <h2 class="text-2xl font-bold mb-4"><%= config.siteName %> News</h2>
+    <h2 class="text-2xl font-bold mb-4"><span class="font-paragon"><%= config.siteName %> News</span></h2>
     <% if (news.length === 0) { %>
       <p>No news posts available.</p>
     <% } %>
     <% news.forEach(post => { %>
       <article class="mb-6 p-4 border border-gray-700 rounded">
-        <h3 class="text-xl font-semibold"><%= post.title %></h3>
+        <h3 class="text-xl font-semibold"><span class="font-paragon"><%= post.title %></span></h3>
         <div class="prose prose-invert max-w-none">
           <%- post.content %>
         </div>
@@ -20,7 +20,7 @@
     
     <!-- Recently Online -->
     <section>
-      <h2 class="text-xl font-bold mb-2">Recently Online</h2>
+      <h2 class="text-xl font-bold mb-2"><span class="font-paragon">Recently Online</span></h2>
       <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
         <% recent.forEach(char => { %>
           <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition
@@ -40,17 +40,17 @@
 
     <!-- Quick Stats -->
     <section>
-      <h2 class="text-xl font-bold mb-2">Quick Stats</h2>
+      <h2 class="text-xl font-bold mb-2"><span class="font-paragon">Quick Stats</span></h2>
       <ul class="text-sm space-y-1">
-        <li><strong>Online Now:</strong> <%= stats.onlineNow.toLocaleString() %></li>
-        <li><strong>Online Today:</strong> <%= stats.onlineToday.toLocaleString() %></li>
-        <li><strong>Online This Month:</strong> <%= stats.onlineMonth.toLocaleString() %></li>
-        <li><strong>Total Tracked Characters:</strong> <%= stats.totalChars.toLocaleString() %></li>
-        <li><strong>Total Hero 50s:</strong> <%= stats.hero50s %></li>
-        <li><strong>Total Villain 50s:</strong> <%= stats.villain50s.toLocaleString() %></li>
-        <li><strong>Average Level:</strong> <%= Math.round(stats.avgLevel) %></li>
-        <li><strong>Average Influence:</strong> <%= stats.avgInfluence.toLocaleString() %></li>
-        <li><strong>Top Archetypes:</strong>
+        <li><strong><span class="font-paragon">Online Now:</span></strong> <%= stats.onlineNow.toLocaleString() %></li>
+        <li><strong><span class="font-paragon">Online Today:</span></strong> <%= stats.onlineToday.toLocaleString() %></li>
+        <li><strong><span class="font-paragon">Online This Month:</span></strong> <%= stats.onlineMonth.toLocaleString() %></li>
+        <li><strong><span class="font-paragon">Total Tracked Characters:</span></strong> <%= stats.totalChars.toLocaleString() %></li>
+        <li><strong><span class="font-paragon">Total Hero 50s:</span></strong> <%= stats.hero50s %></li>
+        <li><strong><span class="font-paragon">Total Villain 50s:</span></strong> <%= stats.villain50s.toLocaleString() %></li>
+        <li><strong><span class="font-paragon">Average Level:</span></strong> <%= Math.round(stats.avgLevel) %></li>
+        <li><strong><span class="font-paragon">Average Influence:</span></strong> <%= stats.avgInfluence.toLocaleString() %></li>
+        <li><strong><span class="font-paragon">Top Archetypes:</span></strong>
           <%= Object.entries(stats.archetypeCounts)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 3)
@@ -64,7 +64,7 @@
           %>
         </li>
 
-        <li><strong>Top Origins:</strong>
+        <li><strong><span class="font-paragon">Top Origins:</span></strong>
           <%= Object.entries(stats.originCounts)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 3)
@@ -80,7 +80,7 @@
 
     <!-- Character Birthdays -->
     <section class="mt-6 md:mt-0">
-      <h2 class="text-xl font-bold mb-2">Character Birthdays</h2>
+      <h2 class="text-xl font-bold mb-2"><span class="font-paragon">Character Birthdays</span></h2>
       <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
         <% birthdays.forEach(char => { %>
           <li class="border border-gray-700 p-2 rounded hover:bg-gray-800 transition
@@ -108,7 +108,7 @@
     <!-- Badge Spotlight -->
     <section class="mt-6 md:mt-0">
       <h2 class="text-xl font-bold mb-2 flex items-center gap-2">
-        Badge Spotlight
+        <span class="font-paragon">Badge Spotlight</span>
         <%- tooltip(`
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <title>Info</title>

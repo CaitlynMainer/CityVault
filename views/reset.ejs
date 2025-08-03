@@ -1,5 +1,5 @@
 <div class="container mx-auto px-4 py-6 max-w-md">
-  <h1 class="text-2xl font-bold mb-4">Request Password Reset</h1>
+  <h1 class="text-2xl font-bold mb-4"><span class="font-paragon">Request Password Reset</span></h1>
 
 <% const flash = getMessages(); %>
 <% if (flash.error && flash.error.length > 0) { %>
@@ -15,14 +15,14 @@
 
   <form method="POST" action="/login/reset">
     <div class="mb-4">
-      <label for="email" class="block text-sm font-medium">Email Address</label>
+      <label for="email" class="block text-sm font-medium"><span class="font-paragon">Email Address</span></label>
       <input type="email" name="email" id="email" class="input w-full" required />
     </div>
 
-    <button type="submit" class="btn btn-blue w-full">Send Reset Link</button>
+    <button type="submit" class="btn btn-blue w-full"><span class="font-paragon">Send Reset Link</span></button>
   </form>
 
   <div class="mt-4 text-sm text-center">
-    <a href="/login" class="text-blue-600 underline">Back to login</a>
+    <a href="/login" class="text-blue-600 underline"><span class="font-paragon">Back to login</span></a>
   </div>
 </div>

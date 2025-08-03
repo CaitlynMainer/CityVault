@@ -1,5 +1,5 @@
 <main>
-  <h2 class="text-xl font-bold mb-4">Configure Manifest</h2>
+  <h2 class="text-xl font-bold mb-4"><span class="font-paragon">Configure Manifest</span></h2>
 
   <% if (typeof messages !== 'undefined' && (messages.success.length || messages.error.length)) { %>
     <div>
@@ -13,49 +13,49 @@
   <% } %>
 
   <form method="POST" action="/admin/manifest">
-    <label class="block">Label:
+    <label class="block"><span class="font-paragon">Label:</span>
       <input class="w-full" type="text" name="label" value="<%= config.label || '' %>">
     </label>
 
-    <label class="block">Forum \ Discord Name:
+    <label class="block"><span class="font-paragon">Forum \ Discord Name:</span>
       <input class="w-full" type="text" name="forumName" value="<%= config.forumName || '' %>">
     </label>
 
-    <label class="block">Forum \ Discord URL:
+    <label class="block"><span class="font-paragon">Forum \ Discord URL:</span>
       <input class="w-full" type="text" name="forumUrl" value="<%= config.forumUrl || '' %>">
     </label>
 
-    <label class="block">Webpage:
+    <label class="block"><span class="font-paragon">Webpage:</span>
       <input class="w-full" type="text" name="webpage" value="<%= config.webpage || '' %>">
     </label>
 
-    <label class="block">Launcher Background URL:
+    <label class="block"><span class="font-paragon">Launcher Background URL:</span>
       <input class="w-full" type="text" name="posterImage" value="<%= config.posterImage || '' %>">
     </label>
 
-    <h3 class="font-bold mt-6 mb-2">Profiles</h3>
+    <h3 class="font-bold mt-6 mb-2"><span class="font-paragon">Profiles</span></h3>
     <div id="profilesContainer">
       <% 
         const profiles = (config.profiles || []).sort((a, b) => (a.order || 0) - (b.order || 0));
         profiles.forEach((profile, index) => { 
       %>
         <div class="mb-4 border p-4 bg-gray-800" data-index="<%= index %>">
-          <label>Name: <input class="w-full" type="text" name="profiles[<%= index %>][name]" value="<%= profile.name %>"></label>
-          <label>Exec: <input class="w-full" type="text" name="profiles[<%= index %>][exec]" value="<%= profile.exec %>"></label>
-          <label>Order: <input class="w-full profile-order" type="number" name="profiles[<%= index %>][order]" value="<%= profile.order %>"></label>
-          <label>Params: <input class="w-full" type="text" name="profiles[<%= index %>][params]" value="<%= profile.params %>"></label>
-          <button type="button" onclick="removeProfile(this)" class="text-red-400 mt-2">Remove</button>
+          <label><span class="font-paragon">Name:</span> <input class="w-full" type="text" name="profiles[<%= index %>][name]" value="<%= profile.name %>"></label>
+          <label><span class="font-paragon">Exec:</span> <input class="w-full" type="text" name="profiles[<%= index %>][exec]" value="<%= profile.exec %>"></label>
+          <label><span class="font-paragon">Order:</span> <input class="w-full profile-order" type="number" name="profiles[<%= index %>][order]" value="<%= profile.order %>"></label>
+          <label><span class="font-paragon">Params:</span> <input class="w-full" type="text" name="profiles[<%= index %>][params]" value="<%= profile.params %>"></label>
+          <button type="button" onclick="removeProfile(this)" class="text-red-400 mt-2"><span class="font-paragon">Remove</span></button>
         </div>
       <% }) %>
     </div>
 
-    <button type="button" onclick="addProfile()" class="bg-gray-600 px-4 py-1 mt-4">Add Profile</button>
+    <button type="button" onclick="addProfile()" class="bg-gray-600 px-4 py-1 mt-4"><span class="font-paragon">Add Profile</span></button>
     <br>
-    <button class="bg-blue-600 px-4 py-2 mt-6 text-white">Save</button>
+    <button class="bg-blue-600 px-4 py-2 mt-6 text-white"><span class="font-paragon">Save</span></button>
   </form>
 
   <form method="GET" action="/admin/manifest/generate" class="mt-6" onsubmit="showLoadingModal()">
-    <button type="submit" class="bg-green-600 px-4 py-2 text-white">Generate Manifest</button>
+    <button type="submit" class="bg-green-600 px-4 py-2 text-white"><span class="font-paragon">Generate Manifest</span></button>
   </form>
 
   <script>

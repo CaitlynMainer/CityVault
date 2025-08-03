@@ -1,13 +1,13 @@
 <% if (updateInfo?.updateAvailable) { %>
   <div class="bg-yellow-900 text-yellow-100 border border-yellow-700 rounded p-4 mb-6 shadow">
-    <div class="font-bold text-lg mb-1">⚠️ Update Available</div>
+    <div class="font-bold text-lg mb-1"><span class="font-paragon">⚠️ Update Available</span></div>
     <p class="mb-2">
       Version <strong><%= updateInfo.latestVersion %></strong> is available.
       You are running <strong><%= updateInfo.currentVersion %></strong>.
     </p>
     <form action="/admin/download-update" method="POST" onsubmit="return confirm('Download and extract the update now?');">
       <input type="hidden" name="zipUrl" value="<%= updateInfo.url %>">
-      <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded">⬇️ Download Update</button>
+      <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded"><span class="font-paragon">⬇️ Download Update</span></button>
     </form>
     <% if (updateInfo.notes) { %>
       <div class="mt-3 text-sm text-yellow-200 whitespace-pre-line"><%- updateInfo.notes %></div>
@@ -15,7 +15,7 @@
   </div>
 <% } %>
 
-<h1 class="text-3xl font-bold text-white mb-4">Admin Dashboard</h1>
+<h1 class="text-3xl font-bold text-white mb-4"><span class="font-paragon">Admin Dashboard</span></h1>
 
 <p class="mb-6 text-gray-300">Welcome<% if (user) { %>, <strong class="text-white"><%= user.username %></strong><% } %>.</p>
 

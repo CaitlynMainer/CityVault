@@ -1,9 +1,15 @@
-<aside class="w-64 bg-gray-800 text-white h-full p-4 space-y-4" x-data="{ openSections: JSON.parse(localStorage.getItem('sidebarOpenSections') || '{}') }" x-init="$watch('openSections', val => localStorage.setItem('sidebarOpenSections', JSON.stringify(val)))">
-  <h2 class="text-xl font-semibold mb-4">Navigation</h2>
+<aside
+  class="w-64 bg-gray-800 text-white h-full p-4 space-y-4"
+  x-data="{
+    openSections: Object.assign({ main: true }, JSON.parse(localStorage.getItem('sidebarOpenSections') || '{}'))
+  }"
+  x-init="$watch('openSections', val => localStorage.setItem('sidebarOpenSections', JSON.stringify(val)))"
+>
+  <h2 class="text-xl font-semibold mb-4"><span class="font-paragon">Navigation</span></h2>
 
   <!-- Main Section -->
   <div>
-    <button @click="openSections.main = !openSections.main" class="w-full text-left font-bold">Main</button>
+    <button @click="openSections.main = !openSections.main" class="w-full text-left font-bold"><span class="font-paragon">Main</span></button>
     <nav x-show="openSections.main" class="ml-2 mt-2 space-y-1">
       <a href="/"
          class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/' ? 'bg-gray-700' : '' %>">
@@ -27,7 +33,7 @@
   <!-- Admin Section -->
   <% if (role === 'admin') { %>
   <div class="mt-6 border-t border-gray-700 pt-4">
-    <button @click="openSections.admin = !openSections.admin" class="w-full text-left font-bold">Admin</button>
+    <button @click="openSections.admin = !openSections.admin" class="w-full text-left font-bold"><span class="font-paragon">Admin</span></button>
     <nav x-show="openSections.admin" class="ml-2 mt-2 space-y-1">
       <a href="/admin"
          class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin' ? 'bg-gray-700' : '' %>">
@@ -52,7 +58,7 @@
   <!-- GM Section -->
   <% if (role === 'gm') { %>
   <div class="mt-6 border-t border-gray-700 pt-4">
-    <button @click="openSections.gm = !openSections.gm" class="w-full text-left font-bold">GM</button>
+    <button @click="openSections.gm = !openSections.gm" class="w-full text-left font-bold"><span class="font-paragon">GM</span></button>
     <nav x-show="openSections.gm" class="ml-2 mt-2 space-y-1">
       <a href="/admin"
          class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin' ? 'bg-gray-700' : '' %>">

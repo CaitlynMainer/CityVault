@@ -10,7 +10,7 @@
 
   <form action="/account/character-export" method="POST">
     <div class="form-group">
-      <label for="serverKey">Select Server</label>
+      <label for="serverKey"><span class="font-paragon">Select Server</span></label>
       <select name="serverKey" id="serverKey" class="form-control" required>
         <% servers.forEach(server => { %>
           <option value="<%= server.key %>"><%= server.label %></option>
@@ -18,6 +18,6 @@
       </select>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-3">Export All Characters</button>
+    <button type="submit" class="btn btn-primary mt-3"><span class="font-paragon">Export All Characters</span></button>
   </form>
 </div>

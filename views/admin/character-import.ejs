@@ -1,4 +1,4 @@
-<h2 class="text-xl font-bold mb-4">Import Character</h2>
+<h2 class="text-xl font-bold mb-4"><span class="font-paragon">Import Character</span></h2>
 
 <% if (message.length) { %>
   <div class="bg-green-100 text-green-800 p-2 mb-4"><%= message %></div>
@@ -9,7 +9,7 @@
 
 <form method="POST" action="/admin/characterimport" enctype="multipart/form-data" class="space-y-4">
   <div>
-    <label class="block font-semibold">Target Server</label>
+    <label class="block font-semibold"><span class="font-paragon">Target Server</span></label>
 	<select name="serverKey" required class="border px-2 py-1 w-full">
 	  <% servers.forEach(server => { %>
 		<option value="<%= server.key %>"><%= server.label || server.key %></option>
@@ -18,7 +18,7 @@
   </div>
 
   <div>
-    <label class="block font-semibold">Target Account</label>
+    <label class="block font-semibold"><span class="font-paragon">Target Account</span></label>
 		<select id="targetAccount" name="targetAccount" required class="border px-2 py-1 w-full">
 		  <% accounts.forEach(account => { %>
 			<option value="<%= account %>"><%= account %></option>
@@ -27,11 +27,11 @@
   </div>
 
   <div>
-    <label class="block font-semibold">Character ZIP File</label>
+    <label class="block font-semibold"><span class="font-paragon">Character ZIP File</span></label>
     <input type="file" name="importZip" required class="border px-2 py-1 w-full" accept=".zip" />
   </div>
 
-  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Import Character</button>
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"><span class="font-paragon">Import Character</span></button>
 </form>
 <!-- Select2 Bootstrap 4 theme -->
 <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.4.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />

@@ -81,32 +81,34 @@
 <main>
   <form method="POST" action="/register" class="form-container">
     <div class="form-group">
-      <label for="username">Username:</label>
+      <label for="username"><span class="font-paragon">Username:</span></label>
       <input type="text" id="username" name="username" required maxlength="14">
     </div>
 
     <div class="form-group">
-      <label for="password">Password:</label>
+      <label for="password"><span class="font-paragon">Password:</span></label>
       <div class="password-wrapper">
         <input type="password" id="password" name="password" required>
-        <button type="button" class="toggle-button" id="togglePassword">👁 Show</button>
+        <button type="button" class="toggle-button" id="togglePassword"><span class="font-paragon" id="toggleText">👁 Show</span></button>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="email">Email:</label>
+      <label for="email"><span class="font-paragon">Email:</span></label>
       <input type="email" id="email" name="email" required>
     </div>
 
-    <button type="submit">Register</button>
+    <button type="submit"><span class="font-paragon">Register</span></button>
   </form>
 </main>
 
 <script>
-  document.getElementById('togglePassword').addEventListener('click', function () {
-    const pwd = document.getElementById('password');
-    const isHidden = pwd.type === 'password';
-    pwd.type = isHidden ? 'text' : 'password';
-    this.textContent = isHidden ? '👁 Hide' : '👁 Show';
-  });
+document.getElementById('togglePassword').addEventListener('click', function () {
+  const pwd = document.getElementById('password');
+  const isHidden = pwd.type === 'password';
+  pwd.type = isHidden ? 'text' : 'password';
+
+  const label = document.getElementById('toggleText');
+  label.textContent = isHidden ? '👁 Hide' : '👁 Show';
+});
 </script>
