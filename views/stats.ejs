@@ -30,11 +30,16 @@
             { key: 'villain_count', label: 'Villains', icon: 'villain.png' },
             { key: 'resistance_count', label: 'Resistance', icon: 'resistance.png' },
             { key: 'loyalist_count', label: 'Loyalists', icon: 'loyalist.png' },
-            { key: 'pvp_count', label: 'PvP Only', icon: 'unknown.png' },
+            { key: 'pvp_count', label: 'PvP Only', icon: 'unknown.png', hideIfZero: true },
             { key: 'unknown_count', label: 'Unknown', icon: 'unknown.png' }
-          ].forEach(row => { %>
+          ].forEach(row => {
+            if (row.hideIfZero && (!chars[row.key] || chars[row.key] === 0)) return;
+          %>
             <tr class="border-t border-gray-700 hover:bg-gray-700/50 transition">
-              <td class="py-1"><img src="/images/icons/<%= row.icon %>" alt="" width="16" height="16" class="inline-block mr-2"><%= row.label %></td>
+              <td class="py-1">
+                <img src="/images/icons/<%= row.icon %>" alt="" width="16" height="16" class="inline-block mr-2">
+                <%= row.label %>
+              </td>
               <td class="text-right"><%= (chars[row.key] || 0).toLocaleString() %></td>
             </tr>
           <% }); %>
