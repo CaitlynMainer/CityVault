@@ -330,16 +330,24 @@ async function showCharacter(req, res) {
       if (!owner) return res.status(404).send('Character owner not found');
 
       const viewerUsername = req.session?.username;
+      let viewerRole = null;
       let isAdmin = false;
+      let isGM = false;
+      let isElevated = false;
       let isOwner = false;
 
       if (viewerUsername) {
         const viewerCheck = await authPool.request()
           .input('viewer', sql.VarChar, viewerUsername)
           .query(`SELECT role FROM dbo.user_account WHERE account = @viewer`);
-        isAdmin = ['admin', 'gm'].includes(viewerCheck.recordset[0]?.role);
+
+        viewerRole = viewerCheck.recordset[0]?.role || null;
+        isAdmin = viewerRole === 'admin';
+        isGM = viewerRole === 'gm';
+        isElevated = isAdmin || isGM;
         isOwner = viewerUsername === owner.account;
       }
+
       await renderFullShot(authPool, pool, serverKey, dbid, character.CurrentCostume, fetchCostumeData);
       let forcedAccess = false;
       if (owner.tracker !== '1') {
@@ -419,7 +427,9 @@ async function showCharacter(req, res) {
         stringClean,
         portraitVersion,
         bgPath,
-        role: isAdmin ? 'admin' : 'user'
+        role: viewerRole,
+        isAdmin,
+        isGM,
       });
 
     } catch (err) {

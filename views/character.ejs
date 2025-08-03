@@ -68,7 +68,7 @@
   <div class="character-profile-container">
     <!-- Left Column: Character Summary -->
     <div class="left-panel" style="flex: 0 0 360px;">
-		<% if (role === 'admin' || viewerIsOwner) { %>
+		<% if (isAdmin || isGM || viewerIsOwner) { %>
 		  <div style="display: grid; grid-template-columns: repeat(2, auto); gap: 8px; justify-content: center; margin-top: 8px;">
 			<form method="POST" action="/clear-costume-render" style="margin: 0;">
 			  <input type="hidden" name="serverKey" value="<%= serverKey %>">
