@@ -42,13 +42,13 @@
     <section>
       <h2 class="text-xl font-bold mb-2">Quick Stats</h2>
       <ul class="text-sm space-y-1">
-        <li><strong>Online Now:</strong> <%= stats.onlineNow %></li>
-        <li><strong>Online Today:</strong> <%= stats.onlineToday %></li>
-        <li><strong>Online This Month:</strong> <%= stats.onlineMonth %></li>
-        <li><strong>Total Tracked Characters:</strong> <%= stats.totalChars %></li>
+        <li><strong>Online Now:</strong> <%= stats.onlineNow.toLocaleString() %></li>
+        <li><strong>Online Today:</strong> <%= stats.onlineToday.toLocaleString() %></li>
+        <li><strong>Online This Month:</strong> <%= stats.onlineMonth.toLocaleString() %></li>
+        <li><strong>Total Tracked Characters:</strong> <%= stats.totalChars.toLocaleString() %></li>
         <li><strong>Total Hero 50s:</strong> <%= stats.hero50s %></li>
-        <li><strong>Total Villain 50s:</strong> <%= stats.villain50s %></li>
-        <li><strong>Average Level:</strong> <%= stats.avgLevel.toFixed(1) %></li>
+        <li><strong>Total Villain 50s:</strong> <%= stats.villain50s.toLocaleString() %></li>
+        <li><strong>Average Level:</strong> <%= Math.round(stats.avgLevel) %></li>
         <li><strong>Average Influence:</strong> <%= stats.avgInfluence.toLocaleString() %></li>
         <li><strong>Top Archetypes:</strong>
           <%= Object.entries(stats.archetypeCounts)
@@ -59,7 +59,7 @@
                 .replace(/^class_/, '')
                 .replace(/^.*?:/, '')
                 .replace(/_/g, ' ')
-                .replace(/\b\w/g, c => c.toUpperCase()) + ' (' + count + ')'
+                .replace(/\b\w/g, c => c.toUpperCase()) + ' (' + count.toLocaleString() + ')'
             ).join(', ')
           %>
         </li>
@@ -71,7 +71,7 @@
             .map(([key, count]) =>
               key
                 .replace(/_/g, ' ')
-                .replace(/\b\w/g, c => c.toUpperCase()) + ' (' + count + ')'
+                .replace(/\b\w/g, c => c.toUpperCase()) + ' (' + count.toLocaleString() + ')'
             ).join(', ')
           %>
         </li>
@@ -127,7 +127,7 @@
             .replace(/^.*?:/, '')
             .replace(/_/g, ' ')
             .replace(/\b\w/g, c => c.toUpperCase()); %><br>
-              Total Badges: <%= char.badgeCount %><br>
+              Total Badges: <%= char.badgeCount.toLocaleString() %><br>
               <span class="text-gray-400 text-xs">Last Active: <%= new Date(char.LastActive).toLocaleDateString() %></span>
             </a>
           </li>
