@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const loadController = require(global.BASE_DIR + '/utils/loadController');
-router.all('*', (req, res, next) => {
-  console.log('[DEBUG] account/characterExport.js caught:', req.method, req.originalUrl);
-  next();
-});
+
 const {
   showExportForm,
   handleExportSubmit,
