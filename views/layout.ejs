@@ -30,12 +30,14 @@
 
 
 </head>
-<body class="flex h-screen">
-        <%- include('partials/sidebar') %>
+<body class="flex flex-col md:flex-row min-h-screen">
+<div class="w-full md:w-64 bg-gray-800">
+  <%- include('partials/sidebar') %>
+</div>
 
   <div class="flex-1 flex flex-col">
     <%- include('partials/header') %>
-    <main class="flex-1 overflow-y-auto p-6">
+    <main class="flex-1 p-4 md:p-6 overflow-y-auto">
       <% if (messages.error.length || messages.success.length) { %>
         <div class="flash-container">
           <% messages.error.forEach(msg => { %>

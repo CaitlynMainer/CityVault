@@ -24,7 +24,7 @@ module.exports = async function startApp(config) {
   const { deployLauncherZip } = require('./utils/deployLauncherZip');
   const multer = require('multer');
   const upload = multer({ storage: multer.memoryStorage() });
-  const { preloadAttributeMaps } = require('./utils/attributeMap'); // adjust path if needed
+  const { preloadAttributeMaps } = require('./utils/attributeMap');
 
 
   await preloadAttributeMaps(Object.keys(config.servers));

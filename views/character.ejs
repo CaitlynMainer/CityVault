@@ -40,9 +40,9 @@
 		tryReload();
 	  }
 	</script>
-  <div class="character-profile-container" style="display: flex; gap: 24px; align-items: flex-start;">
-    <!-- Left Column: Character Summary -->
-    <div class="left-panel" style="flex: 0 0 360px;">
+	<div class="flex flex-col lg:flex-row gap-6 items-start">
+	  <!-- Left Panel -->
+	  <div class="w-full lg:w-[360px]">
 		<% if (role === 'admin' || viewerIsOwner) { %>
 		  <div style="display: grid; grid-template-columns: repeat(2, auto); gap: 8px; justify-content: center; margin-top: 8px;">
 			<form method="POST" action="/clear-costume-render" style="margin: 0;">
@@ -141,8 +141,8 @@
       </ul>
     </div>
 
-    <!-- Right Column: Character Name, Bio, and Badges -->
-    <div class="right-panel" style="flex: 1; max-width: 720px;">
+	<!-- Right Panel -->
+	<div class="flex-1 w-full">
 	  <h1 class="text-3xl font-bold mb-4"><%= stringClean(character.Name) %></h1>
       <p><strong>Player:</strong>          <% if (character.globalHandle) { %>
             <a href="/profile/<%= character.AuthId %>">@<%= stringClean(character.globalHandle) %></a>
