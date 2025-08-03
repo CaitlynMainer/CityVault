@@ -157,8 +157,6 @@ try {
 
 }
 
-
-
 async function updateUserRole(req, res) {
     if (!isGM(req.user?.role)) {
       return res.status(403).send('Forbidden');
@@ -211,6 +209,9 @@ async function updateUserRole(req, res) {
         SET role = @newRole
         WHERE uid = @uid
       `);
+
+      const note = `[AUTO] ROLE CHANGE by ${req.session.username}: ${currentRole.toUpperCase()} -> ${newRole.toUpperCase()}`;
+      await insertUserNote(uid, note, req.session.username);
 
       const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
       res.redirect('/admin/users' + qs);
@@ -268,6 +269,14 @@ async function updateUserRole(req, res) {
         return res.status(400).send('Invalid action');
       }
 
+      const actionLabel = action === 'ban' ? 'BANNED'
+                   : action === 'unban' ? 'UNBANNED'
+                   : action === 'confirm' ? 'CONFIRMED'
+                   : 'ACTION';
+
+      const noteText = `[AUTO] ${actionLabel} by ${req.session.username}${reason ? `: ${reason}` : ''}`;
+      await insertUserNote(uid, noteText, req.session.username);
+
       await pool.request().input('uid', sql.Int, uid).query(query);
 
       // Send email notification if applicable
@@ -302,6 +311,18 @@ async function updateUserRole(req, res) {
       res.status(500).send('Error updating block flag');
     }
   }
+
+  async function insertUserNote(uid, note, author) {
+  const pool = await getAuthPool();
+  await pool.request()
+    .input('uid', sql.Int, uid)
+    .input('note', sql.Text, note)
+    .input('author', sql.VarChar, author)
+    .query(`
+      INSERT INTO cohauth.dbo.user_notes (uid, note, author)
+      VALUES (@uid, @note, @author)
+    `);
+}
 
 
   // Fetch notes for a user
@@ -349,21 +370,14 @@ async function updateUserRole(req, res) {
     }
 
     try {
-      const pool = await getAuthPool();
-      await pool.request()
-        .input('uid', sql.Int, uid)
-        .input('note', sql.Text, note)
-        .input('author', sql.VarChar, author)
-        .query(`
-        INSERT INTO cohauth.dbo.user_notes (uid, note, author)
-        VALUES (@uid, @note, @author)
-      `);
+      insertUserNote(uid, note, author);
       res.json({ success: true });
     } catch (err) {
       console.error('[Add Note Error]', err);
       res.status(500).json({ success: false, error: 'Failed to add note.' });
     }
   }
+  
 
   module.exports = {
     listUsers,

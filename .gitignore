@@ -178,3 +178,4 @@ scripts/diff-report.txt
 /tmp
 /renders
 data/cache.dat
+/public/exports
