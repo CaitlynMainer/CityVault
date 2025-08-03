@@ -1,34 +1,187 @@
-/* Custom CSS overrides or theme extensions */
+/* Base font */
 body {
   font-family: system-ui, sans-serif;
 }
+
+/* General input styles */
 input, select, textarea {
-  background-color: #1f2937; /* Tailwind bg-gray-800 */
+  background-color: #1f2937; /* bg-gray-800 */
   color: white;
-  border: 1px solid #4b5563; /* Tailwind border-gray-600 */
+  border: 1px solid #4b5563; /* border-gray-600 */
   padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
-  .btn {
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    background-color: #3b82f6;
-    color: white;
-    border-radius: 0.375rem;
-    transition: background-color 0.2s;
-  }
 
-  .btn:hover {
-    background-color: #2563eb;
-  }
-  
-  /* Widget Alignment Banners */
-  .tile-banner-hero    { background:url('/images/backgrounds/Widget_Banner_Hero.png') center / cover no-repeat; }
-  .tile-banner-praeto  { background:url('/images/backgrounds/Widget_Banner_Praetorian.png') center / cover no-repeat; }
-  .tile-banner-villain { background:url('/images/backgrounds/Widget_Banner_Villain.png') center / cover no-repeat; }
+/* Form and layout helpers */
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
 
-  /* Drop-shadow for incresed legibility of text on images (like alignment banners) */
-  .text-shadow { text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.9); }
-  
-  /* Mouse hover effect for widget alignment banners  */
-  .banner-hover:hover { filter: brightness(1.25); }
+fieldset > div {
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s;
+}
+
+.btn-blue {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-blue:hover {
+  background-color: #2563eb;
+}
+
+.btn-green {
+  background-color: #10b981;
+  color: white;
+}
+
+/* Alignment Banners */
+.tile-banner-hero {
+  background: url('/images/backgrounds/Widget_Banner_Hero.png') center / cover no-repeat;
+}
+
+.tile-banner-praeto {
+  background: url('/images/backgrounds/Widget_Banner_Praetorian.png') center / cover no-repeat;
+}
+
+.tile-banner-villain {
+  background: url('/images/backgrounds/Widget_Banner_Villain.png') center / cover no-repeat;
+}
+
+.banner-hover:hover {
+  filter: brightness(1.25);
+}
+
+.text-shadow {
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Select2 (Bootstrap 5 theme) overrides */
+.select2-container--bootstrap-5 .select2-selection--single {
+  background-color: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+  height: 2.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.select2-container--bootstrap-5 .select2-selection__rendered {
+  color: white;
+  line-height: 2.25rem;
+}
+
+.select2-container--bootstrap-5 .select2-selection__arrow {
+  height: 2.5rem;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown {
+  background-color: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+}
+
+.select2-container--bootstrap-5 .select2-results__option {
+  background-color: #1e293b;
+  color: white;
+}
+
+.select2-container--bootstrap-5 .select2-results__option--highlighted {
+  background-color: #3b82f6 !important;
+  color: white;
+}
+
+.select2-container--bootstrap-5 .select2-search__field {
+  background-color: #0f172a;
+  color: white;
+}
+
+.select2-container--bootstrap-5 .select2-search--dropdown {
+  padding: 4px;
+}
+
+/* Password toggle */
+.input.toggle-password,
+.password-wrapper input {
+  padding-right: 3rem;
+}
+
+.toggle-button {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+}
+
+/* Form containers */
+.form-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: sans-serif;
+}
+
+.form-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 1rem;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Submit buttons */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Misc */
+.bg-orange-600 {
+  background-color: #ea580c;
+}
+
+.forgot-link {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.forgot-link a {
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-link a:hover {
+  text-decoration: underline;
+}

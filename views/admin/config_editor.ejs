@@ -13,26 +13,27 @@
   <% } %>
 
   <form method="POST" action="/admin/config" id="configForm">
-    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Site Settings</span></h2>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <div>
-        <label class="block text-sm font-medium"><span class="font-paragon">Site Name</span></label>
-        <input type="text" name="config[siteName]" value="<%= config.siteName %>" class="input" />
-      </div>
-      <div>
-        <label class="block text-sm font-medium"><span class="font-paragon">Domain</span></label>
-        <input type="text" name="config[domain]" value="<%= config.domain %>" class="input" />
-      </div>
-      <div>
-        <label class="block text-sm font-medium"><span class="font-paragon">IP Address</span></label>
-        <input type="text" name="config[ipAddr]" value="<%= config.ipAddr %>" class="input" />
-      </div>
-      <div>
-        <div class="relative">
-        <label class="block text-sm font-medium"><span class="font-paragon">Session Secret</span></label>
+    <fieldset class="border p-4 mb-4 rounded-md">
+      <legend class="text-xl font-semibold mb-2"><span class="font-paragon">Site Settings</span></legend>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium"><span class="font-paragon">Site Name</span></label>
+          <input type="text" name="config[siteName]" value="<%= config.siteName %>" class="input" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium"><span class="font-paragon">Domain</span></label>
+          <input type="text" name="config[domain]" value="<%= config.domain %>" class="input" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium"><span class="font-paragon">IP Address</span></label>
+          <input type="text" name="config[ipAddr]" value="<%= config.ipAddr %>" class="input" />
+        </div>
+        <div>
+          <div class="relative">
+            <label class="block text-sm font-medium"><span class="font-paragon">Session Secret</span></label>
             <input
               type="password"
-               name="config[session_secret]"
+              name="config[session_secret]"
               value="<%= config.session_secret %>"
               class="input pr-10 toggle-password"
             />
@@ -43,132 +44,162 @@
             >
               👁 Show
             </button>
+          </div>
         </div>
-      </div>
-      <div>
-        <label class="block text-sm font-medium"><span class="font-paragon">Access Level Filter</span> (0 - 11)</label>
-          <input type="number"
+        <div>
+          <label class="block text-sm font-medium"><span class="font-paragon">Access Level Filter</span> (0 - 11)</label>
+          <input
+            type="number"
             name="config[accessLevelFilter]"
             min="0" max="11" step="1"
             value="<%= config.accessLevelFilter ?? 0 %>"
-            class="input" />
-        <p class="text-xs text-gray-500">
-        Characters above this Access Level will not be included in site stats.
-        </p>
-      </div>
-      <div>
-        <label class="block text-sm font-medium"><span class="font-paragon">Minimum Badges for Spotlight</span> (0 - 500)</label>
-          <input type="number"
+            class="input"
+          />
+          <p class="text-xs text-gray-500">
+            Characters above this Access Level will not be included in site stats.
+          </p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium"><span class="font-paragon">Minimum Badges for Spotlight</span> (0 - 500)</label>
+          <input
+            type="number"
             name="config[minBadges]"
             min="0" max="500" step="10"
             value="<%= config.minBadges ?? 500 %>"
-            class="input" />
-      </div>
-      <div>
-        <label class="block text-sm font-medium"><span class="font-paragon">Character Birthday Granularity</span></label>
-        <select name="config[quantizeBirthDate]" class="input">
-          <option value="day"   <%= config.quantizeBirthDate === 'day'   ? 'selected' : '' %>>Exact Day</option>
-          <option value="month" <%= config.quantizeBirthDate === 'month' ? 'selected' : '' %>>Whole Month</option>
-        </select>
-      </div>
-      <div>
-        <label class="block text-sm font-medium"><span class="font-paragon">Allow Registration</span></label>
-        <input type="hidden" name="config[allowRegistration]" value="false" />
-        <input type="checkbox" name="config[allowRegistration]" value="true" <%= config.allowRegistration ? 'checked' : '' %> />
-      </div>
-    </div>
-
-    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Auth DB</span></h2>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <% Object.keys(config.auth).forEach(function(key) { %>
-        <div>
-          <label class="block text-sm font-medium"><span class="font-paragon"><%= key %></span></label>
-          <% if (key === 'dbPass') { %>
-          <div class="relative">
-            <input
-              type="password"
-              name="config[auth][<%= key %>]"
-              value="<%= config.auth[key] %>"
-              class="input pr-12 toggle-password"
-            />
-            <button
-              type="button"
-              class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400"
-              tabindex="-1"
-            >
-              👁 Show
-            </button>
-          </div>
-          <% } else if (key === 'dbPort') { %>
-            <input type="number" name="config[auth][<%= key %>]" value="<%= config.auth[key] || 1433 %>" class="input" min="1" max="65535" />
-          <% } else { %>
-            <input type="text" name="config[auth][<%= key %>]" value="<%= config.auth[key] %>" class="input" />
-          <% } %>
+            class="input"
+          />
         </div>
-      <% }); %>
-    </div>
-
-
-    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Chat DB</span></h2>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <% Object.keys(config.chat).forEach(function(key) { %>
         <div>
-          <label class="block text-sm font-medium"><span class="font-paragon"><%= key %></span></label>
-          <% if (key === 'dbPass') { %>
-            <div class="relative">
+          <label class="block text-sm font-medium"><span class="font-paragon">Character Birthday Granularity</span></label>
+          <select name="config[quantizeBirthDate]" class="input">
+            <option value="day"   <%= config.quantizeBirthDate === 'day'   ? 'selected' : '' %>>Exact Day</option>
+            <option value="month" <%= config.quantizeBirthDate === 'month' ? 'selected' : '' %>>Whole Month</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium"><span class="font-paragon">Allow Registration</span></label>
+          <input type="hidden" name="config[allowRegistration]" value="false" />
+          <input type="checkbox" name="config[allowRegistration]" value="true" <%= config.allowRegistration ? 'checked' : '' %> />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-4 mb-4 rounded-md">
+      <legend class="text-xl font-semibold mb-2"><span class="font-paragon">Auth DB</span></legend>
+      <div class="grid grid-cols-2 gap-4">
+        <% Object.keys(config.auth).forEach(function(key) { %>
+          <div>
+            <label class="block text-sm font-medium"><span class="font-paragon"><%= key %></span></label>
+            <% if (key === 'dbPass') { %>
+              <div class="relative">
+                <input
+                  type="password"
+                  name="config[auth][<%= key %>]"
+                  value="<%= config.auth[key] %>"
+                  class="input pr-12 toggle-password"
+                />
+                <button
+                  type="button"
+                  class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400"
+                  tabindex="-1"
+                >
+                  👁 Show
+                </button>
+              </div>
+            <% } else if (key === 'dbPort') { %>
               <input
-                type="password"
+                type="number"
+                name="config[auth][<%= key %>]"
+                value="<%= config.auth[key] || 1433 %>"
+                class="input"
+                min="1" max="65535"
+              />
+            <% } else { %>
+              <input
+                type="text"
+                name="config[auth][<%= key %>]"
+                value="<%= config.auth[key] %>"
+                class="input"
+              />
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-4 mb-4 rounded-md">
+      <legend class="text-xl font-semibold mb-2"><span class="font-paragon">Chat DB</span></legend>
+      <div class="grid grid-cols-2 gap-4">
+        <% Object.keys(config.chat).forEach(function(key) { %>
+          <div>
+            <label class="block text-sm font-medium"><span class="font-paragon"><%= key %></span></label>
+            <% if (key === 'dbPass') { %>
+              <div class="relative">
+                <input
+                  type="password"
+                  name="config[chat][<%= key %>]"
+                  value="<%= config.chat[key] %>"
+                  class="input pr-10 toggle-password"
+                />
+                <button
+                  type="button"
+                  class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400"
+                  tabindex="-1"
+                >
+                  👁 Show
+                </button>
+              </div>
+            <% } else if (key === 'dbPort') { %>
+              <input
+                type="number"
+                name="config[chat][<%= key %>]"
+                value="<%= config.chat[key] || 1433 %>"
+                class="input"
+                min="1" max="65535"
+              />
+            <% } else { %>
+              <input
+                type="text"
                 name="config[chat][<%= key %>]"
                 value="<%= config.chat[key] %>"
-                class="input pr-10 toggle-password"
+                class="input"
               />
-            <button
-              type="button"
-              class="toggle-button absolute inset-y-0 right-2 flex items-center text-sm text-gray-400"
-              tabindex="-1"
-            >
-              👁 Show
-            </button>
-            </div>
-          <% } else if (key === 'dbPort') { %>
-            <input type="number" name="config[chat][<%= key %>]" value="<%= config.chat[key] || 1433 %>" class="input" min="1" max="65535" />
-          <% } else { %>
-            <input type="text" name="config[chat][<%= key %>]" value="<%= config.chat[key] %>" class="input" />
-          <% } %>
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-4 mb-4 rounded-md">
+      <legend class="text-xl font-semibold mb-2"><span class="font-paragon">Email Configuration</span></legend>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium">Provider</label>
+          <select name="config[email][provider]" class="input" id="email-provider">
+            <option value="" <%= config.email.provider === '' ? 'selected' : '' %>>Disabled</option>
+            <option value="smtp" <%= config.email.provider === 'smtp' ? 'selected' : '' %>>SMTP</option>
+            <option value="mailersend" <%= config.email.provider === 'mailersend' ? 'selected' : '' %>>MailerSend</option>
+          </select>
         </div>
-      <% }); %>
-    </div>
-
-    <h2 class="text-xl font-semibold mb-2"><span class="font-paragon"><Email Configuration/span></h2>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <div>
-        <label class="block text-sm font-medium">Provider</label>
-        <select name="config[email][provider]" class="input" id="email-provider">
-          <option value="" <%= config.email.provider === '' ? 'selected' : '' %>>Disabled</option>
-          <option value="smtp" <%= config.email.provider === 'smtp' ? 'selected' : '' %>>SMTP</option>
-          <option value="mailersend" <%= config.email.provider === 'mailersend' ? 'selected' : '' %>>MailerSend</option>
-        </select>
+        <div>
+          <label class="block text-sm font-medium"><span class="font-paragon">From Email</span></label>
+          <input type="email" name="config[email][fromEmail]" value="<%= config.email.fromEmail %>" class="input" />
+        </div>
       </div>
-      <div>
-        <label class="block text-sm font-medium"><span class="font-paragon">From Email</span></label>
-        <input type="email" name="config[email][fromEmail]" value="<%= config.email.fromEmail %>" class="input" />
-      </div>
-    </div>
+    </fieldset>
 
-    <!-- MailerSend Fields -->
-    <div id="mailersend-fields" class="mb-4">
-      <h3 class="text-lg font-semibold mb-2"><span class="font-paragon">MailerSend</span></h3>
+    <fieldset id="mailersend-fields" class="border p-4 mb-4 rounded-md">
+      <legend class="text-lg font-semibold mb-2"><span class="font-paragon">MailerSend</span></legend>
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium"><span class="font-paragon">API Key</span></label>
           <input type="text" name="config[email][mailersend][apiKey]" value="<%= config.email.mailersend?.apiKey || '' %>" class="input" />
         </div>
       </div>
-    </div>
+    </fieldset>
 
-    <!-- SMTP Fields -->
-    <div id="smtp-fields" class="mb-4">
-      <h3 class="text-lg font-semibold mb-2"><span class="font-paragon">SMTP</span></h3>
+    <fieldset id="smtp-fields" class="border p-4 mb-4 rounded-md">
+      <legend class="text-lg font-semibold mb-2"><span class="font-paragon">SMTP</span></legend>
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium"><span class="font-paragon">Host</span></label>
@@ -191,7 +222,8 @@
           <input type="password" name="config[email][smtp][auth][pass]" value="<%= config.email.smtp?.auth?.pass || '' %>" class="input" />
         </div>
       </div>
-    </div>
+    </fieldset>
+
 
     <h2 class="text-xl font-semibold mb-2"><span class="font-paragon">Game Servers</span></h2>
 <% const authLocal = config.auth.dbHost && config.auth.dbHost.toLowerCase().startsWith('localdb\\'); %>
@@ -454,16 +486,3 @@
     updateVisibility(); // Run once on load
   });
 </script>
-
-
-<style>
-  .input { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 0.5rem; }
-  .btn { padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; }
-  .btn-blue { background: #3b82f6; color: white; }
-  .btn-green { background: #10b981; color: white; }
-  label { margin-bottom: 0.25rem; display: block; }
-  fieldset > div { margin-bottom: 0.5rem; }
-  .input.toggle-password {
-    padding-right: 3rem; /* Space for the toggle button */
-  }
-</style>
