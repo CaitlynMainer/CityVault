@@ -6,8 +6,8 @@
 <h2 class="text-2xl font-bold text-gray-100 mb-4">User Management</h2>
 
 <form method="GET" action="/admin/users" class="flex flex-wrap items-center gap-4 mb-6">
-  <input type="text" name="search" placeholder="Search username or email"
-         value="<%= search %>" class="input w-64 bg-gray-800 border border-gray-600 text-white" />
+<input type="text" name="search" placeholder="Search username, email, or character name"
+       value="<%= search %>" class="input w-96 bg-gray-800 border border-gray-600 text-white" />
 
   <label class="text-sm text-gray-300">
     Show:
@@ -19,6 +19,26 @@
     </select>
     per page
   </label>
+  <label class="text-sm text-gray-300">
+  Role:
+  <select name="role" onchange="this.form.submit()" class="input ml-1 bg-gray-800 border border-gray-600 text-white">
+    <option value="">All</option>
+    <option value="user" <%= role === 'user' ? 'selected' : '' %>>User</option>
+    <option value="admin" <%= role === 'admin' ? 'selected' : '' %>>Admin</option>
+    <option value="gm" <%= role === 'gm' ? 'selected' : '' %>>GM</option>
+  </select>
+</label>
+
+<label class="text-sm text-gray-300">
+  Status:
+  <select name="status" onchange="this.form.submit()" class="input ml-1 bg-gray-800 border border-gray-600 text-white">
+    <option value="">All</option>
+    <option value="active" <%= status === 'active' ? 'selected' : '' %>>Active</option>
+    <option value="banned" <%= status === 'banned' ? 'selected' : '' %>>Banned</option>
+    <option value="unconfirmed" <%= status === 'unconfirmed' ? 'selected' : '' %>>Unconfirmed</option>
+  </select>
+</label>
+
 
   <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
 </form>
@@ -38,7 +58,7 @@
     <tbody>
       <% users.forEach(user => { %>
         <tr class="hover:bg-gray-800">
-          <td class="px-2 py-2 border-b border-gray-700 truncate"><%= user.account %></td>
+          <td class="px-2 py-2 border-b border-gray-700 truncate"><a href="/profile/<%= user.uid %>" target="_blank" class="underline"><%= user.account %></a></td>
           <td class="px-2 py-2 border-b border-gray-700 truncate"><%= user.email %></td>
           <td class="px-2 py-2 border-b border-gray-700">
             <div class="flex items-center space-x-2">
@@ -51,7 +71,7 @@
                 <%= user.role %>
               </span>
 
-              <% if (role === 'admin' && user.account !== username) { %>
+              <% if (currentUserRole  === 'admin' && user.account !== username) { %>
                 <form method="POST" action="/admin/users/<%= user.uid %>/role" class="inline-block">
                   <input type="hidden" name="page" value="<%= page %>">
                   <input type="hidden" name="search" value="<%= search %>">
