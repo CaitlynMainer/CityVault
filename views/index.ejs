@@ -98,7 +98,7 @@
       </ul>
       <% if (moreBirthdays > 0) { %>
         <p>
-          <a href="#" onclick="showBirthdayModal(); return false;">
+          <a href="/birthdays">
             ...and <%= moreBirthdays %> other<%= moreBirthdays > 1 ? 's' : '' %>
           </a>
         </p>
@@ -109,13 +109,7 @@
     <section class="mt-6 md:mt-0">
       <h2 class="text-xl font-bold mb-2 flex items-center gap-2">
         <span class="font-paragon">Badge Spotlight</span>
-        <%- tooltip(`
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <title>Info</title>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" />
-          </svg>
-        `, `Only characters with at least ${minBadges} badges are featured here.`) %>
+        <%- tooltip('<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><title>Info</title><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" /></svg>', `Only characters with at least ${minBadges} badges are featured here.`) %>
       </h2>
       <ul class="grid gap-2 text-sm" style="grid-template-columns: repeat(auto-fit, minmax(167px, 1fr));">
         <% badgeSpotlight.forEach(char => { %>
@@ -136,40 +130,4 @@
     </section>
 
   </section>
-
-<div id="birthdayModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden overflow-y-auto">
-  <div class="bg-gray-800 text-white rounded-lg mx-auto my-10 p-6 w-full max-w-3xl shadow-lg">
-    <h2 class="text-xl font-bold mb-4">All Birthday Characters</h2>
-    <ul class="space-y-2">
-      <% allBirthdays.forEach(char => { %>
-      <li>
-        <a 
-          href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" 
-          class="block text-white hover:text-blue-400 hover:underline hover:bg-gray-700 rounded px-2 py-1 transition">
-          <strong><%= char.Name %></strong>
-          (@<%= char.GlobalName %>) – Level <%= char.Level %> <%= char.Archetype.replace(/^class_/, '')
-            .replace(/^.*?:/, '')
-            .replace(/_/g, ' ')
-            .replace(/\b\w/g, c => c.toUpperCase()); %>
-        </a>
-      </li>
-      <% }); %>
-    </ul>
-    <div class="mt-6 text-right">
-      <button onclick="hideBirthdayModal()" class="btn btn-blue">Close</button>
-    </div>
-  </div>
-</div>
-
-<script>
-  function showBirthdayModal() {
-    document.getElementById('birthdayModal').classList.remove('hidden');
-  }
-
-  function hideBirthdayModal() {
-    document.getElementById('birthdayModal').classList.add('hidden');
-  }
-</script>
-
-
 </main>

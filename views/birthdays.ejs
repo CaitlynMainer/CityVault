@@ -1,0 +1,30 @@
+<main class="px-4 py-6">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-2xl font-bold mb-4">Character Birthdays – <%= new Date().toLocaleDateString() %></h1>
+
+    <% if (allBirthdays.length === 0) { %>
+      <p class="text-gray-400">No characters were created on this day.</p>
+    <% } else { %>
+      <ul class="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <% allBirthdays.forEach(char => { %>
+          <li class="border border-gray-700 rounded hover:bg-gray-800 transition
+                     <%= char.bannerClass %> bg-center bg-cover bg-no-repeat banner-hover p-4">
+            <a href="/character/<%= char.serverKey %>:<%= char.ContainerId %>" class="block text-white no-underline">
+              <strong class="block text-lg mb-1"><%= char.Name %></strong>
+              <span class="block text-sm mb-1 text-gray-300">
+                Level <%= char.Level %>
+                <%= char.Archetype.replace(/^class_/, '')
+                  .replace(/^.*?:/, '')
+                  .replace(/_/g, ' ')
+                  .replace(/\b\w/g, c => c.toUpperCase()) %>
+              </span>
+              <span class="block text-xs text-gray-400">
+                (@<%= char.GlobalName %>) – Created on <%= new Date(char.DateCreated).toLocaleDateString() %>
+              </span>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+</main>

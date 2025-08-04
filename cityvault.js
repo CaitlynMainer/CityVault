@@ -177,16 +177,17 @@ module.exports = async function startApp(config) {
   });
 
   app.locals.tooltip = function (content, tooltipText) {
-    return `
-      <span class="relative group cursor-pointer align-middle" title="">
-        ${content}
-        <div class="absolute left-6 top-1 z-10 w-64 rounded bg-gray-800 text-white text-xs p-2 
+    return (
+      `<span class="relative group cursor-pointer align-middle">` +
+        content.trim() +
+        `<div class="absolute left-6 top-1 z-10 w-64 rounded bg-gray-800 text-white text-xs p-2 
                     opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
           ${tooltipText}
-        </div>
-      </span>
-    `;
+        </div>` +
+      `</span>`
+    );
   };
+
 
 
   app.use((err, req, res, next) => {
