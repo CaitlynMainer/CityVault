@@ -1,67 +1,81 @@
-<main class="p-6 text-white">
+<main class="p-6 text-black dark:text-white">
   <h1 class="text-2xl font-bold mb-4"><span class="font-paragon">Manage Servers</span></h1>
 
   <% if (messages?.success) { %>
-    <div class="bg-green-700 text-white px-4 py-2 rounded mb-4"><%= messages.success %></div>
+    <div class="bg-green-100 text-green-800 dark:bg-green-700 dark:text-white px-4 py-2 rounded mb-4">
+      <%= messages.success %>
+    </div>
   <% } %>
   <% if (messages?.error) { %>
-    <div class="bg-red-700 text-white px-4 py-2 rounded mb-4"><%= messages.error %></div>
+    <div class="bg-red-100 text-red-800 dark:bg-red-700 dark:text-white px-4 py-2 rounded mb-4">
+      <%= messages.error %>
+    </div>
   <% } %>
 
-  <form method="POST" action="/admin/servers/save" class="bg-gray-800 p-4 rounded shadow mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+  <form method="POST" action="/admin/servers/save" class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
     <input type="hidden" name="id" id="form-id">
 
     <div>
       <label for="name" class="block text-sm font-semibold mb-1"><span class="font-paragon">Name</span></label>
-      <input type="text" id="form-name" name="name" required class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600" />
+      <input type="text" id="form-name" name="name" required class="w-full px-3 py-2 rounded bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600" />
     </div>
 
     <div>
       <label for="ip" class="block text-sm font-semibold mb-1"><span class="font-paragon">External IP</span></label>
-      <input type="text" id="form-ip" name="ip" required class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600" />
+      <input type="text" id="form-ip" name="ip" required class="w-full px-3 py-2 rounded bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600" />
     </div>
 
     <div>
       <label for="inner_ip" class="block text-sm font-semibold mb-1"><span class="font-paragon">Internal IP</span></label>
-      <input type="text" id="form-inner_ip" name="inner_ip" required class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600" />
+      <input type="text" id="form-inner_ip" name="inner_ip" required class="w-full px-3 py-2 rounded bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600" />
     </div>
 
     <div>
       <label for="server_group_id" class="block text-sm font-semibold mb-1"><span class="font-paragon">Server Group ID</span></label>
-      <input type="number" id="form-server_group_id" name="server_group_id" value="1" class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600" />
+      <input type="number" id="form-server_group_id" name="server_group_id" value="1" class="w-full px-3 py-2 rounded bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600" />
     </div>
 
     <div class="md:col-span-2 flex justify-end space-x-2 mt-2">
-      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"><span class="font-paragon">Save</span></button>
-      <button type="button" onclick="resetForm()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded"><span class="font-paragon">Clear</span></button>
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        <span class="font-paragon">Save</span>
+      </button>
+      <button type="button" onclick="resetForm()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">
+        <span class="font-paragon">Clear</span>
+      </button>
     </div>
   </form>
 
   <div class="overflow-x-auto">
-    <table class="min-w-full text-sm text-left text-gray-300 bg-gray-900 border border-gray-700 rounded">
-      <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
+    <table class="min-w-full text-sm text-left text-black dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded">
+      <thead class="bg-gray-200 dark:bg-gray-700 text-black dark:text-gray-400 uppercase text-xs">
         <tr>
-          <th class="px-4 py-2 border-b border-gray-700"><span class="font-paragon">ID</span></th>
-          <th class="px-4 py-2 border-b border-gray-700"><span class="font-paragon">Name</span></th>
-          <th class="px-4 py-2 border-b border-gray-700"><span class="font-paragon">IP</span></th>
-          <th class="px-4 py-2 border-b border-gray-700"><span class="font-paragon">Inner IP</span></th>
-          <th class="px-4 py-2 border-b border-gray-700"><span class="font-paragon">Group</span></th>
-          <th class="px-4 py-2 border-b border-gray-700"><span class="font-paragon">Actions</span></th>
+          <th class="px-4 py-2 border-b border-gray-300 dark:border-gray-600"><span class="font-paragon">ID</span></th>
+          <th class="px-4 py-2 border-b border-gray-300 dark:border-gray-600"><span class="font-paragon">Name</span></th>
+          <th class="px-4 py-2 border-b border-gray-300 dark:border-gray-600"><span class="font-paragon">IP</span></th>
+          <th class="px-4 py-2 border-b border-gray-300 dark:border-gray-600"><span class="font-paragon">Inner IP</span></th>
+          <th class="px-4 py-2 border-b border-gray-300 dark:border-gray-600"><span class="font-paragon">Group</span></th>
+          <th class="px-4 py-2 border-b border-gray-300 dark:border-gray-600"><span class="font-paragon">Actions</span></th>
         </tr>
       </thead>
       <tbody>
         <% servers.forEach(s => { %>
-          <tr class="hover:bg-gray-800">
-            <td class="px-4 py-2 border-b border-gray-700"><%= s.id %></td>
-            <td class="px-4 py-2 border-b border-gray-700"><%= s.name %></td>
-            <td class="px-4 py-2 border-b border-gray-700"><%= s.ip %></td>
-            <td class="px-4 py-2 border-b border-gray-700"><%= s.inner_ip %></td>
-            <td class="px-4 py-2 border-b border-gray-700"><%= s.server_group_id %></td>
-            <td class="px-4 py-2 border-b border-gray-700 space-x-2">
-              <button onclick='editServer(<%- JSON.stringify(s) %>)' class="bg-yellow-600 hover:bg-yellow-700 text-xs px-3 py-1 rounded text-black"><span class="font-paragon">Edit</span></button>
-              <form method="POST" action="/admin/servers/delete/<%= s.id %>" class="inline" onsubmit="return confirm('Delete this server?');">
-                <button type="submit" class="bg-red-600 hover:bg-red-700 text-xs px-3 py-1 rounded"><span class="font-paragon">Delete</span></button>
-              </form>
+          <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <td class="px-4 py-2 border-b border-gray-300 dark:border-gray-700"><%= s.id %></td>
+            <td class="px-4 py-2 border-b border-gray-300 dark:border-gray-700"><%= s.name %></td>
+            <td class="px-4 py-2 border-b border-gray-300 dark:border-gray-700"><%= s.ip %></td>
+            <td class="px-4 py-2 border-b border-gray-300 dark:border-gray-700"><%= s.inner_ip %></td>
+            <td class="px-4 py-2 border-b border-gray-300 dark:border-gray-700"><%= s.server_group_id %></td>
+            <td class="px-4 py-2 border-b border-gray-300 dark:border-gray-700">
+              <div class="flex flex-wrap gap-2">
+                <button onclick='editServer(<%- JSON.stringify(s) %>)' class="bg-yellow-500 hover:bg-yellow-600 text-black text-xs px-3 py-1 rounded inline-flex items-center">
+                  <span class="font-paragon">Edit</span>
+                </button>
+                <form method="POST" action="/admin/servers/delete/<%= s.id %>" onsubmit="return confirm('Delete this server?');">
+                  <button type="submit" class="bg-red-600 hover:bg-red-700 text-white text-xs px-3 py-1 rounded inline-flex items-center">
+                    <span class="font-paragon">Delete</span>
+                  </button>
+                </form>
+              </div>
             </td>
           </tr>
         <% }) %>

@@ -1,5 +1,5 @@
 <aside
-  class="w-64 bg-gray-800 text-white h-full p-4 space-y-4"
+  class="w-64 h-full p-4 space-y-4 bg-gray-100 text-black dark:bg-gray-800 dark:text-white transition-colors duration-300"
   x-data="{
     openSections: Object.assign({ main: true }, JSON.parse(localStorage.getItem('sidebarOpenSections') || '{}'))
   }"
@@ -12,43 +12,43 @@
     <button @click="openSections.main = !openSections.main" class="w-full text-left font-bold"><span class="font-paragon">Main</span></button>
     <nav x-show="openSections.main" class="ml-2 mt-2 space-y-1">
       <a href="/"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Home
       </a>
       <a href="/account"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/account' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/account' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Account
       </a>
       <a href="/account/characters"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/account/characters' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/account/characters' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Characters
       </a>
       <a href="/stats"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/stats' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/stats' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Stats
       </a>
     </nav>
   </div>
 
   <!-- Admin Section -->
-  <% if (role === 'admin') { %>
-  <div class="mt-6 border-t border-gray-700 pt-4">
+  <% if (currentUserRole === 'admin') { %>
+  <div class="mt-6 border-t border-gray-300 dark:border-gray-700 pt-4">
     <button @click="openSections.admin = !openSections.admin" class="w-full text-left font-bold"><span class="font-paragon">Admin</span></button>
     <nav x-show="openSections.admin" class="ml-2 mt-2 space-y-1">
       <a href="/admin"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/admin' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Dashboard
       </a>
       <a href="/admin/news"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/news' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/admin/news' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Edit News
       </a>
       <a href="/admin/users"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/users' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/admin/users' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          User Management
       </a>
       <a href="/admin/manifest"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/manifest' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/admin/manifest' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Launcher Manifest
       </a>
     </nav>
@@ -56,24 +56,24 @@
   <% } %>
 
   <!-- GM Section -->
-  <% if (role === 'gm') { %>
-  <div class="mt-6 border-t border-gray-700 pt-4">
+  <% if (currentUserRole === 'gm') { %>
+  <div class="mt-6 border-t border-gray-300 dark:border-gray-700 pt-4">
     <button @click="openSections.gm = !openSections.gm" class="w-full text-left font-bold"><span class="font-paragon">GM</span></button>
     <nav x-show="openSections.gm" class="ml-2 mt-2 space-y-1">
       <a href="/admin"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/admin' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Dashboard
       </a>
       <a href="/admin/news"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/news' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/admin/news' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Edit News
       </a>
       <a href="/admin/users"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/users' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/admin/users' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          User Management
       </a>
       <a href="/admin/petitions"
-         class="block px-3 py-2 rounded hover:bg-gray-700 <%= currentPath === '/admin/petitions' ? 'bg-gray-700' : '' %>">
+         class="block px-3 py-2 rounded transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 <%= currentPath === '/admin/petitions' ? 'bg-gray-300 dark:bg-gray-700' : '' %>">
          Support Requests
       </a>
     </nav>

@@ -1,4 +1,8 @@
-<header class="bg-gray-800 p-4 flex justify-between items-center">
+<header class="p-4 flex justify-between items-center bg-gray-100 text-black dark:bg-gray-800 dark:text-white transition-colors duration-300">
+<button id="themeToggle" class="px-3 py-1 rounded border text-sm bg-gray-200 text-black dark:bg-gray-700 dark:text-white">
+  <span id="themeIcon">🌙</span>
+</button>
+
   <h1 class="text-2xl font-bold"><span class="font-paragon"><%= config.siteName %></span></h1>
   <div>
     <% if (username) { %>

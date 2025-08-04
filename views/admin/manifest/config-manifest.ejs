@@ -39,23 +39,36 @@
         const profiles = (config.profiles || []).sort((a, b) => (a.order || 0) - (b.order || 0));
         profiles.forEach((profile, index) => { 
       %>
-        <div class="mb-4 border p-4 bg-gray-800" data-index="<%= index %>">
-          <label><span class="font-paragon">Name:</span> <input class="w-full" type="text" name="profiles[<%= index %>][name]" value="<%= profile.name %>"></label>
-          <label><span class="font-paragon">Exec:</span> <input class="w-full" type="text" name="profiles[<%= index %>][exec]" value="<%= profile.exec %>"></label>
-          <label><span class="font-paragon">Order:</span> <input class="w-full profile-order" type="number" name="profiles[<%= index %>][order]" value="<%= profile.order %>"></label>
-          <label><span class="font-paragon">Params:</span> <input class="w-full" type="text" name="profiles[<%= index %>][params]" value="<%= profile.params %>"></label>
-          <button type="button" onclick="removeProfile(this)" class="text-red-400 mt-2"><span class="font-paragon">Remove</span></button>
+        <div class="mb-4 border border-gray-300 dark:border-gray-700 p-4 rounded bg-white dark:bg-gray-800 shadow-sm" data-index="<%= index %>">
+          <label class="block mb-2">
+            <span class="font-paragon block text-sm mb-1">Name:</span>
+            <input class="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white" type="text" name="profiles[<%= index %>][name]" value="<%= profile.name %>">
+          </label>
+          <label class="block mb-2">
+            <span class="font-paragon block text-sm mb-1">Exec:</span>
+            <input class="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white" type="text" name="profiles[<%= index %>][exec]" value="<%= profile.exec %>">
+          </label>
+          <label class="block mb-2">
+            <span class="font-paragon block text-sm mb-1">Order:</span>
+            <input class="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white profile-order" type="number" name="profiles[<%= index %>][order]" value="<%= profile.order %>">
+          </label>
+          <label class="block mb-2">
+            <span class="font-paragon block text-sm mb-1">Params:</span>
+            <input class="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white" type="text" name="profiles[<%= index %>][params]" value="<%= profile.params %>">
+          </label>
+          <button type="button" onclick="removeProfile(this)" class="text-red-600 dark:text-red-400 hover:underline mt-2 text-sm">
+            <span class="font-paragon">Remove</span>
+          </button>
         </div>
       <% }) %>
     </div>
-
-    <button type="button" onclick="addProfile()" class="bg-gray-600 px-4 py-1 mt-4"><span class="font-paragon">Add Profile</span></button>
+    <button type="button" onclick="addProfile()" class="bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 px-4 py-1 mt-4 rounded"><span class="font-paragon">Add Profile</span></button>
     <br>
-    <button class="bg-blue-600 px-4 py-2 mt-6 text-white"><span class="font-paragon">Save</span></button>
+    <button class="bg-blue-600 px-4 py-2 mt-6 text-black dark:text-white"><span class="font-paragon">Save</span></button>
   </form>
 
   <form method="GET" action="/admin/manifest/generate" class="mt-6" onsubmit="showLoadingModal()">
-    <button type="submit" class="bg-green-600 px-4 py-2 text-white"><span class="font-paragon">Generate Manifest</span></button>
+    <button type="submit" class="bg-green-600 px-4 py-2 text-black dark:text-white"><span class="font-paragon">Generate Manifest</span></button>
   </form>
 
   <script>

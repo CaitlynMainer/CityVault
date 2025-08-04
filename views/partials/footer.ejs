@@ -1,3 +1,35 @@
-<footer class="bg-gray-800 p-4 text-center">
-  Made with ❤️ by <a href="https://CityOfHeroes.dev" class="text-blue-400 hover:underline">CityOfHeroes.dev</a>
+<footer class="p-4 text-center bg-gray-100 text-black dark:bg-gray-800 dark:text-white transition-colors duration-300">
+  Made with ❤️ by <a href="https://CityOfHeroes.dev" class="text-blue-500 dark:text-blue-300 hover:underline">CityOfHeroes.dev</a>
 </footer>
+<script>
+  document.querySelectorAll('[data-dropdown]').forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    const options = dropdown.querySelector('.dropdown-options');
+    const input = dropdown.querySelector('.dropdown-input');
+    const label = dropdown.querySelector('.dropdown-label');
+
+    if (!toggle || !options || !input || !label) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      options.classList.toggle('hidden');
+    });
+
+    options.querySelectorAll('[data-value]').forEach(option => {
+      option.addEventListener('click', () => {
+        const value = option.dataset.value;
+        input.value = value;
+        label.textContent = option.textContent;
+        options.classList.add('hidden');
+        input.form?.submit();
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        options.classList.add('hidden');
+      }
+    });
+  });
+</script>
+

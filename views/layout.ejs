@@ -1,11 +1,20 @@
 <% const messages = typeof getMessages === 'function' ? getMessages() : { success: [], error: [] }; %>
 <!DOCTYPE html>
-<html lang="en" class="bg-gray-900 text-white">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      const theme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
   <title><%= typeof title !== 'undefined' ? title : config.siteName %></title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="/css/output.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/default.css">
   <link rel="stylesheet" href="/css/custom.css">
   <link rel="stylesheet" href="/css/fonts.css">
@@ -52,5 +61,46 @@
     </main>
     <%- include('partials/footer') %>
   </div>
+
+<script>
+  const root = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+
+  function updateThemeIcon(isDark) {
+    icon.textContent = isDark ? '🌙' : '🌞';
+  }
+
+  // Load saved mode or match system
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isInitiallyDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+  if (isInitiallyDark) {
+    root.classList.add('dark', 'bg-gray-900', 'text-white');
+    root.classList.remove('bg-white', 'text-black');
+    updateThemeIcon(true);
+  } else {
+    root.classList.remove('dark', 'bg-gray-900', 'text-white');
+    root.classList.add('bg-white', 'text-black');
+    updateThemeIcon(false);
+  }
+
+  toggle.addEventListener('click', () => {
+    const isDark = root.classList.contains('dark');
+    if (isDark) {
+      root.classList.remove('dark', 'bg-gray-900', 'text-white');
+      root.classList.add('bg-white', 'text-black');
+      localStorage.setItem('theme', 'light');
+    } else {
+      root.classList.add('dark', 'bg-gray-900', 'text-white');
+      root.classList.remove('bg-white', 'text-black');
+      localStorage.setItem('theme', 'dark');
+    }
+
+    updateThemeIcon(!isDark);
+  });
+</script>
+
 </body>
 </html>

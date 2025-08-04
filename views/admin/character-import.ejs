@@ -19,11 +19,11 @@
 
   <div>
     <label class="block font-semibold"><span class="font-paragon">Target Account</span></label>
-		<select id="targetAccount" name="targetAccount" required class="border px-2 py-1 w-full">
-		  <% accounts.forEach(account => { %>
-			<option value="<%= account %>"><%= account %></option>
-		  <% }) %>
-		</select>
+    <select id="targetAccount" name="targetAccount" class="w-full" required>
+      <% accounts.forEach(account => { %>
+        <option value="<%= account %>"><%= account %></option>
+      <% }) %>
+    </select>
   </div>
 
   <div>
@@ -31,10 +31,8 @@
     <input type="file" name="importZip" required class="border px-2 py-1 w-full" accept=".zip" />
   </div>
 
-  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded"><span class="font-paragon">Import Character</span></button>
+  <button type="submit" class="bg-blue-600 text-black dark:text-white px-4 py-2 rounded"><span class="font-paragon">Import Character</span></button>
 </form>
-<!-- Select2 Bootstrap 4 theme -->
-<link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.4.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
 
 <!-- In <head> or layout -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -43,11 +41,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-  $(document).ready(function () {
+  document.addEventListener('DOMContentLoaded', () => {
     $('#targetAccount').select2({
-      theme: 'bootstrap-5',
       placeholder: 'Select or search for an account...',
-      width: '100%'
+      width: '100%',
+      theme: 'default'
     });
   });
 </script>
@@ -83,5 +81,3 @@
     For best results, export and import characters between servers using the <strong>same data version</strong> (e.g., I24 → I24).
   </p>
 </div>
-
-

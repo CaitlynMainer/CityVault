@@ -1,10 +1,10 @@
 <% Object.entries(charactersByServer).forEach(([serverKey, characters]) => { %>
-  <h2 style="margin-top: 24px; font-size: 20px; color: #eee;"><span class="font-paragon"><%= serverKey.toUpperCase() %></span></h2>
+  <h2 style="margin-top: 24px; font-size: 20px;"><span class="font-paragon"><%= serverKey.toUpperCase() %></span></h2>
 
   <!-- Toggle Details -->
   <a href="javascript:void(0)"
      onclick="document.getElementById('stats-<%= serverKey %>').classList.toggle('hidden')"
-     style="display: inline-block; font-size: 14px; color:#eee; margin: 2px 0 8px;">
+     style="display: inline-block; font-size: 14px; margin: 2px 0 8px;">
     <span class="font-paragon">Toggle Details</span>
   </a>
 
@@ -13,13 +13,15 @@
   <% if (t) { %>
     <div id="stats-<%= serverKey %>"
          class="hidden flex flex-wrap"
-         style="font-size: 14px; color: #ccc; gap: 2rem; margin: 4px 0 12px;">
+         style="font-size: 14px; gap: 2rem; margin: 4px 0 12px;">
       <div><strong><span class="font-paragon">Characters:</span> </strong><%= t.totalCharacters.toLocaleString() %></div>
       <div><strong><span class="font-paragon">Logins:</span> </strong><%= t.totalLogins.toLocaleString() %></div>
       <div><strong><span class="font-paragon">Hours Played:</span> </strong><%= t.totalHours.toLocaleString() %></div>
 	  <form method="POST" action="/account/character-export">
-		<input type="hidden" name="serverKey" value="<%= serverKey %>">
-		<button class="btn btn-sm btn-secondary"><span class="font-paragon">Export All</span></button>
+      <input type="hidden" name="serverKey" value="<%= serverKey %>">
+      <button class="px-3 py-1.5 text-sm font-semibold rounded bg-gray-200 text-black hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 transition-colors duration-200">
+        <span class="font-paragon">Export All</span>
+      </button>
 	  </form>
     </div>
   <% } %>

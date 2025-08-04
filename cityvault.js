@@ -123,7 +123,8 @@ module.exports = async function startApp(config) {
   app.use((req, res, next) => {
     res.locals.currentPath = req.path;
     res.locals.username = req.session.username || null;
-    res.locals.role = req.user?.role || null;
+    //res.locals.role = req.user?.role || null;
+    res.locals.currentUserRole = req.user?.role || null;
     res.locals.getMessages = () => ({
       success: req.flash('success'),
       error: req.flash('error')

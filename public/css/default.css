@@ -5,13 +5,22 @@ body {
 
 /* General input styles */
 input, select, textarea {
-  background-color: #1f2937; /* bg-gray-800 */
-  color: white;
-  border: 1px solid #4b5563; /* border-gray-600 */
+  border: 1px solid #d1d5db; /* gray-300 */
   padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
   width: 100%;
   margin-bottom: 0.5rem;
+  background-color: #f9fafb; /* gray-50 */
+  color: #111827;            /* gray-900 */
+}
+
+/* Dark mode override */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #1f2937; /* gray-800 */
+  color: #f9fafb;            /* gray-50 */
+  border-color: #4b5563;     /* gray-600 */
 }
 
 /* Form and layout helpers */
@@ -69,47 +78,32 @@ fieldset > div {
 }
 
 /* Select2 (Bootstrap 5 theme) overrides */
+/* Default (light mode) */
 .select2-container--bootstrap-5 .select2-selection--single {
-  background-color: #1e293b;
-  color: white;
-  border: 1px solid #334155;
-  height: 2.5rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.375rem;
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #d1d5db;
 }
 
 .select2-container--bootstrap-5 .select2-selection__rendered {
-  color: white;
-  line-height: 2.25rem;
+  color: #111827;
 }
 
-.select2-container--bootstrap-5 .select2-selection__arrow {
-  height: 2.5rem;
-}
-
-.select2-container--bootstrap-5 .select2-dropdown {
-  background-color: #1e293b;
-  color: white;
-  border: 1px solid #334155;
-}
-
+.select2-container--bootstrap-5 .select2-dropdown,
 .select2-container--bootstrap-5 .select2-results__option {
-  background-color: #1e293b;
-  color: white;
+  background-color: #ffffff;
+  color: #111827;
+  border-color: #d1d5db;
 }
 
 .select2-container--bootstrap-5 .select2-results__option--highlighted {
   background-color: #3b82f6 !important;
-  color: white;
+  color: #fff;
 }
 
 .select2-container--bootstrap-5 .select2-search__field {
-  background-color: #0f172a;
-  color: white;
-}
-
-.select2-container--bootstrap-5 .select2-search--dropdown {
-  padding: 4px;
+  background-color: #f9fafb;
+  color: #111827;
 }
 
 /* Password toggle */
@@ -125,6 +119,7 @@ fieldset > div {
   border: none;
   cursor: pointer;
   color: #555;
+  font-family: "Paragon City", sans-serif !important;
 }
 
 /* Form containers */
@@ -156,7 +151,6 @@ button[type="submit"] {
   border: none;
   border-radius: 4px;
   background-color: #28a745;
-  color: white;
   font-weight: bold;
   cursor: pointer;
 }
@@ -184,4 +178,277 @@ button[type="submit"]:hover {
 
 .forgot-link a:hover {
   text-decoration: underline;
+}
+
+/* Base <select> styling (light mode) */
+select {
+  background-color: #f9fafb;  /* gray-50 */
+  color: #111827;             /* gray-900 */
+  border: 1px solid #d1d5db;  /* gray-300 */
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 100%;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23666' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Fallback for <option> styling - not fully reliable in Chrome/Edge/Safari */
+select option {
+  color: #111827;
+  background-color: #ffffff;
+}
+
+ .character-profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  @media (min-width: 1024px) {
+    .character-profile-container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .left-panel {
+    flex: 0 0 360px;
+  }
+
+  .right-panel {
+    flex: 1;
+    max-width: 720px;
+  }
+.badge-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.badge-tile {
+  background: #f3f4f6;              /* Light: gray-100 */
+  border: 1px solid #cbd5e1;        /* Light: gray-300 */
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #111827;                   /* Light text color */
+}
+
+.dark .badge-tile {
+  background: #1e1e1e;              /* Dark: almost-black */
+  border: 1px solid #444;
+  color: #e5e7eb;                   /* Tailwind gray-200 */
+}
+
+.badge-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.badge-icon {
+  max-width: 100%;
+  max-height: 32px;
+  image-rendering: pixelated;
+}
+
+.badge-owned {
+  color: #10b981;                  /* Tailwind green-500 */
+  font-weight: 600;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-unowned {
+  color: #9ca3af;                  /* Tailwind gray-400 */
+  font-weight: 500;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.badge-status {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.badge-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  font-weight: 600;
+  color: inherit;
+}
+
+.badge-toggle-btn {
+  background: none;
+  border: none;
+  color: #3b82f6;                 /* Tailwind blue-500 */
+  cursor: pointer;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.badge-description {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  margin-top: 4px;
+  color: #6b7280;                 /* gray-500 */
+
+  /* Dark mode override */
+}
+
+.dark .badge-description {
+  color: #a1a1aa;                 /* gray-400 */
+}
+
+.badge-description.hidden {
+  display: none;
+}
+
+
+/* Container for select elements */
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  min-width: 7rem;
+  color: var(--text-color);
+  font-size: 0.875rem;
+}
+
+.custom-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: var(--bg-input);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1.75rem 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.custom-select::after {
+  content: "▾";
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-color-muted);
+  font-size: 0.75rem;
+}
+
+/* Light mode variables */
+:root {
+  --bg-input: #f9fafb;
+  --border-color: #cbd5e1;
+  --text-color: #1f2937;
+  --text-color-muted: #6b7280;
+}
+
+/* Dark mode overrides */
+.dark {
+  --bg-input: #1f2937;
+  --border-color: #4b5563;
+  --text-color: #f9fafb;
+  --text-color-muted: #9ca3af;
+}
+
+/* Base Select2 theme override to match Tailwind light mode */
+.select2-container--default .select2-selection--single {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  border-radius: 0.25rem; /* rounded */
+  padding: 0.5rem;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.select2-container--default .select2-selection__rendered {
+  color: #000;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: 1.5rem;
+}
+
+.select2-container--default .select2-selection__arrow {
+  height: 100%;
+}
+
+/* Dropdown for light mode */
+.select2-container--default .select2-dropdown {
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.select2-container--default .select2-results__option {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #000;
+}
+
+.select2-container--default .select2-results__option--highlighted {
+  background-color: #e5e7eb; /* gray-200 */
+  color: #000;
+}
+
+
+/* Dark mode */
+html.dark .select2-container--default .select2-selection--single {
+  background-color: #1f2937; /* gray-800 */
+  color: #fff;
+  border-color: #374151; /* gray-700 */
+}
+
+html.dark .select2-container--default .select2-selection__rendered {
+  color: #fff;
+}
+
+html.dark .select2-container--default .select2-dropdown {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #fff;
+}
+
+html.dark .select2-container--default .select2-results__option {
+  color: #fff;
+}
+
+html.dark .select2-container--default .select2-results__option--highlighted {
+  background-color: #4b5563; /* gray-700 */
+  color: #fff;
 }

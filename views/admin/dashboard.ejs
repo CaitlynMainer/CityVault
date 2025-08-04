@@ -1,37 +1,56 @@
 <% if (updateInfo?.updateAvailable) { %>
-  <div class="bg-yellow-900 text-yellow-100 border border-yellow-700 rounded p-4 mb-6 shadow">
+  <div
+    class="bg-amber-100 dark:bg-yellow-900 text-amber-800 dark:text-yellow-100 border border-amber-300 dark:border-yellow-700 rounded p-4 mb-6 shadow">
+
     <div class="font-bold text-lg mb-1"><span class="font-paragon">⚠️ Update Available</span></div>
     <p class="mb-2">
-      Version <strong><%= updateInfo.latestVersion %></strong> is available.
-      You are running <strong><%= updateInfo.currentVersion %></strong>.
+      Version <strong>
+        <%= updateInfo.latestVersion %>
+      </strong> is available.
+      You are running <strong>
+        <%= updateInfo.currentVersion %>
+      </strong>.
     </p>
-    <form action="/admin/download-update" method="POST" onsubmit="return confirm('Download and extract the update now?');">
+    <form action="/admin/download-update" method="POST"
+      onsubmit="return confirm('Download and extract the update now?');">
       <input type="hidden" name="zipUrl" value="<%= updateInfo.url %>">
-      <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded"><span class="font-paragon">⬇️ Download Update</span></button>
+      <div class="inline-block">
+        <button type="submit" class="bg-blue-700 hover:bg-blue-800 !text-black dark:!text-white px-4 py-2 rounded">
+          <span class="font-paragon">⬇️ Download Update</span>
+        </button>
+      </div>
     </form>
     <% if (updateInfo.notes) { %>
-      <div class="mt-3 text-sm text-yellow-200 whitespace-pre-line"><%- updateInfo.notes %></div>
-    <% } %>
+      <div class="mt-3 whitespace-pre-line"><%- updateInfo.notes %></div>
+      <% } %>
   </div>
-<% } %>
+  <% } %>
 
-<h1 class="text-3xl font-bold text-white mb-4"><span class="font-paragon">Admin Dashboard</span></h1>
+    <h1 class="text-3xl font-bold  mb-4"><span class="font-paragon">Admin Dashboard</span></h1>
 
-<p class="mb-6 text-gray-300">Welcome<% if (user) { %>, <strong class="text-white"><%= user.username %></strong><% } %>.</p>
+    <p class="mb-6 ">Welcome<% if (user) { %>, <strong>
+          <%= user.username %>
+        </strong>
+        <% } %>.</p>
 
-<div class="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4 mb-8">
+    <div class="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4 mb-8">
 
-  <% if (links && links.length) { %>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-    <% links.forEach(link => { %>
-      <a href="<%= link.path %>" class="bg-gray-800 hover:bg-gray-700 p-4 rounded shadow flex items-center space-x-2 text-white">
-        <span><%= link.icon %></span>
-        <span><%= link.label %></span>
-      </a>
-    <% }) %>
-  </div>
-<% } %>
+      <% if (links && links.length) { %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+          <% links.forEach(link=> { %>
+            <a href="<%= link.path %>"
+              class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 p-4 rounded shadow flex items-center space-x-2 text-black dark:text-white transition-colors duration-200">
+              <span>
+                <%= link.icon %>
+              </span>
+              <span>
+                <%= link.label %>
+              </span>
+            </a>
+            <% }) %>
+        </div>
+        <% } %>
+    </div>
 
-</div>
 
-<a href="/" class="text-blue-400 hover:underline">← Back to Site</a>
+    <a href="/" class="text-blue-400 hover:underline">← Back to Site</a>

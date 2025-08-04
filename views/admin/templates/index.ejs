@@ -1,23 +1,23 @@
 <main class="p-6">
-  <h1 class="text-2xl font-bold text-white mb-4"><span class="font-paragon">Email Templates</span></h1>
+  <h1 class="text-2xl font-bold mb-4"><span class="font-paragon">Email Templates</span></h1>
 
   <% if (messages && messages.success) { %>
-    <div class="bg-green-600 text-white px-4 py-2 rounded mb-4">
+    <div class="bg-green-600 px-4 py-2 rounded mb-4">
       <%= messages.success %>
     </div>
   <% } %>
   <% if (messages && messages.error) { %>
-    <div class="bg-red-600 text-white px-4 py-2 rounded mb-4">
+    <div class="bg-red-600 px-4 py-2 rounded mb-4">
       <%= messages.error %>
     </div>
   <% } %>
 
-  <ul class="bg-gray-800 rounded shadow divide-y divide-gray-700 text-white">
-    <% templates.forEach(template => { 
+  <ul class="bg-gray-100 dark:bg-gray-800 rounded shadow divide-y divide-gray-300 dark:divide-gray-700 text-black dark:text-white">
+    <% templates.forEach(template => {
         if (typeof template === 'string' && template.trim()) { %>
-      <li class="p-4 flex justify-between items-center hover:bg-gray-700">
-        <span><%= template %></span>
-        <a href="/admin/templates/edit/<%= encodeURIComponent(template) %>" class="text-blue-400 hover:underline"><span class="font-paragon">Edit</span></a>
+      <li class="p-4 flex justify-between items-center hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+        <span class="truncate"><%= template %></span>
+        <a href="/admin/templates/edit/<%= encodeURIComponent(template) %>" class="text-blue-600 dark:text-blue-400 hover:underline font-paragon">Edit</a>
       </li>
     <% } }) %>
   </ul>

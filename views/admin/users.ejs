@@ -1,61 +1,111 @@
-<h2 class="text-2xl font-bold text-gray-100 mb-4"><span class="font-paragon">User Management</span></h2>
+<h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+  <span class="font-paragon">User Management</span>
+</h2>
 
 <form method="GET" action="/admin/users" class="flex flex-wrap items-center gap-4 mb-6">
-<input type="text" name="search" placeholder="Search username, email, or character name"
-       value="<%= search %>" class="input w-96 bg-gray-800 border border-gray-600 text-white" />
+  <!-- Search Field -->
+  <div class="flex items-center gap-1">
+    <input type="text" name="search"
+      class="px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white w-80 text-sm"
+      placeholder="Search username, email, or character name"
+      value="<%= search %>">
+  </div>
 
-  <label class="text-sm text-gray-300">
+  <!-- Show Limit -->
+  <label class="text-sm text-gray-700 dark:text-gray-300 flex items-center gap-1">
     Show:
-    <select name="limit" onchange="this.form.submit()" class="input ml-1 bg-gray-800 border border-gray-600 text-white">
-      <option value="10" <%= limit == 10 ? 'selected' : '' %>>10</option>
-      <option value="25" <%= limit == 25 ? 'selected' : '' %>>25</option>
-      <option value="50" <%= limit == 50 ? 'selected' : '' %>>50</option>
-      <option value="100" <%= limit == 100 ? 'selected' : '' %>>100</option>
-    </select>
-    per page
+    <div class="custom-dropdown" data-dropdown>
+      <div class="relative">
+        <input type="hidden" name="limit" class="dropdown-input" value="<%= limit %>">
+        <button type="button" class="dropdown-toggle flex items-center justify-between w-24 px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded shadow-sm">
+          <span class="dropdown-label"><%= limit %></span>
+          <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+        </button>
+        <ul class="dropdown-options absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded shadow hidden">
+          <% [10, 25, 50, 100].forEach(option => { %>
+            <li>
+              <button type="button" class="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white" data-value="<%= option %>"><%= option %></button>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
   </label>
-  <label class="text-sm text-gray-300">
-  Role:
-  <select name="role" onchange="this.form.submit()" class="input ml-1 bg-gray-800 border border-gray-600 text-white">
-    <option value="">All</option>
-    <option value="user" <%= role === 'user' ? 'selected' : '' %>>User</option>
-    <option value="admin" <%= role === 'admin' ? 'selected' : '' %>>Admin</option>
-    <option value="gm" <%= role === 'gm' ? 'selected' : '' %>>GM</option>
-  </select>
-</label>
 
-<label class="text-sm text-gray-300">
-  Status:
-  <select name="status" onchange="this.form.submit()" class="input ml-1 bg-gray-800 border border-gray-600 text-white">
-    <option value="">All</option>
-    <option value="active" <%= status === 'active' ? 'selected' : '' %>>Active</option>
-    <option value="banned" <%= status === 'banned' ? 'selected' : '' %>>Banned</option>
-    <option value="unconfirmed" <%= status === 'unconfirmed' ? 'selected' : '' %>>Unconfirmed</option>
-  </select>
-</label>
+  <!-- Role Dropdown -->
+  <label class="text-sm text-gray-700 dark:text-gray-300 flex items-center gap-1">
+    Role:
+    <div class="custom-dropdown" data-dropdown>
+      <div class="relative w-36">
+        <input type="hidden" name="role" class="dropdown-input" value="<%= role %>">
+        <button type="button" class="dropdown-toggle flex items-center justify-between w-full px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded shadow-sm">
+          <span class="dropdown-label"><%= role ? role.charAt(0).toUpperCase() + role.slice(1) : 'All' %></span>
+          <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+        </button>
+        <ul class="dropdown-options absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded shadow hidden">
+          <% ['','user','admin','gm'].forEach(opt => { %>
+            <li>
+              <button type="button" class="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white" data-value="<%= opt %>">
+                <%= opt ? opt.charAt(0).toUpperCase() + opt.slice(1) : 'All' %>
+              </button>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </label>
 
+  <!-- Status Dropdown -->
+  <label class="text-sm text-gray-700 dark:text-gray-300 flex items-center gap-1">
+    Status:
+    <div class="custom-dropdown" data-dropdown>
+      <div class="relative w-40">
+        <input type="hidden" name="status" class="dropdown-input" value="<%= status %>">
+        <button type="button" class="dropdown-toggle flex items-center justify-between w-full px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded shadow-sm">
+          <span class="dropdown-label"><%= status ? status.charAt(0).toUpperCase() + status.slice(1) : 'All' %></span>
+          <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+        </button>
+        <ul class="dropdown-options absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded shadow hidden">
+          <% ['','active','banned','unconfirmed'].forEach(opt => { %>
+            <li>
+              <button type="button" class="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white" data-value="<%= opt %>">
+                <%= opt ? opt.charAt(0).toUpperCase() + opt.slice(1) : 'All' %>
+              </button>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </label>
 
-  <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
+  <!-- Search Submit -->
+  <div class="flex items-center">
+    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded">
+      Search
+    </button>
+  </div>
 </form>
 
-<div class="overflow-x-auto max-w-screen-lg shadow rounded-lg bg-gray-900 border border-gray-700">
-  <table class="table-auto w-full text-sm text-left text-gray-300">
-    <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
+<div class="relative z-0 max-w-screen-lg shadow rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
+  <table class="table-auto w-full text-sm text-left text-gray-800 dark:text-gray-300">
+    <thead class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 uppercase text-xs">
       <tr>
-        <th class="px-2 py-3 border-b border-gray-700 w-32"><span class="font-paragon">Username</span></th>
-        <th class="px-2 py-3 border-b border-gray-700 w-48"><span class="font-paragon">Email</span></th>
-        <th class="px-2 py-3 border-b border-gray-700 w-20"><span class="font-paragon">Role</span></th>
-        <th class="px-2 py-3 border-b border-gray-700 w-24"><span class="font-paragon">Status</span></th>
-        <th class="px-2 py-3 border-b border-gray-700 w-64"><span class="font-paragon">Actions</span></th>
-        <th class="px-2 py-3 border-b border-gray-700 w-24"><span class="font-paragon">Notes</span></th>
+        <th class="px-2 py-3 border-b border-gray-200 dark:border-gray-700 w-32"><span class="font-paragon">Username</span></th>
+        <th class="px-2 py-3 border-b border-gray-200 dark:border-gray-700 w-48"><span class="font-paragon">Email</span></th>
+        <th class="px-2 py-3 border-b border-gray-200 dark:border-gray-700 w-20"><span class="font-paragon">Role</span></th>
+        <th class="px-2 py-3 border-b border-gray-200 dark:border-gray-700 w-24"><span class="font-paragon">Status</span></th>
+        <th class="px-2 py-3 border-b border-gray-200 dark:border-gray-700 w-64"><span class="font-paragon">Actions</span></th>
+        <th class="px-2 py-3 border-b border-gray-200 dark:border-gray-700 w-24"><span class="font-paragon">Notes</span></th>
       </tr>
     </thead>
     <tbody>
       <% users.forEach(user => { %>
-        <tr class="hover:bg-gray-800">
-          <td class="px-2 py-2 border-b border-gray-700 truncate"><a href="/profile/<%= user.uid %>" target="_blank" class="underline"><%= user.account %></a></td>
-          <td class="px-2 py-2 border-b border-gray-700 truncate"><%= user.email %></td>
-          <td class="px-2 py-2 border-b border-gray-700">
+        <tr class="relative overflow-visible hover:bg-gray-50 dark:hover:bg-gray-800">
+          <td class="px-2 py-2 border-b border-gray-200 dark:border-gray-700 truncate">
+            <a href="/profile/<%= user.uid %>" target="_blank" class="underline"><%= user.account %></a>
+          </td>
+          <td class="px-2 py-2 border-b border-gray-200 dark:border-gray-700 truncate"><%= user.email %></td>
+          <td class="px-2 py-2 z-50 overflow-visible border-b border-gray-200 dark:border-gray-700">
             <div class="flex items-center space-x-2">
               <span class="px-2 py-1 rounded-full text-xs font-medium 
                 <%= user.role === 'admin'
@@ -65,25 +115,47 @@
                         : 'bg-blue-700' %> text-white">
                 <%= user.role %>
               </span>
+              <% if (currentUserRole === 'admin' && user.account !== username) { %>
+              <form method="POST" action="/admin/users/<%= user.uid %>/role" class="inline-block" data-dropdown>
+                <input type="hidden" name="page" value="<%= page %>">
+                <input type="hidden" name="search" value="<%= search %>">
+                <input type="hidden" name="limit" value="<%= limit %>">
+                <input type="hidden" name="newRole" class="dropdown-input" value="<%= user.role %>">
 
-              <% if (currentUserRole  === 'admin' && user.account !== username) { %>
-                <form method="POST" action="/admin/users/<%= user.uid %>/role" class="inline-block">
-                  <input type="hidden" name="page" value="<%= page %>">
-                  <input type="hidden" name="search" value="<%= search %>">
-                  <input type="hidden" name="limit" value="<%= limit %>">
-                  <select name="newRole" onchange="confirmRoleChange(this, '<%= user.uid %>', '<%= user.account %>')" class="bg-gray-800 border border-gray-600 text-white text-xs rounded">
+                <div class="relative min-w-[80px]">
+                  <button type="button" class="dropdown-toggle flex items-center justify-between w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                    <span class="dropdown-label capitalize"><%= user.role %></span>
+                    <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </button>
+
+                  <ul class="dropdown-options absolute z-50 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded shadow hidden">
                     <% ['user', 'gm', 'admin'].forEach(roleOption => { %>
-                      <option value="<%= roleOption %>" <%= user.role === roleOption ? 'selected' : '' %>><%= roleOption %></option>
+                      <li>
+                        <button
+                          type="button"
+                          class="w-full text-left px-3 py-2 text-sm capitalize hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white"
+                          data-value="<%= roleOption %>"
+                          onclick="confirmRoleChange(this, '<%= user.uid %>', '<%= user.account %>')">
+                          <%= roleOption %>
+                        </button>
+                      </li>
                     <% }) %>
-                  </select>
-                </form>
+                  </ul>
+                </div>
+              </form>
               <% } else { %>
-                <span class="text-xs text-gray-500">🔒</span>
+                <span class="px-2 py-1 rounded-full text-xs font-medium
+                  <%= user.role === 'admin'
+                        ? 'bg-purple-700'
+                        : user.role === 'gm'
+                          ? 'bg-orange-600'
+                          : 'bg-blue-700' %> text-white">
+                  <%= user.role %>
+                </span>
               <% } %>
             </div>
           </td>
-
-          <td class="px-2 py-2 border-b border-gray-700">
+          <td class="px-2 py-2 border-b border-gray-200 dark:border-gray-700">
             <span class="px-2 py-1 rounded-full text-xs font-medium
               <%= user.status === 'Banned'
                   ? 'bg-red-700'
@@ -93,28 +165,25 @@
               <%= user.status %>
             </span>
           </td>
-            <td class="px-2 py-2 border-b border-gray-700 space-x-1">
-              <!-- Manage Characters Action -->
-              <button type="button"
-                class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1 rounded"
-                onclick="location.href='/account/characters?uid=<%= user.uid %>'">
-                Manage
-              </button>
-              <!-- Ban/Unban/Confirm Action -->
-              <button type="button"
-                data-form-action="/admin/users/<%= user.uid %>/ban"
-                data-form-method="POST"
-                data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>","reason":""}'
-                data-confirm-message="Are you sure you want to <%= user.actionLabel.toLowerCase() %> this user?"
-                class="bg-yellow-600 hover:bg-yellow-700 text-black text-xs px-2 py-1 rounded"
-                onclick="openConfirmModal(this, <%= ['ban', 'unban'].includes(user.actionLabel.toLowerCase()) ? 'true' : 'false' %>)">
-                <%= user.actionLabel %>
-              </button>
-            </td>
-
-          <td class="px-2 py-2 border-b border-gray-700">
+          <td class="px-2 py-2 border-b border-gray-200 dark:border-gray-700 space-x-1">
             <button type="button"
-              class="bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded"
+              class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1 rounded"
+              onclick="location.href='/account/characters?uid=<%= user.uid %>'">
+              Manage
+            </button>
+            <button type="button"
+              data-form-action="/admin/users/<%= user.uid %>/ban"
+              data-form-method="POST"
+              data-form-fields='{"action":"<%= user.actionLabel.toLowerCase() %>","page":"<%= page %>","search":"<%= search %>","limit":"<%= limit %>","reason":""}'
+              data-confirm-message="Are you sure you want to <%= user.actionLabel.toLowerCase() %> this user?"
+              class="bg-yellow-600 hover:bg-yellow-700 text-black text-xs px-2 py-1 rounded"
+              onclick="openConfirmModal(this, <%= ['ban', 'unban'].includes(user.actionLabel.toLowerCase()) ? 'true' : 'false' %>)">
+              <%= user.actionLabel %>
+            </button>
+          </td>
+          <td class="px-2 py-2 border-b border-gray-200 dark:border-gray-700">
+            <button type="button"
+              class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-xs px-2 py-1 rounded"
               onclick="openNotesModal(<%= user.uid %>, '<%= user.account %>')">
               Notes (<%= user.noteCount || 0 %>)
             </button>
@@ -124,7 +193,6 @@
     </tbody>
   </table>
 </div>
-
 
 <div class="mt-6 flex justify-center">
   <div class="max-w-screen-lg w-full px-4">
@@ -186,19 +254,36 @@
 
 <!-- Confirmation Modal -->
 <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center">
-  <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg max-w-md w-full">
+  <div class="bg-white dark:bg-gray-800 dark:text-white text-gray-900 p-6 rounded-lg shadow-lg max-w-md w-full">
     <h3 class="text-xl font-semibold mb-4">Confirm Action</h3>
     <p class="mb-4" id="modalMessage">Are you sure?</p>
+
     <div id="reasonInputContainer" class="mb-4 hidden">
       <label for="banReason" class="block text-sm mb-1">Reason for ban:</label>
-      <input type="text" id="banReason" class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600" />
+      <input
+        type="text"
+        id="banReason"
+        class="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+      />
     </div>
+
     <div class="flex justify-end space-x-3">
-      <button id="cancelBtn" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded">Cancel</button>
-      <button id="confirmBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Yes</button>
+      <button
+        id="cancelBtn"
+        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-gray-600 dark:hover:bg-gray-700 dark:text-white rounded"
+      >
+        Cancel
+      </button>
+      <button
+        id="confirmBtn"
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
+      >
+        Yes
+      </button>
     </div>
   </div>
 </div>
+
 <form id="roleChangeForm" method="POST" class="hidden"></form>
 <script>
   let pendingFormData = null;
@@ -250,16 +335,40 @@
   });
 </script>
 <div id="notesModal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center">
-  <div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-    <h3 class="text-xl font-semibold mb-4">Account Notes for <span id="notesUsername"></span></h3>
-    <div id="notesList" class="space-y-2 max-h-60 overflow-y-auto mb-4 border border-gray-700 p-2 rounded bg-gray-800"></div>
-    <textarea id="newNoteText" class="w-full bg-gray-700 text-white p-2 rounded mb-4" rows="3" placeholder="Add a note..."></textarea>
+  <div class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+    <h3 class="text-xl font-semibold mb-4">
+      Account Notes for <span id="notesUsername"></span>
+    </h3>
+
+    <div
+      id="notesList"
+      class="space-y-2 max-h-60 overflow-y-auto mb-4 border border-gray-300 dark:border-gray-700 p-2 rounded bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+    ></div>
+
+    <textarea
+      id="newNoteText"
+      class="w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 p-2 rounded mb-4"
+      rows="3"
+      placeholder="Add a note..."
+    ></textarea>
+
     <div class="flex justify-end space-x-3">
-      <button onclick="closeNotesModal()" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded">Close</button>
-      <button onclick="submitNote()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Add Note</button>
+      <button
+        onclick="closeNotesModal()"
+        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-gray-600 dark:hover:bg-gray-700 dark:text-white rounded"
+      >
+        Close
+      </button>
+      <button
+        onclick="submitNote()"
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
+      >
+        Add Note
+      </button>
     </div>
   </div>
 </div>
+
 <script>
 let currentNotesUid = null;
 
@@ -273,16 +382,24 @@ function openNotesModal(uid, username) {
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById('notesList');
-      if (!data.success) return container.innerHTML = 'Failed to load notes.';
-      if (data.notes.length === 0) return container.innerHTML = '<p class="text-gray-400">No notes yet.</p>';
+
+      if (!data.success) {
+        container.innerHTML = '<p class="text-red-600 dark:text-red-400">Failed to load notes.</p>';
+        return;
+      }
+
+      if (data.notes.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No notes yet.</p>';
+        return;
+      }
 
       container.innerHTML = data.notes.map(note => `
-        <div class="border border-gray-700 rounded p-2 bg-gray-700">
-          <div class="text-sm text-gray-300 mb-1">${note.author} @ ${new Date(note.created_at).toLocaleString()}</div>
-          <div class="text-sm">${note.note}</div>
+        <div class="border border-gray-300 dark:border-gray-700 rounded p-2 bg-gray-100 dark:bg-gray-700">
+          <div class="text-sm text-gray-700 dark:text-gray-300 mb-1">${note.author} @ ${new Date(note.created_at).toLocaleString()}</div>
+          <div class="text-sm text-gray-900 dark:text-white">${note.note}</div>
         </div>
       `).join('');
-    });
+  });
 }
 
 function closeNotesModal() {

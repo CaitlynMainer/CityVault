@@ -18,6 +18,6 @@
 
 /* One utility class; invoke using "font-paragon" or "font-paragon italic" */
 .font-paragon {
-	font-family: "Paragon City", sans-serif;
+	font-family: "Paragon City", sans-serif !important;
 	letter-spacing: 0.5px
 }
