@@ -93,59 +93,87 @@
         <img src="/images/icons/<%= character.ClassName.toLowerCase() %>.png" alt="Archetype" title="<%= character.ClassName %>" height="32" />
       </div>
 
-      <ul style="font-size: 14px; line-height: 1.6;">
-        <li><strong><span class="font-paragon">Title:</span></strong> <%= character.DisplayTitle || '(None)' %></li>
-        <li><strong><span class="font-paragon">Supergroup:</span></strong>
-          <% if (character.SupergroupLink) { %>
-            <a href="/supergroup/<%= serverKey %>:<%= character.SupergroupLink.id %>" 
-              class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
-              <%= stringClean(character.SupergroupLink.name) %>
-            </a>
-          <% } else { %>
-            (None)
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-sm leading-relaxed max-w-2xl">
+  <div class="font-bold font-paragon">Title:</div>
+  <div><%= character.DisplayTitle || '(None)' %></div>
+
+  <div class="font-bold font-paragon">Supergroup:</div>
+  <div>
+    <% if (character.SupergroupLink) { %>
+      <a href="/supergroup/<%= serverKey %>:<%= character.SupergroupLink.id %>" 
+         class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
+         <%= stringClean(character.SupergroupLink.name) %>
+      </a>
+    <% } else { %>(None)<% } %>
+  </div>
+
+  <div class="font-bold font-paragon">Archetype:</div>
+  <div><%= character.ClassName %></div>
+
+  <div class="font-bold font-paragon">Primary:</div>
+  <div><%= character.PrimaryPowerset %></div>
+
+  <div class="font-bold font-paragon">Secondary:</div>
+  <div><%= character.SecondaryPowerset %></div>
+
+  <div class="font-bold font-paragon">Pools:</div>
+  <div><%= character.Pools.join(', ') %></div>
+
+  <div class="font-bold font-paragon">Ancillary Pool:</div>
+  <div><%= character.AncillaryPools.join(', ') %></div>
+
+  <div class="font-bold font-paragon">XP Level:</div>
+  <div><%= character.Level %></div>
+
+  <div class="font-bold font-paragon">Experience:</div>
+  <div><%= character.Experience.toLocaleString() %></div>
+
+  <div class="font-bold font-paragon">Influence:</div>
+  <div><%= character.Influence.toLocaleString() %></div>
+
+  <div class="font-bold font-paragon">Last Seen:</div>
+  <div><%= character.LastSeen %></div>
+
+  <div class="font-bold font-paragon">Created:</div>
+  <div><%= character.Created %></div>
+
+  <div class="font-bold font-paragon">Login Count:</div>
+  <div><%= character.LoginCount %></div>
+
+  <div class="font-bold font-paragon">Total Time Played:</div>
+  <div><%= character.TotalTimePlayed %></div>
+
+  <div class="font-bold font-paragon">Global:</div>
+  <div>
+    <% if (character.globalHandle) { %>
+      <a href="/profile/<%= character.AuthId %>" 
+         class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
+         @<%= stringClean(character.globalHandle) %>
+      </a>
+    <% } else { %>(Unknown)<% } %>
+  </div>
+
+  <div class="font-bold font-paragon">Access Level:</div>
+  <div>
+    <% if (role === 'admin') { %>
+      <form action="/admin/updateAccessLevel" method="post" class="inline"
+            onsubmit="return confirm('Are you sure you want to change this character’s access level?');">
+        <input type="hidden" name="serverKey" value="<%= serverKey %>">
+        <input type="hidden" name="containerId" value="<%= character.ContainerId %>">
+        <select name="accessLevel" 
+                onchange="this.form.requestSubmit()" 
+                class="bg-gray-700 text-white p-1 rounded">
+          <% for (let i = 0; i <= 11; i++) { %>
+            <option value="<%= i %>" <%= character.AccessLevel === i ? 'selected' : '' %>><%= i %></option>
           <% } %>
-        </li>
-        <li><strong><span class="font-paragon">Archetype:</span></strong> <%= character.ClassName %></li>
-        <li><strong><span class="font-paragon">Primary:</span></strong> <%= character.PrimaryPowerset %></li>
-        <li><strong><span class="font-paragon">Secondary:</span></strong> <%= character.SecondaryPowerset %></li>
-        <li><strong><span class="font-paragon">Pools:</span></strong> <%= character.Pools.join(', ') %></li>
-        <li><strong><span class="font-paragon">Ancillary Pools:</span></strong> <%= character.AncillaryPools.join(', ') %></li>
-        <li><strong><span class="font-paragon">XP Level:</span></strong> <%= character.Level %></li>
-        <li><strong><span class="font-paragon">Experience:</span></strong> <%= character.Experience %></li>
-        <li><strong><span class="font-paragon">Influence</span>:</strong> <%= character.Influence %></li>
-        <li><strong><span class="font-paragon">Last Seen:</span></strong> <%= character.LastSeen %></li>
-        <li><strong><span class="font-paragon">Created:</span></strong> <%= character.Created %></li>
-        <li><strong><span class="font-paragon">Login Count:</span></strong> <%= character.LoginCount %></li>
-        <li><strong><span class="font-paragon">Total Time Played:</span></strong> <%= character.TotalTimePlayed %></li>
-        <li><strong><span class="font-paragon">Global:</span></strong>
-          <% if (character.globalHandle) { %>
-            <a href="/profile/<%= character.AuthId %>" 
-              class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
-              @<%= stringClean(character.globalHandle) %>
-            </a>
-          <% } else { %>
-            (Unknown)
-          <% } %>
-        </li>
-        <li><strong><span class="font-paragon">Access Level:</span></strong>
-          <% if (role === 'admin') { %>
-            <form action="/admin/updateAccessLevel" method="post" style="display:inline;">
-              <input type="hidden" name="serverKey"   value="<%= serverKey %>">
-              <input type="hidden" name="containerId" value="<%= character.ContainerId %>">
-              <select name="accessLevel"
-                onchange="this.form.submit()">
-                <% for (let i = 0; i <= 11; i++) { %>
-                  <option value="<%= i %>" <%= character.AccessLevel === i ? 'selected' : '' %>>
-                    <%= i %>
-                  </option>
-                <% } %>
-              </select>
-            </form>
-          <% } else { %>
-            <%= character.AccessLevel ?? 0 %>
-          <% } %>
-        </li>
-      </ul>
+        </select>
+      </form>
+    <% } else { %>
+      <%= character.AccessLevel ?? 0 %>
+    <% } %>
+  </div>
+</div>
+
     </div>
 
     <!-- Right Column: Character Name, Bio, and Badges -->
