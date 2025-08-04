@@ -176,17 +176,20 @@ module.exports = async function startApp(config) {
     });
   });
 
-  app.locals.tooltip = function (content, tooltipText) {
-    return (
-      `<span class="relative group cursor-pointer align-middle">` +
-        content.trim() +
-        `<div class="absolute left-6 top-1 z-10 w-64 rounded bg-gray-800 text-white text-xs p-2 
-                    opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
-          ${tooltipText}
-        </div>` +
-      `</span>`
-    );
-  };
+  app.locals.tooltip = function tooltip(iconHTML, tooltipText) {
+  return `
+    <span class="relative group inline-block align-middle">
+      ${iconHTML}
+<div class="absolute z-10 bottom-full mb-1 left-1/2 -translate-x-1/2 
+            whitespace-nowrap text-xs px-2 py-1 rounded bg-black text-white
+            opacity-0 invisible group-hover:opacity-100 group-hover:visible
+            transition-opacity transition-[visibility] duration-200 pointer-events-none">
+  ${tooltipText}
+</div>
+
+    </span>
+  `;
+}
 
 
 
