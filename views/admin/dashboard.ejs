@@ -1,5 +1,5 @@
 <% if (update.updateAvailable) { %>
-  <div id="updateBanner" class="relative bg-yellow-900 text-yellow-100 p-4 rounded mb-6">
+  <div id="updateBanner" data-version="<%= update.latestVersion %>" class="relative bg-yellow-900 text-yellow-100 p-4 rounded mb-6">
     <button onclick="toggleUpdateDetails(event)" 
             class="absolute top-2 right-2 text-yellow-200 hover:text-white text-sm font-bold">
       ⮝
@@ -34,8 +34,6 @@
   </div>
 <% } %>
 
-
-
     <h1 class="text-3xl font-bold  mb-4"><span class="font-paragon">Admin Dashboard</span></h1>
 
     <p class="mb-6 ">Welcome<% if (user) { %>, <strong>
@@ -67,11 +65,43 @@
 <script>
   let collapsed = false;
 
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('updateBanner');
+    const panel = document.getElementById('updateDetails');
+    const button = banner?.querySelector('button');
+
+    const currentVersion = banner?.dataset.version;
+    const seenVersion = localStorage.getItem('updateVersionSeen');
+
+    if (currentVersion && currentVersion !== seenVersion) {
+      localStorage.removeItem('updateCollapsed');
+      localStorage.setItem('updateVersionSeen', currentVersion);
+    }
+
+    collapsed = localStorage.getItem('updateCollapsed') === 'true';
+
+    if (panel) {
+      panel.style.overflow = 'hidden';
+      panel.style.transition = 'max-height 0.3s ease, opacity 0.3s ease';
+
+      if (collapsed) {
+        panel.style.maxHeight = '0px';
+        panel.style.opacity = '0';
+        if (button) button.innerHTML = '⮟';
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        panel.style.opacity = '1';
+        if (button) button.innerHTML = '⮝';
+      }
+    }
+  });
+
   function toggleUpdateDetails(event) {
     const panel = document.getElementById('updateDetails');
     const button = event.currentTarget;
 
     collapsed = !collapsed;
+    localStorage.setItem('updateCollapsed', collapsed ? 'true' : 'false');
 
     if (collapsed) {
       panel.style.maxHeight = '0px';
@@ -83,15 +113,5 @@
       button.innerHTML = '⮝';
     }
   }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const panel = document.getElementById('updateDetails');
-    if (panel) {
-      panel.style.maxHeight = panel.scrollHeight + 'px';
-      panel.style.opacity = '1';
-      panel.style.overflow = 'hidden';
-      panel.style.transition = 'max-height 0.3s ease, opacity 0.3s ease';
-    }
-  });
 </script>
 
