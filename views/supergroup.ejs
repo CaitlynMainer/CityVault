@@ -1,19 +1,19 @@
-<h3 class="text-5xl text-yellow-300 font-extrabold tracking-widest text-center mb-6">
+<h3 class="text-5xl text-yellow-600 dark:text-yellow-300 font-extrabold tracking-widest text-center mb-6">
   <%= supergroup.Name %>
 </h3>
 
-<p style="color: #aaa;"><strong><span class="font-paragon">Motto:</span></strong> <%= supergroup.Motto || '(None)' %></p>
-<p style="color: #aaa;"><strong><span class="font-paragon">Description:</span></strong> <%= supergroup.Description || '(None)' %></p>
-<p style="color: #aaa;"><strong><span class="font-paragon">Created:</span></strong> <%= supergroup.DateCreated %></p>
-<p style="color: #aaa;"><strong><span class="font-paragon">Prestige:</span></strong> <%= supergroup.Prestige != null ? supergroup.Prestige.toLocaleString() : '0' %></p>
-<p style="color: #aaa;"><strong><span class="font-paragon">Rent Due:</span></strong> <%= supergroup.UpkeepRentDue ? new Date(supergroup.UpkeepRentDue * 1000).toISOString().split('T')[0] : '(Unknown)' %></p>
+<p><strong><span class="font-paragon">Motto:</span></strong> <%= supergroup.Motto || '(None)' %></p>
+<p"><strong><span class="font-paragon">Description:</span></strong> <%= supergroup.Description || '(None)' %></p>
+<p><strong><span class="font-paragon">Created:</span></strong> <%= supergroup.DateCreated %></p>
+<p><strong><span class="font-paragon">Prestige:</span></strong> <%= supergroup.Prestige != null ? supergroup.Prestige.toLocaleString() : '0' %></p>
+<p><strong><span class="font-paragon">Rent Due:</span></strong> <%= supergroup.UpkeepRentDue ? new Date(supergroup.UpkeepRentDue * 1000).toISOString().split('T')[0] : '(Unknown)' %></p>
 
-<h2 style="margin-top: 32px; color: #fff;"><span class="font-paragon">Supergroup Roster:</span> <%= members.length %> Characters</h2>
-<p><a href="#" id="resetSort" style="color: #9cf; text-decoration: underline; font-size: 0.9em;">Reset sorting</a></p>
+<h2 style="margin-top: 32px;"><span class="font-paragon">Supergroup Roster:</span> <%= members.length %> Characters</h2>
+<p><a href="#" id="resetSort" class="underline decoration-1 decoration-solid dark:text-[#9cf] text-blue-700" style="text-decoration-skip-ink: none;">Reset sorting</a></p>
 
 <table id="sg-roster" style="width: 100%; border-collapse: collapse; margin-top: 12px;">
   <thead>
-    <tr style="background: #333; color: #ddd;">
+    <tr class="bg-gray-100 dark:bg-gray-800">
       <th data-sort="text"><span class="font-paragon">Name</span></th>
       <th data-sort="number"><span class="font-paragon">Level</span></th>
       <th data-sort="rank"><span class="font-paragon">Rank</span></th>
@@ -31,16 +31,18 @@
     return days;
   } %>
   <tbody>
-    <% members.forEach(m => { %>
-      <tr style="border-top: 1px solid #444; color: #ccc;">
-        <td><a href="/character/<%= serverKey %>:<%= m.ContainerId %>" style="color: #fff; text-decoration: underline; text-decoration-skip-ink: none;"><%= stringClean(m.Name) %></a></td>
+    <% members.forEach(m => {
+        if (m.Name === 'Private Character') return; // Skip private characters
+    %>
+      <tr style="border-top: 1px solid #444;">
+        <td><a href="/character/<%= serverKey %>:<%= m.ContainerId %>" class="underline decoration-1 decoration-solid dark:text-[#9cf] text-blue-700" style="text-decoration-skip-ink: none;"><%= stringClean(m.Name) %></a></td>
         <td align="center"><%= m.Level %></td>
         <td align="center" data-rank="<%= m.Rank ?? -1 %>"><%= m.RankName || 'Member' %></td>
         <td align="center"><img src="/images/icons/<%= m.alignment.toLowerCase() %>.png" title="<%= m.alignment %>" height="20"></td>
         <td align="center"><img src="/images/icons/<%= m.OriginName.toLowerCase() %>.png" title="<%= m.OriginName %>" height="20"></td>
         <td align="center"><img src="/images/icons/<%= m.ClassName.toLowerCase() %>.png" title="<%= m.ClassName %>" height="20"></td>
         <td align="center" data-lastseen="<%= m.LastActive ? daysAgo(new Date(m.LastActive)) : 9999 %>"><%= m.LastActive ? daysAgo(new Date(m.LastActive)) + ' days ago' : 'Unknown' %></td>
-        <td align="center"><a href="/profile/<%= m.AuthId %>" style="color: #9cf;">@<%= stringClean(m.globalHandle) || 'Unknown' %></a></td>
+        <td align="center"><a href="/profile/<%= m.AuthId %>" class="underline decoration-1 decoration-solid dark:text-[#9cf] text-blue-700" style="text-decoration-skip-ink: none;">@<%= stringClean(m.globalHandle) || 'Unknown' %></a></td>
       </tr>
     <% }); %>
   </tbody>
