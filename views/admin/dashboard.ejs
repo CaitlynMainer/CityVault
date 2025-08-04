@@ -1,30 +1,40 @@
-<% if (updateInfo?.updateAvailable) { %>
-  <div
-    class="bg-amber-100 dark:bg-yellow-900 text-amber-800 dark:text-yellow-100 border border-amber-300 dark:border-yellow-700 rounded p-4 mb-6 shadow">
-
-    <div class="font-bold text-lg mb-1"><span class="font-paragon">⚠️ Update Available</span></div>
-    <p class="mb-2">
-      Version <strong>
-        <%= updateInfo.latestVersion %>
-      </strong> is available.
-      You are running <strong>
-        <%= updateInfo.currentVersion %>
-      </strong>.
+<% if (update.updateAvailable) { %>
+  <div id="updateBanner" class="relative bg-yellow-900 text-yellow-100 p-4 rounded mb-6">
+    <button onclick="toggleUpdateDetails(event)" 
+            class="absolute top-2 right-2 text-yellow-200 hover:text-white text-sm font-bold">
+      ⮝
+    </button>
+    <h2 class="text-xl font-bold mb-2">⚠️ Update Available</h2>
+    <p>
+      Version <strong><%= update.latestVersion %></strong> is available. 
+      You are running <strong><%= update.currentVersion %></strong>.
     </p>
-    <form action="/admin/download-update" method="POST"
-      onsubmit="return confirm('Download and extract the update now?');">
-      <input type="hidden" name="zipUrl" value="<%= updateInfo.url %>">
-      <div class="inline-block">
-        <button type="submit" class="bg-blue-700 hover:bg-blue-800 !text-black dark:!text-white px-4 py-2 rounded">
-          <span class="font-paragon">⬇️ Download Update</span>
-        </button>
-      </div>
-    </form>
-    <% if (updateInfo.notes) { %>
-      <div class="mt-3 whitespace-pre-line"><%- updateInfo.notes %></div>
-      <% } %>
+    <a href="https://github.com/CaitlynMainer/CityVault/releases/latest" target="_blank"
+       class="bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-3 rounded inline-block mt-2 mb-4">
+      ⬇ DOWNLOAD UPDATE
+    </a>
+
+    <div id="updateDetails" class="transition-all overflow-hidden">
+      <% update.notes.forEach(note => { %>
+        <div class="mb-6">
+          <strong><%= note.name %></strong>
+          <ul class="pl-6 mt-1 list-disc text-sm">
+            <% note.lines.slice(0, 6).forEach(line => { %>
+              <li><%= line %></li>
+            <% }) %>
+          </ul>
+          <% if (note.lines.length > 6) { %>
+            <a href="<%= note.url %>" target="_blank" class="text-blue-400 text-xs underline">
+              ...see full changelog for <%= note.version %>
+            </a>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
   </div>
-  <% } %>
+<% } %>
+
+
 
     <h1 class="text-3xl font-bold  mb-4"><span class="font-paragon">Admin Dashboard</span></h1>
 
@@ -54,3 +64,34 @@
 
 
     <a href="/" class="text-blue-400 hover:underline">← Back to Site</a>
+<script>
+  let collapsed = false;
+
+  function toggleUpdateDetails(event) {
+    const panel = document.getElementById('updateDetails');
+    const button = event.currentTarget;
+
+    collapsed = !collapsed;
+
+    if (collapsed) {
+      panel.style.maxHeight = '0px';
+      panel.style.opacity = '0';
+      button.innerHTML = '⮟';
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      panel.style.opacity = '1';
+      button.innerHTML = '⮝';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const panel = document.getElementById('updateDetails');
+    if (panel) {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      panel.style.opacity = '1';
+      panel.style.overflow = 'hidden';
+      panel.style.transition = 'max-height 0.3s ease, opacity 0.3s ease';
+    }
+  });
+</script>
+

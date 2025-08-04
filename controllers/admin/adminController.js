@@ -2,6 +2,7 @@ const { checkForUpdates } = require(global.BASE_DIR + '/services/updateChecker')
 const getAdminRoutes = require(global.BASE_DIR + '/services/getAdminRoutes');
 const { isGM, isAdmin } = require(global.BASE_DIR + '/utils/roles');
 
+
 async function showDashboard(req, res) {
   const user = req.session?.user || {
     username: req.session?.username,
@@ -28,7 +29,8 @@ async function showDashboard(req, res) {
   res.render('admin/dashboard', {
     user,
     updateInfo,
-    links
+    links,
+    update: updateInfo 
   });
 }
 

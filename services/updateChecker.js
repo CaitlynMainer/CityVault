@@ -1,6 +1,7 @@
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const semver = require('semver');
 
 function escapeHTML(str) {
   return str
@@ -33,43 +34,39 @@ async function checkForUpdates() {
   const localVersion = JSON.parse(fs.readFileSync(localVersionPath)).version;
 
   try {
-    const update = await fetchJSON('https://caitlynmainer.github.io/CityVault/update.json');
-    const latestVersion = update.latest;
+    const releases = await fetchJSON(
+      'https://api.github.com/repos/CaitlynMainer/CityVault/releases'
+    );
 
-    if (latestVersion !== localVersion) {
-      const releaseData = await fetchJSON(
-        `https://api.github.com/repos/CaitlynMainer/CityVault/releases/tags/v${latestVersion}`
-      );
+    const newerReleases = releases
+      .filter(release =>
+        semver.valid(release.tag_name?.replace(/^v/, '')) &&
+        semver.gt(release.tag_name.replace(/^v/, ''), localVersion)
+      )
+      .map(release => ({
+        version: release.tag_name.replace(/^v/, ''),
+        name: release.name || release.tag_name,
+        url: release.html_url,
+        lines: (release.body || '')
+          .split('\n')
+          .map(line => line.trim().replace(/^[-–*]\s*/, '– '))
+          .filter(line => line.length > 0)
+      }))
+      .sort((a, b) => semver.compare(a.version, b.version)); // ascending
 
-      const fullNotes = (releaseData.body || '').trim();
-      const lines = fullNotes
-        .split('\n')
-        .map(line => line.trim().replace(/^[-–]\s*/, '– ')) // Normalize bullet
-        .filter(line => line.length > 0);
-
-      const displayNotes = lines
-        .slice(0, 6)
-        .map(line => escapeHTML(line))
-        .join('<br>');
-
-      const extra =
-        lines.length > 6
-          ? `<br><a href="https://github.com/CaitlynMainer/CityVault/releases/tag/v${latestVersion}" target="_blank">...see full changelog</a>`
-          : '';
-
+    if (newerReleases.length === 0) {
       return {
-        updateAvailable: true,
+        updateAvailable: false,
         currentVersion: localVersion,
-        latestVersion,
-        url: update.url,
-        notes: displayNotes + extra
+        latestVersion: localVersion
       };
     }
 
     return {
-      updateAvailable: false,
+      updateAvailable: true,
       currentVersion: localVersion,
-      latestVersion: localVersion
+      latestVersion: newerReleases.at(-1).version,
+      notes: newerReleases
     };
   } catch (err) {
     console.warn('[UPDATE] Failed to check for updates:', err.message);
@@ -83,3 +80,4 @@ async function checkForUpdates() {
 }
 
 module.exports = { checkForUpdates };
+
