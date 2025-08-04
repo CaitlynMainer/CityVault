@@ -97,7 +97,10 @@
         <li><strong><span class="font-paragon">Title:</span></strong> <%= character.DisplayTitle || '(None)' %></li>
         <li><strong><span class="font-paragon">Supergroup:</span></strong>
           <% if (character.SupergroupLink) { %>
-            <a href="/supergroup/<%= serverKey %>:<%= character.SupergroupLink.id %>"><%= stringClean(character.SupergroupLink.name) %></a>
+            <a href="/supergroup/<%= serverKey %>:<%= character.SupergroupLink.id %>" 
+              class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
+              <%= stringClean(character.SupergroupLink.name) %>
+            </a>
           <% } else { %>
             (None)
           <% } %>
@@ -116,7 +119,10 @@
         <li><strong><span class="font-paragon">Total Time Played:</span></strong> <%= character.TotalTimePlayed %></li>
         <li><strong><span class="font-paragon">Global:</span></strong>
           <% if (character.globalHandle) { %>
-            <a href="/profile/<%= character.AuthId %>">@<%= stringClean(character.globalHandle) %></a>
+            <a href="/profile/<%= character.AuthId %>" 
+              class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
+              @<%= stringClean(character.globalHandle) %>
+            </a>
           <% } else { %>
             (Unknown)
           <% } %>
@@ -146,7 +152,10 @@
     <div class="right-panel" style="flex: 1; max-width: 720px;">
 	  <h1 class="text-3xl font-bold mb-4"><%= stringClean(character.Name) %></h1>
       <p><strong><span class="font-paragon">Player:</span></strong>          <% if (character.globalHandle) { %>
-            <a href="/profile/<%= character.AuthId %>">@<%= stringClean(character.globalHandle) %></a>
+            <a href="/profile/<%= character.AuthId %>" 
+              class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
+              @<%= stringClean(character.globalHandle) %>
+            </a>
           <% } else { %>
             (Unknown)
           <% } %></p>
