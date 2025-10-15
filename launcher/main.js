@@ -1,4 +1,6 @@
-const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron');
+// main.js (full replacement)
+
+const { app, BrowserWindow, ipcMain, Menu, shell, dialog } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
 const axios = require('axios');
@@ -13,84 +15,145 @@ const unzipper = require('unzipper');
 
 const isDev = !app.isPackaged;
 
+// ---- Config loading (safe) -------------------------------------------------
 const configPath = isDev
-  ? path.join(__dirname, 'config.json') // local project dir in dev
-  : path.join(path.dirname(process.execPath), 'config.json'); // packaged exe dir in prod
+  ? path.join(__dirname, 'config.json')
+  : path.join(path.dirname(process.execPath), 'config.json');
 
 console.log('[CONFIG] Loading config from:', configPath);
 
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+let config;
+try {
+  config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+} catch (e) {
+  // Last-resort guard so the UI still comes up with a helpful message
+  console.error('[CONFIG] Failed to load config.json:', e.message);
+  config = {
+    manifestUrl: 'https://example.invalid/manifest.xml',
+    installDir: 'game',
+    linuxLaunchCommand: 'wine'
+  };
+}
 
-const manifestUrl = new URL(config.manifestUrl);
-const baseUrl = manifestUrl.origin;
+// Extract origin for updater
+let baseUrl = '';
+try {
+  const manifestUrlObj = new URL(config.manifestUrl);
+  baseUrl = manifestUrlObj.origin;
+} catch (e) {
+  console.error('[CONFIG] manifestUrl is invalid:', e.message);
+}
 
+// ---- Globals ---------------------------------------------------------------
 let win;
 let logBuffer = [];
 
+// Network timeouts
+const NET_TIMEOUT_MS = 10000; // 10s general timeout
+const UPDATER_TIMEOUT_MS = 15000; // 15s self-updater ceiling
+
+// ---- Logging to UI ---------------------------------------------------------
 function sendLog(line) {
   const tag = '[Main] ' + line;
-  console.log(tag); // fallback log to terminal if visible
+  console.log(tag);
   if (win?.webContents?.isLoadingMainFrame?.()) {
     logBuffer.push(tag);
   } else if (win?.webContents) {
-    win.webContents.send('patch-log', tag);
+    try {
+      win.webContents.send('patch-log', tag);
+    } catch {
+      logBuffer.push(tag);
+    }
   } else {
     logBuffer.push(tag);
   }
 }
 
+// ---- Safety: never block on GPU -------------------------------------------
 app.disableHardwareAcceleration();
 
+// ---- Process-level error hooks --------------------------------------------
+process.on('uncaughtException', (err) => {
+  sendLog(`[FATAL] Uncaught exception: ${err?.stack || err?.message || String(err)}`);
+});
+
+process.on('unhandledRejection', (reason) => {
+  sendLog(`[FATAL] Unhandled rejection: ${reason?.stack || reason?.message || String(reason)}`);
+});
+
+// ---- Helpers ---------------------------------------------------------------
 function forceRestart() {
   const exe = process.execPath;
-  const args = process.argv.slice(1); // preserve any args
-  spawn(exe, args, {
-    detached: true,
-    stdio: 'ignore'
-  }).unref();
+  const args = process.argv.slice(1);
+  spawn(exe, args, { detached: true, stdio: 'ignore' }).unref();
   app.exit(0);
 }
 
-app.whenReady().then(async () => {
-  console.log(`[DEBUG] Launcher PID: ${process.pid}`);
-  sendLog(`[DEBUG] Launcher PID: ${process.pid}`);
+function withTimeout(promise, ms, label = 'operation') {
+  let t;
+  const timeout = new Promise((_, reject) => {
+    t = setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(t));
+}
 
-  if (!isDev) {
-    const updated = await checkAndUpdateLauncherZip();
-    if (updated) {
-      sendLog('[Updater] Update applied. Restarting...');
-      forceRestart();
-      return;
-    }
-  }
+// Safe axios GET with timeout
+async function safeAxiosGet(url, opts = {}) {
+  sendLog(`[NET] GET ${url}`);
+  const res = await axios.get(url, {
+    timeout: opts.timeout ?? NET_TIMEOUT_MS,
+    responseType: opts.responseType ?? 'text',
+    httpsAgent: new https.Agent({ keepAlive: true }),
+    maxContentLength: 1024 * 1024 * 50, // 50MB
+    maxBodyLength: 1024 * 1024 * 50
+  });
+  return res.data;
+}
 
-  let forums = [];
-  let websiteUrl = null;
+// https.get with timeout
+function httpsGetText(url, timeoutMs = NET_TIMEOUT_MS) {
+  return new Promise((resolve, reject) => {
+    sendLog(`[NET] https.get ${url}`);
+    const req = https.get(url, (res) => {
+      if (res.statusCode !== 200) {
+        return reject(new Error(`HTTP ${res.statusCode}`));
+      }
+      let data = '';
+      res.setEncoding('utf8');
+      res.on('data', (chunk) => (data += chunk));
+      res.on('end', () => resolve(data));
+    });
+    req.on('error', reject);
+    req.setTimeout(timeoutMs, () => {
+      req.destroy(new Error('Socket timeout'));
+    });
+  });
+}
 
-  try {
-    const xml = await axios.get(config.manifestUrl).then(r => r.data);
-    const parser = new XMLParser({ ignoreAttributes: false });
-    const parsed = parser.parse(xml);
+function httpsDownloadToFile(url, destPath, timeoutMs = NET_TIMEOUT_MS) {
+  return new Promise((resolve, reject) => {
+    sendLog(`[NET] download ${url} -> ${destPath}`);
+    const file = fs.createWriteStream(destPath);
+    const req = https.get(url, (res) => {
+      if (res.statusCode !== 200) {
+        file.close(() => fs.unlink(destPath, () => {}));
+        return reject(new Error(`HTTP ${res.statusCode}`));
+      }
+      res.pipe(file);
+      file.on('finish', () => file.close(resolve));
+    });
+    req.on('error', (err) => {
+      file.close(() => fs.unlink(destPath, () => {}));
+      reject(err);
+    });
+    req.setTimeout(timeoutMs, () => {
+      req.destroy(new Error('Socket timeout'));
+    });
+  });
+}
 
-    websiteUrl = parsed?.manifest?.webpage || null;
-
-    const forumList = parsed?.manifest?.forums?.forum;
-    if (Array.isArray(forumList)) {
-      forums = forumList.map(f => ({ name: f['@_name'], url: f['@_url'] }));
-    } else if (forumList?.['@_name']) {
-      forums = [{ name: forumList['@_name'], url: forumList['@_url'] }];
-    }
-
-    sendLog(`[Menu] Loaded ${forums.length} forum link(s)`);
-    if (websiteUrl) sendLog(`[Menu] Website link: ${websiteUrl}`);
-  } catch (err) {
-    sendLog(`[ERROR] Failed to parse forums/webpage from manifest: ${err.message}`);
-  }
-
-  createWindow(forums, websiteUrl);
-});
-
-function createWindow(forums, websiteUrl) {
+// ---- UI creation happens FIRST --------------------------------------------
+function createWindow(initialForums = [], initialWebsiteUrl = null) {
   win = new BrowserWindow({
     width: 800,
     height: 700,
@@ -101,31 +164,33 @@ function createWindow(forums, websiteUrl) {
     }
   });
 
-  //win.webContents.openDevTools({ mode: 'detach' });
+  // win.webContents.openDevTools({ mode: 'detach' });
   win.loadFile('index.html');
 
   win.webContents.on('did-finish-load', () => {
-    for (const line of logBuffer) {
-      win.webContents.send('patch-log', line);
-    }
+    for (const line of logBuffer) win.webContents.send('patch-log', line);
     logBuffer = [];
   });
 
-  setupMenu(forums, websiteUrl);
+  setupMenu(initialForums, initialWebsiteUrl);
 }
 
 function setupMenu(forums = [], websiteUrl = null) {
-  const forumMenus = forums.map(forum => ({
+  const forumMenus = forums.map((forum) => ({
     label: forum.name,
     click: () => shell.openExternal(forum.url)
   }));
 
   const extraMenus = [
     ...forumMenus,
-    ...(websiteUrl ? [{
-      label: 'Website',
-      click: () => shell.openExternal(websiteUrl)
-    }] : [])
+    ...(websiteUrl
+      ? [
+          {
+            label: 'Website',
+            click: () => shell.openExternal(websiteUrl)
+          }
+        ]
+      : [])
   ];
 
   const template = [
@@ -140,32 +205,26 @@ function setupMenu(forums = [], websiteUrl = null) {
         { role: 'quit' }
       ]
     },
-    ...extraMenus // <-- Now top-level entries
+    // Top-level entries for forums/website (if any)
+    ...extraMenus
   ];
 
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 }
 
-
-
-// Update logic
-function getRemoteHash(url) {
-  sendLog(`[Updater] Fetching remote hash from: ${url}`);
-  return new Promise((resolve, reject) => {
-    https.get(url, res => {
-      if (res.statusCode !== 200) return reject(`Hash fetch failed: ${res.statusCode}`);
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        sendLog(`[Updater] Remote hash: ${data.trim()}`);
-        resolve(data.trim());
-      });
-    }).on('error', err => {
-      sendLog(`[Updater] Error fetching remote hash: ${err.message}`);
-      reject(err);
-    });
-  });
+// ---- Updater ---------------------------------------------------------------
+async function getRemoteHash(url) {
+  try {
+    sendLog(`[Updater] Fetching remote hash from: ${url}`);
+    const data = await httpsGetText(url, NET_TIMEOUT_MS);
+    const trimmed = data.trim();
+    sendLog(`[Updater] Remote hash: ${trimmed}`);
+    return trimmed;
+  } catch (err) {
+    sendLog(`[Updater] Failed to get remote hash: ${err.message}`);
+    throw err;
+  }
 }
 
 function getFileHash(filePath) {
@@ -174,49 +233,28 @@ function getFileHash(filePath) {
     try {
       const hash = crypto.createHash('sha256');
       const stream = fs.createReadStream(filePath);
-      stream.on('data', chunk => hash.update(chunk));
-      stream.on('end', () => {
-        const digest = hash.digest('hex');
-        sendLog(`[Updater] Local file hash: ${digest}`);
-        resolve(digest);
-      });
-      stream.on('error', err => {
-        sendLog(`[Updater] Error reading file for hash: ${err.message}`);
-        reject(err);
-      });
+      stream.on('data', (chunk) => hash.update(chunk));
+      stream.on('end', () => resolve(hash.digest('hex')));
+      stream.on('error', (err) => reject(err));
     } catch (err) {
-      sendLog(`[Updater] Exception during hashing: ${err.message}`);
       reject(err);
     }
   });
 }
 
-function downloadFile(url, destPath) {
-  sendLog(`[Updater] Downloading update from ${url}`);
-  return new Promise((resolve, reject) => {
-    const file = fs.createWriteStream(destPath);
-    https.get(url, res => {
-      if (res.statusCode !== 200) return reject(new Error(`HTTP ${res.statusCode}`));
-      res.pipe(file);
-      file.on('finish', () => {
-        sendLog(`[Updater] Downloaded update to ${destPath}`);
-        file.close(resolve);
-      });
-    }).on('error', err => {
-      sendLog(`[Updater] Download error: ${err.message}`);
-      reject(err);
-    });
-  });
-}
-
 async function checkAndUpdateLauncherZip() {
+  if (!baseUrl) {
+    sendLog('[Updater] Skipping (invalid manifestUrl/baseUrl).');
+    return false;
+  }
+
   const localHashPath = path.join(app.getPath('userData'), 'launcher.hash');
   const tmpZip = path.join(app.getPath('temp'), 'launcher_update.zip');
   const tmpExtractDir = path.join(app.getPath('userData'), 'tmp_launcher_extract');
   const extractedAppDir = path.join(tmpExtractDir, 'app');
   const localScriptsDir = path.dirname(app.getAppPath());
 
-  sendLog(`[Updater] Checking for launcher.zip update...`);
+  sendLog('[Updater] Checking for launcher.zip update...');
 
   const remoteHash = await getRemoteHash(`${baseUrl}/launcher/launcher.hash`);
   sendLog(`[Updater] Remote zip hash: ${remoteHash}`);
@@ -227,49 +265,38 @@ async function checkAndUpdateLauncherZip() {
     sendLog(`[Updater] Local zip hash: ${localHash}`);
   }
 
-  if (remoteHash === localHash) {
+  if (remoteHash && localHash && remoteHash === localHash) {
     sendLog('[Updater] Already up to date.');
     return false;
   }
 
   sendLog('[Updater] New version detected. Downloading...');
-
-  await downloadFile(`${baseUrl}/launcher/launcher.zip`, tmpZip);
+  await httpsDownloadToFile(`${baseUrl}/launcher/launcher.zip`, tmpZip, NET_TIMEOUT_MS);
 
   sendLog('[Updater] Extracting launcher.zip to temp folder...');
-  await fs.createReadStream(tmpZip)
-    .pipe(unzipper.Extract({ path: tmpExtractDir }))
-    .promise();
+  await fs.createReadStream(tmpZip).pipe(unzipper.Extract({ path: tmpExtractDir })).promise();
 
-  // Sanity check to make sure it's a valid Electron app
-	const mainPath = path.join(extractedAppDir, 'main.js');
-	const packagePath = path.join(extractedAppDir, 'package.json');
+  const mainPath = path.join(extractedAppDir, 'main.js');
+  const packagePath = path.join(extractedAppDir, 'package.json');
 
-	const mainExists = fs.existsSync(mainPath);
-	const packageExists = fs.existsSync(packagePath);
+  const mainExists = fs.existsSync(mainPath);
+  const packageExists = fs.existsSync(packagePath);
 
-	if (!mainExists || !packageExists) {
-	  sendLog('[Updater] Extracted update is invalid. Aborting.');
-	  sendLog(`[Updater] Checked for:`);
-	  sendLog(`[Updater]   main.js: ${mainPath} => ${mainExists ? 'FOUND' : 'MISSING'}`);
-	  sendLog(`[Updater]   package.json: ${packagePath} => ${packageExists ? 'FOUND' : 'MISSING'}`);
-
-	  // Also list directory contents to aid debugging
-	  try {
-		const files = fs.readdirSync(extractedAppDir);
-		sendLog(`[Updater] Contents of ${extractedAppDir}:`);
-		for (const f of files) {
-		  sendLog(`[Updater]   - ${f}`);
-		}
-	  } catch (err) {
-		sendLog(`[Updater] Could not list contents of ${extractedAppDir}: ${err.message}`);
-	  }
-
-	  fs.unlinkSync(tmpZip);
-	  fs.rmSync(tmpExtractDir, { recursive: true, force: true });
-	  return false;
-	}
-
+  if (!mainExists || !packageExists) {
+    sendLog('[Updater] Extracted update is invalid. Aborting.');
+    sendLog(`[Updater]   main.js: ${mainPath} => ${mainExists ? 'FOUND' : 'MISSING'}`);
+    sendLog(`[Updater]   package.json: ${packagePath} => ${packageExists ? 'FOUND' : 'MISSING'}`);
+    try {
+      const files = fs.readdirSync(extractedAppDir);
+      sendLog(`[Updater] Contents of ${extractedAppDir}:`);
+      for (const f of files) sendLog(`[Updater]   - ${f}`);
+    } catch (err) {
+      sendLog(`[Updater] Could not list contents of ${extractedAppDir}: ${err.message}`);
+    }
+    fs.unlinkSync(tmpZip);
+    fs.rmSync(tmpExtractDir, { recursive: true, force: true });
+    return false;
+  }
 
   sendLog('[Updater] Copying update over current app...');
   fs.cpSync(tmpExtractDir, localScriptsDir, { recursive: true });
@@ -282,48 +309,128 @@ async function checkAndUpdateLauncherZip() {
   return true;
 }
 
-// IPC handlers
+// ---- Manifest / menu population (non-blocking) -----------------------------
+async function fetchAndApplyMenu() {
+  let forums = [];
+  let websiteUrl = null;
+
+  try {
+    const xml = await safeAxiosGet(config.manifestUrl, { timeout: NET_TIMEOUT_MS });
+    const parser = new XMLParser({ ignoreAttributes: false });
+    const parsed = parser.parse(xml);
+
+    websiteUrl = parsed?.manifest?.webpage || null;
+
+    const forumList = parsed?.manifest?.forums?.forum;
+    if (Array.isArray(forumList)) {
+      forums = forumList.map((f) => ({ name: f['@_name'], url: f['@_url'] }));
+    } else if (forumList?.['@_name']) {
+      forums = [{ name: forumList['@_name'], url: forumList['@_url'] }];
+    }
+
+    sendLog(`[Menu] Loaded ${forums.length} forum link(s)`);
+    if (websiteUrl) sendLog(`[Menu] Website link: ${websiteUrl}`);
+
+    // Rebuild menu to include new links
+    setupMenu(forums, websiteUrl);
+  } catch (err) {
+    sendLog(`[ERROR] Failed to parse forums/webpage from manifest: ${err.message}`);
+    // Keep existing menu (File only)
+  }
+}
+
+// ---- App lifecycle ---------------------------------------------------------
+app.whenReady().then(async () => {
+  sendLog(`[DEBUG] Launcher PID: ${process.pid}`);
+
+  // 1) Create the window IMMEDIATELY so the user always sees UI
+  createWindow([], null);
+
+  // 2) Kick off non-blocking tasks in the background
+
+  // 2a) Self-updater: run it with an overall timeout; if it updates, restart.
+  if (!isDev && baseUrl) {
+    try {
+      const updated = await withTimeout(
+        checkAndUpdateLauncherZip(),
+        UPDATER_TIMEOUT_MS,
+        'self-updater'
+      ).catch((e) => {
+        sendLog(`[Updater] Skipped due to error: ${e.message}`);
+        return false;
+      });
+
+      if (updated) {
+        sendLog('[Updater] Update applied. Restarting...');
+        forceRestart();
+        return;
+      }
+    } catch (e) {
+      sendLog(`[Updater] Non-fatal updater failure: ${e.message}`);
+    }
+  } else if (!isDev) {
+    sendLog('[Updater] Skipping updater (no valid baseUrl).');
+  }
+
+  // 2b) Fetch manifest + build menu (non-blocking)
+  fetchAndApplyMenu();
+});
+
+// Quit on all windows closed (standard desktop behavior)
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit();
+});
+
+// ---- IPC handlers ----------------------------------------------------------
 ipcMain.handle('start-patch', async (event) => {
   const manifestUrl = config.manifestUrl;
-  const installDir = path.join(path.dirname(process.execPath), 'game');
+  const installDir = path.join(path.dirname(process.execPath), config.installDir || 'game');
 
-  await patchFromManifest(
-    manifestUrl,
-    installDir,
-    (progress) => event.sender.send('patch-progress', progress),
-    (logLine) => {
-      event.sender.send('patch-log', logLine);
-      sendLog(logLine);
-    }
-  );
+  try {
+    await patchFromManifest(
+      manifestUrl,
+      installDir,
+      (progress) => event.sender.send('patch-progress', progress),
+      (logLine) => {
+        event.sender.send('patch-log', logLine);
+        sendLog(logLine);
+      }
+    );
+  } catch (e) {
+    const msg = `[PATCH ERROR] ${e?.message || String(e)}`;
+    event.sender.send('patch-log', msg);
+    sendLog(msg);
+    dialog.showErrorBox('Patch Error', msg);
+  }
 });
 
 ipcMain.handle('get-launch-profiles', async () => {
-  const manifestUrl = config.manifestUrl;
-  sendLog(`[get-launch-profiles] Fetching from: ${manifestUrl}`);
-  const xml = await axios.get(manifestUrl).then(r => r.data);
-  const parser = new XMLParser({ ignoreAttributes: false });
-  const parsed = parser.parse(xml);
-  const launches = parsed?.manifest?.profiles;
+  try {
+    sendLog(`[get-launch-profiles] Fetching from: ${config.manifestUrl}`);
+    const xml = await safeAxiosGet(config.manifestUrl, { timeout: NET_TIMEOUT_MS });
+    const parser = new XMLParser({ ignoreAttributes: false });
+    const parsed = parser.parse(xml);
+    const launches = parsed?.manifest?.profiles;
 
-  const extract = (type) => {
-    const items = launches?.[type];
-    return Array.isArray(items) ? items : items ? [items] : [];
-  };
+    const extract = (type) => {
+      const items = launches?.[type];
+      return Array.isArray(items) ? items : items ? [items] : [];
+    };
 
-  return [
-    ...extract('launch'),
-    ...extract('devlaunch')
-  ].map(entry => ({
-    name: entry['#text'] || 'Unnamed Profile',
-    exec: entry['@_exec'],
-    params: entry['@_params']
-  }));
+    return [...extract('launch'), ...extract('devlaunch')].map((entry) => ({
+      name: entry['#text'] || 'Unnamed Profile',
+      exec: entry['@_exec'],
+      params: entry['@_params']
+    }));
+  } catch (e) {
+    sendLog(`[get-launch-profiles] Failed: ${e.message}`);
+    return [];
+  }
 });
 
 ipcMain.handle('launch-game', async (event, { exec, params, closeLauncher }) => {
-  const cwd = path.resolve(path.dirname(process.execPath), config.installDir);
-  const args = params.trim().split(/\s+/);
+  const cwd = path.resolve(path.dirname(process.execPath), config.installDir || 'game');
+  const args = (params || '').trim().length ? params.trim().split(/\s+/) : [];
 
   let command, finalArgs;
 
@@ -335,10 +442,11 @@ ipcMain.handle('launch-game', async (event, { exec, params, closeLauncher }) => 
     try {
       await which(wineCmd);
     } catch {
-      event.sender.send('patch-log', `[LAUNCH ERROR] ${wineCmd} not found in PATH`);
+      const msg = `[LAUNCH ERROR] ${wineCmd} not found in PATH`;
+      event.sender.send('patch-log', msg);
+      sendLog(msg);
       return;
     }
-
     command = wineCmd;
     finalArgs = [path.resolve(cwd, exec), ...args];
   }
@@ -347,15 +455,18 @@ ipcMain.handle('launch-game', async (event, { exec, params, closeLauncher }) => 
   sendLog(`[LAUNCH] Executable: ${command}`);
   sendLog(`[LAUNCH] Params: ${finalArgs.join(' ')}`);
 
-  const child = spawn(command, finalArgs, {
-    cwd,
-    detached: true,
-    stdio: 'ignore'
-  });
+  try {
+    const child = spawn(command, finalArgs, {
+      cwd,
+      detached: true,
+      stdio: 'ignore'
+    });
+    child.unref();
 
-  child.unref();
-
-  if (closeLauncher) {
-    app.quit();
+    if (closeLauncher) app.quit();
+  } catch (e) {
+    const msg = `[LAUNCH ERROR] ${e.message}`;
+    event.sender.send('patch-log', msg);
+    sendLog(msg);
   }
 });
