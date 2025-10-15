@@ -1604,10 +1604,6 @@ video {
   text-decoration-line: none;
 }
 
-.decoration-transparent {
-  text-decoration-color: transparent;
-}
-
 .decoration-solid {
   text-decoration-style: solid;
 }
@@ -1895,11 +1891,6 @@ video {
 :is(.dark .dark\:text-yellow-400) {
   --tw-text-opacity: 1;
   color: rgb(250 204 21 / var(--tw-text-opacity));
-}
-
-:is(.dark .dark\:text-sky-300) {
-  --tw-text-opacity: 1;
-  color: rgb(125 211 252 / var(--tw-text-opacity));
 }
 
 :is(.dark .dark\:hover\:bg-gray-600:hover) {

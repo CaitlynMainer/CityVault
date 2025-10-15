@@ -247,6 +247,9 @@ module.exports = async function startApp(config) {
         }, convertAllPortraits: {
           intervalMinutes: 60,
           handler: 'portraitService.convertAllPortraits'
+        }, renderCharacterCostumes: {
+          intervalMinutes: 15,
+          handler: 'renderCharacterCostumes.renderCharacterCostumes'
         }
       }
     }
