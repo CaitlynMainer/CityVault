@@ -9,10 +9,15 @@
       Version <strong><%= update.latestVersion %></strong> is available. 
       You are running <strong><%= update.currentVersion %></strong>.
     </p>
-    <a href="https://github.com/CaitlynMainer/CityVault/releases/latest" target="_blank"
-       class="bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-3 rounded inline-block mt-2 mb-4">
-      ⬇ DOWNLOAD UPDATE
-    </a>
+    <form action="/admin/download-update" method="POST"
+      onsubmit="return confirm('Download and extract the update now?');">
+      <input type="hidden" name="zipUrl" value="<%= update.zipUrl %>">
+      <div class="inline-block">
+        <button type="submit" class="bg-blue-700 hover:bg-blue-800 !text-black dark:!text-white px-4 py-2 rounded">
+          <span class="font-paragon">⬇️ Download Update</span>
+        </button>
+      </div>
+    </form>
 
     <div id="updateDetails" class="transition-all overflow-hidden">
       <% update.notes.forEach(note => { %>
