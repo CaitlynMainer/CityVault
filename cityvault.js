@@ -211,7 +211,7 @@ module.exports = async function startApp(config) {
       message: 'An unexpected error occurred.'
     });
   });
-
+console.log("deployLauncherZip");
   deployLauncherZip();
 
 

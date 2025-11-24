@@ -102,7 +102,7 @@ function walk(dir) {
       const md5 = crypto.createHash('md5').update(fileData).digest('hex');
       const size = fs.statSync(fullPath).size;
       
-      const baseUrl = (config.webpage?.replace(/\/+$/, '').replace(/^https:/, 'http:')) || 'http://localhost:3000';
+      const baseUrl = (config.webpage?.replace(/\/+$/, '')) || 'http://localhost:3000';
       const fileUrl = `${baseUrl}/game/${relPath}`;
 
       xml += `    <file name="${relPath}" size="${size}" md5="${md5}">

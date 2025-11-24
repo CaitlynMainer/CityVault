@@ -2,18 +2,31 @@ const { checkForUpdates } = require(global.BASE_DIR + '/services/updateChecker')
 const getAdminRoutes = require(global.BASE_DIR + '/services/getAdminRoutes');
 const { isGM, isAdmin } = require(global.BASE_DIR + '/utils/roles');
 
-
 async function showDashboard(req, res) {
   const user = req.session?.user || {
     username: req.session?.username,
     role: req.session?.role || 'user'
   };
 
-  let updateInfo = null;
+  // Default "no update" object
+  let updateInfo = {
+    updateAvailable: false,
+    currentVersion: null,
+    latestVersion: null,
+    version: null,
+    url: null,
+    zipUrl: null,
+    notes: [],
+    notesFlat: [],
+    notesHtml: ''
+  };
 
   if (isAdmin(user.role)) {
     try {
-      updateInfo = await checkForUpdates();
+      const result = await checkForUpdates();
+      if (result) {
+        updateInfo = result;
+      }
     } catch (err) {
       console.warn('[Admin] Failed to check for updates:', err.message);
     }
@@ -28,9 +41,9 @@ async function showDashboard(req, res) {
 
   res.render('admin/dashboard', {
     user,
-    updateInfo,
     links,
-    update: updateInfo 
+    updateInfo,
+    update: updateInfo
   });
 }
 
