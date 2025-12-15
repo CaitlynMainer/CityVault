@@ -211,15 +211,16 @@ module.exports = async function startApp(config) {
       message: 'An unexpected error occurred.'
     });
   });
-console.log("deployLauncherZip");
-  deployLauncherZip();
 
 
-  ensureSchema(authConfig).then(() => {
+  await ensureSchema(authConfig).then(() => {
     // optional: log success
   }).catch(err => {
     console.error('[schema] Error ensuring schema:', err);
   });
+  
+  deployLauncherZip();
+  
   startScheduledTasks();
 
   const outputPath = path.join(global.BASE_DIR, 'renders');
