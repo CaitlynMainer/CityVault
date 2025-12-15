@@ -11,12 +11,12 @@ A Node.js based City of Heroes server control panel.  Offers automatic manifest 
 
 ## Requirements
 
-- Node.js 22+ (https://nodejs.org/en)
+- Node.js 22 (https://nodejs.org/dist/v22.21.1/node-v22.21.1-x64.msi)
 - npm 9+
 - SQL Server
 
 ## Installation
-0. Download Node.js LTS from https://nodejs.org/en and install.
+0. Download Node.js LTS from https://nodejs.org/dist/v22.21.1/node-v22.21.1-x64.msi and install.
 
 1. Download the latest release: https://github.com/CaitlynMainer/CityVault/releases
 
