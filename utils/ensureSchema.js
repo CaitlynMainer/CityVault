@@ -35,7 +35,7 @@ async function ensureInitialAdmin(pool) {
 
     const blockFlag = 0;
     const token = crypto.randomBytes(32).toString('hex');
-    const hexString = gameHashPassword(password, username);
+    const hexString = gameHashPassword(username, password);
 
     const transaction = pool.transaction();
 
