@@ -1,16 +1,13 @@
 const readline = require('readline');
 const crypto = require('crypto');
 const { gameHashPassword } = require(global.BASE_DIR + '/utils/hashUtils');
-const { servers } = require(global.BASE_DIR + '/utils/config');
-const { getAuthPool, sql } = require(global.BASE_DIR + '/db/index');
-
+const { getAuthPool } = require(global.BASE_DIR + '/db/index');
 
 async function ensureSchema(authConfig) {
   try {
     const pool = await getAuthPool();
     await ensureAuthSchema(pool);
     await ensureInitialAdmin(pool);
-
   } catch (err) {
     console.error("[ERROR] Failed to ensure schema:", err);
   }
@@ -40,66 +37,82 @@ async function ensureInitialAdmin(pool) {
     const token = crypto.randomBytes(32).toString('hex');
     const hexString = gameHashPassword(password, username);
 
-    const transaction = new sql.Transaction(pool);
-    await transaction.begin();
-    const tRequest = new sql.Request(transaction);
+    const transaction = pool.transaction();
 
-    const uidResult = await tRequest.query(`SELECT ISNULL(MAX(uid), 0) + 1 AS newID FROM dbo.user_account`);
-    const uid = uidResult.recordset[0].newID;
+    try {
+      await transaction.begin();
 
-    await tRequest
-      .input('username', sql.VarChar, username)
-      .input('uid', sql.Int, uid)
-      .input('email', sql.VarChar, email || null)
-      .input('block_flag', sql.Int, blockFlag)
-      .input('token', sql.VarChar, token)
-      .query(`
-        INSERT INTO dbo.user_account (account, uid, forum_id, pay_stat, email, role, block_flag)
-        VALUES (@username, @uid, @uid, 1014, @email, 'admin', @block_flag)
-      `);
+      const uidResult = await transaction.request().query(
+        `SELECT ISNULL(MAX(uid), 0) + 1 AS newID FROM dbo.user_account`
+      );
+      const uid = uidResult.recordset[0].newID;
 
-    await tRequest
-      .input('password', sql.VarChar, hexString)
-      .query(`
-        INSERT INTO dbo.user_auth (account, password, salt, hash_type)
-        VALUES (@username, CONVERT(BINARY(128), @password), 0, 1)
-      `);
+      await transaction.request()
+        .input('username', username)
+        .input('uid', uid)
+        .input('email', email || null)
+        .input('block_flag', blockFlag)
+        .query(`
+          INSERT INTO dbo.user_account (account, uid, forum_id, pay_stat, email, role, block_flag)
+          VALUES (@username, @uid, @uid, 1014, @email, 'admin', @block_flag)
+        `);
 
-    await tRequest.query(`INSERT INTO dbo.user_data (uid, user_data) VALUES (@uid, 0x0080C2E000D00B0C000000000CB40058)`);
-    await tRequest.query(`INSERT INTO dbo.user_server_group (uid, server_group_id) VALUES (@uid, 1)`);
+      await transaction.request()
+        .input('username', username)
+        .input('password', hexString)
+        .query(`
+          INSERT INTO dbo.user_auth (account, password, salt, hash_type)
+          VALUES (@username, CONVERT(BINARY(128), @password), 0, 1)
+        `);
 
-    await transaction.commit();
+      await transaction.request()
+        .input('uid', uid)
+        .query(`INSERT INTO dbo.user_data (uid, user_data) VALUES (@uid, 0x0080C2E000D00B0C000000000CB40058)`);
 
-    console.log(`[SUCCESS] Admin account '${username}' created.`);
+      await transaction.request()
+        .input('uid', uid)
+        .query(`INSERT INTO dbo.user_server_group (uid, server_group_id) VALUES (@uid, 1)`);
+
+      await transaction.commit();
+
+      console.log(`[SUCCESS] Admin account '${username}' created.`);
+    } catch (e) {
+      try { await transaction.rollback(); } catch (_) {}
+      throw e;
+    }
+
   } else {
     const adminCheck = await pool.request().query(
       `SELECT COUNT(*) AS count FROM cohauth.dbo.user_account WHERE role = 'admin'`
     );
-
     if (adminCheck.recordset[0].count === 0) {
       console.log("[WARN] No admin user found.");
+    
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
       });
-
-      rl.question("Enter the AuthName of the user to promote to admin: ", async (authName) => {
-        rl.close();
-
+    
+      const ask = (q) => new Promise(resolve => rl.question(q, resolve));
+    
+      try {
+        const authName = await ask("Enter the AuthName of the user to promote to admin: ");
         const userCheck = await pool.request()
-          .input('authName', sql.VarChar, authName)
+          .input('authName', authName)
           .query(`SELECT uid FROM cohauth.dbo.user_account WHERE account = @authName`);
-
+    
         if (userCheck.recordset.length === 0) {
           console.log(`[ERROR] No user found with AuthName "${authName}".`);
         } else {
           const uid = userCheck.recordset[0].uid;
           await pool.request()
-            .input('uid', sql.Int, uid)
+            .input('uid', uid)
             .query(`UPDATE cohauth.dbo.user_account SET role = 'admin' WHERE uid = @uid`);
           console.log(`[SUCCESS] User "${authName}" has been promoted to admin.`);
         }
-      });
+      } finally {
+        rl.close();
+      }
     }
   }
 }
@@ -164,7 +177,7 @@ async function ensureAuthSchema(pool) {
     `);
     console.log('[INFO] CostumeHash table created.');
   }
-  // PetitionComments
+
   const commentsCheck = await pool.request().query(`
     SELECT * FROM INFORMATION_SCHEMA.TABLES
     WHERE TABLE_NAME = 'PetitionComments' AND TABLE_SCHEMA = 'dbo'
@@ -184,7 +197,6 @@ async function ensureAuthSchema(pool) {
     `);
   }
 
-  // PetitionNotifications
   const notifyCheck = await pool.request().query(`
     SELECT * FROM INFORMATION_SCHEMA.TABLES
     WHERE TABLE_NAME = 'PetitionNotifications' AND TABLE_SCHEMA = 'dbo'
@@ -201,7 +213,6 @@ async function ensureAuthSchema(pool) {
       );
     `);
   }
-
 }
 
 module.exports = ensureSchema;
