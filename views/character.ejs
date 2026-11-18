@@ -1,5 +1,6 @@
 <% const isForced = typeof forcedAccess !== 'undefined' && forcedAccess; %>
 <% const isAllowed = typeof character !== 'undefined' && character !== null; %>
+<% const cohPlainText = value => String(value || '').replace(/\\s/g, "'").replace(/\\d/g, '$').replace(/\\p/g, '%').replace(/\\q/g, '"').replace(/\\r\\n|\\n/g, '\n'); %>
 <% if (isAllowed || isForced) { %>
   <% if (message) { %>
     <div class="rounded px-4 py-3 mb-5 text-sm font-medium bg-yellow-100 text-yellow-900 dark:bg-yellow-800 dark:text-yellow-100">
@@ -42,9 +43,28 @@
 		tryReload();
 	  }
 	</script>
-  <div class="character-profile-container">
+  <% const fallbackAccent = ['Villain', 'Rogue'].includes(character.alignment) ? '#d84b60' : ['Resistance', 'Loyalist'].includes(character.alignment) ? '#d1a23b' : '#408be0'; %>
+  <div class="character-profile-container cv-character" style="--cv-accent: <%= uiColor || fallbackAccent %>">
     <!-- Left Column: Character Summary -->
-    <div class="left-panel" style="flex: 0 0 360px;">
+    <div class="left-panel">
+		<div class="cv-portrait-card">
+		  <div class="cv-portrait-heading">
+		    <% if (character.DisplayTitle) { %><span class="cv-portrait-title"><%= character.DisplayTitle %></span><% } %>
+		    <strong><%= stringClean(character.Name) %></strong>
+		    <span>Level <%= character.Level %> <%= character.ClassName %></span>
+		  </div>
+		  <div class="cv-portrait-stage" style="background-image: url('/<%= bgPath %>')">
+		    <img id="portrait"
+		      src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %><%= character.CurrentCostume && character.CurrentCostume !== 0 ? `_${character.CurrentCostume}` : '' %>.png?v=<%= Date.now() %>"
+		      onerror="handlePortraitError(this)"
+		      alt="Portrait of <%= stringClean(character.Name) %>">
+		  </div>
+		  <div class="cv-portrait-icons" aria-label="Character alignment, origin and archetype">
+		    <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" alt="<%= character.alignment %>" title="Alignment: <%= character.alignment %>">
+		    <img src="/images/icons/<%= character.OriginName.toLowerCase() %>.png" alt="<%= character.OriginName %>" title="Origin: <%= character.OriginName %>">
+		    <img src="/images/icons/<%= character.ClassName.toLowerCase() %>.png" alt="<%= character.ClassName %>" title="Archetype: <%= character.ClassName %>">
+		  </div>
+		</div>
 		<% if (isAdmin || isGM || viewerIsOwner) { %>
 		  <div style="display: grid; grid-template-columns: repeat(2, auto); gap: 8px; justify-content: center; margin-top: 8px;">
 			<form method="POST" action="/clear-costume-render" style="margin: 0;">
@@ -65,21 +85,6 @@
 		  </div>
 		<% } %>
 		
-		<br>
-		
-		<div style="display: flex;
-		justify-content: center;
-		background-image: url('/<%= bgPath %>');
-		background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-			">
-		  <img id="portrait"
-			   src="/images/portrait/<%= serverKey %>_<%= character.ContainerId %><%= character.CurrentCostume && character.CurrentCostume !== 0 ? `_${character.CurrentCostume}` : '' %>.png?v=<%= Date.now() %>"
-			   onerror="handlePortraitError(this)"
-			   alt="Character Portrait"
-			   style="max-width: 200px; max-height: 400px; width: auto; height: auto; border-radius: 8px; margin-bottom: 8px;" />
-		</div>
 		<% if (viewerIsOwner) { %>
 		  <form action="/character/uploadPortrait" method="post" enctype="multipart/form-data" style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px;">
 			<input type="hidden" name="characterId" value="<%= serverKey %>:<%= character.ContainerId %>">
@@ -87,13 +92,7 @@
 			<button type="submit" class="btn btn-blue text-xs px-2 py-1">Upload</button>
 		  </form>
 		<% } %>
-      <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 12px;">
-        <img src="/images/icons/<%= character.alignment.toLowerCase() %>.png" alt="Alignment" title="<%= character.alignment %>" height="32" />
-        <img src="/images/icons/<%= character.OriginName.toLowerCase() %>.png" alt="Origin" title="<%= character.OriginName %>" height="32" />
-        <img src="/images/icons/<%= character.ClassName.toLowerCase() %>.png" alt="Archetype" title="<%= character.ClassName %>" height="32" />
-      </div>
-
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-sm leading-relaxed max-w-2xl">
+<div class="cv-character-facts grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-sm leading-relaxed max-w-2xl">
   <div class="font-bold font-paragon">Title:</div>
   <div><%= character.DisplayTitle || '(None)' %></div>
 
@@ -177,8 +176,8 @@
     </div>
 
     <!-- Right Column: Character Name, Bio, and Badges -->
-    <div class="right-panel" style="flex: 1; max-width: 720px;">
-	  <h1 class="text-3xl font-bold mb-4"><%= stringClean(character.Name) %></h1>
+    <div class="right-panel">
+	  <h1 class="cv-page-title"><%= stringClean(character.Name) %></h1>
       <p><strong><span class="font-paragon">Player:</span></strong>          <% if (character.globalHandle) { %>
             <a href="/profile/<%= character.AuthId %>" 
               class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
@@ -188,11 +187,20 @@
             (Unknown)
           <% } %></p>
 
-      <div style="margin: 12px 0;">
-        <strong><span class="font-paragon">Description:</span></strong><br />
-        <p style="white-space: pre-wrap;"><%- stringClean(character.Description) %></p>
-      </div>
-
+      <div class="cv-tab-shell">
+        <div class="cv-jelly-tabs" role="tablist" aria-label="Character information">
+          <button type="button" id="cv-tab-description" class="cv-jelly-tab is-active" role="tab" aria-controls="cv-panel-description" aria-selected="true" tabindex="0" data-cv-tab="description">Description</button>
+          <button type="button" id="cv-tab-badges" class="cv-jelly-tab" role="tab" aria-controls="cv-panel-badges" aria-selected="false" tabindex="-1" data-cv-tab="badges">Badges</button>
+        </div>
+        <section id="cv-panel-description" class="cv-tab-panel is-active" role="tabpanel" aria-labelledby="cv-tab-description" data-cv-panel="description">
+          <% if (character.Motto && String(character.Motto).trim()) { %>
+            <h2 class="font-paragon">Battlecry</h2>
+            <p class="cv-description"><%= cohPlainText(character.Motto) %></p>
+          <% } %>
+          <h2 class="font-paragon">Description</h2>
+          <p class="cv-description"><%= cohPlainText(character.Description) || 'No description has been added yet.' %></p>
+        </section>
+        <section id="cv-panel-badges" class="cv-tab-panel" role="tabpanel" aria-labelledby="cv-tab-badges" data-cv-panel="badges" hidden>
 	  <h2 class="text-xl font-bold mb-2"><span class="font-paragon">Badge Tracking</span></h2>
       <div style="margin: 24px 0;">
         <div style="margin-top: 4px; text-align: center; font-size: 14px;">
@@ -203,7 +211,7 @@
           </div>
         </div>
         <div style="background: #ccc; border-radius: 4px; height: 12px; overflow: hidden;">
-          <div style="background: linear-gradient(to right, orange, gold); width: <%= Math.floor((ownedBadges / totalBadges) * 100) %>%; height: 100%;"></div>
+          <div class="cv-badge-progress" style="width: <%= totalBadges ? Math.floor((ownedBadges / totalBadges) * 100) : 0 %>%; height: 100%;"></div>
         </div>
       </div>
       <br>
@@ -213,7 +221,7 @@
         <div style="margin-bottom: 8px;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
             <div style="flex: 1; background: #ccc; height: 16px; border-radius: 4px; margin-right: 8px;">
-              <div style="background: linear-gradient(to right, orange, gold); width: <%= Math.floor((category.owned / category.total) * 100) %>%; height: 100%; border-radius: 4px;"></div>
+              <div class="cv-badge-progress" style="width: <%= category.total ? Math.floor((category.owned / category.total) * 100) : 0 %>%; height: 100%; border-radius: 4px;"></div>
             </div>
             <div style="white-space: nowrap; font-size: 14px;">
               <%= category.owned %> of <%= category.total %> badges earned
@@ -246,6 +254,8 @@
           <li class="loading-spinner">Loading...</li>
         </ul>
       <% }) %>
+        </section>
+      </div>
     </div>
   </div>
 <% } else { %>
@@ -324,3 +334,49 @@ for (const badge of badges) {
 }
 
     </script>
+<script>
+  (() => {
+    const profile = document.querySelector('.cv-character');
+    if (!profile) return;
+
+    const accent = getComputedStyle(profile).getPropertyValue('--cv-accent').trim();
+    const match = /^#([0-9a-f]{6})$/i.exec(accent);
+    if (match) {
+      const channels = [0, 2, 4].map(offset => parseInt(match[1].slice(offset, offset + 2), 16) / 255);
+      const linear = channels.map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+      const luminance = linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722;
+      if (luminance > 0.3) {
+        profile.style.setProperty('--cv-tab-ink', '#101827');
+        profile.style.setProperty('--cv-tab-shadow', 'none');
+      }
+    }
+
+    const tabs = [...profile.querySelectorAll('[data-cv-tab]')];
+    const panels = [...profile.querySelectorAll('[data-cv-panel]')];
+    function selectTab(name, focus = false) {
+      const selected = tabs.find(tab => tab.dataset.cvTab === name);
+      if (!selected) return;
+      tabs.forEach(tab => {
+        const active = tab === selected;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      panels.forEach(panel => {
+        panel.hidden = panel.dataset.cvPanel !== name;
+      });
+      if (focus) selected.focus();
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(tab.dataset.cvTab));
+      tab.addEventListener('keydown', event => {
+        const offset = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+        if (!offset && event.key !== 'Home' && event.key !== 'End') return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + offset + tabs.length) % tabs.length;
+        selectTab(tabs[next].dataset.cvTab, true);
+      });
+    });
+  })();
+</script>

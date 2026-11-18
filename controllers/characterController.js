@@ -254,6 +254,14 @@ function getAlignmentBg(alignment) {
   return `images/backgrounds/${bgName}.png`; // ← add extension here
 }
 
+function windowColorToHex(value) {
+  if (value == null || !Number.isFinite(Number(value))) return null;
+  const packed = Number(value) >>> 0;
+  const channels = [packed >>> 24, (packed >>> 16) & 255, (packed >>> 8) & 255]
+    .map(channel => channel === 1 ? 0 : channel);
+  return `#${channels.map(channel => channel.toString(16).padStart(2, '0')).join('')}`;
+}
+
 
 async function showCharacter(req, res) {
   const [serverKey, dbidStr] = (req.params.id || '').split(':');
@@ -305,6 +313,7 @@ async function showCharacter(req, res) {
           e.TitleOrigin,
           e.TitleSpecial,
           e.CurrentCostume,
+          windowColor.Color AS WindowColor,
           en2.originalPrimary,
           en2.originalSecondary,
           en2.PlayerSubType,
@@ -312,6 +321,12 @@ async function showCharacter(req, res) {
           en2.TitleTheText
         FROM dbo.Ents e
         JOIN dbo.Ents2 en2 ON e.ContainerId = en2.ContainerId
+        OUTER APPLY (
+          SELECT TOP (1) Color
+          FROM dbo.Windows
+          WHERE ContainerId = e.ContainerId AND Color IS NOT NULL
+          ORDER BY SubId
+        ) windowColor
         WHERE e.ContainerId = @dbid
       `);
 
@@ -427,6 +442,7 @@ async function showCharacter(req, res) {
         stringClean,
         portraitVersion,
         bgPath,
+        uiColor: windowColorToHex(character.WindowColor),
         role: viewerRole,
         isAdmin,
         isGM,

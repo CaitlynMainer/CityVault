@@ -16,6 +16,9 @@
   <title><%= typeof title !== 'undefined' ? title : config.siteName %></title>
   <link href="/css/output.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/default.css">
+  <% if (typeof currentPath === 'string' && currentPath.startsWith('/character/')) { %>
+    <link rel="stylesheet" href="/css/character.css">
+  <% } %>
   <link rel="stylesheet" href="/css/custom.css">
   <link rel="stylesheet" href="/css/fonts.css">
 
