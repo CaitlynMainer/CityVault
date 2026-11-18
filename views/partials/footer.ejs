@@ -18,6 +18,18 @@
     options.querySelectorAll('[data-value]').forEach(option => {
       option.addEventListener('click', () => {
         const value = option.dataset.value;
+        if (dropdown.hasAttribute('data-confirm-role-change')) {
+          const oldRole = input.value;
+          if (value === oldRole) {
+            options.classList.add('hidden');
+            return;
+          }
+          const account = dropdown.dataset.account;
+          if (!confirm(`Are you sure you want to change ${account}'s role from ${oldRole} to ${value}?`)) {
+            options.classList.add('hidden');
+            return;
+          }
+        }
         input.value = value;
         label.textContent = option.textContent;
         options.classList.add('hidden');

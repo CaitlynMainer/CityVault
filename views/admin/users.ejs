@@ -116,7 +116,7 @@
                 <%= user.role %>
               </span>
               <% if (currentUserRole === 'admin' && user.account !== username) { %>
-              <form method="POST" action="/admin/users/<%= user.uid %>/role" class="inline-block" data-dropdown>
+              <form method="POST" action="/admin/users/<%= user.uid %>/role" class="inline-block" data-dropdown data-confirm-role-change data-account="<%= user.account %>">
                 <input type="hidden" name="page" value="<%= page %>">
                 <input type="hidden" name="search" value="<%= search %>">
                 <input type="hidden" name="limit" value="<%= limit %>">
@@ -134,8 +134,7 @@
                         <button
                           type="button"
                           class="w-full text-left px-3 py-2 text-sm capitalize hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-900 dark:text-white"
-                          data-value="<%= roleOption %>"
-                          onclick="confirmRoleChange(this, '<%= user.uid %>', '<%= user.account %>')">
+                          data-value="<%= roleOption %>">
                           <%= roleOption %>
                         </button>
                       </li>
@@ -284,7 +283,6 @@
   </div>
 </div>
 
-<form id="roleChangeForm" method="POST" class="hidden"></form>
 <script>
   let pendingFormData = null;
   let isBanAction = false;
@@ -427,42 +425,6 @@ function submitNote() {
       }
     });
 }
-</script>
-<script>
-  function confirmRoleChange(select, uid, account) {
-    const newRole = select.value;
-    const oldRole = select.querySelector('option[selected]')?.value || 'user';
-
-    if (newRole === oldRole) return; // no change
-
-    const confirmed = confirm(`Are you sure you want to change ${account}'s role from ${oldRole} to ${newRole}?`);
-    if (!confirmed) {
-      // Reset select to old value
-      select.value = oldRole;
-      return;
-    }
-
-    const form = document.getElementById('roleChangeForm');
-    form.action = `/admin/users/${uid}/role`;
-    form.innerHTML = '';
-
-    const fields = {
-      newRole,
-      page: '<%= page %>',
-      search: '<%= search %>',
-      limit: '<%= limit %>'
-    };
-
-    for (const [key, value] of Object.entries(fields)) {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = value;
-      form.appendChild(input);
-    }
-
-    form.submit();
-  }
 </script>
 <script>
 document.addEventListener('keydown', function (e) {

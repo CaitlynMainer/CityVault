@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const requireAdmin = require(global.BASE_DIR + '/middleware/requireAdmin');
 
+router.use(requireAdmin);
+
 router.use('/', require('./dashboard'));
 router.use('/manifest', require('./manifest'));
 router.use('/users', require('./users'));

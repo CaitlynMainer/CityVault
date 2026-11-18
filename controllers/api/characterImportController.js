@@ -52,16 +52,19 @@ const identityTables = new Set([
 
 
 async function importCharacter(req, res) {
-  fs.writeFileSync(logPath, '');
+  const viewerUsername = req.session?.username;
+  if (!viewerUsername) return res.status(401).send('Not logged in.');
+
   const { serverKey } = req.params;
-  const { viewerUsername, targetAccount, taskId } = req.body;
+  const { targetAccount, taskId } = req.body;
   const zipFile = req.file;
 
-  if (!viewerUsername || !zipFile || !targetAccount) {
+  if (!zipFile || !targetAccount) {
     return res.status(400).send('Missing required fields.');
   }
 
   try {
+    fs.writeFileSync(logPath, '');
     const authPool = await getAuthPool();
     const viewerResult = await authPool.request()
       .input('viewer', sql.VarChar, viewerUsername)
@@ -334,7 +337,8 @@ async function importCharacterFromFile({ zipPath, serverKey, viewerUsername, tar
     const reqMock = {
       file: { buffer },
       params: { serverKey },
-      body: { viewerUsername, targetAccount, taskId }
+      session: { username: viewerUsername },
+      body: { targetAccount, taskId }
     };
 
     const resMock = {

@@ -174,7 +174,7 @@ async function updateUserRole(req, res) {
     const pool = await getAuthPool();
     const targetUser = await pool.request()
       .input('uid', sql.Int, uid)
-      .query(`SELECT role FROM cohauth.dbo.user_account WHERE uid = @uid`);
+      .query(`SELECT account, role FROM cohauth.dbo.user_account WHERE uid = @uid`);
 
     if (targetUser.recordset.length === 0) return res.status(404).send('User not found');
     const currentRole = targetUser.recordset[0].role;
@@ -186,32 +186,29 @@ async function updateUserRole(req, res) {
       return res.status(403).send('Admins cannot be demoted through the panel.');
     }
 
-    if (targetUser.account === req.session.username) {
+    if (targetUser.recordset[0].account === req.session?.username) {
       return res.status(403).send('You cannot change your own role.');
     }
-    // Final enforcement
-    if (actingRole !== 'admin') {
-      return res.status(403).send('Only admins can modify roles.');
-    }
-
-    if (currentRole === 'admin' && newRole !== 'admin') {
-      return res.status(403).send('Admins cannot be demoted through the panel.');
-    }
-
     try {
-      const pool = await getAuthPool();
+      const transaction = new sql.Transaction(pool);
+      await transaction.begin();
+      try {
+        await new sql.Request(transaction)
+          .input('uid', sql.Int, uid)
+          .input('newRole', sql.VarChar, newRole)
+          .query(`
+            UPDATE cohauth.dbo.user_account
+            SET role = @newRole
+            WHERE uid = @uid
+          `);
 
-      await pool.request()
-        .input('uid', sql.Int, uid)
-        .input('newRole', sql.VarChar, newRole)
-        .query(`
-        UPDATE cohauth.dbo.user_account
-        SET role = @newRole
-        WHERE uid = @uid
-      `);
-
-      const note = `[AUTO] ROLE CHANGE by ${req.session.username}: ${currentRole.toUpperCase()} -> ${newRole.toUpperCase()}`;
-      await insertUserNote(uid, note, req.session.username);
+        const note = `[AUTO] ROLE CHANGE by ${req.session.username}: ${currentRole.toUpperCase()} -> ${newRole.toUpperCase()}`;
+        await insertUserNote(uid, note, req.session.username, transaction);
+        await transaction.commit();
+      } catch (err) {
+        await transaction.rollback();
+        throw err;
+      }
 
       const qs = `?page=${page}&search=${encodeURIComponent(search)}&limit=${limit}`;
       res.redirect('/admin/users' + qs);
@@ -312,9 +309,9 @@ async function updateUserRole(req, res) {
     }
   }
 
-  async function insertUserNote(uid, note, author) {
-  const pool = await getAuthPool();
-  await pool.request()
+  async function insertUserNote(uid, note, author, transaction) {
+  const request = transaction ? new sql.Request(transaction) : (await getAuthPool()).request();
+  await request
     .input('uid', sql.Int, uid)
     .input('note', sql.Text, note)
     .input('author', sql.VarChar, author)
@@ -370,7 +367,7 @@ async function updateUserRole(req, res) {
     }
 
     try {
-      insertUserNote(uid, note, author);
+      await insertUserNote(uid, note, author);
       res.json({ success: true });
     } catch (err) {
       console.error('[Add Note Error]', err);

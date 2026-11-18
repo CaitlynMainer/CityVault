@@ -120,6 +120,8 @@ async function notifyUserByAuthName(authName, template, subject, templateData) {
 }
 
 async function markFetched(req, res) {
+  if (!isGM(req.user?.role)) return res.status(403).send('Forbidden');
+
   const { serverKey, id } = req.params;
   try {
     const pool = await getGamePool(serverKey);
@@ -151,6 +153,8 @@ async function markFetched(req, res) {
 }
 
 async function markDone(req, res) {
+  if (!isGM(req.user?.role)) return res.status(403).send('Forbidden');
+
   const { serverKey, id } = req.params;
   try {
     const pool = await getGamePool(serverKey);
@@ -182,6 +186,8 @@ async function markDone(req, res) {
 }
 
 async function toggleStatus(req, res) {
+  if (!isGM(req.user?.role)) return res.status(403).send('Forbidden');
+
   const { serverKey, id, field } = req.params;
   if (!['Fetched', 'Done'].includes(field)) return res.status(400).send('Invalid field');
 
