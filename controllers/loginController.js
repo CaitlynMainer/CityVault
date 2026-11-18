@@ -10,7 +10,11 @@ function handleLoginPage(req, res) {
 }
 
 async function handleLogin(req, res) {
-  const { username, password } = req.body;
+  const { username, password } = req.body || {};
+  if (typeof username !== 'string' || !username.trim() ||
+      typeof password !== 'string' || !password) {
+    return res.status(400).send('Username and password are required.');
+  }
   const rawHash = gameHashPassword(username, password); // 64-byte Buffer
   const hexString = rawHash.toString('hex'); // 128-char hex string
   const sqlStyleBuffer = Buffer.from(hexString, 'utf8');

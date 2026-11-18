@@ -7,9 +7,7 @@ const { sendMail } = require(global.BASE_DIR + '/services/mail');
 
 function handleRegisterPage(req, res) {
   if (!config.allowRegistration) {
-    return res.render('register-disabled'); // Or whatever alternate template
-    // Or: return res.status(403).send('Registration is currently disabled.');
-    // Or: return res.redirect('/login'); — totally up to you
+    return res.status(403).render('register-disabled');
   }
   res.render('register');
 }
@@ -18,7 +16,12 @@ async function handleRegister(req, res) {
   if (!config.allowRegistration) {
     return res.status(403).send('Registration is disabled.');
   }
-  const { username, password, email } = req.body;
+  const { username, password, email } = req.body || {};
+  if (typeof username !== 'string' || !username.trim() ||
+      typeof password !== 'string' || !password ||
+      typeof email !== 'string' || !email.trim()) {
+    return res.status(400).send('Username, password, and email are required.');
+  }
   const hashedPassword = gameHashPassword(username, password);
   const hexString = hashedPassword.toString('hex');
 
